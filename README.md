@@ -69,7 +69,7 @@ The SDK contains ad object files auto generated from our API metadata, each node
 
 ```ruby
 ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
-print "Ad Account Name: #{ad_account.name}"
+puts "Ad Account Name: #{ad_account.name}"
 ```
 
 The `#get` method doesn't trigger the `GET` request immediately. The API request for `GET` is fired on-demand. In the example above, API request won't fire until `ad_account.name` is executed.
@@ -112,7 +112,7 @@ ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
 
 # Printing all campaign names
 ad_account.campaigns(fields: 'name').each do |campaign|
-  print campaign.name
+  puts campaign.name
 end
 
 # Getting all campaign names
