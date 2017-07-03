@@ -72,7 +72,7 @@ ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
 print "Ad Account Name: #{ad_account.name}"
 ```
 
-The `#get` method doesn't trigger the `GET` request immeidately. The API request for `GET` is fired on-demand. In the example above, API request won't fire until `ad_account.name` is executed.
+The `#get` method doesn't trigger the `GET` request immediately. The API request for `GET` is fired on-demand. In the example above, API request won't fire until `ad_account.name` is executed.
 
 ### Updating a node
 To update a node, you can use the `#save` method of ad object classes.
@@ -219,4 +219,4 @@ end
 ```
 
 ## Reporting Bugs/Feedback
-Please raise any issue on Github.
+Please raise any issue on GitHub.
