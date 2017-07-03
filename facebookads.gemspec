@@ -4,8 +4,11 @@ Gem::Specification.new do |s|
   s.name        = 'facebookads'
   s.version     = FacebookAds::VERSION
   s.date        = '2017-04-25'
-  s.summary     = 'Facebook Ads API SDK for Ruby'
-  s.description = 'Facebook Ads API SDK for Ruby'
+  s.summary     = 'Facebook Ads API SDK for Ruby (Official)'
+  s.description = <<-DESC
+  The official Facebook Ads API SDK for Ruby.
+  https://developers.facebook.com/docs/marketing-api/sdks'
+  DESC
   s.authors     = ['Facebook']
   s.email       = ''
   s.homepage    =
