@@ -36,6 +36,7 @@ module FacebookAds
 
     field :attending_count, 'int'
     field :can_guests_invite, 'bool'
+    field :can_viewer_post, 'bool'
     field :category, 'string'
     field :cover, 'object'
     field :declined_count, 'int'
@@ -45,6 +46,7 @@ module FacebookAds
     field :id, 'string'
     field :interested_count, 'int'
     field :is_canceled, 'bool'
+    field :is_draft, 'bool'
     field :is_page_owned, 'bool'
     field :is_viewer_admin, 'bool'
     field :maybe_count, 'int'
@@ -55,6 +57,8 @@ module FacebookAds
     field :place, 'object'
     field :start_time, 'string'
     field :ticket_uri, 'string'
+    field :ticketing_privacy_uri, 'string'
+    field :ticketing_terms_uri, 'string'
     field :timezone, 'string'
     field :type, { enum: -> { TYPE }}
     field :updated_time, 'datetime'

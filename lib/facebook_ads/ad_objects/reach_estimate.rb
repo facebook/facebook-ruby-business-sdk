@@ -45,6 +45,7 @@ module FacebookAds
       "SOCIAL_IMPRESSIONS",
       "VIDEO_VIEWS",
       "APP_DOWNLOADS",
+      "LANDING_PAGE_VIEWS",
     ]
 
 

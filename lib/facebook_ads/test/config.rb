@@ -17,16 +17,38 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 module FacebookAds
-  module FieldTypes
-    class Object < Base
-      register 'hash', 'map', 'object'
+  module Test
+    class Config < FacebookAds::Config
+      setting :app_id
+      setting :app_secret
+      setting :access_token
+      setting :business_id
+      setting :act_id
+      setting :account_id
+      setting :act_timezone
+      setting :page_id
+      setting :app_url
+      setting :instagram_actor_id
+      setting :graph_base_domain
+      setting :secondary_business_id
+      setting :secondary_account_id
+      setting :secondary_page_id
+      setting :secondary_app_id
 
-      def deserialize(value, session = nil)
-        JSON.parse(value)
-      end
+      setting :image_path, File.expand_path("../../../../tests/image.png", __FILE__)
+      setting :images_zip_path, File.expand_path("../../../../tests/imagez.zip", __FILE__)
+      setting :video_path, File.expand_path("../../../../tests/video.mp4", __FILE__)
 
-      def serialize(value)
-        JSON.generate(value)
+      def override_from!(filename = nil)
+        filename ||= File.expand_path("../../../../tests/test_config.json", __FILE__)
+        if File.exists?(filename)
+          settings = JSON.parse(File.read(filename))
+
+          settings.each do |k,v|
+            instance_variable_set("@#{k}", v)
+          end
+        end
+        self
       end
     end
   end

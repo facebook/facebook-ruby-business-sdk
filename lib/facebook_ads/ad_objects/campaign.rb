@@ -122,6 +122,8 @@ module FacebookAds
     field :name, 'string'
     field :objective, 'string'
     field :recommendations, { list: 'AdRecommendation' }
+    field :source_campaign, 'Campaign'
+    field :source_campaign_id, 'string'
     field :spend_cap, 'string'
     field :start_time, 'datetime'
     field :status, { enum: -> { STATUS }}
@@ -162,6 +164,15 @@ module FacebookAds
       end
     end
 
+    has_edge :copies do |edge|
+      edge.get 'Campaign' do |api|
+        api.has_param :date_preset, { enum: -> { Campaign::DATE_PRESET }}
+        api.has_param :effective_status, { list: { enum: -> { Campaign::EFFECTIVE_STATUS }} }
+        api.has_param :is_completed, 'bool'
+        api.has_param :time_range, 'object'
+      end
+    end
+
     has_edge :insights do |edge|
       edge.get 'AdsInsights' do |api|
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
@@ -183,6 +194,7 @@ module FacebookAds
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
+        api.has_param :use_account_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
@@ -204,6 +216,7 @@ module FacebookAds
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
+        api.has_param :use_account_attribution_setting, 'bool'
       end
     end
 

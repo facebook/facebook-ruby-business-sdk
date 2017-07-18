@@ -36,6 +36,7 @@ module FacebookAds
       "POST_ENGAGEMENT",
       "VIDEO_VIEWS",
       "MRC_VIDEO_VIEWS",
+      "COMPLETED_VIDEO_VIEWS",
     ]
 
     CONFIGURED_STATUS = [
@@ -77,6 +78,7 @@ module FacebookAds
       "SOCIAL_IMPRESSIONS",
       "VIDEO_VIEWS",
       "APP_DOWNLOADS",
+      "LANDING_PAGE_VIEWS",
     ]
 
     STATUS = [
@@ -152,6 +154,8 @@ module FacebookAds
     field :recurring_budget_semantics, 'bool'
     field :rf_prediction_id, 'string'
     field :rtb_flag, 'bool'
+    field :source_adset, 'AdSet'
+    field :source_adset_id, 'string'
     field :start_time, 'datetime'
     field :status, { enum: -> { STATUS }}
     field :targeting, 'Targeting'
@@ -206,9 +210,18 @@ module FacebookAds
       end
     end
 
+    has_edge :copies do |edge|
+      edge.get 'AdSet' do |api|
+        api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
+        api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
+        api.has_param :is_completed, 'bool'
+        api.has_param :time_range, 'object'
+      end
+    end
+
     has_edge :delivery_estimate do |edge|
-      edge.get 'DeliveryEstimate' do |api|
-        api.has_param :optimization_goal, 'adcampaigndelivery_estimate_optimization_goal_enum_param'
+      edge.get 'AdCampaignDeliveryEstimate' do |api|
+        api.has_param :optimization_goal, { enum: -> { AdCampaignDeliveryEstimate::OPTIMIZATION_GOAL }}
         api.has_param :promoted_object, 'object'
         api.has_param :targeting_spec, 'Targeting'
       end
@@ -235,6 +248,7 @@ module FacebookAds
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
+        api.has_param :use_account_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
@@ -256,6 +270,7 @@ module FacebookAds
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
+        api.has_param :use_account_attribution_setting, 'bool'
       end
     end
 

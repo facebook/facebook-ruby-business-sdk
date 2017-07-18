@@ -53,6 +53,8 @@ module FacebookAds
     field :offer_id, 'string'
     field :page_welcome_message, 'string'
     field :picture, 'string'
+    field :retailer_item_ids, { list: 'string' }
+    field :show_multiple_images, 'bool'
     has_no_id
     has_no_get
     has_no_post

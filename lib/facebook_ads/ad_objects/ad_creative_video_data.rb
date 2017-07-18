@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdCreativeVideoData < AdObject
 
+    field :additional_image_index, 'int'
     field :branded_content_sponsor_page_id, 'string'
     field :branded_content_sponsor_relationship, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
@@ -36,6 +37,7 @@ module FacebookAds
     field :message, 'string'
     field :offer_id, 'string'
     field :page_welcome_message, 'string'
+    field :retailer_item_ids, { list: 'string' }
     field :targeting, 'Targeting'
     field :title, 'string'
     field :video_id, 'string'

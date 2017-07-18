@@ -63,8 +63,10 @@ module FacebookAds
     field :latest_upload, 'ProductFeedUpload'
     field :name, 'string'
     field :product_count, 'int'
+    field :qualified_product_count, 'int'
     field :quoted_fields_mode, { enum: -> { QUOTED_FIELDS_MODE }}
     field :schedule, 'ProductFeedSchedule'
+    field :rules, { list: 'string' }
 
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|

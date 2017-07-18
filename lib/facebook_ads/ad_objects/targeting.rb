@@ -49,6 +49,7 @@ module FacebookAds
     field :cities, { list: 'IDName' }
     field :college_years, { list: 'int' }
     field :connections, { list: 'IDName' }
+    field :contextual_targeting_categories, { list: 'IDName' }
     field :countries, { list: 'string' }
     field :country, { list: 'string' }
     field :country_groups, { list: 'string' }
@@ -75,7 +76,6 @@ module FacebookAds
     field :excluded_mobile_device_model, { list: 'string' }
     field :excluded_product_audience_specs, { list: 'TargetingProductAudienceSpec' }
     field :excluded_publisher_categories, { list: 'string' }
-    field :excluded_publisher_domains, { list: 'string' }
     field :excluded_publisher_list_ids, { list: 'string' }
     field :excluded_user_device, { list: 'string' }
     field :exclusions, 'FlexibleTargeting'

@@ -100,6 +100,7 @@ module FacebookAds
 
     has_edge :leadgen_forms do |edge|
       edge.get 'LeadgenForm' do |api|
+        api.has_param :page_id, 'string'
         api.has_param :query, 'string'
       end
     end
@@ -119,7 +120,9 @@ module FacebookAds
 
     has_edge :promotable_events do |edge|
       edge.get 'Event' do |api|
+        api.has_param :include_past_events, 'bool'
         api.has_param :is_page_event, 'bool'
+        api.has_param :page_id, 'int'
       end
     end
 

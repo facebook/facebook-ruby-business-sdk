@@ -25,47 +25,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class LeadgenForm < AdObject
+  class CheckBatchRequestStatus < AdObject
 
-    field :allow_organic_lead, 'bool'
-    field :block_display_for_non_targeted_viewer, 'bool'
-    field :context_card, 'object'
-    field :continued_flow_request_method, 'string'
-    field :created_time, 'datetime'
-    field :creator, 'User'
-    field :creator_id, 'int'
-    field :cusomized_tcpa_content, 'string'
-    field :expired_leads_count, 'int'
-    field :follow_up_action_text, 'string'
-    field :follow_up_action_url, 'string'
-    field :id, 'string'
-    field :is_continued_flow, 'bool'
-    field :leadgen_export_csv_url, 'string'
-    field :leads_count, 'int'
-    field :legal_content, 'object'
-    field :locale, 'string'
-    field :messenger_welcome_message, 'string'
-    field :name, 'string'
-    field :organic_leads_count, 'int'
-    field :page, 'object'
-    field :page_id, 'string'
-    field :privacy_policy_url, 'string'
-    field :qualifiers, { list: 'LeadGenQualifier' }
-    field :questions, { list: 'LeadGenQuestion' }
+    field :errors, { list: 'object' }
+    field :errors_total_count, 'int'
+    field :handle, 'string'
     field :status, 'string'
-    field :tcpa_compliance, 'bool'
+    has_no_id
+    has_no_get
     has_no_post
-
-    has_edge :leads do |edge|
-      edge.get 'Lead'
-    end
-
-    has_edge :test_leads do |edge|
-      edge.post 'LeadgenForm' do |api|
-        api.has_param :custom_disclaimer_responses, { list: 'object' }
-        api.has_param :field_data, { list: 'object' }
-      end
-    end
+    has_no_delete
 
   end
 end

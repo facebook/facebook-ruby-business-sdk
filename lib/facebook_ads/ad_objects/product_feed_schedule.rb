@@ -48,6 +48,7 @@ module FacebookAds
     field :day_of_week, { enum: -> { DAY_OF_WEEK }}
     field :hour, 'int'
     field :interval, { enum: -> { INTERVAL }}
+    field :interval_count, 'int'
     field :minute, 'int'
     field :timezone, 'string'
     field :url, 'string'

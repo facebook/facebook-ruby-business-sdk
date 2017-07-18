@@ -60,6 +60,7 @@ module FacebookAds
       "REGISTER_NOW",
       "REQUEST_TIME",
       "SEE_MENU",
+      "EMAIL_NOW",
       "OPEN_MOVIES",
     ]
 

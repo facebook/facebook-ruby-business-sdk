@@ -59,6 +59,7 @@ module FacebookAds
       "pending",
       "rejected",
       "approved",
+      "outdated",
     ]
 
     SHIPPING_WEIGHT_UNIT = [
@@ -135,7 +136,7 @@ module FacebookAds
     field :iphone_app_name, 'string'
     field :iphone_app_store_id, 'int'
     field :iphone_url, 'string'
-    field :windows_phone_app_id, 'int'
+    field :windows_phone_app_id, 'string'
     field :windows_phone_app_name, 'string'
     field :windows_phone_url, 'string'
 

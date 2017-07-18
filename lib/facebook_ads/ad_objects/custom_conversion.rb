@@ -34,9 +34,9 @@ module FacebookAds
       "CONTENT_VIEW",
       "INITIATED_CHECKOUT",
       "LEAD",
-      "OTHER",
       "PURCHASE",
       "SEARCH",
+      "OTHER",
     ]
 
 
@@ -63,6 +63,15 @@ module FacebookAds
         api.has_param :end_time, 'datetime'
         api.has_param :event_type, { enum: %w{conversion_create conversion_delete conversion_update }}
         api.has_param :start_time, 'datetime'
+      end
+    end
+
+    has_edge :shared_agencies do |edge|
+      edge.delete do |api|
+        api.has_param :business, 'string'
+      end
+      edge.post 'CustomConversion' do |api|
+        api.has_param :business, 'string'
       end
     end
 

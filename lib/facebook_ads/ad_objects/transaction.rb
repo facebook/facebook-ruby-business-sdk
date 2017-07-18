@@ -42,6 +42,7 @@ module FacebookAds
     field :credential_id, 'string'
     field :fatura_id, 'int'
     field :id, 'string'
+    field :is_business_ec_charge, 'bool'
     field :payment_option, 'string'
     field :product_type, { enum: -> { PRODUCT_TYPE }}
     field :provider_amount, 'TransactionCurrencyAmount'

@@ -81,7 +81,6 @@ module FacebookAds
       "effective_audience_network_positions",
       "excluded_publisher_categories",
       "excluded_publisher_list_ids",
-      "excluded_publisher_domains",
       "publisher_visibility_categories",
       "user_device",
       "mobile_device_model",
@@ -106,6 +105,7 @@ module FacebookAds
       "moms",
       "office_type",
       "targeting_optimization",
+      "direct_install_devices",
       "engagement_specs",
       "excluded_engagement_specs",
       "product_audience_specs",
@@ -118,6 +118,11 @@ module FacebookAds
       "fb_deal_id",
       "interest_defaults_source",
       "alternate_auto_targeting_option",
+      "contextual_targeting_categories",
+      "topic",
+      "format",
+      "trending",
+      "gatekeepers",
     ]
 
 

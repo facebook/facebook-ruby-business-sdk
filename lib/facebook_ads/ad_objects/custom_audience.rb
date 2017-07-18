@@ -28,16 +28,18 @@ module FacebookAds
   class CustomAudience < AdObject
     include CustomAudienceHelpers
     CLAIM_OBJECTIVE = [
+      "AUTO_OFFER",
       "HOME_LISTING",
       "PRODUCT",
       "TRAVEL",
     ]
 
     CONTENT_TYPE = [
+      "AUTO_OFFER",
       "DESTINATION",
       "FLIGHT",
-      "HOTEL",
       "HOME_LISTING",
+      "HOTEL",
     ]
 
     SUBTYPE = [
@@ -54,6 +56,7 @@ module FacebookAds
       "DATA_SET",
       "BAG_OF_ACCOUNTS",
       "STUDY_RULE_AUDIENCE",
+      "FOX",
     ]
 
     FIELDS = [
@@ -74,6 +77,7 @@ module FacebookAds
       "pixel_id",
       "retention_days",
       "rule",
+      "rule_aggregation",
       "subtype",
       "time_content_updated",
       "time_created",

@@ -37,6 +37,7 @@ module FacebookAds
       "MULTI_HASHES",
       "TOKENS",
       "EXTERNAL_IDS_MIX",
+      "HOUSEHOLD_EXPANSION",
       "WEB_PIXEL_HITS",
       "MOBILE_APP_EVENTS",
       "MOBILE_APP_COMBINATION_EVENTS",
@@ -79,6 +80,7 @@ module FacebookAds
       "THIRD_PARTY_IMPORTED",
       "COPY_PASTE",
       "CONTACT_IMPORTER",
+      "HOUSEHOLD_AUDIENCE",
     ]
 
 

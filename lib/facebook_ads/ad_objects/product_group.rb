@@ -88,7 +88,7 @@ module FacebookAds
         api.has_param :start_date, 'string'
         api.has_param :url, 'string'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
-        api.has_param :windows_phone_app_id, 'int'
+        api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'
       end

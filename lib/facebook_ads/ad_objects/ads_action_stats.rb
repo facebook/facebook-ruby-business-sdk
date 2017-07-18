@@ -38,6 +38,7 @@ module FacebookAds
     field :action_carousel_card_name, 'string'
     field :action_destination, 'string'
     field :action_device, 'string'
+    field :action_link_click_destination, 'string'
     field :action_reaction, 'string'
     field :action_target_id, 'string'
     field :action_type, 'string'

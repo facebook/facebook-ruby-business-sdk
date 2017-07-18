@@ -46,6 +46,7 @@ module FacebookAds
     field :age, 'double'
     field :agency_client_declaration, 'AgencyClientDeclaration'
     field :amount_spent, 'string'
+    field :attribution_spec, { list: 'object' }
     field :balance, 'string'
     field :business, 'Business'
     field :business_city, 'string'
@@ -68,6 +69,7 @@ module FacebookAds
     field :has_migrated_permissions, 'bool'
     field :id, 'string'
     field :io_number, 'string'
+    field :is_attribution_spec_system_default, 'bool'
     field :is_notifications_enabled, 'bool'
     field :is_personal, 'int'
     field :is_prepay_account, 'bool'
@@ -171,9 +173,9 @@ module FacebookAds
         api.has_param :name, 'string'
       end
       edge.post list: 'AdImage' do |api|
-        api.has_param :bytes, 'string'
+        api.has_param :bytes, 'object'
         api.has_param :copy_from, 'object'
-        api.has_param :zipbytes, 'string'
+        api.has_param :zipbytes, 'object'
         api.accepts_files!
       end
     end
@@ -259,7 +261,6 @@ module FacebookAds
         api.has_param :promoted_object, 'object'
         api.has_param :redownload, 'bool'
         api.has_param :rf_prediction_id, 'string'
-        api.has_param :rtb_flag, 'bool'
         api.has_param :start_time, 'datetime'
         api.has_param :status, { enum: -> { AdSet::STATUS }}
         api.has_param :targeting, 'Targeting'
@@ -304,6 +305,7 @@ module FacebookAds
         api.has_param :og_object_id, 'string'
         api.has_param :og_phrase, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
+        api.has_param :original_fov, 'int'
         api.has_param :original_projection_type, { enum: %w{equirectangular cubemap }}
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :slideshow_spec, 'hash'
@@ -347,7 +349,6 @@ module FacebookAds
         api.has_param :object_count, 'int'
       end
       edge.get 'Campaign' do |api|
-        api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { Campaign::DATE_PRESET }}
         api.has_param :effective_status, { list: { enum: -> { Campaign::EFFECTIVE_STATUS }} }
         api.has_param :is_completed, 'bool'
@@ -408,20 +409,18 @@ module FacebookAds
 
     has_edge :customconversions do |edge|
       edge.post 'CustomConversion' do |api|
-        api.has_param :aggregation_rule, 'string'
         api.has_param :custom_event_type, { enum: -> { CustomConversion::CUSTOM_EVENT_TYPE }}
         api.has_param :default_conversion_value, 'double'
         api.has_param :description, 'string'
         api.has_param :event_source_id, 'string'
         api.has_param :name, 'string'
-        api.has_param :retention_days, 'int'
         api.has_param :rule, 'string'
       end
     end
 
     has_edge :delivery_estimate do |edge|
-      edge.get 'DeliveryEstimate' do |api|
-        api.has_param :optimization_goal, 'adaccountdelivery_estimate_optimization_goal_enum_param'
+      edge.get 'AdAccountDeliveryEstimate' do |api|
+        api.has_param :optimization_goal, { enum: -> { AdAccountDeliveryEstimate::OPTIMIZATION_GOAL }}
         api.has_param :promoted_object, 'object'
         api.has_param :targeting_spec, 'Targeting'
       end
@@ -463,6 +462,7 @@ module FacebookAds
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
+        api.has_param :use_account_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
@@ -484,6 +484,7 @@ module FacebookAds
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
+        api.has_param :use_account_attribution_setting, 'bool'
       end
     end
 
@@ -505,14 +506,6 @@ module FacebookAds
 
     has_edge :offline_conversion_data_sets do |edge|
       edge.get
-    end
-
-    has_edge :offlineconversions do |edge|
-      edge.post do |api|
-        api.has_param :event, 'string'
-        api.has_param :payload, { list: 'object' }
-        api.has_param :pixel_id, 'string'
-      end
     end
 
     has_edge :offsitepixels do |edge|
@@ -546,7 +539,7 @@ module FacebookAds
         api.has_param :opt_out_link, 'string'
         api.has_param :parent_audience_id, 'int'
         api.has_param :product_set_id, 'string'
-        api.has_param :subtype, { enum: %w{CUSTOM WEBSITE APP OFFLINE_CONVERSION CLAIM PARTNER MANAGED VIDEO LOOKALIKE ENGAGEMENT DATA_SET BAG_OF_ACCOUNTS STUDY_RULE_AUDIENCE }}
+        api.has_param :subtype, { enum: %w{CUSTOM WEBSITE APP OFFLINE_CONVERSION CLAIM PARTNER MANAGED VIDEO LOOKALIKE ENGAGEMENT DATA_SET BAG_OF_ACCOUNTS STUDY_RULE_AUDIENCE FOX }}
         api.has_param :tags, { list: 'string' }
       end
     end

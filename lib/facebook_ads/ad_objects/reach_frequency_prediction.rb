@@ -69,7 +69,7 @@ module FacebookAds
     field :status, 'int'
     field :story_event_type, 'int'
     field :target_audience_size, 'int'
-    field :target_spec, 'string'
+    field :target_spec, 'Targeting'
     field :time_created, 'datetime'
     field :time_updated, 'datetime'
     field :budget, 'int'

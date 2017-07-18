@@ -39,15 +39,23 @@ module FacebookAds
     field :default_image_url, 'string'
     field :fallback_image_url, { list: 'string' }
     field :feed_count, 'int'
+    field :flight_catalog_settings, 'object'
     field :id, 'string'
     field :image_padding_landscape, 'bool'
     field :image_padding_square, 'bool'
     field :name, 'string'
     field :product_count, 'int'
+    field :qualified_product_count, 'int'
     field :vertical, 'string'
 
     has_edge :agencies do |edge|
       edge.get 'Business'
+    end
+
+    has_edge :check_batch_request_status do |edge|
+      edge.get 'CheckBatchRequestStatus' do |api|
+        api.has_param :handle, 'string'
+      end
     end
 
     has_edge :destinations do |edge|
@@ -133,6 +141,7 @@ module FacebookAds
         api.has_param :file_name, 'string'
         api.has_param :name, 'string'
         api.has_param :quoted_fields_mode, { enum: -> { ProductFeed::QUOTED_FIELDS_MODE }}
+        api.has_param :rules, { list: 'string' }
         api.has_param :schedule, 'string'
       end
     end
@@ -220,7 +229,7 @@ module FacebookAds
         api.has_param :start_date, 'string'
         api.has_param :url, 'string'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
-        api.has_param :windows_phone_app_id, 'int'
+        api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'
       end
@@ -234,8 +243,11 @@ module FacebookAds
         api.has_param :file_size, 'int'
         api.has_param :file_url, 'string'
         api.has_param :fov, 'int'
+        api.has_param :guide, { list: { list: 'int' } }
+        api.has_param :guide_enabled, 'bool'
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'
+        api.has_param :original_fov, 'int'
         api.has_param :original_projection_type, { enum: %w{equirectangular cubemap }}
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'

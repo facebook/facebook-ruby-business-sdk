@@ -58,6 +58,7 @@ module FacebookAds
     field :result, 'hash'
     field :scope_object_id, 'string'
     field :status, { enum: -> { STATUS }}
+    field :type, 'string'
     field :updated_time, 'datetime'
     has_no_post
     has_no_delete

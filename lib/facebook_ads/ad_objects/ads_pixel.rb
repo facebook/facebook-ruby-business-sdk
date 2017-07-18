@@ -29,6 +29,7 @@ module FacebookAds
 
     field :code, 'string'
     field :creation_time, 'datetime'
+    field :creator, 'User'
     field :id, 'string'
     field :is_created_by_business, 'bool'
     field :last_fired_time, 'datetime'
@@ -38,7 +39,9 @@ module FacebookAds
     has_no_delete
 
     has_edge :audiences do |edge|
-      edge.get 'CustomAudience'
+      edge.get 'CustomAudience' do |api|
+        api.has_param :ad_account, 'string'
+      end
     end
 
     has_edge :shared_accounts do |edge|

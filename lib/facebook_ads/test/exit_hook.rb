@@ -16,28 +16,20 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# FB:AUTOGEN
-
-module FacebookAds
-  # This class is auto-genereated.
-
-  # For any issues or feature requests related to this class, please let us know
-  # on github and we'll fix in our codegen framework. We'll not be able to accept
-  # pull request for this class.
-
-  class ReachFrequencySpec < AdObject
-
-    field :countries, { list: 'string' }
-    field :default_creation_data, 'object'
-    field :max_campaign_duration, 'object'
-    field :max_days_to_finish, 'object'
-    field :max_pause_without_prediction_rerun, 'object'
-    field :min_campaign_duration, 'object'
-    field :min_reach_limits, 'object'
-    has_no_id
-    has_no_get
-    has_no_post
-    has_no_delete
-
+# Intercept Minitest exit routine and return our own custom exit code
+Minitest.after_run {
+  FacebookAds::Test.failures.each do |failure|
+    case failure
+      when Minitest::Skip
+        exit FacebookAds::Test::ExitCodes::USER_SKIP
+      when Minitest::UnexpectedError
+        e = failure.exception
+        if e.is_a?(FacebookAds::ServerError) ||
+            e.is_a?(FacebookAds::ClientError)
+          exit FacebookAds::Test::ExitCodes::EXTERNAL_ERROR
+        else
+          exit FacebookAds::Test::ExitCodes::USER_ERROR
+        end
+    end
   end
-end
+}

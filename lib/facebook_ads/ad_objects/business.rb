@@ -34,10 +34,12 @@ module FacebookAds
     field :name, 'string'
     field :payment_account_id, 'string'
     field :primary_page, 'object'
+    field :profile_picture_uri, 'string'
     field :timezone_id, 'int'
     field :two_factor_type, 'string'
     field :updated_by, 'User'
     field :updated_time, 'datetime'
+    field :vertical, 'string'
     has_no_post
     has_no_delete
 
@@ -59,6 +61,7 @@ module FacebookAds
 
     has_edge :adaccount do |edge|
       edge.post 'AdAccount' do |api|
+        api.has_param :billing_address_id, 'string'
         api.has_param :currency, 'string'
         api.has_param :end_advertiser, 'object'
         api.has_param :funding_id, 'string'
@@ -209,6 +212,7 @@ module FacebookAds
       edge.get 'ProductCatalog'
       edge.post 'ProductCatalog' do |api|
         api.has_param :da_display_settings, 'object'
+        api.has_param :flight_catalog_settings, 'hash'
         api.has_param :name, 'string'
         api.has_param :vertical, { enum: -> { ProductCatalog::VERTICAL }}
       end
@@ -233,7 +237,7 @@ module FacebookAds
     has_edge :userpermissions do |edge|
       edge.post do |api|
         api.has_param :email, 'string'
-        api.has_param :role, { enum: %w{ADMIN EMPLOYEE SYSTEM_USER ADMIN_SYSTEM_USER INSTAGRAM_ADMIN INSTAGRAM_EMPLOYEE FB_EMPLOYEE_ACCOUNT_MANAGER FB_EMPLOYEE_SALES_REP }}
+        api.has_param :role, { enum: %w{FINANCE_EDITOR FINANCE_ANALYST ADS_RIGHTS_REVIEWER ADMIN EMPLOYEE FB_EMPLOYEE_SALES_REP }}
         api.has_param :user, 'int'
       end
     end

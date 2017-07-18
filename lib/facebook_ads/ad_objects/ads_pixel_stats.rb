@@ -29,6 +29,7 @@ module FacebookAds
 
     field :count, 'int'
     field :diagnostics_hourly_last_timestamp, 'datetime'
+    field :event, 'string'
     field :value, 'string'
     has_no_id
     has_no_get

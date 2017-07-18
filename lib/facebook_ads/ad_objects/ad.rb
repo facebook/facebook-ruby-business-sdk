@@ -114,6 +114,8 @@ module FacebookAds
     field :last_updated_by_app_id, 'string'
     field :name, 'string'
     field :recommendations, { list: 'AdRecommendation' }
+    field :source_ad, 'Ad'
+    field :source_ad_id, 'string'
     field :status, { enum: -> { STATUS }}
     field :tracking_specs, { list: 'ConversionActionQuery' }
     field :updated_time, 'datetime'
@@ -159,6 +161,7 @@ module FacebookAds
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
+        api.has_param :use_account_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
@@ -180,6 +183,7 @@ module FacebookAds
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
+        api.has_param :use_account_attribution_setting, 'bool'
       end
     end
 

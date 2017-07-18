@@ -25,47 +25,39 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class LeadgenForm < AdObject
+  class AdCampaignDeliveryEstimate < AdObject
+    OPTIMIZATION_GOAL = [
+      "NONE",
+      "APP_INSTALLS",
+      "BRAND_AWARENESS",
+      "CLICKS",
+      "ENGAGED_USERS",
+      "EVENT_RESPONSES",
+      "IMPRESSIONS",
+      "LEAD_GENERATION",
+      "LINK_CLICKS",
+      "OFFER_CLAIMS",
+      "OFFSITE_CONVERSIONS",
+      "PAGE_ENGAGEMENT",
+      "PAGE_LIKES",
+      "POST_ENGAGEMENT",
+      "REACH",
+      "SOCIAL_IMPRESSIONS",
+      "VIDEO_VIEWS",
+      "APP_DOWNLOADS",
+      "LANDING_PAGE_VIEWS",
+    ]
 
-    field :allow_organic_lead, 'bool'
-    field :block_display_for_non_targeted_viewer, 'bool'
-    field :context_card, 'object'
-    field :continued_flow_request_method, 'string'
-    field :created_time, 'datetime'
-    field :creator, 'User'
-    field :creator_id, 'int'
-    field :cusomized_tcpa_content, 'string'
-    field :expired_leads_count, 'int'
-    field :follow_up_action_text, 'string'
-    field :follow_up_action_url, 'string'
-    field :id, 'string'
-    field :is_continued_flow, 'bool'
-    field :leadgen_export_csv_url, 'string'
-    field :leads_count, 'int'
-    field :legal_content, 'object'
-    field :locale, 'string'
-    field :messenger_welcome_message, 'string'
-    field :name, 'string'
-    field :organic_leads_count, 'int'
-    field :page, 'object'
-    field :page_id, 'string'
-    field :privacy_policy_url, 'string'
-    field :qualifiers, { list: 'LeadGenQualifier' }
-    field :questions, { list: 'LeadGenQuestion' }
-    field :status, 'string'
-    field :tcpa_compliance, 'bool'
+
+    field :bid_estimate, 'object'
+    field :daily_outcomes_curve, { list: 'OutcomePredictionPoint' }
+    field :estimate_dau, 'object'
+    field :estimate_mau, 'object'
+    field :estimate_ready, 'bool'
+    has_no_id
+    has_no_get
     has_no_post
-
-    has_edge :leads do |edge|
-      edge.get 'Lead'
-    end
-
-    has_edge :test_leads do |edge|
-      edge.post 'LeadgenForm' do |api|
-        api.has_param :custom_disclaimer_responses, { list: 'object' }
-        api.has_param :field_data, { list: 'object' }
-      end
-    end
+    has_no_delete
 
   end
 end

@@ -59,6 +59,7 @@ module FacebookAds
     field :time_increment, 'string'
     field :time_range, 'object'
     field :time_ranges, { list: 'object' }
+    field :use_account_attribution_setting, 'bool'
     has_no_post
     has_no_delete
 

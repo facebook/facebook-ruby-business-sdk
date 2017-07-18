@@ -42,6 +42,7 @@ module FacebookAds
       "action_carousel_card_name",
       "action_destination",
       "action_device",
+      "action_link_click_destination",
       "action_reaction",
       "action_target_id",
       "action_type",
@@ -106,6 +107,7 @@ module FacebookAds
       "action_carousel_card_name",
       "action_destination",
       "action_device",
+      "action_link_click_destination",
       "action_reaction",
       "action_target_id",
       "action_type",
@@ -138,10 +140,7 @@ module FacebookAds
     field :ad_name, 'string'
     field :adset_id, 'string'
     field :adset_name, 'string'
-    field :age, 'string'
-    field :app_store_clicks, 'string'
     field :buying_type, 'string'
-    field :call_to_action_asset, 'object'
     field :call_to_action_clicks, 'string'
     field :campaign_id, 'string'
     field :campaign_name, 'string'
@@ -154,40 +153,31 @@ module FacebookAds
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
+    field :cost_per_outbound_click, { list: 'AdsActionStats' }
     field :cost_per_total_action, 'string'
     field :cost_per_unique_action_type, { list: 'AdsActionStats' }
     field :cost_per_unique_click, 'string'
     field :cost_per_unique_inline_link_click, 'string'
-    field :country, 'string'
+    field :cost_per_unique_outbound_click, { list: 'AdsActionStats' }
     field :cpc, 'string'
     field :cpm, 'string'
     field :cpp, 'string'
     field :ctr, 'string'
     field :date_start, 'string'
     field :date_stop, 'string'
-    field :deeplink_clicks, 'string'
-    field :device_platform, 'string'
-    field :dma, 'string'
     field :estimated_ad_recall_rate, 'string'
     field :estimated_ad_recallers, 'string'
     field :frequency, 'string'
-    field :frequency_value, 'string'
-    field :gender, 'string'
-    field :hourly_stats_aggregated_by_advertiser_time_zone, 'string'
-    field :hourly_stats_aggregated_by_audience_time_zone, 'string'
-    field :impression_device, 'string'
     field :impressions, 'string'
-    field :impressions_dummy, 'string'
     field :inline_link_click_ctr, 'string'
     field :inline_link_clicks, 'string'
     field :inline_post_engagement, 'string'
+    field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
-    field :place_page_id, 'string'
+    field :outbound_clicks, { list: 'AdsActionStats' }
+    field :outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :place_page_name, 'string'
-    field :placement, 'string'
-    field :product_id, 'string'
     field :reach, 'string'
-    field :region, 'string'
     field :relevance_score, 'AdgroupRelevanceScore'
     field :social_clicks, 'string'
     field :social_impressions, 'string'
@@ -203,6 +193,8 @@ module FacebookAds
     field :unique_inline_link_click_ctr, 'string'
     field :unique_inline_link_clicks, 'string'
     field :unique_link_clicks_ctr, 'string'
+    field :unique_outbound_clicks, { list: 'AdsActionStats' }
+    field :unique_outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :unique_social_clicks, 'string'
     field :video_10_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_15_sec_watched_actions, { list: 'AdsActionStats' }
@@ -214,8 +206,8 @@ module FacebookAds
     field :video_p50_watched_actions, { list: 'AdsActionStats' }
     field :video_p75_watched_actions, { list: 'AdsActionStats' }
     field :video_p95_watched_actions, { list: 'AdsActionStats' }
-    field :website_clicks, 'string'
     field :website_ctr, { list: 'AdsActionStats' }
+    field :website_purchase_roas, { list: 'AdsActionStats' }
     has_no_id
     has_no_get
     has_no_post
