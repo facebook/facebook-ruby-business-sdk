@@ -3,7 +3,6 @@ require './lib/facebook_ads/version'
 Gem::Specification.new do |s|
   s.name        = 'facebookads'
   s.version     = FacebookAds::VERSION
-  s.date        = '2017-04-25'
   s.summary     = 'Facebook Ads API SDK for Ruby (Official)'
   s.description = <<-DESC
   The official Facebook Ads API SDK for Ruby.
