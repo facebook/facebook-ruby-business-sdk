@@ -63,7 +63,7 @@ module FacebookAds
       edge.post 'AdAccount' do |api|
         api.has_param :billing_address_id, 'string'
         api.has_param :currency, 'string'
-        api.has_param :end_advertiser, 'object'
+        api.has_param :end_advertiser, 'string'
         api.has_param :funding_id, 'string'
         api.has_param :invoice, 'bool'
         api.has_param :io, 'bool'
