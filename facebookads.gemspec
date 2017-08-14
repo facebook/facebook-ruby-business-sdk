@@ -1,17 +1,17 @@
 require './lib/facebook_ads/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'facebookads'
+  s.name        = 'facebookads-shakr'
   s.version     = FacebookAds::VERSION
-  s.summary     = 'Facebook Ads API SDK for Ruby (Official)'
+  s.summary     = 'Facebook Ads API SDK for Ruby (Shakr Fork)'
   s.description = <<-DESC
-  The official Facebook Ads API SDK for Ruby.
+  The unofficial Facebook Ads API SDK for Ruby.
   https://developers.facebook.com/docs/marketing-api/sdks'
   DESC
-  s.authors     = ['Facebook']
+  s.authors     = ['Shakr', 'Facebook']
   s.email       = ''
   s.homepage    =
-    'https://github.com/facebook/facebook-ruby-ads-sdk'
+    'https://github.com/shakrmedia/facebook-ruby-ads-sdk'
   s.license       = 'Nonstandard'
 
   s.required_ruby_version = '~> 2.0'
