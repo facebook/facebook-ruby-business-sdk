@@ -40,9 +40,9 @@ module FacebookAds
 
       def define_reader(name)
         define_method(name) do
-          if !fields.include?(name)
-            fields << name
-            Utils.logger.warn("#{name} not in the fields")
+          if !@internal_fields.include?(name)
+            @internal_fields << name
+            Utils.logger.warn("#{name} not in the internal_fields")
           end
 
           load! unless loaded?
