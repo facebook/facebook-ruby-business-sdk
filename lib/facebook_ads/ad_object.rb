@@ -131,7 +131,6 @@ module FacebookAds
       define_method("#{verb}_edge") do |edge_name, params = {}, &block|
         params, options = extract_options(params)
         path = "#{self.id}/#{edge_name}"
-        puts path
         APIRequest.new(verb, path, session: session, params: params, options: options).execute do |api_response|
           @last_api_response = api_response
           block ? block[api_response.result] : api_response
