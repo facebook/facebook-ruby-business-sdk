@@ -16,5 +16,31 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require 'spec_helper'
+
 RSpec.describe FacebookAds::AdObject do
+  describe '#initialize' do
+    let(:value) { {'foo' => 'bar', 'fields' => []} }
+
+    context 'when no "field :fields" is declared in subclass' do
+      class TestClassWithoutFields < FacebookAds::AdObject; end
+
+      it 'should call instance method fields= once' do
+        expect_any_instance_of(FacebookAds::AdObject).to receive(:fields=).once
+        TestClassWithFields.new(value, value.keys)
+      end
+    end
+
+    context 'when "field :fields" is declared in subclass' do
+      class TestClassWithFields < FacebookAds::AdObject
+        field :fields, { list: 'adreportrun_graph_fields_param' }
+      end
+
+      it 'should call instance method fields= once' do
+        expect_any_instance_of(FacebookAds::AdObject).to receive(:fields=).once
+        TestClassWithoutFields.new(value, value.keys)
+      end
+    end
+  end
+
 end
