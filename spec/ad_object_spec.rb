@@ -19,27 +19,47 @@
 require 'spec_helper'
 
 RSpec.describe FacebookAds::AdObject do
+  let(:value) { {'foo' => 'bar', 'fields' => []} }
+  subject(:this) { described_class.new(value, value.keys) }
+
   describe '#initialize' do
-    let(:value) { {'foo' => 'bar', 'fields' => []} }
+    subject(:subclass) { TestClass.new(value, value.keys) }
 
     context 'when no "field :fields" is declared in subclass' do
-      class TestClassWithoutFields < FacebookAds::AdObject; end
+      class TestClass < FacebookAds::AdObject; end
 
-      it 'should call instance method fields= once' do
-        expect_any_instance_of(FacebookAds::AdObject).to receive(:fields=).once
-        TestClassWithFields.new(value, value.keys)
+      it 'should call instance method internal_fields= once' do
+        expect_any_instance_of(FacebookAds::AdObject).to receive(:internal_fields=).once
+        expect(subclass.attributes[:foo]).to eq('bar')
+        expect(subclass.attributes[:fields]).to eq([])
       end
     end
 
     context 'when "field :fields" is declared in subclass' do
-      class TestClassWithFields < FacebookAds::AdObject
+      class TestClass < FacebookAds::AdObject
         field :fields, { list: 'adreportrun_graph_fields_param' }
       end
 
       it 'should call instance method fields= once' do
-        expect_any_instance_of(FacebookAds::AdObject).to receive(:fields=).once
-        TestClassWithoutFields.new(value, value.keys)
+        expect_any_instance_of(FacebookAds::AdObject).to receive(:internal_fields=).once
+        expect(subclass.attributes[:foo]).to eq('bar')
+        expect(subclass.attributes[:fields]).to eq([])
       end
+    end
+  end
+
+  describe '#internal_fields=' do
+    subject(:internal_fields) { this.internal_fields = fields; this.internal_fields }
+    context 'when given fields param is comma separated string' do
+      let(:fields) { 'foo,bar' }
+
+      it { expect(internal_fields).to eq(Set.new(%i[foo bar])) }
+    end
+
+    context 'when given fields param is array with string keys' do
+      let(:fields) { %w[foo bar] }
+
+      it { expect(internal_fields).to eq(Set.new(%i[foo bar])) }
     end
   end
 
