@@ -36,10 +36,9 @@ module FacebookAds
     end
 
     def request(method, path, params = nil)
-      path.gsub!(/^\//,'') #
       case method
         when :get, :post, :delete
-          api_conn.send(method, path, params) do |req|
+          api_conn.send(method, path.gsub(/^\//,''), params) do |req|
             req.headers[:user_agent] = "fb-ruby-ads-api-sdk-#{VERSION}".freeze
             req.params[:access_token] = access_token
             req.params[:appsecret_proof] = appsecret_proof if app_secret
