@@ -16,36 +16,14 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'date'
+require 'dotenv/load'
+require 'facebook_ads'
 
-module FacebookAds
-  module FieldTypes
-    class DateTime < Base
-      register 'datetime'
-
-      def deserialize(value, session = nil)
-        case value
-          when String
-            begin
-              ::DateTime.strptime(value, '%FT%T%:z')
-            rescue ArgumentError
-              ::DateTime.strptime(value, '%FT%T')
-            end
-          else
-            Time.at(value).to_datetime
-        end
-      end
-
-      def serialize(value)
-        case value
-          when ::DateTime, Time
-            value.to_time.to_i
-          when String
-            ::DateTime.parse(value).to_time.to_i
-          else
-            value
-        end
-      end
-    end
+ad_account = FacebookAds::AdAccount.get('act_<ACT_ID>')
+ad_account.adspixels(limit: 10).all.each do |pixel|
+  pixel.stats(fields: 'data,timestamp,aggregation',
+              limit: 1_000,
+              aggregation: 'event').all.each do |stat|
+    p stat
   end
 end

@@ -25,9 +25,17 @@ RSpec.describe FacebookAds::FieldTypes::DateTime do
     subject(:deserialize) { this.deserialize(value) }
 
     context 'when given value is string type' do
-      let(:value) { '2017-08-31T23:59:00-04:00' }
+      context 'with time difference in the value' do
+        let(:value) { '2017-08-31T23:59:00-04:00' }
 
-      it { expect(deserialize).to eq(DateTime.strptime('2017-08-31T23:59:00-04:00', '%FT%T%:z')) }
+        it { expect(deserialize).to eq(DateTime.strptime('2017-08-31T23:59:00-04:00', '%FT%T%:z')) }
+      end
+
+      context 'without time difference in the value' do
+        let(:value) { '2017-08-31T23:59:00' }
+
+        it { expect(deserialize).to eq(DateTime.strptime('2017-08-31T23:59:00', '%FT%T')) }
+      end
     end
 
     context 'when given value is number type' do
