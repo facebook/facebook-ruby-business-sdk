@@ -16,51 +16,32 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-module FacebookAds
-  module Fields
-    def self.included(base)
-      base.extend ClassMethods
-    end
+require 'dotenv/load'
+require 'facebook_ads'
 
-    module ClassMethods
-      attr_accessor :deserializer, :field_types
+ad_account = FacebookAds::AdAccount.get('act_<ACT_ID>')
+ad_report_run = ad_account.insights.create(
+  limit: 10,
+  level: 'ad',
+  fields: %w[ad_id ad_name cpc]
+  )
+report_run_id = ad_report_run.attributes[:report_run_id]
 
-      def field(name, type, *args)
-        self.field_types ||= {}
-        self.field_types[name] = type
-
-        unless name == :id
-          define_reader(name)
-          define_writer(name)
-        end
-
-        self.deserializer ||= ParamSet.new
-        self.deserializer.has_param(name, type, *args)
-      end
-
-      def define_reader(name)
-        define_method(name) do
-          if !@internal_fields.include?(name)
-            @internal_fields << name
-            Utils.logger.warn("#{name} not in the internal_fields")
-          end
-
-          load! unless loaded?
-
-          if changes.has_key?(name)
-            changes[name]
-          else
-            @attributes[name]
-          end
-        end
-      end
-
-      def define_writer(name)
-        define_method("#{name}=") do |val|
-          changes[name] = val
-          @internal_fields.add(name.to_s)
-        end
-      end
-    end
+timeout = 30
+i = 0
+while true
+  job = JSON.parse(FacebookAds::AdReportRun.get(report_run_id).get.body)
+  p "Job async_percent_completion=>#{job['async_percent_completion']}, async_status=>#{job['async_status']}"
+  break if job['async_percent_completion'].to_i >= 100 && job['async_status'] == 'Job Completed'
+  if i > timeout
+    p 'Async job has timed out'
+    break
   end
+  i += 1
+  sleep(1.0)
 end
+
+FacebookAds::AdReportRun.get(report_run_id).insights.all.each do |insight|
+  p "insight id: #{insight.ad_id}, name: #{insight.ad_name}, cpc: #{insight.cpc}"
+end
+
