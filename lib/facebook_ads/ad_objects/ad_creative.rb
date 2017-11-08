@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -61,12 +61,16 @@ module FacebookAds
       "DONATE_NOW",
       "GET_QUOTE",
       "CONTACT_US",
+      "START_ORDER",
       "RECORD_NOW",
       "VOTE_NOW",
       "REGISTER_NOW",
       "REQUEST_TIME",
       "SEE_MENU",
       "EMAIL_NOW",
+      "GET_SHOWTIMES",
+      "TRY_IT",
+      "LISTEN_NOW",
       "OPEN_MOVIES",
     ]
 
@@ -104,7 +108,9 @@ module FacebookAds
     field :actor_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :applink_treatment, { enum: -> { APPLINK_TREATMENT }}
+    field :asset_feed_spec, 'AdAssetFeedSpec'
     field :body, 'string'
+    field :branded_content_sponsor_page_id, 'string'
     field :call_to_action_type, { enum: -> { CALL_TO_ACTION_TYPE }}
     field :effective_instagram_story_id, 'string'
     field :effective_object_story_id, 'string'
@@ -125,6 +131,7 @@ module FacebookAds
     field :object_url, 'string'
     field :platform_customizations, 'object'
     field :product_set_id, 'string'
+    field :recommender_settings, 'object'
     field :status, { enum: -> { STATUS }}
     field :template_url, 'string'
     field :template_url_spec, 'object'
@@ -149,6 +156,7 @@ module FacebookAds
     has_edge :previews do |edge|
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
+        api.has_param :dynamic_creative_spec, 'object'
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
         api.has_param :locale, 'string'

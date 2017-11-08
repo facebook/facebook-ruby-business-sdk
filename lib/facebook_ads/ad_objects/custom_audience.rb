@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -32,6 +32,7 @@ module FacebookAds
       "HOME_LISTING",
       "PRODUCT",
       "TRAVEL",
+      "VEHICLE",
     ]
 
     CONTENT_TYPE = [
@@ -40,6 +41,7 @@ module FacebookAds
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
+      "VEHICLE",
     ]
 
     SUBTYPE = [
@@ -107,6 +109,7 @@ module FacebookAds
     field :time_content_updated, 'int'
     field :time_created, 'int'
     field :time_updated, 'int'
+    field :allowed_domains, { list: 'string' }
     field :claim_objective, { enum: -> { CLAIM_OBJECTIVE }}
     field :content_type, { enum: -> { CONTENT_TYPE }}
     field :dataset_id, 'string'

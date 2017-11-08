@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -30,6 +30,7 @@ module FacebookAds
     field :address_string, 'string'
     field :label, 'string'
     field :latitude, 'double'
+    field :location_source_id, 'string'
     field :longitude, 'double'
     field :type, 'string'
     has_no_id

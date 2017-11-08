@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -66,6 +66,7 @@ module FacebookAds
     field :qualified_product_count, 'int'
     field :quoted_fields_mode, { enum: -> { QUOTED_FIELDS_MODE }}
     field :schedule, 'ProductFeedSchedule'
+    field :update_schedule, 'ProductFeedSchedule'
     field :rules, { list: 'string' }
 
     has_edge :products do |edge|

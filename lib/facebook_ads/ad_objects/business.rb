@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -75,14 +75,6 @@ module FacebookAds
       end
     end
 
-    has_edge :adaccounts do |edge|
-      edge.post 'AdAccount' do |api|
-        api.has_param :access_type, { enum: -> { AdAccount::ACCESS_TYPE }}
-        api.has_param :adaccount_id, 'string'
-        api.has_param :permitted_roles, { list: { enum: -> { AdAccount::PERMITTED_ROLES }} }
-      end
-    end
-
     has_edge :adspixels do |edge|
       edge.get 'AdsPixel' do |api|
         api.has_param :id_filter, 'string'
@@ -99,37 +91,8 @@ module FacebookAds
       end
     end
 
-    has_edge :assigned_ad_accounts do |edge|
-      edge.get 'AdAccount' do |api|
-        api.has_param :email, 'string'
-        api.has_param :user_id, 'int'
-      end
-    end
-
-    has_edge :assigned_pages do |edge|
-      edge.get do |api|
-        api.has_param :email, 'string'
-        api.has_param :user_id, 'int'
-      end
-    end
-
-    has_edge :assigned_product_catalogs do |edge|
-      edge.get 'ProductCatalog' do |api|
-        api.has_param :email, 'string'
-        api.has_param :user_id, 'int'
-      end
-    end
-
-    has_edge :client_ad_account_requests do |edge|
-      edge.get 'BusinessAdAccountRequest'
-    end
-
     has_edge :client_ad_accounts do |edge|
       edge.get 'AdAccount'
-    end
-
-    has_edge :client_page_requests do |edge|
-      edge.get 'BusinessPageRequest'
     end
 
     has_edge :client_pages do |edge|
@@ -157,26 +120,22 @@ module FacebookAds
     has_edge :measurement_reports do |edge|
       edge.get do |api|
         api.has_param :filters, { list: 'object' }
-        api.has_param :report_type, { enum: %w{multi_channel_report video_metrics_report fruit_rollup_report third_party_mta_report }}
+        api.has_param :report_type, { enum: %w{multi_channel_report video_metrics_report fruit_rollup_report third_party_mta_report partner_lift_study_report }}
       end
       edge.post do |api|
         api.has_param :metadata, 'string'
-        api.has_param :report_type, { enum: %w{multi_channel_report video_metrics_report fruit_rollup_report third_party_mta_report }}
+        api.has_param :report_type, { enum: %w{multi_channel_report video_metrics_report fruit_rollup_report third_party_mta_report partner_lift_study_report }}
       end
     end
 
     has_edge :offline_conversion_data_sets do |edge|
-      edge.get
-      edge.post do |api|
+      edge.get 'OfflineConversionDataSet'
+      edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :auto_assign_to_new_accounts_only, 'bool'
         api.has_param :description, 'string'
         api.has_param :enable_auto_assign_to_accounts, 'bool'
         api.has_param :name, 'string'
       end
-    end
-
-    has_edge :owned_ad_account_requests do |edge|
-      edge.get 'LegacyBusinessAdAccountRequest'
     end
 
     has_edge :owned_ad_accounts do |edge|
@@ -187,10 +146,6 @@ module FacebookAds
       edge.get
     end
 
-    has_edge :owned_page_requests do |edge|
-      edge.get 'BusinessPageRequest'
-    end
-
     has_edge :owned_pages do |edge|
       edge.get
     end
@@ -199,22 +154,20 @@ module FacebookAds
       edge.get 'AdsPixel'
     end
 
+    has_edge :pending_client_ad_accounts do |edge|
+      edge.get 'BusinessAdAccountRequest'
+    end
+
+    has_edge :pending_owned_ad_accounts do |edge|
+      edge.get 'LegacyBusinessAdAccountRequest'
+    end
+
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
-      end
-    end
-
-    has_edge :product_catalogs do |edge|
-      edge.get 'ProductCatalog'
-      edge.post 'ProductCatalog' do |api|
-        api.has_param :da_display_settings, 'object'
-        api.has_param :flight_catalog_settings, 'hash'
-        api.has_param :name, 'string'
-        api.has_param :vertical, { enum: -> { ProductCatalog::VERTICAL }}
       end
     end
 
@@ -228,10 +181,6 @@ module FacebookAds
       edge.get do |api|
         api.has_param :partner_id, 'string'
       end
-    end
-
-    has_edge :system_users do |edge|
-      edge.get
     end
 
     has_edge :userpermissions do |edge|

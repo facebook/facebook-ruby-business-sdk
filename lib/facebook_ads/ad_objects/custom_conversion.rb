@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -44,6 +44,7 @@ module FacebookAds
     field :aggregation_rule, 'string'
     field :creation_time, 'datetime'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
+    field :data_sources, { list: 'ExternalEventSource' }
     field :default_conversion_value, 'int'
     field :description, 'string'
     field :event_source_type, 'string'
@@ -52,7 +53,7 @@ module FacebookAds
     field :is_archived, 'bool'
     field :last_fired_time, 'datetime'
     field :name, 'string'
-    field :offline_conversion_data_set, 'object'
+    field :offline_conversion_data_set, 'OfflineConversionDataSet'
     field :pixel, 'AdsPixel'
     field :retention_days, 'int'
     field :rule, 'string'

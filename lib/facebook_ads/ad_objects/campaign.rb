@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -110,6 +110,7 @@ module FacebookAds
 
     field :account_id, 'string'
     field :adlabels, { list: 'AdLabel' }
+    field :boosted_object_id, 'string'
     field :brand_lift_studies, { list: 'AdStudy' }
     field :budget_rebalance_flag, 'bool'
     field :buying_type, 'string'
@@ -119,6 +120,8 @@ module FacebookAds
     field :created_time, 'datetime'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :id, 'string'
+    field :kpi_custom_conversion_id, 'string'
+    field :kpi_type, 'string'
     field :name, 'string'
     field :objective, 'string'
     field :recommendations, { list: 'AdRecommendation' }

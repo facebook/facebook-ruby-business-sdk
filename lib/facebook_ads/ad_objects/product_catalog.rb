@@ -19,20 +19,13 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
   class ProductCatalog < AdObject
-    VERTICAL = [
-      "commerce",
-      "destinations",
-      "flights",
-      "hotels",
-    ]
-
 
     field :business, 'Business'
     field :da_display_settings, 'ProductCatalogImageSettings'
@@ -79,6 +72,30 @@ module FacebookAds
       edge.get do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :home_listings do |edge|
+      edge.get do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+      edge.post do |api|
+        api.has_param :address, 'object'
+        api.has_param :availability, 'string'
+        api.has_param :currency, 'string'
+        api.has_param :description, 'string'
+        api.has_param :home_listing_id, 'string'
+        api.has_param :images, { list: 'object' }
+        api.has_param :listing_type, 'string'
+        api.has_param :name, 'string'
+        api.has_param :num_baths, 'double'
+        api.has_param :num_beds, 'double'
+        api.has_param :num_units, 'double'
+        api.has_param :price, 'double'
+        api.has_param :property_type, 'string'
+        api.has_param :url, 'string'
+        api.has_param :year_built, 'int'
       end
     end
 
@@ -143,6 +160,7 @@ module FacebookAds
         api.has_param :quoted_fields_mode, { enum: -> { ProductFeed::QUOTED_FIELDS_MODE }}
         api.has_param :rules, { list: 'string' }
         api.has_param :schedule, 'string'
+        api.has_param :update_schedule, 'string'
       end
     end
 
@@ -248,7 +266,7 @@ module FacebookAds
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'
         api.has_param :original_fov, 'int'
-        api.has_param :original_projection_type, { enum: %w{equirectangular cubemap }}
+        api.has_param :original_projection_type, { enum: %w{equirectangular cubemap equiangular_cubemap }}
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
         api.has_param :slideshow_spec, 'hash'

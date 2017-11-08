@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -44,6 +44,7 @@ module FacebookAds
     field :action_type, 'string'
     field :action_video_sound, 'string'
     field :action_video_type, 'string'
+    field :inline, 'string'
     field :value, 'string'
     has_no_id
     has_no_get

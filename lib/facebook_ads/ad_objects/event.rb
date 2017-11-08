@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -42,6 +42,7 @@ module FacebookAds
     field :declined_count, 'int'
     field :description, 'string'
     field :end_time, 'string'
+    field :event_times, { list: 'object' }
     field :guest_list_enabled, 'bool'
     field :id, 'string'
     field :interested_count, 'int'
@@ -55,6 +56,7 @@ module FacebookAds
     field :owner, 'object'
     field :parent_group, 'object'
     field :place, 'object'
+    field :scheduled_publish_time, 'string'
     field :start_time, 'string'
     field :ticket_uri, 'string'
     field :ticketing_privacy_uri, 'string'
