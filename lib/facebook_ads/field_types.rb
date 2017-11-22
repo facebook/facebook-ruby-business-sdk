@@ -27,7 +27,7 @@ module FacebookAds
     end
 
     def lookup(type_name)
-      if registry[type_name]
+      if registry.has_key?(type_name)
         registry[type_name]
       elsif type_name.respond_to?(:include?) && type_name.include?('map<')
         registry['map']
