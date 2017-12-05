@@ -130,12 +130,6 @@ module FacebookAds
       "ANY",
     ]
 
-    FULL_FUNNEL_EXPLORATION_MODE = [
-      "NONE_EXPLORATION",
-      "LIMITED_EXPLORATION",
-      "EXTENDED_EXPLORATION",
-    ]
-
 
     field :account_id, 'string'
     field :adlabels, { list: 'AdLabel' }
@@ -155,7 +149,6 @@ module FacebookAds
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
     field :frequency_control_specs, { list: 'object' }
-    field :full_funnel_exploration_mode, 'string'
     field :id, 'string'
     field :instagram_actor_id, 'string'
     field :is_autobid, 'bool'
