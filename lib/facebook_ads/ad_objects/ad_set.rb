@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -37,6 +37,7 @@ module FacebookAds
       "VIDEO_VIEWS",
       "MRC_VIDEO_VIEWS",
       "COMPLETED_VIDEO_VIEWS",
+      "VIDEO_VIEWS_15S",
     ]
 
     CONFIGURED_STATUS = [
@@ -63,6 +64,7 @@ module FacebookAds
       "NONE",
       "APP_INSTALLS",
       "BRAND_AWARENESS",
+      "AD_RECALL_LIFT",
       "CLICKS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
@@ -110,6 +112,14 @@ module FacebookAds
       "this_year",
     ]
 
+    DESTINATION_TYPE = [
+      "UNDEFINED",
+      "WEBSITE",
+      "APP",
+      "MESSENGER",
+      "APPLINKS_AUTOMATIC",
+    ]
+
     EXECUTION_OPTIONS = [
       "validate_only",
       "include_recommendations",
@@ -135,16 +145,15 @@ module FacebookAds
     field :created_time, 'datetime'
     field :creative_sequence, { list: 'string' }
     field :daily_budget, 'string'
+    field :destination_type, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
-    field :frequency_cap, 'int'
-    field :frequency_cap_reset_period, 'int'
     field :frequency_control_specs, { list: 'object' }
     field :id, 'string'
+    field :instagram_actor_id, 'string'
     field :is_autobid, 'bool'
     field :is_average_price_pacing, 'bool'
     field :lifetime_budget, 'string'
-    field :lifetime_frequency_cap, 'int'
     field :lifetime_imps, 'int'
     field :name, 'string'
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}

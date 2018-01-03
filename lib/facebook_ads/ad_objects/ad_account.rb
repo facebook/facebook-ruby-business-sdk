@@ -19,27 +19,13 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
   class AdAccount < AdObject
-    ACCESS_TYPE = [
-      "OWNER",
-      "AGENCY",
-    ]
-
-    PERMITTED_ROLES = [
-      "ADMIN",
-      "GENERAL_USER",
-      "REPORTS_ONLY",
-      "INSTAGRAM_ADVERTISER",
-      "INSTAGRAM_MANAGER",
-      "FB_EMPLOYEE_DSO_ADVERTISER",
-    ]
-
 
     field :account_id, 'string'
     field :account_status, 'int'
@@ -70,6 +56,7 @@ module FacebookAds
     field :id, 'string'
     field :io_number, 'string'
     field :is_attribution_spec_system_default, 'bool'
+    field :is_direct_deals_enabled, 'bool'
     field :is_notifications_enabled, 'bool'
     field :is_personal, 'int'
     field :is_prepay_account, 'bool'
@@ -79,6 +66,7 @@ module FacebookAds
     field :min_campaign_group_spend_cap, 'string'
     field :min_daily_budget, 'int'
     field :name, 'string'
+    field :next_bill_date, 'datetime'
     field :offsite_pixels_tos_accepted, 'bool'
     field :owner, 'string'
     field :partner, 'string'
@@ -118,6 +106,10 @@ module FacebookAds
       end
     end
 
+    has_edge :adasset_feeds do |edge|
+      edge.get
+    end
+
     has_edge :adcreatives do |edge|
       edge.get 'AdCreative'
       edge.post 'AdCreative' do |api|
@@ -125,6 +117,7 @@ module FacebookAds
         api.has_param :adlabels, { list: 'object' }
         api.has_param :applink_treatment, { enum: -> { AdCreative::APPLINK_TREATMENT }}
         api.has_param :body, 'string'
+        api.has_param :branded_content_sponsor_page_id, 'string'
         api.has_param :call_to_action, 'object'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
         api.has_param :image_crops, 'hash'
@@ -144,6 +137,7 @@ module FacebookAds
         api.has_param :object_url, 'string'
         api.has_param :platform_customizations, 'object'
         api.has_param :product_set_id, 'string'
+        api.has_param :recommender_settings, 'hash'
         api.has_param :template_url, 'string'
         api.has_param :template_url_spec, 'object'
         api.has_param :thumbnail_url, 'string'
@@ -193,6 +187,23 @@ module FacebookAds
 
     has_edge :adreportschedules do |edge|
       edge.get
+    end
+
+    has_edge :adrules_history do |edge|
+      edge.get 'AdAccountAdRulesHistory' do |api|
+        api.has_param :hide_no_changes, 'bool'
+      end
+    end
+
+    has_edge :adrules_library do |edge|
+      edge.post 'AdRule' do |api|
+        api.has_param :account_id, 'string'
+        api.has_param :evaluation_spec, 'object'
+        api.has_param :execution_spec, 'object'
+        api.has_param :name, 'string'
+        api.has_param :schedule_spec, 'object'
+        api.has_param :status, { enum: -> { AdRule::STATUS }}
+      end
     end
 
     has_edge :ads do |edge|
@@ -248,6 +259,7 @@ module FacebookAds
         api.has_param :creative_sequence, { list: 'string' }
         api.has_param :daily_budget, 'int'
         api.has_param :daily_imps, 'int'
+        api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
         api.has_param :end_time, 'datetime'
         api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
         api.has_param :frequency_control_specs, { list: 'object' }
@@ -306,7 +318,7 @@ module FacebookAds
         api.has_param :og_phrase, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :original_fov, 'int'
-        api.has_param :original_projection_type, { enum: %w{equirectangular cubemap }}
+        api.has_param :original_projection_type, { enum: %w{equirectangular cubemap equiangular_cubemap }}
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :start_offset, 'int'
@@ -382,6 +394,7 @@ module FacebookAds
         api.has_param :pixel_id, 'string'
       end
       edge.post 'CustomAudience' do |api|
+        api.has_param :allowed_domains, { list: 'string' }
         api.has_param :claim_objective, { enum: -> { CustomAudience::CLAIM_OBJECTIVE }}
         api.has_param :content_type, { enum: -> { CustomAudience::CONTENT_TYPE }}
         api.has_param :dataset_id, 'string'
@@ -430,6 +443,7 @@ module FacebookAds
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
         api.has_param :creative, 'AdCreative'
+        api.has_param :dynamic_creative_spec, 'object'
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
         api.has_param :locale, 'string'
@@ -505,7 +519,7 @@ module FacebookAds
     end
 
     has_edge :offline_conversion_data_sets do |edge|
-      edge.get
+      edge.get 'OfflineConversionDataSet'
     end
 
     has_edge :offsitepixels do |edge|

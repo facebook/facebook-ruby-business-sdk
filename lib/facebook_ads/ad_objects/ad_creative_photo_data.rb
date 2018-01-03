@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdCreativePhotoData < AdObject
 
+    field :branded_content_shared_to_sponsor_status, 'string'
     field :branded_content_sponsor_page_id, 'string'
     field :branded_content_sponsor_relationship, 'string'
     field :caption, 'string'

@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -31,10 +31,6 @@ module FacebookAds
     field :product_catalog, 'ProductCatalog'
     field :retailer_id, 'string'
     field :variants, { list: 'ProductVariant' }
-
-    has_edge :product_sets do |edge|
-      edge.get 'ProductSet'
-    end
 
     has_edge :products do |edge|
       edge.get 'ProductItem'

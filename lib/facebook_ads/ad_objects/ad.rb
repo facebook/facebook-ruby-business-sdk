@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -200,6 +200,7 @@ module FacebookAds
     has_edge :previews do |edge|
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
+        api.has_param :dynamic_creative_spec, 'object'
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
         api.has_param :locale, 'string'

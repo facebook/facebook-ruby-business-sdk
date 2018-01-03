@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -132,6 +132,7 @@ module FacebookAds
     ]
 
 
+    field :account_currency, 'string'
     field :account_id, 'string'
     field :account_name, 'string'
     field :action_values, { list: 'AdsActionStats' }
@@ -197,7 +198,6 @@ module FacebookAds
     field :unique_outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :unique_social_clicks, 'string'
     field :video_10_sec_watched_actions, { list: 'AdsActionStats' }
-    field :video_15_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_30_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_avg_percent_watched_actions, { list: 'AdsActionStats' }
     field :video_avg_time_watched_actions, { list: 'AdsActionStats' }

@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -123,6 +123,11 @@ module FacebookAds
       "format",
       "trending",
       "gatekeepers",
+      "follow_profiles",
+      "follow_profiles_negative",
+      "location_categories",
+      "user_page_threads",
+      "user_page_threads_excluded",
     ]
 
 

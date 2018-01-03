@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -30,12 +30,12 @@ module FacebookAds
     field :conditional_questions_choices, { list: 'object' }
     field :conditional_questions_group_id, 'string'
     field :dependent_conditional_questions, { list: 'object' }
+    field :id, 'string'
+    field :inline_context, 'string'
     field :key, 'string'
     field :label, 'string'
     field :options, { list: 'LeadGenQuestionOption' }
     field :type, 'string'
-    has_no_id
-    has_no_get
     has_no_post
     has_no_delete
 

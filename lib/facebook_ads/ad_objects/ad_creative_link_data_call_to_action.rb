@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -55,12 +55,16 @@ module FacebookAds
       "DONATE_NOW",
       "GET_QUOTE",
       "CONTACT_US",
+      "START_ORDER",
       "RECORD_NOW",
       "VOTE_NOW",
       "REGISTER_NOW",
       "REQUEST_TIME",
       "SEE_MENU",
       "EMAIL_NOW",
+      "GET_SHOWTIMES",
+      "TRY_IT",
+      "LISTEN_NOW",
       "OPEN_MOVIES",
     ]
 

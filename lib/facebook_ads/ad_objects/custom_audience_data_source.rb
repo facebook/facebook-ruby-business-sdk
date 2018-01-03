@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -44,6 +44,11 @@ module FacebookAds
       "VIDEO_EVENTS",
       "WEB_PIXEL_COMBINATION_EVENTS",
       "PLATFORM",
+      "MULTI_DATA_EVENTS",
+      "IG_BUSINESS_EVENTS",
+      "STORE_VISIT_EVENTS",
+      "INSTANT_ARTICLE_EVENTS",
+      "FB_EVENT_SIGNALS",
       "ENGAGEMENT_EVENT_USERS",
       "CUSTOM_AUDIENCE_USERS",
       "PAGE_FANS",
@@ -66,10 +71,13 @@ module FacebookAds
       "PAGE_SMART_AUDIENCE",
       "MULTICOUNTRY_COMBINATION",
       "PLATFORM_USERS",
+      "MULTI_EVENT_SOURCE",
+      "SMART_AUDIENCE",
       "MAIL_CHIMP_EMAIL_HASHES",
       "CONSTANT_CONTACTS_EMAIL_HASHES",
       "COPY_PASTE_EMAIL_HASHES",
       "CONTACT_IMPORTER",
+      "DATA_FILE",
     ]
 
     TYPE = [
