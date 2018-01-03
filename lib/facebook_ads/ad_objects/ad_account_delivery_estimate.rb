@@ -52,8 +52,8 @@ module FacebookAds
 
     field :bid_estimate, 'object'
     field :daily_outcomes_curve, { list: 'OutcomePredictionPoint' }
-    field :estimate_dau, 'object'
-    field :estimate_mau, 'object'
+    field :estimate_dau, 'int'
+    field :estimate_mau, 'int'
     field :estimate_ready, 'bool'
     has_no_id
     has_no_get
