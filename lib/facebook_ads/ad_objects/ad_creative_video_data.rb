@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -28,15 +28,18 @@ module FacebookAds
   class AdCreativeVideoData < AdObject
 
     field :additional_image_index, 'int'
+    field :branded_content_shared_to_sponsor_status, 'string'
     field :branded_content_sponsor_page_id, 'string'
     field :branded_content_sponsor_relationship, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
+    field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
     field :image_hash, 'string'
     field :image_url, 'string'
     field :link_description, 'string'
     field :message, 'string'
     field :offer_id, 'string'
     field :page_welcome_message, 'string'
+    field :post_click_configuration, 'AdCreativePostClickConfiguration'
     field :retailer_item_ids, { list: 'string' }
     field :targeting, 'Targeting'
     field :title, 'string'

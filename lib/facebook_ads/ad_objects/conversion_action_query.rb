@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -49,7 +49,6 @@ module FacebookAds
     field :_post_object, { list: 'string' }
     field :_post_object_wall, { list: 'string' }
     field :_post_wall, { list: 'string' }
-    field :product_set_id, { list: 'string' }
     field :question, { list: 'string' }
     field :_question_creator, { list: 'string' }
     field :response, { list: 'string' }

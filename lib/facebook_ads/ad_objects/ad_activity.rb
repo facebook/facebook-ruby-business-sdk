@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -50,6 +50,7 @@ module FacebookAds
       "update_campaign_name",
       "update_campaign_run_status",
       "update_campaign_group_spend_cap",
+      "campaign_ended",
       "create_campaign",
       "create_campaign_legacy",
       "update_campaign_budget",

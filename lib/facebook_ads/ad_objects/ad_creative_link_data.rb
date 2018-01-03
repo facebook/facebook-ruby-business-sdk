@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -31,20 +31,30 @@ module FacebookAds
       "default",
     ]
 
+    FORMAT_OPTION = [
+      "carousel_images_multi_items",
+      "carousel_images_single_item",
+      "single_image",
+    ]
+
 
     field :additional_image_index, 'int'
     field :app_link_spec, 'AdCreativeLinkDataAppLinkSpec'
     field :attachment_style, { enum: -> { ATTACHMENT_STYLE }}
+    field :branded_content_shared_to_sponsor_status, 'string'
     field :branded_content_sponsor_page_id, 'string'
     field :branded_content_sponsor_relationship, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
     field :caption, 'string'
     field :child_attachments, { list: 'AdCreativeLinkDataChildAttachment' }
+    field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
     field :description, 'string'
     field :event_id, 'string'
     field :force_single_link, 'bool'
+    field :format_option, { enum: -> { FORMAT_OPTION }}
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
+    field :image_overlay_spec, 'AdCreativeLinkDataImageOverlaySpec'
     field :link, 'string'
     field :message, 'string'
     field :multi_share_end_card, 'bool'
@@ -53,6 +63,7 @@ module FacebookAds
     field :offer_id, 'string'
     field :page_welcome_message, 'string'
     field :picture, 'string'
+    field :post_click_configuration, 'AdCreativePostClickConfiguration'
     field :retailer_item_ids, { list: 'string' }
     field :show_multiple_images, 'bool'
     has_no_id

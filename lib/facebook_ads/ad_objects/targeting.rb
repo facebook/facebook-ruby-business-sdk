@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -55,6 +55,7 @@ module FacebookAds
     field :country_groups, { list: 'string' }
     field :custom_audiences, { list: 'IDName' }
     field :device_platforms, { list: { enum: -> { DEVICE_PLATFORMS }} }
+    field :direct_install_devices, 'bool'
     field :dynamic_audience_ids, { list: 'string' }
     field :education_majors, { list: 'IDName' }
     field :education_schools, { list: 'IDName' }
@@ -103,7 +104,6 @@ module FacebookAds
     field :moms, { list: 'IDName' }
     field :net_worth, { list: 'IDName' }
     field :office_type, { list: 'IDName' }
-    field :page_types, { list: 'string' }
     field :place_page_set_ids, { list: 'string' }
     field :political_views, { list: 'int' }
     field :politics, { list: 'IDName' }

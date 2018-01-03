@@ -26,4 +26,4 @@ ca = ad_acc.customaudiences.create({
   description: 'CA from API',
 })
 
-ca.add_users(File.read("emails").split.map(&:strip), "EMAIL_SHA256")
+ca.add_user(File.read("emails").split.map(&:strip), "EMAIL_SHA256")

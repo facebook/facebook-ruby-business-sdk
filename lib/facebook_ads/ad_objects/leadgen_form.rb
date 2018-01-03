@@ -19,7 +19,7 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-genereated.
+  # This class is auto-generated.
 
   # For any issues or feature requests related to this class, please let us know
   # on github and we'll fix in our codegen framework. We'll not be able to accept
@@ -30,12 +30,12 @@ module FacebookAds
     field :allow_organic_lead, 'bool'
     field :block_display_for_non_targeted_viewer, 'bool'
     field :context_card, 'object'
-    field :continued_flow_request_method, 'string'
     field :created_time, 'datetime'
     field :creator, 'User'
     field :creator_id, 'int'
     field :cusomized_tcpa_content, 'string'
     field :expired_leads_count, 'int'
+    field :extra_details, { list: 'string' }
     field :follow_up_action_text, 'string'
     field :follow_up_action_url, 'string'
     field :id, 'string'
@@ -51,9 +51,11 @@ module FacebookAds
     field :page_id, 'string'
     field :privacy_policy_url, 'string'
     field :qualifiers, { list: 'LeadGenQualifier' }
+    field :question_page_custom_headline, 'string'
     field :questions, { list: 'LeadGenQuestion' }
     field :status, 'string'
     field :tcpa_compliance, 'bool'
+    field :thank_you_page, 'object'
     has_no_post
 
     has_edge :leads do |edge|
