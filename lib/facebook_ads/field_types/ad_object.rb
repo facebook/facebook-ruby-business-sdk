@@ -26,7 +26,15 @@ module FacebookAds
       end
 
       def deserialize(value, session = nil)
-        @ad_object_class.new(value, value.keys, session)
+        case value
+        when Hash
+          @ad_object_class.new(value, value.keys, session)
+        when Array
+          value_as_hash = [value].to_h
+          @ad_object_class.new(value_as_hash, value_as_hash.keys, session)
+        else
+          raise "Invalid type: #{value}"
+        end
       end
 
       def serialize(value)
