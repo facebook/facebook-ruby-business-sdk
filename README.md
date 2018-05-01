@@ -20,7 +20,7 @@ registered on [https://developers.facebook.com/](https://developers.facebook.com
 
 To manage the Marketing API, please visit your
 
-[https://developers.facebook.com/apps/\<YOUR APP ID\>/dashboard](https://developers.facebook.com/apps/<YOUR APP ID>/dashboard)
+`https://developers.facebook.com/apps/<YOUR APP ID>/dashboard`
 
 
 
