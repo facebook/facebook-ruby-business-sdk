@@ -6,7 +6,7 @@ The Facebook <a href="https://developers.facebook.com/docs/business-sdk" target=
 
 ## Quick Start
 
-Business SDK <a href="https://developers.facebook.com/docs/business-sdk/getting-started" target="_blank">Getting Started Guide</a>
+Business SDK [Getting Started Guide](https://developers.facebook.com/docs/business-sdk/getting-started)
 
 ## Pre-requisites
 
@@ -16,11 +16,15 @@ We developed this SDK using Ruby 2.0, and supports Ruby 2.0+, however, the SDK i
 ### Register An App
 
 To get started with the SDK, you must have an app
-registered on <a href="https://developers.facebook.com/" target="_blank">developers.facebook.com</a>.
+registered on [https://developers.facebook.com/](https://developers.facebook.com/)
 
 To manage the Marketing API, please visit your
-<a href="https://developers.facebook.com/apps/<YOUR APP ID>/dashboard"> App Dashboard </a>
-and add the <b>Marketing API</b> product to your app.
+
+[https://developers.facebook.com/apps/\<YOUR APP ID\>/dashboard](https://developers.facebook.com/apps/<YOUR APP ID>/dashboard)
+
+
+
+and add the **Marketing API** product to your app.
 
 **IMPORTANT**: For security, it is recommended that you turn on 'App Secret
 Proof for Server API calls' in your app's Settings->Advanced page.
@@ -49,19 +53,19 @@ to get an access token.
 The SDK is available as a RubyGem. To use the gem, you can add the following to Gemfile
 
 ```ruby
-gem 'facebookads'
+gem 'facebookbusiness'
 ```
 
 or install it using command line
 
 ```bash
-gem install facebookads
+gem install facebookbusiness
 ```
 
 and then in your code
 
 ```ruby
-require 'facebook_ads'
+require 'facebookbusiness'
 ```
 
 
@@ -102,7 +106,7 @@ ad_account = FacebookAds::AdAccount.get('act_12334', 'name', {
 The SDK contains ad object files auto generated from our API metadata, each node type has its own corresponding Ruby class under the `FacebookAds` module. For example, to fetch an AdAccount
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name')
 puts "Ad Account Name: #{ad_account.name}"
 ```
 
@@ -112,7 +116,7 @@ The `#get` method doesn't trigger the `GET` request immediately. The API request
 To update a node, you can use the `#save` method of ad object classes.
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name')
 ad_account.name = "New Ad Account"
 ad_account.save
 
@@ -200,7 +204,7 @@ ad_account.advideos.create({
 [Batch API](https://developers.facebook.com/docs/marketing-api/asyncrequests) allows you to make API calls in a batch. You can collect a bunch of API requests and fire them all at once to reduce wait time. To create a batch, just wrap operations with a block to `FacebookAds::Batch#with_batch`
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_<ACT_ID>')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>')
 
 batch = FacebookAds::Batch.with_batch do
   10.times.map do |n|
@@ -219,7 +223,7 @@ batch.execute
 Dependencies between requests is supported, the SDK simplifies the use of JSONPath references between batched operations.
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_12334')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>')
 
 batch = FacebookAds::Batch.with_batch do
   # This won't be sent out immediately!
