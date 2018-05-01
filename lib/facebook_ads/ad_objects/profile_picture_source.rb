@@ -36,6 +36,7 @@ module FacebookAds
 
 
     field :bottom, 'int'
+    field :cache_key, 'string'
     field :height, 'int'
     field :is_silhouette, 'bool'
     field :left, 'int'

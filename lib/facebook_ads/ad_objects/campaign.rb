@@ -94,6 +94,7 @@ module FacebookAds
       "LEAD_GENERATION",
       "LINK_CLICKS",
       "LOCAL_AWARENESS",
+      "MESSAGES",
       "OFFER_CLAIMS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
@@ -120,8 +121,6 @@ module FacebookAds
     field :created_time, 'datetime'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :id, 'string'
-    field :kpi_custom_conversion_id, 'string'
-    field :kpi_type, 'string'
     field :name, 'string'
     field :objective, 'string'
     field :recommendations, { list: 'AdRecommendation' }
@@ -132,7 +131,9 @@ module FacebookAds
     field :status, { enum: -> { STATUS }}
     field :stop_time, 'datetime'
     field :updated_time, 'datetime'
+    field :adbatch, { list: 'object' }
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
+    field :iterative_split_test_configs, { list: 'object' }
     field :promoted_object, 'object'
 
     has_edge :adlabels do |edge|
@@ -146,12 +147,17 @@ module FacebookAds
       end
     end
 
+    has_edge :adrules_governed do |edge|
+      edge.get 'AdRule' do |api|
+        api.has_param :pass_evaluation, 'bool'
+      end
+    end
+
     has_edge :ads do |edge|
       edge.get 'Ad' do |api|
         api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :include_deleted, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
       end

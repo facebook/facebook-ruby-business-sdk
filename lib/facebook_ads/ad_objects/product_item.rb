@@ -40,12 +40,14 @@ module FacebookAds
       "preorder",
       "available for order",
       "discontinued",
+      "pending",
     ]
 
     CONDITION = [
       "new",
       "refurbished",
       "used",
+      "cpo",
     ]
 
     GENDER = [
@@ -76,6 +78,7 @@ module FacebookAds
 
 
     field :additional_image_urls, { list: 'string' }
+    field :additional_variant_attributes, { list: 'object' }
     field :age_group, { enum: -> { AGE_GROUP }}
     field :applinks, 'AppLinks'
     field :availability, { enum: -> { AVAILABILITY }}
@@ -97,6 +100,7 @@ module FacebookAds
     field :gtin, 'string'
     field :id, 'string'
     field :image_url, 'string'
+    field :inventory, 'int'
     field :manufacturer_part_number, 'string'
     field :material, 'string'
     field :name, 'string'
@@ -121,12 +125,12 @@ module FacebookAds
     field :start_date, 'string'
     field :url, 'string'
     field :visibility, { enum: -> { VISIBILITY }}
+    field :requests, { list: 'hash' }
     field :android_app_name, 'string'
     field :android_class, 'string'
     field :android_package, 'string'
     field :android_url, 'string'
     field :checkout_url, 'string'
-    field :inventory, 'int'
     field :ios_app_name, 'string'
     field :ios_app_store_id, 'int'
     field :ios_url, 'string'
@@ -136,6 +140,9 @@ module FacebookAds
     field :iphone_app_name, 'string'
     field :iphone_app_store_id, 'int'
     field :iphone_url, 'string'
+    field :offer_price_amount, 'int'
+    field :offer_price_end_date, 'object'
+    field :offer_price_start_date, 'object'
     field :windows_phone_app_id, 'string'
     field :windows_phone_app_name, 'string'
     field :windows_phone_url, 'string'

@@ -22,11 +22,23 @@ module FacebookAds
       register 'hash', 'map', 'object'
 
       def deserialize(value, session = nil)
-        JSON.parse(value)
+        case value
+          when String
+            JSON.parse(value)
+          else
+            value
+        end
       end
 
       def serialize(value)
-        JSON.generate(value)
+        # Only serialize if not primitive types. Otherwise json will add
+        # Extra \" to the String/Int
+        case value
+          when String, Integer
+            value
+          else
+            JSON.generate(value)
+        end
       end
     end
   end

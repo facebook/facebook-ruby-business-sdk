@@ -36,6 +36,7 @@ module FacebookAds
       edge.get 'ProductItem'
       edge.post 'ProductItem' do |api|
         api.has_param :additional_image_urls, { list: 'string' }
+        api.has_param :additional_variant_attributes, 'object'
         api.has_param :android_app_name, 'string'
         api.has_param :android_class, 'string'
         api.has_param :android_package, 'string'
@@ -57,7 +58,7 @@ module FacebookAds
         api.has_param :expiration_date, 'string'
         api.has_param :gender, { enum: -> { ProductItem::GENDER }}
         api.has_param :gtin, 'string'
-        api.has_param :image_url, 'string'
+        api.has_param :image_url, 'object'
         api.has_param :inventory, 'int'
         api.has_param :ios_app_name, 'string'
         api.has_param :ios_app_store_id, 'int'
@@ -71,6 +72,9 @@ module FacebookAds
         api.has_param :manufacturer_part_number, 'string'
         api.has_param :material, 'string'
         api.has_param :name, 'string'
+        api.has_param :offer_price_amount, 'int'
+        api.has_param :offer_price_end_date, 'object'
+        api.has_param :offer_price_start_date, 'object'
         api.has_param :ordering_index, 'int'
         api.has_param :pattern, 'string'
         api.has_param :price, 'int'
@@ -82,7 +86,7 @@ module FacebookAds
         api.has_param :short_description, 'string'
         api.has_param :size, 'string'
         api.has_param :start_date, 'string'
-        api.has_param :url, 'string'
+        api.has_param :url, 'object'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'

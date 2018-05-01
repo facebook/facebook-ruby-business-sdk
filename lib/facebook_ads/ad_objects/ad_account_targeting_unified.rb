@@ -128,14 +128,19 @@ module FacebookAds
       "location_categories",
       "user_page_threads",
       "user_page_threads_excluded",
+      "is_whatsapp_destination_ad",
+      "marketplace_product_categories",
     ]
 
 
     field :audience_size, 'int'
     field :description, 'string'
     field :id, 'string'
+    field :is_recommendation, 'bool'
     field :name, 'string'
     field :path, { list: 'string' }
+    field :recommendation_model, 'string'
+    field :search_interest_id, 'string'
     field :type, 'string'
     field :valid, 'bool'
     has_no_get

@@ -33,52 +33,60 @@ module FacebookAds
       "PLAY_GAME",
       "INSTALL_APP",
       "USE_APP",
+      "CALL",
+      "CALL_ME",
       "INSTALL_MOBILE_APP",
       "USE_MOBILE_APP",
+      "MOBILE_DOWNLOAD",
       "BOOK_TRAVEL",
       "LISTEN_MUSIC",
+      "WATCH_VIDEO",
       "LEARN_MORE",
       "SIGN_UP",
       "DOWNLOAD",
       "WATCH_MORE",
       "NO_BUTTON",
-      "CALL_NOW",
+      "VISIT_PAGES_FEED",
       "APPLY_NOW",
       "BUY_NOW",
       "GET_OFFER",
       "GET_OFFER_VIEW",
+      "BUY_TICKETS",
+      "UPDATE_APP",
       "GET_DIRECTIONS",
+      "BUY",
       "MESSAGE_PAGE",
-      "MESSAGE_USER",
+      "DONATE",
       "SUBSCRIBE",
+      "SAY_THANKS",
       "SELL_NOW",
+      "SHARE",
       "DONATE_NOW",
       "GET_QUOTE",
       "CONTACT_US",
-      "START_ORDER",
+      "ORDER_NOW",
+      "ADD_TO_CART",
+      "VIDEO_ANNOTATION",
+      "MOMENTS",
       "RECORD_NOW",
-      "VOTE_NOW",
-      "REGISTER_NOW",
-      "REQUEST_TIME",
-      "SEE_MENU",
-      "EMAIL_NOW",
       "GET_SHOWTIMES",
-      "TRY_IT",
       "LISTEN_NOW",
-      "OPEN_MOVIES",
+      "EVENT_RSVP",
+      "WHATSAPP_MESSAGE",
     ]
 
 
     field :ad_formats, { list: 'string' }
+    field :asset_customization_rules, { list: 'object' }
+    field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }
     field :call_to_action_types, { list: { enum: -> { CALL_TO_ACTION_TYPES }} }
     field :captions, { list: 'AdAssetFeedSpecCaption' }
     field :descriptions, { list: 'AdAssetFeedSpecDescription' }
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
-    field :link_urls, { list: 'AdAssetFeedSpecLinkURL' }
+    field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
     field :optimization_type, 'string'
-    field :target_rules, { list: 'AdAssetFeedSpecTargetRule' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id

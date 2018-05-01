@@ -35,10 +35,17 @@ module FacebookAds
 
 
     field :end_time, 'datetime'
+    field :error_count, 'int'
+    field :filename, 'string'
     field :id, 'string'
     field :input_method, { enum: -> { INPUT_METHOD }}
+    field :num_deleted_items, 'int'
+    field :num_detected_items, 'int'
+    field :num_invalid_items, 'int'
+    field :num_persisted_items, 'int'
     field :start_time, 'datetime'
     field :url, 'string'
+    field :warning_count, 'int'
     has_no_post
     has_no_delete
 

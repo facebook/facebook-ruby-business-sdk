@@ -26,6 +26,20 @@ module FacebookAds
   # pull request for this class.
 
   class AdAccountAdRulesHistory < AdObject
+    ACTION = [
+      "BUDGET_NOT_REDISTRIBUTED",
+      "CHANGED_BID",
+      "CHANGED_BUDGET",
+      "EMAIL",
+      "ENDPOINT_PINGED",
+      "ERROR",
+      "FACEBOOK_NOTIFICATION_SENT",
+      "MESSAGE_SENT",
+      "NOT_CHANGED",
+      "PAUSED",
+      "UNPAUSED",
+    ]
+
 
     field :evaluation_spec, 'AdRuleEvaluationSpec'
     field :exception_code, 'int'

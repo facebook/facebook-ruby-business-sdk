@@ -45,20 +45,20 @@ module FacebookAds
     field :alternate_auto_targeting_option, 'string'
     field :app_install_state, 'string'
     field :audience_network_positions, { list: 'string' }
-    field :behaviors, { list: 'IDName' }
-    field :cities, { list: 'IDName' }
+    field :behaviors, { list: 'IdName' }
+    field :cities, { list: 'IdName' }
     field :college_years, { list: 'int' }
-    field :connections, { list: 'IDName' }
-    field :contextual_targeting_categories, { list: 'IDName' }
+    field :connections, { list: 'IdName' }
+    field :contextual_targeting_categories, { list: 'IdName' }
     field :countries, { list: 'string' }
     field :country, { list: 'string' }
     field :country_groups, { list: 'string' }
-    field :custom_audiences, { list: 'IDName' }
+    field :custom_audiences, { list: 'IdName' }
     field :device_platforms, { list: { enum: -> { DEVICE_PLATFORMS }} }
     field :direct_install_devices, 'bool'
     field :dynamic_audience_ids, { list: 'string' }
-    field :education_majors, { list: 'IDName' }
-    field :education_schools, { list: 'IDName' }
+    field :education_majors, { list: 'IdName' }
+    field :education_schools, { list: 'IdName' }
     field :education_statuses, { list: 'int' }
     field :effective_audience_network_positions, { list: 'string' }
     field :effective_device_platforms, { list: { enum: -> { EFFECTIVE_DEVICE_PLATFORMS }} }
@@ -67,10 +67,10 @@ module FacebookAds
     field :effective_messenger_positions, { list: 'string' }
     field :effective_publisher_platforms, { list: 'string' }
     field :engagement_specs, { list: 'TargetingDynamicRule' }
-    field :ethnic_affinity, { list: 'IDName' }
+    field :ethnic_affinity, { list: 'IdName' }
     field :exclude_reached_since, { list: 'string' }
-    field :excluded_connections, { list: 'IDName' }
-    field :excluded_custom_audiences, { list: 'IDName' }
+    field :excluded_connections, { list: 'IdName' }
+    field :excluded_custom_audiences, { list: 'IdName' }
     field :excluded_dynamic_audience_ids, { list: 'string' }
     field :excluded_engagement_specs, { list: 'TargetingDynamicRule' }
     field :excluded_geo_locations, 'TargetingGeoLocation'
@@ -81,48 +81,49 @@ module FacebookAds
     field :excluded_user_device, { list: 'string' }
     field :exclusions, 'FlexibleTargeting'
     field :facebook_positions, { list: 'string' }
-    field :family_statuses, { list: 'IDName' }
+    field :family_statuses, { list: 'IdName' }
     field :fb_deal_id, 'string'
     field :flexible_spec, { list: 'FlexibleTargeting' }
-    field :friends_of_connections, { list: 'IDName' }
+    field :friends_of_connections, { list: 'IdName' }
     field :genders, { list: 'int' }
-    field :generation, { list: 'IDName' }
+    field :generation, { list: 'IdName' }
     field :geo_locations, 'TargetingGeoLocation'
-    field :home_ownership, { list: 'IDName' }
-    field :home_type, { list: 'IDName' }
-    field :home_value, { list: 'IDName' }
-    field :household_composition, { list: 'IDName' }
-    field :income, { list: 'IDName' }
-    field :industries, { list: 'IDName' }
+    field :home_ownership, { list: 'IdName' }
+    field :home_type, { list: 'IdName' }
+    field :home_value, { list: 'IdName' }
+    field :household_composition, { list: 'IdName' }
+    field :income, { list: 'IdName' }
+    field :industries, { list: 'IdName' }
     field :instagram_positions, { list: 'string' }
     field :interested_in, { list: 'int' }
-    field :interests, { list: 'IDName' }
+    field :interests, { list: 'IdName' }
+    field :is_whatsapp_destination_ad, 'bool'
     field :keywords, { list: 'string' }
-    field :life_events, { list: 'IDName' }
+    field :life_events, { list: 'IdName' }
     field :locales, { list: 'int' }
     field :messenger_positions, { list: 'string' }
-    field :moms, { list: 'IDName' }
-    field :net_worth, { list: 'IDName' }
-    field :office_type, { list: 'IDName' }
+    field :moms, { list: 'IdName' }
+    field :net_worth, { list: 'IdName' }
+    field :office_type, { list: 'IdName' }
     field :place_page_set_ids, { list: 'string' }
     field :political_views, { list: 'int' }
-    field :politics, { list: 'IDName' }
+    field :politics, { list: 'IdName' }
     field :product_audience_specs, { list: 'TargetingProductAudienceSpec' }
     field :publisher_platforms, { list: 'string' }
     field :publisher_visibility_categories, { list: 'string' }
     field :radius, 'string'
-    field :regions, { list: 'IDName' }
+    field :regions, { list: 'IdName' }
     field :relationship_statuses, { list: 'int' }
     field :rtb_flag, 'bool'
     field :site_category, { list: 'string' }
     field :targeting_optimization, 'string'
-    field :user_adclusters, { list: 'IDName' }
+    field :user_adclusters, { list: 'IdName' }
     field :user_device, { list: 'string' }
     field :user_event, { list: 'int' }
     field :user_os, { list: 'string' }
     field :wireless_carrier, { list: 'string' }
-    field :work_employers, { list: 'IDName' }
-    field :work_positions, { list: 'IDName' }
+    field :work_employers, { list: 'IdName' }
+    field :work_positions, { list: 'IdName' }
     field :zips, { list: 'string' }
     has_no_id
     has_no_get

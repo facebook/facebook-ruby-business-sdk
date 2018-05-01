@@ -29,6 +29,7 @@ module FacebookAds
 
     field :adlabels, { list: 'AdAssetFeedSpecAssetLabel' }
     field :caption_ids, { list: 'string' }
+    field :thumbnail_hash, 'string'
     field :thumbnail_url, 'string'
     field :url_tags, 'string'
     field :video_id, 'string'

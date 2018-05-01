@@ -50,7 +50,6 @@ module FacebookAds
     field :width, 'int'
     field :bytes, 'object'
     field :copy_from, 'object'
-    field :zipbytes, 'object'
     has_no_post
     has_no_delete
 

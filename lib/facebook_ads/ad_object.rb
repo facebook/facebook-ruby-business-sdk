@@ -24,7 +24,7 @@ require 'facebook_ads/helpers/edge_helpers'
 
 module FacebookAds
   class AdObject
-    attr_reader :attributes, :internal_fields, :last_api_response
+    attr_reader :attributes, :__all_fields, :last_api_response
     attr_accessor :deserializer
     attr_accessor :last_saved, :last_destroyed
 
@@ -45,7 +45,7 @@ module FacebookAds
       fields = fields.split(',') if fields.is_a?(String)
       session = args.shift
 
-      self.internal_fields = fields + attributes.keys
+      self.__all_fields = fields + attributes.keys
       self.session = session
     end
 
@@ -90,17 +90,15 @@ module FacebookAds
     end
 
     def fields_as_string
-      @internal_fields.to_a.join(',')
+      @__all_fields.to_a.join(',')
     end
 
-    # please do not use fields= or @fields as instance variable or setter.
-    # 'fields' is resevered keyword for field name in AdReportRun
-    def internal_fields=(fields)
-      @internal_fields = Set.new((fields.is_a?(String) ? fields.split(',') : fields.map(&:to_s)).map(&:to_sym))
+    def __all_fields=(fields)
+      @__all_fields = Set.new((fields.is_a?(String) ? fields.split(',') : fields.map(&:to_s)).map(&:to_sym))
     end
 
     def loaded?
-      (@internal_fields - attributes.keys).empty?
+      (@__all_fields - attributes.keys).empty?
     end
 
     def load!

@@ -39,5 +39,15 @@ module FacebookAds
       end
     end
 
+    has_edge :userpermissions do |edge|
+      edge.delete do |api|
+        api.has_param :user, 'int'
+      end
+      edge.post do |api|
+        api.has_param :role, { enum: %w{ANALYST LIMITED_ANALYST }}
+        api.has_param :user, 'int'
+      end
+    end
+
   end
 end

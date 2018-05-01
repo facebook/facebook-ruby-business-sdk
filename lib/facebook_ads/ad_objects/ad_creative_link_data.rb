@@ -34,6 +34,7 @@ module FacebookAds
     FORMAT_OPTION = [
       "carousel_images_multi_items",
       "carousel_images_single_item",
+      "carousel_slideshows",
       "single_image",
     ]
 
@@ -48,6 +49,8 @@ module FacebookAds
     field :caption, 'string'
     field :child_attachments, { list: 'AdCreativeLinkDataChildAttachment' }
     field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
+    field :custom_overlay_spec, 'AdCreativeLinkDataCustomOverlaySpec'
+    field :customization_rules_spec, { list: 'object' }
     field :description, 'string'
     field :event_id, 'string'
     field :force_single_link, 'bool'
@@ -64,6 +67,7 @@ module FacebookAds
     field :page_welcome_message, 'string'
     field :picture, 'string'
     field :post_click_configuration, 'AdCreativePostClickConfiguration'
+    field :preferred_image_tags, { list: 'string' }
     field :retailer_item_ids, { list: 'string' }
     field :show_multiple_images, 'bool'
     has_no_id

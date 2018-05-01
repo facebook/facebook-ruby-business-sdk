@@ -27,9 +27,6 @@ module FacebookAds
 
   class AdPromotedObject < AdObject
     CUSTOM_EVENT_TYPE = [
-      "COMPLETE_REGISTRATION",
-      "CONTENT_VIEW",
-      "SEARCH",
       "RATE",
       "TUTORIAL_COMPLETION",
       "ADD_TO_CART",
@@ -38,6 +35,9 @@ module FacebookAds
       "ADD_PAYMENT_INFO",
       "PURCHASE",
       "LEAD",
+      "COMPLETE_REGISTRATION",
+      "CONTENT_VIEW",
+      "SEARCH",
       "LEVEL_ACHIEVED",
       "ACHIEVEMENT_UNLOCKED",
       "SPENT_CREDITS",

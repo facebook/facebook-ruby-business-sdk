@@ -94,6 +94,12 @@ module FacebookAds
       "ANY",
     ]
 
+    STATUS_OPTION = [
+      "ACTIVE",
+      "PAUSED",
+      "INHERITED_FROM_SOURCE",
+    ]
+
 
     field :account_id, 'string'
     field :ad_review_feedback, 'AdgroupReviewFeedback'
@@ -123,7 +129,6 @@ module FacebookAds
     field :date_format, 'string'
     field :display_sequence, 'int'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
-    field :redownload, 'bool'
 
     has_edge :adcreatives do |edge|
       edge.get 'AdCreative'
@@ -137,6 +142,20 @@ module FacebookAds
       edge.post 'AdLabel' do |api|
         api.has_param :adlabels, { list: 'object' }
         api.has_param :execution_options, { list: { enum: -> { AdLabel::EXECUTION_OPTIONS }} }
+      end
+    end
+
+    has_edge :adrules_governed do |edge|
+      edge.get 'AdRule' do |api|
+        api.has_param :pass_evaluation, 'bool'
+      end
+    end
+
+    has_edge :copies do |edge|
+      edge.post 'Ad' do |api|
+        api.has_param :adset_id, 'string'
+        api.has_param :rename_options, 'object'
+        api.has_param :status_option, { enum: -> { Ad::STATUS_OPTION }}
       end
     end
 
@@ -195,6 +214,11 @@ module FacebookAds
 
     has_edge :leads do |edge|
       edge.get 'Lead'
+      edge.post do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :session_id, 'string'
+        api.has_param :start_time, 'datetime'
+      end
     end
 
     has_edge :previews do |edge|
@@ -203,7 +227,6 @@ module FacebookAds
         api.has_param :dynamic_creative_spec, 'object'
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
-        api.has_param :locale, 'string'
         api.has_param :place_page_id, 'int'
         api.has_param :post, 'object'
         api.has_param :product_item_ids, { list: 'string' }

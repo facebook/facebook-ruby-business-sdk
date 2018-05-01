@@ -1,15 +1,49 @@
-# Facebook Ads API SDK for Ruby
+# Facebook Business SDK for Ruby
+
+### Introduction
+
+The Facebook <a href="https://developers.facebook.com/docs/business-sdk" target="_blank">Business SDK</a> is a one-stop shop to help our partners better serve their businesses. Partners are using multiple Facebook API's to server the needs of their clients. Adopting all these API's and keeping them up to date across the various platforms can be time consuming and ultimately prohibitive. For this reason Facebook has developed the Business SDK bundling many of its APIs into one SDK to ease implementation and upkeep. The Business SDK is an upgraded version of the Marketing API SDK that includes the Marketing API as well as many Facebook APIs from different platforms such as Pages, Business Manager, Instagram, etc.
+
+## Quick Start
+
+Business SDK <a href="https://developers.facebook.com/docs/business-sdk/getting-started" target="_blank">Getting Started Guide</a>
 
 ## Pre-requisites
+
 ### Ruby Version
 We developed this SDK using Ruby 2.0, and supports Ruby 2.0+, however, the SDK is not thread-safe at the moment.
 
-### App
-To get started with the SDK you must have a Facebook app registered on [developers.facebook.com](https://developers.facebook.com).
+### Register An App
 
-**IMPORTANT**: Enable all migrations in the App's Settings->Migrations page.
+To get started with the SDK, you must have an app
+registered on <a href="https://developers.facebook.com/" target="_blank">developers.facebook.com</a>.
 
-**IMPORTANT**: To have better security, we recommend you to turn on 'App Secret Proof for Server API calls' in your app's Settings->Advanced page.
+To manage the Marketing API, please visit your
+<a href="https://developers.facebook.com/apps/<YOUR APP ID>/dashboard"> App Dashboard </a>
+and add the <b>Marketing API</b> product to your app.
+
+**IMPORTANT**: For security, it is recommended that you turn on 'App Secret
+Proof for Server API calls' in your app's Settings->Advanced page.
+
+### Obtain An Access Token
+
+When someone connects with an app using Facebook Login and approves the request
+for permissions, the app obtains an access token that provides temporary, secure
+access to Facebook APIs.
+
+An access token is an opaque string that identifies a User, app, or Page.
+
+For example, to access the Marketing API, you need to generate a User access token
+for your app and ask for the ``ads_management`` permission; to access Pages API,
+you need to generate a Page access token for your app and ask for the ``manage_page`` permission.
+
+Refer to our
+<a href="https://developers.facebook.com/docs/facebook-login/access-tokens" target="_blank">
+Access Token Guide</a> to learn more.
+
+For now, we can use the
+<a href="https://developers.facebook.com/tools/explorer" target="_blank">Graph Explorer</a>
+to get an access token.
 
 ## Installation
 The SDK is available as a RubyGem. To use the gem, you can add the following to Gemfile

@@ -42,6 +42,7 @@ module FacebookAds
       "HOME_LISTING",
       "HOTEL",
       "VEHICLE",
+      "VEHICLE_OFFER",
     ]
 
     SUBTYPE = [

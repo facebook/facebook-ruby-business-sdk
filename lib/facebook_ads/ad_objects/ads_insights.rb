@@ -70,6 +70,14 @@ module FacebookAds
       "device_platform",
       "product_id",
       "region",
+      "ad_format_asset",
+      "body_asset",
+      "call_to_action_asset",
+      "description_asset",
+      "image_asset",
+      "link_url_asset",
+      "title_asset",
+      "video_asset",
     ]
 
     DATE_PRESET = [
@@ -147,7 +155,6 @@ module FacebookAds
     field :campaign_name, 'string'
     field :canvas_avg_view_percent, 'string'
     field :canvas_avg_view_time, 'string'
-    field :canvas_component_avg_pct_view, { list: 'AdsActionStats' }
     field :clicks, 'string'
     field :cost_per_10_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }

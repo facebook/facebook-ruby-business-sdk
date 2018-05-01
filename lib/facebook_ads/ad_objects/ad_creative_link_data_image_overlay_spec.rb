@@ -26,6 +26,10 @@ module FacebookAds
   # pull request for this class.
 
   class AdCreativeLinkDataImageOverlaySpec < AdObject
+    CUSTOM_TEXT_TYPE = [
+      "free_shipping",
+    ]
+
     OVERLAY_TEMPLATE = [
       "pill_with_text",
       "circle_with_text",
@@ -56,6 +60,8 @@ module FacebookAds
       "price",
       "strikethrough_price",
       "percentage_off",
+      "custom",
+      "from_price",
     ]
 
     THEME_COLOR = [
@@ -78,6 +84,7 @@ module FacebookAds
     ]
 
 
+    field :custom_text_type, { enum: -> { CUSTOM_TEXT_TYPE }}
     field :float_with_margin, 'bool'
     field :overlay_template, { enum: -> { OVERLAY_TEMPLATE }}
     field :position, { enum: -> { POSITION }}

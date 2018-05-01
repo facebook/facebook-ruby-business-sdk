@@ -26,6 +26,16 @@ module FacebookAds
   # pull request for this class.
 
   class ProductCatalog < AdObject
+    VERTICAL = [
+      "commerce",
+      "destinations",
+      "flights",
+      "home_listings",
+      "home_service_providers",
+      "hotels",
+      "vehicles",
+    ]
+
 
     field :business, 'Business'
     field :da_display_settings, 'ProductCatalogImageSettings'
@@ -34,15 +44,20 @@ module FacebookAds
     field :feed_count, 'int'
     field :flight_catalog_settings, 'object'
     field :id, 'string'
-    field :image_padding_landscape, 'bool'
-    field :image_padding_square, 'bool'
     field :name, 'string'
     field :product_count, 'int'
     field :qualified_product_count, 'int'
     field :vertical, 'string'
+    field :destination_catalog_settings, 'hash'
 
     has_edge :agencies do |edge|
       edge.get 'Business'
+    end
+
+    has_edge :batch do |edge|
+      edge.post 'ProductItem' do |api|
+        api.has_param :requests, { list: 'hash' }
+      end
     end
 
     has_edge :check_batch_request_status do |edge|
@@ -51,10 +66,24 @@ module FacebookAds
       end
     end
 
+    has_edge :da_event_samples do |edge|
+      edge.get 'ProductDaEventSamplesBatch' do |api|
+        api.has_param :aggregation_type, { enum: -> { ProductDaEventSamplesBatch::AGGREGATION_TYPE }}
+        api.has_param :event, { enum: -> { ProductDaEventSamplesBatch::EVENT }}
+        api.has_param :source_id, 'string'
+      end
+    end
+
     has_edge :destinations do |edge|
       edge.get do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :event_stats do |edge|
+      edge.get 'ProductEventStat' do |api|
+        api.has_param :breakdowns, { list: { enum: -> { ProductEventStat::BREAKDOWNS }} }
       end
     end
 
@@ -114,11 +143,11 @@ module FacebookAds
     end
 
     has_edge :hotels do |edge|
-      edge.get 'Hotel' do |api|
+      edge.get do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
-      edge.post 'Hotel' do |api|
+      edge.post do |api|
         api.has_param :address, 'object'
         api.has_param :applinks, 'object'
         api.has_param :brand, 'string'
@@ -155,6 +184,7 @@ module FacebookAds
         api.has_param :deletion_enabled, 'bool'
         api.has_param :delimiter, { enum: -> { ProductFeed::DELIMITER }}
         api.has_param :encoding, { enum: -> { ProductFeed::ENCODING }}
+        api.has_param :feed_type, { enum: -> { ProductFeed::FEED_TYPE }}
         api.has_param :file_name, 'string'
         api.has_param :name, 'string'
         api.has_param :quoted_fields_mode, { enum: -> { ProductFeed::QUOTED_FIELDS_MODE }}
@@ -186,7 +216,7 @@ module FacebookAds
     end
 
     has_edge :product_sets_batch do |edge|
-      edge.get do |api|
+      edge.get 'ProductCatalogProductSetsBatch' do |api|
         api.has_param :handle, 'string'
       end
     end
@@ -198,6 +228,7 @@ module FacebookAds
       end
       edge.post 'ProductItem' do |api|
         api.has_param :additional_image_urls, { list: 'string' }
+        api.has_param :additional_variant_attributes, 'object'
         api.has_param :android_app_name, 'string'
         api.has_param :android_class, 'string'
         api.has_param :android_package, 'string'
@@ -219,7 +250,7 @@ module FacebookAds
         api.has_param :expiration_date, 'string'
         api.has_param :gender, { enum: -> { ProductItem::GENDER }}
         api.has_param :gtin, 'string'
-        api.has_param :image_url, 'string'
+        api.has_param :image_url, 'object'
         api.has_param :inventory, 'int'
         api.has_param :ios_app_name, 'string'
         api.has_param :ios_app_store_id, 'int'
@@ -233,6 +264,9 @@ module FacebookAds
         api.has_param :manufacturer_part_number, 'string'
         api.has_param :material, 'string'
         api.has_param :name, 'string'
+        api.has_param :offer_price_amount, 'int'
+        api.has_param :offer_price_end_date, 'object'
+        api.has_param :offer_price_start_date, 'object'
         api.has_param :ordering_index, 'int'
         api.has_param :pattern, 'string'
         api.has_param :price, 'int'
@@ -245,11 +279,22 @@ module FacebookAds
         api.has_param :short_description, 'string'
         api.has_param :size, 'string'
         api.has_param :start_date, 'string'
-        api.has_param :url, 'string'
+        api.has_param :url, 'object'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'
+      end
+    end
+
+    has_edge :quality_issues do |edge|
+      edge.get 'ProductsQualityIssue'
+    end
+
+    has_edge :vehicles do |edge|
+      edge.get do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
       end
     end
 
@@ -258,15 +303,18 @@ module FacebookAds
         api.has_param :content_category, { enum: %w{BEAUTY_FASHION BUSINESS CARS_TRUCKS COMEDY CUTE_ANIMALS ENTERTAINMENT FAMILY FOOD_HEALTH HOME LIFESTYLE MUSIC NEWS POLITICS SCIENCE SPORTS TECHNOLOGY VIDEO_GAMING OTHER }}
         api.has_param :description, 'string'
         api.has_param :embeddable, 'bool'
+        api.has_param :end_offset, 'int'
         api.has_param :file_size, 'int'
         api.has_param :file_url, 'string'
+        api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :fov, 'int'
+        api.has_param :front_z_rotation, 'double'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :guide_enabled, 'bool'
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'
         api.has_param :original_fov, 'int'
-        api.has_param :original_projection_type, { enum: %w{equirectangular cubemap equiangular_cubemap }}
+        api.has_param :original_projection_type, { enum: %w{equirectangular cubemap equiangular_cubemap half_equirectangular }}
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
         api.has_param :slideshow_spec, 'hash'
@@ -276,7 +324,7 @@ module FacebookAds
         api.has_param :swap_mode, { enum: %w{replace }}
         api.has_param :thumb, 'file'
         api.has_param :title, 'string'
-        api.has_param :unpublished_content_type, { enum: %w{SCHEDULED DRAFT ADS_POST }}
+        api.has_param :unpublished_content_type, { enum: %w{SCHEDULED DRAFT ADS_POST INLINE_CREATED PUBLISHED }}
         api.has_param :upload_phase, { enum: %w{start transfer finish cancel }}
         api.has_param :upload_session_id, 'string'
         api.has_param :video_file_chunk, 'string'

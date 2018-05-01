@@ -42,7 +42,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :samples do |edge|
-      edge.get 'ProductFeedUploadErrorSample'
+      edge.get
     end
 
   end

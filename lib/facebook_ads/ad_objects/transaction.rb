@@ -26,11 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class Transaction < AdObject
-    PRODUCT_TYPE = [
-      "facebook_ad",
-      "ig_ad",
-    ]
-
 
     field :account_id, 'string'
     field :app_amount, 'TransactionCurrencyAmount'
@@ -44,7 +39,6 @@ module FacebookAds
     field :id, 'string'
     field :is_business_ec_charge, 'bool'
     field :payment_option, 'string'
-    field :product_type, { enum: -> { PRODUCT_TYPE }}
     field :provider_amount, 'TransactionCurrencyAmount'
     field :status, 'string'
     field :time, 'int'
