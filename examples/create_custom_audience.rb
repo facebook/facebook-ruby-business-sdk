@@ -17,7 +17,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'dotenv/load'
-require 'facebook_ads'
+require 'facebookbusiness'
 
 ad_acc = FacebookAds::AdAccount.get('act_<ACT_ID>')
 ca = ad_acc.customaudiences.create({

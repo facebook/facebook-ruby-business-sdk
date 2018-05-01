@@ -6,7 +6,7 @@ The Facebook <a href="https://developers.facebook.com/docs/business-sdk" target=
 
 ## Quick Start
 
-Business SDK [Getting Started Guide](https://developers.facebook.com/docs/business-sdk/getting-started)
+Business SDK <a href="https://developers.facebook.com/docs/business-sdk/getting-started" target="_blank">Getting Started Guide</a>
 
 ## Pre-requisites
 
@@ -16,15 +16,11 @@ We developed this SDK using Ruby 2.0, and supports Ruby 2.0+, however, the SDK i
 ### Register An App
 
 To get started with the SDK, you must have an app
-registered on [https://developers.facebook.com/](https://developers.facebook.com/)
+registered on <a href="https://developers.facebook.com/" target="_blank">developers.facebook.com</a>.
 
 To manage the Marketing API, please visit your
-
-`https://developers.facebook.com/apps/<YOUR APP ID>/dashboard`
-
-
-
-and add the **Marketing API** product to your app.
+<a href="https://developers.facebook.com/apps/<YOUR APP ID>/dashboard"> App Dashboard </a>
+and add the <b>Marketing API</b> product to your app.
 
 **IMPORTANT**: For security, it is recommended that you turn on 'App Secret
 Proof for Server API calls' in your app's Settings->Advanced page.
@@ -92,10 +88,10 @@ Or you can create a session object for particular object
 ```ruby
 # Create a Session object to be reused
 session = FacebookAds::Session.new(access_token: <ACCESS_TOKEN>, app_secret: <APP SECRET>)
-ad_account = FacebookAds::AdAccount.get('act_12334', 'name', session)
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name', session)
 
 # Or a using shortcut during object instantiation
-ad_account = FacebookAds::AdAccount.get('act_12334', 'name', {
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name', {
     access_token: <ACCESS_TOKEN>, app_secret: <APP SECRET>
 })
 ```
@@ -146,7 +142,7 @@ To interact with an edge, you first need to instantiate the parent node. Since, 
 Iterating edges is easy, instantiate the parent nodes and then simply iterate with `#each`. The edge is an  `Enumerable` so a bunch of handy methods such as `#map`, `#select`, `#find` etc. come for free!
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name')
 
 # Printing all campaign names
 ad_account.campaigns(fields: 'name').each do |campaign|
