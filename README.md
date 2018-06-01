@@ -67,7 +67,7 @@ require 'facebookbusiness'
 
 ## Configuration
 ### Access Token
-There are several ways to configure access token and app secret. If you only use one access token and app secret (example: an internal app managing only your own assets). You can set a global access token and app secret will will be used across all requests
+There are several ways to configure access token and app secret. If you only use one access token and app secret (example: an internal app managing only your own assets). You can set a global access token and app secret will be used across all requests
 
 ```ruby
 FacebookAds.configure do |config|

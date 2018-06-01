@@ -22,12 +22,7 @@ module FacebookAds
       register 'hash', 'map', 'object'
 
       def deserialize(value, session = nil)
-        case value
-          when String
-            JSON.parse(value)
-          else
-            value
-        end
+        value.is_a?(String) ? JSON.parse(value) : value
       end
 
       def serialize(value)
