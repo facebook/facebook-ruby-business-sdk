@@ -52,6 +52,7 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :observation_end_time, 'datetime'
+    field :results_first_available_date, 'string'
     field :start_time, 'datetime'
     field :type, 'string'
     field :updated_by, 'User'

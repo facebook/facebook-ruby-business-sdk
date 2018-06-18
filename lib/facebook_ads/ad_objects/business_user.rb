@@ -38,8 +38,10 @@ module FacebookAds
 
     field :business, 'Business'
     field :email, 'string'
+    field :finance_permission, 'string'
     field :first_name, 'string'
     field :id, 'string'
+    field :ip_permission, 'string'
     field :last_name, 'string'
     field :marked_for_removal, 'bool'
     field :name, 'string'

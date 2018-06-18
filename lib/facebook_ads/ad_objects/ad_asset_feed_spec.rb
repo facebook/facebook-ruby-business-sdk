@@ -73,10 +73,12 @@ module FacebookAds
       "LISTEN_NOW",
       "EVENT_RSVP",
       "WHATSAPP_MESSAGE",
+      "FOLLOW_NEWS_STORYLINE",
     ]
 
 
     field :ad_formats, { list: 'string' }
+    field :additional_data, 'object'
     field :asset_customization_rules, { list: 'object' }
     field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }

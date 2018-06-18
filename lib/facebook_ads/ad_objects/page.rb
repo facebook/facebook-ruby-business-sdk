@@ -162,6 +162,7 @@ module FacebookAds
     field :contact_address, 'MailingAddress'
     field :context, 'OpenGraphContext'
     field :copyright_attribution_insights, 'CopyrightAttributionInsights'
+    field :copyright_whitelisted_ig_partners, { list: 'string' }
     field :country_page_likes, 'int'
     field :cover, 'CoverPhoto'
     field :culinary_team, 'string'
@@ -259,6 +260,7 @@ module FacebookAds
     field :single_line_address, 'string'
     field :starring, 'string'
     field :start_info, 'PageStartInfo'
+    field :store_code, 'string'
     field :store_location_descriptor, 'string'
     field :store_number, 'int'
     field :studio, 'string'
@@ -274,6 +276,7 @@ module FacebookAds
     field :were_here_count, 'int'
     field :whatsapp_number, 'string'
     field :written_by, 'string'
+    field :ig_password, 'string'
     field :page_id, 'int'
     has_no_delete
 
@@ -598,13 +601,6 @@ module FacebookAds
       end
     end
 
-    has_edge :join_threads do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :persona_id, 'object'
-        api.has_param :recipient_id, 'object'
-      end
-    end
-
     has_edge :labels do |edge|
       edge.post 'PageLabel' do |api|
         api.has_param :name, 'string'
@@ -630,7 +626,7 @@ module FacebookAds
     end
 
     has_edge :leadgen_draft_forms do |edge|
-      edge.post do |api|
+      edge.post 'Page' do |api|
         api.has_param :allow_organic_lead_retrieval, 'bool'
         api.has_param :block_display_for_non_targeted_viewer, 'bool'
         api.has_param :context_card, 'object'
@@ -639,7 +635,7 @@ module FacebookAds
         api.has_param :follow_up_action_url, 'string'
         api.has_param :is_optimized_for_quality, 'bool'
         api.has_param :legal_content_id, 'string'
-        api.has_param :locale, { enum: %w{EN_US IT_IT FR_FR ES_ES ES_LA DE_DE EN_GB PT_BR ZH_TW ZH_HK TR_TR AR_AR CS_CZ DA_DK FI_FI HE_IL HI_IN HU_HU ID_ID JA_JP KO_KR NB_NO NL_NL PL_PL PT_PT RO_RO RU_RU SV_SE TH_TH VI_VN ZH_CN }}
+        api.has_param :locale, { enum: -> { Page::LOCALE }}
         api.has_param :name, 'string'
         api.has_param :privacy_policy, 'object'
         api.has_param :question_page_custom_headline, 'string'
@@ -710,11 +706,13 @@ module FacebookAds
       edge.post 'LiveVideo' do |api|
         api.has_param :attribution_app_id, 'string'
         api.has_param :content_tags, { list: 'string' }
+        api.has_param :crossposting_actions, { list: 'hash' }
         api.has_param :custom_labels, { list: 'string' }
         api.has_param :description, 'string'
         api.has_param :encoding_settings, 'string'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
+        api.has_param :game_show, 'hash'
         api.has_param :is_spherical, 'bool'
         api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
@@ -745,17 +743,18 @@ module FacebookAds
         api.has_param :hours, 'hash'
         api.has_param :ignore_warnings, 'bool'
         api.has_param :location, 'object'
-        api.has_param :location_page_id, 'int'
+        api.has_param :location_page_id, 'object'
         api.has_param :old_store_number, 'int'
         api.has_param :page_username, 'string'
         api.has_param :permanently_closed, 'bool'
         api.has_param :phone, 'string'
         api.has_param :place_topics, { list: 'string' }
         api.has_param :price_range, 'string'
+        api.has_param :store_code, 'string'
         api.has_param :store_location_descriptor, 'string'
         api.has_param :store_name, 'string'
         api.has_param :store_number, 'int'
-        api.has_param :website, 'string'
+        api.has_param :website, 'object'
       end
     end
 
@@ -894,14 +893,6 @@ module FacebookAds
       end
     end
 
-    has_edge :personas do |edge|
-      edge.get 'Persona'
-      edge.post 'Page' do |api|
-        api.has_param :name, 'string'
-        api.has_param :profile_picture_url, 'object'
-      end
-    end
-
     has_edge :photos do |edge|
       edge.get 'Photo' do |api|
         api.has_param :biz_tag_id, 'int'
@@ -970,6 +961,7 @@ module FacebookAds
         api.has_param :android_key_hash, 'string'
         api.has_param :caption, 'string'
         api.has_param :composer_session_id, 'string'
+        api.has_param :has_umg, 'bool'
         api.has_param :height, 'int'
         api.has_param :ios_bundle_id, 'string'
         api.has_param :media_effect_ids, { list: 'int' }
@@ -1172,6 +1164,7 @@ module FacebookAds
       end
       edge.post do |api|
         api.has_param :ad_breaks, 'object'
+        api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :backdated_post, 'object'
         api.has_param :content_category, { enum: %w{BEAUTY_FASHION BUSINESS CARS_TRUCKS COMEDY CUTE_ANIMALS ENTERTAINMENT FAMILY FOOD_HEALTH HOME LIFESTYLE MUSIC NEWS POLITICS SCIENCE SPORTS TECHNOLOGY VIDEO_GAMING OTHER }}
         api.has_param :content_tags, { list: 'string' }

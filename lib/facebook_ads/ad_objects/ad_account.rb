@@ -26,6 +26,16 @@ module FacebookAds
   # pull request for this class.
 
   class AdAccount < AdObject
+    PERMITTED_ROLES = [
+      "ADMIN",
+      "GENERAL_USER",
+      "REPORTS_ONLY",
+      "INSTAGRAM_ADVERTISER",
+      "INSTAGRAM_MANAGER",
+      "CREATIVE",
+      "FB_EMPLOYEE_DSO_ADVERTISER",
+    ]
+
     ROLE = [
       "ADMIN",
       "GENERAL_USER",
@@ -36,14 +46,21 @@ module FacebookAds
       "FB_EMPLOYEE_DSO_ADVERTISER",
     ]
 
-    PERMITTED_ROLES = [
-      "ADMIN",
-      "GENERAL_USER",
-      "REPORTS_ONLY",
-      "INSTAGRAM_ADVERTISER",
-      "INSTAGRAM_MANAGER",
-      "CREATIVE",
-      "FB_EMPLOYEE_DSO_ADVERTISER",
+    SUBTYPE = [
+      "CUSTOM",
+      "WEBSITE",
+      "APP",
+      "OFFLINE_CONVERSION",
+      "CLAIM",
+      "PARTNER",
+      "MANAGED",
+      "VIDEO",
+      "LOOKALIKE",
+      "ENGAGEMENT",
+      "DATA_SET",
+      "BAG_OF_ACCOUNTS",
+      "STUDY_RULE_AUDIENCE",
+      "FOX",
     ]
 
 
@@ -74,10 +91,12 @@ module FacebookAds
     field :funding_source, 'string'
     field :funding_source_details, 'FundingSourceDetails'
     field :has_migrated_permissions, 'bool'
+    field :has_page_authorized_adaccount, 'bool'
     field :id, 'string'
     field :io_number, 'string'
     field :is_attribution_spec_system_default, 'bool'
     field :is_direct_deals_enabled, 'bool'
+    field :is_in_middle_of_local_entity_migration, 'bool'
     field :is_notifications_enabled, 'bool'
     field :is_personal, 'int'
     field :is_prepay_account, 'bool'
@@ -101,6 +120,7 @@ module FacebookAds
     field :timezone_offset_hours_utc, 'double'
     field :tos_accepted, 'hash'
     field :user_role, 'string'
+    field :user_tos_accepted, 'hash'
     has_no_delete
 
     has_edge :activities do |edge|
@@ -134,6 +154,7 @@ module FacebookAds
       edge.post 'AdCreative' do |api|
         api.has_param :adlabels, { list: 'object' }
         api.has_param :applink_treatment, { enum: -> { AdCreative::APPLINK_TREATMENT }}
+        api.has_param :authorization_category, { enum: -> { AdCreative::AUTHORIZATION_CATEGORY }}
         api.has_param :body, 'string'
         api.has_param :branded_content_sponsor_page_id, 'string'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
@@ -198,7 +219,7 @@ module FacebookAds
     has_edge :adlanguage_assets do |edge|
       edge.post do |api|
         api.has_param :bodies, { list: 'object' }
-        api.has_param :call_to_action_type, { enum: %w{OPEN_LINK LIKE_PAGE SHOP_NOW PLAY_GAME INSTALL_APP USE_APP CALL CALL_ME INSTALL_MOBILE_APP USE_MOBILE_APP MOBILE_DOWNLOAD BOOK_TRAVEL LISTEN_MUSIC WATCH_VIDEO LEARN_MORE SIGN_UP DOWNLOAD WATCH_MORE NO_BUTTON VISIT_PAGES_FEED APPLY_NOW BUY_NOW GET_OFFER GET_OFFER_VIEW BUY_TICKETS UPDATE_APP GET_DIRECTIONS BUY MESSAGE_PAGE DONATE SUBSCRIBE SAY_THANKS SELL_NOW SHARE DONATE_NOW GET_QUOTE CONTACT_US ORDER_NOW ADD_TO_CART VIDEO_ANNOTATION MOMENTS RECORD_NOW GET_SHOWTIMES LISTEN_NOW EVENT_RSVP WHATSAPP_MESSAGE }}
+        api.has_param :call_to_action_type, { enum: %w{OPEN_LINK LIKE_PAGE SHOP_NOW PLAY_GAME INSTALL_APP USE_APP CALL CALL_ME INSTALL_MOBILE_APP USE_MOBILE_APP MOBILE_DOWNLOAD BOOK_TRAVEL LISTEN_MUSIC WATCH_VIDEO LEARN_MORE SIGN_UP DOWNLOAD WATCH_MORE NO_BUTTON VISIT_PAGES_FEED APPLY_NOW BUY_NOW GET_OFFER GET_OFFER_VIEW BUY_TICKETS UPDATE_APP GET_DIRECTIONS BUY MESSAGE_PAGE DONATE SUBSCRIBE SAY_THANKS SELL_NOW SHARE DONATE_NOW GET_QUOTE CONTACT_US ORDER_NOW ADD_TO_CART VIDEO_ANNOTATION MOMENTS RECORD_NOW GET_SHOWTIMES LISTEN_NOW EVENT_RSVP WHATSAPP_MESSAGE FOLLOW_NEWS_STORYLINE }}
         api.has_param :default_language, 'string'
         api.has_param :descriptions, { list: 'object' }
         api.has_param :image, 'object'
@@ -339,6 +360,7 @@ module FacebookAds
         api.has_param :title, 'string'
       end
       edge.post do |api|
+        api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :composer_session_id, 'string'
         api.has_param :description, 'string'
         api.has_param :end_offset, 'int'
@@ -373,9 +395,9 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :business, 'string'
       end
-      edge.post do |api|
+      edge.post 'AdAccount' do |api|
         api.has_param :business, 'string'
-        api.has_param :permitted_roles, { list: { enum: %w{ADMIN GENERAL_USER REPORTS_ONLY INSTAGRAM_ADVERTISER INSTAGRAM_MANAGER CREATIVE FB_EMPLOYEE_DSO_ADVERTISER }} }
+        api.has_param :permitted_roles, { list: { enum: -> { AdAccount::PERMITTED_ROLES }} }
       end
     end
 
@@ -471,9 +493,11 @@ module FacebookAds
         api.has_param :allowed_domains, { list: 'string' }
         api.has_param :claim_objective, { enum: -> { CustomAudience::CLAIM_OBJECTIVE }}
         api.has_param :content_type, { enum: -> { CustomAudience::CONTENT_TYPE }}
+        api.has_param :customer_file_source, { enum: -> { CustomAudience::CUSTOMER_FILE_SOURCE }}
         api.has_param :dataset_id, 'string'
         api.has_param :description, 'string'
         api.has_param :event_source_group, 'string'
+        api.has_param :event_sources, { list: 'hash' }
         api.has_param :is_value_based, 'bool'
         api.has_param :list_of_accounts, { list: 'int' }
         api.has_param :lookalike_spec, 'string'
@@ -598,10 +622,6 @@ module FacebookAds
 
     has_edge :offsitepixels do |edge|
       edge.get 'OffsitePixel'
-      edge.post 'OffsitePixel' do |api|
-        api.has_param :name, 'string'
-        api.has_param :tag, { enum: -> { OffsitePixel::TAG }}
-      end
     end
 
     has_edge :partnercategories do |edge|
@@ -632,13 +652,14 @@ module FacebookAds
         api.has_param :associated_audience_id, 'int'
         api.has_param :creation_params, 'hash'
         api.has_param :description, 'string'
+        api.has_param :event_sources, { list: 'hash' }
         api.has_param :exclusions, { list: 'object' }
         api.has_param :inclusions, { list: 'object' }
         api.has_param :name, 'string'
         api.has_param :opt_out_link, 'string'
         api.has_param :parent_audience_id, 'int'
         api.has_param :product_set_id, 'string'
-        api.has_param :subtype, { enum: -> { CustomAudience::SUBTYPE }}
+        api.has_param :subtype, { enum: -> { AdAccount::SUBTYPE }}
         api.has_param :tags, { list: 'string' }
       end
     end
@@ -646,8 +667,6 @@ module FacebookAds
     has_edge :publisher_block_lists do |edge|
       edge.get
       edge.post do |api|
-        api.has_param :block_list_id, 'object'
-        api.has_param :draft_id, 'object'
         api.has_param :name, 'string'
       end
     end

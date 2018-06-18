@@ -41,8 +41,15 @@ module FacebookAds
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
+      "MEDIA_TITLE",
       "VEHICLE",
       "VEHICLE_OFFER",
+    ]
+
+    CUSTOMER_FILE_SOURCE = [
+      "USER_PROVIDED_ONLY",
+      "PARTNER_PROVIDED_ONLY",
+      "BOTH_USER_AND_PARTNER_PROVIDED",
     ]
 
     SUBTYPE = [
@@ -66,6 +73,7 @@ module FacebookAds
       "id",
       "account_id",
       "approximate_count",
+      "customer_file_source",
       "data_source",
       "delivery_status",
       "description",
@@ -90,6 +98,7 @@ module FacebookAds
 
     field :account_id, 'string'
     field :approximate_count, 'int'
+    field :customer_file_source, 'string'
     field :data_source, 'CustomAudienceDataSource'
     field :delivery_status, 'CustomAudienceStatus'
     field :description, 'string'
@@ -115,6 +124,7 @@ module FacebookAds
     field :content_type, { enum: -> { CONTENT_TYPE }}
     field :dataset_id, 'string'
     field :event_source_group, 'string'
+    field :event_sources, { list: 'hash' }
     field :list_of_accounts, { list: 'int' }
     field :origin_audience_id, 'string'
     field :prefill, 'bool'

@@ -27,6 +27,7 @@ module FacebookAds
 
   class ExtendedCreditInvoiceGroup < AdObject
 
+    field :customer_po_number, 'string'
     field :email, 'object'
     field :emails, { list: 'string' }
     field :id, 'string'

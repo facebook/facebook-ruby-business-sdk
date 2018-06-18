@@ -71,6 +71,7 @@ module FacebookAds
         api.has_param :iphone_url, 'string'
         api.has_param :manufacturer_part_number, 'string'
         api.has_param :material, 'string'
+        api.has_param :mobile_link, 'object'
         api.has_param :name, 'string'
         api.has_param :offer_price_amount, 'int'
         api.has_param :offer_price_end_date, 'object'

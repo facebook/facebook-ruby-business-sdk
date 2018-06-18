@@ -29,7 +29,6 @@ module FacebookAds
 
     field :domain_name, 'string'
     field :id, 'string'
-    field :page_block_list, 'object'
     has_no_post
     has_no_delete
 

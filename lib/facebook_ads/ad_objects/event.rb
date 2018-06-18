@@ -48,6 +48,7 @@ module FacebookAds
     PROMOTABLE_EVENT_TYPES = [
       "OFFSITE_TICKET",
       "ONSITE_TICKET",
+      "RSVP",
     ]
 
 
@@ -57,6 +58,7 @@ module FacebookAds
     field :cover, 'CoverPhoto'
     field :declined_count, 'int'
     field :description, 'string'
+    field :discount_code_enabled, 'bool'
     field :end_time, 'string'
     field :event_times, { list: 'object' }
     field :guest_list_enabled, 'bool'
@@ -96,7 +98,7 @@ module FacebookAds
         api.has_param :original_fov, 'int'
         api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'object'
-        api.has_param :projection, { enum: %w{EQUIRECTANGULAR CUBEMAP SINGLE_FISH_EYE }}
+        api.has_param :projection, { enum: %w{EQUIRECTANGULAR CUBEMAP }}
         api.has_param :published, 'bool'
         api.has_param :save_vod, 'bool'
         api.has_param :schedule_custom_profile_image, 'file'
@@ -155,6 +157,7 @@ module FacebookAds
 
     has_edge :videos do |edge|
       edge.post do |api|
+        api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :content_category, { enum: %w{BEAUTY_FASHION BUSINESS CARS_TRUCKS COMEDY CUTE_ANIMALS ENTERTAINMENT FAMILY FOOD_HEALTH HOME LIFESTYLE MUSIC NEWS POLITICS SCIENCE SPORTS TECHNOLOGY VIDEO_GAMING OTHER }}
         api.has_param :description, 'string'
         api.has_param :embeddable, 'bool'

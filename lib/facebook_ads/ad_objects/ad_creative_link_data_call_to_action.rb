@@ -73,6 +73,7 @@ module FacebookAds
       "LISTEN_NOW",
       "EVENT_RSVP",
       "WHATSAPP_MESSAGE",
+      "FOLLOW_NEWS_STORYLINE",
     ]
 
 

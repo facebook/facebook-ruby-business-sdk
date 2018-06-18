@@ -39,6 +39,7 @@ module FacebookAds
     field :id, 'string'
     field :is_restricted_use, 'bool'
     field :last_upload_app, 'string'
+    field :match_rate_approx, 'int'
     field :matched_entries, 'int'
     field :name, 'string'
     field :usage, 'object'
@@ -81,7 +82,7 @@ module FacebookAds
 
     has_edge :events do |edge|
       edge.post do |api|
-        api.has_param :data, { list: 'object' }
+        api.has_param :data, { list: 'string' }
         api.has_param :namespace_id, 'string'
         api.has_param :progress, 'object'
         api.has_param :upload_id, 'string'
@@ -128,7 +129,7 @@ module FacebookAds
 
     has_edge :validate do |edge|
       edge.post 'OfflineConversionDataSet' do |api|
-        api.has_param :data, { list: 'object' }
+        api.has_param :data, { list: 'string' }
         api.has_param :namespace_id, 'string'
       end
     end

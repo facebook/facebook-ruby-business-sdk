@@ -32,6 +32,7 @@ module FacebookAds
     field :credit_available, 'object'
     field :credit_type, 'string'
     field :id, 'string'
+    field :is_automated_experience, 'bool'
     field :last_payment_time, 'datetime'
     field :legal_entity_name, 'string'
     field :liable_biz_name, 'string'

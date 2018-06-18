@@ -50,6 +50,7 @@ module FacebookAds
     field :install_type, 'string'
     field :installed, 'bool'
     field :interested_in, { list: 'string' }
+    field :is_famedeeplinkinguser, 'bool'
     field :is_payment_enabled, 'bool'
     field :is_shared_login, 'bool'
     field :is_verified, 'bool'

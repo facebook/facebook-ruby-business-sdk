@@ -82,6 +82,7 @@ module FacebookAds
     ]
 
 
+    field :block_offline_analytics, 'bool'
     field :created_by, 'User'
     field :created_time, 'datetime'
     field :id, 'string'
@@ -155,7 +156,7 @@ module FacebookAds
         api.has_param :chinese_legal_entity_name, 'string'
         api.has_param :contact, 'object'
         api.has_param :english_legal_entity_name, 'string'
-        api.has_param :extended_credit_id, 'string'
+        api.has_param :extended_credit_id, 'object'
         api.has_param :is_smb, 'bool'
         api.has_param :is_test, 'bool'
         api.has_param :official_website_url, 'object'
@@ -181,7 +182,7 @@ module FacebookAds
         api.has_param :breakdowns, { list: { enum: %w{AGE APP COUNTRY DELIVERY_METHOD DISPLAY_FORMAT DEAL DEAL_AD DEAL_PAGE GENDER PLACEMENT PLATFORM PROPERTY }} }
         api.has_param :filters, { list: 'hash' }
         api.has_param :metrics, { list: { enum: %w{FB_AD_NETWORK_BIDDING_REQUEST FB_AD_NETWORK_BIDDING_RESPONSE FB_AD_NETWORK_REQUEST FB_AD_NETWORK_FILLED_REQUEST FB_AD_NETWORK_FILL_RATE FB_AD_NETWORK_IMP FB_AD_NETWORK_SHOW_RATE FB_AD_NETWORK_CLICK FB_AD_NETWORK_CTR FB_AD_NETWORK_BIDDING_REVENUE FB_AD_NETWORK_REVENUE FB_AD_NETWORK_CPM FB_AD_NETWORK_VIDEO_GUARANTEE_REVENUE FB_AD_NETWORK_VIDEO_VIEW FB_AD_NETWORK_VIDEO_VIEW_RATE FB_AD_NETWORK_VIDEO_MRC FB_AD_NETWORK_VIDEO_MRC_RATE FB_AD_NETWORK_WIN_RATE FB_AD_NETWORK_DIRECT_TOTAL_REVENUE FB_AD_NETWORK_DIRECT_PUBLISHER_BILL FB_AD_NETWORK_FAST_CLICK_RATE FB_AD_NETWORK_FAST_RETURN_RATE FB_AD_NETWORK_CLICK_VALUE_SCORE FB_AD_NETWORK_FAST_CLICK_NUMERATOR FB_AD_NETWORK_FAST_CLICK_DENOMINATOR FB_AD_NETWORK_FAST_RETURN_NUMERATOR FB_AD_NETWORK_FAST_RETURN_DENOMINATOR FB_AD_NETWORK_CLICK_VALUE_SCORE_NUMERATOR FB_AD_NETWORK_CLICK_VALUE_SCORE_DENOMINATOR }} }
-        api.has_param :ordering_column, { enum: %w{TIME VALUE }}
+        api.has_param :ordering_column, { enum: %w{TIME VALUE METRIC }}
         api.has_param :ordering_type, { enum: %w{ASCENDING DESCENDING }}
         api.has_param :since, 'object'
         api.has_param :until, 'object'
@@ -191,7 +192,7 @@ module FacebookAds
         api.has_param :breakdowns, { list: { enum: %w{AGE APP COUNTRY DELIVERY_METHOD DISPLAY_FORMAT DEAL DEAL_AD DEAL_PAGE GENDER PLACEMENT PLATFORM PROPERTY }} }
         api.has_param :filters, { list: 'object' }
         api.has_param :metrics, { list: { enum: %w{FB_AD_NETWORK_BIDDING_REQUEST FB_AD_NETWORK_BIDDING_RESPONSE FB_AD_NETWORK_REQUEST FB_AD_NETWORK_FILLED_REQUEST FB_AD_NETWORK_FILL_RATE FB_AD_NETWORK_IMP FB_AD_NETWORK_SHOW_RATE FB_AD_NETWORK_CLICK FB_AD_NETWORK_CTR FB_AD_NETWORK_BIDDING_REVENUE FB_AD_NETWORK_REVENUE FB_AD_NETWORK_CPM FB_AD_NETWORK_VIDEO_GUARANTEE_REVENUE FB_AD_NETWORK_VIDEO_VIEW FB_AD_NETWORK_VIDEO_VIEW_RATE FB_AD_NETWORK_VIDEO_MRC FB_AD_NETWORK_VIDEO_MRC_RATE FB_AD_NETWORK_WIN_RATE FB_AD_NETWORK_DIRECT_TOTAL_REVENUE FB_AD_NETWORK_DIRECT_PUBLISHER_BILL FB_AD_NETWORK_FAST_CLICK_RATE FB_AD_NETWORK_FAST_RETURN_RATE FB_AD_NETWORK_CLICK_VALUE_SCORE FB_AD_NETWORK_FAST_CLICK_NUMERATOR FB_AD_NETWORK_FAST_CLICK_DENOMINATOR FB_AD_NETWORK_FAST_RETURN_NUMERATOR FB_AD_NETWORK_FAST_RETURN_DENOMINATOR FB_AD_NETWORK_CLICK_VALUE_SCORE_NUMERATOR FB_AD_NETWORK_CLICK_VALUE_SCORE_DENOMINATOR }} }
-        api.has_param :ordering_column, { enum: %w{TIME VALUE }}
+        api.has_param :ordering_column, { enum: %w{TIME VALUE METRIC }}
         api.has_param :ordering_type, { enum: %w{ASCENDING DESCENDING }}
         api.has_param :since, 'object'
         api.has_param :until, 'object'
@@ -409,6 +410,7 @@ module FacebookAds
     has_edge :owned_pages do |edge|
       edge.get 'Page'
       edge.post 'Page' do |api|
+        api.has_param :ig_password, 'string'
         api.has_param :page_id, 'int'
       end
     end

@@ -70,6 +70,7 @@ module FacebookAds
     field :preferred_image_tags, { list: 'string' }
     field :retailer_item_ids, { list: 'string' }
     field :show_multiple_images, 'bool'
+    field :static_fallback_spec, 'object'
     has_no_id
     has_no_get
     has_no_post

@@ -31,6 +31,7 @@ module FacebookAds
     field :external_id, 'string'
     field :has_oauth_token, 'bool'
     field :id, 'string'
+    field :name, 'string'
     field :offline_conversion_data_set, 'OfflineConversionDataSet'
     field :partner, 'string'
     field :product_catalog, 'ProductCatalog'

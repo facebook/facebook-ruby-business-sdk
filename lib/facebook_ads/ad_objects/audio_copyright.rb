@@ -37,7 +37,7 @@ module FacebookAds
     field :reference_file_status, 'string'
     field :ridge_monitoring_status, 'string'
     field :update_time, 'datetime'
-    field :whitelisted_fb_users, { list: 'User' }
+    field :whitelisted_fb_users, { list: 'object' }
     field :whitelisted_ig_users, { list: 'string' }
     has_no_post
     has_no_delete

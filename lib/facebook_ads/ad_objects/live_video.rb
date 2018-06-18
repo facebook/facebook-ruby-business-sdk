@@ -30,6 +30,7 @@ module FacebookAds
       "FOLLOWER",
       "SLOW",
       "DISCUSSION",
+      "RESTRICTED",
     ]
 
     STATUS = [
@@ -60,7 +61,6 @@ module FacebookAds
     PROJECTION = [
       "EQUIRECTANGULAR",
       "CUBEMAP",
-      "SINGLE_FISH_EYE",
     ]
 
     SPATIAL_AUDIO_FORMAT = [

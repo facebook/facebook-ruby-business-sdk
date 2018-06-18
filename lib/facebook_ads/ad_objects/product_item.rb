@@ -28,9 +28,11 @@ module FacebookAds
   class ProductItem < AdObject
     AGE_GROUP = [
       "adult",
+      "all ages",
       "infant",
       "kids",
       "newborn",
+      "teen",
       "toddler",
     ]
 
@@ -77,6 +79,7 @@ module FacebookAds
     ]
 
 
+    field :additional_image_cdn_urls, { list: { list: 'object' } }
     field :additional_image_urls, { list: 'string' }
     field :additional_variant_attributes, { list: 'object' }
     field :age_group, { enum: -> { AGE_GROUP }}
@@ -99,10 +102,12 @@ module FacebookAds
     field :gender, { enum: -> { GENDER }}
     field :gtin, 'string'
     field :id, 'string'
+    field :image_cdn_urls, { list: 'object' }
     field :image_url, 'string'
     field :inventory, 'int'
     field :manufacturer_part_number, 'string'
     field :material, 'string'
+    field :mobile_link, 'string'
     field :name, 'string'
     field :ordering_index, 'int'
     field :pattern, 'string'

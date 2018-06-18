@@ -130,6 +130,7 @@ module FacebookAds
       "user_page_threads_excluded",
       "is_whatsapp_destination_ad",
       "marketplace_product_categories",
+      "instream_video_sponsorship_placements",
     ]
 
 

@@ -53,7 +53,7 @@ module FacebookAds
     field :countries, { list: 'string' }
     field :country, { list: 'string' }
     field :country_groups, { list: 'string' }
-    field :custom_audiences, { list: 'IdName' }
+    field :custom_audiences, { list: 'object' }
     field :device_platforms, { list: { enum: -> { DEVICE_PLATFORMS }} }
     field :direct_install_devices, 'bool'
     field :dynamic_audience_ids, { list: 'string' }
@@ -95,6 +95,7 @@ module FacebookAds
     field :income, { list: 'IdName' }
     field :industries, { list: 'IdName' }
     field :instagram_positions, { list: 'string' }
+    field :instream_video_sponsorship_placements, { list: 'string' }
     field :interested_in, { list: 'int' }
     field :interests, { list: 'IdName' }
     field :is_whatsapp_destination_ad, 'bool'

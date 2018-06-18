@@ -26,17 +26,11 @@ module FacebookAds
   # pull request for this class.
 
   class LeadGenLegalContent < AdObject
-    STATUS = [
-      "ACTIVE",
-      "ARCHIVED",
-      "DELETED",
-      "DRAFT",
-    ]
-
 
     field :custom_disclaimer, 'object'
     field :id, 'string'
     field :privacy_policy, 'object'
+    has_no_post
     has_no_delete
 
   end

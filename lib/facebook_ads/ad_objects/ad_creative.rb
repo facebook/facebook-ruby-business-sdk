@@ -79,6 +79,7 @@ module FacebookAds
       "LISTEN_NOW",
       "EVENT_RSVP",
       "WHATSAPP_MESSAGE",
+      "FOLLOW_NEWS_STORYLINE",
     ]
 
     OBJECT_TYPE = [
@@ -98,6 +99,11 @@ module FacebookAds
     STATUS = [
       "ACTIVE",
       "DELETED",
+    ]
+
+    AUTHORIZATION_CATEGORY = [
+      "NONE",
+      "POLITICAL",
     ]
 
     DYNAMIC_AD_VOICE = [
@@ -148,6 +154,7 @@ module FacebookAds
     field :url_tags, 'string'
     field :use_page_actor_override, 'bool'
     field :video_id, 'string'
+    field :authorization_category, { enum: -> { AUTHORIZATION_CATEGORY }}
     field :dynamic_ad_voice, { enum: -> { DYNAMIC_AD_VOICE }}
     field :image_file, 'string'
 
