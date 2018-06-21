@@ -307,12 +307,16 @@ module FacebookAds
         api.has_param :creative_sequence, { list: 'string' }
         api.has_param :daily_budget, 'int'
         api.has_param :daily_imps, 'int'
+        api.has_param :daily_min_spend_target, 'int'
+        api.has_param :daily_spend_cap, 'int'
         api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
         api.has_param :end_time, 'datetime'
         api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
         api.has_param :frequency_control_specs, { list: 'object' }
         api.has_param :lifetime_budget, 'int'
         api.has_param :lifetime_imps, 'int'
+        api.has_param :lifetime_min_spend_target, 'int'
+        api.has_param :lifetime_spend_cap, 'int'
         api.has_param :name, 'string'
         api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
         api.has_param :pacing_type, { list: 'string' }
@@ -378,6 +382,7 @@ module FacebookAds
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :original_fov, 'int'
         api.has_param :original_projection_type, { enum: %w{equirectangular cubemap equiangular_cubemap half_equirectangular }}
+        api.has_param :react_mode_metadata, 'string'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :start_offset, 'int'
@@ -463,10 +468,13 @@ module FacebookAds
       end
       edge.post 'Campaign' do |api|
         api.has_param :adlabels, { list: 'object' }
+        api.has_param :bid_strategy, { enum: -> { Campaign::BID_STRATEGY }}
         api.has_param :budget_rebalance_flag, 'bool'
         api.has_param :buying_type, 'string'
+        api.has_param :daily_budget, 'int'
         api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
         api.has_param :iterative_split_test_configs, { list: 'object' }
+        api.has_param :lifetime_budget, 'int'
         api.has_param :name, 'string'
         api.has_param :objective, { enum: -> { Campaign::OBJECTIVE }}
         api.has_param :promoted_object, 'object'

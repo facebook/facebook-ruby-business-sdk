@@ -152,6 +152,8 @@ module FacebookAds
     field :created_time, 'datetime'
     field :creative_sequence, { list: 'string' }
     field :daily_budget, 'string'
+    field :daily_min_spend_target, 'string'
+    field :daily_spend_cap, 'string'
     field :destination_type, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
@@ -160,6 +162,8 @@ module FacebookAds
     field :instagram_actor_id, 'string'
     field :lifetime_budget, 'string'
     field :lifetime_imps, 'int'
+    field :lifetime_min_spend_target, 'string'
+    field :lifetime_spend_cap, 'string'
     field :name, 'string'
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}
     field :pacing_type, { list: 'string' }

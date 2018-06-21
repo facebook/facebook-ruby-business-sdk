@@ -49,7 +49,7 @@ module FacebookAds
     has_edge :extended_credit_invoice_groups do |edge|
       edge.get 'ExtendedCreditInvoiceGroup'
       edge.post 'ExtendedCredit' do |api|
-        api.has_param :email, 'string'
+        api.has_param :emails, { list: 'string' }
         api.has_param :name, 'string'
       end
     end

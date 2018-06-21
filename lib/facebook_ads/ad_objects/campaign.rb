@@ -26,6 +26,12 @@ module FacebookAds
   # pull request for this class.
 
   class Campaign < AdObject
+    BID_STRATEGY = [
+      "LOWEST_COST_WITHOUT_CAP",
+      "LOWEST_COST_WITH_BID_CAP",
+      "TARGET_COST",
+    ]
+
     CONFIGURED_STATUS = [
       "ACTIVE",
       "PAUSED",
@@ -111,16 +117,20 @@ module FacebookAds
 
     field :account_id, 'string'
     field :adlabels, { list: 'AdLabel' }
+    field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :boosted_object_id, 'string'
     field :brand_lift_studies, { list: 'AdStudy' }
     field :budget_rebalance_flag, 'bool'
+    field :budget_remaining, 'string'
     field :buying_type, 'string'
     field :can_create_brand_lift_study, 'bool'
     field :can_use_spend_cap, 'bool'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
     field :created_time, 'datetime'
+    field :daily_budget, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :id, 'string'
+    field :lifetime_budget, 'string'
     field :name, 'string'
     field :objective, 'string'
     field :recommendations, { list: 'AdRecommendation' }

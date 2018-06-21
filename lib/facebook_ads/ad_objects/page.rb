@@ -527,6 +527,7 @@ module FacebookAds
         api.has_param :publish_event_id, 'int'
         api.has_param :published, 'bool'
         api.has_param :quote, 'string'
+        api.has_param :react_mode_metadata, 'string'
         api.has_param :ref, { list: 'string' }
         api.has_param :referenceable_image_ids, { list: 'string' }
         api.has_param :sales_promo_id, 'int'
@@ -1190,6 +1191,7 @@ module FacebookAds
         api.has_param :original_fov, 'int'
         api.has_param :original_projection_type, { enum: %w{equirectangular cubemap equiangular_cubemap half_equirectangular }}
         api.has_param :published, 'bool'
+        api.has_param :react_mode_metadata, 'string'
         api.has_param :reference_only, 'bool'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'

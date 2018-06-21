@@ -28,6 +28,7 @@ module FacebookAds
   class PartnerIntegrationLinked < AdObject
 
     field :ads_pixel, 'AdsPixel'
+    field :application, 'object'
     field :external_id, 'string'
     field :has_oauth_token, 'bool'
     field :id, 'string'
