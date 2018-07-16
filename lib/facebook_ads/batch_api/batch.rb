@@ -71,9 +71,13 @@ module FacebookAds
 
       def with_batch
         new.tap do |current_batch|
+          existing_batch = self.current_batch
           self.current_batch = current_batch
-          yield if block_given?
-          self.current_batch = nil
+          begin
+            yield if block_given?
+          ensure
+            self.current_batch = existing_batch
+          end
         end
       end
     end
