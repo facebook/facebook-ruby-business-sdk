@@ -26,10 +26,18 @@ module FacebookAds
   # pull request for this class.
 
   class OfflineConversionDataSet < AdObject
+    DATA_ORIGIN = [
+      "DIRECTLY_FROM_PEOPLE",
+      "PEOPLE_AND_PARTNERS",
+      "DIRECTLY_FROM_PARTNERS",
+      "NONE",
+    ]
+
 
     field :business, 'Business'
     field :config, 'string'
     field :creation_time, 'datetime'
+    field :data_origin, 'string'
     field :description, 'string'
     field :duplicate_entries, 'int'
     field :enable_auto_assign_to_accounts, 'bool'

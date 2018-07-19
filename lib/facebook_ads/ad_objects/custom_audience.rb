@@ -136,17 +136,21 @@ module FacebookAds
     field :parent_audience_id, 'int'
     field :tags, { list: 'string' }
 
+    has_edge :ad_accounts do |edge|
+      edge.post 'AdAccount' do |api|
+        api.has_param :adaccounts, { list: 'string' }
+        api.has_param :permissions, 'string'
+        api.has_param :relationship_type, { list: 'string' }
+        api.has_param :replace, 'bool'
+      end
+    end
+
     has_edge :adaccounts do |edge|
       edge.delete do |api|
         api.has_param :adaccounts, { list: 'string' }
       end
       edge.get 'AdAccount' do |api|
         api.has_param :permissions, 'string'
-      end
-      edge.post 'AdAccount' do |api|
-        api.has_param :adaccounts, { list: 'string' }
-        api.has_param :permissions, 'string'
-        api.has_param :replace, 'bool'
       end
     end
 

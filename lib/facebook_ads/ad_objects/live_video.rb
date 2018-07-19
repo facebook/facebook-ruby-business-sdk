@@ -67,6 +67,12 @@ module FacebookAds
       "ambiX_4",
     ]
 
+    STEREOSCOPIC_MODE = [
+      "MONO",
+      "LEFT_RIGHT",
+      "TOP_BOTTOM",
+    ]
+
     TYPE = [
       "tagged",
       "uploaded",
@@ -78,6 +84,7 @@ module FacebookAds
     field :broadcast_start_time, 'datetime'
     field :copyright, 'VideoCopyright'
     field :creation_time, 'datetime'
+    field :dash_ingest_url, 'string'
     field :dash_preview_url, 'string'
     field :description, 'string'
     field :embed_html, 'string'

@@ -72,6 +72,7 @@ module FacebookAds
       "update_ad_bid_info",
       "update_ad_bid_type",
       "update_ad_run_status",
+      "update_ad_run_status_to_be_set_after_review",
       "update_ad_friendly_name",
       "update_ad_targets_spec",
       "update_adgroup_stop_delivery",

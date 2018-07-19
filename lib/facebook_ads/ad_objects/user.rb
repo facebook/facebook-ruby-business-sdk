@@ -185,6 +185,7 @@ module FacebookAds
         api.has_param :schedule_custom_profile_image, 'file'
         api.has_param :spatial_audio_format, { enum: -> { LiveVideo::SPATIAL_AUDIO_FORMAT }}
         api.has_param :status, { enum: -> { LiveVideo::STATUS }}
+        api.has_param :stereoscopic_mode, { enum: -> { LiveVideo::STEREOSCOPIC_MODE }}
         api.has_param :stop_on_delete_stream, 'bool'
         api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
         api.has_param :title, 'string'

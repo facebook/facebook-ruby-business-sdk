@@ -71,9 +71,9 @@ module FacebookAds
 
     has_edge :activities do |edge|
       edge.get do |api|
-        api.has_param :end_time, 'datetime'
+        api.has_param :end_time, 'object'
         api.has_param :event_type, { enum: %w{conversion_create conversion_delete conversion_update }}
-        api.has_param :start_time, 'datetime'
+        api.has_param :start_time, 'object'
       end
     end
 

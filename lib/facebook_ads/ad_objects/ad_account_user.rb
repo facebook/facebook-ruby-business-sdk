@@ -31,7 +31,6 @@ module FacebookAds
     field :name, 'string'
     field :permissions, { list: 'int' }
     field :role, 'int'
-    field :roles, { list: 'string' }
     has_no_get
     has_no_post
     has_no_delete

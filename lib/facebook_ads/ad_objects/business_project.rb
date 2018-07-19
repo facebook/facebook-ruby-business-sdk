@@ -29,7 +29,7 @@ module FacebookAds
 
     field :business, 'Business'
     field :created_time, 'datetime'
-    field :creator, 'User'
+    field :creator, 'object'
     field :id, 'string'
     field :name, 'string'
     has_no_post

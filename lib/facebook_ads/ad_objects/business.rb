@@ -83,7 +83,7 @@ module FacebookAds
 
 
     field :block_offline_analytics, 'bool'
-    field :created_by, 'User'
+    field :created_by, 'object'
     field :created_time, 'datetime'
     field :id, 'string'
     field :link, 'string'
@@ -93,7 +93,7 @@ module FacebookAds
     field :profile_picture_uri, 'string'
     field :timezone_id, 'int'
     field :two_factor_type, 'string'
-    field :updated_by, 'User'
+    field :updated_by, 'object'
     field :updated_time, 'datetime'
     field :vertical, 'string'
     has_no_post
@@ -130,6 +130,7 @@ module FacebookAds
         api.has_param :end_advertiser, 'object'
         api.has_param :funding_id, 'string'
         api.has_param :invoice, 'bool'
+        api.has_param :invoice_group_id, 'object'
         api.has_param :io, 'bool'
         api.has_param :liable_address_id, 'object'
         api.has_param :media_agency, 'string'
@@ -283,10 +284,6 @@ module FacebookAds
       end
     end
 
-    has_edge :client_businesses do |edge|
-      edge.get 'Business'
-    end
-
     has_edge :client_pages do |edge|
       edge.get 'Page'
     end
@@ -357,6 +354,7 @@ module FacebookAds
       edge.get 'OfflineConversionDataSet'
       edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :auto_assign_to_new_accounts_only, 'bool'
+        api.has_param :data_origin, { enum: -> { OfflineConversionDataSet::DATA_ORIGIN }}
         api.has_param :description, 'string'
         api.has_param :enable_auto_assign_to_accounts, 'bool'
         api.has_param :name, 'string'

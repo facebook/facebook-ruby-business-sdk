@@ -38,6 +38,7 @@ module FacebookAds
       "COMPLETE_REGISTRATION",
       "CONTENT_VIEW",
       "SEARCH",
+      "SERVICE_BOOKING_REQUEST",
       "MESSAGING_CONVERSATION_STARTED_7D",
       "LEVEL_ACHIEVED",
       "ACHIEVEMENT_UNLOCKED",
@@ -47,10 +48,12 @@ module FacebookAds
 
 
     field :application_id, 'string'
+    field :custom_conversion_id, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :event_id, 'string'
     field :object_store_url, 'string'
     field :offer_id, 'string'
+    field :offline_conversion_data_set_id, 'string'
     field :page_id, 'string'
     field :pixel_id, 'string'
     field :place_page_set_id, 'string'

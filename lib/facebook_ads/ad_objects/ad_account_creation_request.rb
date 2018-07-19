@@ -125,7 +125,7 @@ module FacebookAds
       "SMB_RELIGIOUS",
       "SMB_RENTALS",
       "SMB_REPAIR_AND_MAINTENANCE",
-      "SMB_WIRELINE_SERVICES",
+      "OTHER_WIRELINE_SERVICES",
       "SOFTWARE",
       "SPORTING",
       "SPORTS",
@@ -200,6 +200,7 @@ module FacebookAds
     field :is_under_authorization, 'bool'
     field :official_website_url, 'string'
     field :planning_agency_business, 'Business'
+    field :planning_agency_business_id, 'string'
     field :promotable_app_ids, { list: 'string' }
     field :promotable_page_ids, { list: 'string' }
     field :promotable_urls, { list: 'string' }
@@ -210,7 +211,6 @@ module FacebookAds
     field :vertical, 'string'
     field :advertiser_business_id, 'string'
     field :business_registration, 'file'
-    field :planning_agency_business_id, 'string'
     field :promotable_page_urls, { list: 'object' }
 
   end

@@ -104,6 +104,7 @@ module FacebookAds
         api.has_param :schedule_custom_profile_image, 'file'
         api.has_param :spatial_audio_format, { enum: %w{ambiX_4 }}
         api.has_param :status, { enum: %w{UNPUBLISHED LIVE_NOW SCHEDULED_UNPUBLISHED SCHEDULED_LIVE SCHEDULED_CANCELED }}
+        api.has_param :stereoscopic_mode, { enum: %w{MONO LEFT_RIGHT TOP_BOTTOM }}
         api.has_param :stop_on_delete_stream, 'bool'
         api.has_param :stream_type, { enum: %w{REGULAR AMBIENT }}
         api.has_param :title, 'string'

@@ -43,7 +43,7 @@ module FacebookAds
     ]
 
 
-    field :created_by, 'User'
+    field :created_by, 'object'
     field :created_time, 'datetime'
     field :email, 'string'
     field :expiration_time, 'datetime'
@@ -54,7 +54,7 @@ module FacebookAds
     field :owner, 'Business'
     field :role, 'string'
     field :status, 'string'
-    field :updated_by, 'User'
+    field :updated_by, 'object'
     field :updated_time, 'datetime'
 
   end

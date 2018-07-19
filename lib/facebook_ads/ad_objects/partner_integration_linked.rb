@@ -35,6 +35,7 @@ module FacebookAds
     field :name, 'string'
     field :offline_conversion_data_set, 'OfflineConversionDataSet'
     field :partner, 'string'
+    field :partner_profile, 'object'
     field :product_catalog, 'ProductCatalog'
     field :setup_status, 'string'
     has_no_post

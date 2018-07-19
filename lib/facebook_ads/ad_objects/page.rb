@@ -726,6 +726,7 @@ module FacebookAds
         api.has_param :schedule_custom_profile_image, 'file'
         api.has_param :spatial_audio_format, { enum: -> { LiveVideo::SPATIAL_AUDIO_FORMAT }}
         api.has_param :status, { enum: -> { LiveVideo::STATUS }}
+        api.has_param :stereoscopic_mode, { enum: -> { LiveVideo::STEREOSCOPIC_MODE }}
         api.has_param :stop_on_delete_stream, 'bool'
         api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
         api.has_param :targeting, 'object'
@@ -735,7 +736,7 @@ module FacebookAds
 
     has_edge :locations do |edge|
       edge.delete do |api|
-        api.has_param :location_page_id, 'int'
+        api.has_param :location_page_id, 'object'
         api.has_param :store_number, 'int'
       end
       edge.get 'Page'
@@ -778,7 +779,7 @@ module FacebookAds
     has_edge :messages do |edge|
       edge.post do |api|
         api.has_param :message, 'object'
-        api.has_param :messaging_type, { enum: %w{RESPONSE UPDATE MESSAGE_TAG NON_PROMOTIONAL_SUBSCRIPTION }}
+        api.has_param :messaging_type, { enum: %w{RESPONSE UPDATE MESSAGE_TAG }}
         api.has_param :notification_type, { enum: %w{REGULAR SILENT_PUSH NO_PUSH }}
         api.has_param :persona_id, 'object'
         api.has_param :recipient, 'object'
@@ -1135,6 +1136,7 @@ module FacebookAds
         api.has_param :copyright_content_id, 'string'
         api.has_param :excluded_ownership_countries, { list: 'string' }
         api.has_param :excluded_ownership_segments, { list: 'object' }
+        api.has_param :fingerprint_id, 'string'
         api.has_param :is_reference_disabled, 'bool'
         api.has_param :is_reference_video, 'bool'
         api.has_param :monitoring_type, { enum: -> { VideoCopyright::MONITORING_TYPE }}
