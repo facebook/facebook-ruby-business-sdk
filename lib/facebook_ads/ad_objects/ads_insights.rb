@@ -150,7 +150,6 @@ module FacebookAds
     field :adset_id, 'string'
     field :adset_name, 'string'
     field :buying_type, 'string'
-    field :call_to_action_clicks, 'string'
     field :campaign_id, 'string'
     field :campaign_name, 'string'
     field :canvas_avg_view_percent, 'string'
@@ -162,7 +161,6 @@ module FacebookAds
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
     field :cost_per_outbound_click, { list: 'AdsActionStats' }
-    field :cost_per_total_action, 'string'
     field :cost_per_unique_action_type, { list: 'AdsActionStats' }
     field :cost_per_unique_click, 'string'
     field :cost_per_unique_inline_link_click, 'string'
@@ -187,14 +185,10 @@ module FacebookAds
     field :place_page_name, 'string'
     field :reach, 'string'
     field :relevance_score, 'AdgroupRelevanceScore'
-    field :social_clicks, 'string'
     field :social_impressions, 'string'
-    field :social_reach, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
     field :total_action_value, 'string'
-    field :total_actions, 'string'
-    field :total_unique_actions, 'string'
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
     field :unique_ctr, 'string'
@@ -203,7 +197,6 @@ module FacebookAds
     field :unique_link_clicks_ctr, 'string'
     field :unique_outbound_clicks, { list: 'AdsActionStats' }
     field :unique_outbound_clicks_ctr, { list: 'AdsActionStats' }
-    field :unique_social_clicks, 'string'
     field :video_10_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_30_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_avg_percent_watched_actions, { list: 'AdsActionStats' }

@@ -97,6 +97,7 @@ module FacebookAds
     field :status, 'string'
     field :tcpa_compliance, 'bool'
     field :thank_you_page, 'object'
+    field :tracking_parameters, { list: 'object' }
 
     has_edge :leads do |edge|
       edge.get 'Lead'

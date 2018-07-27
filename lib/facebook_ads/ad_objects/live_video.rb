@@ -63,6 +63,11 @@ module FacebookAds
       "CUBEMAP",
     ]
 
+    SOURCE = [
+      "target",
+      "owner",
+    ]
+
     SPATIAL_AUDIO_FORMAT = [
       "ambiX_4",
     ]
@@ -71,11 +76,6 @@ module FacebookAds
       "MONO",
       "LEFT_RIGHT",
       "TOP_BOTTOM",
-    ]
-
-    TYPE = [
-      "tagged",
-      "uploaded",
     ]
 
 

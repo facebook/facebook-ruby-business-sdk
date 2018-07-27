@@ -36,12 +36,12 @@ module FacebookAds
     ]
 
     CONTENT_TYPE = [
-      "AUTO_OFFER",
       "DESTINATION",
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
       "MEDIA_TITLE",
+      "PRODUCT",
       "VEHICLE",
       "VEHICLE_OFFER",
     ]
@@ -70,7 +70,6 @@ module FacebookAds
     ]
 
     FIELDS = [
-      "id",
       "account_id",
       "approximate_count",
       "customer_file_source",
@@ -78,6 +77,7 @@ module FacebookAds
       "delivery_status",
       "description",
       "external_event_source",
+      "id",
       "is_value_based",
       "lookalike_audience_ids",
       "lookalike_spec",

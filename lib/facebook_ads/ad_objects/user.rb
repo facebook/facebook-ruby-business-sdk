@@ -51,12 +51,10 @@ module FacebookAds
     field :installed, 'bool'
     field :interested_in, { list: 'string' }
     field :is_famedeeplinkinguser, 'bool'
-    field :is_payment_enabled, 'bool'
     field :is_shared_login, 'bool'
     field :is_verified, 'bool'
     field :labels, { list: 'PageLabel' }
     field :languages, { list: 'object' }
-    field :last_ad_referral, 'object'
     field :last_name, 'string'
     field :link, 'string'
     field :local_news_megaphone_dismiss_status, 'bool'
@@ -165,7 +163,7 @@ module FacebookAds
     has_edge :live_videos do |edge|
       edge.get 'LiveVideo' do |api|
         api.has_param :broadcast_status, { list: { enum: -> { LiveVideo::BROADCAST_STATUS }} }
-        api.has_param :type, { enum: -> { LiveVideo::TYPE }}
+        api.has_param :source, { enum: -> { LiveVideo::SOURCE }}
       end
       edge.post 'LiveVideo' do |api|
         api.has_param :attribution_app_id, 'string'

@@ -92,12 +92,14 @@ module FacebookAds
       "Vietnamese",
     ]
 
-    ROLE = [
-      "MANAGER",
-      "CONTENT_CREATOR",
-      "MODERATOR",
-      "ADVERTISER",
-      "INSIGHTS_ANALYST",
+    TASKS = [
+      "MANAGE",
+      "CREATE_CONTENT",
+      "MODERATE",
+      "MODERATE_COMMUNITY",
+      "ADVERTISE",
+      "ANALYZE",
+      "CREATE_LIVE_CONTENT",
     ]
 
     LOCALE = [
@@ -311,7 +313,7 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.post 'Page' do |api|
-        api.has_param :role, { enum: -> { Page::ROLE }}
+        api.has_param :tasks, { list: { enum: -> { Page::TASKS }} }
         api.has_param :user, 'int'
       end
     end
@@ -638,10 +640,11 @@ module FacebookAds
         api.has_param :legal_content_id, 'string'
         api.has_param :locale, { enum: -> { Page::LOCALE }}
         api.has_param :name, 'string'
-        api.has_param :privacy_policy, 'object'
+        api.has_param :privacy_policy, 'hash'
         api.has_param :question_page_custom_headline, 'string'
         api.has_param :questions, { list: 'object' }
-        api.has_param :thank_you_page, 'object'
+        api.has_param :thank_you_page, 'hash'
+        api.has_param :tracking_parameters, 'object'
       end
     end
 
@@ -650,19 +653,19 @@ module FacebookAds
         api.has_param :allow_organic_lead_retrieval, 'bool'
         api.has_param :block_display_for_non_targeted_viewer, 'bool'
         api.has_param :context_card, 'object'
-        api.has_param :context_card_id, 'string'
+        api.has_param :context_card_id, 'object'
         api.has_param :cover_photo, 'file'
         api.has_param :custom_disclaimer, 'object'
-        api.has_param :follow_up_action_url, 'string'
+        api.has_param :follow_up_action_url, 'object'
         api.has_param :is_optimized_for_quality, 'bool'
-        api.has_param :legal_content_id, 'string'
+        api.has_param :legal_content_id, 'object'
         api.has_param :locale, { enum: -> { Page::LOCALE }}
         api.has_param :name, 'string'
         api.has_param :privacy_policy, 'object'
         api.has_param :question_page_custom_headline, 'string'
         api.has_param :questions, { list: 'object' }
         api.has_param :thank_you_page, 'object'
-        api.has_param :thank_you_page_id, 'string'
+        api.has_param :thank_you_page_id, 'object'
       end
     end
 
@@ -702,7 +705,7 @@ module FacebookAds
     has_edge :live_videos do |edge|
       edge.get 'LiveVideo' do |api|
         api.has_param :broadcast_status, { list: { enum: -> { LiveVideo::BROADCAST_STATUS }} }
-        api.has_param :type, { enum: -> { LiveVideo::TYPE }}
+        api.has_param :source, { enum: -> { LiveVideo::SOURCE }}
       end
       edge.post 'LiveVideo' do |api|
         api.has_param :attribution_app_id, 'string'
@@ -853,23 +856,6 @@ module FacebookAds
       end
     end
 
-    has_edge :offers_v3 do |edge|
-      edge.post do |api|
-        api.has_param :availability_location, { enum: %w{both offline online }}
-        api.has_param :description, 'string'
-        api.has_param :destination_uri, 'string'
-        api.has_param :discount_code, 'string'
-        api.has_param :expiration_time, 'datetime'
-        api.has_param :hidden, 'bool'
-        api.has_param :photo_uris, { list: 'string' }
-        api.has_param :referrer, 'string'
-        api.has_param :schedule_time, 'datetime'
-        api.has_param :start_time, 'datetime'
-        api.has_param :terms_and_conditions, 'string'
-        api.has_param :video_ids, { list: 'string' }
-      end
-    end
-
     has_edge :page_backed_instagram_accounts do |edge|
       edge.post
     end
@@ -879,19 +865,6 @@ module FacebookAds
         api.has_param :metadata, 'string'
         api.has_param :recipient, 'object'
         api.has_param :target_app_id, 'int'
-      end
-    end
-
-    has_edge :pending_users do |edge|
-      edge.delete do |api|
-        api.has_param :request_id, 'int'
-      end
-      edge.get 'BusinessRoleRequest' do |api|
-        api.has_param :business, 'int'
-      end
-      edge.post 'Page' do |api|
-        api.has_param :request_id, 'int'
-        api.has_param :role, { enum: -> { Page::ROLE }}
       end
     end
 

@@ -118,6 +118,7 @@ module FacebookAds
     field :extra_data, 'string'
     field :object_id, 'string'
     field :object_name, 'string'
+    field :object_type, 'string'
     field :translated_event_type, 'string'
     has_no_id
     has_no_get

@@ -273,7 +273,7 @@ module FacebookAds
       edge.get 'AdAccount'
       edge.post 'AdAccount' do |api|
         api.has_param :adaccount_id, 'string'
-        api.has_param :permitted_roles, { list: { enum: -> { AdAccount::PERMITTED_ROLES }} }
+        api.has_param :permitted_tasks, { list: { enum: -> { AdAccount::PERMITTED_TASKS }} }
       end
     end
 

@@ -26,24 +26,16 @@ module FacebookAds
   # pull request for this class.
 
   class AdAccount < AdObject
-    PERMITTED_ROLES = [
-      "ADMIN",
-      "GENERAL_USER",
-      "REPORTS_ONLY",
-      "INSTAGRAM_ADVERTISER",
-      "INSTAGRAM_MANAGER",
-      "CREATIVE",
-      "FB_EMPLOYEE_DSO_ADVERTISER",
+    PERMITTED_TASKS = [
+      "MANAGE",
+      "ADVERTISE",
+      "ANALYZE",
     ]
 
-    ROLE = [
-      "ADMIN",
-      "GENERAL_USER",
-      "REPORTS_ONLY",
-      "INSTAGRAM_ADVERTISER",
-      "INSTAGRAM_MANAGER",
-      "CREATIVE",
-      "FB_EMPLOYEE_DSO_ADVERTISER",
+    TASKS = [
+      "MANAGE",
+      "ADVERTISE",
+      "ANALYZE",
     ]
 
     SUBTYPE = [
@@ -109,6 +101,7 @@ module FacebookAds
     field :offsite_pixels_tos_accepted, 'bool'
     field :owner, 'string'
     field :partner, 'string'
+    field :rate_limit_reset_time, 'string'
     field :rf_spec, 'ReachFrequencySpec'
     field :show_checkout_experience, 'bool'
     field :spend_cap, 'string'
@@ -402,7 +395,7 @@ module FacebookAds
       end
       edge.post 'AdAccount' do |api|
         api.has_param :business, 'string'
-        api.has_param :permitted_roles, { list: { enum: -> { AdAccount::PERMITTED_ROLES }} }
+        api.has_param :permitted_tasks, { list: { enum: -> { AdAccount::PERMITTED_TASKS }} }
       end
     end
 
@@ -418,7 +411,7 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.post 'AdAccount' do |api|
-        api.has_param :role, { enum: -> { AdAccount::ROLE }}
+        api.has_param :tasks, { list: { enum: -> { AdAccount::TASKS }} }
         api.has_param :user, 'int'
       end
     end
@@ -643,16 +636,6 @@ module FacebookAds
 
     has_edge :partners do |edge|
       edge.get 'AdsDataPartner'
-    end
-
-    has_edge :pending_users do |edge|
-      edge.delete do |api|
-        api.has_param :request_id, 'int'
-      end
-      edge.post 'AdAccount' do |api|
-        api.has_param :request_id, 'int'
-        api.has_param :role, { enum: -> { AdAccount::ROLE }}
-      end
     end
 
     has_edge :product_audiences do |edge|

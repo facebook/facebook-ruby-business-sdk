@@ -88,6 +88,7 @@ module FacebookAds
     field :questions, { list: 'LeadGenDraftQuestion' }
     field :status, 'string'
     field :thank_you_page, 'object'
+    field :tracking_parameters, { list: 'object' }
     has_no_delete
 
   end
