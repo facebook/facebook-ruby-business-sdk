@@ -29,10 +29,17 @@ module FacebookAds
 
     field :account_admin, 'hash'
     field :ad, 'hash'
+    field :b2c, 'hash'
+    field :bsg, 'hash'
+    field :city_community, 'hash'
+    field :dpa, 'hash'
     field :facebook, 'hash'
     field :instagram, 'hash'
+    field :instagram_shop, 'hash'
+    field :marketplace, 'hash'
     field :page_admin, 'hash'
     field :product, 'hash'
+    field :product_service, 'hash'
     field :seller, 'hash'
     has_no_id
     has_no_get

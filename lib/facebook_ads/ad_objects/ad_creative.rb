@@ -39,39 +39,47 @@ module FacebookAds
       "PLAY_GAME",
       "INSTALL_APP",
       "USE_APP",
+      "CALL",
+      "CALL_ME",
       "INSTALL_MOBILE_APP",
       "USE_MOBILE_APP",
+      "MOBILE_DOWNLOAD",
       "BOOK_TRAVEL",
       "LISTEN_MUSIC",
+      "WATCH_VIDEO",
       "LEARN_MORE",
       "SIGN_UP",
       "DOWNLOAD",
       "WATCH_MORE",
       "NO_BUTTON",
-      "CALL_NOW",
+      "VISIT_PAGES_FEED",
       "APPLY_NOW",
       "BUY_NOW",
       "GET_OFFER",
       "GET_OFFER_VIEW",
+      "BUY_TICKETS",
+      "UPDATE_APP",
       "GET_DIRECTIONS",
+      "BUY",
       "MESSAGE_PAGE",
-      "MESSAGE_USER",
+      "DONATE",
       "SUBSCRIBE",
+      "SAY_THANKS",
       "SELL_NOW",
+      "SHARE",
       "DONATE_NOW",
       "GET_QUOTE",
       "CONTACT_US",
-      "START_ORDER",
+      "ORDER_NOW",
+      "ADD_TO_CART",
+      "VIDEO_ANNOTATION",
+      "MOMENTS",
       "RECORD_NOW",
-      "VOTE_NOW",
-      "REGISTER_NOW",
-      "REQUEST_TIME",
-      "SEE_MENU",
-      "EMAIL_NOW",
       "GET_SHOWTIMES",
-      "TRY_IT",
       "LISTEN_NOW",
-      "OPEN_MOVIES",
+      "EVENT_RSVP",
+      "WHATSAPP_MESSAGE",
+      "FOLLOW_NEWS_STORYLINE",
     ]
 
     OBJECT_TYPE = [
@@ -91,6 +99,11 @@ module FacebookAds
     STATUS = [
       "ACTIVE",
       "DELETED",
+    ]
+
+    AUTHORIZATION_CATEGORY = [
+      "NONE",
+      "POLITICAL",
     ]
 
     DYNAMIC_AD_VOICE = [
@@ -123,6 +136,7 @@ module FacebookAds
     field :instagram_story_id, 'string'
     field :link_og_id, 'string'
     field :link_url, 'string'
+    field :messenger_sponsored_message, 'string'
     field :name, 'string'
     field :object_id, 'string'
     field :object_story_id, 'string'
@@ -140,7 +154,7 @@ module FacebookAds
     field :url_tags, 'string'
     field :use_page_actor_override, 'bool'
     field :video_id, 'string'
-    field :call_to_action, 'object'
+    field :authorization_category, { enum: -> { AUTHORIZATION_CATEGORY }}
     field :dynamic_ad_voice, { enum: -> { DYNAMIC_AD_VOICE }}
     field :image_file, 'string'
 
@@ -159,7 +173,6 @@ module FacebookAds
         api.has_param :dynamic_creative_spec, 'object'
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
-        api.has_param :locale, 'string'
         api.has_param :place_page_id, 'int'
         api.has_param :post, 'object'
         api.has_param :product_item_ids, { list: 'string' }

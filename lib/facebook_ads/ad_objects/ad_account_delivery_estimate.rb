@@ -47,10 +47,11 @@ module FacebookAds
       "VIDEO_VIEWS",
       "APP_DOWNLOADS",
       "LANDING_PAGE_VIEWS",
+      "VALUE",
+      "REPLIES",
     ]
 
 
-    field :bid_estimate, 'object'
     field :daily_outcomes_curve, { list: 'OutcomePredictionPoint' }
     field :estimate_dau, 'int'
     field :estimate_mau, 'int'

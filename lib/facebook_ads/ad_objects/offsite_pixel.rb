@@ -26,15 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class OffsitePixel < AdObject
-    TAG = [
-      "CHECKOUT",
-      "REGISTRATION",
-      "LEAD",
-      "KEY_PAGE_VIEW",
-      "ADD_TO_CART",
-      "OTHER",
-    ]
-
 
     field :creator, 'string'
     field :id, 'string'
@@ -42,16 +33,8 @@ module FacebookAds
     field :last_firing_time, 'datetime'
     field :name, 'string'
     field :tag, 'string'
-
-    has_edge :adaccounts do |edge|
-      edge.delete do |api|
-        api.has_param :adaccounts, { list: 'string' }
-      end
-      edge.get 'AdAccount'
-      edge.post 'AdAccount' do |api|
-        api.has_param :adaccounts, { list: 'string' }
-      end
-    end
+    has_no_post
+    has_no_delete
 
   end
 end

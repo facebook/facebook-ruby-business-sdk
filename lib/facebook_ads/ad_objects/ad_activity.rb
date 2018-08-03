@@ -50,29 +50,32 @@ module FacebookAds
       "update_campaign_name",
       "update_campaign_run_status",
       "update_campaign_group_spend_cap",
-      "campaign_ended",
-      "create_campaign",
       "create_campaign_legacy",
       "update_campaign_budget",
       "update_campaign_duration",
+      "campaign_ended",
       "create_ad_set",
       "update_ad_set_bidding",
+      "update_ad_set_bid_strategy",
       "update_ad_set_budget",
       "update_ad_set_duration",
       "update_ad_set_run_status",
       "update_ad_set_name",
+      "update_ad_set_optimization_goal",
+      "update_ad_set_target_spec",
+      "update_ad_set_bid_adjustments",
       "create_ad",
+      "ad_review_approved",
+      "ad_review_declined",
       "update_ad_creative",
       "edit_and_update_ad_creative",
       "update_ad_bid_info",
       "update_ad_bid_type",
       "update_ad_run_status",
+      "update_ad_run_status_to_be_set_after_review",
       "update_ad_friendly_name",
       "update_ad_targets_spec",
       "update_adgroup_stop_delivery",
-      "update_ad_set_target_spec",
-      "ad_review_approved",
-      "ad_review_declined",
       "first_delivery_event",
       "create_audience",
       "update_audience",
@@ -88,6 +91,7 @@ module FacebookAds
       "funding_event_initiated",
       "funding_event_successful",
       "update_ad_labels",
+      "di_ad_set_learning_stage_exit",
     ]
 
     CATEGORY = [
@@ -114,6 +118,7 @@ module FacebookAds
     field :extra_data, 'string'
     field :object_id, 'string'
     field :object_name, 'string'
+    field :object_type, 'string'
     field :translated_event_type, 'string'
     has_no_id
     has_no_get

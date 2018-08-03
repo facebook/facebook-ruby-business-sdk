@@ -26,6 +26,47 @@ module FacebookAds
   # pull request for this class.
 
   class LeadgenForm < AdObject
+    LOCALE = [
+      "EN_US",
+      "IT_IT",
+      "FR_FR",
+      "ES_ES",
+      "ES_LA",
+      "DE_DE",
+      "EN_GB",
+      "PT_BR",
+      "ZH_TW",
+      "ZH_HK",
+      "TR_TR",
+      "AR_AR",
+      "CS_CZ",
+      "DA_DK",
+      "FI_FI",
+      "HE_IL",
+      "HI_IN",
+      "HU_HU",
+      "ID_ID",
+      "JA_JP",
+      "KO_KR",
+      "NB_NO",
+      "NL_NL",
+      "PL_PL",
+      "PT_PT",
+      "RO_RO",
+      "RU_RU",
+      "SV_SE",
+      "TH_TH",
+      "VI_VN",
+      "ZH_CN",
+    ]
+
+    STATUS = [
+      "ACTIVE",
+      "ARCHIVED",
+      "DELETED",
+      "DRAFT",
+    ]
+
 
     field :allow_organic_lead, 'bool'
     field :block_display_for_non_targeted_viewer, 'bool'
@@ -39,15 +80,15 @@ module FacebookAds
     field :follow_up_action_text, 'string'
     field :follow_up_action_url, 'string'
     field :id, 'string'
-    field :is_continued_flow, 'bool'
+    field :is_optimized_for_quality, 'bool'
     field :leadgen_export_csv_url, 'string'
     field :leads_count, 'int'
-    field :legal_content, 'object'
+    field :legal_content, 'LeadGenLegalContent'
     field :locale, 'string'
     field :messenger_welcome_message, 'string'
     field :name, 'string'
     field :organic_leads_count, 'int'
-    field :page, 'object'
+    field :page, 'Page'
     field :page_id, 'string'
     field :privacy_policy_url, 'string'
     field :qualifiers, { list: 'LeadGenQualifier' }
@@ -56,10 +97,15 @@ module FacebookAds
     field :status, 'string'
     field :tcpa_compliance, 'bool'
     field :thank_you_page, 'object'
-    has_no_post
+    field :tracking_parameters, { list: 'object' }
 
     has_edge :leads do |edge|
       edge.get 'Lead'
+      edge.post 'LeadgenForm' do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :session_id, 'string'
+        api.has_param :start_time, 'datetime'
+      end
     end
 
     has_edge :test_leads do |edge|

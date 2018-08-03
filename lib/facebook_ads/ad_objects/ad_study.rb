@@ -26,6 +26,16 @@ module FacebookAds
   # pull request for this class.
 
   class AdStudy < AdObject
+    AUDIENCE_TYPE = [
+      "MOST_RESPONSIVE",
+      "NOT_MOST_RESPONSIVE",
+    ]
+
+    ROLE = [
+      "ADMIN",
+      "ANALYST",
+    ]
+
     TYPE = [
       "LIFT",
       "SPLIT_TEST",
@@ -42,16 +52,27 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :observation_end_time, 'datetime'
+    field :results_first_available_date, 'string'
     field :start_time, 'datetime'
     field :type, 'string'
     field :updated_by, 'User'
     field :updated_time, 'datetime'
     field :cells, { list: 'object' }
+    field :client_business, 'string'
     field :confidence_level, 'double'
     field :objectives, { list: 'object' }
     field :viewers, { list: 'int' }
-    has_no_post
     has_no_delete
+
+    has_edge :customaudiences do |edge|
+      edge.post 'AdStudy' do |api|
+        api.has_param :account_id, 'string'
+        api.has_param :audience_name, 'string'
+        api.has_param :audience_type, { enum: -> { AdStudy::AUDIENCE_TYPE }}
+        api.has_param :cell_id, 'string'
+        api.has_param :objective_id, 'string'
+      end
+    end
 
     has_edge :objectives do |edge|
       edge.post 'AdStudyObjective' do |api|
@@ -63,6 +84,20 @@ module FacebookAds
         api.has_param :offline_conversion_data_sets, { list: 'object' }
         api.has_param :offsitepixels, { list: 'object' }
         api.has_param :type, { enum: -> { AdStudyObjective::TYPE }}
+      end
+    end
+
+    has_edge :userpermissions do |edge|
+      edge.delete do |api|
+        api.has_param :business, 'string'
+        api.has_param :email, 'string'
+        api.has_param :user, 'int'
+      end
+      edge.post 'AdStudy' do |api|
+        api.has_param :business, 'string'
+        api.has_param :email, 'string'
+        api.has_param :role, { enum: -> { AdStudy::ROLE }}
+        api.has_param :user, 'int'
       end
     end
 

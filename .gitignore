@@ -22,3 +22,9 @@ autogen_docs_config.json
 /.tox
 *.swp
 *.swo
+
+# ignore fbpkg on sdk dev on devservers
+.fbpkg.tmp/
+METADATA
+ads_sdk.ruby:*.CHECKSUMS
+/vendor/

@@ -26,13 +26,33 @@ module FacebookAds
   # pull request for this class.
 
   class AdStudyCell < AdObject
+    CREATION_TEMPLATE = [
+      "AUTOMATIC_PLACEMENTS",
+      "BRAND_AWARENESS",
+      "FACEBOOK",
+      "FACEBOOK_AUDIENCE_NETWORK",
+      "FACEBOOK_INSTAGRAM",
+      "FACEBOOK_NEWS_FEED",
+      "FACEBOOK_NEWS_FEED_IN_STREAM_VIDEO",
+      "IN_STREAM_VIDEO",
+      "INSTAGRAM",
+      "MOBILE_OPTIMIZED_VIDEO",
+      "PAGE_POST_ENGAGEMENT",
+      "REACH",
+      "TV_COMMERCIAL",
+      "TV_FACEBOOK",
+      "VIDEO_VIEW_OPTIMIZATION",
+      "LOW_FREQUENCY",
+      "MEDIUM_FREQUENCY",
+      "HIGH_FREQUENCY",
+    ]
+
 
     field :ad_entities_count, 'int'
     field :control_percentage, 'double'
     field :id, 'string'
     field :name, 'string'
     field :treatment_percentage, 'double'
-    has_no_post
     has_no_delete
 
   end

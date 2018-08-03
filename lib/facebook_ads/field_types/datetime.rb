@@ -20,28 +20,24 @@ require 'date'
 
 module FacebookAds
   module FieldTypes
-    class DateTime < Base
+    class MyDateTime < Base
       register 'datetime'
 
       def deserialize(value, session = nil)
         case value
           when String
-            begin
-              ::DateTime.strptime(value, '%FT%T%:z')
-            rescue ArgumentError
-              ::DateTime.strptime(value, '%FT%T')
-            end
+            ::DateTime.strptime(value, '%FT%T%:z')
           else
-            Time.at(value).to_datetime
+            ::Time.at(value).to_datetime
         end
       end
 
       def serialize(value)
         case value
-          when ::DateTime, Time
+          when ::DateTime, ::Time
             value.to_time.to_i
-          when String
-            ::DateTime.parse(value).to_time.to_i
+          when ::String
+            DateTime.parse(value).to_time.to_i
           else
             value
         end

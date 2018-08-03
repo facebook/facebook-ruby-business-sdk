@@ -26,18 +26,22 @@ module FacebookAds
   # pull request for this class.
 
   class AdSet < AdObject
+    BID_STRATEGY = [
+      "LOWEST_COST_WITHOUT_CAP",
+      "LOWEST_COST_WITH_BID_CAP",
+      "TARGET_COST",
+    ]
+
     BILLING_EVENT = [
       "APP_INSTALLS",
       "CLICKS",
       "IMPRESSIONS",
       "LINK_CLICKS",
+      "NONE",
       "OFFER_CLAIMS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "VIDEO_VIEWS",
-      "MRC_VIDEO_VIEWS",
-      "COMPLETED_VIDEO_VIEWS",
-      "VIDEO_VIEWS_15S",
     ]
 
     CONFIGURED_STATUS = [
@@ -81,6 +85,8 @@ module FacebookAds
       "VIDEO_VIEWS",
       "APP_DOWNLOADS",
       "LANDING_PAGE_VIEWS",
+      "VALUE",
+      "REPLIES",
     ]
 
     STATUS = [
@@ -134,9 +140,10 @@ module FacebookAds
     field :account_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :adset_schedule, { list: 'DayPart' }
-    field :attribution_spec, { list: 'object' }
+    field :attribution_spec, { list: 'AttributionSpec' }
     field :bid_amount, 'int'
     field :bid_info, 'map<string, unsigned int>'
+    field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :billing_event, { enum: -> { BILLING_EVENT }}
     field :budget_remaining, 'string'
     field :campaign, 'Campaign'
@@ -145,16 +152,18 @@ module FacebookAds
     field :created_time, 'datetime'
     field :creative_sequence, { list: 'string' }
     field :daily_budget, 'string'
+    field :daily_min_spend_target, 'string'
+    field :daily_spend_cap, 'string'
     field :destination_type, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
-    field :frequency_control_specs, { list: 'object' }
+    field :frequency_control_specs, { list: 'AdCampaignFrequencyControlSpecs' }
     field :id, 'string'
     field :instagram_actor_id, 'string'
-    field :is_autobid, 'bool'
-    field :is_average_price_pacing, 'bool'
     field :lifetime_budget, 'string'
     field :lifetime_imps, 'int'
+    field :lifetime_min_spend_target, 'string'
+    field :lifetime_spend_cap, 'string'
     field :name, 'string'
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}
     field :pacing_type, { list: 'string' }
@@ -175,7 +184,6 @@ module FacebookAds
     field :campaign_spec, 'object'
     field :daily_imps, 'int'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
-    field :redownload, 'bool'
 
     has_edge :activities do |edge|
       edge.get 'AdActivity' do |api|
@@ -202,12 +210,17 @@ module FacebookAds
       end
     end
 
+    has_edge :adrules_governed do |edge|
+      edge.get 'AdRule' do |api|
+        api.has_param :pass_evaluation, 'bool'
+      end
+    end
+
     has_edge :ads do |edge|
       edge.get 'Ad' do |api|
         api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :include_deleted, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
       end

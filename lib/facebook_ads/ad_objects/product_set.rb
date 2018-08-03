@@ -41,5 +41,12 @@ module FacebookAds
       end
     end
 
+    has_edge :vehicles do |edge|
+      edge.get do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
   end
 end

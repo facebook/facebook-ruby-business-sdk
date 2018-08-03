@@ -40,9 +40,9 @@ module FacebookAds
 
       def define_reader(name)
         define_method(name) do
-          if !@internal_fields.include?(name)
-            @internal_fields << name
-            Utils.logger.warn("#{name} not in the internal_fields")
+          if !@__all_fields.include?(name)
+            @__all_fields << name
+            Utils.logger.warn("#{name} not in the fields")
           end
 
           load! unless loaded?
@@ -58,7 +58,7 @@ module FacebookAds
       def define_writer(name)
         define_method("#{name}=") do |val|
           changes[name] = val
-          @internal_fields.add(name.to_s)
+          @__all_fields.add(name.to_s)
         end
       end
     end

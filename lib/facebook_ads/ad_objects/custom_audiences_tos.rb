@@ -25,7 +25,7 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CustomAudiencesTOS < AdObject
+  class CustomAudiencesTos < AdObject
 
     field :content, 'string'
     field :id, 'string'

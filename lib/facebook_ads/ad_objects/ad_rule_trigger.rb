@@ -47,6 +47,7 @@ module FacebookAds
       "METADATA_UPDATE",
       "STATS_MILESTONE",
       "STATS_CHANGE",
+      "DELIVERY_INSIGHTS_CHANGE",
     ]
 
 

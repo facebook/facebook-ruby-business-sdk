@@ -36,6 +36,15 @@ module FacebookAds
       "LEAD",
       "PURCHASE",
       "SEARCH",
+      "CONTACT",
+      "CUSTOMIZE_PRODUCT",
+      "DONATE",
+      "FIND_LOCATION",
+      "SCHEDULE",
+      "START_TRIAL",
+      "SUBMIT_APPLICATION",
+      "SUBSCRIBE",
+      "TAKE_SURVEY",
       "OTHER",
     ]
 
@@ -57,13 +66,25 @@ module FacebookAds
     field :pixel, 'AdsPixel'
     field :retention_days, 'int'
     field :rule, 'string'
+    field :advanced_rule, 'string'
     field :event_source_id, 'string'
 
     has_edge :activities do |edge|
       edge.get do |api|
-        api.has_param :end_time, 'datetime'
+        api.has_param :end_time, 'object'
         api.has_param :event_type, { enum: %w{conversion_create conversion_delete conversion_update }}
-        api.has_param :start_time, 'datetime'
+        api.has_param :start_time, 'object'
+      end
+    end
+
+    has_edge :adaccounts do |edge|
+      edge.delete do |api|
+        api.has_param :account_id, 'string'
+        api.has_param :business, 'string'
+      end
+      edge.post 'CustomConversion' do |api|
+        api.has_param :account_id, 'string'
+        api.has_param :business, 'string'
       end
     end
 

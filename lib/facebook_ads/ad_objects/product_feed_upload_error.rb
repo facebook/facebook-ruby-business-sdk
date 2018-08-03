@@ -26,12 +26,19 @@ module FacebookAds
   # pull request for this class.
 
   class ProductFeedUploadError < AdObject
+    AFFECTED_SURFACES = [
+      "Dynamic Ads",
+      "Marketplace",
+      "US Marketplace",
+    ]
+
     SEVERITY = [
       "fatal",
       "warning",
     ]
 
 
+    field :affected_surfaces, { list: { enum: -> { AFFECTED_SURFACES }} }
     field :description, 'string'
     field :error_type, 'string'
     field :id, 'string'
@@ -42,7 +49,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :samples do |edge|
-      edge.get 'ProductFeedUploadErrorSample'
+      edge.get
     end
 
   end

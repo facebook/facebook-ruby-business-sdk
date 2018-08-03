@@ -39,6 +39,7 @@ module FacebookAds
     field :form_id, 'string'
     field :id, 'string'
     field :is_organic, 'bool'
+    field :partner_name, 'string'
     field :post, 'object'
     field :retailer_item_id, 'string'
     has_no_post

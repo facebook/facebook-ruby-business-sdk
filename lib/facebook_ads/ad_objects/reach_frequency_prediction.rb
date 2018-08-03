@@ -26,6 +26,14 @@ module FacebookAds
   # pull request for this class.
 
   class ReachFrequencyPrediction < AdObject
+    INSTREAM_PACKAGES = [
+      "NORMAL",
+      "PREMIUM",
+      "SPORTS",
+      "ENTERTAINMENT",
+      "BEAUTY",
+    ]
+
     STATUS = [
       "EXPIRED",
       "DRAFT",
@@ -40,7 +48,7 @@ module FacebookAds
     field :campaign_id, 'string'
     field :campaign_time_start, 'datetime'
     field :campaign_time_stop, 'datetime'
-    field :curve_budget_reach, 'string'
+    field :curve_budget_reach, 'object'
     field :daily_impression_curve, { list: 'double' }
     field :destination_id, 'string'
     field :expiration_time, 'datetime'
@@ -54,6 +62,9 @@ module FacebookAds
     field :external_minimum_reach, 'int'
     field :external_reach, 'int'
     field :frequency_cap, 'int'
+    field :frequency_distribution, { list: 'double' }
+    field :frequency_distribution_map, { list: 'object' }
+    field :frequency_distribution_map_agg, { list: 'object' }
     field :grp_dmas_audience_size, 'double'
     field :holdout_percentage, 'int'
     field :id, 'string'
@@ -76,6 +87,7 @@ module FacebookAds
     field :day_parting_schedule, { list: 'object' }
     field :destination_ids, { list: 'string' }
     field :end_time, 'int'
+    field :instream_packages, { list: { enum: -> { INSTREAM_PACKAGES }} }
     field :num_curve_points, 'int'
     field :objective, 'string'
     field :reach, 'int'
