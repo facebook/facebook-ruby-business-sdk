@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email       = ''
   s.homepage    =
     'https://github.com/shakrmedia/facebook-ruby-ads-sdk'
-  s.license       = 'Nonstandard'
+  s.license = 'Nonstandard'
 
   s.required_ruby_version = '~> 2.0'
 
