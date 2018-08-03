@@ -53,8 +53,6 @@ module FacebookAds
     field :name, 'string'
     field :results, { list: 'string' }
     field :type, 'string'
-    has_no_post
-    has_no_delete
 
   end
 end

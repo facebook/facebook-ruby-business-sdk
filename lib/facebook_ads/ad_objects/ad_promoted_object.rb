@@ -27,9 +27,6 @@ module FacebookAds
 
   class AdPromotedObject < AdObject
     CUSTOM_EVENT_TYPE = [
-      "COMPLETE_REGISTRATION",
-      "CONTENT_VIEW",
-      "SEARCH",
       "RATE",
       "TUTORIAL_COMPLETION",
       "ADD_TO_CART",
@@ -38,6 +35,11 @@ module FacebookAds
       "ADD_PAYMENT_INFO",
       "PURCHASE",
       "LEAD",
+      "COMPLETE_REGISTRATION",
+      "CONTENT_VIEW",
+      "SEARCH",
+      "SERVICE_BOOKING_REQUEST",
+      "MESSAGING_CONVERSATION_STARTED_7D",
       "LEVEL_ACHIEVED",
       "ACHIEVEMENT_UNLOCKED",
       "SPENT_CREDITS",
@@ -46,10 +48,12 @@ module FacebookAds
 
 
     field :application_id, 'string'
+    field :custom_conversion_id, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :event_id, 'string'
     field :object_store_url, 'string'
     field :offer_id, 'string'
+    field :offline_conversion_data_set_id, 'string'
     field :page_id, 'string'
     field :pixel_id, 'string'
     field :place_page_set_id, 'string'

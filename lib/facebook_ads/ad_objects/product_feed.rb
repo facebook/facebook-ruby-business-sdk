@@ -51,6 +51,22 @@ module FacebookAds
       "UTF32BE",
     ]
 
+    FEED_TYPE = [
+      "AUTO",
+      "AUTO_OFFER",
+      "DESTINATION",
+      "FLIGHT",
+      "HOME_LISTING",
+      "HOTEL",
+      "HOTEL_ROOM",
+      "LOCAL_INVENTORY",
+      "MARKET",
+      "MEDIA_TITLE",
+      "PRODUCTS",
+      "VEHICLE_OFFER",
+      "VEHICLES",
+    ]
+
 
     field :country, 'string'
     field :created_time, 'datetime'
@@ -67,12 +83,21 @@ module FacebookAds
     field :quoted_fields_mode, { enum: -> { QUOTED_FIELDS_MODE }}
     field :schedule, 'ProductFeedSchedule'
     field :update_schedule, 'ProductFeedSchedule'
+    field :feed_type, { enum: -> { FEED_TYPE }}
     field :rules, { list: 'string' }
 
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :rules do |edge|
+      edge.post do |api|
+        api.has_param :attribute, 'string'
+        api.has_param :params, 'hash'
+        api.has_param :rule_type, { enum: %w{mapping_rule value_mapping_rule letter_case_rule fallback_rule regex_replace_rule }}
       end
     end
 
@@ -84,6 +109,13 @@ module FacebookAds
         api.has_param :update_only, 'bool'
         api.has_param :url, 'string'
         api.has_param :username, 'string'
+      end
+    end
+
+    has_edge :vehicles do |edge|
+      edge.get do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
       end
     end
 

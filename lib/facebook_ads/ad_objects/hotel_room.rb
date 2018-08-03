@@ -38,7 +38,6 @@ module FacebookAds
     field :room_id, 'string'
     field :sale_price, 'string'
     field :url, 'string'
-    field :pricing_variables, { list: 'object' }
 
   end
 end

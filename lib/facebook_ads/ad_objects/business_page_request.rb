@@ -28,7 +28,7 @@ module FacebookAds
   class BusinessPageRequest < AdObject
 
     field :id, 'string'
-    field :page, 'object'
+    field :page, 'Page'
     has_no_get
     has_no_post
     has_no_delete

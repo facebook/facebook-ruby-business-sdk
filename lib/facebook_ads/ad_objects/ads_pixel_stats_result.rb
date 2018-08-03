@@ -35,12 +35,13 @@ module FacebookAds
       "host",
       "pixel_fire",
       "url",
+      "event_total_counts",
     ]
 
 
     field :aggregation, { enum: -> { AGGREGATION }}
     field :data, { list: 'AdsPixelStats' }
-    field :timestamp, 'datetime'
+    field :start_time, 'datetime'
     has_no_id
     has_no_get
     has_no_post

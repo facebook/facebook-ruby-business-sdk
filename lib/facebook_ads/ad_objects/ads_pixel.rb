@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdsPixel < AdObject
 
+    field :can_proxy, 'bool'
     field :code, 'string'
     field :creation_time, 'datetime'
     field :creator, 'User'
@@ -45,7 +46,15 @@ module FacebookAds
     end
 
     has_edge :shared_accounts do |edge|
+      edge.delete do |api|
+        api.has_param :account_id, 'string'
+        api.has_param :business, 'string'
+      end
       edge.get 'AdAccount' do |api|
+        api.has_param :business, 'string'
+      end
+      edge.post do |api|
+        api.has_param :account_id, 'string'
         api.has_param :business, 'string'
       end
     end
@@ -57,9 +66,9 @@ module FacebookAds
     has_edge :stats do |edge|
       edge.get 'AdsPixelStatsResult' do |api|
         api.has_param :aggregation, { enum: -> { AdsPixelStatsResult::AGGREGATION }}
-        api.has_param :end_time, 'datetime'
+        api.has_param :end_time, 'object'
         api.has_param :event, 'string'
-        api.has_param :start_time, 'datetime'
+        api.has_param :start_time, 'object'
       end
     end
 

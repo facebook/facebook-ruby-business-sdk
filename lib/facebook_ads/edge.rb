@@ -95,7 +95,7 @@ module FacebookAds
       node.post_edge(name, graph_params.merge(params)) do |response|
         # TODO params check
         # TODO Add new object to collection?
-
+        
         field_type = self.class.return_types[:post]
 
         obj = field_type.deserialize(response, node.session)

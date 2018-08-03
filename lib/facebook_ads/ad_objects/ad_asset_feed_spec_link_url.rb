@@ -25,9 +25,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdAssetFeedSpecLinkURL < AdObject
+  class AdAssetFeedSpecLinkUrl < AdObject
 
     field :adlabels, { list: 'AdAssetFeedSpecAssetLabel' }
+    field :carousel_see_more_url, 'string'
     field :deeplink_url, 'string'
     field :display_url, 'string'
     field :url_tags, 'string'

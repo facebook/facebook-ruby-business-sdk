@@ -1,39 +1,73 @@
-# Facebook Ads API SDK for Ruby
+# Facebook Business SDK for Ruby
+
+### Introduction
+
+The Facebook <a href="https://developers.facebook.com/docs/business-sdk" target="_blank">Business SDK</a> is a one-stop shop to help our partners better serve their businesses. Partners are using multiple Facebook API's to server the needs of their clients. Adopting all these API's and keeping them up to date across the various platforms can be time consuming and ultimately prohibitive. For this reason Facebook has developed the Business SDK bundling many of its APIs into one SDK to ease implementation and upkeep. The Business SDK is an upgraded version of the Marketing API SDK that includes the Marketing API as well as many Facebook APIs from different platforms such as Pages, Business Manager, Instagram, etc.
+
+## Quick Start
+
+Business SDK <a href="https://developers.facebook.com/docs/business-sdk/getting-started" target="_blank">Getting Started Guide</a>
 
 ## Pre-requisites
+
 ### Ruby Version
 We developed this SDK using Ruby 2.0, and supports Ruby 2.0+, however, the SDK is not thread-safe at the moment.
 
-### App
-To get started with the SDK you must have a Facebook app registered on [developers.facebook.com](https://developers.facebook.com).
+### Register An App
 
-**IMPORTANT**: Enable all migrations in the App's Settings->Migrations page.
+To get started with the SDK, you must have an app
+registered on <a href="https://developers.facebook.com/" target="_blank">developers.facebook.com</a>.
 
-**IMPORTANT**: To have better security, we recommend you to turn on 'App Secret Proof for Server API calls' in your app's Settings->Advanced page.
+To manage the Marketing API, please visit your
+<a href="https://developers.facebook.com/apps/<YOUR APP ID>/dashboard"> App Dashboard </a>
+and add the <b>Marketing API</b> product to your app.
+
+**IMPORTANT**: For security, it is recommended that you turn on 'App Secret
+Proof for Server API calls' in your app's Settings->Advanced page.
+
+### Obtain An Access Token
+
+When someone connects with an app using Facebook Login and approves the request
+for permissions, the app obtains an access token that provides temporary, secure
+access to Facebook APIs.
+
+An access token is an opaque string that identifies a User, app, or Page.
+
+For example, to access the Marketing API, you need to generate a User access token
+for your app and ask for the ``ads_management`` permission; to access Pages API,
+you need to generate a Page access token for your app and ask for the ``manage_page`` permission.
+
+Refer to our
+<a href="https://developers.facebook.com/docs/facebook-login/access-tokens" target="_blank">
+Access Token Guide</a> to learn more.
+
+For now, we can use the
+<a href="https://developers.facebook.com/tools/explorer" target="_blank">Graph Explorer</a>
+to get an access token.
 
 ## Installation
 The SDK is available as a RubyGem. To use the gem, you can add the following to Gemfile
 
 ```ruby
-gem 'facebookads'
+gem 'facebookbusiness'
 ```
 
 or install it using command line
 
 ```bash
-gem install facebookads
+gem install facebookbusiness
 ```
 
 and then in your code
 
 ```ruby
-require 'facebook_ads'
+require 'facebookbusiness'
 ```
 
 
 ## Configuration
 ### Access Token
-There are several ways to configure access token and app secret. If you only use one access token and app secret (example: an internal app managing only your own assets). You can set a global access token and app secret will will be used across all requests
+There are several ways to configure access token and app secret. If you only use one access token and app secret (example: an internal app managing only your own assets). You can set a global access token and app secret will be used across all requests
 
 ```ruby
 FacebookAds.configure do |config|
@@ -54,10 +88,10 @@ Or you can create a session object for particular object
 ```ruby
 # Create a Session object to be reused
 session = FacebookAds::Session.new(access_token: <ACCESS_TOKEN>, app_secret: <APP SECRET>)
-ad_account = FacebookAds::AdAccount.get('act_12334', 'name', session)
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name', session)
 
 # Or a using shortcut during object instantiation
-ad_account = FacebookAds::AdAccount.get('act_12334', 'name', {
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name', {
     access_token: <ACCESS_TOKEN>, app_secret: <APP SECRET>
 })
 ```
@@ -68,7 +102,7 @@ ad_account = FacebookAds::AdAccount.get('act_12334', 'name', {
 The SDK contains ad object files auto generated from our API metadata, each node type has its own corresponding Ruby class under the `FacebookAds` module. For example, to fetch an AdAccount
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name')
 puts "Ad Account Name: #{ad_account.name}"
 ```
 
@@ -78,7 +112,7 @@ The `#get` method doesn't trigger the `GET` request immediately. The API request
 To update a node, you can use the `#save` method of ad object classes.
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name')
 ad_account.name = "New Ad Account"
 ad_account.save
 
@@ -108,7 +142,7 @@ To interact with an edge, you first need to instantiate the parent node. Since, 
 Iterating edges is easy, instantiate the parent nodes and then simply iterate with `#each`. The edge is an  `Enumerable` so a bunch of handy methods such as `#map`, `#select`, `#find` etc. come for free!
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_1234567', 'name')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name')
 
 # Printing all campaign names
 ad_account.campaigns(fields: 'name').each do |campaign|
@@ -166,7 +200,7 @@ ad_account.advideos.create({
 [Batch API](https://developers.facebook.com/docs/marketing-api/asyncrequests) allows you to make API calls in a batch. You can collect a bunch of API requests and fire them all at once to reduce wait time. To create a batch, just wrap operations with a block to `FacebookAds::Batch#with_batch`
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_<ACT_ID>')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>')
 
 batch = FacebookAds::Batch.with_batch do
   10.times.map do |n|
@@ -185,7 +219,7 @@ batch.execute
 Dependencies between requests is supported, the SDK simplifies the use of JSONPath references between batched operations.
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_12334')
+ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>')
 
 batch = FacebookAds::Batch.with_batch do
   # This won't be sent out immediately!

@@ -19,6 +19,6 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  VERSION = '0.2.11.2-shakr'
-  API_VERSION = '2.11'
+  VERSION = '0.3.1.0-shakr'
+  API_VERSION = '3.1'
 end

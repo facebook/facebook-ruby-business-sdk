@@ -27,7 +27,12 @@ module FacebookAds
       end
 
       def serialize(value)
-        value.to_s
+        case value
+          when Hash
+            JSON.generate(value)
+          else
+            value.to_s
+        end
       end
     end
   end

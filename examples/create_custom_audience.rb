@@ -17,7 +17,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'dotenv/load'
-require 'facebook_ads'
+require 'facebookbusiness'
 
 ad_acc = FacebookAds::AdAccount.get('act_<ACT_ID>')
 ca = ad_acc.customaudiences.create({
@@ -26,4 +26,4 @@ ca = ad_acc.customaudiences.create({
   description: 'CA from API',
 })
 
-ca.add_user(File.read("emails").split.map(&:strip), "EMAIL_SHA256")
+ca.add_users(File.read("emails").split.map(&:strip), "EMAIL_SHA256")

@@ -17,7 +17,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'dotenv/load'
-require 'facebook_ads'
+require 'facebookbusiness'
 
 ad_account = FacebookAds::AdAccount.get('act_10150001429540368', 'name')
 p "Ad Account Name: #{ad_account.name}"

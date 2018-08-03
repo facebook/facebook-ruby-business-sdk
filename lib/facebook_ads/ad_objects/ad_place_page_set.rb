@@ -37,7 +37,7 @@ module FacebookAds
     field :location_types, { list: 'string' }
     field :name, 'string'
     field :pages_count, 'int'
-    field :parent_page, 'object'
+    field :parent_page, 'Page'
     has_no_delete
 
   end
