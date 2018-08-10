@@ -32,30 +32,28 @@ module FacebookAds
 
     def execute
       return [] if operations.empty?
-      operations.each_slice(50) do |slice|
-        api_response = APIRequest.new(:post, '', session: session, params: batch_args(slice)).execute_now
-        self.last_api_response = api_response
-        slice.zip(api_response.result).map do |req, res|
-          next unless res
+      api_response = APIRequest.new(:post, '', session: session, params: batch_args).execute_now
+      self.last_api_response = api_response
+      operations.zip(api_response.result).map do |req, res|
+        next unless res
 
-          begin
-            req.create_response(
-                res['code'],
-                convert_headers_to_hash(res['headers']),
-                res['body'])
-          rescue APIError => e
-            e
-          end
+        begin
+          req.create_response(
+            res['code'],
+            convert_headers_to_hash(res['headers']),
+            res['body'])
+        rescue APIError => e
+          e
         end
       end
     end
 
-    def batch_args(slice = operations)
-      {batch: JSON.dump(operations_args(slice))}.merge(files_args)
+    def batch_args
+      {batch: JSON.dump(operations_args)}.merge(files_args)
     end
 
-    def operations_args(slice)
-      slice.map do |api_req|
+    def operations_args
+      operations.map do |api_req|
         api_req.to_batch_params
       end
     end
@@ -81,7 +79,7 @@ module FacebookAds
     private
     def convert_headers_to_hash(headers)
       Faraday::Utils::Headers.new(
-          Hash[headers.map {|h| [h['name'], h['value']]}]
+        Hash[headers.map {|h| [h['name'], h['value']]}]
       )
     end
   end

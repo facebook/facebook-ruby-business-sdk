@@ -61,6 +61,14 @@ module FacebookAds
 
     has_edge :shared_agencies do |edge|
       edge.get 'Business'
+      edge.post do |api|
+        api.has_param :agency_id, 'string'
+        api.has_param :business, 'string'
+      end
+      edge.delete do |api|
+        api.has_param :agency_id, 'string'
+        api.has_param :business, 'string'
+      end
     end
 
     has_edge :stats do |edge|

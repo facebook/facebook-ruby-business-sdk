@@ -1005,6 +1005,10 @@ module FacebookAds
       edge.get 'User' do |api|
         api.has_param :uid, 'int'
       end
+      edge.post do |api|
+        api.has_param :admin_id, 'string'
+        api.has_param :role, 'string'
+      end
     end
 
     has_edge :saved_filters do |edge|
