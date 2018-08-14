@@ -666,6 +666,7 @@ module FacebookAds
         api.has_param :questions, { list: 'object' }
         api.has_param :thank_you_page, 'object'
         api.has_param :thank_you_page_id, 'object'
+        api.has_param :tracking_parameters, 'object'
       end
     end
 
@@ -784,7 +785,6 @@ module FacebookAds
         api.has_param :message, 'object'
         api.has_param :messaging_type, { enum: %w{RESPONSE UPDATE MESSAGE_TAG }}
         api.has_param :notification_type, { enum: %w{REGULAR SILENT_PUSH NO_PUSH }}
-        api.has_param :persona_id, 'object'
         api.has_param :recipient, 'object'
         api.has_param :sender_action, { enum: %w{MARK_SEEN TYPING_ON TYPING_OFF }}
         api.has_param :tag, 'object'
@@ -1162,6 +1162,7 @@ module FacebookAds
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'
         api.has_param :is_voice_clip, 'bool'
+        api.has_param :multilingual_data, { list: 'object' }
         api.has_param :no_story, 'bool'
         api.has_param :original_fov, 'int'
         api.has_param :original_projection_type, { enum: %w{equirectangular cubemap equiangular_cubemap half_equirectangular }}
@@ -1175,6 +1176,7 @@ module FacebookAds
         api.has_param :slideshow_spec, 'hash'
         api.has_param :social_actions, 'bool'
         api.has_param :source, 'string'
+        api.has_param :specified_dialect, 'string'
         api.has_param :spherical, 'bool'
         api.has_param :sponsor_id, 'string'
         api.has_param :sponsor_relationship, 'int'
@@ -1188,6 +1190,7 @@ module FacebookAds
         api.has_param :upload_phase, { enum: %w{start transfer finish cancel }}
         api.has_param :upload_session_id, 'string'
         api.has_param :video_file_chunk, 'string'
+        api.has_param :xpost_everstore_handle, 'string'
       end
     end
 

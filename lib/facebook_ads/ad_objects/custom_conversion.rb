@@ -44,7 +44,6 @@ module FacebookAds
       "START_TRIAL",
       "SUBMIT_APPLICATION",
       "SUBSCRIBE",
-      "TAKE_SURVEY",
       "OTHER",
     ]
 

@@ -47,6 +47,7 @@ module FacebookAds
     field :created_time, 'datetime'
     field :email, 'string'
     field :expiration_time, 'datetime'
+    field :expiry_time, 'datetime'
     field :finance_role, 'string'
     field :id, 'string'
     field :invite_link, 'string'

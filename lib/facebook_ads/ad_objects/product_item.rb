@@ -86,6 +86,7 @@ module FacebookAds
     field :applinks, 'AppLinks'
     field :availability, { enum: -> { AVAILABILITY }}
     field :brand, 'string'
+    field :capability_to_review_status, { list: 'object' }
     field :category, 'string'
     field :color, 'string'
     field :commerce_insights, 'ProductItemCommerceInsights'

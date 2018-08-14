@@ -29,6 +29,7 @@ module FacebookAds
 
     field :ads_pixel, 'AdsPixel'
     field :application, 'object'
+    field :completed_integration_types, { list: 'string' }
     field :external_id, 'string'
     field :has_oauth_token, 'bool'
     field :id, 'string'

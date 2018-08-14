@@ -30,6 +30,7 @@ module FacebookAds
     field :country, 'string'
     field :is_financial_service, 'bool'
     field :origin, { list: 'object' }
+    field :origin_event_source_type, 'string'
     field :ratio, 'double'
     field :starting_ratio, 'double'
     field :target_countries, { list: 'string' }

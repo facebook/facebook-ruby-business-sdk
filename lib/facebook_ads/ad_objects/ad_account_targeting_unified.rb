@@ -79,6 +79,8 @@ module FacebookAds
       "effective_device_platforms",
       "audience_network_positions",
       "effective_audience_network_positions",
+      "whatsapp_positions",
+      "effective_whatsapp_positions",
       "excluded_publisher_categories",
       "excluded_publisher_list_ids",
       "publisher_visibility_categories",

@@ -188,6 +188,7 @@ module FacebookAds
         api.has_param :upload_phase, { enum: %w{start transfer finish cancel }}
         api.has_param :upload_session_id, 'string'
         api.has_param :video_file_chunk, 'string'
+        api.has_param :xpost_everstore_handle, 'string'
       end
     end
 

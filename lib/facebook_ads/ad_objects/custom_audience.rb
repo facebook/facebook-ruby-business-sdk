@@ -36,6 +36,7 @@ module FacebookAds
     ]
 
     CONTENT_TYPE = [
+      "AUTOMOTIVE_MODEL",
       "DESTINATION",
       "FLIGHT",
       "HOME_LISTING",
@@ -71,13 +72,13 @@ module FacebookAds
 
     FIELDS = [
       "account_id",
-      "approximate_count",
       "customer_file_source",
       "data_source",
       "delivery_status",
       "description",
       "external_event_source",
       "id",
+      "approximate_count",
       "is_value_based",
       "lookalike_audience_ids",
       "lookalike_spec",
@@ -89,6 +90,7 @@ module FacebookAds
       "retention_days",
       "rule",
       "rule_aggregation",
+      "sharing_status",
       "subtype",
       "time_content_updated",
       "time_created",
@@ -110,11 +112,12 @@ module FacebookAds
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'
     field :opt_out_link, 'string'
-    field :permission_for_actions, 'CustomAudiencePermission'
+    field :permission_for_actions, 'object'
     field :pixel_id, 'string'
     field :retention_days, 'int'
     field :rule, 'string'
     field :rule_aggregation, 'string'
+    field :sharing_status, 'CustomAudienceSharingStatus'
     field :subtype, 'string'
     field :time_content_updated, 'int'
     field :time_created, 'int'

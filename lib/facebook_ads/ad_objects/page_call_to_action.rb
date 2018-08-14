@@ -33,6 +33,7 @@ module FacebookAds
       "PHONE_CALL",
       "MESSENGER",
       "EMAIL",
+      "SHOP_ON_FACEBOOK",
       "NONE",
     ]
 
@@ -43,6 +44,7 @@ module FacebookAds
       "PHONE_CALL",
       "MESSENGER",
       "EMAIL",
+      "SHOP_ON_FACEBOOK",
       "NONE",
     ]
 
@@ -70,6 +72,7 @@ module FacebookAds
       "BUY_TICKETS",
       "PLAY_MUSIC",
       "VISIT_GROUP",
+      "SHOP_ON_FACEBOOK",
     ]
 
     WEB_DESTINATION_TYPE = [
@@ -77,6 +80,7 @@ module FacebookAds
       "MESSENGER",
       "NONE",
       "WEBSITE",
+      "SHOP_ON_FACEBOOK",
     ]
 
 

@@ -57,6 +57,9 @@ module FacebookAds
       "home_delivery",
       "free_shipping",
       "inventory",
+      "pay_on_arrival",
+      "pay_at_hotel",
+      "fast_delivery",
     ]
 
     POSITION = [

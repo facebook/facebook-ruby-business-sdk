@@ -38,7 +38,9 @@ module FacebookAds
 
     field :created_by, 'User'
     field :created_time, 'datetime'
+    field :finance_permission, 'string'
     field :id, 'string'
+    field :ip_permission, 'string'
     field :name, 'string'
     field :role, { enum: -> { ROLE }}
     field :system_user_id, 'int'

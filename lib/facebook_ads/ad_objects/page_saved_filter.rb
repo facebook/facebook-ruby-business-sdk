@@ -28,6 +28,7 @@ module FacebookAds
   class PageSavedFilter < AdObject
     SECTION = [
       "AUDIENCE_ALERTS",
+      "CAMPAIGN_CENTER",
       "CHEX_PENDING_ORDERS",
       "CHEX_COMPLETED_ORDERS",
       "COMMERCE_PLATFORM_SETTINGS",

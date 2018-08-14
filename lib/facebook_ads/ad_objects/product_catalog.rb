@@ -224,6 +224,7 @@ module FacebookAds
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
+        api.has_param :return_only_approved_products, 'bool'
       end
       edge.post 'ProductItem' do |api|
         api.has_param :additional_image_urls, { list: 'string' }
@@ -330,6 +331,7 @@ module FacebookAds
         api.has_param :upload_phase, { enum: %w{start transfer finish cancel }}
         api.has_param :upload_session_id, 'string'
         api.has_param :video_file_chunk, 'string'
+        api.has_param :xpost_everstore_handle, 'string'
       end
     end
 

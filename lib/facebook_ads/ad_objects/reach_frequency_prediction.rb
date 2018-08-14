@@ -71,6 +71,7 @@ module FacebookAds
     field :instagram_destination_id, 'string'
     field :interval_frequency_cap, 'int'
     field :interval_frequency_cap_reset_period, 'int'
+    field :is_io, 'bool'
     field :name, 'string'
     field :pause_periods, { list: 'object' }
     field :placement_breakdown, 'object'

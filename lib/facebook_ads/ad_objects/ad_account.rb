@@ -306,6 +306,7 @@ module FacebookAds
         api.has_param :end_time, 'datetime'
         api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
         api.has_param :frequency_control_specs, { list: 'object' }
+        api.has_param :is_dynamic_creative_optimization, 'bool'
         api.has_param :lifetime_budget, 'int'
         api.has_param :lifetime_imps, 'int'
         api.has_param :lifetime_min_spend_target, 'int'
@@ -385,6 +386,7 @@ module FacebookAds
         api.has_param :upload_phase, { enum: %w{start transfer finish cancel }}
         api.has_param :upload_session_id, 'string'
         api.has_param :video_file_chunk, 'string'
+        api.has_param :xpost_everstore_handle, 'string'
         api.accepts_files!
       end
     end

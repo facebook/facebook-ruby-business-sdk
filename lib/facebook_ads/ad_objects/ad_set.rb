@@ -160,6 +160,7 @@ module FacebookAds
     field :frequency_control_specs, { list: 'AdCampaignFrequencyControlSpecs' }
     field :id, 'string'
     field :instagram_actor_id, 'string'
+    field :is_dynamic_creative_optimization, 'bool'
     field :lifetime_budget, 'string'
     field :lifetime_imps, 'int'
     field :lifetime_min_spend_target, 'string'
