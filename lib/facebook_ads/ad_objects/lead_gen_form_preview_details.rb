@@ -38,8 +38,7 @@ module FacebookAds
     field :review_your_info_text, 'string'
     field :slide_to_submit_text, 'string'
     field :submit_button_text, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

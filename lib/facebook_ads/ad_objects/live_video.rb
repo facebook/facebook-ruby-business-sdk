@@ -26,26 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class LiveVideo < AdObject
-    LIVE_COMMENT_MODERATION_SETTING = [
-      "FOLLOWER",
-      "SLOW",
-      "DISCUSSION",
-      "RESTRICTED",
-    ]
-
-    STATUS = [
-      "UNPUBLISHED",
-      "LIVE_NOW",
-      "SCHEDULED_UNPUBLISHED",
-      "SCHEDULED_LIVE",
-      "SCHEDULED_CANCELED",
-    ]
-
-    STREAM_TYPE = [
-      "REGULAR",
-      "AMBIENT",
-    ]
-
     BROADCAST_STATUS = [
       "UNPUBLISHED",
       "LIVE",
@@ -61,6 +41,7 @@ module FacebookAds
     PROJECTION = [
       "EQUIRECTANGULAR",
       "CUBEMAP",
+      "HALF_EQUIRECTANGULAR",
     ]
 
     SOURCE = [
@@ -72,14 +53,39 @@ module FacebookAds
       "ambiX_4",
     ]
 
+    STATUS = [
+      "UNPUBLISHED",
+      "LIVE_NOW",
+      "SCHEDULED_UNPUBLISHED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_CANCELED",
+    ]
+
     STEREOSCOPIC_MODE = [
       "MONO",
       "LEFT_RIGHT",
       "TOP_BOTTOM",
     ]
 
+    STREAM_TYPE = [
+      "REGULAR",
+      "AMBIENT",
+    ]
 
-    field :ad_break_config, 'object'
+    TYPE = [
+      "tagged",
+      "uploaded",
+    ]
+
+    LIVE_COMMENT_MODERATION_SETTING = [
+      "FOLLOWER",
+      "SLOW",
+      "DISCUSSION",
+      "RESTRICTED",
+    ]
+
+
+    field :ad_break_config, 'LiveVideoAdBreakConfig'
     field :ad_break_failure_reason, 'string'
     field :broadcast_start_time, 'datetime'
     field :copyright, 'VideoCopyright'
@@ -90,18 +96,79 @@ module FacebookAds
     field :embed_html, 'string'
     field :from, 'object'
     field :id, 'string'
+    field :ingest_streams, { list: 'LiveVideoInputStream' }
     field :is_manual_mode, 'bool'
     field :is_reference_only, 'bool'
-    field :live_encoders, { list: 'object' }
+    field :live_encoders, { list: 'LiveEncoder' }
     field :live_views, 'int'
     field :permalink_url, 'string'
     field :planned_start_time, 'datetime'
+    field :preview_url, 'string'
     field :seconds_left, 'int'
     field :secure_stream_url, 'string'
     field :status, 'string'
     field :stream_url, 'string'
     field :title, 'string'
-    field :video, 'object'
+    field :total_views, 'string'
+    field :video, 'AdVideo'
+
+    has_edge :blocked_users do |edge|
+      edge.get 'User' do |api|
+        api.has_param :uid, 'object'
+      end
+    end
+
+    has_edge :comments do |edge|
+      edge.get 'Comment' do |api|
+        api.has_param :filter, { enum: -> { Comment::FILTER }}
+        api.has_param :order, { enum: -> { Comment::ORDER }}
+        api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
+        api.has_param :since, 'datetime'
+      end
+    end
+
+    has_edge :crosspost_shared_pages do |edge|
+      edge.get 'Page'
+    end
+
+    has_edge :crossposted_broadcasts do |edge|
+      edge.get 'LiveVideo'
+    end
+
+    has_edge :errors do |edge|
+      edge.get 'LiveVideoError'
+    end
+
+    has_edge :game_shows do |edge|
+      edge.get 'VideoGameShow'
+    end
+
+    has_edge :input_streams do |edge|
+      edge.post 'LiveVideo'
+    end
+
+    has_edge :likes do |edge|
+      edge.get 'Profile'
+    end
+
+    has_edge :polls do |edge|
+      edge.get 'VideoPoll'
+      edge.post 'VideoPoll' do |api|
+        api.has_param :question, 'string'
+        api.has_param :options, { list: 'string' }
+        api.has_param :correct_option, 'int'
+        api.has_param :default_open, 'bool'
+        api.has_param :show_results, 'bool'
+        api.has_param :show_gradient, 'bool'
+        api.has_param :close_after_voting, 'bool'
+      end
+    end
+
+    has_edge :reactions do |edge|
+      edge.get 'Profile' do |api|
+        api.has_param :type, { enum: -> { Profile::TYPE }}
+      end
+    end
 
   end
 end

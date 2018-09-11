@@ -33,7 +33,20 @@ module FacebookAds
       "NONE",
     ]
 
+    PERMITTED_ROLES = [
+      "ADMIN",
+      "UPLOADER",
+      "ADVERTISER",
+    ]
 
+    ROLE = [
+      "ADMIN",
+      "UPLOADER",
+      "ADVERTISER",
+    ]
+
+
+    field :attribute_stats, 'string'
     field :business, 'Business'
     field :config, 'string'
     field :creation_time, 'datetime'
@@ -49,6 +62,7 @@ module FacebookAds
     field :last_upload_app, 'string'
     field :match_rate_approx, 'int'
     field :matched_entries, 'int'
+    field :matched_unique_users, 'int'
     field :name, 'string'
     field :usage, 'object'
     field :valid_entries, 'int'
@@ -57,9 +71,9 @@ module FacebookAds
     has_edge :activities do |edge|
       edge.get do |api|
         api.has_param :business_id, 'string'
+        api.has_param :start_time, 'datetime'
         api.has_param :end_time, 'datetime'
         api.has_param :event_type, { enum: %w{dataset_assign_to_adacct dataset_autotrack_on_adacct dataset_disable_autotrack_on_adacct dataset_unassign_from_adacct add_dataset_to_business add_user_to_dataset remove_user_from_dataset update_user_role_on_dataset create_custom_conversion update_custom_conversion create_custom_audience share_custom_audience unshare_custom_audience }}
-        api.has_param :start_time, 'datetime'
       end
     end
 
@@ -71,10 +85,10 @@ module FacebookAds
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'
       end
-      edge.post do |api|
+      edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :account_id, 'string'
-        api.has_param :auto_track_for_ads, 'bool'
         api.has_param :business, 'string'
+        api.has_param :auto_track_for_ads, 'bool'
       end
     end
 
@@ -82,40 +96,145 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :business, 'string'
       end
-      edge.post 'Business' do |api|
+      edge.get 'Business'
+      edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :business, 'string'
-        api.has_param :permitted_roles, { list: { enum: -> { Business::PERMITTED_ROLES }} }
+        api.has_param :permitted_roles, { list: { enum: -> { OfflineConversionDataSet::PERMITTED_ROLES }} }
+      end
+    end
+
+    has_edge :analytics_cohort_query do |edge|
+      edge.get 'AnalyticsCohortQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_entity_user_config do |edge|
+      edge.get 'AnalyticsEntityUserConfig'
+    end
+
+    has_edge :analytics_event_types do |edge|
+      edge.get 'AnalyticsEventTypes'
+    end
+
+    has_edge :analytics_funnel_query do |edge|
+      edge.get 'AnalyticsFunnelQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_query do |edge|
+      edge.get 'AnalyticsQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_query_export do |edge|
+      edge.get 'AnalyticsQueryExportResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_segments do |edge|
+      edge.get 'AnalyticsSegment'
+    end
+
+    has_edge :assigned_partners do |edge|
+      edge.get 'Business'
+    end
+
+    has_edge :assigned_users do |edge|
+      edge.get 'AssignedUser' do |api|
+        api.has_param :business, 'object'
+      end
+    end
+
+    has_edge :attributed_events do |edge|
+      edge.get do |api|
+        api.has_param :start, 'int'
+        api.has_param :end, 'int'
+        api.has_param :breakdowns, { list: { enum: %w{time_span is_view_through event_type }} }
+      end
+    end
+
+    has_edge :audiences do |edge|
+      edge.get 'CustomAudience' do |api|
+        api.has_param :ad_account, 'string'
+      end
+    end
+
+    has_edge :business_object_tags do |edge|
+      edge.get 'BusinessTag' do |api|
+        api.has_param :business_id, 'string'
+      end
+    end
+
+    has_edge :business_requests do |edge|
+      edge.get 'BusinessRequest'
+    end
+
+    has_edge :connected_business_objects do |edge|
+      edge.get 'BusinessObject' do |api|
+        api.has_param :type, { enum: -> { BusinessObject::TYPE }}
+        api.has_param :business_id, 'string'
+      end
+    end
+
+    has_edge :customconversions do |edge|
+      edge.get 'CustomConversion' do |api|
+        api.has_param :ad_account, 'string'
+      end
+    end
+
+    has_edge :da_checks do |edge|
+      edge.get 'DaCheck' do |api|
+        api.has_param :checks, { list: 'string' }
+      end
+    end
+
+    has_edge :da_stats do |edge|
+      edge.get 'ExternalEventSourceDaStatsResult' do |api|
+        api.has_param :event, { enum: -> { ExternalEventSourceDAStatsResult::EVENT }}
       end
     end
 
     has_edge :events do |edge|
       edge.post do |api|
+        api.has_param :upload_tag, 'string'
+        api.has_param :upload_id, 'string'
+        api.has_param :upload_source, 'string'
         api.has_param :data, { list: 'string' }
         api.has_param :namespace_id, 'string'
         api.has_param :progress, 'object'
-        api.has_param :upload_id, 'string'
-        api.has_param :upload_tag, 'string'
       end
+    end
+
+    has_edge :optimization_statuses do |edge|
+      edge.get
+    end
+
+    has_edge :product_catalogs do |edge|
+      edge.get 'ProductCatalog'
     end
 
     has_edge :stats do |edge|
       edge.get do |api|
-        api.has_param :aggr_time, { enum: %w{upload_time event_time }}
-        api.has_param :end, 'int'
-        api.has_param :granularity, { enum: %w{daily hourly }}
-        api.has_param :skip_empty_values, 'bool'
         api.has_param :start, 'int'
+        api.has_param :end, 'int'
+        api.has_param :skip_empty_values, 'bool'
+        api.has_param :aggr_time, { enum: %w{upload_time event_time }}
         api.has_param :user_timezone_id, 'int'
+        api.has_param :granularity, { enum: %w{daily hourly six_hourly }}
       end
     end
 
     has_edge :uploads do |edge|
       edge.get do |api|
-        api.has_param :end_time, 'object'
-        api.has_param :order, { enum: %w{ASCENDING DESCENDING }}
-        api.has_param :sort_by, { enum: %w{CREATION_TIME FIRST_UPLOAD_TIME LAST_UPLOAD_TIME API_CALLS EVENT_TIME_MIN EVENT_TIME_MAX IS_EXCLUDED_FOR_LIFT }}
-        api.has_param :start_time, 'object'
         api.has_param :upload_tag, 'string'
+        api.has_param :start_time, 'object'
+        api.has_param :end_time, 'object'
+        api.has_param :sort_by, { enum: %w{CREATION_TIME FIRST_UPLOAD_TIME LAST_UPLOAD_TIME API_CALLS EVENT_TIME_MIN EVENT_TIME_MAX IS_EXCLUDED_FOR_LIFT }}
+        api.has_param :order, { enum: %w{ASCENDING DESCENDING }}
       end
       edge.post do |api|
         api.has_param :upload_tag, 'string'
@@ -124,14 +243,17 @@ module FacebookAds
 
     has_edge :userpermissions do |edge|
       edge.delete do |api|
-        api.has_param :business, 'object'
+        api.has_param :user, 'int'
         api.has_param :email, 'string'
-        api.has_param :user, 'int'
-      end
-      edge.post do |api|
         api.has_param :business, 'object'
-        api.has_param :role, { enum: %w{ADMIN UPLOADER ADVERTISER }}
+      end
+      edge.get do |api|
+        api.has_param :business, 'object'
+      end
+      edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :user, 'int'
+        api.has_param :role, { enum: -> { OfflineConversionDataSet::ROLE }}
+        api.has_param :business, 'object'
       end
     end
 

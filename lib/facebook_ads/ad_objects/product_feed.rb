@@ -78,13 +78,72 @@ module FacebookAds
     field :id, 'string'
     field :latest_upload, 'ProductFeedUpload'
     field :name, 'string'
+    field :override_type, 'string'
     field :product_count, 'int'
     field :qualified_product_count, 'int'
+    field :quoted_fields, 'bool'
     field :quoted_fields_mode, { enum: -> { QUOTED_FIELDS_MODE }}
     field :schedule, 'ProductFeedSchedule'
     field :update_schedule, 'ProductFeedSchedule'
     field :feed_type, { enum: -> { FEED_TYPE }}
     field :rules, { list: 'string' }
+
+    has_edge :auto_markets do |edge|
+      edge.get 'AutoMarket'
+    end
+
+    has_edge :automotive_models do |edge|
+      edge.get 'AutomotiveModel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :autos do |edge|
+      edge.get 'Auto'
+    end
+
+    has_edge :destinations do |edge|
+      edge.get 'Destination' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :flights do |edge|
+      edge.get 'Flight' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :home_listings do |edge|
+      edge.get 'HomeListing' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :home_service_providers do |edge|
+      edge.get 'HomeServiceProvider' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :hotels do |edge|
+      edge.get 'Hotel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :media_titles do |edge|
+      edge.get 'MediaTitle' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
 
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
@@ -93,11 +152,24 @@ module FacebookAds
       end
     end
 
-    has_edge :rules do |edge|
-      edge.post do |api|
+    has_edge :quality_issues do |edge|
+      edge.get 'ProductsQualityIssue'
+    end
+
+    has_edge :rule_preview_samples do |edge|
+      edge.get 'ProductFeedRulePreviewSample' do |api|
         api.has_param :attribute, 'string'
         api.has_param :params, 'hash'
-        api.has_param :rule_type, { enum: %w{mapping_rule value_mapping_rule letter_case_rule fallback_rule regex_replace_rule }}
+        api.has_param :rule_type, { enum: -> { ProductFeedRulePreviewSample::RULE_TYPE }}
+      end
+    end
+
+    has_edge :rules do |edge|
+      edge.get 'ProductFeedRule'
+      edge.post 'ProductFeedRule' do |api|
+        api.has_param :attribute, 'string'
+        api.has_param :params, 'hash'
+        api.has_param :rule_type, { enum: -> { ProductFeedRule::RULE_TYPE }}
       end
     end
 
@@ -112,8 +184,15 @@ module FacebookAds
       end
     end
 
+    has_edge :vehicle_offers do |edge|
+      edge.get 'VehicleOffer' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
     has_edge :vehicles do |edge|
-      edge.get do |api|
+      edge.get 'Vehicle' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

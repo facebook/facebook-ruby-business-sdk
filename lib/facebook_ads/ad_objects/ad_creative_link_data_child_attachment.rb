@@ -36,10 +36,10 @@ module FacebookAds
     field :name, 'string'
     field :picture, 'string'
     field :place_data, 'AdCreativePlaceData'
+    field :referral_id, 'string'
     field :static_card, 'bool'
     field :video_id, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

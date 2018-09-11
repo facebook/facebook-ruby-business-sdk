@@ -30,8 +30,7 @@ module FacebookAds
     field :element_child_index, 'int'
     field :element_crops, 'AdsImageCrops'
     field :element_id, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

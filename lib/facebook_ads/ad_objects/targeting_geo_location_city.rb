@@ -34,8 +34,7 @@ module FacebookAds
     field :radius, 'int'
     field :region, 'string'
     field :region_id, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

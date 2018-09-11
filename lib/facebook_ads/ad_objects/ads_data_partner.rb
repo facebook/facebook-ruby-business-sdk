@@ -33,5 +33,15 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :partnerstudies do |edge|
+      edge.get 'PartnerStudy'
+    end
+
+    has_edge :usersofanyaudience do |edge|
+      edge.delete do |api|
+        api.has_param :external_ids, { list: 'string' }
+      end
+    end
+
   end
 end

@@ -30,7 +30,6 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :source_type, 'string'
-    field :external_event_sources, { list: 'string' }
     has_no_post
     has_no_delete
 

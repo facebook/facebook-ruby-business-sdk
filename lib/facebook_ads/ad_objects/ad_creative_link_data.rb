@@ -50,7 +50,7 @@ module FacebookAds
     field :child_attachments, { list: 'AdCreativeLinkDataChildAttachment' }
     field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
     field :custom_overlay_spec, 'AdCreativeLinkDataCustomOverlaySpec'
-    field :customization_rules_spec, { list: 'object' }
+    field :customization_rules_spec, { list: 'AdCustomizationRuleSpec' }
     field :description, 'string'
     field :event_id, 'string'
     field :force_single_link, 'bool'
@@ -70,9 +70,9 @@ module FacebookAds
     field :preferred_image_tags, { list: 'string' }
     field :retailer_item_ids, { list: 'string' }
     field :show_multiple_images, 'bool'
-    field :static_fallback_spec, 'object'
-    has_no_id
-    has_no_get
+    field :sponsorship_info, 'AdCreativeLinkDataSponsorshipInfoSpec'
+    field :static_fallback_spec, 'AdCreativeStaticFallbackSpec'
+    field :id, 'string'
     has_no_post
     has_no_delete
 

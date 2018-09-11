@@ -62,5 +62,25 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :applications do |edge|
+      edge.get 'Application'
+    end
+
+    has_edge :inventory_estimations do |edge|
+      edge.get do |api|
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+        api.has_param :source, { enum: %w{TRACKER REQUESTS AD_BREAK_REQUESTS }}
+      end
+    end
+
+    has_edge :overlap_projections do |edge|
+      edge.get do |api|
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+        api.has_param :source, { enum: %w{TRACKER REQUESTS AD_BREAK_REQUESTS }}
+      end
+    end
+
   end
 end

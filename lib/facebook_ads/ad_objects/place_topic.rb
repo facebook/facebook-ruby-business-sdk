@@ -26,13 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class PlaceTopic < AdObject
-    ICON_SIZE = [
-      "24",
-      "36",
-      "48",
-      "72",
-    ]
-
 
     field :count, 'int'
     field :has_children, 'bool'
@@ -44,6 +37,13 @@ module FacebookAds
     field :top_subtopic_names, { list: 'string' }
     has_no_post
     has_no_delete
+
+    has_edge :picture do |edge|
+      edge.get 'ProfilePictureSource' do |api|
+        api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
+        api.has_param :redirect, 'bool'
+      end
+    end
 
   end
 end

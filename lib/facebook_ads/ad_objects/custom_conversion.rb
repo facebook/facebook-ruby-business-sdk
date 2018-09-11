@@ -50,6 +50,7 @@ module FacebookAds
 
     field :account_id, 'string'
     field :aggregation_rule, 'string'
+    field :business, 'Business'
     field :creation_time, 'datetime'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :data_sources, { list: 'ExternalEventSource' }
@@ -65,14 +66,15 @@ module FacebookAds
     field :pixel, 'AdsPixel'
     field :retention_days, 'int'
     field :rule, 'string'
-    field :advanced_rule, 'string'
     field :event_source_id, 'string'
+    field :advanced_rule, 'string'
+    field :custom_conversion_id, 'string'
 
     has_edge :activities do |edge|
-      edge.get do |api|
-        api.has_param :end_time, 'object'
-        api.has_param :event_type, { enum: %w{conversion_create conversion_delete conversion_update }}
+      edge.get 'CustomConversionActivities' do |api|
         api.has_param :start_time, 'object'
+        api.has_param :end_time, 'object'
+        api.has_param :event_type, { enum: -> { CustomConversionActivities::EVENT_TYPE }}
       end
     end
 
@@ -81,26 +83,33 @@ module FacebookAds
         api.has_param :account_id, 'string'
         api.has_param :business, 'string'
       end
+      edge.get 'AdAccount' do |api|
+        api.has_param :business, 'string'
+      end
       edge.post 'CustomConversion' do |api|
         api.has_param :account_id, 'string'
         api.has_param :business, 'string'
       end
     end
 
-    has_edge :shared_agencies do |edge|
-      edge.delete do |api|
+    has_edge :business_units do |edge|
+      edge.get 'BusinessUnit' do |api|
         api.has_param :business, 'string'
       end
-      edge.post 'CustomConversion' do |api|
-        api.has_param :business, 'string'
+    end
+
+    has_edge :raw_fires do |edge|
+      edge.get 'AdsPixelRawFiresResult' do |api|
+        api.has_param :filter, 'string'
+        api.has_param :filter_type, { enum: -> { AdsPixelRawFiresResult::FILTER_TYPE }}
       end
     end
 
     has_edge :stats do |edge|
       edge.get 'CustomConversionStatsResult' do |api|
-        api.has_param :aggregation, { enum: -> { CustomConversionStatsResult::AGGREGATION }}
-        api.has_param :end_time, 'datetime'
         api.has_param :start_time, 'datetime'
+        api.has_param :end_time, 'datetime'
+        api.has_param :aggregation, { enum: -> { CustomConversionStatsResult::AGGREGATION }}
       end
     end
 

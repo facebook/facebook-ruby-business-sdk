@@ -35,8 +35,7 @@ module FacebookAds
     field :session_id, 'string'
     field :stage, 'string'
     field :start_time, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

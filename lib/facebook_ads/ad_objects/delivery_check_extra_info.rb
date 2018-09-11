@@ -30,8 +30,7 @@ module FacebookAds
     field :adgroup_ids, { list: 'string' }
     field :campaign_ids, { list: 'string' }
     field :countries, { list: 'string' }
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

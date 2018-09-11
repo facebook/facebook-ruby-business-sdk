@@ -43,21 +43,62 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :analytics_cohort_query do |edge|
+      edge.get 'AnalyticsCohortQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_entity_user_config do |edge|
+      edge.get 'AnalyticsEntityUserConfig'
+    end
+
+    has_edge :analytics_event_types do |edge|
+      edge.get 'AnalyticsEventTypes'
+    end
+
+    has_edge :analytics_funnel_query do |edge|
+      edge.get 'AnalyticsFunnelQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_query do |edge|
+      edge.get 'AnalyticsQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_query_export do |edge|
+      edge.get 'AnalyticsQueryExportResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_segments do |edge|
+      edge.get 'AnalyticsSegment'
+    end
+
+    has_edge :branded_content do |edge|
+      edge.get 'ShadowIgMedia'
+    end
+
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
-        api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
-        api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
+        api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
+        api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
       end
     end
 
     has_edge :media do |edge|
       edge.get 'ShadowIgMedia'
-      edge.post 'ShadowIgUser' do |api|
+      edge.post 'ShadowIgMedia' do |api|
+        api.has_param :media_type, 'string'
         api.has_param :caption, 'string'
         api.has_param :image_url, 'string'
-        api.has_param :media_type, 'string'
+        api.has_param :children, { list: 'int' }
       end
     end
 
@@ -67,8 +108,18 @@ module FacebookAds
       end
     end
 
+    has_edge :stories do |edge|
+      edge.get 'ShadowIgMedia'
+    end
+
     has_edge :tags do |edge|
       edge.get 'ShadowIgMedia'
+    end
+
+    has_edge :video_groups do |edge|
+      edge.get 'VideoGroup' do |api|
+        api.has_param :retrieved_videos, { list: 'string' }
+      end
     end
 
   end

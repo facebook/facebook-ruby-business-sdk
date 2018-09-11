@@ -35,14 +35,36 @@ module FacebookAds
       "vehicles",
     ]
 
+    PERMITTED_ROLES = [
+      "ADMIN",
+      "ADVERTISER",
+    ]
+
+    STANDARD = [
+      "google",
+    ]
+
+    ROLE = [
+      "ADMIN",
+      "ADVERTISER",
+    ]
+
+    OWNER_TYPES = [
+      "business",
+      "page",
+      "personal",
+    ]
+
 
     field :business, 'Business'
     field :da_display_settings, 'ProductCatalogImageSettings'
     field :default_image_url, 'string'
     field :fallback_image_url, { list: 'string' }
     field :feed_count, 'int'
-    field :flight_catalog_settings, 'object'
+    field :flight_catalog_settings, 'FlightCatalogSettings'
     field :id, 'string'
+    field :image_padding_landscape, 'bool'
+    field :image_padding_square, 'bool'
     field :name, 'string'
     field :product_count, 'int'
     field :qualified_product_count, 'int'
@@ -50,12 +72,78 @@ module FacebookAds
     field :destination_catalog_settings, 'hash'
 
     has_edge :agencies do |edge|
+      edge.delete do |api|
+        api.has_param :business, 'string'
+      end
+      edge.get 'Business'
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :business, 'string'
+        api.has_param :permitted_roles, { list: { enum: -> { ProductCatalog::PERMITTED_ROLES }} }
+      end
+    end
+
+    has_edge :assigned_partners do |edge|
       edge.get 'Business'
     end
 
+    has_edge :auto_markets do |edge|
+      edge.get 'AutoMarket'
+    end
+
+    has_edge :auto_offers do |edge|
+      edge.get 'AutoOffer' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :automotive_models do |edge|
+      edge.get 'AutomotiveModel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :autos do |edge|
+      edge.get 'Auto'
+    end
+
     has_edge :batch do |edge|
-      edge.post 'ProductItem' do |api|
+      edge.post 'ProductCatalog' do |api|
         api.has_param :requests, { list: 'hash' }
+      end
+    end
+
+    has_edge :bundle_folders do |edge|
+      edge.get 'DynamicItemDisplayBundleFolder'
+    end
+
+    has_edge :bundles do |edge|
+      edge.get 'DynamicItemDisplayBundle'
+    end
+
+    has_edge :business_object_tags do |edge|
+      edge.get 'BusinessTag' do |api|
+        api.has_param :business_id, 'string'
+      end
+    end
+
+    has_edge :business_requests do |edge|
+      edge.get 'BusinessRequest'
+    end
+
+    has_edge :catalog_segment_merchant_tos do |edge|
+      edge.get 'BusinessProductCatalogTos'
+    end
+
+    has_edge :catalog_segments do |edge|
+      edge.get 'ProductCatalog'
+    end
+
+    has_edge :categories do |edge|
+      edge.get 'ProductCatalogCategory' do |api|
+        api.has_param :categorization_criteria, { enum: -> { ProductCatalogCategory::CATEGORIZATION_CRITERIA }}
+        api.has_param :filter, 'object'
       end
     end
 
@@ -65,18 +153,41 @@ module FacebookAds
       end
     end
 
+    has_edge :connected_business_objects do |edge|
+      edge.get 'BusinessObject' do |api|
+        api.has_param :type, { enum: -> { BusinessObject::TYPE }}
+        api.has_param :business_id, 'string'
+      end
+    end
+
+    has_edge :da_checks do |edge|
+      edge.get 'DaCheck' do |api|
+        api.has_param :checks, { list: 'string' }
+      end
+    end
+
     has_edge :da_event_samples do |edge|
       edge.get 'ProductDaEventSamplesBatch' do |api|
-        api.has_param :aggregation_type, { enum: -> { ProductDaEventSamplesBatch::AGGREGATION_TYPE }}
-        api.has_param :event, { enum: -> { ProductDaEventSamplesBatch::EVENT }}
         api.has_param :source_id, 'string'
+        api.has_param :event, { enum: -> { ProductDaEventSamplesBatch::EVENT }}
+        api.has_param :aggregation_type, { enum: -> { ProductDaEventSamplesBatch::AGGREGATION_TYPE }}
       end
     end
 
     has_edge :destinations do |edge|
-      edge.get do |api|
+      edge.get 'Destination' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :dpa_ad_accounts do |edge|
+      edge.get 'AdAccount'
+    end
+
+    has_edge :dpa_eligible_ad_accounts do |edge|
+      edge.get 'AdAccount' do |api|
+        api.has_param :limit, 'int'
       end
     end
 
@@ -86,44 +197,66 @@ module FacebookAds
       end
     end
 
+    has_edge :example_feed do |edge|
+      edge.get 'ProductCatalogExampleFeed' do |api|
+        api.has_param :size, 'int'
+        api.has_param :group_size, 'int'
+        api.has_param :start_at, 'int'
+      end
+    end
+
     has_edge :external_event_sources do |edge|
       edge.delete do |api|
         api.has_param :external_event_sources, { list: 'string' }
       end
       edge.get 'ExternalEventSource'
-      edge.post 'ExternalEventSource' do |api|
+      edge.post 'ProductCatalog' do |api|
         api.has_param :external_event_sources, { list: 'string' }
       end
     end
 
+    has_edge :facets do |edge|
+      edge.get 'ProductCatalogFacets' do |api|
+        api.has_param :filter, 'object'
+        api.has_param :facets, 'object'
+      end
+    end
+
     has_edge :flights do |edge|
-      edge.get do |api|
+      edge.get 'Flight' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
     end
 
     has_edge :home_listings do |edge|
-      edge.get do |api|
+      edge.get 'HomeListing' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
-      edge.post do |api|
+      edge.post 'HomeListing' do |api|
+        api.has_param :home_listing_id, 'string'
         api.has_param :address, 'object'
         api.has_param :availability, 'string'
-        api.has_param :currency, 'string'
-        api.has_param :description, 'string'
-        api.has_param :home_listing_id, 'string'
         api.has_param :images, { list: 'object' }
-        api.has_param :listing_type, 'string'
         api.has_param :name, 'string'
+        api.has_param :currency, 'string'
+        api.has_param :price, 'double'
+        api.has_param :url, 'string'
+        api.has_param :year_built, 'int'
+        api.has_param :description, 'string'
+        api.has_param :listing_type, 'string'
         api.has_param :num_baths, 'double'
         api.has_param :num_beds, 'double'
         api.has_param :num_units, 'double'
-        api.has_param :price, 'double'
         api.has_param :property_type, 'string'
-        api.has_param :url, 'string'
-        api.has_param :year_built, 'int'
+      end
+    end
+
+    has_edge :home_service_providers do |edge|
+      edge.get 'HomeServiceProvider' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
       end
     end
 
@@ -131,65 +264,83 @@ module FacebookAds
       edge.get 'ProductCatalogHotelRoomsBatch' do |api|
         api.has_param :handle, 'string'
       end
-      edge.post 'ProductCatalogHotelRoomsBatch' do |api|
+      edge.post 'ProductCatalog' do |api|
         api.has_param :file, 'file'
         api.has_param :password, 'string'
-        api.has_param :standard, { enum: -> { ProductCatalogHotelRoomsBatch::STANDARD }}
-        api.has_param :update_only, 'bool'
+        api.has_param :standard, { enum: -> { ProductCatalog::STANDARD }}
         api.has_param :url, 'string'
         api.has_param :username, 'string'
+        api.has_param :update_only, 'bool'
       end
     end
 
     has_edge :hotels do |edge|
-      edge.get do |api|
+      edge.get 'Hotel' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
-      edge.post do |api|
+      edge.post 'Hotel' do |api|
+        api.has_param :hotel_id, 'string'
         api.has_param :address, 'object'
-        api.has_param :applinks, 'object'
         api.has_param :brand, 'string'
         api.has_param :description, 'string'
-        api.has_param :guest_ratings, { list: 'object' }
-        api.has_param :hotel_id, 'string'
-        api.has_param :images, { list: 'object' }
         api.has_param :name, 'string'
+        api.has_param :url, 'string'
+        api.has_param :images, { list: 'object' }
+        api.has_param :applinks, 'object'
         api.has_param :phone, 'string'
         api.has_param :star_rating, 'double'
-        api.has_param :url, 'string'
+        api.has_param :guest_ratings, { list: 'object' }
       end
+    end
+
+    has_edge :media_titles do |edge|
+      edge.get 'MediaTitle' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :merchant_reports do |edge|
+      edge.get 'MerchantReport' do |api|
+        api.has_param :time_range, 'object'
+      end
+    end
+
+    has_edge :notification_settings do |edge|
+      edge.get 'DogNotificationSettings'
     end
 
     has_edge :pricing_variables_batch do |edge|
       edge.get 'ProductCatalogPricingVariablesBatch' do |api|
         api.has_param :handle, 'string'
       end
-      edge.post 'ProductCatalogPricingVariablesBatch' do |api|
+      edge.post 'ProductCatalog' do |api|
         api.has_param :file, 'file'
         api.has_param :password, 'string'
-        api.has_param :standard, { enum: -> { ProductCatalogPricingVariablesBatch::STANDARD }}
-        api.has_param :update_only, 'bool'
+        api.has_param :standard, { enum: -> { ProductCatalog::STANDARD }}
         api.has_param :url, 'string'
         api.has_param :username, 'string'
+        api.has_param :update_only, 'bool'
       end
     end
 
     has_edge :product_feeds do |edge|
       edge.get 'ProductFeed'
       edge.post 'ProductFeed' do |api|
-        api.has_param :country, 'string'
         api.has_param :default_currency, 'string'
-        api.has_param :deletion_enabled, 'bool'
         api.has_param :delimiter, { enum: -> { ProductFeed::DELIMITER }}
         api.has_param :encoding, { enum: -> { ProductFeed::ENCODING }}
-        api.has_param :feed_type, { enum: -> { ProductFeed::FEED_TYPE }}
-        api.has_param :file_name, 'string'
         api.has_param :name, 'string'
         api.has_param :quoted_fields_mode, { enum: -> { ProductFeed::QUOTED_FIELDS_MODE }}
-        api.has_param :rules, { list: 'string' }
         api.has_param :schedule, 'string'
         api.has_param :update_schedule, 'string'
+        api.has_param :country, 'string'
+        api.has_param :deletion_enabled, 'bool'
+        api.has_param :feed_type, { enum: -> { ProductFeed::FEED_TYPE }}
+        api.has_param :file_name, 'string'
+        api.has_param :quoted_fields, 'bool'
+        api.has_param :rules, { list: 'string' }
       end
     end
 
@@ -203,9 +354,9 @@ module FacebookAds
 
     has_edge :product_sets do |edge|
       edge.get 'ProductSet' do |api|
+        api.has_param :parent_id, 'string'
         api.has_param :ancestor_id, 'string'
         api.has_param :has_children, 'bool'
-        api.has_param :parent_id, 'string'
         api.has_param :retailer_id, 'string'
       end
       edge.post 'ProductSet' do |api|
@@ -218,62 +369,58 @@ module FacebookAds
       edge.get 'ProductCatalogProductSetsBatch' do |api|
         api.has_param :handle, 'string'
       end
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :file, 'file'
+        api.has_param :password, 'string'
+        api.has_param :standard, { enum: -> { ProductCatalog::STANDARD }}
+        api.has_param :url, 'string'
+        api.has_param :username, 'string'
+        api.has_param :update_only, 'bool'
+      end
     end
 
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
         api.has_param :return_only_approved_products, 'bool'
+        api.has_param :filter, 'object'
       end
       edge.post 'ProductItem' do |api|
+        api.has_param :retailer_id, 'string'
+        api.has_param :retailer_product_group_id, 'string'
+        api.has_param :availability, { enum: -> { ProductItem::AVAILABILITY }}
+        api.has_param :currency, 'string'
+        api.has_param :condition, { enum: -> { ProductItem::CONDITION }}
+        api.has_param :description, 'string'
+        api.has_param :image_url, 'object'
+        api.has_param :name, 'string'
+        api.has_param :price, 'int'
+        api.has_param :product_type, 'string'
+        api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
         api.has_param :additional_image_urls, { list: 'string' }
         api.has_param :additional_variant_attributes, 'object'
-        api.has_param :android_app_name, 'string'
-        api.has_param :android_class, 'string'
-        api.has_param :android_package, 'string'
-        api.has_param :android_url, 'string'
-        api.has_param :availability, { enum: -> { ProductItem::AVAILABILITY }}
         api.has_param :brand, 'string'
         api.has_param :category, 'string'
         api.has_param :checkout_url, 'string'
         api.has_param :color, 'string'
-        api.has_param :condition, { enum: -> { ProductItem::CONDITION }}
-        api.has_param :currency, 'string'
         api.has_param :custom_data, 'hash'
         api.has_param :custom_label_0, 'string'
         api.has_param :custom_label_1, 'string'
         api.has_param :custom_label_2, 'string'
         api.has_param :custom_label_3, 'string'
         api.has_param :custom_label_4, 'string'
-        api.has_param :description, 'string'
         api.has_param :expiration_date, 'string'
         api.has_param :gender, { enum: -> { ProductItem::GENDER }}
         api.has_param :gtin, 'string'
-        api.has_param :image_url, 'object'
         api.has_param :inventory, 'int'
-        api.has_param :ios_app_name, 'string'
-        api.has_param :ios_app_store_id, 'int'
-        api.has_param :ios_url, 'string'
-        api.has_param :ipad_app_name, 'string'
-        api.has_param :ipad_app_store_id, 'int'
-        api.has_param :ipad_url, 'string'
-        api.has_param :iphone_app_name, 'string'
-        api.has_param :iphone_app_store_id, 'int'
-        api.has_param :iphone_url, 'string'
         api.has_param :manufacturer_part_number, 'string'
-        api.has_param :material, 'string'
         api.has_param :mobile_link, 'object'
-        api.has_param :name, 'string'
+        api.has_param :material, 'string'
         api.has_param :offer_price_amount, 'int'
         api.has_param :offer_price_end_date, 'object'
         api.has_param :offer_price_start_date, 'object'
         api.has_param :ordering_index, 'int'
         api.has_param :pattern, 'string'
-        api.has_param :price, 'int'
-        api.has_param :product_type, 'string'
-        api.has_param :retailer_id, 'string'
-        api.has_param :retailer_product_group_id, 'string'
         api.has_param :sale_price, 'int'
         api.has_param :sale_price_end_date, 'datetime'
         api.has_param :sale_price_start_date, 'datetime'
@@ -281,57 +428,156 @@ module FacebookAds
         api.has_param :size, 'string'
         api.has_param :start_date, 'string'
         api.has_param :url, 'object'
-        api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
+        api.has_param :ios_url, 'string'
+        api.has_param :ios_app_store_id, 'int'
+        api.has_param :ios_app_name, 'string'
+        api.has_param :iphone_url, 'string'
+        api.has_param :iphone_app_store_id, 'int'
+        api.has_param :iphone_app_name, 'string'
+        api.has_param :ipad_url, 'string'
+        api.has_param :ipad_app_store_id, 'int'
+        api.has_param :ipad_app_name, 'string'
+        api.has_param :android_url, 'string'
+        api.has_param :android_package, 'string'
+        api.has_param :android_class, 'string'
+        api.has_param :android_app_name, 'string'
+        api.has_param :windows_phone_url, 'string'
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
-        api.has_param :windows_phone_url, 'string'
       end
+    end
+
+    has_edge :quality_issue_samples do |edge|
+      edge.get 'ProductItem'
     end
 
     has_edge :quality_issues do |edge|
       edge.get 'ProductsQualityIssue'
     end
 
+    has_edge :risky_products do |edge|
+      edge.get 'ProductItem' do |api|
+        api.has_param :order_by, { enum: -> { ProductItem::ORDER_BY }}
+      end
+    end
+
+    has_edge :smart_pixel_settings do |edge|
+      edge.get 'CatalogSmartPixelSettings'
+    end
+
+    has_edge :smart_pixel_stats do |edge|
+      edge.get 'SmartPixelInsights'
+    end
+
+    has_edge :suggested_product_sets do |edge|
+      edge.get 'SuggestedProductSet'
+    end
+
+    has_edge :userpermissions do |edge|
+      edge.delete do |api|
+        api.has_param :user, 'int'
+        api.has_param :email, 'string'
+        api.has_param :business, 'string'
+      end
+      edge.get 'ProductCatalogUserPermissions' do |api|
+        api.has_param :business, 'object'
+        api.has_param :user, 'object'
+      end
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :user, 'int'
+        api.has_param :email, 'string'
+        api.has_param :role, { enum: -> { ProductCatalog::ROLE }}
+        api.has_param :business, 'string'
+      end
+    end
+
+    has_edge :vehicle_offers do |edge|
+      edge.get 'VehicleOffer' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
     has_edge :vehicles do |edge|
-      edge.get do |api|
+      edge.get 'Vehicle' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
     end
 
     has_edge :videos do |edge|
-      edge.post do |api|
-        api.has_param :audio_story_wave_animation_handle, 'string'
-        api.has_param :content_category, { enum: %w{BEAUTY_FASHION BUSINESS CARS_TRUCKS COMEDY CUTE_ANIMALS ENTERTAINMENT FAMILY FOOD_HEALTH HOME LIFESTYLE MUSIC NEWS POLITICS SCIENCE SPORTS TECHNOLOGY VIDEO_GAMING OTHER }}
-        api.has_param :description, 'string'
-        api.has_param :embeddable, 'bool'
-        api.has_param :end_offset, 'int'
-        api.has_param :file_size, 'int'
+      edge.post 'AdVideo' do |api|
+        api.has_param :title, 'string'
+        api.has_param :source, 'string'
+        api.has_param :unpublished_content_type, { enum: -> { AdVideo::UNPUBLISHED_CONTENT_TYPE }}
+        api.has_param :time_since_original_post, 'int'
         api.has_param :file_url, 'string'
-        api.has_param :fisheye_video_cropped, 'bool'
-        api.has_param :fov, 'int'
-        api.has_param :front_z_rotation, 'double'
-        api.has_param :guide, { list: { list: 'int' } }
-        api.has_param :guide_enabled, 'bool'
+        api.has_param :composer_session_id, 'string'
+        api.has_param :waterfall_id, 'string'
+        api.has_param :og_action_type_id, 'string'
+        api.has_param :og_object_id, 'string'
+        api.has_param :og_phrase, 'string'
+        api.has_param :og_icon_id, 'string'
+        api.has_param :og_suggestion_mechanism, 'string'
+        api.has_param :manual_privacy, 'bool'
+        api.has_param :is_explicit_share, 'bool'
+        api.has_param :thumb, 'file'
+        api.has_param :spherical, 'bool'
+        api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'
+        api.has_param :fov, 'int'
         api.has_param :original_fov, 'int'
-        api.has_param :original_projection_type, { enum: %w{equirectangular cubemap equiangular_cubemap half_equirectangular }}
+        api.has_param :fisheye_video_cropped, 'bool'
+        api.has_param :front_z_rotation, 'double'
+        api.has_param :guide_enabled, 'bool'
+        api.has_param :guide, { list: { list: 'int' } }
+        api.has_param :audio_story_wave_animation_handle, 'string'
+        api.has_param :adaptive_type, 'string'
+        api.has_param :animated_effect_id, 'int'
+        api.has_param :asked_fun_fact_prompt_id, 'int'
+        api.has_param :composer_entry_picker, 'string'
+        api.has_param :composer_entry_point, 'string'
+        api.has_param :composer_entry_time, 'int'
+        api.has_param :composer_session_events_log, 'string'
+        api.has_param :composer_source_surface, 'string'
+        api.has_param :composer_type, 'string'
+        api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
+        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_toastee_id, 'int'
+        api.has_param :is_group_linking_post, 'bool'
+        api.has_param :has_nickname, 'bool'
+        api.has_param :holiday_card, 'string'
+        api.has_param :instant_game_entry_point_data, 'string'
+        api.has_param :is_boost_intended, 'bool'
+        api.has_param :location_source_id, 'string'
+        api.has_param :description, 'string'
+        api.has_param :offer_like_post_id, 'string'
+        api.has_param :publish_event_id, 'int'
         api.has_param :react_mode_metadata, 'string'
+        api.has_param :sales_promo_id, 'int'
+        api.has_param :text_format_metadata, 'string'
+        api.has_param :throwback_camera_roll_media, 'string'
+        api.has_param :video_start_time_ms, 'int'
+        api.has_param :application_id, 'string'
+        api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
+        api.has_param :file_size, 'int'
+        api.has_param :start_offset, 'int'
+        api.has_param :end_offset, 'int'
+        api.has_param :video_file_chunk, 'string'
+        api.has_param :fbuploader_video_file_chunk, 'string'
+        api.has_param :upload_session_id, 'string'
+        api.has_param :is_voice_clip, 'bool'
+        api.has_param :attribution_app_id, 'string'
+        api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
+        api.has_param :embeddable, 'bool'
+        api.has_param :slideshow_spec, 'hash'
+        api.has_param :upload_setting_properties, 'string'
+        api.has_param :container_type, { enum: -> { AdVideo::CONTAINER_TYPE }}
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
-        api.has_param :slideshow_spec, 'hash'
-        api.has_param :source, 'string'
-        api.has_param :spherical, 'bool'
-        api.has_param :start_offset, 'int'
-        api.has_param :swap_mode, { enum: %w{replace }}
-        api.has_param :thumb, 'file'
-        api.has_param :title, 'string'
-        api.has_param :unpublished_content_type, { enum: %w{SCHEDULED DRAFT ADS_POST INLINE_CREATED PUBLISHED }}
-        api.has_param :upload_phase, { enum: %w{start transfer finish cancel }}
-        api.has_param :upload_session_id, 'string'
-        api.has_param :video_file_chunk, 'string'
-        api.has_param :xpost_everstore_handle, 'string'
+        api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
+        api.has_param :music_added, 'bool'
       end
     end
 

@@ -28,7 +28,7 @@ module FacebookAds
   class PageSavedFilter < AdObject
     SECTION = [
       "AUDIENCE_ALERTS",
-      "CAMPAIGN_CENTER",
+      "CANDIDATE_VIDEOS",
       "CHEX_PENDING_ORDERS",
       "CHEX_COMPLETED_ORDERS",
       "COMMERCE_PLATFORM_SETTINGS",
@@ -105,7 +105,6 @@ module FacebookAds
       "ARCHIVED_EVENTS",
       "TOURS",
       "POLLS_COMPOSER",
-      "BRAND_ASSET_LIBRARY",
       "JOB_APPLICATIONS",
       "SUBSCRIPTIONS",
       "NEWS_SUBSCRIPTIONS_PUBLISHER_TOOLS",
@@ -119,6 +118,7 @@ module FacebookAds
       "BRANDED_CONTENT",
       "BRANDED_CONTENT_CREATOR",
       "SOUNDS_COLLECTION",
+      "CREATOR_STUDIO",
       "CONTENT_TESTS",
       "GEM_PRODUCER_DASHBOARD",
       "MONETIZED_VIDEOS",
@@ -137,7 +137,6 @@ module FacebookAds
     field :time_created, 'int'
     field :time_updated, 'int'
     has_no_post
-    has_no_delete
 
   end
 end

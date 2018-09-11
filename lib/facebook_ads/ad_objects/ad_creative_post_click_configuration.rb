@@ -29,8 +29,7 @@ module FacebookAds
 
     field :post_click_item_description, 'string'
     field :post_click_item_headline, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

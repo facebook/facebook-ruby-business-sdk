@@ -34,8 +34,7 @@ module FacebookAds
     field :is_pushable, 'bool'
     field :reason_code, 'int'
     field :reason_description, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

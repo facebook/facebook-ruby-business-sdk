@@ -29,8 +29,8 @@ module FacebookAds
 
     field :ad_account_ids, { list: 'string' }
     field :amount, 'string'
-    field :amount_due, 'object'
-    field :billed_amount_details, 'object'
+    field :amount_due, 'CurrencyAmount'
+    field :billed_amount_details, 'BilledAmountDetails'
     field :billing_period, 'string'
     field :currency, 'string'
     field :download_uri, 'string'
@@ -46,6 +46,16 @@ module FacebookAds
     field :type, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :campaigns do |edge|
+      edge.get 'InvoiceCampaign'
+    end
+
+    has_edge :data do |edge|
+      edge.get 'AtlasUrl' do |api|
+        api.has_param :redirect, 'bool'
+      end
+    end
 
   end
 end

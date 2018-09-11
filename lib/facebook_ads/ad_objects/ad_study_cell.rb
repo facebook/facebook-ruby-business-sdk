@@ -55,5 +55,17 @@ module FacebookAds
     field :treatment_percentage, 'double'
     has_no_delete
 
+    has_edge :adaccounts do |edge|
+      edge.get 'AdAccount'
+    end
+
+    has_edge :adsets do |edge|
+      edge.get 'AdSet'
+    end
+
+    has_edge :campaigns do |edge|
+      edge.get 'Campaign'
+    end
+
   end
 end

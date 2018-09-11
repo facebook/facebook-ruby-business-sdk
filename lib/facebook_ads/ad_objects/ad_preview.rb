@@ -49,12 +49,16 @@ module FacebookAds
       "SUGGESTED_VIDEO_DESKTOP",
       "SUGGESTED_VIDEO_MOBILE",
       "MARKETPLACE_MOBILE",
+      "FACEBOOK_STORY_MOBILE",
+    ]
+
+    RENDER_TYPE = [
+      "FALLBACK",
     ]
 
 
     field :body, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

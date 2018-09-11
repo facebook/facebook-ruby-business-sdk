@@ -92,8 +92,7 @@ module FacebookAds
     field :text_template_tags, { list: 'string' }
     field :text_type, { enum: -> { TEXT_TYPE }}
     field :theme_color, { enum: -> { THEME_COLOR }}
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

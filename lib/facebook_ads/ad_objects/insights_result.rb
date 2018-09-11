@@ -26,6 +26,23 @@ module FacebookAds
   # pull request for this class.
 
   class InsightsResult < AdObject
+    METRIC = [
+      "daily_total",
+      "is_traveling_breakdowns",
+      "hourly_breakdowns",
+      "demographic_breakdowns",
+      "seen_ads_daily_total",
+      "seen_ads_hourly_breakdowns",
+    ]
+
+    PERIOD = [
+      "day",
+      "week",
+      "days_28",
+      "month",
+      "lifetime",
+    ]
+
     DATE_PRESET = [
       "today",
       "yesterday",
@@ -48,13 +65,9 @@ module FacebookAds
       "this_year",
     ]
 
-    PERIOD = [
-      "day",
-      "week",
-      "days_28",
-      "month",
-      "lifetime",
-      "total_over_range",
+    SORT_DIR = [
+      "asc",
+      "desc",
     ]
 
 
@@ -65,7 +78,6 @@ module FacebookAds
     field :period, 'string'
     field :title, 'string'
     field :values, { list: 'object' }
-    has_no_get
     has_no_post
     has_no_delete
 

@@ -27,11 +27,9 @@ module FacebookAds
 
   class ProfilePictureSource < AdObject
     TYPE = [
+      "thumbnail",
       "small",
-      "normal",
       "album",
-      "large",
-      "square",
     ]
 
 
@@ -42,10 +40,10 @@ module FacebookAds
     field :left, 'int'
     field :right, 'int'
     field :top, 'int'
+    field :uri, 'string'
     field :url, 'string'
     field :width, 'int'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

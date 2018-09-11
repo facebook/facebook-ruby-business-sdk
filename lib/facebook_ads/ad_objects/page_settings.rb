@@ -29,8 +29,7 @@ module FacebookAds
 
     field :setting, 'string'
     field :value, 'object'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

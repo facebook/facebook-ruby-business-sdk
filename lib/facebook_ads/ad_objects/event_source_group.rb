@@ -26,6 +26,11 @@ module FacebookAds
   # pull request for this class.
 
   class EventSourceGroup < AdObject
+    ROLE = [
+      "ANALYST",
+      "LIMITED_ANALYST",
+    ]
+
 
     field :business, 'Business'
     field :event_sources, { list: 'ExternalEventSource' }
@@ -33,7 +38,71 @@ module FacebookAds
     field :name, 'string'
     has_no_delete
 
+    has_edge :analytics_cohort_query do |edge|
+      edge.get 'AnalyticsCohortQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_entity_user_config do |edge|
+      edge.get 'AnalyticsEntityUserConfig'
+    end
+
+    has_edge :analytics_event_types do |edge|
+      edge.get 'AnalyticsEventTypes'
+    end
+
+    has_edge :analytics_funnel_query do |edge|
+      edge.get 'AnalyticsFunnelQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_query do |edge|
+      edge.get 'AnalyticsQueryResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_query_export do |edge|
+      edge.get 'AnalyticsQueryExportResult' do |api|
+        api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :analytics_segments do |edge|
+      edge.get 'AnalyticsSegment'
+    end
+
+    has_edge :assigned_partners do |edge|
+      edge.get 'Business'
+    end
+
+    has_edge :business_object_tags do |edge|
+      edge.get 'BusinessTag' do |api|
+        api.has_param :business_id, 'string'
+      end
+    end
+
+    has_edge :business_requests do |edge|
+      edge.get 'BusinessRequest'
+    end
+
+    has_edge :connected_business_objects do |edge|
+      edge.get 'BusinessObject' do |api|
+        api.has_param :type, { enum: -> { BusinessObject::TYPE }}
+        api.has_param :business_id, 'string'
+      end
+    end
+
+    has_edge :publisher_insights do |edge|
+      edge.get do |api|
+        api.has_param :query_id, 'string'
+      end
+    end
+
     has_edge :shared_accounts do |edge|
+      edge.get 'AdAccount'
       edge.post 'EventSourceGroup' do |api|
         api.has_param :accounts, { list: 'string' }
       end
@@ -43,9 +112,12 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :user, 'int'
       end
-      edge.post do |api|
-        api.has_param :role, { enum: %w{ANALYST LIMITED_ANALYST }}
+      edge.get do |api|
         api.has_param :user, 'int'
+      end
+      edge.post 'EventSourceGroup' do |api|
+        api.has_param :user, 'int'
+        api.has_param :role, { enum: -> { EventSourceGroup::ROLE }}
       end
     end
 

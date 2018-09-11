@@ -29,8 +29,7 @@ module FacebookAds
 
     field :sharing_relationship_id, 'object'
     field :status, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

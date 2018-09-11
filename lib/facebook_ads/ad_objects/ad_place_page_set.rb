@@ -40,5 +40,29 @@ module FacebookAds
     field :parent_page, 'Page'
     has_no_delete
 
+    has_edge :invalid_locations do |edge|
+      edge.get 'AdPlacePageSetInvalidLocation' do |api|
+        api.has_param :targeting, 'Targeting'
+        api.has_param :creative_spec, 'AdCreative'
+      end
+    end
+
+    has_edge :locations do |edge|
+      edge.get 'Page'
+    end
+
+    has_edge :locations_breakdown do |edge|
+      edge.get 'PageLocationsBreakdown' do |api|
+        api.has_param :filtering, { list: 'object' }
+        api.has_param :type, { enum: -> { PageLocationsBreakdown::TYPE }}
+      end
+    end
+
+    has_edge :targeted_locations do |edge|
+      edge.get 'Page' do |api|
+        api.has_param :targeting, 'Targeting'
+      end
+    end
+
   end
 end

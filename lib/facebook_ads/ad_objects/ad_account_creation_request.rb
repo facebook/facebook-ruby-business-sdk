@@ -192,6 +192,7 @@ module FacebookAds
     field :additional_comment, 'string'
     field :address_in_chinese, 'string'
     field :address_in_english, 'object'
+    field :address_in_local_language, 'string'
     field :advertiser_business, 'Business'
     field :appeal_reason, 'object'
     field :business, 'Business'
@@ -206,6 +207,7 @@ module FacebookAds
     field :is_smb, 'bool'
     field :is_test, 'bool'
     field :is_under_authorization, 'bool'
+    field :legal_entity_name_in_local_language, 'string'
     field :official_website_url, 'string'
     field :planning_agency_business, 'Business'
     field :planning_agency_business_id, 'string'
@@ -217,9 +219,13 @@ module FacebookAds
     field :subvertical, 'string'
     field :time_created, 'datetime'
     field :vertical, 'string'
-    field :advertiser_business_id, 'string'
     field :business_registration, 'file'
     field :promotable_page_urls, { list: 'object' }
+    field :advertiser_business_id, 'string'
+
+    has_edge :adaccounts do |edge|
+      edge.get 'AdAccount'
+    end
 
   end
 end

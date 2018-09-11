@@ -43,7 +43,13 @@ module FacebookAds
     end
 
     has_edge :preview_notifications do |edge|
-      edge.post do |api|
+      edge.post 'Canvas' do |api|
+        api.has_param :user_ids, { list: 'int' }
+      end
+    end
+
+    has_edge :previews do |edge|
+      edge.get 'TextWithEntities' do |api|
         api.has_param :user_ids, { list: 'int' }
       end
     end

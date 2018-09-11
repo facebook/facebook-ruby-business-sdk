@@ -71,6 +71,7 @@ module FacebookAds
       "RECORD_NOW",
       "GET_SHOWTIMES",
       "LISTEN_NOW",
+      "WOODHENGE_SUPPORT",
       "EVENT_RSVP",
       "WHATSAPP_MESSAGE",
       "FOLLOW_NEWS_STORYLINE",
@@ -91,8 +92,7 @@ module FacebookAds
     field :optimization_type, 'string'
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

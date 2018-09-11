@@ -53,5 +53,9 @@ module FacebookAds
       edge.get 'ProductFeedUploadError'
     end
 
+    has_edge :progresses do |edge|
+      edge.get 'ProductFeedUploadProgress'
+    end
+
   end
 end

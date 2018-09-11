@@ -33,7 +33,7 @@ module FacebookAds
     ]
 
 
-    field :condition_groups, { list: 'object' }
+    field :condition_groups, { list: 'VideoCopyrightConditionGroup' }
     field :copyrights, { list: 'string' }
     field :created_date, 'datetime'
     field :creator, 'User'

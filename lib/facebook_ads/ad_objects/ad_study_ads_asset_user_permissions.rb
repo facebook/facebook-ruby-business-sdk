@@ -37,8 +37,7 @@ module FacebookAds
     field :updated_by, 'User'
     field :updated_time, 'datetime'
     field :user, 'User'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

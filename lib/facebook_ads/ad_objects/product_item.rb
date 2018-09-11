@@ -78,6 +78,12 @@ module FacebookAds
       "published",
     ]
 
+    ORDER_BY = [
+      "NUM_XOUTS",
+      "NUM_REPORTS",
+      "NUM_IMPS",
+    ]
+
 
     field :additional_image_cdn_urls, { list: { list: 'object' } }
     field :additional_image_urls, { list: 'string' }
@@ -131,30 +137,57 @@ module FacebookAds
     field :start_date, 'string'
     field :url, 'string'
     field :visibility, { enum: -> { VISIBILITY }}
-    field :requests, { list: 'hash' }
-    field :android_app_name, 'string'
-    field :android_class, 'string'
-    field :android_package, 'string'
-    field :android_url, 'string'
     field :checkout_url, 'string'
-    field :ios_app_name, 'string'
-    field :ios_app_store_id, 'int'
-    field :ios_url, 'string'
-    field :ipad_app_name, 'string'
-    field :ipad_app_store_id, 'int'
-    field :ipad_url, 'string'
-    field :iphone_app_name, 'string'
-    field :iphone_app_store_id, 'int'
-    field :iphone_url, 'string'
     field :offer_price_amount, 'int'
     field :offer_price_end_date, 'object'
     field :offer_price_start_date, 'object'
+    field :ios_url, 'string'
+    field :ios_app_store_id, 'int'
+    field :ios_app_name, 'string'
+    field :iphone_url, 'string'
+    field :iphone_app_store_id, 'int'
+    field :iphone_app_name, 'string'
+    field :ipad_url, 'string'
+    field :ipad_app_store_id, 'int'
+    field :ipad_app_name, 'string'
+    field :android_url, 'string'
+    field :android_package, 'string'
+    field :android_class, 'string'
+    field :android_app_name, 'string'
+    field :windows_phone_url, 'string'
     field :windows_phone_app_id, 'string'
     field :windows_phone_app_name, 'string'
-    field :windows_phone_url, 'string'
+
+    has_edge :comments do |edge|
+      edge.post 'Comment' do |api|
+        api.has_param :object_id, 'string'
+        api.has_param :parent_comment_id, 'object'
+        api.has_param :nectar_module, 'string'
+        api.has_param :attachment_id, 'string'
+        api.has_param :attachment_url, 'string'
+        api.has_param :attachment_share_url, 'string'
+        api.has_param :feedback_source, 'string'
+        api.has_param :facepile_mentioned_ids, { list: 'string' }
+        api.has_param :is_offline, 'bool'
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
+        api.has_param :message, 'string'
+        api.has_param :text, 'string'
+        api.has_param :tracking, 'string'
+      end
+    end
+
+    has_edge :insights do |edge|
+      edge.get 'ProductItemInsights' do |api|
+        api.has_param :insights_sources, { list: { enum: -> { ProductItemInsights::INSIGHTS_SOURCES }} }
+      end
+    end
 
     has_edge :product_sets do |edge|
       edge.get 'ProductSet'
+    end
+
+    has_edge :quality_issues do |edge|
+      edge.get 'DynamicItemQualityIssue'
     end
 
   end

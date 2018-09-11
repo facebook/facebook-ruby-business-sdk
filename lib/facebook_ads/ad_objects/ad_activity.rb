@@ -107,6 +107,13 @@ module FacebookAds
       "TARGETING",
     ]
 
+    ACTIVITY_TYPE = [
+      "ALL",
+      "SIG_EDIT",
+      "SIG_EDIT_WITH_CPA_CHANGE",
+      "LEARNING_STAGE_EXIT",
+    ]
+
 
     field :actor_id, 'string'
     field :actor_name, 'string'
@@ -120,8 +127,7 @@ module FacebookAds
     field :object_name, 'string'
     field :object_type, 'string'
     field :translated_event_type, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

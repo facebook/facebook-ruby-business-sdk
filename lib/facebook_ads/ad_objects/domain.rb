@@ -33,5 +33,16 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :url_insights do |edge|
+      edge.get 'InsightsQueryResult' do |api|
+        api.has_param :metric_key, 'string'
+        api.has_param :period, { enum: -> { InsightsQueryResult::PERIOD }}
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+        api.has_param :breakdowns, { list: 'string' }
+        api.has_param :urls, { list: 'string' }
+      end
+    end
+
   end
 end

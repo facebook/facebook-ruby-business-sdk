@@ -37,8 +37,7 @@ module FacebookAds
     field :takeout, 'bool'
     field :waiter, 'bool'
     field :walkins, 'bool'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

@@ -50,5 +50,41 @@ module FacebookAds
     field :title, 'string'
     field :two_fac_status, 'string'
 
+    has_edge :assigned_ad_accounts do |edge|
+      edge.get 'AdAccount'
+    end
+
+    has_edge :assigned_apps do |edge|
+      edge.get 'Application'
+    end
+
+    has_edge :assigned_business_resource_groups do |edge|
+      edge.get 'BusinessResourceGroup'
+    end
+
+    has_edge :assigned_monetization_properties do |edge|
+      edge.get 'AdMonetizationProperty'
+    end
+
+    has_edge :assigned_pages do |edge|
+      edge.get 'Page'
+    end
+
+    has_edge :assigned_product_catalogs do |edge|
+      edge.get 'ProductCatalog'
+    end
+
+    has_edge :assigned_whatsapp_business_accounts do |edge|
+      edge.get 'WhatsAppBusinessAccount'
+    end
+
+    has_edge :businesssettinglogs do |edge|
+      edge.get 'BusinessSettingLogsData'
+    end
+
+    has_edge :cr_st_ad_accounts do |edge|
+      edge.get 'AdAccount'
+    end
+
   end
 end

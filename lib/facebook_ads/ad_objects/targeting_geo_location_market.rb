@@ -31,8 +31,7 @@ module FacebookAds
     field :key, 'string'
     field :market_type, 'string'
     field :name, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

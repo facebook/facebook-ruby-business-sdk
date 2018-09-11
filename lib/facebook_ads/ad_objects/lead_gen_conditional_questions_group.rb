@@ -27,8 +27,8 @@ module FacebookAds
 
   class LeadGenConditionalQuestionsGroup < AdObject
 
-    field :choices, { list: 'object' }
-    field :questions, { list: 'object' }
+    field :choices, { list: 'LeadGenConditionalQuestionsGroupChoices' }
+    field :questions, { list: 'LeadGenConditionalQuestionsGroupQuestions' }
     field :id, 'string'
     has_no_post
     has_no_delete

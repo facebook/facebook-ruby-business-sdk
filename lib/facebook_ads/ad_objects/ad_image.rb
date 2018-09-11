@@ -48,10 +48,29 @@ module FacebookAds
     field :url, 'string'
     field :url_128, 'string'
     field :width, 'int'
-    field :bytes, 'object'
-    field :copy_from, 'object'
     has_no_post
     has_no_delete
+
+    has_edge :assigned_partners do |edge|
+      edge.get 'Business'
+    end
+
+    has_edge :business_object_tags do |edge|
+      edge.get 'BusinessTag' do |api|
+        api.has_param :business_id, 'string'
+      end
+    end
+
+    has_edge :business_requests do |edge|
+      edge.get 'BusinessRequest'
+    end
+
+    has_edge :connected_business_objects do |edge|
+      edge.get 'BusinessObject' do |api|
+        api.has_param :type, { enum: -> { BusinessObject::TYPE }}
+        api.has_param :business_id, 'string'
+      end
+    end
 
   end
 end

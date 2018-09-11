@@ -70,7 +70,7 @@ module FacebookAds
 
     field :allow_organic_lead, 'bool'
     field :block_display_for_non_targeted_viewer, 'bool'
-    field :context_card, 'object'
+    field :context_card, 'LeadGenContextCard'
     field :created_time, 'datetime'
     field :creator, 'User'
     field :creator_id, 'int'
@@ -99,19 +99,35 @@ module FacebookAds
     field :thank_you_page, 'object'
     field :tracking_parameters, { list: 'object' }
 
+    has_edge :adsets do |edge|
+      edge.get do |api|
+        api.has_param :query, 'string'
+        api.has_param :campaign, 'string'
+        api.has_param :adsets, { list: 'object' }
+      end
+    end
+
+    has_edge :campaigns do |edge|
+      edge.get do |api|
+        api.has_param :query, 'string'
+        api.has_param :campaigns, { list: 'string' }
+      end
+    end
+
     has_edge :leads do |edge|
       edge.get 'Lead'
-      edge.post 'LeadgenForm' do |api|
+      edge.post 'Lead' do |api|
+        api.has_param :start_time, 'datetime'
         api.has_param :end_time, 'datetime'
         api.has_param :session_id, 'string'
-        api.has_param :start_time, 'datetime'
       end
     end
 
     has_edge :test_leads do |edge|
-      edge.post 'LeadgenForm' do |api|
-        api.has_param :custom_disclaimer_responses, { list: 'object' }
+      edge.get 'Lead'
+      edge.post 'Lead' do |api|
         api.has_param :field_data, { list: 'object' }
+        api.has_param :custom_disclaimer_responses, { list: 'object' }
       end
     end
 

@@ -27,7 +27,7 @@ module FacebookAds
 
   class RtbDynamicPost < AdObject
 
-    field :child_attachments, { list: 'object' }
+    field :child_attachments, { list: 'DynamicPostChildAttachment' }
     field :created, 'datetime'
     field :description, 'string'
     field :id, 'string'
@@ -39,6 +39,23 @@ module FacebookAds
     field :product_id, 'string'
     field :title, 'string'
     has_no_post
+
+    has_edge :comments do |edge|
+      edge.get 'Comment' do |api|
+        api.has_param :filter, { enum: -> { Comment::FILTER }}
+        api.has_param :order, { enum: -> { Comment::ORDER }}
+        api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
+        api.has_param :since, 'datetime'
+      end
+    end
+
+    has_edge :instagram_comments do |edge|
+      edge.get 'InstagramComment'
+    end
+
+    has_edge :likes do |edge|
+      edge.get 'Profile'
+    end
 
   end
 end

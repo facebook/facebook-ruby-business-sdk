@@ -55,12 +55,14 @@ module FacebookAds
     field :offer_id, 'string'
     field :offline_conversion_data_set_id, 'string'
     field :page_id, 'string'
+    field :pixel_aggregation_rule, 'string'
     field :pixel_id, 'string'
+    field :pixel_rule, 'string'
     field :place_page_set_id, 'string'
     field :product_catalog_id, 'string'
     field :product_set_id, 'string'
-    has_no_id
-    has_no_get
+    field :retention_days, 'string'
+    field :id, 'string'
     has_no_post
     has_no_delete
 

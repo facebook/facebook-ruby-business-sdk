@@ -27,8 +27,14 @@ module FacebookAds
 
   class AdAccountContextualTargeting < AdObject
 
-    has_no_id
-    has_no_get
+    field :description, 'string'
+    field :enabled_in_ui, 'bool'
+    field :id, 'string'
+    field :key, 'string'
+    field :name, 'string'
+    field :parent, 'string'
+    field :path, { list: 'string' }
+    field :type, 'string'
     has_no_post
     has_no_delete
 
