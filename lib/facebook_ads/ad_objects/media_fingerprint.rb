@@ -34,6 +34,12 @@ module FacebookAds
       "AM_SONGTRACK",
     ]
 
+    FINGERPRINT_VALIDITY = [
+      "VALID",
+      "EXPIRING",
+      "EXPIRED",
+    ]
+
 
     field :duration_in_sec, 'double'
     field :expiration_time, 'datetime'

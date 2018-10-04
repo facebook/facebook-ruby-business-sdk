@@ -26,13 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class PlaceTopic < AdObject
-    ICON_SIZE = [
-      "24",
-      "36",
-      "48",
-      "72",
-    ]
-
 
     field :count, 'int'
     field :has_children, 'bool'

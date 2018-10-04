@@ -30,7 +30,6 @@ module FacebookAds
     field :ad_account, 'AdAccount'
     field :id, 'string'
     field :permitted_roles, { list: 'string' }
-    has_no_get
     has_no_post
     has_no_delete
 

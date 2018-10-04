@@ -44,7 +44,28 @@ module FacebookAds
     field :name, 'string'
     field :role, { enum: -> { ROLE }}
     field :system_user_id, 'int'
+    has_no_post
     has_no_delete
+
+    has_edge :assigned_ad_accounts do |edge|
+      edge.get 'AdAccount'
+    end
+
+    has_edge :assigned_monetization_properties do |edge|
+      edge.get 'AdMonetizationProperty'
+    end
+
+    has_edge :assigned_pages do |edge|
+      edge.get 'Page'
+    end
+
+    has_edge :assigned_product_catalogs do |edge|
+      edge.get 'ProductCatalog'
+    end
+
+    has_edge :updated_by do |edge|
+      edge.get 'User'
+    end
 
   end
 end

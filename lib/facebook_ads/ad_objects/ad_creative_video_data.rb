@@ -33,6 +33,8 @@ module FacebookAds
     field :branded_content_sponsor_relationship, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
     field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
+    field :custom_overlay_spec, { list: 'AdCreativeVideoDataCustomOverlaySpec' }
+    field :description, 'string'
     field :image_hash, 'string'
     field :image_url, 'string'
     field :link_description, 'string'
@@ -44,8 +46,7 @@ module FacebookAds
     field :targeting, 'Targeting'
     field :title, 'string'
     field :video_id, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

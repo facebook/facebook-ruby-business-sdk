@@ -45,19 +45,19 @@ module FacebookAds
 
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
-        api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
-        api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
+        api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
+        api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
       end
     end
 
     has_edge :media do |edge|
-      edge.get 'ShadowIgMedia'
-      edge.post 'ShadowIgUser' do |api|
+      edge.post 'ShadowIgMedia' do |api|
+        api.has_param :media_type, 'string'
         api.has_param :caption, 'string'
         api.has_param :image_url, 'string'
-        api.has_param :media_type, 'string'
+        api.has_param :children, { list: 'int' }
       end
     end
 
@@ -65,10 +65,6 @@ module FacebookAds
       edge.post 'ShadowIgMedia' do |api|
         api.has_param :creation_id, 'int'
       end
-    end
-
-    has_edge :tags do |edge|
-      edge.get 'ShadowIgMedia'
     end
 
   end

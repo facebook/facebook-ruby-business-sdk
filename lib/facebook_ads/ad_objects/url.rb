@@ -34,7 +34,7 @@ module FacebookAds
     field :instant_article, 'InstantArticle'
     field :og_object, 'object'
     field :ownership_permissions, 'object'
-    has_no_post
+    field :share, 'object'
     has_no_delete
 
   end

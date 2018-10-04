@@ -28,7 +28,7 @@ module FacebookAds
   class PageSavedFilter < AdObject
     SECTION = [
       "AUDIENCE_ALERTS",
-      "CAMPAIGN_CENTER",
+      "CANDIDATE_VIDEOS",
       "CHEX_PENDING_ORDERS",
       "CHEX_COMPLETED_ORDERS",
       "COMMERCE_PLATFORM_SETTINGS",
@@ -36,7 +36,6 @@ module FacebookAds
       "COMMERCE_COLLECTIONS",
       "COMMERCE_PENDING_ORDERS",
       "COMMERCE_PAST_ORDERS",
-      "COMMERCE_DISCOUNT_CODES",
       "COMMERCE_MERCHANT_SETTINGS",
       "COMMERCE_SHOP_LINK",
       "DONATIONS_SETTINGS",
@@ -58,6 +57,7 @@ module FacebookAds
       "LEAD_ADS_FORMS",
       "LEAD_ADS_CRM_SETUP",
       "LEAD_ADS_CUSTOM_CRM_SETUP",
+      "POST_IDEAS",
       "PUBLISHED_POSTS",
       "SCHEDULED_POSTS",
       "ADS_POSTS",
@@ -68,6 +68,9 @@ module FacebookAds
       "REPORTED",
       "PLAYLISTS",
       "PLAYLIST_DETAILS",
+      "POPULAR_VIDEOS",
+      "POPULAR_FACEBOOK_VIDEOS",
+      "POPULAR_INSTAGRAM_VIDEOS",
       "POSTS_CONFIG",
       "SEASONS",
       "SEASON_DETAILS",
@@ -96,16 +99,12 @@ module FacebookAds
       "CROSSPOSTED_VIDEOS",
       "PUBLISHED_PROFILE_PICTURE_FRAMES",
       "PENDING_PROFILE_PICTURE_FRAMES",
-      "TAROT_COMPOSER",
-      "DRAFT_EDITIONS",
-      "PUBLISHED_EDITIONS",
       "PUBLISHED_EVENTS",
       "DRAFT_EVENTS",
       "SCHEDULED_EVENTS",
       "ARCHIVED_EVENTS",
       "TOURS",
       "POLLS_COMPOSER",
-      "BRAND_ASSET_LIBRARY",
       "JOB_APPLICATIONS",
       "SUBSCRIPTIONS",
       "NEWS_SUBSCRIPTIONS_PUBLISHER_TOOLS",
@@ -119,6 +118,7 @@ module FacebookAds
       "BRANDED_CONTENT",
       "BRANDED_CONTENT_CREATOR",
       "SOUNDS_COLLECTION",
+      "CREATOR_STUDIO",
       "CONTENT_TESTS",
       "GEM_PRODUCER_DASHBOARD",
       "MONETIZED_VIDEOS",
@@ -137,7 +137,6 @@ module FacebookAds
     field :time_created, 'int'
     field :time_updated, 'int'
     has_no_post
-    has_no_delete
 
   end
 end

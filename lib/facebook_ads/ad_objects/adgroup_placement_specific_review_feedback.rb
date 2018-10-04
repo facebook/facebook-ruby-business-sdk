@@ -32,17 +32,25 @@ module FacebookAds
     field :b2c, 'hash'
     field :bsg, 'hash'
     field :city_community, 'hash'
+    field :daily_deals, 'hash'
+    field :daily_deals_legacy, 'hash'
     field :dpa, 'hash'
     field :facebook, 'hash'
     field :instagram, 'hash'
     field :instagram_shop, 'hash'
     field :marketplace, 'hash'
+    field :marketplace_home_rentals, 'hash'
+    field :marketplace_home_sales, 'hash'
+    field :marketplace_motors, 'hash'
+    field :max_review_placements, 'hash'
     field :page_admin, 'hash'
     field :product, 'hash'
     field :product_service, 'hash'
+    field :profile, 'hash'
     field :seller, 'hash'
-    has_no_id
-    has_no_get
+    field :shops, 'hash'
+    field :whatsapp, 'hash'
+    field :id, 'string'
     has_no_post
     has_no_delete
 

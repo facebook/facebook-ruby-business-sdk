@@ -123,40 +123,40 @@ module FacebookAds
       "action_video_type",
     ]
 
-    SUMMARY = [
-      "id",
-      "account_id",
-      "async_percent_completion",
-      "async_status",
-      "date_start",
-      "date_stop",
-      "emails",
-      "friendly_name",
-      "is_bookmarked",
-      "is_running",
-      "schedule_id",
-      "time_completed",
-      "time_ref",
-    ]
-
 
     field :account_currency, 'string'
     field :account_id, 'string'
     field :account_name, 'string'
     field :action_values, { list: 'AdsActionStats' }
     field :actions, { list: 'AdsActionStats' }
+    field :activity_recency, 'string'
+    field :ad_click_actions, { list: 'AdsActionStats' }
+    field :ad_click_value, { list: 'AdsActionStats' }
+    field :ad_format_asset, 'string'
     field :ad_id, 'string'
+    field :ad_impression_actions, { list: 'AdsActionStats' }
+    field :ad_impression_value, { list: 'AdsActionStats' }
     field :ad_name, 'string'
     field :adset_id, 'string'
     field :adset_name, 'string'
+    field :age, 'string'
+    field :age_targeting, 'string'
+    field :bid_type, 'string'
+    field :body_asset, 'object'
     field :buying_type, 'string'
+    field :call_to_action_asset, 'object'
     field :campaign_id, 'string'
     field :campaign_name, 'string'
     field :canvas_avg_view_percent, 'string'
     field :canvas_avg_view_time, 'string'
+    field :canvas_component_avg_pct_view, { list: 'AdsActionStats' }
     field :clicks, 'string'
     field :cost_per_10_sec_video_view, { list: 'AdsActionStats' }
+    field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }
+    field :cost_per_ad_click, { list: 'AdsActionStats' }
+    field :cost_per_ad_impression, { list: 'AdsActionStats' }
+    field :cost_per_dda_countby_convs, 'string'
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
@@ -165,29 +165,59 @@ module FacebookAds
     field :cost_per_unique_click, 'string'
     field :cost_per_unique_inline_link_click, 'string'
     field :cost_per_unique_outbound_click, { list: 'AdsActionStats' }
+    field :country, 'string'
     field :cpc, 'string'
     field :cpm, 'string'
     field :cpp, 'string'
+    field :created_time, 'string'
+    field :creative_fingerprint, 'string'
     field :ctr, 'string'
     field :date_start, 'string'
     field :date_stop, 'string'
+    field :dda_countby_convs, 'string'
+    field :description_asset, 'object'
+    field :device_platform, 'string'
+    field :dma, 'string'
     field :estimated_ad_recall_rate, 'string'
+    field :estimated_ad_recall_rate_lower_bound, 'string'
+    field :estimated_ad_recall_rate_upper_bound, 'string'
     field :estimated_ad_recallers, 'string'
+    field :estimated_ad_recallers_lower_bound, 'string'
+    field :estimated_ad_recallers_upper_bound, 'string'
     field :frequency, 'string'
+    field :frequency_value, 'string'
+    field :gender, 'string'
+    field :gender_targeting, 'string'
+    field :hourly_stats_aggregated_by_advertiser_time_zone, 'string'
+    field :hourly_stats_aggregated_by_audience_time_zone, 'string'
+    field :image_asset, 'object'
+    field :impression_device, 'string'
     field :impressions, 'string'
+    field :impressions_dummy, 'string'
     field :inline_link_click_ctr, 'string'
     field :inline_link_clicks, 'string'
     field :inline_post_engagement, 'string'
+    field :labels, 'string'
+    field :link_url_asset, 'object'
+    field :location, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
     field :outbound_clicks, { list: 'AdsActionStats' }
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
+    field :place_page_id, 'string'
     field :place_page_name, 'string'
+    field :placement, 'string'
+    field :platform_position, 'string'
+    field :product_format, 'string'
+    field :product_id, 'string'
+    field :publisher_platform, 'string'
+    field :purchasing_interface, 'string'
     field :reach, 'string'
+    field :region, 'string'
     field :relevance_score, 'AdgroupRelevanceScore'
-    field :social_impressions, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
+    field :title_asset, 'object'
     field :total_action_value, 'string'
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
@@ -197,19 +227,28 @@ module FacebookAds
     field :unique_link_clicks_ctr, 'string'
     field :unique_outbound_clicks, { list: 'AdsActionStats' }
     field :unique_outbound_clicks_ctr, { list: 'AdsActionStats' }
+    field :unique_video_continuous_2_sec_watched_actions, { list: 'AdsActionStats' }
+    field :unique_video_view_10_sec, { list: 'AdsActionStats' }
+    field :updated_time, 'string'
     field :video_10_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_30_sec_watched_actions, { list: 'AdsActionStats' }
+    field :video_asset, 'object'
     field :video_avg_percent_watched_actions, { list: 'AdsActionStats' }
     field :video_avg_time_watched_actions, { list: 'AdsActionStats' }
+    field :video_continuous_2_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_p100_watched_actions, { list: 'AdsActionStats' }
     field :video_p25_watched_actions, { list: 'AdsActionStats' }
     field :video_p50_watched_actions, { list: 'AdsActionStats' }
     field :video_p75_watched_actions, { list: 'AdsActionStats' }
     field :video_p95_watched_actions, { list: 'AdsActionStats' }
+    field :video_play_actions, { list: 'AdsActionStats' }
+    field :video_play_retention_0_to_15s_actions, { list: 'object' }
+    field :video_play_retention_20_to_60s_actions, { list: 'object' }
+    field :video_play_retention_graph_actions, { list: 'object' }
+    field :video_time_watched_actions, { list: 'AdsActionStats' }
     field :website_ctr, { list: 'AdsActionStats' }
     field :website_purchase_roas, { list: 'AdsActionStats' }
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

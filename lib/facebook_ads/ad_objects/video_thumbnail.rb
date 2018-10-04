@@ -34,7 +34,6 @@ module FacebookAds
     field :scale, 'double'
     field :uri, 'string'
     field :width, 'int'
-    has_no_get
     has_no_post
     has_no_delete
 

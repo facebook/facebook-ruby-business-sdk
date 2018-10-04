@@ -73,6 +73,7 @@ module FacebookAds
       "PLATFORM_USERS",
       "MULTI_EVENT_SOURCE",
       "SMART_AUDIENCE",
+      "LOOKALIKE_PLATFORM",
       "MAIL_CHIMP_EMAIL_HASHES",
       "CONSTANT_CONTACTS_EMAIL_HASHES",
       "COPY_PASTE_EMAIL_HASHES",
@@ -95,8 +96,7 @@ module FacebookAds
     field :creation_params, 'string'
     field :sub_type, { enum: -> { SUB_TYPE }}
     field :type, { enum: -> { TYPE }}
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

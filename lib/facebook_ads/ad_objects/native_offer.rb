@@ -63,9 +63,10 @@ module FacebookAds
     field :barcode_photo_uri, 'string'
     field :barcode_type, 'string'
     field :barcode_value, 'string'
+    field :block_reshares, 'bool'
     field :details, 'string'
     field :disable_location, 'bool'
-    field :discounts, { list: 'object' }
+    field :discounts, { list: 'NativeOfferDiscount' }
     field :expiration_time, 'datetime'
     field :id, 'string'
     field :instore_code, 'string'
@@ -74,6 +75,7 @@ module FacebookAds
     field :online_code, 'string'
     field :page, 'Page'
     field :page_set_id, 'string'
+    field :redemption_code, 'string'
     field :redemption_link, 'string'
     field :save_count, 'int'
     field :terms, 'string'
@@ -88,25 +90,32 @@ module FacebookAds
 
     has_edge :codes do |edge|
       edge.post 'NativeOffer' do |api|
-        api.has_param :file, 'file'
         api.has_param :unique_codes_file_code_type, { enum: -> { NativeOffer::UNIQUE_CODES_FILE_CODE_TYPE }}
+        api.has_param :file, 'file'
       end
     end
 
     has_edge :nativeofferviews do |edge|
       edge.post 'NativeOffer' do |api|
+        api.has_param :urls, { list: 'string' }
+        api.has_param :photos, { list: 'string' }
         api.has_param :ad_account, 'string'
         api.has_param :ad_image_hashes, { list: 'string' }
+        api.has_param :image_crops, { list: 'hash' }
+        api.has_param :published_ads, 'bool'
+        api.has_param :published, 'bool'
+        api.has_param :message, 'string'
+        api.has_param :place_data, 'object'
+        api.has_param :deeplinks, { list: 'string' }
         api.has_param :carousel_captions, { list: 'string' }
         api.has_param :carousel_links, { list: 'string' }
-        api.has_param :image_crops, { list: 'hash' }
-        api.has_param :message, 'string'
-        api.has_param :photos, { list: 'string' }
-        api.has_param :published, 'bool'
-        api.has_param :published_ads, 'bool'
-        api.has_param :urls, { list: 'string' }
+        api.has_param :carousel_data, { list: 'object' }
         api.has_param :videos, { list: 'string' }
       end
+    end
+
+    has_edge :views do |edge|
+      edge.get 'NativeOfferView'
     end
 
   end

@@ -120,8 +120,7 @@ module FacebookAds
     field :object_name, 'string'
     field :object_type, 'string'
     field :translated_event_type, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

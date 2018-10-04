@@ -31,5 +31,21 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :friends_tagged_at do |edge|
+      edge.get 'User'
+    end
+
+    has_edge :friends_who_like do |edge|
+      edge.get 'User'
+    end
+
+    has_edge :music_listen_friends do |edge|
+      edge.get 'User'
+    end
+
+    has_edge :video_watch_friends do |edge|
+      edge.get 'User'
+    end
+
   end
 end

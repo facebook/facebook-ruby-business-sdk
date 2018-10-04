@@ -53,7 +53,7 @@ module FacebookAds
     field :countries, { list: 'string' }
     field :country, { list: 'string' }
     field :country_groups, { list: 'string' }
-    field :custom_audiences, { list: 'object' }
+    field :custom_audiences, { list: 'RawCustomAudience' }
     field :device_platforms, { list: { enum: -> { DEVICE_PLATFORMS }} }
     field :direct_install_devices, 'bool'
     field :dynamic_audience_ids, { list: 'string' }
@@ -106,10 +106,12 @@ module FacebookAds
     field :moms, { list: 'IdName' }
     field :net_worth, { list: 'IdName' }
     field :office_type, { list: 'IdName' }
+    field :page_types, { list: 'string' }
     field :place_page_set_ids, { list: 'string' }
     field :political_views, { list: 'int' }
     field :politics, { list: 'IdName' }
     field :product_audience_specs, { list: 'TargetingProductAudienceSpec' }
+    field :prospecting_audience, 'TargetingProspectingAudience'
     field :publisher_platforms, { list: 'string' }
     field :publisher_visibility_categories, { list: 'string' }
     field :radius, 'string'
@@ -126,8 +128,7 @@ module FacebookAds
     field :work_employers, { list: 'IdName' }
     field :work_positions, { list: 'IdName' }
     field :zips, { list: 'string' }
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

@@ -53,8 +53,7 @@ module FacebookAds
     field :timezone, 'string'
     field :url, 'string'
     field :username, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

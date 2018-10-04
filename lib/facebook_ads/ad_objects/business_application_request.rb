@@ -27,9 +27,8 @@ module FacebookAds
 
   class BusinessApplicationRequest < AdObject
 
-    field :application, 'object'
+    field :application, 'Application'
     field :id, 'string'
-    has_no_get
     has_no_post
     has_no_delete
 

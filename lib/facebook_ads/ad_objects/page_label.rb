@@ -38,7 +38,8 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :user_ids, { list: 'int' }
       end
-      edge.post 'User' do |api|
+      edge.get 'User'
+      edge.post 'PageLabel' do |api|
         api.has_param :user_ids, { list: 'int' }
       end
     end

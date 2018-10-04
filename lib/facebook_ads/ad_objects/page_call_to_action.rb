@@ -73,6 +73,8 @@ module FacebookAds
       "PLAY_MUSIC",
       "VISIT_GROUP",
       "SHOP_ON_FACEBOOK",
+      "LOCAL_DEV_PLATFORM",
+      "INTERESTED",
     ]
 
     WEB_DESTINATION_TYPE = [
@@ -84,7 +86,7 @@ module FacebookAds
     ]
 
 
-    field :android_app, 'object'
+    field :android_app, 'Application'
     field :android_deeplink, 'string'
     field :android_destination_type, 'string'
     field :android_package_name, 'string'
@@ -94,7 +96,7 @@ module FacebookAds
     field :from, 'Page'
     field :id, 'string'
     field :intl_number_with_plus, 'string'
-    field :iphone_app, 'object'
+    field :iphone_app, 'Application'
     field :iphone_deeplink, 'string'
     field :iphone_destination_type, 'string'
     field :iphone_url, 'string'

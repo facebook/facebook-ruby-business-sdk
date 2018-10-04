@@ -27,7 +27,7 @@ module FacebookAds
 
   class Tab < AdObject
 
-    field :application, 'object'
+    field :application, 'Application'
     field :custom_image_url, 'string'
     field :custom_name, 'string'
     field :id, 'string'
@@ -37,7 +37,6 @@ module FacebookAds
     field :link, 'string'
     field :name, 'string'
     field :position, 'int'
-    has_no_get
     has_no_post
     has_no_delete
 

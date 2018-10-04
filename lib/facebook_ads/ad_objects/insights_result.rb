@@ -26,6 +26,10 @@ module FacebookAds
   # pull request for this class.
 
   class InsightsResult < AdObject
+    METRIC = [
+      "messages_sent",
+    ]
+
     DATE_PRESET = [
       "today",
       "yesterday",
@@ -54,7 +58,6 @@ module FacebookAds
       "days_28",
       "month",
       "lifetime",
-      "total_over_range",
     ]
 
 
@@ -65,7 +68,6 @@ module FacebookAds
     field :period, 'string'
     field :title, 'string'
     field :values, { list: 'object' }
-    has_no_get
     has_no_post
     has_no_delete
 

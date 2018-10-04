@@ -31,7 +31,6 @@ module FacebookAds
     field :display_string, 'string'
     field :id, 'string'
     field :type, 'int'
-    has_no_get
     has_no_post
     has_no_delete
 

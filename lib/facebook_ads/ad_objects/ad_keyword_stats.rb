@@ -47,7 +47,6 @@ module FacebookAds
     field :unique_clicks, 'int'
     field :unique_ctr, 'double'
     field :unique_impressions, 'int'
-    has_no_get
     has_no_post
     has_no_delete
 

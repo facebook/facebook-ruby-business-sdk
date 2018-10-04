@@ -30,8 +30,7 @@ module FacebookAds
     field :event, 'string'
     field :interval_days, 'int'
     field :max_frequency, 'int'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

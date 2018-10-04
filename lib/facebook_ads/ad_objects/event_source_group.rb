@@ -26,6 +26,11 @@ module FacebookAds
   # pull request for this class.
 
   class EventSourceGroup < AdObject
+    ROLE = [
+      "ANALYST",
+      "LIMITED_ANALYST",
+    ]
+
 
     field :business, 'Business'
     field :event_sources, { list: 'ExternalEventSource' }
@@ -34,6 +39,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :shared_accounts do |edge|
+      edge.get 'AdAccount'
       edge.post 'EventSourceGroup' do |api|
         api.has_param :accounts, { list: 'string' }
       end
@@ -43,9 +49,12 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :user, 'int'
       end
-      edge.post do |api|
-        api.has_param :role, { enum: %w{ANALYST LIMITED_ANALYST }}
+      edge.get do |api|
         api.has_param :user, 'int'
+      end
+      edge.post 'EventSourceGroup' do |api|
+        api.has_param :user, 'int'
+        api.has_param :role, { enum: -> { EventSourceGroup::ROLE }}
       end
     end
 

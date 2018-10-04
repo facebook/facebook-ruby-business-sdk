@@ -26,13 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class AdStudyObjective < AdObject
-    BREAKDOWNS = [
-      "age",
-      "cell_id",
-      "gender",
-      "country",
-    ]
-
     TYPE = [
       "SALES",
       "NONSALES",

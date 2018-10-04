@@ -48,6 +48,7 @@ module FacebookAds
     field :url, 'string'
     field :url_128, 'string'
     field :width, 'int'
+    field :zipbytes, 'object'
     field :bytes, 'object'
     field :copy_from, 'object'
     has_no_post

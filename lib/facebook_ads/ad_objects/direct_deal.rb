@@ -62,5 +62,9 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :applications do |edge|
+      edge.get 'Application'
+    end
+
   end
 end

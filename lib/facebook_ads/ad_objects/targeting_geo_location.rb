@@ -33,14 +33,21 @@ module FacebookAds
     field :custom_locations, { list: 'TargetingGeoLocationCustomLocation' }
     field :electoral_districts, { list: 'TargetingGeoLocationElectoralDistrict' }
     field :geo_markets, { list: 'TargetingGeoLocationMarket' }
+    field :large_geo_areas, { list: 'TargetingGeoLocationGeoEntities' }
+    field :location_cluster_ids, { list: 'TargetingGeoLocationLocationCluster' }
     field :location_set_ids, { list: 'string' }
     field :location_types, { list: 'string' }
+    field :medium_geo_areas, { list: 'TargetingGeoLocationGeoEntities' }
+    field :metro_areas, { list: 'TargetingGeoLocationGeoEntities' }
+    field :neighborhoods, { list: 'TargetingGeoLocationGeoEntities' }
     field :places, { list: 'TargetingGeoLocationPlace' }
     field :political_districts, { list: 'TargetingGeoLocationPoliticalDistrict' }
     field :regions, { list: 'TargetingGeoLocationRegion' }
+    field :small_geo_areas, { list: 'TargetingGeoLocationGeoEntities' }
+    field :subcities, { list: 'TargetingGeoLocationGeoEntities' }
+    field :subneighborhoods, { list: 'TargetingGeoLocationGeoEntities' }
     field :zips, { list: 'TargetingGeoLocationZip' }
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

@@ -27,17 +27,18 @@ module FacebookAds
 
   class ExtendedCredit < AdObject
 
-    field :allocated_amount, 'object'
-    field :balance, 'object'
-    field :credit_available, 'object'
+    field :allocated_amount, 'CurrencyAmount'
+    field :balance, 'CurrencyAmount'
+    field :credit_available, 'CurrencyAmount'
     field :credit_type, 'string'
     field :id, 'string'
+    field :is_access_revoked, 'bool'
     field :is_automated_experience, 'bool'
     field :last_payment_time, 'datetime'
     field :legal_entity_name, 'string'
     field :liable_biz_name, 'string'
-    field :max_balance, 'object'
-    field :online_max_balance, 'object'
+    field :max_balance, 'CurrencyAmount'
+    field :online_max_balance, 'CurrencyAmount'
     field :owner_business, 'Business'
     field :owner_business_name, 'string'
     field :partition_from, 'string'
@@ -46,11 +47,15 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :extended_credit_emails do |edge|
+      edge.get
+    end
+
     has_edge :extended_credit_invoice_groups do |edge|
       edge.get 'ExtendedCreditInvoiceGroup'
-      edge.post 'ExtendedCredit' do |api|
-        api.has_param :emails, { list: 'string' }
+      edge.post 'ExtendedCreditInvoiceGroup' do |api|
         api.has_param :name, 'string'
+        api.has_param :emails, { list: 'string' }
       end
     end
 
@@ -59,11 +64,11 @@ module FacebookAds
         api.has_param :receiving_business_id, 'string'
       end
       edge.post 'ExtendedCreditAllocationConfig' do |api|
+        api.has_param :receiving_business_id, 'string'
         api.has_param :amount, 'object'
         api.has_param :liability_type, { enum: -> { ExtendedCreditAllocationConfig::LIABILITY_TYPE }}
-        api.has_param :partition_type, { enum: -> { ExtendedCreditAllocationConfig::PARTITION_TYPE }}
-        api.has_param :receiving_business_id, 'string'
         api.has_param :send_bill_to, { enum: -> { ExtendedCreditAllocationConfig::SEND_BILL_TO }}
+        api.has_param :partition_type, { enum: -> { ExtendedCreditAllocationConfig::PARTITION_TYPE }}
       end
     end
 

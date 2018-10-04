@@ -188,10 +188,12 @@ module FacebookAds
     ]
 
 
+    field :ad_accounts_currency, 'string'
     field :ad_accounts_info, { list: 'object' }
     field :additional_comment, 'string'
     field :address_in_chinese, 'string'
     field :address_in_english, 'object'
+    field :address_in_local_language, 'string'
     field :advertiser_business, 'Business'
     field :appeal_reason, 'object'
     field :business, 'Business'
@@ -199,6 +201,7 @@ module FacebookAds
     field :chinese_legal_entity_name, 'string'
     field :contact, 'object'
     field :creator, 'User'
+    field :credit_card_id, 'string'
     field :disapproval_reasons, { list: 'object' }
     field :english_legal_entity_name, 'string'
     field :extended_credit_id, 'string'
@@ -206,6 +209,7 @@ module FacebookAds
     field :is_smb, 'bool'
     field :is_test, 'bool'
     field :is_under_authorization, 'bool'
+    field :legal_entity_name_in_local_language, 'string'
     field :official_website_url, 'string'
     field :planning_agency_business, 'Business'
     field :planning_agency_business_id, 'string'
@@ -217,9 +221,36 @@ module FacebookAds
     field :subvertical, 'string'
     field :time_created, 'datetime'
     field :vertical, 'string'
-    field :advertiser_business_id, 'string'
     field :business_registration, 'file'
     field :promotable_page_urls, { list: 'object' }
+    field :advertiser_business_id, 'string'
+
+    has_edge :adaccounts do |edge|
+      edge.get 'AdAccount'
+    end
+
+    has_edge :vietnam do |edge|
+      edge.post 'AdAccountCreationRequest' do |api|
+        api.has_param :ad_accounts_info, { list: 'object' }
+        api.has_param :business_registration, 'file'
+        api.has_param :planning_agency_business_id, 'object'
+        api.has_param :english_legal_entity_name, 'string'
+        api.has_param :address_in_english, 'object'
+        api.has_param :official_website_url, 'object'
+        api.has_param :business_registration_id, 'string'
+        api.has_param :vertical, { enum: -> { AdAccountCreationRequest::VERTICAL }}
+        api.has_param :subvertical, { enum: -> { AdAccountCreationRequest::SUBVERTICAL }}
+        api.has_param :promotable_page_urls, { list: 'object' }
+        api.has_param :promotable_page_ids, { list: 'int' }
+        api.has_param :promotable_app_ids, { list: 'object' }
+        api.has_param :promotable_urls, { list: 'object' }
+        api.has_param :contact, 'object'
+        api.has_param :additional_comment, 'string'
+        api.has_param :advertiser_business_id, 'object'
+        api.has_param :address_in_local_language, 'string'
+        api.has_param :legal_entity_name_in_local_language, 'string'
+      end
+    end
 
   end
 end

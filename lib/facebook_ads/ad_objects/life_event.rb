@@ -36,18 +36,41 @@ module FacebookAds
     field :start_time, 'datetime'
     field :title, 'string'
     field :updated_time, 'datetime'
-    has_no_post
-    has_no_delete
 
     has_edge :comments do |edge|
-      edge.post do |api|
+      edge.get 'Comment' do |api|
+        api.has_param :filter, { enum: -> { Comment::FILTER }}
+        api.has_param :order, { enum: -> { Comment::ORDER }}
+        api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
+        api.has_param :since, 'datetime'
+      end
+      edge.post 'Comment' do |api|
+        api.has_param :object_id, 'string'
+        api.has_param :parent_comment_id, 'object'
+        api.has_param :nectar_module, 'string'
         api.has_param :attachment_id, 'string'
-        api.has_param :attachment_share_url, 'string'
         api.has_param :attachment_url, 'string'
+        api.has_param :attachment_share_url, 'string'
+        api.has_param :feedback_source, 'string'
+        api.has_param :facepile_mentioned_ids, { list: 'string' }
         api.has_param :is_offline, 'bool'
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
         api.has_param :message, 'string'
         api.has_param :text, 'string'
+        api.has_param :tracking, 'string'
       end
+    end
+
+    has_edge :likes do |edge|
+      edge.get 'Profile'
+    end
+
+    has_edge :photos do |edge|
+      edge.get 'Photo'
+    end
+
+    has_edge :sharedposts do |edge|
+      edge.get 'Post'
     end
 
   end

@@ -26,9 +26,74 @@ module FacebookAds
   # pull request for this class.
 
   class PartnerIntegrationLinked < AdObject
+    PARTNER = [
+      "adjust",
+      "appsflyer",
+      "avana",
+      "backer_founder",
+      "big_commerce",
+      "cart_3d",
+      "default",
+      "drupal",
+      "ec_cube3",
+      "eventbrite",
+      "feedonomics",
+      "foodkit",
+      "google_tag_manager",
+      "haravan",
+      "infusionsoft_zap",
+      "intern",
+      "invoca",
+      "jimdo",
+      "joomla",
+      "jumpseller",
+      "kraftly",
+      "magento",
+      "magento_2",
+      "marketo",
+      "meesho",
+      "m_particle",
+      "now_floats",
+      "opencart",
+      "prestashop",
+      "productsup",
+      "ruby_on_rails",
+      "riversoft",
+      "salesforce_zap",
+      "segment",
+      "shopify",
+      "shopify_online",
+      "shopline",
+      "shop_up",
+      "sirclo",
+      "squarespace",
+      "storeden",
+      "test",
+      "verifone",
+      "waca",
+      "weebly",
+      "wix",
+      "woocommerce",
+      "wordpress",
+      "zoho_zap",
+      "ticketmaster",
+    ]
+
+    COMPLETED_INTEGRATION_TYPES = [
+      "0",
+      "1",
+      "2",
+      "3",
+    ]
+
+    SETUP_STATUS = [
+      "START",
+      "COMPLETE",
+    ]
+
 
     field :ads_pixel, 'AdsPixel'
-    field :application, 'object'
+    field :application, 'Application'
     field :completed_integration_types, { list: 'string' }
     field :external_id, 'string'
     field :has_oauth_token, 'bool'
@@ -39,8 +104,8 @@ module FacebookAds
     field :partner_profile, 'object'
     field :product_catalog, 'ProductCatalog'
     field :setup_status, 'string'
-    has_no_post
-    has_no_delete
+    field :gtm_account_id, 'string'
+    field :gtm_container_id, 'string'
 
   end
 end

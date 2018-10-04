@@ -34,8 +34,7 @@ module FacebookAds
     field :template_data, 'AdCreativeLinkData'
     field :text_data, 'AdCreativeTextData'
     field :video_data, 'AdCreativeVideoData'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

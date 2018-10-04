@@ -26,6 +26,28 @@ module FacebookAds
   # pull request for this class.
 
   class AdsPixel < AdObject
+    SORT_BY = [
+      "LAST_FIRED_TIME",
+      "NAME",
+    ]
+
+    TASKS = [
+      "EDIT",
+      "ANALYZE",
+    ]
+
+    TYPE = [
+      "PRIMARY",
+      "SECONDARY",
+    ]
+
+    RELATIONSHIP_TYPE = [
+      "AD_MANAGER",
+      "AUDIENCE_MANAGER",
+      "AGENCY",
+      "OTHER",
+    ]
+
 
     field :can_proxy, 'bool'
     field :code, 'string'
@@ -39,9 +61,56 @@ module FacebookAds
     field :owner_business, 'Business'
     has_no_delete
 
+    has_edge :assigned_users do |edge|
+      edge.delete do |api|
+        api.has_param :user, 'int'
+        api.has_param :business, 'string'
+      end
+      edge.get 'AssignedUser' do |api|
+        api.has_param :business, 'string'
+      end
+      edge.post 'AdsPixel' do |api|
+        api.has_param :user, 'int'
+        api.has_param :tasks, { list: { enum: -> { AdsPixel::TASKS }} }
+        api.has_param :business, 'string'
+      end
+    end
+
     has_edge :audiences do |edge|
       edge.get 'CustomAudience' do |api|
         api.has_param :ad_account, 'string'
+      end
+    end
+
+    has_edge :create_server_to_server_keys do |edge|
+      edge.post 'AdsPixel'
+    end
+
+    has_edge :da_checks do |edge|
+      edge.get 'DaCheck' do |api|
+        api.has_param :checks, { list: 'string' }
+      end
+    end
+
+    has_edge :extractors do |edge|
+      edge.get 'SignalsIwlExtractor' do |api|
+        api.has_param :current_domain, 'object'
+      end
+      edge.post 'SignalsIwlExtractor' do |api|
+        api.has_param :domain_uri, 'object'
+        api.has_param :event_type, { enum: -> { SignalsIWLExtractor::EVENT_TYPE }}
+        api.has_param :extractor_config, 'hash'
+        api.has_param :extractor_type, { enum: -> { SignalsIWLExtractor::EXTRACTOR_TYPE }}
+      end
+    end
+
+    has_edge :pending_shared_agencies do |edge|
+      edge.get 'Business'
+    end
+
+    has_edge :reset_server_to_server_key do |edge|
+      edge.post 'AdsPixel' do |api|
+        api.has_param :type, { enum: -> { AdsPixel::TYPE }}
       end
     end
 
@@ -53,22 +122,32 @@ module FacebookAds
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'
       end
-      edge.post do |api|
+      edge.post 'AdsPixel' do |api|
         api.has_param :account_id, 'string'
         api.has_param :business, 'string'
       end
     end
 
     has_edge :shared_agencies do |edge|
+      edge.delete do |api|
+        api.has_param :agency_id, 'string'
+        api.has_param :business, 'string'
+      end
       edge.get 'Business'
+      edge.post 'AdsPixel' do |api|
+        api.has_param :agency_id, 'string'
+        api.has_param :business, 'string'
+        api.has_param :relationship_type, { list: { enum: -> { AdsPixel::RELATIONSHIP_TYPE }} }
+        api.has_param :other_relationship, 'string'
+      end
     end
 
     has_edge :stats do |edge|
       edge.get 'AdsPixelStatsResult' do |api|
-        api.has_param :aggregation, { enum: -> { AdsPixelStatsResult::AGGREGATION }}
-        api.has_param :end_time, 'object'
-        api.has_param :event, 'string'
         api.has_param :start_time, 'object'
+        api.has_param :end_time, 'object'
+        api.has_param :aggregation, { enum: -> { AdsPixelStatsResult::AGGREGATION }}
+        api.has_param :event, 'string'
       end
     end
 

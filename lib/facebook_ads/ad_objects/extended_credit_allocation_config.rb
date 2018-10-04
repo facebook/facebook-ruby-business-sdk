@@ -45,7 +45,7 @@ module FacebookAds
     ]
 
 
-    field :currency_amount, 'object'
+    field :currency_amount, 'CurrencyAmount'
     field :id, 'string'
     field :liability_type, 'string'
     field :owning_business, 'Business'

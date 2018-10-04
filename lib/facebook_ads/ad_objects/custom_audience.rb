@@ -28,11 +28,12 @@ module FacebookAds
   class CustomAudience < AdObject
     include CustomAudienceHelpers
     CLAIM_OBJECTIVE = [
-      "AUTO_OFFER",
+      "AUTOMOTIVE_MODEL",
       "HOME_LISTING",
       "PRODUCT",
       "TRAVEL",
       "VEHICLE",
+      "VEHICLE_OFFER",
     ]
 
     CONTENT_TYPE = [
@@ -70,83 +71,72 @@ module FacebookAds
       "FOX",
     ]
 
-    FIELDS = [
-      "account_id",
-      "customer_file_source",
-      "data_source",
-      "delivery_status",
-      "description",
-      "external_event_source",
-      "id",
-      "approximate_count",
-      "is_value_based",
-      "lookalike_audience_ids",
-      "lookalike_spec",
-      "name",
-      "operation_status",
-      "opt_out_link",
-      "permission_for_actions",
-      "pixel_id",
-      "retention_days",
-      "rule",
-      "rule_aggregation",
-      "sharing_status",
-      "subtype",
-      "time_content_updated",
-      "time_created",
-      "time_updated",
-    ]
-
 
     field :account_id, 'string'
     field :approximate_count, 'int'
     field :customer_file_source, 'string'
     field :data_source, 'CustomAudienceDataSource'
+    field :data_source_types, 'string'
     field :delivery_status, 'CustomAudienceStatus'
     field :description, 'string'
+    field :excluded_custom_audiences, { list: 'CustomAudience' }
+    field :expiry_time, 'int'
     field :external_event_source, 'AdsPixel'
+    field :household_audience, 'int'
     field :id, 'string'
+    field :included_custom_audiences, { list: 'CustomAudience' }
+    field :is_household, 'bool'
+    field :is_snapshot, 'bool'
     field :is_value_based, 'bool'
+    field :list_of_accounts, { list: 'string' }
     field :lookalike_audience_ids, { list: 'string' }
     field :lookalike_spec, 'LookalikeSpec'
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'
     field :opt_out_link, 'string'
-    field :permission_for_actions, 'object'
+    field :permission_for_actions, 'AudiencePermissionForActions'
     field :pixel_id, 'string'
     field :retention_days, 'int'
+    field :rev_share_policy_id, 'int'
     field :rule, 'string'
     field :rule_aggregation, 'string'
+    field :rule_v2, 'string'
+    field :seed_audience, 'int'
     field :sharing_status, 'CustomAudienceSharingStatus'
+    field :study_spec, 'AudienceInsightsStudySpec'
     field :subtype, 'string'
     field :time_content_updated, 'int'
     field :time_created, 'int'
     field :time_updated, 'int'
-    field :allowed_domains, { list: 'string' }
-    field :claim_objective, { enum: -> { CLAIM_OBJECTIVE }}
-    field :content_type, { enum: -> { CONTENT_TYPE }}
-    field :dataset_id, 'string'
-    field :event_source_group, 'string'
-    field :event_sources, { list: 'hash' }
-    field :list_of_accounts, { list: 'int' }
-    field :origin_audience_id, 'string'
-    field :prefill, 'bool'
-    field :product_set_id, 'string'
-    field :associated_audience_id, 'int'
     field :creation_params, 'hash'
-    field :exclusions, { list: 'object' }
-    field :inclusions, { list: 'object' }
     field :parent_audience_id, 'int'
     field :tags, { list: 'string' }
-
-    has_edge :ad_accounts do |edge|
-      edge.post 'AdAccount' do |api|
-        api.has_param :adaccounts, { list: 'string' }
-        api.has_param :permissions, 'string'
-        api.has_param :relationship_type, { list: 'string' }
-        api.has_param :replace, 'bool'
-      end
-    end
+    field :associated_audience_id, 'int'
+    field :is_household_exclusion, 'bool'
+    field :allowed_domains, { list: 'string' }
+    field :partner_reference_key, 'string'
+    field :prefill, 'bool'
+    field :inclusions, { list: 'object' }
+    field :exclusions, { list: 'object' }
+    field :countries, 'string'
+    field :origin_audience_id, 'string'
+    field :details, 'string'
+    field :source, 'string'
+    field :isprivate, 'bool'
+    field :additionalmetadata, 'string'
+    field :minage, 'int'
+    field :maxage, 'int'
+    field :expectedsize, 'int'
+    field :gender, 'string'
+    field :partnerid, 'string'
+    field :accountid, 'string'
+    field :claim_objective, { enum: -> { CLAIM_OBJECTIVE }}
+    field :content_type, { enum: -> { CONTENT_TYPE }}
+    field :event_source_group, 'string'
+    field :product_set_id, 'string'
+    field :event_sources, { list: 'hash' }
+    field :video_group_ids, { list: 'string' }
+    field :dataset_id, 'string'
 
     has_edge :adaccounts do |edge|
       edge.delete do |api|
@@ -155,12 +145,40 @@ module FacebookAds
       edge.get 'AdAccount' do |api|
         api.has_param :permissions, 'string'
       end
+      edge.post 'CustomAudience' do |api|
+        api.has_param :adaccounts, { list: 'string' }
+        api.has_param :permissions, 'string'
+        api.has_param :replace, 'bool'
+        api.has_param :relationship_type, { list: 'string' }
+      end
     end
 
     has_edge :ads do |edge|
       edge.get 'Ad' do |api|
         api.has_param :effective_status, { list: 'string' }
         api.has_param :status, { list: 'string' }
+      end
+    end
+
+    has_edge :capabilities do |edge|
+      edge.delete do |api|
+        api.has_param :adaccounts, { list: 'string' }
+      end
+      edge.post do |api|
+        api.has_param :accounts_capabilities, 'string'
+        api.has_param :relationship_type, { list: 'string' }
+      end
+    end
+
+    has_edge :data do |edge|
+      edge.post do |api|
+        api.has_param :action_type, { enum: %w{add remove match optout }}
+        api.has_param :encoding, { enum: %w{md5 sha256 plain }}
+        api.has_param :entry_type, { enum: %w{0 1 2 3 4 5 6 }}
+        api.has_param :entries, { list: 'string' }
+        api.has_param :session_id, 'int'
+        api.has_param :batch_seq, 'int'
+        api.has_param :last_batch_flag, 'bool'
       end
     end
 
@@ -174,16 +192,33 @@ module FacebookAds
       end
     end
 
+    has_edge :shared_account_info do |edge|
+      edge.get 'CustomAudiencesharedAccountInfo'
+    end
+
+    has_edge :upload do |edge|
+      edge.delete do |api|
+        api.has_param :session, 'object'
+        api.has_param :payload, 'object'
+        api.has_param :namespace, 'string'
+      end
+      edge.post 'CustomAudience' do |api|
+        api.has_param :session, 'object'
+        api.has_param :payload, 'object'
+        api.has_param :namespace, 'string'
+      end
+    end
+
     has_edge :users do |edge|
       edge.delete do |api|
-        api.has_param :namespace, 'string'
-        api.has_param :payload, 'object'
         api.has_param :session, 'object'
+        api.has_param :payload, 'object'
+        api.has_param :namespace, 'string'
       end
-      edge.post 'User' do |api|
-        api.has_param :namespace, 'string'
-        api.has_param :payload, 'object'
+      edge.post 'CustomAudience' do |api|
         api.has_param :session, 'object'
+        api.has_param :payload, 'object'
+        api.has_param :namespace, 'string'
       end
     end
 

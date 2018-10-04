@@ -55,8 +55,6 @@ module FacebookAds
     field :total_count, 'int'
     field :updated_time, 'datetime'
     field :ad_specs, { list: 'hash' }
-    has_no_post
-    has_no_delete
 
     has_edge :requests do |edge|
       edge.get 'AdAsyncRequest' do |api|

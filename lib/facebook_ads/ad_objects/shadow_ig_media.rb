@@ -44,7 +44,6 @@ module FacebookAds
     has_no_delete
 
     has_edge :comments do |edge|
-      edge.get 'ShadowIgComment'
       edge.post 'ShadowIgComment' do |api|
         api.has_param :message, 'string'
       end

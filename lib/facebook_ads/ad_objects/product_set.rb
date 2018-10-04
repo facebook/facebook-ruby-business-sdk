@@ -34,6 +34,47 @@ module FacebookAds
     field :product_catalog, 'ProductCatalog'
     field :product_count, 'int'
 
+    has_edge :automotive_models do |edge|
+      edge.get 'AutomotiveModel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :da_checks do |edge|
+      edge.get 'DaCheck' do |api|
+        api.has_param :checks, { list: 'string' }
+      end
+    end
+
+    has_edge :destinations do |edge|
+      edge.get 'Destination' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :flights do |edge|
+      edge.get 'Flight' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :home_listings do |edge|
+      edge.get 'HomeListing' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :hotels do |edge|
+      edge.get 'Hotel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
@@ -42,7 +83,7 @@ module FacebookAds
     end
 
     has_edge :vehicles do |edge|
-      edge.get do |api|
+      edge.get 'Vehicle' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

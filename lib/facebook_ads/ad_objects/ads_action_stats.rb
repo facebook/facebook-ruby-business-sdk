@@ -33,21 +33,24 @@ module FacebookAds
     field :_28d_view, 'string'
     field :_7d_click, 'string'
     field :_7d_view, 'string'
+    field :action_canvas_component_id, 'string'
     field :action_canvas_component_name, 'string'
     field :action_carousel_card_id, 'string'
     field :action_carousel_card_name, 'string'
     field :action_destination, 'string'
     field :action_device, 'string'
+    field :action_event_channel, 'string'
     field :action_link_click_destination, 'string'
+    field :action_location_code, 'string'
     field :action_reaction, 'string'
     field :action_target_id, 'string'
     field :action_type, 'string'
+    field :action_video_asset_id, 'string'
     field :action_video_sound, 'string'
     field :action_video_type, 'string'
     field :inline, 'string'
     field :value, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

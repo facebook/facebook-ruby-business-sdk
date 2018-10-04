@@ -61,7 +61,6 @@ module FacebookAds
     field :type, 'string'
     field :updated_time, 'datetime'
     has_no_post
-    has_no_delete
 
   end
 end

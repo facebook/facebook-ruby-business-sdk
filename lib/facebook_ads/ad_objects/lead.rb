@@ -40,7 +40,8 @@ module FacebookAds
     field :id, 'string'
     field :is_organic, 'bool'
     field :partner_name, 'string'
-    field :post, 'object'
+    field :platform, 'string'
+    field :post, 'Link'
     field :retailer_item_id, 'string'
     has_no_post
 

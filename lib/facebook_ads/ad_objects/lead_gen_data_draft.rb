@@ -73,7 +73,7 @@ module FacebookAds
     field :context_card, 'object'
     field :continued_flow_request_method, 'string'
     field :created_time, 'datetime'
-    field :creator_id, 'int'
+    field :creator_id, 'string'
     field :expired_leads_count, 'int'
     field :follow_up_action_url, 'string'
     field :id, 'string'

@@ -30,8 +30,7 @@ module FacebookAds
     field :exclusions, { list: 'TargetingProductAudienceSubSpec' }
     field :inclusions, { list: 'TargetingProductAudienceSubSpec' }
     field :product_set_id, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

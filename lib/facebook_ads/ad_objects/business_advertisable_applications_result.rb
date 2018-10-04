@@ -30,7 +30,7 @@ module FacebookAds
     field :has_insight_permission, 'bool'
     field :id, 'string'
     field :name, 'string'
-    has_no_get
+    field :photo_url, 'string'
     has_no_post
     has_no_delete
 

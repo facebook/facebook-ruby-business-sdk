@@ -53,8 +53,7 @@ module FacebookAds
     field :_question_creator, { list: 'string' }
     field :response, { list: 'string' }
     field :subtype, { list: 'string' }
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

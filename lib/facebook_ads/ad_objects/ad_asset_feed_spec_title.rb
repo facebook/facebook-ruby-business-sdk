@@ -30,8 +30,7 @@ module FacebookAds
     field :adlabels, { list: 'AdAssetFeedSpecAssetLabel' }
     field :text, 'string'
     field :url_tags, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

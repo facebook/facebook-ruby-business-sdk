@@ -131,16 +131,33 @@ module FacebookAds
       "include_recommendations",
     ]
 
+    FULL_FUNNEL_EXPLORATION_MODE = [
+      "NONE_EXPLORATION",
+      "LIMITED_EXPLORATION",
+      "EXTENDED_EXPLORATION",
+    ]
+
     OPERATOR = [
       "ALL",
       "ANY",
     ]
 
+    STATUS_OPTION = [
+      "ACTIVE",
+      "PAUSED",
+      "INHERITED_FROM_SOURCE",
+    ]
+
 
     field :account_id, 'string'
+    field :ad_keywords, 'string'
+    field :adasset_feed, 'AdAssetFeed'
     field :adlabels, { list: 'AdLabel' }
     field :adset_schedule, { list: 'DayPart' }
+    field :asset_feed_id, 'string'
     field :attribution_spec, { list: 'AttributionSpec' }
+    field :best_creative, 'AdDynamicCreative'
+    field :bid_adjustments, 'AdBidAdjustments'
     field :bid_amount, 'int'
     field :bid_info, 'map<string, unsigned int>'
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
@@ -157,11 +174,18 @@ module FacebookAds
     field :destination_type, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
+    field :frequency_cap, 'int'
+    field :frequency_cap_reset_period, 'int'
     field :frequency_control_specs, { list: 'AdCampaignFrequencyControlSpecs' }
+    field :full_funnel_exploration_mode, 'string'
     field :id, 'string'
     field :instagram_actor_id, 'string'
+    field :is_autobid, 'bool'
+    field :is_average_price_pacing, 'bool'
+    field :is_dynamic_creative, 'bool'
     field :is_dynamic_creative_optimization, 'bool'
     field :lifetime_budget, 'string'
+    field :lifetime_frequency_cap, 'int'
     field :lifetime_imps, 'int'
     field :lifetime_min_spend_target, 'string'
     field :lifetime_spend_cap, 'string'
@@ -171,6 +195,7 @@ module FacebookAds
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
     field :recurring_budget_semantics, 'bool'
+    field :review_feedback, 'string'
     field :rf_prediction_id, 'string'
     field :rtb_flag, 'bool'
     field :source_adset, 'AdSet'
@@ -180,20 +205,35 @@ module FacebookAds
     field :targeting, 'Targeting'
     field :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
     field :time_based_ad_rotation_intervals, { list: 'int' }
+    field :tracking_specs, 'string'
     field :updated_time, 'datetime'
     field :use_new_app_click, 'bool'
     field :campaign_spec, 'object'
     field :daily_imps, 'int'
+    field :date_format, 'string'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
+    field :line_number, 'int'
+    field :rb_prediction_id, 'string'
+    field :redownload, 'bool'
+    field :time_start, 'datetime'
+    field :time_stop, 'datetime'
+    field :topline_id, 'string'
+    field :upstream_events, 'hash'
 
     has_edge :activities do |edge|
       edge.get 'AdActivity' do |api|
-        api.has_param :business_id, 'string'
-        api.has_param :category, { enum: -> { AdActivity::CATEGORY }}
+        api.has_param :after, 'string'
+        api.has_param :limit, 'int'
         api.has_param :since, 'datetime'
-        api.has_param :uid, 'int'
+        api.has_param :category, { enum: -> { AdActivity::CATEGORY }}
         api.has_param :until, 'datetime'
+        api.has_param :uid, 'int'
+        api.has_param :business_id, 'string'
       end
+    end
+
+    has_edge :ad_studies do |edge|
+      edge.get 'AdStudy'
     end
 
     has_edge :adcreatives do |edge|
@@ -203,27 +243,22 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdLabel::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
       end
-      edge.post 'AdLabel' do |api|
+      edge.post 'AdSet' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdLabel::EXECUTION_OPTIONS }} }
-      end
-    end
-
-    has_edge :adrules_governed do |edge|
-      edge.get 'AdRule' do |api|
-        api.has_param :pass_evaluation, 'bool'
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
       end
     end
 
     has_edge :ads do |edge|
       edge.get 'Ad' do |api|
-        api.has_param :ad_draft_id, 'string'
-        api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
+        api.has_param :include_deleted, 'bool'
         api.has_param :effective_status, { list: 'string' }
+        api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
+        api.has_param :ad_draft_id, 'string'
       end
     end
 
@@ -235,38 +270,47 @@ module FacebookAds
 
     has_edge :copies do |edge|
       edge.get 'AdSet' do |api|
-        api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
         api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
+        api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
+      end
+      edge.post 'AdSet' do |api|
+        api.has_param :deep_copy, 'bool'
+        api.has_param :campaign_id, 'string'
+        api.has_param :rename_options, 'object'
+        api.has_param :status_option, { enum: -> { AdSet::STATUS_OPTION }}
+        api.has_param :start_time, 'datetime'
+        api.has_param :end_time, 'datetime'
+        api.has_param :create_dco_adset, 'bool'
       end
     end
 
     has_edge :delivery_estimate do |edge|
       edge.get 'AdCampaignDeliveryEstimate' do |api|
+        api.has_param :targeting_spec, 'Targeting'
         api.has_param :optimization_goal, { enum: -> { AdCampaignDeliveryEstimate::OPTIMIZATION_GOAL }}
         api.has_param :promoted_object, 'object'
-        api.has_param :targeting_spec, 'Targeting'
       end
     end
 
     has_edge :insights do |edge|
       edge.get 'AdsInsights' do |api|
+        api.has_param :default_summary, 'bool'
+        api.has_param :fields, { list: 'string' }
+        api.has_param :filtering, { list: 'object' }
+        api.has_param :summary, { list: 'string' }
+        api.has_param :sort, { list: 'string' }
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
         api.has_param :action_breakdowns, { list: { enum: -> { AdsInsights::ACTION_BREAKDOWNS }} }
         api.has_param :action_report_time, { enum: -> { AdsInsights::ACTION_REPORT_TIME }}
         api.has_param :breakdowns, { list: { enum: -> { AdsInsights::BREAKDOWNS }} }
         api.has_param :date_preset, { enum: -> { AdsInsights::DATE_PRESET }}
-        api.has_param :default_summary, 'bool'
         api.has_param :export_columns, { list: 'string' }
         api.has_param :export_format, 'string'
         api.has_param :export_name, 'string'
-        api.has_param :fields, { list: { enum: -> { AdsInsights::SUMMARY }} }
-        api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :product_id_limit, 'int'
-        api.has_param :sort, { list: 'string' }
-        api.has_param :summary, { list: { enum: -> { AdsInsights::SUMMARY }} }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
@@ -274,21 +318,21 @@ module FacebookAds
         api.has_param :use_account_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
+        api.has_param :default_summary, 'bool'
+        api.has_param :fields, { list: 'string' }
+        api.has_param :filtering, { list: 'object' }
+        api.has_param :summary, { list: 'string' }
+        api.has_param :sort, { list: 'string' }
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
         api.has_param :action_breakdowns, { list: { enum: -> { AdsInsights::ACTION_BREAKDOWNS }} }
         api.has_param :action_report_time, { enum: -> { AdsInsights::ACTION_REPORT_TIME }}
         api.has_param :breakdowns, { list: { enum: -> { AdsInsights::BREAKDOWNS }} }
         api.has_param :date_preset, { enum: -> { AdsInsights::DATE_PRESET }}
-        api.has_param :default_summary, 'bool'
         api.has_param :export_columns, { list: 'string' }
         api.has_param :export_format, 'string'
         api.has_param :export_name, 'string'
-        api.has_param :fields, { list: { enum: -> { AdsInsights::SUMMARY }} }
-        api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :product_id_limit, 'int'
-        api.has_param :sort, { list: 'string' }
-        api.has_param :summary, { list: { enum: -> { AdsInsights::SUMMARY }} }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'

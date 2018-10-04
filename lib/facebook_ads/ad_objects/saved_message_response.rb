@@ -40,6 +40,7 @@ module FacebookAds
       "SMART_REPLY_LOCATION",
       "SMART_REPLY_NEGATIVE_FEEDBACK",
       "SMART_REPLY_POSITIVE_FEEDBACK",
+      "JOB_APPLICATION",
     ]
 
 
@@ -49,6 +50,10 @@ module FacebookAds
     field :is_enabled, 'bool'
     field :message, 'string'
     field :title, 'string'
+
+    has_edge :macros do |edge|
+      edge.get 'SavedMessageResponseMacro'
+    end
 
   end
 end

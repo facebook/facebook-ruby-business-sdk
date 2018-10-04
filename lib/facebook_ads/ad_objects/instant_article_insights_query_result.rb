@@ -44,7 +44,6 @@ module FacebookAds
       "days_28",
       "month",
       "lifetime",
-      "total_over_range",
     ]
 
 
@@ -52,8 +51,7 @@ module FacebookAds
     field :name, 'string'
     field :time, 'datetime'
     field :value, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

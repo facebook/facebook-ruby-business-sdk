@@ -40,31 +40,33 @@ module FacebookAds
     field :schedule_id, 'string'
     field :time_completed, 'int'
     field :time_ref, 'int'
+    field :default_summary, 'bool'
+    field :fields, { list: 'string' }
+    field :filtering, { list: 'object' }
+    field :summary, { list: 'string' }
+    field :sort, { list: 'string' }
     field :action_attribution_windows, { list: 'adaccountinsights_action_attribution_windows_enum_param' }
     field :action_breakdowns, { list: 'adaccountinsights_action_breakdowns_enum_param' }
     field :action_report_time, 'adaccountinsights_action_report_time_enum_param'
     field :breakdowns, { list: 'adaccountinsights_breakdowns_enum_param' }
     field :date_preset, 'adaccountinsights_date_preset_enum_param'
-    field :default_summary, 'bool'
     field :export_columns, { list: 'string' }
     field :export_format, 'string'
     field :export_name, 'string'
-    field :fields, { list: 'adreportrun_graph_fields_param' }
-    field :filtering, { list: 'object' }
     field :level, 'adaccountinsights_level_enum_param'
     field :product_id_limit, 'int'
-    field :sort, { list: 'string' }
-    field :summary, { list: 'adreportrun_graph_fields_param' }
     field :summary_action_breakdowns, { list: 'adaccountinsights_summary_action_breakdowns_enum_param' }
     field :time_increment, 'string'
     field :time_range, 'object'
     field :time_ranges, { list: 'object' }
     field :use_account_attribution_setting, 'bool'
-    has_no_post
-    has_no_delete
 
     has_edge :insights do |edge|
       edge.get 'AdsInsights'
+    end
+
+    has_edge :retry do |edge|
+      edge.post 'AdReportRun'
     end
 
   end

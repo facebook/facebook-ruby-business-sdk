@@ -43,7 +43,6 @@ module FacebookAds
     field :source, 'string'
     field :status, 'string'
     field :targeting_type, 'string'
-    has_no_get
     has_no_post
     has_no_delete
 

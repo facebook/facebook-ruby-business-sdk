@@ -49,8 +49,7 @@ module FacebookAds
     field :results, { list: 'AdRuleHistoryResult' }
     field :schedule_spec, 'AdRuleScheduleSpec'
     field :timestamp, 'datetime'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
 

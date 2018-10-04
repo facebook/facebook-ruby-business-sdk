@@ -32,12 +32,53 @@ module FacebookAds
     field :creator, 'object'
     field :id, 'string'
     field :name, 'string'
-    has_no_post
-    has_no_delete
+
+    has_edge :adaccounts do |edge|
+      edge.delete do |api|
+        api.has_param :adaccount_id, 'string'
+      end
+      edge.get 'AdAccount'
+      edge.post 'BusinessProject' do |api|
+        api.has_param :adaccount_id, 'string'
+      end
+    end
+
+    has_edge :apps do |edge|
+      edge.delete do |api|
+        api.has_param :app_id, 'string'
+      end
+      edge.get 'Application'
+      edge.post 'BusinessProject' do |api|
+        api.has_param :app_id, 'string'
+      end
+    end
 
     has_edge :assets do |edge|
       edge.delete do |api|
         api.has_param :asset_id, 'string'
+      end
+      edge.post 'BusinessProject' do |api|
+        api.has_param :asset_id, 'string'
+      end
+    end
+
+    has_edge :pages do |edge|
+      edge.delete do |api|
+        api.has_param :page_id, 'int'
+      end
+      edge.get 'Page'
+      edge.post 'BusinessProject' do |api|
+        api.has_param :page_id, 'int'
+      end
+    end
+
+    has_edge :product_catalogs do |edge|
+      edge.delete do |api|
+        api.has_param :product_catalog_id, 'string'
+      end
+      edge.get 'ProductCatalog'
+      edge.post 'BusinessProject' do |api|
+        api.has_param :product_catalog_id, 'string'
       end
     end
 

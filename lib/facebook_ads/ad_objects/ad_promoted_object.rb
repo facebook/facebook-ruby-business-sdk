@@ -29,6 +29,14 @@ module FacebookAds
     CUSTOM_EVENT_TYPE = [
       "RATE",
       "TUTORIAL_COMPLETION",
+      "CONTACT",
+      "CUSTOMIZE_PRODUCT",
+      "DONATE",
+      "FIND_LOCATION",
+      "SCHEDULE",
+      "START_TRIAL",
+      "SUBMIT_APPLICATION",
+      "SUBSCRIBE",
       "ADD_TO_CART",
       "ADD_TO_WISHLIST",
       "INITIATED_CHECKOUT",
@@ -51,16 +59,20 @@ module FacebookAds
     field :custom_conversion_id, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :event_id, 'string'
+    field :fundraiser_campaign_id, 'string'
     field :object_store_url, 'string'
     field :offer_id, 'string'
     field :offline_conversion_data_set_id, 'string'
     field :page_id, 'string'
+    field :pixel_aggregation_rule, 'string'
     field :pixel_id, 'string'
+    field :pixel_rule, 'string'
     field :place_page_set_id, 'string'
     field :product_catalog_id, 'string'
+    field :product_item_id, 'string'
     field :product_set_id, 'string'
-    has_no_id
-    has_no_get
+    field :retention_days, 'string'
+    field :id, 'string'
     has_no_post
     has_no_delete
 
