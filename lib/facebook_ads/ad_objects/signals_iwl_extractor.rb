@@ -48,6 +48,7 @@ module FacebookAds
     ]
 
     EXTRACTOR_TYPE = [
+      "CONSTANT_VALUE",
       "CSS",
       "GLOBAL_VARIABLE",
       "GTM",

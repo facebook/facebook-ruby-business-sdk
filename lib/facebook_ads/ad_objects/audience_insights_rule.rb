@@ -36,7 +36,7 @@ module FacebookAds
     field :language, 'string'
     field :name, 'string'
     field :rule_components, { list: 'object' }
-    field :studies, { list: 'AudienceStudy' }
+    field :studies, { list: 'object' }
     has_no_post
     has_no_delete
 

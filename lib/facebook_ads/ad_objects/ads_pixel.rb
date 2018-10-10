@@ -31,6 +31,18 @@ module FacebookAds
       "NAME",
     ]
 
+    DATA_USE_SETTING = [
+      "EMPTY",
+      "ADVERTISING_AND_ANALYTICS",
+      "ANALYTICS_ONLY",
+    ]
+
+    FIRST_PARTY_COOKIE_STATUS = [
+      "EMPTY",
+      "FIRST_PARTY_COOKIE_ENABLED",
+      "FIRST_PARTY_COOKIE_DISABLED",
+    ]
+
     TASKS = [
       "EDIT",
       "ANALYZE",
@@ -53,6 +65,8 @@ module FacebookAds
     field :code, 'string'
     field :creation_time, 'datetime'
     field :creator, 'User'
+    field :data_use_setting, 'string'
+    field :first_party_cookie_status, 'string'
     field :id, 'string'
     field :is_created_by_business, 'bool'
     field :last_fired_time, 'datetime'

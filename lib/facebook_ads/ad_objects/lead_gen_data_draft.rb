@@ -68,18 +68,13 @@ module FacebookAds
     ]
 
 
-    field :allow_organic_lead, 'bool'
     field :block_display_for_non_targeted_viewer, 'bool'
     field :context_card, 'object'
-    field :continued_flow_request_method, 'string'
     field :created_time, 'datetime'
     field :creator_id, 'string'
-    field :expired_leads_count, 'int'
     field :follow_up_action_url, 'string'
     field :id, 'string'
-    field :is_continued_flow, 'bool'
     field :is_optimized_for_quality, 'bool'
-    field :leadgen_export_csv_url, 'string'
     field :legal_content, 'object'
     field :locale, 'string'
     field :name, 'string'

@@ -272,19 +272,6 @@ module FacebookAds
       "REMOVE",
     ]
 
-    SETTING_TYPE = [
-      "ACCOUNT_LINKING",
-      "CALL_TO_ACTIONS",
-      "GREETING",
-      "DOMAIN_WHITELISTING",
-      "PAYMENT",
-    ]
-
-    THREAD_STATE = [
-      "NEW_THREAD",
-      "EXISTING_THREAD",
-    ]
-
 
     field :about, 'string'
     field :access_token, 'string'
@@ -652,15 +639,16 @@ module FacebookAds
       edge.get 'UnifiedThread' do |api|
         api.has_param :tags, { list: 'string' }
         api.has_param :folder, 'string'
+        api.has_param :psid, 'object'
       end
     end
 
     has_edge :copyright_manual_claims do |edge|
-      edge.post 'VideoCopyrightMatch' do |api|
+      edge.post do |api|
         api.has_param :reference_asset_id, 'string'
         api.has_param :matched_asset_id, 'string'
-        api.has_param :match_content_type, { enum: -> { VideoCopyrightMatch::MATCH_CONTENT_TYPE }}
-        api.has_param :action, { enum: -> { VideoCopyrightMatch::ACTION }}
+        api.has_param :match_content_type, { enum: %w{VIDEO_AND_AUDIO VIDEO_ONLY AUDIO_ONLY }}
+        api.has_param :action, { enum: %w{MANUAL_REVIEW MONITOR BLOCK CLAIM_AD_EARNINGS REQUEST_TAKEDOWN }}
         api.has_param :countries, 'object'
       end
     end
@@ -952,7 +940,6 @@ module FacebookAds
       edge.post 'LeadGenDataDraft' do |api|
         api.has_param :name, 'string'
         api.has_param :locale, { enum: -> { LeadGenDataDraft::LOCALE }}
-        api.has_param :allow_organic_lead_retrieval, 'bool'
         api.has_param :block_display_for_non_targeted_viewer, 'bool'
         api.has_param :follow_up_action_url, 'string'
         api.has_param :legal_content_id, 'string'
@@ -1261,7 +1248,7 @@ module FacebookAds
     end
 
     has_edge :page_backed_instagram_accounts do |edge|
-      edge.post 'InstagramUser'
+      edge.post
     end
 
     has_edge :pass_thread_control do |edge|
@@ -1568,13 +1555,13 @@ module FacebookAds
 
     has_edge :thread_settings do |edge|
       edge.delete do |api|
-        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
-        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
+        api.has_param :setting_type, { enum: %w{ACCOUNT_LINKING CALL_TO_ACTIONS GREETING DOMAIN_WHITELISTING PAYMENT }}
+        api.has_param :thread_state, { enum: %w{NEW_THREAD EXISTING_THREAD }}
       end
       edge.get 'ThreadSetting'
       edge.post 'Page' do |api|
-        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
-        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
+        api.has_param :setting_type, { enum: %w{ACCOUNT_LINKING CALL_TO_ACTIONS GREETING DOMAIN_WHITELISTING PAYMENT }}
+        api.has_param :thread_state, { enum: %w{NEW_THREAD EXISTING_THREAD }}
         api.has_param :call_to_actions, { list: 'object' }
         api.has_param :greeting, 'object'
         api.has_param :account_linking_url, 'string'
@@ -1591,6 +1578,7 @@ module FacebookAds
       edge.get 'UnifiedThread' do |api|
         api.has_param :tags, { list: 'string' }
         api.has_param :folder, 'string'
+        api.has_param :psid, 'object'
       end
     end
 

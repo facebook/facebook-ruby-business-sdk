@@ -27,7 +27,9 @@ module FacebookAds
 
   class ExternalEventSourceDebugging < AdObject
 
+    field :app_version, 'string'
     field :content_url, 'string'
+    field :device_os, 'string'
     field :diagnostic, 'string'
     field :event_name, 'string'
     field :event_time, 'int'

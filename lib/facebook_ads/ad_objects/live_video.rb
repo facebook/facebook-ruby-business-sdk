@@ -99,7 +99,7 @@ module FacebookAds
     field :ingest_streams, { list: 'LiveVideoInputStream' }
     field :is_manual_mode, 'bool'
     field :is_reference_only, 'bool'
-    field :live_encoders, { list: 'LiveEncoder' }
+    field :live_encoders, { list: 'object' }
     field :live_views, 'int'
     field :permalink_url, 'string'
     field :planned_start_time, 'datetime'

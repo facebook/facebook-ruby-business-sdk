@@ -93,6 +93,7 @@ module FacebookAds
       "BRAND",
       "ASSET_CUSTOMIZATION",
       "DCO_PARITY",
+      "PREVIEW_DYNAMIC_RENDERING",
     ]
 
     CALL_TO_ACTION_TYPE = [

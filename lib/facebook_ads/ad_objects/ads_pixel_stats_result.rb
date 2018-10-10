@@ -33,13 +33,20 @@ module FacebookAds
       "device_type",
       "event",
       "host",
+      "people_reached",
+      "pii_keys",
+      "pii_lift",
       "pixel_fire",
+      "event_detection_method",
       "url",
+      "event_value_count",
+      "url_by_rule",
       "event_total_counts",
+      "event_source",
     ]
 
 
-    field :aggregation, { enum: -> { AGGREGATION }}
+    field :aggregation, 'string'
     field :data, { list: 'AdsPixelStats' }
     field :start_time, 'datetime'
     field :id, 'string'

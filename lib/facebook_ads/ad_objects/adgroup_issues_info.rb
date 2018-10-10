@@ -25,14 +25,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstagramComment < AdObject
+  class AdgroupIssuesInfo < AdObject
 
-    field :comment_type, 'string'
-    field :created_at, 'datetime'
+    field :error_code, 'int'
+    field :error_message, 'string'
+    field :error_summary, 'string'
     field :id, 'string'
-    field :instagram_comment_id, 'string'
-    field :mentioned_instagram_users, { list: 'InstagramUser' }
-    field :message, 'string'
+    has_no_post
+    has_no_delete
 
   end
 end

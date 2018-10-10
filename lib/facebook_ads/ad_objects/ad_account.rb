@@ -484,7 +484,6 @@ module FacebookAds
         api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
         api.has_param :adlabels, { list: 'object' }
         api.has_param :bid_amount, 'int'
-        api.has_param :redownload, 'bool'
         api.has_param :source_ad_id, 'string'
         api.accepts_files!
       end
@@ -512,7 +511,7 @@ module FacebookAds
         api.has_param :ad_draft_id, 'string'
       end
       edge.post 'AdSet' do |api|
-        api.has_param :ad_keywords, 'hash'
+        api.has_param :ad_keywords, 'object'
         api.has_param :adlabels, { list: 'object' }
         api.has_param :bid_amount, 'int'
         api.has_param :bid_adjustments, 'object'
@@ -549,7 +548,6 @@ module FacebookAds
         api.has_param :pacing_type, { list: 'string' }
         api.has_param :promoted_object, 'object'
         api.has_param :rb_prediction_id, 'string'
-        api.has_param :redownload, 'bool'
         api.has_param :rf_prediction_id, 'string'
         api.has_param :source_adset_id, 'string'
         api.has_param :start_time, 'datetime'
@@ -1141,10 +1139,6 @@ module FacebookAds
       edge.post 'PublisherBlockList' do |api|
         api.has_param :name, 'string'
       end
-    end
-
-    has_edge :ratecard do |edge|
-      edge.get 'RateCard'
     end
 
     has_edge :reachestimate do |edge|

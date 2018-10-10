@@ -57,6 +57,7 @@ module FacebookAds
         api.has_param :media_type, 'string'
         api.has_param :caption, 'string'
         api.has_param :image_url, 'string'
+        api.has_param :thumb_offset, 'string'
         api.has_param :children, { list: 'int' }
       end
     end

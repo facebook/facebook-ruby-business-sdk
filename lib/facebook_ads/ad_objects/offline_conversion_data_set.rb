@@ -67,6 +67,7 @@ module FacebookAds
     field :id, 'string'
     field :is_restricted_use, 'bool'
     field :last_upload_app, 'string'
+    field :last_upload_app_changed_time, 'int'
     field :match_rate_approx, 'int'
     field :matched_entries, 'int'
     field :matched_unique_users, 'int'

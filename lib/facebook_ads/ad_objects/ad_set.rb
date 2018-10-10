@@ -214,7 +214,6 @@ module FacebookAds
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
     field :line_number, 'int'
     field :rb_prediction_id, 'string'
-    field :redownload, 'bool'
     field :time_start, 'datetime'
     field :time_stop, 'datetime'
     field :topline_id, 'string'
@@ -243,11 +242,11 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
       edge.post 'AdSet' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
     end
 

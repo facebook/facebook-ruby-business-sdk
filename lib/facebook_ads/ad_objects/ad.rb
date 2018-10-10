@@ -122,6 +122,7 @@ module FacebookAds
     field :failed_delivery_checks, { list: 'DeliveryCheck' }
     field :id, 'string'
     field :impression_control_map, { list: 'string' }
+    field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
     field :locations, { list: 'int' }
     field :name, 'string'
@@ -144,7 +145,6 @@ module FacebookAds
     field :adset_spec, 'AdSet'
     field :draft_adgroup_id, 'string'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
-    field :redownload, 'bool'
 
     has_edge :adcreatives do |edge|
       edge.get 'AdCreative'

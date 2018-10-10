@@ -131,11 +131,9 @@ module FacebookAds
     field :actions, { list: 'AdsActionStats' }
     field :activity_recency, 'string'
     field :ad_click_actions, { list: 'AdsActionStats' }
-    field :ad_click_value, { list: 'AdsActionStats' }
     field :ad_format_asset, 'string'
     field :ad_id, 'string'
     field :ad_impression_actions, { list: 'AdsActionStats' }
-    field :ad_impression_value, { list: 'AdsActionStats' }
     field :ad_name, 'string'
     field :adset_id, 'string'
     field :adset_name, 'string'
@@ -155,11 +153,11 @@ module FacebookAds
     field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }
     field :cost_per_ad_click, { list: 'AdsActionStats' }
-    field :cost_per_ad_impression, { list: 'AdsActionStats' }
     field :cost_per_dda_countby_convs, 'string'
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
+    field :cost_per_one_thousand_ad_impression, { list: 'AdsActionStats' }
     field :cost_per_outbound_click, { list: 'AdsActionStats' }
     field :cost_per_unique_action_type, { list: 'AdsActionStats' }
     field :cost_per_unique_click, 'string'
