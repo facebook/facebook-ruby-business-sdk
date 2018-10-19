@@ -137,6 +137,11 @@ module FacebookAds
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
+      edge.post 'Flight' do |api|
+        api.has_param :images, { list: 'object' }
+        api.has_param :origin_airport, 'string'
+        api.has_param :destination_airport, 'string'
+      end
     end
 
     has_edge :home_listings do |edge|

@@ -30,7 +30,7 @@ end
 
 ad_account = FacebookAds::AdAccount.get(id)
 customaudiences = ad_account.customaudiences.create({
-    name: 'Dynamic Value-Based lookalike',
+    name: 'Test Value-Based lookalike from Pixel',
     subtype: 'LOOKALIKE',
     lookalike_spec: {'origin_event_sources':[{'id':'<sourceID>'}],'type':'custom_ratio','ratio':0.01,'country':'US'},
 })

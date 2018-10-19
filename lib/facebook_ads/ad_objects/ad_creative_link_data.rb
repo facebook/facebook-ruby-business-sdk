@@ -57,6 +57,7 @@ module FacebookAds
     field :format_option, { enum: -> { FORMAT_OPTION }}
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
+    field :image_layer_specs, { list: 'AdCreativeLinkDataImageLayerSpec' }
     field :image_overlay_spec, 'AdCreativeLinkDataImageOverlaySpec'
     field :link, 'string'
     field :message, 'string'

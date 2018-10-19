@@ -16,9 +16,20 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# FB:AUTOGEN
+require 'facebook_ads'
 
-module FacebookAds
-  VERSION = '0.3.1.7'
-  API_VERSION = '3.1'
+access_token = '<ACCESS_TOKEN>'
+app_secret = '<APP_SECRET>'
+app_id = '<APP_ID>'
+id = '<ID>'
+
+FacebookAds.configure do |config|
+  config.access_token = access_token
+  config.app_secret = app_secret
 end
+
+business = FacebookAds::Business.get(id)
+owned_product_catalogs = business.owned_product_catalogs.create({
+    name: 'Test Hotel Catalog',
+    vertical: 'hotels',
+})

@@ -150,6 +150,7 @@ module FacebookAds
     field :canvas_component_avg_pct_view, { list: 'AdsActionStats' }
     field :clicks, 'string'
     field :cost_per_10_sec_video_view, { list: 'AdsActionStats' }
+    field :cost_per_15_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }
     field :cost_per_ad_click, { list: 'AdsActionStats' }
@@ -159,6 +160,7 @@ module FacebookAds
     field :cost_per_inline_post_engagement, 'string'
     field :cost_per_one_thousand_ad_impression, { list: 'AdsActionStats' }
     field :cost_per_outbound_click, { list: 'AdsActionStats' }
+    field :cost_per_thruplay, { list: 'AdsActionStats' }
     field :cost_per_unique_action_type, { list: 'AdsActionStats' }
     field :cost_per_unique_click, 'string'
     field :cost_per_unique_inline_link_click, 'string'
@@ -198,6 +200,7 @@ module FacebookAds
     field :labels, 'string'
     field :link_url_asset, 'object'
     field :location, 'string'
+    field :media_asset, 'object'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
     field :outbound_clicks, { list: 'AdsActionStats' }
@@ -227,8 +230,10 @@ module FacebookAds
     field :unique_outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :unique_video_continuous_2_sec_watched_actions, { list: 'AdsActionStats' }
     field :unique_video_view_10_sec, { list: 'AdsActionStats' }
+    field :unique_video_view_15_sec, { list: 'AdsActionStats' }
     field :updated_time, 'string'
     field :video_10_sec_watched_actions, { list: 'AdsActionStats' }
+    field :video_15_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_30_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_asset, 'object'
     field :video_avg_percent_watched_actions, { list: 'AdsActionStats' }
@@ -243,6 +248,7 @@ module FacebookAds
     field :video_play_retention_0_to_15s_actions, { list: 'object' }
     field :video_play_retention_20_to_60s_actions, { list: 'object' }
     field :video_play_retention_graph_actions, { list: 'object' }
+    field :video_thruplay_watched_actions, { list: 'AdsActionStats' }
     field :video_time_watched_actions, { list: 'AdsActionStats' }
     field :website_ctr, { list: 'AdsActionStats' }
     field :website_purchase_roas, { list: 'AdsActionStats' }

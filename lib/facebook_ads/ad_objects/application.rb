@@ -69,6 +69,7 @@ module FacebookAds
       "PLATFORM",
       "PROPERTY",
       "CLICKED_VIEW_TAG",
+      "NO_FILL_REASON",
     ]
 
     METRICS = [
@@ -103,6 +104,7 @@ module FacebookAds
       "FB_AD_NETWORK_FAST_RETURN_DENOMINATOR",
       "FB_AD_NETWORK_CLICK_VALUE_SCORE_NUMERATOR",
       "FB_AD_NETWORK_CLICK_VALUE_SCORE_DENOMINATOR",
+      "FB_AD_NETWORK_NO_FILL",
     ]
 
     ORDERING_COLUMN = [

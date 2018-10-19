@@ -59,6 +59,7 @@ module FacebookAds
     field :start_time, 'int'
     field :status, 'string'
     field :targeting, 'Targeting'
+    field :third_party_integrated_deal, 'bool'
     has_no_post
     has_no_delete
 

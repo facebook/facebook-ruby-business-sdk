@@ -110,6 +110,8 @@ module FacebookAds
       "CANDIDATE_VIDEOS",
       "FUNDRAISER_COVER_VIDEO",
       "PROTON",
+      "BELL_POLL",
+      "CIVIC_PROPOSAL_COVER_VIDEO",
     ]
 
     CONTENT_CATEGORY = [

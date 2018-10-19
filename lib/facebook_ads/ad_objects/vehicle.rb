@@ -49,6 +49,7 @@ module FacebookAds
     field :id, 'string'
     field :images, { list: 'string' }
     field :interior_color, 'string'
+    field :legal_disclosure_impressum_url, 'string'
     field :make, 'string'
     field :mileage, 'object'
     field :model, 'string'

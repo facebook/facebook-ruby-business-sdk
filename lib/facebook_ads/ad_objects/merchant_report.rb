@@ -28,8 +28,10 @@ module FacebookAds
   class MerchantReport < AdObject
 
     field :add_to_cart, 'int'
+    field :brand, 'string'
     field :catalog_segment_id, 'string'
     field :catalog_segment_purchase_value, 'double'
+    field :category, 'string'
     field :date, 'string'
     field :link_clicks, 'int'
     field :page_id, 'string'

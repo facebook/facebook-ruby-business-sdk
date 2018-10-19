@@ -65,7 +65,6 @@ module FacebookAds
       "VIDEO",
       "LOOKALIKE",
       "ENGAGEMENT",
-      "DATA_SET",
       "BAG_OF_ACCOUNTS",
       "STUDY_RULE_AUDIENCE",
       "FOX",

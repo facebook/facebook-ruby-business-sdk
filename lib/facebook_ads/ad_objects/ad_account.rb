@@ -128,7 +128,6 @@ module FacebookAds
       "VIDEO",
       "LOOKALIKE",
       "ENGAGEMENT",
-      "DATA_SET",
       "BAG_OF_ACCOUNTS",
       "STUDY_RULE_AUDIENCE",
       "FOX",
@@ -1039,6 +1038,10 @@ module FacebookAds
         api.has_param :query_term, 'string'
         api.has_param :allow_incomplete_app, 'bool'
       end
+    end
+
+    has_edge :max_bid do |edge|
+      edge.get 'AdAccountMaxBid'
     end
 
     has_edge :minimum_budgets do |edge|

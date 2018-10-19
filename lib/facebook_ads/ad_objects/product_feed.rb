@@ -53,7 +53,6 @@ module FacebookAds
 
     FEED_TYPE = [
       "AUTO",
-      "AUTO_OFFER",
       "DESTINATION",
       "FLIGHT",
       "HOME_LISTING",
