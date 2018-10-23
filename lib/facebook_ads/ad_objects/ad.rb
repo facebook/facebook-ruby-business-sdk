@@ -121,15 +121,12 @@ module FacebookAds
     field :engagement_audience, 'bool'
     field :failed_delivery_checks, { list: 'DeliveryCheck' }
     field :id, 'string'
-    field :impression_control_map, { list: 'string' }
     field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
-    field :locations, { list: 'int' }
     field :name, 'string'
     field :objective_source, 'string'
     field :priority, 'int'
     field :recommendations, { list: 'AdRecommendation' }
-    field :social_prefs, { list: 'string' }
     field :source_ad, 'Ad'
     field :source_ad_id, 'string'
     field :status, { enum: -> { STATUS }}
@@ -137,11 +134,9 @@ module FacebookAds
     field :tracking_and_conversion_with_defaults, 'TrackingAndConversionWithDefaults'
     field :tracking_specs, { list: 'ConversionActionQuery' }
     field :updated_time, 'datetime'
-    field :url_override, 'string'
     field :audience_id, 'string'
     field :date_format, 'string'
     field :include_demolink_hashes, 'bool'
-    field :social_required, 'bool'
     field :adset_spec, 'AdSet'
     field :draft_adgroup_id, 'string'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
@@ -153,11 +148,11 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
       edge.post 'Ad' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
     end
 

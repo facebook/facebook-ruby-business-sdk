@@ -87,6 +87,7 @@ module FacebookAds
       "LANDING_PAGE_VIEWS",
       "VALUE",
       "REPLIES",
+      "DERIVED_EVENTS",
     ]
 
     STATUS = [

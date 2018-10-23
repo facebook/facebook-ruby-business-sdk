@@ -94,7 +94,6 @@ module FacebookAds
         api.has_param :prng, 'object'
         api.has_param :proxied_app_id, 'string'
         api.has_param :recipients, 'object'
-        api.has_param :replace_message_id, 'string'
         api.has_param :replied_to_message_id, 'string'
         api.has_param :selected_cta_token, 'string'
         api.has_param :shareable_attachment, 'object'

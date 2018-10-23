@@ -76,6 +76,7 @@ module FacebookAds
     field :customer_file_source, 'string'
     field :data_source, 'CustomAudienceDataSource'
     field :data_source_types, 'string'
+    field :datafile_custom_audience_uploading_status, 'string'
     field :delivery_status, 'CustomAudienceStatus'
     field :description, 'string'
     field :excluded_custom_audiences, { list: 'CustomAudience' }

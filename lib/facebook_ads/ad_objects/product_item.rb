@@ -50,6 +50,7 @@ module FacebookAds
       "refurbished",
       "used",
       "cpo",
+      "open_box_new",
     ]
 
     GENDER = [

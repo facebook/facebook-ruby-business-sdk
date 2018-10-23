@@ -141,6 +141,8 @@ module FacebookAds
         api.has_param :images, { list: 'object' }
         api.has_param :origin_airport, 'string'
         api.has_param :destination_airport, 'string'
+        api.has_param :description, 'string'
+        api.has_param :url, 'object'
       end
     end
 

@@ -85,6 +85,7 @@ module FacebookAds
       "LANDING_PAGE_VIEWS",
       "VALUE",
       "REPLIES",
+      "DERIVED_EVENTS",
     ]
 
     OPTIMIZATION_GOAL_OLD = [
@@ -110,6 +111,7 @@ module FacebookAds
       "LANDING_PAGE_VIEWS",
       "VALUE",
       "REPLIES",
+      "DERIVED_EVENTS",
     ]
 
 

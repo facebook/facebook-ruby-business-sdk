@@ -68,19 +68,19 @@ module FacebookAds
       "ANALYZE",
     ]
 
+    SURVEY_BUSINESS_TYPE = [
+      "AGENCY",
+      "ADVERTISER",
+      "APP_DEVELOPER",
+      "PUBLISHER",
+    ]
+
     PAGE_PERMITTED_ROLES = [
       "MANAGER",
       "CONTENT_CREATOR",
       "MODERATOR",
       "ADVERTISER",
       "INSIGHTS_ANALYST",
-    ]
-
-    SURVEY_BUSINESS_TYPE = [
-      "AGENCY",
-      "ADVERTISER",
-      "APP_DEVELOPER",
-      "PUBLISHER",
     ]
 
     PERMITTED_ROLES = [
@@ -425,6 +425,19 @@ module FacebookAds
       end
     end
 
+    has_edge :managed_businesses do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :name, 'string'
+        api.has_param :vertical, { enum: -> { Business::VERTICAL }}
+        api.has_param :timezone_id, 'int'
+        api.has_param :survey_business_type, { enum: -> { Business::SURVEY_BUSINESS_TYPE }}
+        api.has_param :survey_num_people, 'int'
+        api.has_param :survey_num_assets, 'int'
+        api.has_param :sales_rep_email, 'string'
+        api.has_param :existing_client_business_id, 'object'
+      end
+    end
+
     has_edge :matched_search_applications do |edge|
       edge.get 'BusinessMatchedSearchApplicationsEdgeData' do |api|
         api.has_param :app_store, { enum: -> { BusinessMatchedSearchApplicationsEdgeData::APP_STORE }}
@@ -452,6 +465,7 @@ module FacebookAds
         api.has_param :description, 'string'
         api.has_param :data_origin, { enum: -> { OfflineConversionDataSet::DATA_ORIGIN }}
         api.has_param :enable_auto_assign_to_accounts, 'bool'
+        api.has_param :is_mta_use, 'bool'
         api.has_param :auto_assign_to_new_accounts_only, 'bool'
       end
     end

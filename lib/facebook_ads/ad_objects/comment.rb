@@ -59,7 +59,6 @@ module FacebookAds
     field :can_hide, 'bool'
     field :can_like, 'bool'
     field :can_remove, 'bool'
-    field :can_reply_privately, 'bool'
     field :comment_count, 'int'
     field :created_time, 'datetime'
     field :from, 'object'
@@ -73,7 +72,6 @@ module FacebookAds
     field :object, 'object'
     field :parent, 'Comment'
     field :permalink_url, 'string'
-    field :private_reply_conversation, 'object'
     field :user_likes, 'bool'
 
     has_edge :comments do |edge|
@@ -96,12 +94,6 @@ module FacebookAds
         api.has_param :tracking, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :feedback_source, 'string'
-      end
-    end
-
-    has_edge :private_replies do |edge|
-      edge.post do |api|
-        api.has_param :message, 'string'
       end
     end
 

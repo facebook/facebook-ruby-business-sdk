@@ -53,7 +53,6 @@ module FacebookAds
     field :application, 'Application'
     field :backdated_time, 'datetime'
     field :call_to_action, 'object'
-    field :can_reply_privately, 'bool'
     field :caption, 'string'
     field :child_attachments, { list: 'string' }
     field :comments_mirroring_domain, 'string'

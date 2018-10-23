@@ -27,7 +27,7 @@ module FacebookAds
 
   class TargetingProspectingAudience < AdObject
 
-    field :sources, 'string'
+    field :sources, { list: 'object' }
     field :id, 'string'
     has_no_post
     has_no_delete

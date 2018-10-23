@@ -65,6 +65,7 @@ module FacebookAds
     field :event_time_max, 'int'
     field :event_time_min, 'int'
     field :id, 'string'
+    field :is_mta_use, 'bool'
     field :is_restricted_use, 'bool'
     field :last_upload_app, 'string'
     field :last_upload_app_changed_time, 'int'

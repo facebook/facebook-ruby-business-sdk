@@ -100,7 +100,7 @@ module FacebookAds
     end
 
     has_edge :comments do |edge|
-      edge.get 'Null'
+      edge.get 'NullNode'
       edge.post 'Comment' do |api|
         api.has_param :object_id, 'string'
         api.has_param :parent_comment_id, 'object'
@@ -125,7 +125,7 @@ module FacebookAds
     end
 
     has_edge :feed do |edge|
-      edge.get 'Null'
+      edge.get 'NullNode'
       edge.post do |api|
         api.has_param :picture, 'string'
         api.has_param :name, 'string'
@@ -249,7 +249,7 @@ module FacebookAds
     end
 
     has_edge :live_videos do |edge|
-      edge.get 'Null'
+      edge.get 'NullNode'
       edge.post do |api|
         api.has_param :title, 'string'
         api.has_param :description, 'string'
@@ -289,7 +289,7 @@ module FacebookAds
     end
 
     has_edge :photos do |edge|
-      edge.get 'Null'
+      edge.get 'NullNode'
       edge.post 'Photo' do |api|
         api.has_param :aid, 'string'
         api.has_param :caption, 'string'
@@ -346,11 +346,11 @@ module FacebookAds
     end
 
     has_edge :picture do |edge|
-      edge.get 'Null'
+      edge.get 'NullNode'
     end
 
     has_edge :posts do |edge|
-      edge.get 'Null'
+      edge.get 'NullNode'
     end
 
     has_edge :roles do |edge|
@@ -358,7 +358,7 @@ module FacebookAds
     end
 
     has_edge :videos do |edge|
-      edge.get 'Null'
+      edge.get 'NullNode'
       edge.post 'AdVideo' do |api|
         api.has_param :title, 'string'
         api.has_param :source, 'string'

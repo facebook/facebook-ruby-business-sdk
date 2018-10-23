@@ -220,6 +220,7 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
         api.has_param :parent_page, 'string'
+        api.has_param :targeted_area_type, { enum: -> { AdPlacePageSet::TARGETED_AREA_TYPE }}
       end
     end
 
@@ -474,10 +475,8 @@ module FacebookAds
         api.has_param :status, { enum: -> { Ad::STATUS }}
         api.has_param :priority, 'int'
         api.has_param :tracking_specs, 'object'
-        api.has_param :social_prefs, { list: 'string' }
         api.has_param :display_sequence, 'int'
         api.has_param :engagement_audience, 'bool'
-        api.has_param :social_required, 'bool'
         api.has_param :adset_spec, 'AdSet'
         api.has_param :draft_adgroup_id, 'string'
         api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }

@@ -51,6 +51,8 @@ module FacebookAds
       "LEVEL_ACHIEVED",
       "ACHIEVEMENT_UNLOCKED",
       "SPENT_CREDITS",
+      "D2_RETENTION",
+      "D7_RETENTION",
       "OTHER",
     ]
 

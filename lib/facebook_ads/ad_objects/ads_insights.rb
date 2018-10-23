@@ -139,6 +139,9 @@ module FacebookAds
     field :adset_name, 'string'
     field :age, 'string'
     field :age_targeting, 'string'
+    field :auction_bid, 'string'
+    field :auction_competitiveness, 'string'
+    field :auction_max_competitor_bid, 'string'
     field :bid_type, 'string'
     field :body_asset, 'object'
     field :buying_type, 'string'
@@ -216,10 +219,10 @@ module FacebookAds
     field :reach, 'string'
     field :region, 'string'
     field :relevance_score, 'AdgroupRelevanceScore'
+    field :rule_asset, 'object'
     field :social_spend, 'string'
     field :spend, 'string'
     field :title_asset, 'object'
-    field :total_action_value, 'string'
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
     field :unique_ctr, 'string'
@@ -252,6 +255,7 @@ module FacebookAds
     field :video_time_watched_actions, { list: 'AdsActionStats' }
     field :website_ctr, { list: 'AdsActionStats' }
     field :website_purchase_roas, { list: 'AdsActionStats' }
+    field :wish_bid, 'string'
     field :id, 'string'
     has_no_post
     has_no_delete

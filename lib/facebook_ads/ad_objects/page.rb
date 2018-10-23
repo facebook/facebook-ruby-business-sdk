@@ -623,6 +623,7 @@ module FacebookAds
       edge.post 'Canvas' do |api|
         api.has_param :body_element_ids, { list: 'string' }
         api.has_param :background_color, 'string'
+        api.has_param :enable_swipe_to_open, 'bool'
         api.has_param :is_published, 'bool'
         api.has_param :is_hidden, 'bool'
         api.has_param :name, 'string'

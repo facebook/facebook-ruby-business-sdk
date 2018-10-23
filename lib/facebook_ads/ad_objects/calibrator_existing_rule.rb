@@ -34,6 +34,7 @@ module FacebookAds
     field :event_type, 'string'
     field :id, 'string'
     field :rule, 'string'
+    field :rule_type, 'string'
     field :sample_urls, { list: 'string' }
     field :status, 'string'
     has_no_post

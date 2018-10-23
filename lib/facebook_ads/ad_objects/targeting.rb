@@ -106,7 +106,6 @@ module FacebookAds
     field :moms, { list: 'IdName' }
     field :net_worth, { list: 'IdName' }
     field :office_type, { list: 'IdName' }
-    field :page_types, { list: 'string' }
     field :place_page_set_ids, { list: 'string' }
     field :political_views, { list: 'int' }
     field :politics, { list: 'IdName' }

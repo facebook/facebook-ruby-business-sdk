@@ -28,6 +28,7 @@ module FacebookAds
   class HomeListing < AdObject
 
     field :ac_type, 'string'
+    field :additional_fees_description, 'string'
     field :address, 'object'
     field :agent_company, 'string'
     field :agent_email, 'string'

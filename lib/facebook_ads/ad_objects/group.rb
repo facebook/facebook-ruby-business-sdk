@@ -62,6 +62,7 @@ module FacebookAds
       "CASUAL",
       "GAME",
       "HIGH_SCHOOL_FORUM",
+      "JOBS",
       "REAL_WORLD_AT_WORK",
       "FOR_WORK",
       "MENTORSHIP",
