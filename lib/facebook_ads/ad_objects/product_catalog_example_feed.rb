@@ -29,6 +29,7 @@ module FacebookAds
 
     field :example_feed, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -54,6 +54,7 @@ module FacebookAds
     field :response, { list: 'string' }
     field :subtype, { list: 'string' }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

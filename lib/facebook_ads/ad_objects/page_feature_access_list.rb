@@ -29,6 +29,7 @@ module FacebookAds
 
     field :messenger_features, { list: 'object' }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

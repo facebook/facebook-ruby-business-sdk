@@ -32,6 +32,7 @@ module FacebookAds
     field :id, 'string'
     field :image, { list: 'string' }
     field :title, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

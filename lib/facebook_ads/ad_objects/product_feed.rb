@@ -130,11 +130,11 @@ module FacebookAds
     end
 
     has_edge :rules do |edge|
-      edge.get
-      edge.post do |api|
+      edge.get 'ProductFeedRule'
+      edge.post 'ProductFeedRule' do |api|
         api.has_param :attribute, 'string'
         api.has_param :params, 'hash'
-        api.has_param :rule_type, { enum: %w{mapping_rule value_mapping_rule letter_case_rule fallback_rule regex_replace_rule }}
+        api.has_param :rule_type, { enum: -> { ProductFeedRule::RULE_TYPE }}
       end
     end
 

@@ -136,6 +136,7 @@ module FacebookAds
     field :kpi_type, 'string'
     field :last_budget_toggling_time, 'datetime'
     field :lifetime_budget, 'string'
+    field :metrics_metadata, 'AdCampaignGroupMetricsMetadata'
     field :name, 'string'
     field :objective, 'string'
     field :pacing_type, { list: 'string' }
@@ -166,6 +167,12 @@ module FacebookAds
       edge.post 'Campaign' do |api|
         api.has_param :adlabels, { list: 'object' }
         api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
+      end
+    end
+
+    has_edge :adrules_governed do |edge|
+      edge.get 'AdRule' do |api|
+        api.has_param :pass_evaluation, 'bool'
       end
     end
 

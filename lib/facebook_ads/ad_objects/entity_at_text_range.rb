@@ -41,6 +41,7 @@ module FacebookAds
     field :object, 'Profile'
     field :offset, 'int'
     field :type, { enum: -> { TYPE }}
+    has_no_get
     has_no_post
     has_no_delete
 

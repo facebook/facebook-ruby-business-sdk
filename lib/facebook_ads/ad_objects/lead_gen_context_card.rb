@@ -26,18 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class LeadGenContextCard < AdObject
-    STATUS = [
-      "ACTIVE",
-      "ARCHIVED",
-      "DELETED",
-      "DRAFT",
-    ]
-
-    STYLE = [
-      "LIST_STYLE",
-      "PARAGRAPH_STYLE",
-    ]
-
 
     field :button_text, 'string'
     field :canvas, 'Canvas'

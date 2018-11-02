@@ -50,6 +50,7 @@ module FacebookAds
     field :data, { list: 'AdsPixelStats' }
     field :start_time, 'datetime'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

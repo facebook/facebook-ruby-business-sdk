@@ -33,6 +33,7 @@ module FacebookAds
     field :l7_attribution_video_view_delta, 'double'
     field :metrics_ending_date, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

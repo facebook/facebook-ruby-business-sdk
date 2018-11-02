@@ -30,6 +30,7 @@ module FacebookAds
     field :adset_id, 'string'
     field :placements, 'object'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

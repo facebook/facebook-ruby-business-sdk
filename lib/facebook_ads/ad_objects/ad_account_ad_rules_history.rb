@@ -51,6 +51,7 @@ module FacebookAds
     field :schedule_spec, 'AdRuleScheduleSpec'
     field :timestamp, 'datetime'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

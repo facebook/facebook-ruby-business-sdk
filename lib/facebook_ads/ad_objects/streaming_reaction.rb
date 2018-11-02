@@ -42,6 +42,7 @@ module FacebookAds
     field :count, 'int'
     field :reaction_type, { enum: -> { REACTION_TYPE }}
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -49,6 +49,29 @@ module FacebookAds
       "google",
     ]
 
+    PRODUCT_TYPE = [
+      "AUTO",
+      "AUTO_MARKET",
+      "AUTO_OFFER",
+      "AUTOMOTIVE_MODEL",
+      "DESTINATION",
+      "FLIGHT",
+      "GEO_BASED_ITEM",
+      "HOME_LISTING",
+      "HOME_SERVICE_PROVIDER",
+      "HOME_SERVICE_REVIEW",
+      "HOTEL",
+      "HOTEL_ROOM",
+      "MEDIA_TITLE",
+      "OTHER_TEST_DYNAMIC_ITEM",
+      "PRODUCT_GROUP",
+      "PRODUCT_ITEM",
+      "STORE_PRODUCT_ITEM",
+      "TEST_DYNAMIC_ITEM",
+      "VEHICLE",
+      "VEHICLE_OFFER",
+    ]
+
     ROLE = [
       "ADMIN",
       "ADVERTISER",
@@ -92,6 +115,36 @@ module FacebookAds
     has_edge :batch do |edge|
       edge.post 'ProductCatalog' do |api|
         api.has_param :requests, { list: 'hash' }
+      end
+    end
+
+    has_edge :bundle_folders do |edge|
+      edge.get 'DynamicItemDisplayBundleFolder'
+      edge.post 'DynamicItemDisplayBundleFolder' do |api|
+        api.has_param :bundles, { list: 'string' }
+        api.has_param :name, 'string'
+      end
+    end
+
+    has_edge :bundles do |edge|
+      edge.get 'DynamicItemDisplayBundle'
+      edge.post 'DynamicItemDisplayBundle' do |api|
+        api.has_param :additional_urls, 'hash'
+        api.has_param :description, 'string'
+        api.has_param :name, 'string'
+        api.has_param :product_set, 'string'
+        api.has_param :text_tokens, 'hash'
+        api.has_param :url, 'string'
+      end
+    end
+
+    has_edge :categories do |edge|
+      edge.get 'ProductCatalogCategory' do |api|
+        api.has_param :categorization_criteria, { enum: -> { ProductCatalogCategory::CATEGORIZATION_CRITERIA }}
+        api.has_param :filter, 'object'
+      end
+      edge.post 'ProductCatalogCategory' do |api|
+        api.has_param :data, { list: 'hash' }
       end
     end
 
@@ -143,6 +196,8 @@ module FacebookAds
         api.has_param :destination_airport, 'string'
         api.has_param :description, 'string'
         api.has_param :url, 'object'
+        api.has_param :currency, 'string'
+        api.has_param :price, 'int'
       end
     end
 
@@ -291,6 +346,7 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :price, 'int'
         api.has_param :product_type, 'string'
+        api.has_param :url, 'object'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
         api.has_param :additional_image_urls, { list: 'string' }
         api.has_param :additional_variant_attributes, 'object'
@@ -322,7 +378,6 @@ module FacebookAds
         api.has_param :short_description, 'string'
         api.has_param :size, 'string'
         api.has_param :start_date, 'string'
-        api.has_param :url, 'object'
         api.has_param :ios_url, 'string'
         api.has_param :ios_app_store_id, 'int'
         api.has_param :ios_app_name, 'string'
@@ -339,6 +394,13 @@ module FacebookAds
         api.has_param :windows_phone_url, 'string'
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
+      end
+    end
+
+    has_edge :products_batch do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :requests, 'hash'
+        api.has_param :product_type, { enum: -> { ProductCatalog::PRODUCT_TYPE }}
       end
     end
 

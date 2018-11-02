@@ -33,6 +33,7 @@ module FacebookAds
     field :business_name, 'string'
     field :sharing_status, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -26,6 +26,12 @@ module FacebookAds
   # pull request for this class.
 
   class ProductCatalogCategory < AdObject
+    CATEGORIZATION_CRITERIA = [
+      "BRAND",
+      "CATEGORY",
+      "PRODUCT_TYPE",
+    ]
+
 
     field :criteria_value, 'string'
     field :description, 'string'
@@ -35,6 +41,8 @@ module FacebookAds
     field :num_items, 'int'
     field :tokens, { list: 'object' }
     field :id, 'string'
+    field :data, { list: 'hash' }
+    has_no_get
     has_no_post
     has_no_delete
 

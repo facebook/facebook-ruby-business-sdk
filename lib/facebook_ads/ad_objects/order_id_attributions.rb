@@ -37,6 +37,7 @@ module FacebookAds
     field :order_timestamp, 'datetime'
     field :pixel_id, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

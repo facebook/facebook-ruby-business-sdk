@@ -37,6 +37,7 @@ module FacebookAds
     field :script_schedule_spec_id, 'string'
     field :start_time, 'datetime'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

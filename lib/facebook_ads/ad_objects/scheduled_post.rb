@@ -43,6 +43,7 @@ module FacebookAds
     field :story_token, 'string'
     field :thumbnail, 'string'
     field :video_id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -37,6 +37,7 @@ module FacebookAds
     field :action_canvas_component_name, 'string'
     field :action_carousel_card_id, 'string'
     field :action_carousel_card_name, 'string'
+    field :action_converted_product_id, 'string'
     field :action_destination, 'string'
     field :action_device, 'string'
     field :action_event_channel, 'string'
@@ -51,6 +52,7 @@ module FacebookAds
     field :inline, 'string'
     field :value, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

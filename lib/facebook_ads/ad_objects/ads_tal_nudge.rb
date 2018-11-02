@@ -32,6 +32,7 @@ module FacebookAds
     field :study_id, 'string'
     field :winner_cell_id, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

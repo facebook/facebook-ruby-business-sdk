@@ -32,6 +32,7 @@ module FacebookAds
     field :property_names, { list: 'string' }
     field :summary, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

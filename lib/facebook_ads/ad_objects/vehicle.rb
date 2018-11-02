@@ -36,6 +36,7 @@ module FacebookAds
     field :custom_label_0, 'string'
     field :date_first_on_lot, 'string'
     field :dealer_communication_channel, 'string'
+    field :dealer_email, 'string'
     field :dealer_id, 'string'
     field :dealer_name, 'string'
     field :dealer_phone, 'string'

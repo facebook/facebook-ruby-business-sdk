@@ -62,6 +62,7 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :price, 'int'
         api.has_param :product_type, 'string'
+        api.has_param :url, 'object'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
         api.has_param :additional_image_urls, { list: 'string' }
         api.has_param :additional_variant_attributes, 'object'
@@ -93,7 +94,6 @@ module FacebookAds
         api.has_param :short_description, 'string'
         api.has_param :size, 'string'
         api.has_param :start_date, 'string'
-        api.has_param :url, 'object'
         api.has_param :ios_url, 'string'
         api.has_param :ios_app_store_id, 'int'
         api.has_param :ios_app_name, 'string'

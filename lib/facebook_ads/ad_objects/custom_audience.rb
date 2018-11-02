@@ -30,6 +30,7 @@ module FacebookAds
     CLAIM_OBJECTIVE = [
       "AUTOMOTIVE_MODEL",
       "HOME_LISTING",
+      "MEDIA_TITLE",
       "PRODUCT",
       "TRAVEL",
       "VEHICLE",

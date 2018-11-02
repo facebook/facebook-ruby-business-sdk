@@ -53,6 +53,7 @@ module FacebookAds
     end
 
     has_edge :media do |edge|
+      edge.get 'ShadowIgMedia'
       edge.post 'ShadowIgMedia' do |api|
         api.has_param :media_type, 'string'
         api.has_param :caption, 'string'
@@ -65,6 +66,10 @@ module FacebookAds
       edge.post 'ShadowIgMedia' do |api|
         api.has_param :creation_id, 'int'
       end
+    end
+
+    has_edge :stories do |edge|
+      edge.get 'ShadowIgMedia'
     end
 
   end

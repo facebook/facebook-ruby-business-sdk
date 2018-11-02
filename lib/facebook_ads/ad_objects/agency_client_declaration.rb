@@ -40,6 +40,7 @@ module FacebookAds
     field :has_written_mandate_from_advertiser, 'int'
     field :is_client_paying_invoices, 'int'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

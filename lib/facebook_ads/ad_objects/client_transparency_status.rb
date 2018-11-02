@@ -32,6 +32,7 @@ module FacebookAds
     field :is_satisfied, 'bool'
     field :owning_business_requirements, 'object'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

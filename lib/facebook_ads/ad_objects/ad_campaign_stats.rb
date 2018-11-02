@@ -51,6 +51,7 @@ module FacebookAds
     field :topline_id, 'string'
     field :unique_clicks, 'int'
     field :unique_impressions, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

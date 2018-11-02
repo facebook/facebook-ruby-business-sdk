@@ -35,6 +35,7 @@ module FacebookAds
     field :_600x360, { list: { list: 'string' } }
     field :_90x160, { list: { list: 'string' } }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

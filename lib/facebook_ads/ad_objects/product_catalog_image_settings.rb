@@ -30,6 +30,7 @@ module FacebookAds
     field :carousel_ad, 'ProductCatalogImageSettingsOperation'
     field :single_ad, 'ProductCatalogImageSettingsOperation'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

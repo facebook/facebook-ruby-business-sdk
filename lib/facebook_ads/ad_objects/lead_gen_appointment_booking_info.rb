@@ -31,6 +31,7 @@ module FacebookAds
     field :appointment_durations, { list: 'string' }
     field :appointment_slots_by_day, { list: 'object' }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

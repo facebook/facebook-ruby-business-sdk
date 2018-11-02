@@ -31,6 +31,7 @@ module FacebookAds
     field :extra_data, 'string'
     field :time, 'datetime'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

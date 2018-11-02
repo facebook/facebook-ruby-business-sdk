@@ -38,6 +38,7 @@ module FacebookAds
     field :type_name, 'string'
     field :untranslated_name, 'string'
     field :untranslated_parent_name, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

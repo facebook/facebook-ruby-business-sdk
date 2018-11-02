@@ -36,6 +36,7 @@ module FacebookAds
     field :campaign_pages, { list: 'object' }
     field :campaign_schedule, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

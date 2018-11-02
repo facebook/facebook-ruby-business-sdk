@@ -32,6 +32,7 @@ module FacebookAds
     field :last_name, 'string'
     field :middle_name, 'string'
     field :name, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

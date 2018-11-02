@@ -37,6 +37,7 @@ module FacebookAds
     field :raw_reach, { list: 'int' }
     field :reach, { list: 'int' }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

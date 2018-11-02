@@ -33,6 +33,7 @@ module FacebookAds
     field :next_audience_update_available_time, 'string'
     field :rate_limit_reset_time, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

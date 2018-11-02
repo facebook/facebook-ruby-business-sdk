@@ -34,6 +34,7 @@ module FacebookAds
     field :usd_exchange_inverse, 'double'
     field :user_currency, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

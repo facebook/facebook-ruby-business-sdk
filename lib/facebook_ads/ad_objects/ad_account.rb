@@ -99,6 +99,7 @@ module FacebookAds
     CLAIM_OBJECTIVE = [
       "AUTOMOTIVE_MODEL",
       "HOME_LISTING",
+      "MEDIA_TITLE",
       "PRODUCT",
       "TRAVEL",
       "VEHICLE",
@@ -211,16 +212,6 @@ module FacebookAds
         api.has_param :oid, 'string'
         api.has_param :extra_oids, { list: 'string' }
         api.has_param :add_children, 'bool'
-      end
-    end
-
-    has_edge :ad_place_page_sets do |edge|
-      edge.get 'AdPlacePageSet'
-      edge.post 'AdPlacePageSet' do |api|
-        api.has_param :name, 'string'
-        api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
-        api.has_param :parent_page, 'string'
-        api.has_param :targeted_area_type, { enum: -> { AdPlacePageSet::TARGETED_AREA_TYPE }}
       end
     end
 
@@ -389,7 +380,7 @@ module FacebookAds
         api.has_param :date_interval, 'object'
         api.has_param :format_version, 'int'
         api.has_param :creation_source, { enum: %w{adsManagerReporting newAdsManager adsExcelAddin }}
-        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type }} }
+        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type action_converted_product_id }} }
         api.has_param :custom_column_set_id, 'string'
         api.has_param :data_columns, { list: 'string' }
         api.has_param :emails, { list: 'string' }
@@ -456,6 +447,7 @@ module FacebookAds
         api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_OLDEST DELETE_ARCHIVED_BEFORE }}
         api.has_param :object_count, 'int'
         api.has_param :before_date, 'datetime'
+        api.has_param :delete_offset, 'int'
       end
       edge.get 'Ad' do |api|
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
@@ -499,6 +491,7 @@ module FacebookAds
         api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_OLDEST DELETE_ARCHIVED_BEFORE }}
         api.has_param :object_count, 'int'
         api.has_param :before_date, 'datetime'
+        api.has_param :delete_offset, 'int'
       end
       edge.get 'AdSet' do |api|
         api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
@@ -766,6 +759,12 @@ module FacebookAds
 
     has_edge :brand_audiences do |edge|
       edge.get 'BrandAudience'
+      edge.post 'BrandAudience' do |api|
+        api.has_param :name, 'string'
+        api.has_param :targeting, 'object'
+        api.has_param :target_size, 'int'
+        api.has_param :description, 'string'
+      end
     end
 
     has_edge :broadtargetingcategories do |edge|
@@ -791,6 +790,7 @@ module FacebookAds
         api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_OLDEST DELETE_ARCHIVED_BEFORE }}
         api.has_param :object_count, 'int'
         api.has_param :before_date, 'datetime'
+        api.has_param :delete_offset, 'int'
       end
       edge.get 'Campaign' do |api|
         api.has_param :effective_status, { list: { enum: -> { Campaign::EFFECTIVE_STATUS }} }
@@ -970,6 +970,10 @@ module FacebookAds
       end
     end
 
+    has_edge :impacting_ad_studies do |edge|
+      edge.get 'AdStudy'
+    end
+
     has_edge :insights do |edge|
       edge.get 'AdsInsights' do |api|
         api.has_param :default_summary, 'bool'
@@ -1017,6 +1021,10 @@ module FacebookAds
       end
     end
 
+    has_edge :instagram_accounts do |edge|
+      edge.get 'InstagramUser'
+    end
+
     has_edge :leadgen_forms do |edge|
       edge.get 'LeadgenForm' do |api|
         api.has_param :query, 'string'
@@ -1059,6 +1067,10 @@ module FacebookAds
 
     has_edge :offline_conversion_data_sets do |edge|
       edge.get 'OfflineConversionDataSet'
+    end
+
+    has_edge :offsitepixels do |edge|
+      edge.get 'OffsitePixel'
     end
 
     has_edge :partner_integrations do |edge|
@@ -1134,6 +1146,10 @@ module FacebookAds
         api.has_param :inclusions, { list: 'object' }
         api.has_param :exclusions, { list: 'object' }
       end
+    end
+
+    has_edge :promote_pages do |edge|
+      edge.get 'Page'
     end
 
     has_edge :publisher_block_lists do |edge|
@@ -1220,7 +1236,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :time_ranges, 'object'
         api.has_param :data_columns, { list: 'string' }
-        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type }} }
+        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type action_converted_product_id }} }
         api.has_param :filters, { list: 'object' }
         api.has_param :sort_by, 'string'
         api.has_param :sort_dir, 'string'
@@ -1265,12 +1281,56 @@ module FacebookAds
       end
     end
 
+    has_edge :targetingbrowse do |edge|
+      edge.get 'AdAccountTargetingUnified' do |api|
+        api.has_param :include_nodes, 'bool'
+        api.has_param :excluded_category, 'string'
+        api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
+        api.has_param :is_exclusion, 'bool'
+        api.has_param :whitelisted_types, { list: { enum: -> { AdAccountTargetingUnified::WHITELISTED_TYPES }} }
+      end
+    end
+
+    has_edge :targetingsearch do |edge|
+      edge.get 'AdAccountTargetingUnified' do |api|
+        api.has_param :q, 'string'
+        api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
+        api.has_param :whitelisted_types, { list: { enum: -> { AdAccountTargetingUnified::WHITELISTED_TYPES }} }
+        api.has_param :is_exclusion, 'bool'
+        api.has_param :session_id, 'int'
+        api.has_param :targeting_list, { list: 'object' }
+        api.has_param :countries, { list: 'string' }
+      end
+    end
+
     has_edge :targetingsentencelines do |edge|
       edge.get 'TargetingSentenceLine' do |api|
         api.has_param :targeting_spec, 'Targeting'
         api.has_param :discard_ages, 'bool'
         api.has_param :discard_placements, 'bool'
         api.has_param :hide_targeting_spec_from_return, 'bool'
+      end
+    end
+
+    has_edge :targetingsuggestions do |edge|
+      edge.get 'AdAccountTargetingUnified' do |api|
+        api.has_param :targeting_list, { list: 'object' }
+        api.has_param :objective, { enum: -> { AdAccountTargetingUnified::OBJECTIVE }}
+        api.has_param :objects, 'object'
+        api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
+        api.has_param :mode, { enum: -> { AdAccountTargetingUnified::MODE }}
+        api.has_param :session_id, 'int'
+        api.has_param :whitelisted_types, { list: { enum: -> { AdAccountTargetingUnified::WHITELISTED_TYPES }} }
+        api.has_param :countries, { list: 'string' }
+      end
+    end
+
+    has_edge :targetingvalidation do |edge|
+      edge.get 'AdAccountTargetingUnified' do |api|
+        api.has_param :targeting_list, { list: 'object' }
+        api.has_param :id_list, { list: 'int' }
+        api.has_param :name_list, { list: 'string' }
+        api.has_param :is_exclusion, 'bool'
       end
     end
 

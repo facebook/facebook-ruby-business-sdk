@@ -35,6 +35,7 @@ module FacebookAds
     field :currency, 'string'
     field :existing_payment_methods, { list: 'object' }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

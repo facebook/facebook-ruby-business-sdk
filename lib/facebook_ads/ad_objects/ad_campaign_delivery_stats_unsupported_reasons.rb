@@ -30,6 +30,7 @@ module FacebookAds
     field :reason_data, { list: 'object' }
     field :reason_type, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

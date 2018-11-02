@@ -31,6 +31,17 @@ module FacebookAds
       "NAME",
     ]
 
+    AUTOMATIC_MATCHING_FIELDS = [
+      "em",
+      "fn",
+      "ln",
+      "ph",
+      "ge",
+      "zp",
+      "ct",
+      "st",
+    ]
+
     DATA_USE_SETTING = [
       "EMPTY",
       "ADVERTISING_AND_ANALYTICS",
@@ -61,11 +72,13 @@ module FacebookAds
     ]
 
 
+    field :automatic_matching_fields, { list: 'string' }
     field :can_proxy, 'bool'
     field :code, 'string'
     field :creation_time, 'datetime'
     field :creator, 'User'
     field :data_use_setting, 'string'
+    field :enable_automatic_matching, 'bool'
     field :first_party_cookie_status, 'string'
     field :id, 'string'
     field :is_created_by_business, 'bool'

@@ -30,6 +30,7 @@ module FacebookAds
     field :policy_id, 'string'
     field :policy_name, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

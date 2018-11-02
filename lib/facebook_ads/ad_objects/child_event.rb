@@ -31,6 +31,7 @@ module FacebookAds
     field :id, 'string'
     field :start_time, 'string'
     field :ticket_uri, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

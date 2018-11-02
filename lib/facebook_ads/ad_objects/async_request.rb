@@ -44,6 +44,7 @@ module FacebookAds
     field :result, 'string'
     field :status, 'int'
     field :type, 'int'
+    has_no_get
     has_no_post
     has_no_delete
 

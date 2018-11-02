@@ -97,6 +97,7 @@ module FacebookAds
     field :sub_type, { enum: -> { SUB_TYPE }}
     field :type, { enum: -> { TYPE }}
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

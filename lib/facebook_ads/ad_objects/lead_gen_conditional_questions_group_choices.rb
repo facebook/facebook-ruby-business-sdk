@@ -31,6 +31,7 @@ module FacebookAds
     field :next_question_choices, { list: 'LeadGenConditionalQuestionsGroupChoices' }
     field :value, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

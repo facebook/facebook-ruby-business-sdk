@@ -32,6 +32,7 @@ module FacebookAds
     field :rule, 'TargetingDynamicRule'
     field :rule_id, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -36,6 +36,7 @@ module FacebookAds
     field :priority, 'int'
     field :template_url_spec, 'AdCreativeTemplateUrlSpec'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

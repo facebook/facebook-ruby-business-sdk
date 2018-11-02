@@ -37,6 +37,7 @@ module FacebookAds
     field :targeting, 'Targeting'
     field :time_created, 'datetime'
     field :time_updated, 'datetime'
+    field :target_size, 'int'
     has_no_post
     has_no_delete
 

@@ -31,6 +31,7 @@ module FacebookAds
     field :partition_type, 'object'
     field :send_bill_to, 'object'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

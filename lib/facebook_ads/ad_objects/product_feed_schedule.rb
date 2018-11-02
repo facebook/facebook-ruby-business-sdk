@@ -54,6 +54,7 @@ module FacebookAds
     field :url, 'string'
     field :username, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

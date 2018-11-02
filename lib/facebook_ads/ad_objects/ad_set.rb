@@ -160,6 +160,7 @@ module FacebookAds
     field :best_creative, 'AdDynamicCreative'
     field :bid_adjustments, 'AdBidAdjustments'
     field :bid_amount, 'int'
+    field :bid_constraints, 'AdCampaignBidConstraint'
     field :bid_info, 'map<string, unsigned int>'
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :billing_event, { enum: -> { BILLING_EVENT }}
@@ -185,6 +186,7 @@ module FacebookAds
     field :is_average_price_pacing, 'bool'
     field :is_dynamic_creative, 'bool'
     field :is_dynamic_creative_optimization, 'bool'
+    field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :lifetime_budget, 'string'
     field :lifetime_frequency_cap, 'int'
     field :lifetime_imps, 'int'
@@ -243,11 +245,17 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
       end
       edge.post 'AdSet' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+      end
+    end
+
+    has_edge :adrules_governed do |edge|
+      edge.get 'AdRule' do |api|
+        api.has_param :pass_evaluation, 'bool'
       end
     end
 

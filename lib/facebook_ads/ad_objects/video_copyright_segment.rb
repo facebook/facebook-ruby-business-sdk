@@ -31,6 +31,7 @@ module FacebookAds
     field :media_type, 'string'
     field :start_time_in_sec, 'double'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

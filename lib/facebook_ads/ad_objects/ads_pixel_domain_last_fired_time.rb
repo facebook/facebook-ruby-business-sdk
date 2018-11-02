@@ -30,6 +30,7 @@ module FacebookAds
     field :domain_name, 'string'
     field :last_fired_time, 'int'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -30,6 +30,7 @@ module FacebookAds
     field :domain_list, { list: 'object' }
     field :type, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

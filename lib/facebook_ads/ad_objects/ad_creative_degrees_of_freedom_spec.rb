@@ -29,6 +29,7 @@ module FacebookAds
 
     field :degrees_of_freedom_type, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

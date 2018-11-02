@@ -68,6 +68,7 @@ module FacebookAds
     field :period, 'string'
     field :title, 'string'
     field :values, { list: 'object' }
+    has_no_get
     has_no_post
     has_no_delete
 

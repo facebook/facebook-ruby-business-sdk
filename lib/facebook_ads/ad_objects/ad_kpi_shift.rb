@@ -27,13 +27,14 @@ module FacebookAds
 
   class AdKpiShift < AdObject
 
-    field :ad_set, 'AdSet'
+    field :ad_set, 'AdCampaign'
     field :cost_per_result_shift, 'double'
     field :enough_effective_days, 'bool'
     field :result_indicator, 'string'
     field :result_shift, 'double'
     field :spend_shift, 'double'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

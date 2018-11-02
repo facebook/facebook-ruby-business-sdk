@@ -29,6 +29,7 @@ module FacebookAds
 
     field :roas_average_floor, 'int'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

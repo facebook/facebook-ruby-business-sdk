@@ -31,6 +31,7 @@ module FacebookAds
     field :dash_preview_url, 'string'
     field :id, 'string'
     field :is_master, 'bool'
+    field :live_encoder, 'LiveEncoder'
     field :secure_stream_url, 'string'
     field :stream_id, 'string'
     field :stream_url, 'string'

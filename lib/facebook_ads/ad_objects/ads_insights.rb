@@ -158,6 +158,10 @@ module FacebookAds
     field :cost_per_action_type, { list: 'AdsActionStats' }
     field :cost_per_ad_click, { list: 'AdsActionStats' }
     field :cost_per_dda_countby_convs, 'string'
+    field :cost_per_dwell, 'string'
+    field :cost_per_dwell_3_sec, 'string'
+    field :cost_per_dwell_5_sec, 'string'
+    field :cost_per_dwell_7_sec, 'string'
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
@@ -181,6 +185,10 @@ module FacebookAds
     field :description_asset, 'object'
     field :device_platform, 'string'
     field :dma, 'string'
+    field :dwell_3_sec, 'string'
+    field :dwell_5_sec, 'string'
+    field :dwell_7_sec, 'string'
+    field :dwell_rate, 'string'
     field :estimated_ad_recall_rate, 'string'
     field :estimated_ad_recall_rate_lower_bound, 'string'
     field :estimated_ad_recall_rate_upper_bound, 'string'
@@ -222,6 +230,7 @@ module FacebookAds
     field :rule_asset, 'object'
     field :social_spend, 'string'
     field :spend, 'string'
+    field :thumb_stops, 'string'
     field :title_asset, 'object'
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
@@ -257,6 +266,7 @@ module FacebookAds
     field :website_purchase_roas, { list: 'AdsActionStats' }
     field :wish_bid, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

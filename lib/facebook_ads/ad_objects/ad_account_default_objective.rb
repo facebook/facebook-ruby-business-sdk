@@ -72,6 +72,7 @@ module FacebookAds
     field :default_objective_for_user, { enum: -> { DEFAULT_OBJECTIVE_FOR_USER }}
     field :objective_for_level, { enum: -> { OBJECTIVE_FOR_LEVEL }}
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

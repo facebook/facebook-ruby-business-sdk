@@ -54,5 +54,9 @@ module FacebookAds
       edge.get 'ProductFeedUploadErrorSample'
     end
 
+    has_edge :suggested_rules do |edge|
+      edge.get 'ProductFeedRuleSuggestion'
+    end
+
   end
 end

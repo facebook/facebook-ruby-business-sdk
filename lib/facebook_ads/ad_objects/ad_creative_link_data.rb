@@ -74,6 +74,7 @@ module FacebookAds
     field :sponsorship_info, 'AdCreativeLinkDataSponsorshipInfoSpec'
     field :static_fallback_spec, 'AdCreativeStaticFallbackSpec'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -29,6 +29,7 @@ module FacebookAds
 
     field :id, 'string'
     field :page, 'Page'
+    has_no_get
     has_no_post
     has_no_delete
 

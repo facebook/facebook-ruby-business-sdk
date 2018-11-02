@@ -33,6 +33,7 @@ module FacebookAds
     field :subtype_supports_lookalike, 'bool'
     field :supports_recipient_lookalike, 'bool'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -38,6 +38,7 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "action_converted_product_id",
     ]
 
     CREATION_SOURCE = [

@@ -30,6 +30,7 @@ module FacebookAds
     field :sponsor_image_url, 'string'
     field :sponsor_name, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

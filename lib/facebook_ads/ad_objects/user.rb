@@ -137,10 +137,12 @@ module FacebookAds
     field :installed, 'bool'
     field :interested_in, { list: 'string' }
     field :is_famedeeplinkinguser, 'bool'
+    field :is_payment_enabled, 'bool'
     field :is_shared_login, 'bool'
     field :is_verified, 'bool'
     field :labels, { list: 'PageLabel' }
     field :languages, { list: 'Experience' }
+    field :last_ad_referral, 'MessengerPlatformReferral'
     field :last_name, 'string'
     field :link, 'string'
     field :local_news_megaphone_dismiss_status, 'bool'
@@ -262,6 +264,20 @@ module FacebookAds
 
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
+      edge.post 'AdStudy' do |api|
+        api.has_param :cells, { list: 'object' }
+        api.has_param :objectives, { list: 'object' }
+        api.has_param :end_time, 'int'
+        api.has_param :description, 'string'
+        api.has_param :name, 'string'
+        api.has_param :start_time, 'int'
+        api.has_param :viewers, { list: 'int' }
+        api.has_param :cooldown_start_time, 'int'
+        api.has_param :observation_end_time, 'int'
+        api.has_param :confidence_level, 'double'
+        api.has_param :client_business, 'string'
+        api.has_param :type, { enum: -> { AdStudy::TYPE }}
+      end
     end
 
     has_edge :adaccounts do |edge|
@@ -305,6 +321,12 @@ module FacebookAds
 
     has_edge :asset3ds do |edge|
       edge.get 'WithAsset3D'
+      edge.post 'WithAsset3D' do |api|
+        api.has_param :file, 'file'
+        api.has_param :file_url, 'object'
+        api.has_param :fallback_image, 'file'
+        api.has_param :fallback_image_url, 'object'
+      end
     end
 
     has_edge :assigned_ad_accounts do |edge|
@@ -728,7 +750,8 @@ module FacebookAds
     end
 
     has_edge :live_encoders do |edge|
-      edge.post do |api|
+      edge.get 'LiveEncoder'
+      edge.post 'LiveEncoder' do |api|
         api.has_param :device_id, 'string'
         api.has_param :name, 'string'
         api.has_param :brand, 'string'
@@ -766,17 +789,6 @@ module FacebookAds
         api.has_param :front_z_rotation, 'double'
         api.has_param :attribution_app_id, 'string'
         api.has_param :stereoscopic_mode, { enum: -> { LiveVideo::STEREOSCOPIC_MODE }}
-      end
-    end
-
-    has_edge :locationupdates do |edge|
-      edge.post 'User' do |api|
-        api.has_param :locations, { list: 'object' }
-        api.has_param :deviceid, 'string'
-        api.has_param :trace_ids, { list: 'string' }
-        api.has_param :dynamic_collection_checksum, 'string'
-        api.has_param :android_config_checksum, 'string'
-        api.has_param :skip_pvd, 'bool'
       end
     end
 

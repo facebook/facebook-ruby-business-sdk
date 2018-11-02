@@ -46,6 +46,7 @@ module FacebookAds
     field :app_install_state, 'string'
     field :audience_network_positions, { list: 'string' }
     field :behaviors, { list: 'IdName' }
+    field :brand_safety_content_severity_levels, { list: 'string' }
     field :cities, { list: 'IdName' }
     field :college_years, { list: 'int' }
     field :connections, { list: 'IdName' }
@@ -128,6 +129,7 @@ module FacebookAds
     field :work_positions, { list: 'IdName' }
     field :zips, { list: 'string' }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

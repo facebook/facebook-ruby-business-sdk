@@ -31,6 +31,7 @@ module FacebookAds
     field :end_minute, 'int'
     field :start_minute, 'int'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

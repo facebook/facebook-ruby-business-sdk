@@ -47,6 +47,7 @@ module FacebookAds
     field :recommendation_data, 'AdRecommendationData'
     field :title, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

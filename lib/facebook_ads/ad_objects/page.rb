@@ -272,6 +272,19 @@ module FacebookAds
       "REMOVE",
     ]
 
+    SETTING_TYPE = [
+      "ACCOUNT_LINKING",
+      "CALL_TO_ACTIONS",
+      "GREETING",
+      "DOMAIN_WHITELISTING",
+      "PAYMENT",
+    ]
+
+    THREAD_STATE = [
+      "NEW_THREAD",
+      "EXISTING_THREAD",
+    ]
+
 
     field :about, 'string'
     field :access_token, 'string'
@@ -382,6 +395,7 @@ module FacebookAds
     field :preferred_audience, 'Targeting'
     field :press_contact, 'string'
     field :price_range, 'string'
+    field :privacy_info_url, 'string'
     field :produced_by, 'string'
     field :products, 'string'
     field :promotion_eligible, 'bool'
@@ -634,6 +648,10 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :url, 'string'
       end
+      edge.get 'Url'
+      edge.post 'Page' do |api|
+        api.has_param :url, 'string'
+      end
     end
 
     has_edge :conversations do |edge|
@@ -650,6 +668,7 @@ module FacebookAds
         api.has_param :matched_asset_id, 'string'
         api.has_param :match_content_type, { enum: %w{VIDEO_AND_AUDIO VIDEO_ONLY AUDIO_ONLY }}
         api.has_param :action, { enum: %w{MANUAL_REVIEW MONITOR BLOCK CLAIM_AD_EARNINGS REQUEST_TAKEDOWN }}
+        api.has_param :action_reason, { enum: %w{UNAUTHORIZED_COMMERCIAL_USE RESTRICTED_CONTENT OBJECTIONABLE_CONTENT ARTIST_OBJECTION PRERELEASE_CONTENT PRODUCT_PARAMETERS PREMIUM_MUSIC_VIDEO }}
         api.has_param :countries, 'object'
       end
     end
@@ -880,6 +899,10 @@ module FacebookAds
       end
     end
 
+    has_edge :instagram_accounts do |edge|
+      edge.get 'InstagramUser'
+    end
+
     has_edge :instant_articles do |edge|
       edge.get 'InstantArticle' do |api|
         api.has_param :development_mode, 'bool'
@@ -925,15 +948,6 @@ module FacebookAds
 
     has_edge :leadgen_context_cards do |edge|
       edge.get 'LeadGenContextCard'
-      edge.post 'LeadGenContextCard' do |api|
-        api.has_param :title, 'string'
-        api.has_param :style, { enum: -> { LeadGenContextCard::STYLE }}
-        api.has_param :content, { list: 'string' }
-        api.has_param :button_text, 'string'
-        api.has_param :cover_photo, 'file'
-        api.has_param :cover_photo_id, 'string'
-        api.has_param :status, { enum: -> { LeadGenContextCard::STATUS }}
-      end
     end
 
     has_edge :leadgen_draft_forms do |edge|
@@ -1036,6 +1050,17 @@ module FacebookAds
         api.has_param :privacy, 'object'
         api.has_param :application_id, 'string'
         api.has_param :is_explicit_share, 'bool'
+      end
+    end
+
+    has_edge :live_encoders do |edge|
+      edge.get 'LiveEncoder'
+      edge.post 'LiveEncoder' do |api|
+        api.has_param :device_id, 'string'
+        api.has_param :name, 'string'
+        api.has_param :brand, 'string'
+        api.has_param :model, 'string'
+        api.has_param :version, 'string'
       end
     end
 
@@ -1249,7 +1274,8 @@ module FacebookAds
     end
 
     has_edge :page_backed_instagram_accounts do |edge|
-      edge.post
+      edge.get 'InstagramUser'
+      edge.post 'InstagramUser'
     end
 
     has_edge :pass_thread_control do |edge|
@@ -1556,13 +1582,13 @@ module FacebookAds
 
     has_edge :thread_settings do |edge|
       edge.delete do |api|
-        api.has_param :setting_type, { enum: %w{ACCOUNT_LINKING CALL_TO_ACTIONS GREETING DOMAIN_WHITELISTING PAYMENT }}
-        api.has_param :thread_state, { enum: %w{NEW_THREAD EXISTING_THREAD }}
+        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
+        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
       end
       edge.get 'ThreadSetting'
       edge.post 'Page' do |api|
-        api.has_param :setting_type, { enum: %w{ACCOUNT_LINKING CALL_TO_ACTIONS GREETING DOMAIN_WHITELISTING PAYMENT }}
-        api.has_param :thread_state, { enum: %w{NEW_THREAD EXISTING_THREAD }}
+        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
+        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
         api.has_param :call_to_actions, { list: 'object' }
         api.has_param :greeting, 'object'
         api.has_param :account_linking_url, 'string'
@@ -1623,9 +1649,7 @@ module FacebookAds
     end
 
     has_edge :video_copyrights do |edge|
-      edge.get 'VideoCopyright' do |api|
-        api.has_param :use_fallback, 'bool'
-      end
+      edge.get 'VideoCopyright'
       edge.post 'VideoCopyright' do |api|
         api.has_param :monitoring_type, { enum: -> { VideoCopyright::MONITORING_TYPE }}
         api.has_param :rule_id, 'string'

@@ -36,6 +36,7 @@ module FacebookAds
     field :popularity, 'double'
     field :projected_cpm, 'int'
     field :projected_daily_revenue, 'int'
+    has_no_get
     has_no_post
     has_no_delete
 

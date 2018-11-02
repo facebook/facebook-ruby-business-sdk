@@ -31,6 +31,7 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :overlap, 'int'
+    has_no_get
     has_no_post
     has_no_delete
 

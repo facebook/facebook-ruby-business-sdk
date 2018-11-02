@@ -35,6 +35,7 @@ module FacebookAds
     field :parent, 'string'
     field :path, { list: 'string' }
     field :type, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

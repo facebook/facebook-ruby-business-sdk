@@ -95,6 +95,7 @@ module FacebookAds
     field :template, { enum: -> { TEMPLATE }}
     field :text_color, { enum: -> { TEXT_COLOR }}
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

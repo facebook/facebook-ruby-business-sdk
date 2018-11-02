@@ -40,6 +40,7 @@ module FacebookAds
     field :io_approved, 'bool'
     field :sf_link, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

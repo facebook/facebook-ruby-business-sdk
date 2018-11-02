@@ -31,6 +31,7 @@ module FacebookAds
     field :is_enabled, 'bool'
     field :type, 'string'
     field :update_time, 'datetime'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -62,7 +62,6 @@ module FacebookAds
     field :viewers, { list: 'int' }
     field :confidence_level, 'double'
     field :client_business, 'string'
-    has_no_delete
 
     has_edge :cells do |edge|
       edge.get 'AdStudyCell'

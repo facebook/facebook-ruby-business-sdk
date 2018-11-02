@@ -50,6 +50,7 @@ module FacebookAds
       "BEAUTY",
       "REGULAR_ANIMALS_PETS",
       "REGULAR_FOOD",
+      "REGULAR_GAMES",
       "REGULAR_POLITICS",
       "REGULAR_SPORTS",
       "REGULAR_STYLE",

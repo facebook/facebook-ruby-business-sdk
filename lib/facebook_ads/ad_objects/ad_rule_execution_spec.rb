@@ -41,6 +41,7 @@ module FacebookAds
     field :execution_options, { list: 'AdRuleExecutionOptions' }
     field :execution_type, { enum: -> { EXECUTION_TYPE }}
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

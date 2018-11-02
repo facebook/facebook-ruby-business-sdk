@@ -37,6 +37,7 @@ module FacebookAds
     field :object_id, 'string'
     field :object_type, { enum: -> { OBJECT_TYPE }}
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -50,6 +50,7 @@ module FacebookAds
     field :unique_id, 'string'
     field :url, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

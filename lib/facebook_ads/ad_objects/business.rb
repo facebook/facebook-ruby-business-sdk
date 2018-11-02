@@ -57,6 +57,76 @@ module FacebookAds
       "OTHER",
     ]
 
+    AGGREGATION_PERIOD = [
+      "HOUR",
+      "DAY",
+      "TOTAL",
+    ]
+
+    BREAKDOWNS = [
+      "AGE",
+      "APP",
+      "COUNTRY",
+      "DELIVERY_METHOD",
+      "DISPLAY_FORMAT",
+      "DEAL",
+      "DEAL_AD",
+      "DEAL_PAGE",
+      "GENDER",
+      "PLACEMENT",
+      "PLATFORM",
+      "PROPERTY",
+      "CLICKED_VIEW_TAG",
+      "FAIL_REASON",
+    ]
+
+    METRICS = [
+      "FB_AD_NETWORK_BIDDING_REQUEST",
+      "FB_AD_NETWORK_BIDDING_RESPONSE",
+      "FB_AD_NETWORK_BIDDING_BID_RATE",
+      "FB_AD_NETWORK_BIDDING_WIN_RATE",
+      "FB_AD_NETWORK_REQUEST",
+      "FB_AD_NETWORK_FILLED_REQUEST",
+      "FB_AD_NETWORK_FILL_RATE",
+      "FB_AD_NETWORK_IMP",
+      "FB_AD_NETWORK_SHOW_RATE",
+      "FB_AD_NETWORK_CLICK",
+      "FB_AD_NETWORK_CTR",
+      "FB_AD_NETWORK_BIDDING_REVENUE",
+      "FB_AD_NETWORK_REVENUE",
+      "FB_AD_NETWORK_CPM",
+      "FB_AD_NETWORK_VIDEO_GUARANTEE_REVENUE",
+      "FB_AD_NETWORK_VIDEO_VIEW",
+      "FB_AD_NETWORK_VIDEO_VIEW_RATE",
+      "FB_AD_NETWORK_VIDEO_MRC",
+      "FB_AD_NETWORK_VIDEO_MRC_RATE",
+      "FB_AD_NETWORK_WIN_RATE",
+      "FB_AD_NETWORK_DIRECT_TOTAL_REVENUE",
+      "FB_AD_NETWORK_DIRECT_PUBLISHER_BILL",
+      "FB_AD_NETWORK_FAST_CLICK_RATE",
+      "FB_AD_NETWORK_FAST_RETURN_RATE",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE",
+      "FB_AD_NETWORK_FAST_CLICK_NUMERATOR",
+      "FB_AD_NETWORK_FAST_CLICK_DENOMINATOR",
+      "FB_AD_NETWORK_FAST_RETURN_NUMERATOR",
+      "FB_AD_NETWORK_FAST_RETURN_DENOMINATOR",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE_NUMERATOR",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE_DENOMINATOR",
+      "FB_AD_NETWORK_NO_FILL",
+      "FB_AD_NETWORK_NO_BID",
+    ]
+
+    ORDERING_COLUMN = [
+      "TIME",
+      "VALUE",
+      "METRIC",
+    ]
+
+    ORDERING_TYPE = [
+      "ASCENDING",
+      "DESCENDING",
+    ]
+
     ACCESS_TYPE = [
       "OWNER",
       "AGENCY",
@@ -205,24 +275,24 @@ module FacebookAds
 
     has_edge :adnetworkanalytics do |edge|
       edge.get 'AdNetworkAnalyticsSyncQueryResult' do |api|
-        api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
-        api.has_param :breakdowns, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::BREAKDOWNS }} }
+        api.has_param :aggregation_period, { enum: -> { Business::AGGREGATION_PERIOD }}
+        api.has_param :breakdowns, { list: { enum: -> { Business::BREAKDOWNS }} }
         api.has_param :filters, { list: 'hash' }
         api.has_param :limit, 'int'
-        api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
-        api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
-        api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
+        api.has_param :metrics, { list: { enum: -> { Business::METRICS }} }
+        api.has_param :ordering_column, { enum: -> { Business::ORDERING_COLUMN }}
+        api.has_param :ordering_type, { enum: -> { Business::ORDERING_TYPE }}
         api.has_param :since, 'object'
         api.has_param :until, 'object'
       end
       edge.post 'Business' do |api|
-        api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
-        api.has_param :breakdowns, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::BREAKDOWNS }} }
-        api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
+        api.has_param :aggregation_period, { enum: -> { Business::AGGREGATION_PERIOD }}
+        api.has_param :breakdowns, { list: { enum: -> { Business::BREAKDOWNS }} }
+        api.has_param :metrics, { list: { enum: -> { Business::METRICS }} }
         api.has_param :filters, { list: 'object' }
         api.has_param :limit, 'int'
-        api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
-        api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
+        api.has_param :ordering_column, { enum: -> { Business::ORDERING_COLUMN }}
+        api.has_param :ordering_type, { enum: -> { Business::ORDERING_TYPE }}
         api.has_param :since, 'object'
         api.has_param :until, 'object'
       end
@@ -423,6 +493,7 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :instagram_account, 'string'
       end
+      edge.get 'InstagramUser'
     end
 
     has_edge :managed_businesses do |edge|
@@ -517,6 +588,10 @@ module FacebookAds
       edge.post 'OwnedDomain' do |api|
         api.has_param :domain_name, 'string'
       end
+    end
+
+    has_edge :owned_instagram_accounts do |edge|
+      edge.get 'InstagramUser'
     end
 
     has_edge :owned_pages do |edge|

@@ -35,6 +35,7 @@ module FacebookAds
     field :reason_code, 'int'
     field :reason_description, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

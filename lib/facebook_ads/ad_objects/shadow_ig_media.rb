@@ -43,7 +43,12 @@ module FacebookAds
     field :username, 'string'
     has_no_delete
 
+    has_edge :children do |edge|
+      edge.get 'ShadowIgMedia'
+    end
+
     has_edge :comments do |edge|
+      edge.get 'ShadowIgComment'
       edge.post 'ShadowIgComment' do |api|
         api.has_param :message, 'string'
       end

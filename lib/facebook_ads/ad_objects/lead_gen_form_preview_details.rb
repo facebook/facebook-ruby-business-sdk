@@ -39,6 +39,7 @@ module FacebookAds
     field :slide_to_submit_text, 'string'
     field :submit_button_text, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

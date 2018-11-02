@@ -33,6 +33,7 @@ module FacebookAds
     field :primary_city_id, 'int'
     field :region_id, 'int'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

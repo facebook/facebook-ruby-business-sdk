@@ -30,6 +30,7 @@ module FacebookAds
     field :event_type, 'string'
     field :window_days, 'int'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

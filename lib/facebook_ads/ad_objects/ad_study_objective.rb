@@ -47,5 +47,25 @@ module FacebookAds
     field :results, { list: 'string' }
     field :type, 'string'
 
+    has_edge :adspixels do |edge|
+      edge.get 'AdsPixel'
+    end
+
+    has_edge :applications do |edge|
+      edge.get 'Application'
+    end
+
+    has_edge :customconversions do |edge|
+      edge.get 'CustomConversion'
+    end
+
+    has_edge :offline_conversion_data_sets do |edge|
+      edge.get 'OfflineConversionDataSet'
+    end
+
+    has_edge :offsitepixels do |edge|
+      edge.get 'OffsitePixel'
+    end
+
   end
 end

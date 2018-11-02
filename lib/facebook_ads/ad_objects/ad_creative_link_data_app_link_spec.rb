@@ -32,6 +32,7 @@ module FacebookAds
     field :ipad, { list: 'IosAppLink' }
     field :iphone, { list: 'IosAppLink' }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

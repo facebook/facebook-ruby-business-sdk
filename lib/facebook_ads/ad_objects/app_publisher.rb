@@ -34,6 +34,7 @@ module FacebookAds
     field :platform, 'string'
     field :store_name, 'string'
     field :store_url, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

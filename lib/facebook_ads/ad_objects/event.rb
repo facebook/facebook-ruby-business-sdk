@@ -97,6 +97,13 @@ module FacebookAds
       edge.get 'User' do |api|
         api.has_param :user, 'int'
       end
+      edge.post 'Event' do |api|
+        api.has_param :eid, 'string'
+        api.has_param :action_context, 'object'
+        api.has_param :app_context, 'object'
+        api.has_param :tracking, 'string'
+        api.has_param :uid, 'int'
+      end
     end
 
     has_edge :comments do |edge|
@@ -121,6 +128,13 @@ module FacebookAds
     has_edge :declined do |edge|
       edge.get 'User' do |api|
         api.has_param :user, 'int'
+      end
+      edge.post 'Event' do |api|
+        api.has_param :eid, 'string'
+        api.has_param :action_context, 'object'
+        api.has_param :app_context, 'object'
+        api.has_param :tracking, 'string'
+        api.has_param :uid, 'int'
       end
     end
 
@@ -279,6 +293,13 @@ module FacebookAds
     has_edge :maybe do |edge|
       edge.get 'User' do |api|
         api.has_param :user, 'int'
+      end
+      edge.post 'Event' do |api|
+        api.has_param :eid, 'string'
+        api.has_param :action_context, 'object'
+        api.has_param :app_context, 'object'
+        api.has_param :tracking, 'string'
+        api.has_param :uid, 'int'
       end
     end
 

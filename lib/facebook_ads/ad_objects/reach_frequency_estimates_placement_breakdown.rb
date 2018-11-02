@@ -40,6 +40,7 @@ module FacebookAds
     field :msite, { list: 'double' }
     field :suggested_videos, { list: 'double' }
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

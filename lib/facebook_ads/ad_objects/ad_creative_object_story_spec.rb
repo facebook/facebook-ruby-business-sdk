@@ -35,6 +35,7 @@ module FacebookAds
     field :text_data, 'AdCreativeTextData'
     field :video_data, 'AdCreativeVideoData'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

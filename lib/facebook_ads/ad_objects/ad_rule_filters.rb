@@ -47,6 +47,7 @@ module FacebookAds
     field :operator, { enum: -> { OPERATOR }}
     field :value, 'object'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

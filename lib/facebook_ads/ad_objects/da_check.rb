@@ -34,6 +34,7 @@ module FacebookAds
     field :title, 'string'
     field :user_message, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

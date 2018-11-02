@@ -112,6 +112,7 @@ module FacebookAds
       "PROTON",
       "BELL_POLL",
       "CIVIC_PROPOSAL_COVER_VIDEO",
+      "HEURISTIC_CLUSTER_VIDEO",
     ]
 
     CONTENT_CATEGORY = [

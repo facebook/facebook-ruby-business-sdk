@@ -121,6 +121,7 @@ module FacebookAds
     field :object_type, 'string'
     field :translated_event_type, 'string'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

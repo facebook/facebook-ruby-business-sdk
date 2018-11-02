@@ -30,6 +30,7 @@ module FacebookAds
     field :finance_permission, 'string'
     field :user, 'object'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

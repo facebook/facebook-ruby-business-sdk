@@ -34,6 +34,7 @@ module FacebookAds
     field :placed_url, 'string'
     field :timestamp, 'datetime'
     field :id, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 
