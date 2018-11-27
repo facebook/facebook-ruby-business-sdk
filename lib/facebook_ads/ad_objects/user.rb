@@ -116,7 +116,6 @@ module FacebookAds
     field :address, 'Location'
     field :admin_notes, { list: 'PageAdminNote' }
     field :age_range, 'AgeRange'
-    field :bio, 'string'
     field :birthday, 'string'
     field :can_review_measurement_request, 'bool'
     field :context, 'UserContext'
@@ -137,12 +136,10 @@ module FacebookAds
     field :installed, 'bool'
     field :interested_in, { list: 'string' }
     field :is_famedeeplinkinguser, 'bool'
-    field :is_payment_enabled, 'bool'
     field :is_shared_login, 'bool'
     field :is_verified, 'bool'
     field :labels, { list: 'PageLabel' }
     field :languages, { list: 'Experience' }
-    field :last_ad_referral, 'MessengerPlatformReferral'
     field :last_name, 'string'
     field :link, 'string'
     field :local_news_megaphone_dismiss_status, 'bool'
@@ -170,7 +167,6 @@ module FacebookAds
     field :timezone, 'double'
     field :token_for_business, 'string'
     field :updated_time, 'datetime'
-    field :username, 'string'
     field :verified, 'bool'
     field :video_upload_limits, 'VideoUploadLimits'
     field :viewer_can_send_gift, 'bool'
@@ -410,7 +406,7 @@ module FacebookAds
       edge.get 'UnifiedThread' do |api|
         api.has_param :tags, { list: 'string' }
         api.has_param :folder, 'string'
-        api.has_param :psid, 'object'
+        api.has_param :user_id, 'string'
       end
     end
 
@@ -1120,7 +1116,7 @@ module FacebookAds
       edge.get 'UnifiedThread' do |api|
         api.has_param :tags, { list: 'string' }
         api.has_param :folder, 'string'
-        api.has_param :psid, 'object'
+        api.has_param :user_id, 'string'
       end
     end
 

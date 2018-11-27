@@ -25,17 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class LiveVideoInputStream < AdObject
+  class PageLocationsHealthSummary < AdObject
 
-    field :dash_ingest_url, 'string'
-    field :dash_preview_url, 'string'
+    field :checked_count, 'int'
+    field :health_check, 'string'
+    field :unhealthy_count, 'int'
     field :id, 'string'
-    field :is_master, 'bool'
-    field :live_encoder, 'LiveEncoder'
-    field :secure_stream_url, 'string'
-    field :stream_health, 'object'
-    field :stream_id, 'string'
-    field :stream_url, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

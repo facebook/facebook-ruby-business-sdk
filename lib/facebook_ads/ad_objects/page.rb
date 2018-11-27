@@ -114,6 +114,7 @@ module FacebookAds
       "AUTO_LOOKALIKE",
       "MULT_CUSTOM_AUDIENCES",
       "EVENT_CUSTOM_AUDIENCES",
+      "AUTO_PAGE_LOOKALIKE",
     ]
 
     PERMITTED_TASKS = [
@@ -334,7 +335,6 @@ module FacebookAds
     field :general_manager, 'string'
     field :genre, 'string'
     field :global_brand_page_name, 'string'
-    field :global_brand_parent_page, 'Page'
     field :global_brand_root_id, 'string'
     field :has_added_app, 'bool'
     field :has_whatsapp_business_number, 'bool'
@@ -401,7 +401,6 @@ module FacebookAds
     field :promotion_eligible, 'bool'
     field :promotion_ineligible_reason, 'string'
     field :public_transit, 'string'
-    field :publisher_space, 'PublisherSpace'
     field :rating_count, 'int'
     field :recipient, 'string'
     field :record_label, 'string'
@@ -658,7 +657,7 @@ module FacebookAds
       edge.get 'UnifiedThread' do |api|
         api.has_param :tags, { list: 'string' }
         api.has_param :folder, 'string'
-        api.has_param :psid, 'object'
+        api.has_param :user_id, 'string'
       end
     end
 
@@ -996,28 +995,10 @@ module FacebookAds
 
     has_edge :leadgen_legal_content do |edge|
       edge.get 'LeadGenLegalContent'
-      edge.post 'LeadGenLegalContent' do |api|
-        api.has_param :privacy_policy, 'object'
-        api.has_param :custom_disclaimer, 'object'
-        api.has_param :status, { enum: -> { LeadGenLegalContent::STATUS }}
-      end
     end
 
     has_edge :leadgen_qualifiers do |edge|
       edge.get 'LeadGenQualifier'
-    end
-
-    has_edge :leadgen_thank_you_page do |edge|
-      edge.post do |api|
-        api.has_param :body, 'string'
-        api.has_param :business_phone_number, 'string'
-        api.has_param :button_text, 'string'
-        api.has_param :button_type, { enum: %w{VIEW_WEBSITE CALL_BUSINESS MESSAGE_BUSINESS DOWNLOAD }}
-        api.has_param :country_code, 'string'
-        api.has_param :enable_messenger, 'bool'
-        api.has_param :title, 'string'
-        api.has_param :website_url, 'string'
-      end
     end
 
     has_edge :leadgen_whitelisted_users do |edge|
@@ -1605,7 +1586,7 @@ module FacebookAds
       edge.get 'UnifiedThread' do |api|
         api.has_param :tags, { list: 'string' }
         api.has_param :folder, 'string'
-        api.has_param :psid, 'object'
+        api.has_param :user_id, 'string'
       end
     end
 

@@ -40,7 +40,6 @@ module FacebookAds
     field :left, 'int'
     field :right, 'int'
     field :top, 'int'
-    field :uri, 'string'
     field :url, 'string'
     field :width, 'int'
     field :id, 'string'

@@ -27,7 +27,7 @@ module FacebookAds
 
   class Destination < AdObject
 
-    field :address, 'object'
+    field :address, 'string'
     field :applinks, 'AppLinks'
     field :currency, 'string'
     field :description, 'string'
@@ -40,7 +40,6 @@ module FacebookAds
     field :sanitized_images, { list: 'string' }
     field :types, { list: 'string' }
     field :url, 'string'
-    has_no_post
     has_no_delete
 
   end

@@ -350,12 +350,6 @@ module FacebookAds
       end
     end
 
-    has_edge :business_activities do |edge|
-      edge.get 'BusinessActivityLogEvent' do |api|
-        api.has_param :business, 'string'
-      end
-    end
-
     has_edge :business_invoices do |edge|
       edge.get 'OracleTransaction' do |api|
         api.has_param :start_date, 'string'

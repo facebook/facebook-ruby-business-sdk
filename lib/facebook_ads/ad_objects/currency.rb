@@ -27,8 +27,6 @@ module FacebookAds
 
   class Currency < AdObject
 
-    field :currency_exchange, 'double'
-    field :currency_exchange_inverse, 'double'
     field :currency_offset, 'int'
     field :usd_exchange, 'double'
     field :usd_exchange_inverse, 'double'

@@ -113,6 +113,7 @@ module FacebookAds
       "BELL_POLL",
       "CIVIC_PROPOSAL_COVER_VIDEO",
       "HEURISTIC_CLUSTER_VIDEO",
+      "DCO_AUTOGEN_VIDEO",
     ]
 
     CONTENT_CATEGORY = [
@@ -205,10 +206,10 @@ module FacebookAds
     field :length, 'double'
     field :live_audience_count, 'int'
     field :live_status, 'string'
-    field :name, 'string'
     field :permalink_url, 'string'
     field :picture, 'string'
     field :place, 'Place'
+    field :premiere_living_room_status, 'string'
     field :privacy, 'Privacy'
     field :published, 'bool'
     field :scheduled_publish_time, 'datetime'
@@ -284,6 +285,7 @@ module FacebookAds
     field :referenced_sticker_id, 'string'
     field :replace_video_id, 'string'
     field :swap_mode, { enum: -> { SWAP_MODE }}
+    field :name, 'string'
     field :chunk_session_id, 'string'
 
     has_edge :auto_generated_captions do |edge|

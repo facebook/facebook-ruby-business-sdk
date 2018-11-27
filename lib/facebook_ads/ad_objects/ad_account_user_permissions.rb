@@ -28,7 +28,6 @@ module FacebookAds
   class AdAccountUserPermissions < AdObject
 
     field :business, 'Business'
-    field :business_persona, 'object'
     field :created_by, 'User'
     field :created_time, 'datetime'
     field :email, 'string'

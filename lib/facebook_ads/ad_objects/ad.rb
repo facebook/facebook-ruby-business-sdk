@@ -124,7 +124,6 @@ module FacebookAds
     field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
     field :name, 'string'
-    field :objective_source, 'string'
     field :priority, 'int'
     field :recommendations, { list: 'AdRecommendation' }
     field :source_ad, 'Ad'
@@ -148,11 +147,11 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
       edge.post 'Ad' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
     end
 
@@ -243,6 +242,7 @@ module FacebookAds
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
         api.has_param :dynamic_creative_spec, 'object'
+        api.has_param :dynamic_asset_label, 'string'
         api.has_param :interactive, 'bool'
         api.has_param :post, 'object'
         api.has_param :height, 'int'

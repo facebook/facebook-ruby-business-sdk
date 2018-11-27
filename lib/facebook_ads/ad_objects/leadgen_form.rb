@@ -26,6 +26,13 @@ module FacebookAds
   # pull request for this class.
 
   class LeadgenForm < AdObject
+    STATUS = [
+      "ACTIVE",
+      "ARCHIVED",
+      "DELETED",
+      "DRAFT",
+    ]
+
     LOCALE = [
       "EN_US",
       "IT_IT",
@@ -58,13 +65,6 @@ module FacebookAds
       "TH_TH",
       "VI_VN",
       "ZH_CN",
-    ]
-
-    STATUS = [
-      "ACTIVE",
-      "ARCHIVED",
-      "DELETED",
-      "DRAFT",
     ]
 
 

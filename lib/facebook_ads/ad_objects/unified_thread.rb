@@ -39,8 +39,6 @@ module FacebookAds
     field :senders, 'object'
     field :snippet, 'string'
     field :subject, 'string'
-    field :tags, 'object'
-    field :thread_key, 'string'
     field :unread_count, 'int'
     field :updated_time, 'datetime'
     field :wallpaper, 'string'

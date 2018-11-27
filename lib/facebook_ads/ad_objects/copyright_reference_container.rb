@@ -33,11 +33,13 @@ module FacebookAds
     field :duration_in_sec, 'double'
     field :fingerprint_validity, 'string'
     field :id, 'string'
+    field :iswc, 'string'
     field :metadata, 'object'
     field :published_time, 'datetime'
     field :thumbnail_url, 'string'
     field :title, 'string'
     field :universal_content_id, 'string'
+    field :writer_names, { list: 'string' }
     has_no_get
     has_no_post
     has_no_delete

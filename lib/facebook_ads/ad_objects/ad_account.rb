@@ -156,7 +156,6 @@ module FacebookAds
     field :capabilities, { list: 'string' }
     field :created_time, 'datetime'
     field :currency, 'string'
-    field :daily_spend_limit, 'string'
     field :direct_deals_tos_accepted, 'bool'
     field :disable_reason, 'int'
     field :end_advertiser, 'string'
@@ -185,7 +184,6 @@ module FacebookAds
     field :offsite_pixels_tos_accepted, 'bool'
     field :owner, 'string'
     field :partner, 'string'
-    field :rate_limit_reset_time, 'string'
     field :rf_spec, 'ReachFrequencySpec'
     field :show_checkout_experience, 'bool'
     field :spend_cap, 'string'
@@ -220,21 +218,20 @@ module FacebookAds
     end
 
     has_edge :adasset_feeds do |edge|
-      edge.get 'AdAssetFeed'
-      edge.post 'AdAssetFeed' do |api|
+      edge.post do |api|
         api.has_param :images, { list: 'object' }
         api.has_param :videos, { list: 'object' }
         api.has_param :bodies, { list: 'object' }
-        api.has_param :call_to_action_types, { list: { enum: -> { AdAssetFeed::CALL_TO_ACTION_TYPES }} }
+        api.has_param :call_to_action_types, { list: { enum: %w{OPEN_LINK LIKE_PAGE SHOP_NOW PLAY_GAME INSTALL_APP USE_APP CALL CALL_ME INSTALL_MOBILE_APP USE_MOBILE_APP MOBILE_DOWNLOAD BOOK_TRAVEL LISTEN_MUSIC WATCH_VIDEO LEARN_MORE SIGN_UP DOWNLOAD WATCH_MORE NO_BUTTON VISIT_PAGES_FEED APPLY_NOW BUY_NOW GET_OFFER GET_OFFER_VIEW BUY_TICKETS UPDATE_APP GET_DIRECTIONS BUY MESSAGE_PAGE DONATE SUBSCRIBE SAY_THANKS SELL_NOW SHARE DONATE_NOW GET_QUOTE CONTACT_US ORDER_NOW ADD_TO_CART VIDEO_ANNOTATION MOMENTS RECORD_NOW GET_SHOWTIMES LISTEN_NOW WOODHENGE_SUPPORT EVENT_RSVP WHATSAPP_MESSAGE FOLLOW_NEWS_STORYLINE SEE_MORE }} }
         api.has_param :descriptions, { list: 'object' }
         api.has_param :link_urls, { list: 'object' }
         api.has_param :titles, { list: 'object' }
         api.has_param :captions, { list: 'object' }
-        api.has_param :ad_formats, { list: { enum: -> { AdAssetFeed::AD_FORMATS }} }
+        api.has_param :ad_formats, { list: { enum: %w{AUTOMATIC_FORMAT CAROUSEL_IMAGE CAROUSEL_VIDEO SINGLE_IMAGE SINGLE_VIDEO }} }
         api.has_param :groups, { list: 'object' }
         api.has_param :target_rules, { list: 'object' }
         api.has_param :asset_customization_rules, { list: 'object' }
-        api.has_param :optimization_type, { enum: -> { AdAssetFeed::OPTIMIZATION_TYPE }}
+        api.has_param :optimization_type, { enum: %w{REGULAR LANGUAGE PLACEMENT VIDEO_BANDWIDTH BRAND ASSET_CUSTOMIZATION DCO_PARITY PREVIEW_DYNAMIC_RENDERING }}
         api.has_param :call_to_actions, { list: 'object' }
         api.has_param :autotranslate, { list: 'string' }
         api.has_param :additional_data, 'hash'
@@ -336,11 +333,10 @@ module FacebookAds
     end
 
     has_edge :adlanguage_assets do |edge|
-      edge.get 'AdAssetFeed'
-      edge.post 'AdAssetFeed' do |api|
+      edge.post do |api|
         api.has_param :image, 'object'
         api.has_param :video, 'object'
-        api.has_param :call_to_action_type, { enum: -> { AdAssetFeed::CALL_TO_ACTION_TYPE }}
+        api.has_param :call_to_action_type, { enum: %w{OPEN_LINK LIKE_PAGE SHOP_NOW PLAY_GAME INSTALL_APP USE_APP CALL CALL_ME INSTALL_MOBILE_APP USE_MOBILE_APP MOBILE_DOWNLOAD BOOK_TRAVEL LISTEN_MUSIC WATCH_VIDEO LEARN_MORE SIGN_UP DOWNLOAD WATCH_MORE NO_BUTTON VISIT_PAGES_FEED APPLY_NOW BUY_NOW GET_OFFER GET_OFFER_VIEW BUY_TICKETS UPDATE_APP GET_DIRECTIONS BUY MESSAGE_PAGE DONATE SUBSCRIBE SAY_THANKS SELL_NOW SHARE DONATE_NOW GET_QUOTE CONTACT_US ORDER_NOW ADD_TO_CART VIDEO_ANNOTATION MOMENTS RECORD_NOW GET_SHOWTIMES LISTEN_NOW WOODHENGE_SUPPORT EVENT_RSVP WHATSAPP_MESSAGE FOLLOW_NEWS_STORYLINE SEE_MORE }}
         api.has_param :bodies, { list: 'object' }
         api.has_param :descriptions, { list: 'object' }
         api.has_param :titles, { list: 'object' }
@@ -506,6 +502,7 @@ module FacebookAds
         api.has_param :adlabels, { list: 'object' }
         api.has_param :bid_amount, 'int'
         api.has_param :bid_adjustments, 'object'
+        api.has_param :bid_constraints, 'object'
         api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
         api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
         api.has_param :campaign_id, 'string'
@@ -527,7 +524,6 @@ module FacebookAds
         api.has_param :is_autobid, 'bool'
         api.has_param :is_average_price_pacing, 'bool'
         api.has_param :is_dynamic_creative, 'bool'
-        api.has_param :is_dynamic_creative_optimization, 'bool'
         api.has_param :lifetime_budget, 'int'
         api.has_param :lifetime_frequency_cap, 'int'
         api.has_param :lifetime_imps, 'int'
@@ -785,6 +781,10 @@ module FacebookAds
       end
     end
 
+    has_edge :businesssettinglogs do |edge|
+      edge.get 'BusinessSettingLogsData'
+    end
+
     has_edge :campaigns do |edge|
       edge.delete do |api|
         api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_OLDEST DELETE_ARCHIVED_BEFORE }}
@@ -837,10 +837,6 @@ module FacebookAds
       edge.post 'AdAccount' do |api|
         api.has_param :coupon_code, 'string'
       end
-    end
-
-    has_edge :custom_audience_limits do |edge|
-      edge.get 'AdAccountCustomAudienceLimits'
     end
 
     has_edge :customaudiences do |edge|
@@ -956,6 +952,7 @@ module FacebookAds
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
         api.has_param :dynamic_creative_spec, 'object'
+        api.has_param :dynamic_asset_label, 'string'
         api.has_param :interactive, 'bool'
         api.has_param :post, 'object'
         api.has_param :height, 'int'
@@ -1350,7 +1347,7 @@ module FacebookAds
       end
     end
 
-    has_edge :user_match do |edge|
+    has_edge :usermatch do |edge|
       edge.delete do |api|
         api.has_param :payload, 'object'
         api.has_param :namespace, 'string'
@@ -1370,10 +1367,6 @@ module FacebookAds
         api.has_param :user, 'int'
         api.has_param :email, 'string'
         api.has_param :business, 'string'
-      end
-      edge.get 'AdAccountUserPermissions' do |api|
-        api.has_param :business, 'object'
-        api.has_param :user, 'object'
       end
       edge.post 'AdAccount' do |api|
         api.has_param :user, 'int'

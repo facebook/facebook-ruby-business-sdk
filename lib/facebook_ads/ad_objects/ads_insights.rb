@@ -150,18 +150,16 @@ module FacebookAds
     field :campaign_name, 'string'
     field :canvas_avg_view_percent, 'string'
     field :canvas_avg_view_time, 'string'
-    field :canvas_component_avg_pct_view, { list: 'AdsActionStats' }
     field :clicks, 'string'
+    field :conversion_values, { list: 'AdsActionStats' }
+    field :conversions, { list: 'AdsActionStats' }
     field :cost_per_10_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_15_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }
     field :cost_per_ad_click, { list: 'AdsActionStats' }
+    field :cost_per_conversion, { list: 'AdsActionStats' }
     field :cost_per_dda_countby_convs, 'string'
-    field :cost_per_dwell, 'string'
-    field :cost_per_dwell_3_sec, 'string'
-    field :cost_per_dwell_5_sec, 'string'
-    field :cost_per_dwell_7_sec, 'string'
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
@@ -170,6 +168,7 @@ module FacebookAds
     field :cost_per_thruplay, { list: 'AdsActionStats' }
     field :cost_per_unique_action_type, { list: 'AdsActionStats' }
     field :cost_per_unique_click, 'string'
+    field :cost_per_unique_conversion, { list: 'AdsActionStats' }
     field :cost_per_unique_inline_link_click, 'string'
     field :cost_per_unique_outbound_click, { list: 'AdsActionStats' }
     field :country, 'string'
@@ -185,10 +184,6 @@ module FacebookAds
     field :description_asset, 'object'
     field :device_platform, 'string'
     field :dma, 'string'
-    field :dwell_3_sec, 'string'
-    field :dwell_5_sec, 'string'
-    field :dwell_7_sec, 'string'
-    field :dwell_rate, 'string'
     field :estimated_ad_recall_rate, 'string'
     field :estimated_ad_recall_rate_lower_bound, 'string'
     field :estimated_ad_recall_rate_upper_bound, 'string'
@@ -223,6 +218,7 @@ module FacebookAds
     field :product_format, 'string'
     field :product_id, 'string'
     field :publisher_platform, 'string'
+    field :purchase_roas, { list: 'AdsActionStats' }
     field :purchasing_interface, 'string'
     field :reach, 'string'
     field :region, 'string'
@@ -230,10 +226,10 @@ module FacebookAds
     field :rule_asset, 'object'
     field :social_spend, 'string'
     field :spend, 'string'
-    field :thumb_stops, 'string'
     field :title_asset, 'object'
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
+    field :unique_conversions, { list: 'AdsActionStats' }
     field :unique_ctr, 'string'
     field :unique_inline_link_click_ctr, 'string'
     field :unique_inline_link_clicks, 'string'

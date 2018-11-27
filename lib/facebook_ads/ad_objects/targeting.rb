@@ -47,6 +47,7 @@ module FacebookAds
     field :audience_network_positions, { list: 'string' }
     field :behaviors, { list: 'IdName' }
     field :brand_safety_content_severity_levels, { list: 'string' }
+    field :catalog_based_targeting, 'CatalogBasedTargeting'
     field :cities, { list: 'IdName' }
     field :college_years, { list: 'int' }
     field :connections, { list: 'IdName' }
@@ -117,7 +118,6 @@ module FacebookAds
     field :radius, 'string'
     field :regions, { list: 'IdName' }
     field :relationship_statuses, { list: 'int' }
-    field :rtb_flag, 'bool'
     field :site_category, { list: 'string' }
     field :targeting_optimization, 'string'
     field :user_adclusters, { list: 'IdName' }

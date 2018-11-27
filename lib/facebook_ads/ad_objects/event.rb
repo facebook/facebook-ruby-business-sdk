@@ -33,6 +33,35 @@ module FacebookAds
       "community",
     ]
 
+    PROJECTION = [
+      "EQUIRECTANGULAR",
+      "CUBEMAP",
+      "HALF_EQUIRECTANGULAR",
+    ]
+
+    SPATIAL_AUDIO_FORMAT = [
+      "ambiX_4",
+    ]
+
+    STATUS = [
+      "UNPUBLISHED",
+      "LIVE_NOW",
+      "SCHEDULED_UNPUBLISHED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_CANCELED",
+    ]
+
+    STEREOSCOPIC_MODE = [
+      "MONO",
+      "LEFT_RIGHT",
+      "TOP_BOTTOM",
+    ]
+
+    STREAM_TYPE = [
+      "REGULAR",
+      "AMBIENT",
+    ]
+
     EVENT_STATE_FILTER = [
       "canceled",
       "draft",
@@ -54,7 +83,6 @@ module FacebookAds
 
     field :attending_count, 'int'
     field :can_guests_invite, 'bool'
-    field :can_viewer_post, 'bool'
     field :category, 'string'
     field :cover, 'CoverPhoto'
     field :declined_count, 'int'
@@ -65,19 +93,15 @@ module FacebookAds
     field :guest_list_enabled, 'bool'
     field :id, 'string'
     field :interested_count, 'int'
-    field :invited_count, 'int'
     field :is_canceled, 'bool'
-    field :is_date_only, 'bool'
     field :is_draft, 'bool'
     field :is_page_owned, 'bool'
-    field :location, 'string'
     field :maybe_count, 'int'
     field :name, 'string'
     field :noreply_count, 'int'
     field :owner, 'object'
     field :parent_group, 'Group'
     field :place, 'Place'
-    field :privacy, 'string'
     field :scheduled_publish_time, 'string'
     field :start_time, 'string'
     field :ticket_uri, 'string'
@@ -87,7 +111,6 @@ module FacebookAds
     field :timezone, 'string'
     field :type, { enum: -> { TYPE }}
     field :updated_time, 'datetime'
-    field :venue, 'Location'
 
     has_edge :admins do |edge|
       edge.get 'Profile'
@@ -264,29 +287,29 @@ module FacebookAds
 
     has_edge :live_videos do |edge|
       edge.get 'NullNode'
-      edge.post do |api|
+      edge.post 'Event' do |api|
         api.has_param :title, 'string'
         api.has_param :description, 'string'
         api.has_param :save_vod, 'bool'
         api.has_param :published, 'bool'
-        api.has_param :status, { enum: %w{UNPUBLISHED LIVE_NOW SCHEDULED_UNPUBLISHED SCHEDULED_LIVE SCHEDULED_CANCELED }}
+        api.has_param :status, { enum: -> { Event::STATUS }}
         api.has_param :privacy, 'object'
         api.has_param :stop_on_delete_stream, 'bool'
-        api.has_param :stream_type, { enum: %w{REGULAR AMBIENT }}
+        api.has_param :stream_type, { enum: -> { Event::STREAM_TYPE }}
         api.has_param :content_tags, { list: 'string' }
         api.has_param :is_spherical, 'bool'
         api.has_param :is_audio_only, 'bool'
         api.has_param :planned_start_time, 'int'
         api.has_param :schedule_custom_profile_image, 'file'
-        api.has_param :projection, { enum: %w{EQUIRECTANGULAR CUBEMAP HALF_EQUIRECTANGULAR }}
-        api.has_param :spatial_audio_format, { enum: %w{ambiX_4 }}
+        api.has_param :projection, { enum: -> { Event::PROJECTION }}
+        api.has_param :spatial_audio_format, { enum: -> { Event::SPATIAL_AUDIO_FORMAT }}
         api.has_param :encoding_settings, 'string'
         api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
         api.has_param :attribution_app_id, 'string'
-        api.has_param :stereoscopic_mode, { enum: %w{MONO LEFT_RIGHT TOP_BOTTOM }}
+        api.has_param :stereoscopic_mode, { enum: -> { Event::STEREOSCOPIC_MODE }}
       end
     end
 

@@ -103,7 +103,6 @@ module FacebookAds
     field :live_views, 'int'
     field :permalink_url, 'string'
     field :planned_start_time, 'datetime'
-    field :preview_url, 'string'
     field :seconds_left, 'int'
     field :secure_stream_url, 'string'
     field :status, 'string'
@@ -142,6 +141,11 @@ module FacebookAds
 
     has_edge :game_shows do |edge|
       edge.get 'VideoGameShow'
+    end
+
+    has_edge :guest_sessions do |edge|
+      edge.get 'LiveWithGuestSession'
+      edge.post 'LiveWithGuestSession'
     end
 
     has_edge :input_streams do |edge|

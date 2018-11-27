@@ -49,10 +49,9 @@ module FacebookAds
       "google",
     ]
 
-    PRODUCT_TYPE = [
+    ITEM_TYPE = [
       "AUTO",
       "AUTO_MARKET",
-      "AUTO_OFFER",
       "AUTOMOTIVE_MODEL",
       "DESTINATION",
       "FLIGHT",
@@ -85,8 +84,6 @@ module FacebookAds
     field :feed_count, 'int'
     field :flight_catalog_settings, 'FlightCatalogSettings'
     field :id, 'string'
-    field :image_padding_landscape, 'bool'
-    field :image_padding_square, 'bool'
     field :name, 'string'
     field :product_count, 'int'
     field :qualified_product_count, 'int'
@@ -166,6 +163,17 @@ module FacebookAds
       edge.get 'Destination' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
+      end
+      edge.post 'Destination' do |api|
+        api.has_param :destination_id, 'string'
+        api.has_param :images, { list: 'object' }
+        api.has_param :types, 'string'
+        api.has_param :url, 'object'
+        api.has_param :name, 'string'
+        api.has_param :address, 'object'
+        api.has_param :currency, 'string'
+        api.has_param :price, 'int'
+        api.has_param :description, 'string'
       end
     end
 
@@ -258,6 +266,13 @@ module FacebookAds
         api.has_param :phone, 'string'
         api.has_param :star_rating, 'double'
         api.has_param :guest_ratings, { list: 'object' }
+      end
+    end
+
+    has_edge :items_batch do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :requests, 'hash'
+        api.has_param :item_type, { enum: -> { ProductCatalog::ITEM_TYPE }}
       end
     end
 
@@ -394,13 +409,6 @@ module FacebookAds
         api.has_param :windows_phone_url, 'string'
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
-      end
-    end
-
-    has_edge :products_batch do |edge|
-      edge.post 'ProductCatalog' do |api|
-        api.has_param :requests, 'hash'
-        api.has_param :product_type, { enum: -> { ProductCatalog::PRODUCT_TYPE }}
       end
     end
 

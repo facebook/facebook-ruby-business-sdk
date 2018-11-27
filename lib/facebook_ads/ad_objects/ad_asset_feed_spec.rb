@@ -75,6 +75,7 @@ module FacebookAds
       "EVENT_RSVP",
       "WHATSAPP_MESSAGE",
       "FOLLOW_NEWS_STORYLINE",
+      "SEE_MORE",
     ]
 
 

@@ -39,11 +39,9 @@ module FacebookAds
 
 
     field :affected_surfaces, { list: { enum: -> { AFFECTED_SURFACES }} }
-    field :column_number, 'int'
     field :description, 'string'
     field :error_type, 'string'
     field :id, 'string'
-    field :row_number, 'int'
     field :severity, { enum: -> { SEVERITY }}
     field :summary, 'string'
     field :total_count, 'int'

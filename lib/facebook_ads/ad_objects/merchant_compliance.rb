@@ -25,10 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdgroupMetadata < AdObject
+  class MerchantCompliance < AdObject
 
-    field :carousel_style, 'string'
-    field :carousel_with_static_card_style, 'string'
+    field :a2c_p_disc, 'double'
+    field :base_compliance_status, 'bool'
+    field :non_null_id, 'double'
+    field :non_null_quantity, 'double'
+    field :vc_a2c_disc, 'double'
     field :id, 'string'
     has_no_get
     has_no_post

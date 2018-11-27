@@ -32,7 +32,6 @@ module FacebookAds
     field :js_pixel, 'string'
     field :last_firing_time, 'datetime'
     field :name, 'string'
-    field :status, 'string'
     field :tag, 'string'
     has_no_post
     has_no_delete

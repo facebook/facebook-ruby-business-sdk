@@ -31,20 +31,8 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :all_mutual_friends do |edge|
-      edge.get
-    end
-
-    has_edge :mutual_friends do |edge|
-      edge.get 'User'
-    end
-
     has_edge :mutual_likes do |edge|
       edge.get 'Page'
-    end
-
-    has_edge :three_degree_mutual_friends do |edge|
-      edge.get
     end
 
   end

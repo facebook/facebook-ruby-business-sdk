@@ -136,6 +136,7 @@ module FacebookAds
       "instream_video_sponsorship_placements",
       "prospecting_audience",
       "brand_safety_content_severity_levels",
+      "catalog_based_targeting",
     ]
 
     WHITELISTED_TYPES = [
@@ -248,6 +249,7 @@ module FacebookAds
       "instream_video_sponsorship_placements",
       "prospecting_audience",
       "brand_safety_content_severity_levels",
+      "catalog_based_targeting",
     ]
 
     MODE = [

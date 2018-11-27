@@ -42,6 +42,7 @@ module FacebookAds
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "VIDEO_VIEWS",
+      "THRUPLAY",
     ]
 
     CONFIGURED_STATUS = [
@@ -86,6 +87,7 @@ module FacebookAds
       "APP_DOWNLOADS",
       "LANDING_PAGE_VIEWS",
       "VALUE",
+      "THRUPLAY",
       "REPLIES",
       "DERIVED_EVENTS",
     ]
@@ -152,7 +154,6 @@ module FacebookAds
 
     field :account_id, 'string'
     field :ad_keywords, 'string'
-    field :adasset_feed, 'AdAssetFeed'
     field :adlabels, { list: 'AdLabel' }
     field :adset_schedule, { list: 'DayPart' }
     field :asset_feed_id, 'string'
@@ -176,19 +177,13 @@ module FacebookAds
     field :destination_type, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
-    field :frequency_cap, 'int'
-    field :frequency_cap_reset_period, 'int'
     field :frequency_control_specs, { list: 'AdCampaignFrequencyControlSpecs' }
     field :full_funnel_exploration_mode, 'string'
     field :id, 'string'
     field :instagram_actor_id, 'string'
-    field :is_autobid, 'bool'
-    field :is_average_price_pacing, 'bool'
     field :is_dynamic_creative, 'bool'
-    field :is_dynamic_creative_optimization, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :lifetime_budget, 'string'
-    field :lifetime_frequency_cap, 'int'
     field :lifetime_imps, 'int'
     field :lifetime_min_spend_target, 'string'
     field :lifetime_spend_cap, 'string'
@@ -200,7 +195,6 @@ module FacebookAds
     field :recurring_budget_semantics, 'bool'
     field :review_feedback, 'string'
     field :rf_prediction_id, 'string'
-    field :rtb_flag, 'bool'
     field :source_adset, 'AdSet'
     field :source_adset_id, 'string'
     field :start_time, 'datetime'
@@ -208,13 +202,17 @@ module FacebookAds
     field :targeting, 'Targeting'
     field :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
     field :time_based_ad_rotation_intervals, { list: 'int' }
-    field :tracking_specs, 'string'
     field :updated_time, 'datetime'
     field :use_new_app_click, 'bool'
     field :campaign_spec, 'object'
     field :daily_imps, 'int'
     field :date_format, 'string'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
+    field :frequency_cap, 'int'
+    field :frequency_cap_reset_period, 'int'
+    field :is_autobid, 'bool'
+    field :is_average_price_pacing, 'bool'
+    field :lifetime_frequency_cap, 'int'
     field :line_number, 'int'
     field :rb_prediction_id, 'string'
     field :time_start, 'datetime'
@@ -245,11 +243,11 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
       edge.post 'AdSet' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
     end
 

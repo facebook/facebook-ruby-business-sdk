@@ -36,6 +36,8 @@ module FacebookAds
     field :description, 'string'
     field :drivetrain, 'string'
     field :exterior_color, 'string'
+    field :finance_description, 'string'
+    field :finance_type, 'string'
     field :fuel_type, 'string'
     field :generation, 'string'
     field :id, 'string'

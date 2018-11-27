@@ -73,6 +73,7 @@ module FacebookAds
     field :show_multiple_images, 'bool'
     field :sponsorship_info, 'AdCreativeLinkDataSponsorshipInfoSpec'
     field :static_fallback_spec, 'AdCreativeStaticFallbackSpec'
+    field :use_flexible_image_aspect_ratio, 'bool'
     field :id, 'string'
     has_no_get
     has_no_post

@@ -34,7 +34,6 @@ module FacebookAds
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
     field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
     field :custom_overlay_spec, { list: 'AdCreativeVideoDataCustomOverlaySpec' }
-    field :description, 'string'
     field :image_hash, 'string'
     field :image_url, 'string'
     field :link_description, 'string'

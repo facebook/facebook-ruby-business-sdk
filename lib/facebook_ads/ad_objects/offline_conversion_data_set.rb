@@ -53,7 +53,6 @@ module FacebookAds
     ]
 
 
-    field :attribute_stats, 'string'
     field :business, 'Business'
     field :config, 'string'
     field :creation_time, 'datetime'
@@ -71,7 +70,6 @@ module FacebookAds
     field :last_upload_app_changed_time, 'int'
     field :match_rate_approx, 'int'
     field :matched_entries, 'int'
-    field :matched_unique_users, 'int'
     field :name, 'string'
     field :usage, 'object'
     field :valid_entries, 'int'
@@ -180,6 +178,15 @@ module FacebookAds
         api.has_param :user, 'int'
         api.has_param :role, { enum: -> { OfflineConversionDataSet::ROLE }}
         api.has_param :business, 'object'
+      end
+    end
+
+    has_edge :users do |edge|
+      edge.delete do |api|
+        api.has_param :data, { list: 'object' }
+      end
+      edge.post 'OfflineConversionDataSet' do |api|
+        api.has_param :data, { list: 'object' }
       end
     end
 

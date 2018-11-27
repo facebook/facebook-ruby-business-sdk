@@ -48,7 +48,6 @@ module FacebookAds
     field :title, 'string'
     field :type, 'string'
     field :updated_time, 'datetime'
-    field :url, 'string'
     field :video, { list: 'object' }
     has_no_delete
 

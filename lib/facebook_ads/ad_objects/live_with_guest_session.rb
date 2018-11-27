@@ -25,19 +25,30 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class LiveVideoInputStream < AdObject
+  class LiveWithGuestSession < AdObject
 
-    field :dash_ingest_url, 'string'
-    field :dash_preview_url, 'string'
+    field :conference_name, 'string'
     field :id, 'string'
-    field :is_master, 'bool'
-    field :live_encoder, 'LiveEncoder'
-    field :secure_stream_url, 'string'
-    field :stream_health, 'object'
-    field :stream_id, 'string'
-    field :stream_url, 'string'
+    field :participant_call_states, { list: 'object' }
+    field :server_sdp, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :hangup do |edge|
+      edge.post 'LiveWithGuestSession'
+    end
+
+    has_edge :join do |edge|
+      edge.post 'LiveWithGuestSession' do |api|
+        api.has_param :offer_sdp, 'string'
+      end
+    end
+
+    has_edge :ring_users do |edge|
+      edge.post 'LiveWithGuestSession' do |api|
+        api.has_param :user_ids, { list: 'int' }
+      end
+    end
 
   end
 end
