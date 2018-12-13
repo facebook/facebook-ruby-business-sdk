@@ -213,6 +213,16 @@ module FacebookAds
       end
     end
 
+    has_edge :ad_place_page_sets do |edge|
+      edge.get 'AdPlacePageSet'
+      edge.post 'AdPlacePageSet' do |api|
+        api.has_param :name, 'string'
+        api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
+        api.has_param :parent_page, 'string'
+        api.has_param :targeted_area_type, { enum: -> { AdPlacePageSet::TARGETED_AREA_TYPE }}
+      end
+    end
+
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
     end
@@ -268,7 +278,7 @@ module FacebookAds
         api.has_param :image_url, 'string'
         api.has_param :instagram_actor_id, 'string'
         api.has_param :instagram_permalink_url, 'string'
-        api.has_param :instagram_story_id, 'int'
+        api.has_param :portrait_customizations, 'hash'
         api.has_param :link_og_id, 'string'
         api.has_param :link_url, 'string'
         api.has_param :name, 'string'
@@ -423,6 +433,7 @@ module FacebookAds
         api.has_param :object_id, 'string'
         api.has_param :action, { enum: -> { AdAccountAdRulesHistory::ACTION }}
         api.has_param :hide_no_changes, 'bool'
+        api.has_param :evaluation_type, { enum: -> { AdAccountAdRulesHistory::EVALUATION_TYPE }}
       end
     end
 
@@ -796,6 +807,7 @@ module FacebookAds
         api.has_param :effective_status, { list: { enum: -> { Campaign::EFFECTIVE_STATUS }} }
         api.has_param :date_preset, { enum: -> { Campaign::DATE_PRESET }}
         api.has_param :is_completed, 'bool'
+        api.has_param :time_range, 'object'
       end
       edge.post 'Campaign' do |api|
         api.has_param :name, 'string'
@@ -942,7 +954,7 @@ module FacebookAds
     end
 
     has_edge :emailimport do |edge|
-      edge.post 'EmailImport' do |api|
+      edge.post do |api|
         api.has_param :name, 'string'
         api.has_param :third_party_data, 'string'
       end

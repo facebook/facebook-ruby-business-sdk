@@ -75,6 +75,7 @@ module FacebookAds
       "SHOP_ON_FACEBOOK",
       "LOCAL_DEV_PLATFORM",
       "INTERESTED",
+      "WOODHENGE_SUPPORT",
     ]
 
     WEB_DESTINATION_TYPE = [
@@ -83,6 +84,7 @@ module FacebookAds
       "NONE",
       "WEBSITE",
       "SHOP_ON_FACEBOOK",
+      "BECOME_SUPPORTER",
     ]
 
 

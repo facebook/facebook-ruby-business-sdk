@@ -27,7 +27,7 @@ module FacebookAds
 
   class PublisherBlockList < AdObject
 
-    field :app_publishers, { list: 'AppPublisher' }
+    field :app_publishers, { list: 'object' }
     field :business_owner_id, 'string'
     field :id, 'string'
     field :is_auto_blocking_on, 'bool'
@@ -36,16 +36,16 @@ module FacebookAds
     field :last_update_user, 'string'
     field :name, 'string'
     field :owner_ad_account_id, 'string'
-    field :web_publishers, { list: 'WebPublisher' }
+    field :web_publishers, { list: 'object' }
 
     has_edge :paged_app_publishers do |edge|
-      edge.get 'AppPublisher' do |api|
+      edge.get do |api|
         api.has_param :draft_id, 'string'
       end
     end
 
     has_edge :paged_web_publishers do |edge|
-      edge.get 'WebPublisher' do |api|
+      edge.get do |api|
         api.has_param :draft_id, 'string'
       end
     end

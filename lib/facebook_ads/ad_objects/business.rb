@@ -428,6 +428,17 @@ module FacebookAds
       end
     end
 
+    has_edge :creative_compass_study do |edge|
+      edge.get 'CreativeDemocracyRun'
+      edge.post 'CreativeDemocracyRun' do |api|
+        api.has_param :campaign_id, { list: 'string' }
+        api.has_param :creative_id, { list: 'string' }
+        api.has_param :description, 'string'
+        api.has_param :name, 'string'
+        api.has_param :placement, { enum: -> { CreativeDemocracyRun::PLACEMENT }}
+      end
+    end
+
     has_edge :customconversions do |edge|
       edge.get 'CustomConversion'
       edge.post 'CustomConversion' do |api|
@@ -747,6 +758,17 @@ module FacebookAds
         api.has_param :role, { enum: -> { SystemUser::ROLE }}
         api.has_param :name, 'string'
         api.has_param :system_user_id, 'int'
+      end
+    end
+
+    has_edge :upload_event do |edge|
+      edge.get 'MeasurementUploadEvent'
+      edge.post 'MeasurementUploadEvent' do |api|
+        api.has_param :group, { enum: -> { MeasurementUploadEvent::GROUP }}
+        api.has_param :upload_end_time, 'object'
+        api.has_param :upload_start_time, 'object'
+        api.has_param :upload_tag, 'string'
+        api.has_param :version, { enum: -> { MeasurementUploadEvent::VERSION }}
       end
     end
 

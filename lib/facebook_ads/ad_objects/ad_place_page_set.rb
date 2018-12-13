@@ -26,6 +26,17 @@ module FacebookAds
   # pull request for this class.
 
   class AdPlacePageSet < AdObject
+    LOCATION_TYPES = [
+      "recent",
+      "home",
+    ]
+
+    TARGETED_AREA_TYPE = [
+      "CUSTOM_RADIUS",
+      "MARKETING_AREA",
+      "NONE",
+    ]
+
 
     field :account_id, 'string'
     field :id, 'string'
@@ -33,6 +44,7 @@ module FacebookAds
     field :name, 'string'
     field :pages_count, 'int'
     field :parent_page, 'Page'
+    field :targeted_area_type, { enum: -> { TARGETED_AREA_TYPE }}
     has_no_delete
 
   end

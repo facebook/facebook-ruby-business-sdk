@@ -25,40 +25,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdPreview < AdObject
-    AD_FORMAT = [
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO",
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
-      "AUDIENCE_NETWORK_OUTSTREAM_VIDEO",
-      "AUDIENCE_NETWORK_REWARDED_VIDEO",
-      "DESKTOP_FEED_STANDARD",
-      "FACEBOOK_STORY_MOBILE",
-      "INSTAGRAM_STANDARD",
-      "INSTAGRAM_STORY",
-      "INSTANT_ARTICLE_STANDARD",
-      "INSTREAM_VIDEO_DESKTOP",
-      "INSTREAM_VIDEO_MOBILE",
-      "MARKETPLACE_MOBILE",
-      "MESSENGER_MOBILE_INBOX_MEDIA",
-      "MOBILE_BANNER",
-      "MOBILE_FEED_BASIC",
-      "MOBILE_FEED_STANDARD",
-      "MOBILE_FULLWIDTH",
-      "MOBILE_INTERSTITIAL",
-      "MOBILE_MEDIUM_RECTANGLE",
-      "MOBILE_NATIVE",
-      "RIGHT_COLUMN_STANDARD",
-      "SUGGESTED_VIDEO_DESKTOP",
-      "SUGGESTED_VIDEO_MOBILE",
-      "WATCH_FEED_MOBILE",
-    ]
+  class ProductFeedUploadErrorReport < AdObject
 
-    RENDER_TYPE = [
-      "FALLBACK",
-    ]
-
-
-    field :body, 'string'
+    field :file_handle, 'string'
+    field :report_status, 'string'
     field :id, 'string'
     has_no_get
     has_no_post

@@ -119,18 +119,6 @@ module FacebookAds
       end
     end
 
-    has_edge :extractors do |edge|
-      edge.get 'SignalsIwlExtractor' do |api|
-        api.has_param :current_domain, 'object'
-      end
-      edge.post 'SignalsIwlExtractor' do |api|
-        api.has_param :domain_uri, 'object'
-        api.has_param :event_type, { enum: -> { SignalsIWLExtractor::EVENT_TYPE }}
-        api.has_param :extractor_config, 'hash'
-        api.has_param :extractor_type, { enum: -> { SignalsIWLExtractor::EXTRACTOR_TYPE }}
-      end
-    end
-
     has_edge :pending_shared_agencies do |edge|
       edge.get 'Business'
     end

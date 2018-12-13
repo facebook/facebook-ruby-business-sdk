@@ -148,6 +148,7 @@ module FacebookAds
     has_edge :check_batch_request_status do |edge|
       edge.get 'CheckBatchRequestStatus' do |api|
         api.has_param :handle, 'string'
+        api.has_param :load_all_errors, 'bool'
       end
     end
 

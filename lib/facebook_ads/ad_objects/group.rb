@@ -126,7 +126,6 @@ module FacebookAds
     field :subdomain, 'string'
     field :updated_time, 'datetime'
     field :venue, 'Location'
-    has_no_post
     has_no_delete
 
     has_edge :admins do |edge|

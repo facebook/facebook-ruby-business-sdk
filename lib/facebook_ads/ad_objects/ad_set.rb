@@ -63,6 +63,7 @@ module FacebookAds
       "CAMPAIGN_PAUSED",
       "ARCHIVED",
       "ADSET_PAUSED",
+      "WITH_ISSUES",
     ]
 
     OPTIMIZATION_GOAL = [

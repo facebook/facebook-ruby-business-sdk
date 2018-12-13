@@ -40,6 +40,11 @@ module FacebookAds
       "UNPAUSED",
     ]
 
+    EVALUATION_TYPE = [
+      "SCHEDULE",
+      "TRIGGER",
+    ]
+
 
     field :evaluation_spec, 'AdRuleEvaluationSpec'
     field :exception_code, 'int'

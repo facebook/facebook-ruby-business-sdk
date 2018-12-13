@@ -82,6 +82,7 @@ module FacebookAds
       "SLOW",
       "DISCUSSION",
       "RESTRICTED",
+      "PROTECTED_MODE",
     ]
 
 

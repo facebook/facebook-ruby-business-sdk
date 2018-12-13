@@ -136,6 +136,11 @@ module FacebookAds
       "DELETE",
     ]
 
+    POST_METHOD = [
+      "EYMT",
+      "CODELESS",
+    ]
+
     SCORE_TYPE = [
       "CUSTOM",
       "NUMERIC",
@@ -178,7 +183,6 @@ module FacebookAds
     field :auto_event_mapping_android, { list: 'object' }
     field :auto_event_mapping_ios, { list: 'object' }
     field :auto_event_setup_enabled, 'bool'
-    field :business, 'Business'
     field :canvas_fluid_height, 'bool'
     field :canvas_fluid_width, 'int'
     field :canvas_url, 'string'
@@ -351,29 +355,6 @@ module FacebookAds
       end
     end
 
-    has_edge :ads_app_insights do |edge|
-      edge.get do |api|
-        api.has_param :metric, { enum: %w{ads_api_call ads_api_error ads_api_error_rate }}
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
-        api.has_param :details, { enum: %w{daily hourly }}
-        api.has_param :filters, 'object'
-        api.has_param :breakdowns, { list: { enum: %w{none ad_account_id method version error }} }
-        api.has_param :limit, 'int'
-        api.has_param :timeseries, 'bool'
-      end
-    end
-
-    has_edge :ads_app_insights_dimensions do |edge|
-      edge.get do |api|
-        api.has_param :dimension, { enum: %w{ad_account_id method version }}
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
-        api.has_param :details, { enum: %w{daily hourly }}
-        api.has_param :limit, 'int'
-      end
-    end
-
     has_edge :agencies do |edge|
       edge.get 'Business'
     end
@@ -517,6 +498,7 @@ module FacebookAds
       edge.post 'Application' do |api|
         api.has_param :mutation_method, { enum: -> { Application::MUTATION_METHOD }}
         api.has_param :platform, { enum: -> { Application::PLATFORM }}
+        api.has_param :post_method, { enum: -> { Application::POST_METHOD }}
         api.has_param :mappings, { list: 'hash' }
       end
     end
@@ -782,10 +764,6 @@ module FacebookAds
       end
     end
 
-    has_edge :pixel_helper_debugging_info do |edge|
-      edge.get 'ExternalEventSourcePixelHelperDebuggingInfo'
-    end
-
     has_edge :products do |edge|
       edge.get do |api|
         api.has_param :product_ids, { list: 'string' }
@@ -795,13 +773,6 @@ module FacebookAds
     has_edge :purchases do |edge|
       edge.get do |api|
         api.has_param :is_premium, 'bool'
-      end
-    end
-
-    has_edge :recent_debuggings do |edge|
-      edge.get 'ExternalEventSourceDebugging' do |api|
-        api.has_param :event_name, 'string'
-        api.has_param :diagnostic, 'string'
       end
     end
 

@@ -29,18 +29,7 @@ FacebookAds.configure do |config|
 end
 
 ad_account = FacebookAds::AdAccount.get(id)
-adsets = ad_account.adsets.create({
-    name: 'A CPA Ad Set',
-    campaign_id: '<adCampaignLinkClicksID>',
-    daily_budget: '5000',
-    start_time: '2018-12-06T17:37:49-0800',
-    end_time: '2018-12-13T17:37:49-0800',
-    billing_event: 'IMPRESSIONS',
-    optimization_goal: 'REACH',
-    bid_amount: '1000',
-    promoted_object: {'page_id':'<pageID>'},
-    targeting: {'geo_locations':{'countries':['US']}},
-    user_os: 'iOS',
-    publisher_platforms: 'facebook',
-    device_platforms: 'mobile',
+adcreatives = ad_account.adcreatives.create({
+    name: 'Carousel app ad',
+    object_story_spec: {'page_id':'<pageID>','link_data':{'message':'My message','link':'http://www.example.com/appstoreurl','caption':'WWW.ITUNES.COM','name':'The link name','description':'The link's description','child_attachments':[{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}}],'multi_share_optimized':true}},
 })

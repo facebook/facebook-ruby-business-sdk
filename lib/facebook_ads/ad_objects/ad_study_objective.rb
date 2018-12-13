@@ -47,6 +47,10 @@ module FacebookAds
     field :results, { list: 'string' }
     field :type, 'string'
 
+    has_edge :ad_place_page_sets do |edge|
+      edge.get 'AdPlacePageSet'
+    end
+
     has_edge :adspixels do |edge|
       edge.get 'AdsPixel'
     end

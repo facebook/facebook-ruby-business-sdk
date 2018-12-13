@@ -74,10 +74,6 @@ module FacebookAds
       end
     end
 
-    has_edge :leads do |edge|
-      edge.get 'Lead'
-    end
-
     has_edge :likes do |edge|
       edge.delete do |api|
         api.has_param :tracking, 'string'

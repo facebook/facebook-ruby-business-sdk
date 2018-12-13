@@ -234,6 +234,7 @@ module FacebookAds
       "hours",
       "parking",
       "public_transit",
+      "page_about_story",
       "phone",
       "email",
       "website",

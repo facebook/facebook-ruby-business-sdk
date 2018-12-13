@@ -114,6 +114,7 @@ module FacebookAds
       "CIVIC_PROPOSAL_COVER_VIDEO",
       "HEURISTIC_CLUSTER_VIDEO",
       "DCO_AUTOGEN_VIDEO",
+      "SOTTO_CONTENT",
     ]
 
     CONTENT_CATEGORY = [

@@ -25,8 +25,8 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdPreview < AdObject
-    AD_FORMAT = [
+  class CreativeDemocracyRun < AdObject
+    PLACEMENT = [
       "AUDIENCE_NETWORK_INSTREAM_VIDEO",
       "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
       "AUDIENCE_NETWORK_OUTSTREAM_VIDEO",
@@ -53,16 +53,27 @@ module FacebookAds
       "WATCH_FEED_MOBILE",
     ]
 
-    RENDER_TYPE = [
-      "FALLBACK",
-    ]
 
-
-    field :body, 'string'
+    field :description, 'string'
+    field :end_date, 'string'
     field :id, 'string'
-    has_no_get
-    has_no_post
+    field :name, 'string'
+    field :placement, 'string'
+    field :report_data, { list: { list: 'object' } }
+    field :report_files, { list: 'object' }
+    field :start_date, 'string'
+    field :status, 'string'
+    field :campaign_id, { list: 'string' }
+    field :creative_id, { list: 'string' }
     has_no_delete
+
+    has_edge :campaign_id do |edge|
+      edge.get 'Campaign'
+    end
+
+    has_edge :creative_id do |edge|
+      edge.get 'AdCreative'
+    end
 
   end
 end
