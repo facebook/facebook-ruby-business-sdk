@@ -29,7 +29,16 @@ FacebookAds.configure do |config|
 end
 
 ad_account = FacebookAds::AdAccount.get(id)
-adcreatives = ad_account.adcreatives.create({
-    name: 'Image crop creative',
-    object_story_spec: {'page_id':'<pageID>','link_data':{'image_crops':{'191x100':[[63,0],[617,290]]},'image_hash':'<imageHash>','link':'<url>','message':'Ad message'}},
+adsets = ad_account.adsets.create({
+    name: 'A CPA Ad Set optimized for App Events',
+    campaign_id: '<adCampaignAppInstallsID>',
+    daily_budget: '300',
+    start_time: '2019-01-09T21:41:08-0800',
+    end_time: '2019-01-16T21:41:08-0800',
+    billing_event: 'IMPRESSIONS',
+    optimization_goal: 'OFFSITE_CONVERSIONS',
+    bid_amount: '100',
+    status: 'PAUSED',
+    promoted_object: {'application_id':'<appID>','object_store_url':'<appLink>','custom_event_type':'PURCHASE'},
+    targeting: {'geo_locations':{'countries':['US']},'user_os':['iOS']},
 })

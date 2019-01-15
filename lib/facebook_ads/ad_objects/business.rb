@@ -228,6 +228,7 @@ module FacebookAds
         api.has_param :partner, 'string'
         api.has_param :invoice, 'bool'
         api.has_param :po_number, 'string'
+        api.has_param :invoicing_emails, { list: 'string' }
         api.has_param :io, 'bool'
         api.has_param :billing_address_id, 'object'
         api.has_param :sold_to_address_id, 'object'
@@ -326,6 +327,7 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :business, 'string'
       end
+      edge.get 'Business'
     end
 
     has_edge :agency_pages do |edge|
@@ -426,17 +428,7 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :business, 'string'
       end
-    end
-
-    has_edge :creative_compass_study do |edge|
-      edge.get 'CreativeDemocracyRun'
-      edge.post 'CreativeDemocracyRun' do |api|
-        api.has_param :campaign_id, { list: 'string' }
-        api.has_param :creative_id, { list: 'string' }
-        api.has_param :description, 'string'
-        api.has_param :name, 'string'
-        api.has_param :placement, { enum: -> { CreativeDemocracyRun::PLACEMENT }}
-      end
+      edge.get 'Business'
     end
 
     has_edge :customconversions do |edge|
@@ -655,6 +647,7 @@ module FacebookAds
         api.has_param :partner, 'string'
         api.has_param :invoice, 'bool'
         api.has_param :po_number, 'string'
+        api.has_param :invoicing_emails, { list: 'string' }
         api.has_param :io, 'bool'
         api.has_param :billing_address_id, 'object'
         api.has_param :sold_to_address_id, 'object'
@@ -733,10 +726,22 @@ module FacebookAds
       end
     end
 
+    has_edge :received_inprogress_onbehalf_requests do |edge|
+      edge.get 'BusinessOwnedObjectOnBehalfOfRequest'
+    end
+
     has_edge :received_sharing_agreements do |edge|
       edge.get 'BusinessAgreement' do |api|
         api.has_param :requesting_business_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
+      end
+    end
+
+    has_edge :sent_inprogress_onbehalf_requests do |edge|
+      edge.get 'BusinessOwnedObjectOnBehalfOfRequest'
+      edge.post 'BusinessOwnedObjectOnBehalfOfRequest' do |api|
+        api.has_param :receiving_business, 'string'
+        api.has_param :business_owned_object, 'string'
       end
     end
 

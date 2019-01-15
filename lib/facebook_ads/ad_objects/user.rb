@@ -31,6 +31,7 @@ module FacebookAds
       "CREATE_CONTENT",
       "MODERATE",
       "MODERATE_COMMUNITY",
+      "MANAGE_JOBS",
       "ADVERTISE",
       "ANALYZE",
     ]

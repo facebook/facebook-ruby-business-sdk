@@ -29,7 +29,10 @@ FacebookAds.configure do |config|
 end
 
 ad_account = FacebookAds::AdAccount.get(id)
-adcreatives = ad_account.adcreatives.create({
-    name: 'Image crop creative',
-    object_story_spec: {'page_id':'<pageID>','link_data':{'image_crops':{'191x100':[[63,0],[617,290]]},'image_hash':'<imageHash>','link':'<url>','message':'Ad message'}},
+ads = ad_account.ads.create({
+    name: 'My AdGroup with Redownload',
+    adset_id: '<adSetID>',
+    creative: {'creative_id':'<adCreativeID>'},
+    redownload: '1',
+    status: 'PAUSED',
 })

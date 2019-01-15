@@ -226,7 +226,7 @@ module FacebookAds
         api.has_param :budget, 'int'
         api.has_param :currency, 'string'
         api.has_param :ad_account_id, 'string'
-        api.has_param :audience, { enum: %w{GROUPER NCPP CUSTOM_AUDIENCE LOOKALIKE FANS LOCAL IG_PROMOTED_POST_AUTO SAVED_AUDIENCE EVENT_ENGAGEMENT DISTRICT SMART_AUDIENCE CREATE_NEW AUTO_LOOKALIKE MULT_CUSTOM_AUDIENCES EVENT_CUSTOM_AUDIENCES AUTO_PAGE_LOOKALIKE }}
+        api.has_param :audience, { enum: %w{GROUPER NCPP CUSTOM_AUDIENCE LOOKALIKE FANS LOCAL IG_PROMOTED_POST_AUTO SAVED_AUDIENCE EVENT_ENGAGEMENT DISTRICT SMART_AUDIENCE CREATE_NEW AUTO_LOOKALIKE MULT_CUSTOM_AUDIENCES EVENT_CUSTOM_AUDIENCES AUTO_PAGE_LOOKALIKE AUTO_TARGETING }}
         api.has_param :targeting, 'Targeting'
         api.has_param :start_time, 'int'
         api.has_param :stop_time, 'int'

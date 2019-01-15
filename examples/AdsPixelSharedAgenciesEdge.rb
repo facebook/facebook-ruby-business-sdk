@@ -16,14 +16,19 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require 'facebook_ads'
+
 access_token = '<ACCESS_TOKEN>'
 app_secret = '<APP_SECRET>'
 app_id = '<APP_ID>'
-id = '<ID>'
+id = '<PIXEL_ID>'
 
 FacebookAds.configure do |config|
   config.access_token = access_token
   config.app_secret = app_secret
 end
 
-page = FacebookAds::Page.get(id ,'')
+ads_pixel = FacebookAds::AdsPixel.get(id)
+shared_agenciess = ads_pixel.shared_agencies({
+    fields: {  },
+})

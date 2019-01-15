@@ -28,6 +28,7 @@ module FacebookAds
   class AdCampaignGroupMetricsMetadata < AdObject
 
     field :budget_optimization, { list: 'string' }
+    field :duplication_flow_tips, { list: 'string' }
     field :id, 'string'
     has_no_get
     has_no_post

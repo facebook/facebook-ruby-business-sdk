@@ -21,7 +21,7 @@ require 'facebook_ads'
 access_token = '<ACCESS_TOKEN>'
 app_secret = '<APP_SECRET>'
 app_id = '<APP_ID>'
-id = '<ID>'
+id = '<AD_ACCOUNT_ID>'
 
 FacebookAds.configure do |config|
   config.access_token = access_token
@@ -31,5 +31,5 @@ end
 ad_account = FacebookAds::AdAccount.get(id)
 adcreatives = ad_account.adcreatives.create({
     name: 'Carousel app ad',
-    object_story_spec: {'page_id':'<pageID>','link_data':{'message':'My message','link':'http://www.example.com/appstoreurl','caption':'WWW.ITUNES.COM','name':'The link name','description':'The link's description','child_attachments':[{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}}],'multi_share_optimized':true}},
+    object_story_spec: {'page_id':'<pageID>','link_data':{'message':'My message','link':'http://www.example.com/appstoreurl','caption':'WWW.ITUNES.COM','name':'The link name','description':'The link description','child_attachments':[{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}},{'link':'http://www.example.com/appstoreurl','image_hash':'<imageHash>','call_to_action':{'type':'USE_MOBILE_APP','value':{'app_link':'<deepLink>'}}}],'multi_share_optimized':true}},
 })

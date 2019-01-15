@@ -115,6 +115,7 @@ module FacebookAds
       "HEURISTIC_CLUSTER_VIDEO",
       "DCO_AUTOGEN_VIDEO",
       "SOTTO_CONTENT",
+      "OCULUS_VENUES_BROADCAST",
     ]
 
     CONTENT_CATEGORY = [

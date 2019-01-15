@@ -83,6 +83,7 @@ module FacebookAds
       "DISCUSSION",
       "RESTRICTED",
       "PROTECTED_MODE",
+      "SUPPORTER",
     ]
 
 

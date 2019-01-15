@@ -21,15 +21,15 @@ require 'facebook_ads'
 access_token = '<ACCESS_TOKEN>'
 app_secret = '<APP_SECRET>'
 app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
+id = '<PAGE_ID>'
 
 FacebookAds.configure do |config|
   config.access_token = access_token
   config.app_secret = app_secret
 end
 
-ad_account = FacebookAds::AdAccount.get(id)
-adcreatives = ad_account.adcreatives.create({
-    name: 'Image crop creative',
-    object_story_spec: {'page_id':'<pageID>','link_data':{'image_crops':{'191x100':[[63,0],[617,290]]},'image_hash':'<imageHash>','link':'<url>','message':'Ad message'}},
+page = FacebookAds::Page.get(id)
+feed = page.feed.create({
+    message: 'This is a test message',
+    call_to_action: {'type':'BUY_NOW','value':{'link':'<appLink>','app_link':'<deepLinkURL>'}},
 })

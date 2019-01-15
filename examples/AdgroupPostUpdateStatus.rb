@@ -21,7 +21,7 @@ require 'facebook_ads'
 access_token = '<ACCESS_TOKEN>'
 app_secret = '<APP_SECRET>'
 app_id = '<APP_ID>'
-id = '<ID>'
+id = '<ADGROUP_ID>'
 
 FacebookAds.configure do |config|
   config.access_token = access_token

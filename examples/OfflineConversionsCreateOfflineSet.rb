@@ -21,7 +21,7 @@ require 'facebook_ads'
 access_token = '<ACCESS_TOKEN>'
 app_secret = '<APP_SECRET>'
 app_id = '<APP_ID>'
-id = '<ID>'
+id = '<BUSINESS_ID>'
 
 FacebookAds.configure do |config|
   config.access_token = access_token
@@ -32,5 +32,4 @@ business = FacebookAds::Business.get(id)
 offline_conversion_data_sets = business.offline_conversion_data_sets.create({
     name: 'offline_event_set',
     description: 'conversion data used for superbowl campaign',
-    data_origin: 'DIRECTLY_FROM_PEOPLE',
 })

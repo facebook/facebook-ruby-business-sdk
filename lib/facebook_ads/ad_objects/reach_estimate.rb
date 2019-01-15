@@ -46,6 +46,7 @@ module FacebookAds
       "SOCIAL_IMPRESSIONS",
       "VIDEO_VIEWS",
       "APP_DOWNLOADS",
+      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "LANDING_PAGE_VIEWS",
       "VALUE",
       "THRUPLAY",

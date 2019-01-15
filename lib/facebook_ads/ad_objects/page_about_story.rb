@@ -25,55 +25,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CreativeDemocracyRun < AdObject
-    PLACEMENT = [
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO",
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
-      "AUDIENCE_NETWORK_OUTSTREAM_VIDEO",
-      "AUDIENCE_NETWORK_REWARDED_VIDEO",
-      "DESKTOP_FEED_STANDARD",
-      "FACEBOOK_STORY_MOBILE",
-      "INSTAGRAM_STANDARD",
-      "INSTAGRAM_STORY",
-      "INSTANT_ARTICLE_STANDARD",
-      "INSTREAM_VIDEO_DESKTOP",
-      "INSTREAM_VIDEO_MOBILE",
-      "MARKETPLACE_MOBILE",
-      "MESSENGER_MOBILE_INBOX_MEDIA",
-      "MOBILE_BANNER",
-      "MOBILE_FEED_BASIC",
-      "MOBILE_FEED_STANDARD",
-      "MOBILE_FULLWIDTH",
-      "MOBILE_INTERSTITIAL",
-      "MOBILE_MEDIUM_RECTANGLE",
-      "MOBILE_NATIVE",
-      "RIGHT_COLUMN_STANDARD",
-      "SUGGESTED_VIDEO_DESKTOP",
-      "SUGGESTED_VIDEO_MOBILE",
-      "WATCH_FEED_MOBILE",
-    ]
+  class PageAboutStory < AdObject
 
-
-    field :description, 'string'
-    field :end_date, 'string'
+    field :composed_text, { list: 'object' }
+    field :cover_photo, 'Photo'
+    field :entity_map, { list: 'object' }
     field :id, 'string'
-    field :name, 'string'
-    field :placement, 'string'
-    field :report_data, { list: { list: 'object' } }
-    field :report_files, { list: 'object' }
-    field :start_date, 'string'
-    field :status, 'string'
-    field :campaign_id, { list: 'string' }
-    field :creative_id, { list: 'string' }
-    has_no_delete
-
-    has_edge :campaign_id do |edge|
-      edge.get 'Campaign'
-    end
-
-    has_edge :creative_id do |edge|
-      edge.get 'AdCreative'
-    end
+    field :is_published, 'bool'
+    field :page_id, 'string'
+    field :title, 'string'
 
   end
 end

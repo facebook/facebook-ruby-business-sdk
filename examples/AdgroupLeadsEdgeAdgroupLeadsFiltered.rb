@@ -21,7 +21,7 @@ require 'facebook_ads'
 access_token = '<ACCESS_TOKEN>'
 app_secret = '<APP_SECRET>'
 app_id = '<APP_ID>'
-id = '<ID>'
+id = '<AD_GROUP_ID>'
 
 FacebookAds.configure do |config|
   config.access_token = access_token
@@ -31,5 +31,5 @@ end
 ad = FacebookAds::Ad.get(id)
 leadss = ad.leads({
     fields: {  },
-    filtering: [{'field':'time_created','operator':'GREATER_THAN','value':'2018-11-25T17:47:55-0800'}],
+    filtering: [{'field':'time_created','operator':'GREATER_THAN','value':1546549613}],
 })

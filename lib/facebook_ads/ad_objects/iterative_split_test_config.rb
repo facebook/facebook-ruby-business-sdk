@@ -36,7 +36,6 @@ module FacebookAds
     field :results_window, 'object'
     field :splits, { list: 'int' }
     field :start_time, 'datetime'
-    field :test_end_metrics_snapshot, 'object'
     has_no_post
     has_no_delete
 

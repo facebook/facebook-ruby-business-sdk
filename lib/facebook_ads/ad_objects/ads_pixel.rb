@@ -163,6 +163,7 @@ module FacebookAds
         api.has_param :end_time, 'object'
         api.has_param :aggregation, { enum: -> { AdsPixelStatsResult::AGGREGATION }}
         api.has_param :event, 'string'
+        api.has_param :event_source, 'string'
       end
     end
 

@@ -137,6 +137,7 @@ module FacebookAds
       "prospecting_audience",
       "brand_safety_content_severity_levels",
       "catalog_based_targeting",
+      "brand_safety_content_filter_levels",
     ]
 
     WHITELISTED_TYPES = [
@@ -250,6 +251,7 @@ module FacebookAds
       "prospecting_audience",
       "brand_safety_content_severity_levels",
       "catalog_based_targeting",
+      "brand_safety_content_filter_levels",
     ]
 
     MODE = [

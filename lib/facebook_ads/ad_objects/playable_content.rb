@@ -32,6 +32,7 @@ module FacebookAds
     field :owner, 'Profile'
     field :source, 'file'
     field :source_url, 'string'
+    field :source_zip, 'file'
     has_no_post
     has_no_delete
 

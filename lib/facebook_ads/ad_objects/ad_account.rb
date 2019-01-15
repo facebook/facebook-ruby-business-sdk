@@ -361,6 +361,7 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :source, 'file'
         api.has_param :source_url, 'string'
+        api.has_param :source_zip, 'file'
       end
     end
 
@@ -1080,6 +1081,12 @@ module FacebookAds
 
     has_edge :offsitepixels do |edge|
       edge.get 'OffsitePixel'
+    end
+
+    has_edge :onbehalf_requests do |edge|
+      edge.get 'BusinessOwnedObjectOnBehalfOfRequest' do |api|
+        api.has_param :status, { enum: -> { BusinessOwnedObjectOnBehalfOfRequest::STATUS }}
+      end
     end
 
     has_edge :partner_integrations do |edge|

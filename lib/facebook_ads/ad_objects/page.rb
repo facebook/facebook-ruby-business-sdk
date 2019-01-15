@@ -115,6 +115,7 @@ module FacebookAds
       "MULT_CUSTOM_AUDIENCES",
       "EVENT_CUSTOM_AUDIENCES",
       "AUTO_PAGE_LOOKALIKE",
+      "AUTO_TARGETING",
     ]
 
     PERMITTED_TASKS = [
@@ -122,6 +123,7 @@ module FacebookAds
       "CREATE_CONTENT",
       "MODERATE",
       "MODERATE_COMMUNITY",
+      "MANAGE_JOBS",
       "ADVERTISE",
       "ANALYZE",
     ]
@@ -131,6 +133,7 @@ module FacebookAds
       "CREATE_CONTENT",
       "MODERATE",
       "MODERATE_COMMUNITY",
+      "MANAGE_JOBS",
       "ADVERTISE",
       "ANALYZE",
     ]
@@ -383,6 +386,7 @@ module FacebookAds
     field :new_like_count, 'int'
     field :offer_eligible, 'bool'
     field :overall_star_rating, 'double'
+    field :page_about_story, 'PageAboutStory'
     field :page_token, 'string'
     field :parent_page, 'Page'
     field :parking, 'PageParking'
@@ -523,10 +527,6 @@ module FacebookAds
         api.has_param :user, 'int'
         api.has_param :tasks, { list: { enum: -> { Page::TASKS }} }
       end
-    end
-
-    has_edge :audio_copyrights do |edge|
-      edge.get 'AudioCopyright'
     end
 
     has_edge :audio_media_copyrights do |edge|
@@ -1189,10 +1189,6 @@ module FacebookAds
       end
     end
 
-    has_edge :music_video_copyrights do |edge|
-      edge.get 'MusicVideoCopyright'
-    end
-
     has_edge :music_video_media_copyrights do |edge|
       edge.get 'MusicVideoCopyright'
     end
@@ -1252,6 +1248,16 @@ module FacebookAds
         api.has_param :href, 'object'
         api.has_param :ref, 'string'
         api.has_param :type, { enum: -> { Page::TYPE }}
+      end
+    end
+
+    has_edge :page_about_story do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :is_published, 'bool'
+        api.has_param :title, 'string'
+        api.has_param :cover_photo, 'object'
+        api.has_param :composed_text, { list: 'hash' }
+        api.has_param :entity_map, { list: 'hash' }
       end
     end
 
