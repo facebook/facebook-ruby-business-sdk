@@ -26,28 +26,13 @@ module FacebookAds
   # pull request for this class.
 
   class FriendList < AdObject
-    LIST_TYPE = [
-      "app_created",
-    ]
-
 
     field :id, 'string'
     field :list_type, 'string'
     field :name, 'string'
     field :owner, 'string'
-
-    has_edge :members do |edge|
-      edge.delete do |api|
-        api.has_param :member, 'int'
-        api.has_param :members, { list: 'int' }
-        api.has_param :mutual, 'bool'
-      end
-      edge.post 'FriendList' do |api|
-        api.has_param :member, 'int'
-        api.has_param :members, { list: 'int' }
-        api.has_param :mutual, 'bool'
-      end
-    end
+    has_no_post
+    has_no_delete
 
   end
 end

@@ -26,14 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class Link < AdObject
-    UNPUBLISHED_CONTENT_TYPE = [
-      "SCHEDULED",
-      "DRAFT",
-      "ADS_POST",
-      "INLINE_CREATED",
-      "PUBLISHED",
-    ]
-
 
     field :caption, 'string'
     field :created_time, 'datetime'

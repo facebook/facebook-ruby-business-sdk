@@ -25,12 +25,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PagesPlatformComponentFlowServiceConfig < AdObject
+  class AdKeywords < AdObject
 
-    field :deeplink, 'string'
-    field :flow_category, 'string'
+    field :brands, { list: 'string' }
+    field :product_categories, { list: 'string' }
+    field :product_names, { list: 'string' }
+    field :search_terms, { list: 'string' }
     field :id, 'string'
-    field :label, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

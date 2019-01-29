@@ -29,6 +29,7 @@ module FacebookAds
     include CustomAudienceHelpers
     CLAIM_OBJECTIVE = [
       "AUTOMOTIVE_MODEL",
+      "COLLABORATIVE_ADS",
       "HOME_LISTING",
       "MEDIA_TITLE",
       "PRODUCT",

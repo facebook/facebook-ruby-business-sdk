@@ -112,6 +112,7 @@ module FacebookAds
     has_edge :batch do |edge|
       edge.post 'ProductCatalog' do |api|
         api.has_param :requests, { list: 'hash' }
+        api.has_param :allow_upsert, 'bool'
       end
     end
 
@@ -169,7 +170,7 @@ module FacebookAds
         api.has_param :destination_id, 'string'
         api.has_param :images, { list: 'object' }
         api.has_param :types, 'string'
-        api.has_param :url, 'object'
+        api.has_param :url, 'string'
         api.has_param :name, 'string'
         api.has_param :address, 'object'
         api.has_param :currency, 'string'
@@ -204,7 +205,7 @@ module FacebookAds
         api.has_param :origin_airport, 'string'
         api.has_param :destination_airport, 'string'
         api.has_param :description, 'string'
-        api.has_param :url, 'object'
+        api.has_param :url, 'string'
         api.has_param :currency, 'string'
         api.has_param :price, 'int'
       end
@@ -274,6 +275,7 @@ module FacebookAds
       edge.post 'ProductCatalog' do |api|
         api.has_param :requests, 'hash'
         api.has_param :item_type, { enum: -> { ProductCatalog::ITEM_TYPE }}
+        api.has_param :allow_upsert, 'bool'
       end
     end
 
@@ -305,7 +307,6 @@ module FacebookAds
         api.has_param :deletion_enabled, 'bool'
         api.has_param :feed_type, { enum: -> { ProductFeed::FEED_TYPE }}
         api.has_param :file_name, 'string'
-        api.has_param :quoted_fields, 'bool'
         api.has_param :rules, { list: 'string' }
       end
     end
@@ -358,14 +359,14 @@ module FacebookAds
         api.has_param :currency, 'string'
         api.has_param :condition, { enum: -> { ProductItem::CONDITION }}
         api.has_param :description, 'string'
-        api.has_param :image_url, 'object'
+        api.has_param :image_url, 'string'
         api.has_param :name, 'string'
         api.has_param :price, 'int'
         api.has_param :product_type, 'string'
-        api.has_param :url, 'object'
+        api.has_param :url, 'string'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
         api.has_param :additional_image_urls, { list: 'string' }
-        api.has_param :additional_variant_attributes, 'object'
+        api.has_param :additional_variant_attributes, 'hash'
         api.has_param :brand, 'string'
         api.has_param :category, 'string'
         api.has_param :checkout_url, 'string'
@@ -381,11 +382,11 @@ module FacebookAds
         api.has_param :gtin, 'string'
         api.has_param :inventory, 'int'
         api.has_param :manufacturer_part_number, 'string'
-        api.has_param :mobile_link, 'object'
+        api.has_param :mobile_link, 'string'
         api.has_param :material, 'string'
         api.has_param :offer_price_amount, 'int'
-        api.has_param :offer_price_end_date, 'object'
-        api.has_param :offer_price_start_date, 'object'
+        api.has_param :offer_price_end_date, 'datetime'
+        api.has_param :offer_price_start_date, 'datetime'
         api.has_param :ordering_index, 'int'
         api.has_param :pattern, 'string'
         api.has_param :sale_price, 'int'
@@ -420,7 +421,7 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'ProductCatalogUserPermissions' do |api|
-        api.has_param :business, 'object'
+        api.has_param :business, 'string'
         api.has_param :user, 'object'
       end
       edge.post 'ProductCatalog' do |api|

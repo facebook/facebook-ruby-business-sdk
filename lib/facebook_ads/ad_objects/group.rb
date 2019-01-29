@@ -192,7 +192,7 @@ module FacebookAds
         api.has_param :make_shared_album, 'bool'
         api.has_param :location, 'string'
         api.has_param :visible, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :place, 'object'
         api.has_param :tags, { list: 'int' }
         api.has_param :message, 'string'
@@ -232,7 +232,7 @@ module FacebookAds
         api.has_param :call_to_action, 'object'
         api.has_param :time_since_original_post, 'int'
         api.has_param :client_mutation_id, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :composer_session_id, 'string'
         api.has_param :content_attachment, 'string'
         api.has_param :actions, 'object'
@@ -294,7 +294,7 @@ module FacebookAds
         api.has_param :text_format_preset_id, 'string'
         api.has_param :cta_link, 'string'
         api.has_param :cta_type, 'string'
-        api.has_param :place_list_data, 'object'
+        api.has_param :place_list_data, { list: 'string' }
         api.has_param :formatting, { enum: %w{PLAINTEXT MARKDOWN }}
         api.has_param :target_surface, { enum: %w{STORY TIMELINE }}
         api.has_param :adaptive_type, 'string'
@@ -356,7 +356,6 @@ module FacebookAds
 
     has_edge :live_videos do |edge|
       edge.get 'LiveVideo' do |api|
-        api.has_param :type, { enum: -> { LiveVideo::TYPE }}
         api.has_param :source, { enum: -> { LiveVideo::SOURCE }}
         api.has_param :broadcast_status, { list: { enum: -> { LiveVideo::BROADCAST_STATUS }} }
       end
@@ -366,7 +365,7 @@ module FacebookAds
         api.has_param :save_vod, 'bool'
         api.has_param :published, 'bool'
         api.has_param :status, { enum: -> { LiveVideo::STATUS }}
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :stop_on_delete_stream, 'bool'
         api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
         api.has_param :content_tags, { list: 'string' }
@@ -437,7 +436,7 @@ module FacebookAds
         api.has_param :notify, 'bool'
         api.has_param :message, 'string'
         api.has_param :place, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :ref, 'string'
         api.has_param :scrape, 'bool'
         api.has_param :start_time, 'datetime'
@@ -457,7 +456,6 @@ module FacebookAds
         api.has_param :uid, 'int'
         api.has_param :profile_id, 'int'
         api.has_param :target_id, 'int'
-        api.has_param :checkin_id, 'object'
         api.has_param :vault_image_id, 'string'
         api.has_param :tags, { list: 'object' }
         api.has_param :place, 'object'
@@ -469,7 +467,7 @@ module FacebookAds
         api.has_param :og_icon_id, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :og_set_profile_badge, 'bool'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :targeting, 'object'
         api.has_param :feed_targeting, 'object'
         api.has_param :no_story, 'bool'

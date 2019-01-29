@@ -41,6 +41,7 @@ module FacebookAds
     field :margin_level, 'int'
     field :name, 'string'
     field :phone, 'string'
+    field :sale_price, 'string'
     field :sanitized_images, { list: 'string' }
     field :star_rating, 'double'
     field :url, 'string'

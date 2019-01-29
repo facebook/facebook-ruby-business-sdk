@@ -51,7 +51,7 @@ module FacebookAds
       "v3.0",
       "v3.1",
       "v3.2",
-      "v4.0",
+      "v3.3",
     ]
 
 

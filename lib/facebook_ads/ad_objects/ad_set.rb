@@ -155,7 +155,7 @@ module FacebookAds
 
 
     field :account_id, 'string'
-    field :ad_keywords, 'string'
+    field :ad_keywords, 'AdKeywords'
     field :adlabels, { list: 'AdLabel' }
     field :adset_schedule, { list: 'DayPart' }
     field :asset_feed_id, 'string'
@@ -210,11 +210,6 @@ module FacebookAds
     field :daily_imps, 'int'
     field :date_format, 'string'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
-    field :frequency_cap, 'int'
-    field :frequency_cap_reset_period, 'int'
-    field :is_autobid, 'bool'
-    field :is_average_price_pacing, 'bool'
-    field :lifetime_frequency_cap, 'int'
     field :line_number, 'int'
     field :rb_prediction_id, 'string'
     field :time_start, 'datetime'
@@ -245,11 +240,11 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
       edge.post 'AdSet' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
     end
 

@@ -45,8 +45,8 @@ module FacebookAds
 
     has_edge :Mentions do |edge|
       edge.post do |api|
-        api.has_param :media_id, 'object'
-        api.has_param :comment_id, 'object'
+        api.has_param :media_id, 'string'
+        api.has_param :comment_id, 'string'
         api.has_param :message, 'string'
       end
     end

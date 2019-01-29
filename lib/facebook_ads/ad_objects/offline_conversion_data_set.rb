@@ -26,13 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class OfflineConversionDataSet < AdObject
-    DATA_ORIGIN = [
-      "DIRECTLY_FROM_PEOPLE",
-      "PEOPLE_AND_PARTNERS",
-      "DIRECTLY_FROM_PARTNERS",
-      "NONE",
-    ]
-
     PERMITTED_ROLES = [
       "ADMIN",
       "UPLOADER",
@@ -56,7 +49,6 @@ module FacebookAds
     field :business, 'Business'
     field :config, 'string'
     field :creation_time, 'datetime'
-    field :data_origin, 'string'
     field :description, 'string'
     field :duplicate_entries, 'int'
     field :enable_auto_assign_to_accounts, 'bool'
@@ -155,8 +147,8 @@ module FacebookAds
     has_edge :uploads do |edge|
       edge.get do |api|
         api.has_param :upload_tag, 'string'
-        api.has_param :start_time, 'object'
-        api.has_param :end_time, 'object'
+        api.has_param :start_time, 'datetime'
+        api.has_param :end_time, 'datetime'
         api.has_param :sort_by, { enum: %w{CREATION_TIME FIRST_UPLOAD_TIME LAST_UPLOAD_TIME API_CALLS EVENT_TIME_MIN EVENT_TIME_MAX IS_EXCLUDED_FOR_LIFT }}
         api.has_param :order, { enum: %w{ASCENDING DESCENDING }}
       end
@@ -169,15 +161,15 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :user, 'int'
         api.has_param :email, 'string'
-        api.has_param :business, 'object'
+        api.has_param :business, 'string'
       end
       edge.get do |api|
-        api.has_param :business, 'object'
+        api.has_param :business, 'string'
       end
       edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :user, 'int'
         api.has_param :role, { enum: -> { OfflineConversionDataSet::ROLE }}
-        api.has_param :business, 'object'
+        api.has_param :business, 'string'
       end
     end
 

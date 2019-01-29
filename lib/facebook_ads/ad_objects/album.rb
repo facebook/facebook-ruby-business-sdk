@@ -102,7 +102,6 @@ module FacebookAds
         api.has_param :uid, 'int'
         api.has_param :profile_id, 'int'
         api.has_param :target_id, 'int'
-        api.has_param :checkin_id, 'object'
         api.has_param :vault_image_id, 'string'
         api.has_param :tags, { list: 'object' }
         api.has_param :place, 'object'
@@ -114,7 +113,7 @@ module FacebookAds
         api.has_param :og_icon_id, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :og_set_profile_badge, 'bool'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :targeting, 'object'
         api.has_param :feed_targeting, 'object'
         api.has_param :no_story, 'bool'

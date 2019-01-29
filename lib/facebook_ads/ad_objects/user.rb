@@ -183,7 +183,7 @@ module FacebookAds
     has_edge :access_tokens do |edge|
       edge.post 'User' do |api|
         api.has_param :business_app, 'int'
-        api.has_param :scope, 'object'
+        api.has_param :scope, { list: 'Permission' }
       end
     end
 
@@ -207,7 +207,7 @@ module FacebookAds
         api.has_param :about, 'string'
         api.has_param :description, 'string'
         api.has_param :address, 'string'
-        api.has_param :city_id, 'object'
+        api.has_param :city_id, 'string'
         api.has_param :location, 'object'
         api.has_param :zip, 'string'
         api.has_param :phone, 'string'
@@ -251,7 +251,7 @@ module FacebookAds
         api.has_param :notify, 'bool'
         api.has_param :message, 'string'
         api.has_param :place, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :ref, 'string'
         api.has_param :scrape, 'bool'
         api.has_param :start_time, 'datetime'
@@ -295,7 +295,7 @@ module FacebookAds
         api.has_param :make_shared_album, 'bool'
         api.has_param :location, 'string'
         api.has_param :visible, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :place, 'object'
         api.has_param :tags, { list: 'int' }
         api.has_param :message, 'string'
@@ -320,9 +320,9 @@ module FacebookAds
       edge.get 'WithAsset3D'
       edge.post 'WithAsset3D' do |api|
         api.has_param :file, 'file'
-        api.has_param :file_url, 'object'
+        api.has_param :file_url, 'string'
         api.has_param :fallback_image, 'file'
-        api.has_param :fallback_image_url, 'object'
+        api.has_param :fallback_image_url, 'string'
       end
     end
 
@@ -371,38 +371,6 @@ module FacebookAds
       edge.get 'Business'
     end
 
-    has_edge :checkins do |edge|
-      edge.post do |api|
-        api.has_param :picture, 'string'
-        api.has_param :name, 'string'
-        api.has_param :link, 'string'
-        api.has_param :caption, 'string'
-        api.has_param :description, 'string'
-        api.has_param :quote, 'string'
-        api.has_param :source, 'string'
-        api.has_param :properties, 'object'
-        api.has_param :object_attachment, 'string'
-        api.has_param :height, 'int'
-        api.has_param :width, 'int'
-        api.has_param :expanded_height, 'int'
-        api.has_param :expanded_width, 'int'
-        api.has_param :referral_id, 'string'
-        api.has_param :thumbnail, 'file'
-        api.has_param :image_crops, 'hash'
-        api.has_param :call_to_action, 'object'
-        api.has_param :place, 'object'
-        api.has_param :coordinates, 'object'
-        api.has_param :message, 'string'
-        api.has_param :tags, { list: 'int' }
-        api.has_param :privacy, 'object'
-        api.has_param :group, 'string'
-        api.has_param :nectar_module, 'string'
-        api.has_param :manual_privacy, 'bool'
-        api.has_param :audience_exp, 'bool'
-        api.has_param :composer_session_id, 'string'
-      end
-    end
-
     has_edge :conversations do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :tags, { list: 'string' }
@@ -423,11 +391,6 @@ module FacebookAds
       edge.get 'Event' do |api|
         api.has_param :type, { enum: -> { Event::TYPE }}
         api.has_param :include_canceled, 'bool'
-      end
-      edge.post 'Event' do |api|
-        api.has_param :event_info, 'object'
-        api.has_param :action_context, 'object'
-        api.has_param :app_context, 'object'
       end
     end
 
@@ -468,7 +431,7 @@ module FacebookAds
         api.has_param :call_to_action, 'object'
         api.has_param :time_since_original_post, 'int'
         api.has_param :client_mutation_id, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :composer_session_id, 'string'
         api.has_param :content_attachment, 'string'
         api.has_param :actions, 'object'
@@ -530,7 +493,7 @@ module FacebookAds
         api.has_param :text_format_preset_id, 'string'
         api.has_param :cta_link, 'string'
         api.has_param :cta_type, 'string'
-        api.has_param :place_list_data, 'object'
+        api.has_param :place_list_data, { list: 'string' }
         api.has_param :formatting, { enum: %w{PLAINTEXT MARKDOWN }}
         api.has_param :target_surface, { enum: %w{STORY TIMELINE }}
         api.has_param :adaptive_type, 'string'
@@ -566,11 +529,6 @@ module FacebookAds
 
     has_edge :friendlists do |edge|
       edge.get 'FriendList'
-      edge.post 'FriendList' do |api|
-        api.has_param :name, 'string'
-        api.has_param :uid, 'int'
-        api.has_param :list_type, { enum: -> { FriendList::LIST_TYPE }}
-      end
     end
 
     has_edge :friends do |edge|
@@ -582,11 +540,11 @@ module FacebookAds
     has_edge :game_items do |edge|
       edge.post do |api|
         api.has_param :action, { enum: %w{MARK CONSUME DROP }}
-        api.has_param :item_id, 'object'
-        api.has_param :drop_table_id, 'object'
+        api.has_param :item_id, 'string'
+        api.has_param :drop_table_id, 'string'
         api.has_param :ext_id, 'string'
         api.has_param :quantity, 'int'
-        api.has_param :app_id, 'object'
+        api.has_param :app_id, 'string'
       end
     end
 
@@ -638,7 +596,7 @@ module FacebookAds
         api.has_param :notify, 'bool'
         api.has_param :message, 'string'
         api.has_param :place, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :ref, 'string'
         api.has_param :scrape, 'bool'
         api.has_param :start_time, 'datetime'
@@ -674,7 +632,7 @@ module FacebookAds
         api.has_param :notify, 'bool'
         api.has_param :message, 'string'
         api.has_param :place, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :ref, 'string'
         api.has_param :scrape, 'bool'
         api.has_param :start_time, 'datetime'
@@ -729,23 +687,6 @@ module FacebookAds
       end
     end
 
-    has_edge :links do |edge|
-      edge.post 'Link' do |api|
-        api.has_param :link, 'string'
-        api.has_param :message, 'string'
-        api.has_param :image, 'string'
-        api.has_param :tags, { list: 'int' }
-        api.has_param :place, 'object'
-        api.has_param :published, 'bool'
-        api.has_param :scheduled_publish_time, 'int'
-        api.has_param :unpublished_content_type, { enum: -> { Link::UNPUBLISHED_CONTENT_TYPE }}
-        api.has_param :targeting, 'object'
-        api.has_param :privacy, 'object'
-        api.has_param :application_id, 'string'
-        api.has_param :is_explicit_share, 'bool'
-      end
-    end
-
     has_edge :live_encoders do |edge|
       edge.get 'LiveEncoder'
       edge.post 'LiveEncoder' do |api|
@@ -759,7 +700,6 @@ module FacebookAds
 
     has_edge :live_videos do |edge|
       edge.get 'LiveVideo' do |api|
-        api.has_param :type, { enum: -> { LiveVideo::TYPE }}
         api.has_param :source, { enum: -> { LiveVideo::SOURCE }}
         api.has_param :broadcast_status, { list: { enum: -> { LiveVideo::BROADCAST_STATUS }} }
       end
@@ -769,7 +709,7 @@ module FacebookAds
         api.has_param :save_vod, 'bool'
         api.has_param :published, 'bool'
         api.has_param :status, { enum: -> { LiveVideo::STATUS }}
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :stop_on_delete_stream, 'bool'
         api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
         api.has_param :content_tags, { list: 'string' }
@@ -849,14 +789,6 @@ module FacebookAds
       end
     end
 
-    has_edge :notes do |edge|
-      edge.post do |api|
-        api.has_param :message, 'string'
-        api.has_param :subject, 'string'
-        api.has_param :privacy, 'object'
-      end
-    end
-
     has_edge :notifications do |edge|
       edge.post 'User' do |api|
         api.has_param :seen, 'bool'
@@ -878,7 +810,7 @@ module FacebookAds
         api.has_param :type, 'string'
         api.has_param :object, 'object'
         api.has_param :action_properties, 'object'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :ios_bundle_id, 'string'
         api.has_param :android_key_hash, 'string'
         api.has_param :proxied_app_id, 'string'
@@ -913,7 +845,7 @@ module FacebookAds
         api.has_param :notify, 'bool'
         api.has_param :message, 'string'
         api.has_param :place, 'string'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :ref, 'string'
         api.has_param :scrape, 'bool'
         api.has_param :start_time, 'datetime'
@@ -925,7 +857,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :user_input_email, 'string'
         api.has_param :default, 'bool'
-        api.has_param :payment_type, { enum: %w{PAYMENT_SETTINGS IG_PAYMENT_SETTINGS UNKNOWN MP_PAYMENT_SETTINGS IAP_INSTANT_GAME IAP_FAN_FUNDING IAP_GROUP_SUBSCRIPTION MOR_NONE MOR_ADS_CONSENT MOR_ADS_INVOICE MOR_DONATIONS MOR_DONATIONS_MATCHING_CONFIRMATION MOR_DONATIONS_MATCHING_PLEDGE MOR_OCULUS_CV1 MOR_OCULUS_LAUNCH_V1 MOR_OCULUS_LAUNCH_V2 MOR_OZONE MOR_OPEN_GRAPH_PRODUCT MOR_MESSENGER_COMMERCE MOR_P2P_TRANSFER MOR_DUMMY_FIRST_PARTY MOR_DUMMY_THIRD_PARTY MOR_GIFTS MOR_BILL MOR_AIRMAIL MOR_EVENT_TICKETING MOR_PAYMENT_LITE MOR_MESSENGER_API_FEE MOR_WORKPLACE_USAGE MOR_FACEBOOK_SHOP MOR_FAN_FUNDING MOR_GAME_TIPPING_TOKEN MOR_INSTANT_GAMES MOR_BLUEBIRD MOR_GROUP_SUBSCRIPTION NMOR_UNKNOWN NMOR_NONE NMOR_PAGES_COMMERCE NMOR_COMPONENT_FLOW NMOR_BUSINESS_PLATFORM_COMMERCE NMOR_SYNCHRONOUS_COMPONENT_FLOW NMOR_EVENT_TICKETING NMOR_PLATFORM_SELF_SERVE NMOR_MESSENGER_PLATFORM NMOR_MESSENGER_OMNIM NMOR_BILLING_ENGINE NMOR_TIP_JAR NMOR_INSTANT_EXPERIENCES NMOR_CHECKOUT_EXPERIENCES NMOR_BUY_ON_FACEBOOK NMOR_PAYMENT_APP NMOR_DONATION_P4P NMOR_WHATSAPP_P2P NMOR_P2P NMOR_MOBILE_TOP_UP NMOR_MFS NMOR_SHIPPING_LABEL NMOR_MARKETPLACE_DROPOFF NMOR_PAGES_SOLUTION NMOR_BLACKBAUD_RWR_DONATION NMOR_MARKETPLACE_SHIPPING NMOR_DUMMY NMOR_PPGF_DONATION NMOR_ADVERTISER_SUBSCRIPTION NMOR_WHATSAPP_P2M NMOR_MOVIE_TICKETING IG_NMOR_P2B NMOR_INSTAGRAM_P2B }}
+        api.has_param :payment_type, { enum: %w{PAYMENT_SETTINGS IG_PAYMENT_SETTINGS UNKNOWN MP_PAYMENT_SETTINGS IAP_INSTANT_GAME IAP_FAN_FUNDING IAP_GROUP_SUBSCRIPTION IAP_SOTTO FB_BROWSER_PAYMENT MOR_NONE MOR_ADS_CONSENT MOR_ADS_INVOICE MOR_DONATIONS MOR_DONATIONS_MATCHING_CONFIRMATION MOR_DONATIONS_MATCHING_PLEDGE MOR_OCULUS_CV1 MOR_OCULUS_LAUNCH_V1 MOR_OCULUS_LAUNCH_V2 MOR_OZONE MOR_OPEN_GRAPH_PRODUCT MOR_MESSENGER_COMMERCE MOR_P2P_TRANSFER MOR_DUMMY_FIRST_PARTY MOR_DUMMY_THIRD_PARTY MOR_GIFTS MOR_BILL MOR_AIRMAIL MOR_EVENT_TICKETING MOR_PAYMENT_LITE MOR_MESSENGER_API_FEE MOR_WORKPLACE_USAGE MOR_FACEBOOK_SHOP MOR_FAN_FUNDING MOR_GAME_TIPPING_TOKEN MOR_INSTANT_GAMES MOR_BLUEBIRD MOR_GROUP_SUBSCRIPTION MOR_SOTTO NMOR_UNKNOWN NMOR_NONE NMOR_PAGES_COMMERCE NMOR_COMPONENT_FLOW NMOR_BUSINESS_PLATFORM_COMMERCE NMOR_SYNCHRONOUS_COMPONENT_FLOW NMOR_EVENT_TICKETING NMOR_PLATFORM_SELF_SERVE NMOR_MESSENGER_PLATFORM NMOR_MESSENGER_OMNIM NMOR_TIP_JAR NMOR_INSTANT_EXPERIENCES NMOR_CHECKOUT_EXPERIENCES NMOR_BUY_ON_FACEBOOK NMOR_DONATION_P4P NMOR_WHATSAPP_P2P NMOR_P2P NMOR_MOBILE_TOP_UP NMOR_MFS NMOR_SHIPPING_LABEL NMOR_MARKETPLACE_DROPOFF NMOR_PAGES_SOLUTION NMOR_BLACKBAUD_RWR_DONATION NMOR_MARKETPLACE_SHIPPING NMOR_DUMMY NMOR_PPGF_DONATION NMOR_ADVERTISER_SUBSCRIPTION NMOR_WHATSAPP_P2M NMOR_MOVIE_TICKETING IG_NMOR_P2B IG_MOR_DONATIONS NMOR_INSTAGRAM_P2B }}
       end
     end
 
@@ -934,7 +866,7 @@ module FacebookAds
         api.has_param :raw_input, 'string'
         api.has_param :country_code, 'string'
         api.has_param :default, 'bool'
-        api.has_param :payment_type, { enum: %w{PAYMENT_SETTINGS IG_PAYMENT_SETTINGS UNKNOWN MP_PAYMENT_SETTINGS IAP_INSTANT_GAME IAP_FAN_FUNDING IAP_GROUP_SUBSCRIPTION MOR_NONE MOR_ADS_CONSENT MOR_ADS_INVOICE MOR_DONATIONS MOR_DONATIONS_MATCHING_CONFIRMATION MOR_DONATIONS_MATCHING_PLEDGE MOR_OCULUS_CV1 MOR_OCULUS_LAUNCH_V1 MOR_OCULUS_LAUNCH_V2 MOR_OZONE MOR_OPEN_GRAPH_PRODUCT MOR_MESSENGER_COMMERCE MOR_P2P_TRANSFER MOR_DUMMY_FIRST_PARTY MOR_DUMMY_THIRD_PARTY MOR_GIFTS MOR_BILL MOR_AIRMAIL MOR_EVENT_TICKETING MOR_PAYMENT_LITE MOR_MESSENGER_API_FEE MOR_WORKPLACE_USAGE MOR_FACEBOOK_SHOP MOR_FAN_FUNDING MOR_GAME_TIPPING_TOKEN MOR_INSTANT_GAMES MOR_BLUEBIRD MOR_GROUP_SUBSCRIPTION NMOR_UNKNOWN NMOR_NONE NMOR_PAGES_COMMERCE NMOR_COMPONENT_FLOW NMOR_BUSINESS_PLATFORM_COMMERCE NMOR_SYNCHRONOUS_COMPONENT_FLOW NMOR_EVENT_TICKETING NMOR_PLATFORM_SELF_SERVE NMOR_MESSENGER_PLATFORM NMOR_MESSENGER_OMNIM NMOR_BILLING_ENGINE NMOR_TIP_JAR NMOR_INSTANT_EXPERIENCES NMOR_CHECKOUT_EXPERIENCES NMOR_BUY_ON_FACEBOOK NMOR_PAYMENT_APP NMOR_DONATION_P4P NMOR_WHATSAPP_P2P NMOR_P2P NMOR_MOBILE_TOP_UP NMOR_MFS NMOR_SHIPPING_LABEL NMOR_MARKETPLACE_DROPOFF NMOR_PAGES_SOLUTION NMOR_BLACKBAUD_RWR_DONATION NMOR_MARKETPLACE_SHIPPING NMOR_DUMMY NMOR_PPGF_DONATION NMOR_ADVERTISER_SUBSCRIPTION NMOR_WHATSAPP_P2M NMOR_MOVIE_TICKETING IG_NMOR_P2B NMOR_INSTAGRAM_P2B }}
+        api.has_param :payment_type, { enum: %w{PAYMENT_SETTINGS IG_PAYMENT_SETTINGS UNKNOWN MP_PAYMENT_SETTINGS IAP_INSTANT_GAME IAP_FAN_FUNDING IAP_GROUP_SUBSCRIPTION IAP_SOTTO FB_BROWSER_PAYMENT MOR_NONE MOR_ADS_CONSENT MOR_ADS_INVOICE MOR_DONATIONS MOR_DONATIONS_MATCHING_CONFIRMATION MOR_DONATIONS_MATCHING_PLEDGE MOR_OCULUS_CV1 MOR_OCULUS_LAUNCH_V1 MOR_OCULUS_LAUNCH_V2 MOR_OZONE MOR_OPEN_GRAPH_PRODUCT MOR_MESSENGER_COMMERCE MOR_P2P_TRANSFER MOR_DUMMY_FIRST_PARTY MOR_DUMMY_THIRD_PARTY MOR_GIFTS MOR_BILL MOR_AIRMAIL MOR_EVENT_TICKETING MOR_PAYMENT_LITE MOR_MESSENGER_API_FEE MOR_WORKPLACE_USAGE MOR_FACEBOOK_SHOP MOR_FAN_FUNDING MOR_GAME_TIPPING_TOKEN MOR_INSTANT_GAMES MOR_BLUEBIRD MOR_GROUP_SUBSCRIPTION MOR_SOTTO NMOR_UNKNOWN NMOR_NONE NMOR_PAGES_COMMERCE NMOR_COMPONENT_FLOW NMOR_BUSINESS_PLATFORM_COMMERCE NMOR_SYNCHRONOUS_COMPONENT_FLOW NMOR_EVENT_TICKETING NMOR_PLATFORM_SELF_SERVE NMOR_MESSENGER_PLATFORM NMOR_MESSENGER_OMNIM NMOR_TIP_JAR NMOR_INSTANT_EXPERIENCES NMOR_CHECKOUT_EXPERIENCES NMOR_BUY_ON_FACEBOOK NMOR_DONATION_P4P NMOR_WHATSAPP_P2P NMOR_P2P NMOR_MOBILE_TOP_UP NMOR_MFS NMOR_SHIPPING_LABEL NMOR_MARKETPLACE_DROPOFF NMOR_PAGES_SOLUTION NMOR_BLACKBAUD_RWR_DONATION NMOR_MARKETPLACE_SHIPPING NMOR_DUMMY NMOR_PPGF_DONATION NMOR_ADVERTISER_SUBSCRIPTION NMOR_WHATSAPP_P2M NMOR_MOVIE_TICKETING IG_NMOR_P2B IG_MOR_DONATIONS NMOR_INSTAGRAM_P2B }}
       end
     end
 
@@ -963,7 +895,6 @@ module FacebookAds
         api.has_param :uid, 'int'
         api.has_param :profile_id, 'int'
         api.has_param :target_id, 'int'
-        api.has_param :checkin_id, 'object'
         api.has_param :vault_image_id, 'string'
         api.has_param :tags, { list: 'object' }
         api.has_param :place, 'object'
@@ -975,7 +906,7 @@ module FacebookAds
         api.has_param :og_icon_id, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :og_set_profile_badge, 'bool'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :targeting, 'object'
         api.has_param :feed_targeting, 'object'
         api.has_param :no_story, 'bool'
@@ -1031,7 +962,7 @@ module FacebookAds
         api.has_param :geometry, 'object'
         api.has_param :override_ids, { list: 'int' }
         api.has_param :address, 'object'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :phone, 'string'
         api.has_param :website, 'string'
         api.has_param :city_id, 'string'
@@ -1093,7 +1024,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :object, 'string'
         api.has_param :fields, { list: 'string' }
-        api.has_param :callback_url, 'object'
+        api.has_param :callback_url, 'string'
         api.has_param :verify_token, 'string'
         api.has_param :include_values, 'bool'
       end
@@ -1201,7 +1132,7 @@ module FacebookAds
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
         api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :no_story, 'bool'
         api.has_param :sponsor_id, 'string'
         api.has_param :direct_share_status, 'int'

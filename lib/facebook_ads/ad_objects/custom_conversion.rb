@@ -44,6 +44,7 @@ module FacebookAds
       "START_TRIAL",
       "SUBMIT_APPLICATION",
       "SUBSCRIBE",
+      "LISTING_INTERACTION",
       "OTHER",
     ]
 
@@ -72,8 +73,8 @@ module FacebookAds
 
     has_edge :activities do |edge|
       edge.get 'CustomConversionActivities' do |api|
-        api.has_param :start_time, 'object'
-        api.has_param :end_time, 'object'
+        api.has_param :start_time, 'datetime'
+        api.has_param :end_time, 'datetime'
         api.has_param :event_type, { enum: -> { CustomConversionActivities::EVENT_TYPE }}
       end
     end

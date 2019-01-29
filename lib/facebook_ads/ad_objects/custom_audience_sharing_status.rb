@@ -27,7 +27,7 @@ module FacebookAds
 
   class CustomAudienceSharingStatus < AdObject
 
-    field :sharing_relationship_id, 'object'
+    field :sharing_relationship_id, 'int'
     field :status, 'string'
     field :id, 'string'
     has_no_get

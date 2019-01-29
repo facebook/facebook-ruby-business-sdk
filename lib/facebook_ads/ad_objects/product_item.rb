@@ -134,8 +134,8 @@ module FacebookAds
     field :visibility, { enum: -> { VISIBILITY }}
     field :checkout_url, 'string'
     field :offer_price_amount, 'int'
-    field :offer_price_end_date, 'object'
-    field :offer_price_start_date, 'object'
+    field :offer_price_end_date, 'datetime'
+    field :offer_price_start_date, 'datetime'
     field :ios_url, 'string'
     field :ios_app_store_id, 'int'
     field :ios_app_name, 'string'

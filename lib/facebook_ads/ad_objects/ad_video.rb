@@ -102,7 +102,6 @@ module FacebookAds
       "PREMIERE_SOURCE",
       "PRIVATE_GALLERY_VIDEO",
       "FISTBUMP",
-      "STORY_HIGHLIGHT_VIDEO",
       "PROFILE_TO_PAGE_UPLOADED_VIDEO",
       "KOTOTORO",
       "DYNAMIC_TEMPLATE_VIDEO",
@@ -116,6 +115,7 @@ module FacebookAds
       "DCO_AUTOGEN_VIDEO",
       "SOTTO_CONTENT",
       "OCULUS_VENUES_BROADCAST",
+      "AGE_UP",
     ]
 
     CONTENT_CATEGORY = [
@@ -419,8 +419,8 @@ module FacebookAds
       edge.get 'InsightsResult' do |api|
         api.has_param :metric, { list: 'object' }
         api.has_param :period, { enum: -> { InsightsResult::PERIOD }}
-        api.has_param :since, 'object'
-        api.has_param :until, 'object'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
     end
 

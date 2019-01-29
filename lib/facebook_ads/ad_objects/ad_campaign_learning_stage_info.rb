@@ -28,7 +28,7 @@ module FacebookAds
   class AdCampaignLearningStageInfo < AdObject
 
     field :attribution_windows, { list: 'string' }
-    field :conversions, 'object'
+    field :conversions, 'int'
     field :exit_reason, 'string'
     field :last_sig_edit_ts, 'int'
     field :status, 'string'

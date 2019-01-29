@@ -76,7 +76,7 @@ module FacebookAds
         api.has_param :link, 'string'
         api.has_param :live_location_attachment, 'object'
         api.has_param :location_attachment, 'object'
-        api.has_param :log_info, 'object'
+        api.has_param :log_info, 'hash'
         api.has_param :mark_read_watermark_timestamp, 'int'
         api.has_param :media, { list: 'string' }
         api.has_param :message_source_data, 'object'
@@ -85,13 +85,14 @@ module FacebookAds
         api.has_param :montage_overlays, { list: 'hash' }
         api.has_param :montage_supported_features, { list: { enum: %w{LIGHTWEIGHT_REPLY SHOW_STORY_IN_MESSENGER_THREAD }} }
         api.has_param :montage_mentions, 'hash'
+        api.has_param :montage_targets, { list: 'string' }
         api.has_param :montage_reply_data, 'object'
         api.has_param :object_attachment, 'string'
         api.has_param :offline_threading_id, 'string'
         api.has_param :platform_xmd, 'string'
-        api.has_param :prng, 'object'
+        api.has_param :prng, { list: 'string' }
         api.has_param :proxied_app_id, 'string'
-        api.has_param :recipients, 'object'
+        api.has_param :recipients, { list: 'object' }
         api.has_param :replied_to_message_id, 'string'
         api.has_param :selected_cta_token, 'string'
         api.has_param :shareable_attachment, 'object'

@@ -32,7 +32,6 @@ module FacebookAds
       "ADS_RIGHTS_REVIEWER",
       "ADMIN",
       "EMPLOYEE",
-      "FB_EMPLOYEE_SALES_REP",
     ]
 
     STATUS = [

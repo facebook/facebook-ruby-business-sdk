@@ -26,34 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class ReachEstimate < AdObject
-    OPTIMIZE_FOR = [
-      "NONE",
-      "APP_INSTALLS",
-      "BRAND_AWARENESS",
-      "AD_RECALL_LIFT",
-      "CLICKS",
-      "ENGAGED_USERS",
-      "EVENT_RESPONSES",
-      "IMPRESSIONS",
-      "LEAD_GENERATION",
-      "LINK_CLICKS",
-      "OFFER_CLAIMS",
-      "OFFSITE_CONVERSIONS",
-      "PAGE_ENGAGEMENT",
-      "PAGE_LIKES",
-      "POST_ENGAGEMENT",
-      "REACH",
-      "SOCIAL_IMPRESSIONS",
-      "VIDEO_VIEWS",
-      "APP_DOWNLOADS",
-      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
-      "LANDING_PAGE_VIEWS",
-      "VALUE",
-      "THRUPLAY",
-      "REPLIES",
-      "DERIVED_EVENTS",
-    ]
-
 
     field :estimate_ready, 'bool'
     field :unsupported, 'bool'

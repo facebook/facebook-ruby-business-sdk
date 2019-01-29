@@ -79,7 +79,6 @@ module FacebookAds
       "TWD",
       "USD",
       "UYU",
-      "VEF",
       "VND",
       "ZAR",
     ]
@@ -98,6 +97,7 @@ module FacebookAds
 
     CLAIM_OBJECTIVE = [
       "AUTOMOTIVE_MODEL",
+      "COLLABORATIVE_ADS",
       "HOME_LISTING",
       "MEDIA_TITLE",
       "PRODUCT",
@@ -227,27 +227,6 @@ module FacebookAds
       edge.get 'AdStudy'
     end
 
-    has_edge :adasset_feeds do |edge|
-      edge.post do |api|
-        api.has_param :images, { list: 'object' }
-        api.has_param :videos, { list: 'object' }
-        api.has_param :bodies, { list: 'object' }
-        api.has_param :call_to_action_types, { list: { enum: %w{OPEN_LINK LIKE_PAGE SHOP_NOW PLAY_GAME INSTALL_APP USE_APP CALL CALL_ME INSTALL_MOBILE_APP USE_MOBILE_APP MOBILE_DOWNLOAD BOOK_TRAVEL LISTEN_MUSIC WATCH_VIDEO LEARN_MORE SIGN_UP DOWNLOAD WATCH_MORE NO_BUTTON VISIT_PAGES_FEED APPLY_NOW BUY_NOW GET_OFFER GET_OFFER_VIEW BUY_TICKETS UPDATE_APP GET_DIRECTIONS BUY MESSAGE_PAGE DONATE SUBSCRIBE SAY_THANKS SELL_NOW SHARE DONATE_NOW GET_QUOTE CONTACT_US ORDER_NOW ADD_TO_CART VIDEO_ANNOTATION MOMENTS RECORD_NOW GET_SHOWTIMES LISTEN_NOW WOODHENGE_SUPPORT EVENT_RSVP WHATSAPP_MESSAGE FOLLOW_NEWS_STORYLINE SEE_MORE }} }
-        api.has_param :descriptions, { list: 'object' }
-        api.has_param :link_urls, { list: 'object' }
-        api.has_param :titles, { list: 'object' }
-        api.has_param :captions, { list: 'object' }
-        api.has_param :ad_formats, { list: { enum: %w{AUTOMATIC_FORMAT CAROUSEL_IMAGE CAROUSEL_VIDEO SINGLE_IMAGE SINGLE_VIDEO }} }
-        api.has_param :groups, { list: 'object' }
-        api.has_param :target_rules, { list: 'object' }
-        api.has_param :asset_customization_rules, { list: 'object' }
-        api.has_param :optimization_type, { enum: %w{REGULAR LANGUAGE PLACEMENT VIDEO_BANDWIDTH BRAND ASSET_CUSTOMIZATION DCO_PARITY PREVIEW_DYNAMIC_RENDERING }}
-        api.has_param :call_to_actions, { list: 'object' }
-        api.has_param :autotranslate, { list: 'string' }
-        api.has_param :additional_data, 'hash'
-      end
-    end
-
     has_edge :adcontracts do |edge|
       edge.get 'AdContract'
     end
@@ -258,7 +237,6 @@ module FacebookAds
         api.has_param :actor_id, 'int'
         api.has_param :adlabels, { list: 'object' }
         api.has_param :applink_treatment, { enum: -> { AdCreative::APPLINK_TREATMENT }}
-        api.has_param :asset_feed_id, 'string'
         api.has_param :asset_feed_spec, 'object'
         api.has_param :authorization_category, { enum: -> { AdCreative::AUTHORIZATION_CATEGORY }}
         api.has_param :is_dco_internal, 'bool'
@@ -269,7 +247,7 @@ module FacebookAds
         api.has_param :category_media_source, { enum: -> { AdCreative::CATEGORY_MEDIA_SOURCE }}
         api.has_param :call_to_action, 'object'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
-        api.has_param :destination_set_id, 'object'
+        api.has_param :destination_set_id, 'string'
         api.has_param :enable_direct_install, 'bool'
         api.has_param :enable_launch_instant_app, 'bool'
         api.has_param :image_crops, 'hash'
@@ -279,6 +257,7 @@ module FacebookAds
         api.has_param :instagram_actor_id, 'string'
         api.has_param :instagram_permalink_url, 'string'
         api.has_param :portrait_customizations, 'hash'
+        api.has_param :interactive_components_spec, 'hash'
         api.has_param :link_og_id, 'string'
         api.has_param :link_url, 'string'
         api.has_param :name, 'string'
@@ -328,7 +307,6 @@ module FacebookAds
         api.has_param :business_id, 'string'
       end
       edge.post list: 'AdImage' do |api|
-        api.has_param :zipbytes, 'object'
         api.has_param :bytes, 'object'
         api.has_param :copy_from, 'object'
         api.accepts_files!
@@ -339,19 +317,6 @@ module FacebookAds
       edge.get 'AdLabel'
       edge.post 'AdLabel' do |api|
         api.has_param :name, 'string'
-      end
-    end
-
-    has_edge :adlanguage_assets do |edge|
-      edge.post do |api|
-        api.has_param :image, 'object'
-        api.has_param :video, 'object'
-        api.has_param :call_to_action_type, { enum: %w{OPEN_LINK LIKE_PAGE SHOP_NOW PLAY_GAME INSTALL_APP USE_APP CALL CALL_ME INSTALL_MOBILE_APP USE_MOBILE_APP MOBILE_DOWNLOAD BOOK_TRAVEL LISTEN_MUSIC WATCH_VIDEO LEARN_MORE SIGN_UP DOWNLOAD WATCH_MORE NO_BUTTON VISIT_PAGES_FEED APPLY_NOW BUY_NOW GET_OFFER GET_OFFER_VIEW BUY_TICKETS UPDATE_APP GET_DIRECTIONS BUY MESSAGE_PAGE DONATE SUBSCRIBE SAY_THANKS SELL_NOW SHARE DONATE_NOW GET_QUOTE CONTACT_US ORDER_NOW ADD_TO_CART VIDEO_ANNOTATION MOMENTS RECORD_NOW GET_SHOWTIMES LISTEN_NOW WOODHENGE_SUPPORT EVENT_RSVP WHATSAPP_MESSAGE FOLLOW_NEWS_STORYLINE SEE_MORE }}
-        api.has_param :bodies, { list: 'object' }
-        api.has_param :descriptions, { list: 'object' }
-        api.has_param :titles, { list: 'object' }
-        api.has_param :link_urls, { list: 'object' }
-        api.has_param :default_language, 'string'
       end
     end
 
@@ -405,7 +370,7 @@ module FacebookAds
 
     has_edge :adreportspecs do |edge|
       edge.post 'AdReportSpec' do |api|
-        api.has_param :time_ranges, 'object'
+        api.has_param :time_ranges, { list: 'string' }
         api.has_param :data_columns, { list: 'string' }
         api.has_param :actions_group_by, { list: { enum: -> { AdReportSpec::ACTIONS_GROUP_BY }} }
         api.has_param :filters, { list: 'object' }
@@ -514,7 +479,7 @@ module FacebookAds
         api.has_param :adlabels, { list: 'object' }
         api.has_param :bid_amount, 'int'
         api.has_param :bid_adjustments, 'object'
-        api.has_param :bid_constraints, 'object'
+        api.has_param :bid_constraints, 'hash'
         api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
         api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
         api.has_param :campaign_id, 'string'
@@ -530,14 +495,9 @@ module FacebookAds
         api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
         api.has_param :end_time, 'datetime'
         api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
-        api.has_param :frequency_cap, 'int'
-        api.has_param :frequency_cap_reset_period, 'int'
         api.has_param :frequency_control_specs, { list: 'object' }
-        api.has_param :is_autobid, 'bool'
-        api.has_param :is_average_price_pacing, 'bool'
         api.has_param :is_dynamic_creative, 'bool'
         api.has_param :lifetime_budget, 'int'
-        api.has_param :lifetime_frequency_cap, 'int'
         api.has_param :lifetime_imps, 'int'
         api.has_param :lifetime_min_spend_target, 'int'
         api.has_param :lifetime_spend_cap, 'int'
@@ -702,9 +662,6 @@ module FacebookAds
     end
 
     has_edge :assigned_users do |edge|
-      edge.delete do |api|
-        api.has_param :user, 'int'
-      end
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'
       end
@@ -789,7 +746,7 @@ module FacebookAds
 
     has_edge :businessprojects do |edge|
       edge.get 'BusinessProject' do |api|
-        api.has_param :business, 'object'
+        api.has_param :business, 'string'
       end
     end
 
@@ -828,10 +785,6 @@ module FacebookAds
         api.has_param :adlabels, { list: 'object' }
         api.has_param :source_campaign_id, 'string'
         api.has_param :iterative_split_test_configs, { list: 'object' }
-        api.has_param :kpi_custom_conversion_id, 'string'
-        api.has_param :kpi_type, 'object'
-        api.has_param :is_autobid, 'bool'
-        api.has_param :is_average_price_pacing, 'bool'
       end
     end
 
@@ -903,7 +856,7 @@ module FacebookAds
         api.has_param :product_set_id, 'string'
         api.has_param :event_sources, { list: 'hash' }
         api.has_param :video_group_ids, { list: 'string' }
-        api.has_param :study_spec, 'object'
+        api.has_param :study_spec, 'hash'
         api.has_param :list_of_accounts, { list: 'int' }
         api.has_param :dataset_id, 'string'
       end
@@ -965,6 +918,7 @@ module FacebookAds
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
         api.has_param :dynamic_creative_spec, 'object'
+        api.has_param :dynamic_customization, 'object'
         api.has_param :dynamic_asset_label, 'string'
         api.has_param :interactive, 'bool'
         api.has_param :post, 'object'
@@ -1051,7 +1005,7 @@ module FacebookAds
       edge.get 'AdAccountMatchedSearchApplicationsEdgeData' do |api|
         api.has_param :app_store, { enum: -> { AdAccountMatchedSearchApplicationsEdgeData::APP_STORE }}
         api.has_param :app_store_country, 'string'
-        api.has_param :business_id, 'object'
+        api.has_param :business_id, 'string'
         api.has_param :query_term, 'string'
         api.has_param :allow_incomplete_app, 'bool'
       end
@@ -1178,10 +1132,7 @@ module FacebookAds
     has_edge :reachestimate do |edge|
       edge.get 'ReachEstimate' do |api|
         api.has_param :targeting_spec, 'Targeting'
-        api.has_param :currency, 'string'
         api.has_param :is_debug, 'bool'
-        api.has_param :optimize_for, { enum: -> { ReachEstimate::OPTIMIZE_FOR }}
-        api.has_param :daily_budget, 'double'
         api.has_param :creative_action_spec, 'string'
         api.has_param :adgroup_ids, { list: 'string' }
         api.has_param :concepts, 'string'
@@ -1243,31 +1194,8 @@ module FacebookAds
         api.has_param :offer_origin, 'string'
         api.has_param :promotion_text, 'string'
         api.has_param :receiver_benefits_text, 'string'
-        api.has_param :referral_link_uri, 'object'
+        api.has_param :referral_link_uri, 'string'
         api.has_param :sender_benefits_text, 'string'
-      end
-    end
-
-    has_edge :reportstats do |edge|
-      edge.post do |api|
-        api.has_param :time_ranges, 'object'
-        api.has_param :data_columns, { list: 'string' }
-        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type action_converted_product_id }} }
-        api.has_param :filters, { list: 'object' }
-        api.has_param :sort_by, 'string'
-        api.has_param :sort_dir, 'string'
-        api.has_param :time_increment, 'string'
-        api.has_param :time_interval, 'object'
-        api.has_param :date_preset, { enum: %w{today yesterday this_month last_month this_quarter lifetime last_3d last_7d last_14d last_28d last_30d last_90d last_week_mon_sun last_week_sun_sat last_quarter last_year this_week_mon_today this_week_sun_today this_year }}
-        api.has_param :format, { enum: %w{JSON CSV XLS XLSX }}
-        api.has_param :export_columns, 'object'
-        api.has_param :report_run_id, 'string'
-        api.has_param :name, 'string'
-        api.has_param :user_report, 'bool'
-        api.has_param :business_id, 'string'
-        api.has_param :limit, 'int'
-        api.has_param :bypass_async, 'bool'
-        api.has_param :summary, 'bool'
       end
     end
 
@@ -1378,20 +1306,6 @@ module FacebookAds
         api.has_param :namespace, 'string'
         api.has_param :retention, 'string'
         api.has_param :bidirectional, 'bool'
-      end
-    end
-
-    has_edge :userpermissions do |edge|
-      edge.delete do |api|
-        api.has_param :user, 'int'
-        api.has_param :email, 'string'
-        api.has_param :business, 'string'
-      end
-      edge.post 'AdAccount' do |api|
-        api.has_param :user, 'int'
-        api.has_param :email, 'string'
-        api.has_param :business, 'string'
-        api.has_param :tasks, { list: { enum: -> { AdAccount::TASKS }} }
       end
     end
 

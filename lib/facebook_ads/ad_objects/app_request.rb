@@ -32,7 +32,7 @@ module FacebookAds
     field :created_time, 'datetime'
     field :data, 'string'
     field :from, 'User'
-    field :id, 'object'
+    field :id, 'string'
     field :message, 'string'
     field :object, 'object'
     field :to, 'User'

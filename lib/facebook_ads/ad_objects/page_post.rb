@@ -195,7 +195,6 @@ module FacebookAds
         api.has_param :until, 'datetime'
         api.has_param :metric, { list: 'object' }
         api.has_param :period, { enum: -> { InsightsResult::PERIOD }}
-        api.has_param :show_permission_error, 'bool'
         api.has_param :date_preset, { enum: -> { InsightsResult::DATE_PRESET }}
       end
     end

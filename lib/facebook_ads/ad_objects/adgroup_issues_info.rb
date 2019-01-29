@@ -30,6 +30,7 @@ module FacebookAds
     field :error_code, 'int'
     field :error_message, 'string'
     field :error_summary, 'string'
+    field :level, 'string'
     field :id, 'string'
     has_no_get
     has_no_post

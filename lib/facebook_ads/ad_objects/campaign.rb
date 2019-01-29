@@ -131,9 +131,9 @@ module FacebookAds
     field :daily_budget, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :id, 'string'
+    field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :last_budget_toggling_time, 'datetime'
     field :lifetime_budget, 'string'
-    field :metrics_metadata, 'AdCampaignGroupMetricsMetadata'
     field :name, 'string'
     field :objective, 'string'
     field :pacing_type, { list: 'string' }
@@ -151,10 +151,6 @@ module FacebookAds
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
     field :upstream_events, 'hash'
     field :iterative_split_test_configs, { list: 'object' }
-    field :kpi_custom_conversion_id, 'string'
-    field :kpi_type, 'object'
-    field :is_autobid, 'bool'
-    field :is_average_price_pacing, 'bool'
 
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
@@ -163,11 +159,11 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
       edge.post 'Campaign' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
     end
 

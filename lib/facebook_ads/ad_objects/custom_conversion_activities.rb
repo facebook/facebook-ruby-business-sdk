@@ -33,7 +33,7 @@ module FacebookAds
     ]
 
 
-    field :app_id, 'object'
+    field :app_id, 'int'
     field :data, 'string'
     field :event_type, 'string'
     field :timestamp, 'datetime'

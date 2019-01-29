@@ -27,8 +27,8 @@ module FacebookAds
 
   class Privacy < AdObject
 
-    field :allow, 'object'
-    field :deny, 'object'
+    field :allow, 'string'
+    field :deny, 'string'
     field :description, 'string'
     field :friends, 'string'
     field :networks, 'string'

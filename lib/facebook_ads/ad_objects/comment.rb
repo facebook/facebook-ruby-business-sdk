@@ -62,7 +62,7 @@ module FacebookAds
     field :comment_count, 'int'
     field :created_time, 'datetime'
     field :from, 'object'
-    field :id, 'object'
+    field :id, 'string'
     field :is_hidden, 'bool'
     field :is_private, 'bool'
     field :like_count, 'int'

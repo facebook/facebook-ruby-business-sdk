@@ -184,10 +184,10 @@ module FacebookAds
     field :url_tags, 'string'
     field :use_page_actor_override, 'bool'
     field :video_id, 'string'
-    field :asset_feed_id, 'string'
     field :is_dco_internal, 'bool'
     field :call_to_action, 'object'
     field :image_file, 'string'
+    field :interactive_components_spec, 'hash'
     field :mockup_id, 'string'
     field :page_id, 'string'
 
@@ -204,6 +204,7 @@ module FacebookAds
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
         api.has_param :dynamic_creative_spec, 'object'
+        api.has_param :dynamic_customization, 'object'
         api.has_param :dynamic_asset_label, 'string'
         api.has_param :interactive, 'bool'
         api.has_param :post, 'object'

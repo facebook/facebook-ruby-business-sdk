@@ -64,13 +64,6 @@ module FacebookAds
       "SECONDARY",
     ]
 
-    RELATIONSHIP_TYPE = [
-      "AD_MANAGER",
-      "AUDIENCE_MANAGER",
-      "AGENCY",
-      "OTHER",
-    ]
-
 
     field :automatic_matching_fields, { list: 'string' }
     field :can_proxy, 'bool'
@@ -149,18 +142,12 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'Business'
-      edge.post 'AdsPixel' do |api|
-        api.has_param :agency_id, 'string'
-        api.has_param :business, 'string'
-        api.has_param :relationship_type, { list: { enum: -> { AdsPixel::RELATIONSHIP_TYPE }} }
-        api.has_param :other_relationship, 'string'
-      end
     end
 
     has_edge :stats do |edge|
       edge.get 'AdsPixelStatsResult' do |api|
-        api.has_param :start_time, 'object'
-        api.has_param :end_time, 'object'
+        api.has_param :start_time, 'datetime'
+        api.has_param :end_time, 'datetime'
         api.has_param :aggregation, { enum: -> { AdsPixelStatsResult::AGGREGATION }}
         api.has_param :event, 'string'
         api.has_param :event_source, 'string'

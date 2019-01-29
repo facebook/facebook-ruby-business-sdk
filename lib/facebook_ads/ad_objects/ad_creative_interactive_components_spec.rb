@@ -25,11 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class FPlugSave < AdObject
+  class AdCreativeInteractiveComponentsSpec < AdObject
 
-    field :html, 'string'
+    field :components, { list: 'object' }
     field :id, 'string'
-    field :js, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

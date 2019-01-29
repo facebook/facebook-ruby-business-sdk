@@ -278,7 +278,7 @@ module FacebookAds
         api.has_param :uid, 'int'
         api.has_param :owner_access_token, 'string'
         api.has_param :installed, 'bool'
-        api.has_param :permissions, 'object'
+        api.has_param :permissions, { list: 'Permission' }
         api.has_param :name, 'string'
         api.has_param :minor, 'bool'
         api.has_param :type, { enum: %w{test-users }}
@@ -333,8 +333,8 @@ module FacebookAds
         api.has_param :metrics, { list: { enum: -> { Application::METRICS }} }
         api.has_param :ordering_column, { enum: -> { Application::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { Application::ORDERING_TYPE }}
-        api.has_param :since, 'object'
-        api.has_param :until, 'object'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
       edge.post 'Application' do |api|
         api.has_param :aggregation_period, { enum: -> { Application::AGGREGATION_PERIOD }}
@@ -344,8 +344,8 @@ module FacebookAds
         api.has_param :limit, 'int'
         api.has_param :ordering_column, { enum: -> { Application::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { Application::ORDERING_TYPE }}
-        api.has_param :since, 'object'
-        api.has_param :until, 'object'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
     end
 
@@ -401,21 +401,7 @@ module FacebookAds
 
     has_edge :app_installed_groups do |edge|
       edge.get 'Group' do |api|
-        api.has_param :group_id, 'object'
-      end
-    end
-
-    has_edge :app_link_hosts do |edge|
-      edge.post do |api|
-        api.has_param :android, 'object'
-        api.has_param :ios, 'object'
-        api.has_param :ipad, 'object'
-        api.has_param :iphone, 'object'
-        api.has_param :web, 'object'
-        api.has_param :windows_phone, 'object'
-        api.has_param :windows, 'object'
-        api.has_param :windows_universal, 'object'
-        api.has_param :name, 'string'
+        api.has_param :group_id, 'string'
       end
     end
 
@@ -579,14 +565,14 @@ module FacebookAds
     has_edge :leaderboards_delete_entry do |edge|
       edge.post 'Application' do |api|
         api.has_param :name, 'string'
-        api.has_param :player_id, 'object'
+        api.has_param :player_id, 'string'
       end
     end
 
     has_edge :leaderboards_reset do |edge|
       edge.post 'Application' do |api|
         api.has_param :name, 'string'
-        api.has_param :reset_time, 'object'
+        api.has_param :reset_time, 'datetime'
       end
     end
 
@@ -594,7 +580,7 @@ module FacebookAds
       edge.post 'Application' do |api|
         api.has_param :name, 'string'
         api.has_param :score, 'int'
-        api.has_param :player_id, 'object'
+        api.has_param :player_id, 'string'
         api.has_param :extra_data, 'string'
       end
     end
@@ -602,7 +588,7 @@ module FacebookAds
     has_edge :local_service_booking_config do |edge|
       edge.get
       edge.post do |api|
-        api.has_param :base_url, 'object'
+        api.has_param :base_url, 'string'
       end
     end
 
@@ -693,7 +679,7 @@ module FacebookAds
 
     has_edge :permissions do |edge|
       edge.get do |api|
-        api.has_param :permission, 'object'
+        api.has_param :permission, { list: 'Permission' }
         api.has_param :status, { list: { enum: %w{live unapproved }} }
         api.has_param :android_key_hash, 'string'
         api.has_param :ios_bundle_id, 'string'
@@ -709,7 +695,6 @@ module FacebookAds
         api.has_param :uid, 'int'
         api.has_param :profile_id, 'int'
         api.has_param :target_id, 'int'
-        api.has_param :checkin_id, 'object'
         api.has_param :vault_image_id, 'string'
         api.has_param :tags, { list: 'object' }
         api.has_param :place, 'object'
@@ -721,7 +706,7 @@ module FacebookAds
         api.has_param :og_icon_id, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :og_set_profile_badge, 'bool'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :targeting, 'object'
         api.has_param :feed_targeting, 'object'
         api.has_param :no_story, 'bool'
@@ -817,7 +802,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :object, 'string'
         api.has_param :fields, { list: 'string' }
-        api.has_param :callback_url, 'object'
+        api.has_param :callback_url, 'string'
         api.has_param :verify_token, 'string'
         api.has_param :include_values, 'bool'
       end

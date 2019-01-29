@@ -28,7 +28,7 @@ module FacebookAds
   class CanvasAdSettings < AdObject
 
     field :is_canvas_collection_eligible, 'bool'
-    field :lead_form_created_time, 'object'
+    field :lead_form_created_time, 'int'
     field :lead_form_name, 'string'
     field :lead_gen_form_id, 'string'
     field :leads_count, 'int'

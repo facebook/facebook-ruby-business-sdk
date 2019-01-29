@@ -153,21 +153,12 @@ module FacebookAds
       "INSIGHTS_ANALYST",
     ]
 
-    PERMITTED_ROLES = [
-      "MANAGER",
-      "CONTENT_CREATOR",
-      "MODERATOR",
-      "ADVERTISER",
-      "INSIGHTS_ANALYST",
-    ]
-
     ROLE = [
       "FINANCE_EDITOR",
       "FINANCE_ANALYST",
       "ADS_RIGHTS_REVIEWER",
       "ADMIN",
       "EMPLOYEE",
-      "FB_EMPLOYEE_SALES_REP",
     ]
 
 
@@ -194,8 +185,8 @@ module FacebookAds
 
     has_edge :access_token do |edge|
       edge.post 'Business' do |api|
-        api.has_param :app_id, 'object'
-        api.has_param :scope, 'object'
+        api.has_param :app_id, 'string'
+        api.has_param :scope, { list: 'Permission' }
       end
     end
 
@@ -230,10 +221,10 @@ module FacebookAds
         api.has_param :po_number, 'string'
         api.has_param :invoicing_emails, { list: 'string' }
         api.has_param :io, 'bool'
-        api.has_param :billing_address_id, 'object'
-        api.has_param :sold_to_address_id, 'object'
-        api.has_param :liable_address_id, 'object'
-        api.has_param :invoice_group_id, 'object'
+        api.has_param :billing_address_id, 'string'
+        api.has_param :sold_to_address_id, 'string'
+        api.has_param :liable_address_id, 'string'
+        api.has_param :invoice_group_id, 'string'
       end
     end
 
@@ -242,7 +233,7 @@ module FacebookAds
         api.has_param :status, { list: { enum: -> { AdAccountCreationRequest::STATUS }} }
       end
       edge.post 'AdAccountCreationRequest' do |api|
-        api.has_param :extended_credit_id, 'object'
+        api.has_param :extended_credit_id, 'string'
         api.has_param :ad_accounts_info, { list: 'object' }
         api.has_param :business_registration, 'file'
         api.has_param :planning_agency_business_id, 'string'
@@ -252,14 +243,14 @@ module FacebookAds
         api.has_param :address_in_chinese, 'string'
         api.has_param :address_in_local_language, 'string'
         api.has_param :address_in_english, 'object'
-        api.has_param :official_website_url, 'object'
+        api.has_param :official_website_url, 'string'
         api.has_param :business_registration_id, 'string'
         api.has_param :vertical, { enum: -> { AdAccountCreationRequest::VERTICAL }}
         api.has_param :subvertical, { enum: -> { AdAccountCreationRequest::SUBVERTICAL }}
-        api.has_param :promotable_page_urls, { list: 'object' }
+        api.has_param :promotable_page_urls, { list: 'string' }
         api.has_param :promotable_page_ids, { list: 'string' }
         api.has_param :promotable_app_ids, { list: 'string' }
-        api.has_param :promotable_urls, { list: 'object' }
+        api.has_param :promotable_urls, { list: 'string' }
         api.has_param :contact, 'object'
         api.has_param :additional_comment, 'string'
         api.has_param :is_smb, 'bool'
@@ -283,8 +274,8 @@ module FacebookAds
         api.has_param :metrics, { list: { enum: -> { Business::METRICS }} }
         api.has_param :ordering_column, { enum: -> { Business::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { Business::ORDERING_TYPE }}
-        api.has_param :since, 'object'
-        api.has_param :until, 'object'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
       edge.post 'Business' do |api|
         api.has_param :aggregation_period, { enum: -> { Business::AGGREGATION_PERIOD }}
@@ -294,8 +285,8 @@ module FacebookAds
         api.has_param :limit, 'int'
         api.has_param :ordering_column, { enum: -> { Business::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { Business::ORDERING_TYPE }}
-        api.has_param :since, 'object'
-        api.has_param :until, 'object'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
     end
 
@@ -502,7 +493,7 @@ module FacebookAds
         api.has_param :survey_num_people, 'int'
         api.has_param :survey_num_assets, 'int'
         api.has_param :sales_rep_email, 'string'
-        api.has_param :existing_client_business_id, 'object'
+        api.has_param :existing_client_business_id, 'string'
       end
     end
 
@@ -531,7 +522,6 @@ module FacebookAds
       edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :name, 'string'
         api.has_param :description, 'string'
-        api.has_param :data_origin, { enum: -> { OfflineConversionDataSet::DATA_ORIGIN }}
         api.has_param :enable_auto_assign_to_accounts, 'bool'
         api.has_param :is_mta_use, 'bool'
         api.has_param :auto_assign_to_new_accounts_only, 'bool'
@@ -558,7 +548,7 @@ module FacebookAds
 
     has_edge :owned_businesses do |edge|
       edge.delete do |api|
-        api.has_param :client_id, 'object'
+        api.has_param :client_id, 'string'
       end
       edge.get 'Business' do |api|
         api.has_param :client_user_id, 'object'
@@ -571,7 +561,7 @@ module FacebookAds
         api.has_param :survey_num_people, 'int'
         api.has_param :survey_num_assets, 'int'
         api.has_param :sales_rep_email, 'string'
-        api.has_param :shared_page_id, 'object'
+        api.has_param :shared_page_id, 'string'
         api.has_param :page_permitted_roles, { list: { enum: -> { Business::PAGE_PERMITTED_ROLES }} }
       end
     end
@@ -618,11 +608,6 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :page_id, 'int'
       end
-      edge.post 'Business' do |api|
-        api.has_param :page_id, 'int'
-        api.has_param :access_type, { enum: -> { Business::ACCESS_TYPE }}
-        api.has_param :permitted_roles, { list: { enum: -> { Business::PERMITTED_ROLES }} }
-      end
     end
 
     has_edge :partner_integrations do |edge|
@@ -649,10 +634,10 @@ module FacebookAds
         api.has_param :po_number, 'string'
         api.has_param :invoicing_emails, { list: 'string' }
         api.has_param :io, 'bool'
-        api.has_param :billing_address_id, 'object'
-        api.has_param :sold_to_address_id, 'object'
-        api.has_param :liable_address_id, 'object'
-        api.has_param :invoice_group_id, 'object'
+        api.has_param :billing_address_id, 'string'
+        api.has_param :sold_to_address_id, 'string'
+        api.has_param :liable_address_id, 'string'
+        api.has_param :invoice_group_id, 'string'
       end
     end
 
@@ -703,16 +688,6 @@ module FacebookAds
       end
     end
 
-    has_edge :product_catalogs do |edge|
-      edge.post 'ProductCatalog' do |api|
-        api.has_param :name, 'string'
-        api.has_param :vertical, { enum: -> { ProductCatalog::VERTICAL }}
-        api.has_param :flight_catalog_settings, 'hash'
-        api.has_param :destination_catalog_settings, 'hash'
-        api.has_param :da_display_settings, 'object'
-      end
-    end
-
     has_edge :received_audience_permissions do |edge|
       edge.get 'AudiencePermission' do |api|
         api.has_param :partner_id, 'string'
@@ -753,7 +728,7 @@ module FacebookAds
 
     has_edge :spaco_dataset_collections do |edge|
       edge.post do |api|
-        api.has_param :spaco_data_collections, { list: 'object' }
+        api.has_param :spaco_data_collections, { list: 'string' }
       end
     end
 
@@ -770,8 +745,8 @@ module FacebookAds
       edge.get 'MeasurementUploadEvent'
       edge.post 'MeasurementUploadEvent' do |api|
         api.has_param :group, { enum: -> { MeasurementUploadEvent::GROUP }}
-        api.has_param :upload_end_time, 'object'
-        api.has_param :upload_start_time, 'object'
+        api.has_param :upload_end_time, 'datetime'
+        api.has_param :upload_start_time, 'datetime'
         api.has_param :upload_tag, 'string'
         api.has_param :version, { enum: -> { MeasurementUploadEvent::VERSION }}
       end
@@ -803,27 +778,27 @@ module FacebookAds
       edge.post 'AdAccountCreationRequest' do |api|
         api.has_param :address_in_local_language, 'string'
         api.has_param :ad_accounts_currency, 'string'
-        api.has_param :credit_card_id, 'object'
-        api.has_param :extended_credit_id, 'object'
+        api.has_param :credit_card_id, 'string'
+        api.has_param :extended_credit_id, 'string'
         api.has_param :legal_entity_name_in_local_language, 'string'
         api.has_param :ad_accounts_info, { list: 'object' }
         api.has_param :business_registration, 'file'
-        api.has_param :planning_agency_business_id, 'object'
+        api.has_param :planning_agency_business_id, 'string'
         api.has_param :english_legal_entity_name, 'string'
         api.has_param :address_in_english, 'object'
-        api.has_param :official_website_url, 'object'
+        api.has_param :official_website_url, 'string'
         api.has_param :business_registration_id, 'string'
         api.has_param :vertical, { enum: -> { AdAccountCreationRequest::VERTICAL }}
         api.has_param :subvertical, { enum: -> { AdAccountCreationRequest::SUBVERTICAL }}
-        api.has_param :promotable_page_urls, { list: 'object' }
+        api.has_param :promotable_page_urls, { list: 'string' }
         api.has_param :promotable_page_ids, { list: 'int' }
-        api.has_param :promotable_app_ids, { list: 'object' }
-        api.has_param :promotable_urls, { list: 'object' }
+        api.has_param :promotable_app_ids, { list: 'string' }
+        api.has_param :promotable_urls, { list: 'string' }
         api.has_param :contact, 'object'
         api.has_param :additional_comment, 'string'
         api.has_param :is_smb, 'bool'
         api.has_param :is_test, 'bool'
-        api.has_param :advertiser_business_id, 'object'
+        api.has_param :advertiser_business_id, 'string'
       end
     end
 

@@ -42,8 +42,8 @@ module FacebookAds
 
     has_edge :activities do |edge|
       edge.get do |api|
-        api.has_param :start_time, 'object'
-        api.has_param :end_time, 'object'
+        api.has_param :start_time, 'datetime'
+        api.has_param :end_time, 'datetime'
         api.has_param :event_type, { enum: %w{RULE_CREATE RULE_EVENT_REMAPPING RULE_STATUS_UPDATE }}
       end
     end

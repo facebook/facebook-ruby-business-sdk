@@ -72,11 +72,6 @@ module FacebookAds
       "AMBIENT",
     ]
 
-    TYPE = [
-      "tagged",
-      "uploaded",
-    ]
-
     LIVE_COMMENT_MODERATION_SETTING = [
       "FOLLOWER",
       "SLOW",

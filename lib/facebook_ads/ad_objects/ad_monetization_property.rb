@@ -110,8 +110,8 @@ module FacebookAds
         api.has_param :metrics, { list: { enum: -> { AdMonetizationProperty::METRICS }} }
         api.has_param :ordering_column, { enum: -> { AdMonetizationProperty::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { AdMonetizationProperty::ORDERING_TYPE }}
-        api.has_param :since, 'object'
-        api.has_param :until, 'object'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
       edge.post 'AdMonetizationProperty' do |api|
         api.has_param :aggregation_period, { enum: -> { AdMonetizationProperty::AGGREGATION_PERIOD }}
@@ -121,8 +121,8 @@ module FacebookAds
         api.has_param :limit, 'int'
         api.has_param :ordering_column, { enum: -> { AdMonetizationProperty::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { AdMonetizationProperty::ORDERING_TYPE }}
-        api.has_param :since, 'object'
-        api.has_param :until, 'object'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
     end
 

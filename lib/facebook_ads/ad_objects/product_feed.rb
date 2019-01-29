@@ -84,7 +84,6 @@ module FacebookAds
     field :schedule, 'ProductFeedSchedule'
     field :update_schedule, 'ProductFeedSchedule'
     field :feed_type, { enum: -> { FEED_TYPE }}
-    field :quoted_fields, 'bool'
     field :rules, { list: 'string' }
 
     has_edge :automotive_models do |edge|
