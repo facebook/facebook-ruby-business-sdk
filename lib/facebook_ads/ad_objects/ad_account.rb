@@ -327,6 +327,7 @@ module FacebookAds
         api.has_param :source, 'file'
         api.has_param :source_url, 'string'
         api.has_param :source_zip, 'file'
+        api.has_param :app_id, 'string'
       end
     end
 
@@ -352,7 +353,7 @@ module FacebookAds
         api.has_param :date_interval, 'object'
         api.has_param :format_version, 'int'
         api.has_param :creation_source, { enum: %w{adsManagerReporting newAdsManager adsExcelAddin }}
-        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type action_converted_product_id }} }
+        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type action_converted_product_id interactive_component_sticker_id interactive_component_sticker_response }} }
         api.has_param :custom_column_set_id, 'string'
         api.has_param :data_columns, { list: 'string' }
         api.has_param :emails, { list: 'string' }
@@ -577,8 +578,6 @@ module FacebookAds
         api.has_param :og_phrase, 'string'
         api.has_param :og_icon_id, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
-        api.has_param :manual_privacy, 'bool'
-        api.has_param :is_explicit_share, 'bool'
         api.has_param :thumb, 'file'
         api.has_param :spherical, 'bool'
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}

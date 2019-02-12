@@ -33,6 +33,7 @@ module FacebookAds
     field :source, 'file'
     field :source_url, 'string'
     field :source_zip, 'file'
+    field :app_id, 'string'
     has_no_post
     has_no_delete
 

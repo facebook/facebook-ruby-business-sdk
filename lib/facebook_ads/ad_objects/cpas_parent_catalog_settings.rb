@@ -16,21 +16,31 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'facebook_ads'
+# FB:AUTOGEN
 
-access_token = '<ACCESS_TOKEN>'
-app_secret = '<APP_SECRET>'
-app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
+module FacebookAds
+  # This class is auto-generated.
 
-FacebookAds.configure do |config|
-  config.access_token = access_token
-  config.app_secret = app_secret
+  # For any issues or feature requests related to this class, please let us know
+  # on github and we'll fix in our codegen framework. We'll not be able to accept
+  # pull request for this class.
+
+  class CpasParentCatalogSettings < AdObject
+    ATTRIBUTION_WINDOWS = [
+      "X1D_VIEW",
+      "X7D_VIEW",
+      "X28D_VIEW",
+      "X1D_CLICK",
+      "X7D_CLICK",
+      "X28D_CLICK",
+      "DEFAULT",
+    ]
+
+
+    field :attribution_windows, { list: 'string' }
+    field :default_currency, 'string'
+    field :id, 'string'
+    has_no_delete
+
+  end
 end
-
-ad_account = FacebookAds::AdAccount.get(id)
-campaigns = ad_account.campaigns.create({
-    name: 'My First Campaign',
-    objective: 'PAGE_LIKES',
-    status: 'PAUSED',
-})

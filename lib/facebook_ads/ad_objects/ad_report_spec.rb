@@ -39,6 +39,8 @@ module FacebookAds
       "action_video_sound",
       "action_video_type",
       "action_converted_product_id",
+      "interactive_component_sticker_id",
+      "interactive_component_sticker_response",
     ]
 
     CREATION_SOURCE = [

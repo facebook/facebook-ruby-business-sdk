@@ -30,7 +30,7 @@ end
 
 ad_account = FacebookAds::AdAccount.get(id)
 campaigns = ad_account.campaigns.create({
-    name: 'My First Campaign',
-    objective: 'PAGE_LIKES',
+    name: 'My campaign',
+    objective: 'LINK_CLICKS',
     status: 'PAUSED',
 })

@@ -78,6 +78,7 @@ module FacebookAds
 
 
     field :business, 'Business'
+    field :cpas_parent_catalog_settings, 'CpasParentCatalogSettings'
     field :da_display_settings, 'ProductCatalogImageSettings'
     field :default_image_url, 'string'
     field :fallback_image_url, { list: 'string' }
@@ -149,7 +150,7 @@ module FacebookAds
     has_edge :check_batch_request_status do |edge|
       edge.get 'CheckBatchRequestStatus' do |api|
         api.has_param :handle, 'string'
-        api.has_param :load_all_errors, 'bool'
+        api.has_param :load_ids_of_invalid_requests, 'bool'
       end
     end
 
@@ -422,7 +423,7 @@ module FacebookAds
       end
       edge.get 'ProductCatalogUserPermissions' do |api|
         api.has_param :business, 'string'
-        api.has_param :user, 'object'
+        api.has_param :user, 'int'
       end
       edge.post 'ProductCatalog' do |api|
         api.has_param :user, 'int'
@@ -453,8 +454,6 @@ module FacebookAds
         api.has_param :og_phrase, 'string'
         api.has_param :og_icon_id, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
-        api.has_param :manual_privacy, 'bool'
-        api.has_param :is_explicit_share, 'bool'
         api.has_param :thumb, 'file'
         api.has_param :spherical, 'bool'
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
@@ -467,6 +466,8 @@ module FacebookAds
         api.has_param :guide_enabled, 'bool'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :audio_story_wave_animation_handle, 'string'
+        api.has_param :manual_privacy, 'bool'
+        api.has_param :is_explicit_share, 'bool'
         api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
         api.has_param :asked_fun_fact_prompt_id, 'int'

@@ -529,8 +529,6 @@ module FacebookAds
         api.has_param :og_phrase, 'string'
         api.has_param :og_icon_id, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
-        api.has_param :manual_privacy, 'bool'
-        api.has_param :is_explicit_share, 'bool'
         api.has_param :thumb, 'file'
         api.has_param :spherical, 'bool'
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
@@ -543,6 +541,8 @@ module FacebookAds
         api.has_param :guide_enabled, 'bool'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :audio_story_wave_animation_handle, 'string'
+        api.has_param :manual_privacy, 'bool'
+        api.has_param :is_explicit_share, 'bool'
         api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
         api.has_param :asked_fun_fact_prompt_id, 'int'

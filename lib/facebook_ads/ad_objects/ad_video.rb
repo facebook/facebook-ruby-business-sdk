@@ -232,8 +232,6 @@ module FacebookAds
     field :og_phrase, 'string'
     field :og_icon_id, 'string'
     field :og_suggestion_mechanism, 'string'
-    field :manual_privacy, 'bool'
-    field :is_explicit_share, 'bool'
     field :thumb, 'file'
     field :original_projection_type, { enum: -> { ORIGINAL_PROJECTION_TYPE }}
     field :initial_heading, 'int'
@@ -289,6 +287,8 @@ module FacebookAds
     field :swap_mode, { enum: -> { SWAP_MODE }}
     field :name, 'string'
     field :chunk_session_id, 'string'
+    field :manual_privacy, 'bool'
+    field :is_explicit_share, 'bool'
 
     has_edge :auto_generated_captions do |edge|
       edge.get

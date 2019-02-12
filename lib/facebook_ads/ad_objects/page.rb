@@ -277,19 +277,6 @@ module FacebookAds
       "REMOVE",
     ]
 
-    SETTING_TYPE = [
-      "ACCOUNT_LINKING",
-      "CALL_TO_ACTIONS",
-      "GREETING",
-      "DOMAIN_WHITELISTING",
-      "PAYMENT",
-    ]
-
-    THREAD_STATE = [
-      "NEW_THREAD",
-      "EXISTING_THREAD",
-    ]
-
 
     field :about, 'string'
     field :access_token, 'string'
@@ -1521,13 +1508,13 @@ module FacebookAds
 
     has_edge :thread_settings do |edge|
       edge.delete do |api|
-        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
-        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
+        api.has_param :setting_type, { enum: %w{ACCOUNT_LINKING CALL_TO_ACTIONS GREETING DOMAIN_WHITELISTING PAYMENT }}
+        api.has_param :thread_state, { enum: %w{NEW_THREAD EXISTING_THREAD }}
       end
       edge.get 'ThreadSetting'
       edge.post 'Page' do |api|
-        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
-        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
+        api.has_param :setting_type, { enum: %w{ACCOUNT_LINKING CALL_TO_ACTIONS GREETING DOMAIN_WHITELISTING PAYMENT }}
+        api.has_param :thread_state, { enum: %w{NEW_THREAD EXISTING_THREAD }}
         api.has_param :call_to_actions, { list: 'object' }
         api.has_param :greeting, 'object'
         api.has_param :account_linking_url, 'string'
@@ -1624,8 +1611,6 @@ module FacebookAds
         api.has_param :og_phrase, 'string'
         api.has_param :og_icon_id, 'string'
         api.has_param :og_suggestion_mechanism, 'string'
-        api.has_param :manual_privacy, 'bool'
-        api.has_param :is_explicit_share, 'bool'
         api.has_param :thumb, 'file'
         api.has_param :spherical, 'bool'
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
@@ -1638,6 +1623,8 @@ module FacebookAds
         api.has_param :guide_enabled, 'bool'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :audio_story_wave_animation_handle, 'string'
+        api.has_param :manual_privacy, 'bool'
+        api.has_param :is_explicit_share, 'bool'
         api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
         api.has_param :asked_fun_fact_prompt_id, 'int'

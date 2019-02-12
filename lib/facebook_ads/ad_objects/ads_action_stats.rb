@@ -50,6 +50,8 @@ module FacebookAds
     field :action_video_sound, 'string'
     field :action_video_type, 'string'
     field :inline, 'string'
+    field :interactive_component_sticker_id, 'string'
+    field :interactive_component_sticker_response, 'string'
     field :value, 'string'
     field :id, 'string'
     has_no_get

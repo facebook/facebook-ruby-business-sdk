@@ -240,11 +240,11 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
       end
       edge.post 'AdSet' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
       end
     end
 
