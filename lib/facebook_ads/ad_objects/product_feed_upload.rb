@@ -28,8 +28,8 @@ module FacebookAds
   class ProductFeedUpload < AdObject
     INPUT_METHOD = [
       "Manual Upload",
-      "Server Fetch",
       "Reupload Last File",
+      "Server Fetch",
       "User initiated server fetch",
     ]
 

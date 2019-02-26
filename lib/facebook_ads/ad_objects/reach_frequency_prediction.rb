@@ -27,27 +27,27 @@ module FacebookAds
 
   class ReachFrequencyPrediction < AdObject
     ACTION = [
+      "cancel",
       "quote",
       "reserve",
-      "cancel",
     ]
 
     BUYING_TYPE = [
       "AUCTION",
-      "FIXED_CPM",
-      "RESERVED",
-      "REACHBLOCK",
       "DEPRECATED_REACH_BLOCK",
-      "RESEARCH_POLL",
+      "FIXED_CPM",
       "MIXED",
+      "REACHBLOCK",
+      "RESEARCH_POLL",
+      "RESERVED",
     ]
 
     INSTREAM_PACKAGES = [
+      "BEAUTY",
+      "ENTERTAINMENT",
+      "FOOD",
       "NORMAL",
       "PREMIUM",
-      "SPORTS",
-      "ENTERTAINMENT",
-      "BEAUTY",
       "REGULAR_ANIMALS_PETS",
       "REGULAR_FOOD",
       "REGULAR_GAMES",
@@ -55,14 +55,15 @@ module FacebookAds
       "REGULAR_SPORTS",
       "REGULAR_STYLE",
       "REGULAR_TV_MOVIES",
+      "SPORTS",
     ]
 
     STATUS = [
-      "EXPIRED",
-      "DRAFT",
-      "PENDING",
       "ACTIVE",
       "COMPLETED",
+      "DRAFT",
+      "EXPIRED",
+      "PENDING",
     ]
 
 

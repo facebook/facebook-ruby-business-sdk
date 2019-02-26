@@ -27,20 +27,20 @@ module FacebookAds
 
   class Photo < AdObject
     BACKDATED_TIME_GRANULARITY = [
-      "year",
-      "month",
       "day",
       "hour",
       "min",
+      "month",
       "none",
+      "year",
     ]
 
     UNPUBLISHED_CONTENT_TYPE = [
-      "SCHEDULED",
-      "DRAFT",
       "ADS_POST",
+      "DRAFT",
       "INLINE_CREATED",
       "PUBLISHED",
+      "SCHEDULED",
     ]
 
     TYPE = [
@@ -51,14 +51,14 @@ module FacebookAds
 
     CHECKIN_ENTRY_POINT = [
       "BRANDING_CHECKIN",
-      "BRANDING_STATUS",
-      "BRANDING_PHOTO",
       "BRANDING_OTHER",
+      "BRANDING_PHOTO",
+      "BRANDING_STATUS",
     ]
 
     FORMATTING = [
-      "PLAINTEXT",
       "MARKDOWN",
+      "PLAINTEXT",
     ]
 
     POST_SURFACES_BLACKLIST = [

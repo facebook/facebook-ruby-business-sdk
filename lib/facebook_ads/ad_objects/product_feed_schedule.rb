@@ -27,20 +27,20 @@ module FacebookAds
 
   class ProductFeedSchedule < AdObject
     DAY_OF_WEEK = [
-      "SUNDAY",
+      "FRIDAY",
       "MONDAY",
+      "SATURDAY",
+      "SUNDAY",
+      "THURSDAY",
       "TUESDAY",
       "WEDNESDAY",
-      "THURSDAY",
-      "FRIDAY",
-      "SATURDAY",
     ]
 
     INTERVAL = [
-      "HOURLY",
       "DAILY",
-      "WEEKLY",
+      "HOURLY",
       "MONTHLY",
+      "WEEKLY",
     ]
 
 

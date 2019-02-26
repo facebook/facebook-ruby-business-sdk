@@ -27,9 +27,9 @@ module FacebookAds
 
   class Business < AdObject
     TWO_FACTOR_TYPE = [
-      "none",
       "admin_required",
       "all_required",
+      "none",
     ]
 
     VERTICAL = [
@@ -43,52 +43,123 @@ module FacebookAds
       "FINANCIAL_SERVICES",
       "GAMING",
       "GOVERNMENT_AND_POLITICS",
+      "HEALTH",
+      "LUXURY",
       "MARKETING",
+      "NON_PROFIT",
       "ORGANIZATIONS_AND_ASSOCIATIONS",
+      "OTHER",
       "PROFESSIONAL_SERVICES",
+      "RESTAURANT",
       "RETAIL",
       "TECHNOLOGY",
       "TELECOM",
       "TRAVEL",
-      "NON_PROFIT",
-      "RESTAURANT",
-      "HEALTH",
-      "LUXURY",
-      "OTHER",
+    ]
+
+    AGGREGATION_PERIOD = [
+      "DAY",
+      "HOUR",
+      "TOTAL",
+    ]
+
+    BREAKDOWNS = [
+      "AGE",
+      "APP",
+      "CLICKED_VIEW_TAG",
+      "COUNTRY",
+      "DEAL",
+      "DEAL_AD",
+      "DEAL_PAGE",
+      "DELIVERY_METHOD",
+      "DISPLAY_FORMAT",
+      "FAIL_REASON",
+      "GENDER",
+      "PLACEMENT",
+      "PLATFORM",
+      "PROPERTY",
+      "SDK_VERSION",
+    ]
+
+    METRICS = [
+      "FB_AD_NETWORK_BIDDING_BID_RATE",
+      "FB_AD_NETWORK_BIDDING_REQUEST",
+      "FB_AD_NETWORK_BIDDING_RESPONSE",
+      "FB_AD_NETWORK_BIDDING_REVENUE",
+      "FB_AD_NETWORK_BIDDING_WIN_RATE",
+      "FB_AD_NETWORK_CLICK",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE_DENOMINATOR",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE_NUMERATOR",
+      "FB_AD_NETWORK_CPM",
+      "FB_AD_NETWORK_CTR",
+      "FB_AD_NETWORK_DIRECT_PUBLISHER_BILL",
+      "FB_AD_NETWORK_DIRECT_TOTAL_REVENUE",
+      "FB_AD_NETWORK_FAST_CLICK_DENOMINATOR",
+      "FB_AD_NETWORK_FAST_CLICK_NUMERATOR",
+      "FB_AD_NETWORK_FAST_CLICK_RATE",
+      "FB_AD_NETWORK_FAST_RETURN_DENOMINATOR",
+      "FB_AD_NETWORK_FAST_RETURN_NUMERATOR",
+      "FB_AD_NETWORK_FAST_RETURN_RATE",
+      "FB_AD_NETWORK_FILLED_REQUEST",
+      "FB_AD_NETWORK_FILL_RATE",
+      "FB_AD_NETWORK_IMP",
+      "FB_AD_NETWORK_NO_BID",
+      "FB_AD_NETWORK_NO_FILL",
+      "FB_AD_NETWORK_REQUEST",
+      "FB_AD_NETWORK_REVENUE",
+      "FB_AD_NETWORK_SHOW_RATE",
+      "FB_AD_NETWORK_VIDEO_GUARANTEE_REVENUE",
+      "FB_AD_NETWORK_VIDEO_MRC",
+      "FB_AD_NETWORK_VIDEO_MRC_RATE",
+      "FB_AD_NETWORK_VIDEO_VIEW",
+      "FB_AD_NETWORK_VIDEO_VIEW_RATE",
+      "FB_AD_NETWORK_WIN_RATE",
+    ]
+
+    ORDERING_COLUMN = [
+      "METRIC",
+      "TIME",
+      "VALUE",
+    ]
+
+    ORDERING_TYPE = [
+      "ASCENDING",
+      "DESCENDING",
     ]
 
     ACCESS_TYPE = [
-      "OWNER",
       "AGENCY",
+      "OWNER",
     ]
 
     PERMITTED_TASKS = [
-      "MANAGE",
       "ADVERTISE",
       "ANALYZE",
+      "MANAGE",
     ]
 
     SURVEY_BUSINESS_TYPE = [
-      "AGENCY",
       "ADVERTISER",
+      "AGENCY",
       "APP_DEVELOPER",
       "PUBLISHER",
     ]
 
     PAGE_PERMITTED_ROLES = [
-      "MANAGER",
-      "CONTENT_CREATOR",
-      "MODERATOR",
       "ADVERTISER",
+      "CONTENT_CREATOR",
       "INSIGHTS_ANALYST",
+      "MANAGER",
+      "MODERATOR",
     ]
 
     ROLE = [
-      "FINANCE_EDITOR",
-      "FINANCE_ANALYST",
-      "ADS_RIGHTS_REVIEWER",
       "ADMIN",
+      "ADS_RIGHTS_REVIEWER",
       "EMPLOYEE",
+      "FINANCE_ANALYST",
+      "FINANCE_EDITOR",
     ]
 
 
@@ -161,6 +232,7 @@ module FacebookAds
     has_edge :adaccountcreationrequests do |edge|
       edge.get 'AdAccountCreationRequest' do |api|
         api.has_param :status, { list: { enum: -> { AdAccountCreationRequest::STATUS }} }
+        api.has_param :ad_account_creation_request_id, 'string'
       end
       edge.post 'AdAccountCreationRequest' do |api|
         api.has_param :extended_credit_id, 'string'
@@ -197,24 +269,24 @@ module FacebookAds
 
     has_edge :adnetworkanalytics do |edge|
       edge.get 'AdNetworkAnalyticsSyncQueryResult' do |api|
-        api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
-        api.has_param :breakdowns, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::BREAKDOWNS }} }
+        api.has_param :aggregation_period, { enum: -> { Business::AGGREGATION_PERIOD }}
+        api.has_param :breakdowns, { list: { enum: -> { Business::BREAKDOWNS }} }
         api.has_param :filters, { list: 'hash' }
         api.has_param :limit, 'int'
-        api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
-        api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
-        api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
+        api.has_param :metrics, { list: { enum: -> { Business::METRICS }} }
+        api.has_param :ordering_column, { enum: -> { Business::ORDERING_COLUMN }}
+        api.has_param :ordering_type, { enum: -> { Business::ORDERING_TYPE }}
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end
       edge.post 'Business' do |api|
-        api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
-        api.has_param :breakdowns, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::BREAKDOWNS }} }
-        api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
+        api.has_param :aggregation_period, { enum: -> { Business::AGGREGATION_PERIOD }}
+        api.has_param :breakdowns, { list: { enum: -> { Business::BREAKDOWNS }} }
+        api.has_param :metrics, { list: { enum: -> { Business::METRICS }} }
         api.has_param :filters, { list: 'object' }
         api.has_param :limit, 'int'
-        api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
-        api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
+        api.has_param :ordering_column, { enum: -> { Business::ORDERING_COLUMN }}
+        api.has_param :ordering_type, { enum: -> { Business::ORDERING_TYPE }}
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end
@@ -674,7 +746,13 @@ module FacebookAds
     has_edge :upload_event do |edge|
       edge.get 'MeasurementUploadEvent'
       edge.post 'MeasurementUploadEvent' do |api|
+        api.has_param :aggregation_level, { enum: -> { MeasurementUploadEvent::AGGREGATION_LEVEL }}
+        api.has_param :conversion_end_date, 'string'
+        api.has_param :conversion_start_date, 'string'
+        api.has_param :event_status, { enum: -> { MeasurementUploadEvent::EVENT_STATUS }}
         api.has_param :group, { enum: -> { MeasurementUploadEvent::GROUP }}
+        api.has_param :lookback_window, { enum: -> { MeasurementUploadEvent::LOOKBACK_WINDOW }}
+        api.has_param :match_universe, { enum: -> { MeasurementUploadEvent::MATCH_UNIVERSE }}
         api.has_param :upload_end_time, 'datetime'
         api.has_param :upload_start_time, 'datetime'
         api.has_param :upload_tag, 'string'

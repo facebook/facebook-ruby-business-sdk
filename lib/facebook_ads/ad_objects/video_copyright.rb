@@ -33,9 +33,9 @@ module FacebookAds
     ]
 
     MONITORING_TYPE = [
+      "AUDIO_ONLY",
       "VIDEO_AND_AUDIO",
       "VIDEO_ONLY",
-      "AUDIO_ONLY",
     ]
 
 

@@ -32,6 +32,8 @@ module FacebookAds
     field :handle, 'string'
     field :invalid_item_ids, { list: 'string' }
     field :status, 'string'
+    field :warnings, { list: 'object' }
+    field :warnings_total_count, 'int'
     field :id, 'string'
     has_no_get
     has_no_post

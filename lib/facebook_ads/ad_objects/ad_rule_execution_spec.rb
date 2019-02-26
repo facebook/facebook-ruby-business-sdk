@@ -27,12 +27,12 @@ module FacebookAds
 
   class AdRuleExecutionSpec < AdObject
     EXECUTION_TYPE = [
-      "PING_ENDPOINT",
+      "CHANGE_BID",
+      "CHANGE_BUDGET",
       "NOTIFICATION",
       "PAUSE",
+      "PING_ENDPOINT",
       "REBALANCE_BUDGET",
-      "CHANGE_BUDGET",
-      "CHANGE_BID",
       "ROTATE",
       "UNPAUSE",
     ]

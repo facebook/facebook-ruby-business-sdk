@@ -27,8 +27,8 @@ module FacebookAds
 
   class AudioCopyright < AdObject
     UPDATE_SOURCE = [
-      "edit_reference_dialog",
       "ddex",
+      "edit_reference_dialog",
       "reference_conflict_dialog",
     ]
 

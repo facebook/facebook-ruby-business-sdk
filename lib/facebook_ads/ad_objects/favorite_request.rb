@@ -27,9 +27,9 @@ module FacebookAds
 
   class FavoriteRequest < AdObject
     HTTP_METHOD = [
+      "DELETE",
       "GET",
       "POST",
-      "DELETE",
     ]
 
     API_VERSION = [
@@ -37,6 +37,9 @@ module FacebookAds
       "v1.0",
       "v2.0",
       "v2.1",
+      "v2.10",
+      "v2.11",
+      "v2.12",
       "v2.2",
       "v2.3",
       "v2.4",
@@ -45,9 +48,6 @@ module FacebookAds
       "v2.7",
       "v2.8",
       "v2.9",
-      "v2.10",
-      "v2.11",
-      "v2.12",
       "v3.0",
       "v3.1",
       "v3.2",

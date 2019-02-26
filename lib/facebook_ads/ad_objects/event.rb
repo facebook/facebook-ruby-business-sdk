@@ -27,15 +27,15 @@ module FacebookAds
 
   class Event < AdObject
     TYPE = [
+      "community",
+      "group",
       "private",
       "public",
-      "group",
-      "community",
     ]
 
     PROJECTION = [
-      "EQUIRECTANGULAR",
       "CUBEMAP",
+      "EQUIRECTANGULAR",
       "HALF_EQUIRECTANGULAR",
     ]
 
@@ -44,34 +44,34 @@ module FacebookAds
     ]
 
     STATUS = [
-      "UNPUBLISHED",
       "LIVE_NOW",
-      "SCHEDULED_UNPUBLISHED",
-      "SCHEDULED_LIVE",
       "SCHEDULED_CANCELED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_UNPUBLISHED",
+      "UNPUBLISHED",
     ]
 
     STEREOSCOPIC_MODE = [
-      "MONO",
       "LEFT_RIGHT",
+      "MONO",
       "TOP_BOTTOM",
     ]
 
     STREAM_TYPE = [
-      "REGULAR",
       "AMBIENT",
+      "REGULAR",
     ]
 
     EVENT_STATE_FILTER = [
       "canceled",
       "draft",
-      "scheduled_draft_for_publication",
       "published",
+      "scheduled_draft_for_publication",
     ]
 
     TIME_FILTER = [
-      "upcoming",
       "past",
+      "upcoming",
     ]
 
     PROMOTABLE_EVENT_TYPES = [
@@ -203,10 +203,10 @@ module FacebookAds
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :og_hide_object_attachment, 'bool'
         api.has_param :backdated_time, 'datetime'
-        api.has_param :backdated_time_granularity, { enum: %w{year month day hour min none }}
+        api.has_param :backdated_time_granularity, { enum: %w{day hour min month none year }}
         api.has_param :published, 'bool'
         api.has_param :scheduled_publish_time, 'datetime'
-        api.has_param :unpublished_content_type, { enum: %w{SCHEDULED DRAFT ADS_POST INLINE_CREATED PUBLISHED }}
+        api.has_param :unpublished_content_type, { enum: %w{ADS_POST DRAFT INLINE_CREATED PUBLISHED SCHEDULED }}
         api.has_param :application_id, 'string'
         api.has_param :proxied_app_id, 'string'
         api.has_param :ios_bundle_id, 'string'
@@ -232,9 +232,9 @@ module FacebookAds
         api.has_param :text_only_place, 'string'
         api.has_param :connection_class, 'string'
         api.has_param :associated_id, 'string'
-        api.has_param :posting_to_redspace, { enum: %w{enabled disabled }}
+        api.has_param :posting_to_redspace, { enum: %w{disabled enabled }}
         api.has_param :place_attachment_setting, { enum: %w{1 2 }}
-        api.has_param :checkin_entry_point, { enum: %w{BRANDING_CHECKIN BRANDING_STATUS BRANDING_PHOTO BRANDING_OTHER }}
+        api.has_param :checkin_entry_point, { enum: %w{BRANDING_CHECKIN BRANDING_OTHER BRANDING_PHOTO BRANDING_STATUS }}
         api.has_param :is_backout_draft, 'bool'
         api.has_param :sponsor_id, 'string'
         api.has_param :direct_share_status, 'int'
@@ -248,7 +248,7 @@ module FacebookAds
         api.has_param :cta_link, 'string'
         api.has_param :cta_type, 'string'
         api.has_param :place_list_data, { list: 'string' }
-        api.has_param :formatting, { enum: %w{PLAINTEXT MARKDOWN }}
+        api.has_param :formatting, { enum: %w{MARKDOWN PLAINTEXT }}
         api.has_param :target_surface, { enum: %w{STORY TIMELINE }}
         api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
@@ -260,7 +260,7 @@ module FacebookAds
         api.has_param :composer_session_events_log, 'string'
         api.has_param :composer_source_surface, 'string'
         api.has_param :composer_type, 'string'
-        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :is_group_linking_post, 'bool'
         api.has_param :has_nickname, 'bool'
@@ -269,7 +269,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :message, 'string'
-        api.has_param :offer_like_post_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
         api.has_param :page_recommendation, 'string'
         api.has_param :place_list, 'string'
         api.has_param :publish_event_id, 'int'
@@ -441,7 +441,7 @@ module FacebookAds
         api.has_param :composer_source_surface, 'string'
         api.has_param :composer_type, 'string'
         api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
-        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :is_group_linking_post, 'bool'
         api.has_param :has_nickname, 'bool'
@@ -450,7 +450,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :description, 'string'
-        api.has_param :offer_like_post_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
         api.has_param :publish_event_id, 'int'
         api.has_param :react_mode_metadata, 'string'
         api.has_param :sales_promo_id, 'int'

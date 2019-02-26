@@ -27,95 +27,94 @@ module FacebookAds
 
   class AdVideo < AdObject
     CONTAINER_TYPE = [
-      "LEGACY",
-      "CONTAINED_POST_ATTACHMENT",
-      "SAY_THANKS_DEPRECATED",
-      "LOOK_NOW_DEPRECATED",
-      "BROADCAST",
+      "AD_BREAK_PREVIEW",
+      "AD_DERIVATIVE",
+      "AGE_UP",
       "ALBUM_MULTIMEDIA_POST",
-      "UNLISTED",
-      "NO_STORY",
-      "GOODWILL_ANNIVERSARY_DEPRECATED",
-      "PROFILE_VIDEO",
+      "ALOHA_CALL_VIDEO",
+      "ALOHA_SUPERFRAME",
+      "APP_REVIEW_SCREENCAST",
+      "ATLAS_VIDEO",
+      "AUDIO_BROADCAST",
+      "BELL_POLL",
+      "BRAND_EQUITY_POLL_VIDEO",
+      "BROADCAST",
+      "CANDIDATE_VIDEOS",
+      "CANVAS",
+      "CIVIC_PROPOSAL_COVER_VIDEO",
+      "CONTAINED_POST_ATTACHMENT",
+      "CONTAINED_POST_AUDIO_BROADCAST",
+      "CONTAINED_POST_BROADCAST",
+      "COPYRIGHT_REFERENCE_BROADCAST",
+      "COPYRIGHT_REFERENCE_VIDEO",
+      "CULTURAL_MOMENT_DEPRECATED",
+      "DCO_AD_ASSET_FEED",
+      "DCO_AUTOGEN_VIDEO",
+      "DIRECTED_POST_ATTACHMENT",
       "DIRECT_INBOX",
       "DIRECT_INBOX_REACTION",
-      "STORYLINE",
-      "GROUP_POST",
-      "ATLAS_VIDEO",
-      "LIVE_PHOTO",
-      "TEMP_MULTIMEDIA_POST",
-      "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
-      "GOODWILL_VIDEO_SHARE",
-      "GOODWILL_VIDEO_PROMOTION",
-      "COPYRIGHT_REFERENCE_VIDEO",
-      "CANVAS",
-      "MOMENTS_VIDEO",
-      "APP_REVIEW_SCREENCAST",
-      "VIDEO_COMMENT",
-      "COPYRIGHT_REFERENCE_BROADCAST",
-      "OFFERS_VIDEO",
-      "JOB_APPLICATION_VIDEO",
-      "STORYLINE_WITH_EXTERNAL_MUSIC",
-      "JOB_OPENING_VIDEO",
-      "PAGE_SLIDESHOW_VIDEO",
-      "INSTANT_ARTICLE",
-      "PRODUCT_VIDEO",
-      "DIRECTED_POST_ATTACHMENT",
-      "PROFILE_INTRO_CARD",
-      "ISSUE_MODULE",
-      "GOODWILL_VIDEO_TOKEN_REQUIRED",
-      "INSTANT_APPLICATION_PREVIEW",
-      "REPLACE_VIDEO",
-      "FACECAST_DVR",
-      "PIXELCLOUD",
-      "SLIDESHOW_SHAKR",
-      "INSPIRATION_VIDEO",
-      "TAROT_DIGEST",
-      "SLIDESHOW_ANIMOTO",
-      "AUDIO_BROADCAST",
-      "LEARN",
-      "CULTURAL_MOMENT_DEPRECATED",
-      "YOUR_DAY",
-      "PAGES_COVER_VIDEO",
-      "GOODWILL_VIDEO_CONTAINED_SHARE",
-      "DCO_AD_ASSET_FEED",
-      "CONTAINED_POST_BROADCAST",
-      "QUICK_PROMOTION",
       "DYNAMIC_ITEM_DISPLAY_BUNDLE",
-      "EVENT_TOUR",
-      "EVENT_COVER_VIDEO",
-      "AD_DERIVATIVE",
-      "CONTAINED_POST_AUDIO_BROADCAST",
-      "LIVE_CREATIVE_KIT_VIDEO",
-      "ALOHA_SUPERFRAME",
-      "INSTAGRAM_VIDEO_COPY",
-      "AD_BREAK_PREVIEW",
-      "ALOHA_CALL_VIDEO",
-      "STORY_ARCHIVE_VIDEO",
-      "BRAND_EQUITY_POLL_VIDEO",
-      "PROFILE_COVER_VIDEO",
       "DYNAMIC_ITEM_VIDEO",
-      "PAGE_REVIEW_SCREENCAST",
-      "HEURISTIC_PREVIEW",
+      "DYNAMIC_TEMPLATE_VIDEO",
+      "EVENT_COVER_VIDEO",
+      "EVENT_TOUR",
+      "FACECAST_DVR",
+      "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
-      "WOODHENGE",
+      "GOODWILL_ANNIVERSARY_DEPRECATED",
+      "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
+      "GOODWILL_VIDEO_CONTAINED_SHARE",
+      "GOODWILL_VIDEO_PROMOTION",
+      "GOODWILL_VIDEO_SHARE",
+      "GOODWILL_VIDEO_TOKEN_REQUIRED",
+      "GROUP_POST",
+      "HEURISTIC_CLUSTER_VIDEO",
+      "HEURISTIC_PREVIEW",
+      "INSPIRATION_VIDEO",
+      "INSTAGRAM_VIDEO_COPY",
+      "INSTANT_APPLICATION_PREVIEW",
+      "INSTANT_ARTICLE",
+      "INSTANT_GAME_CLIP",
+      "ISSUE_MODULE",
+      "JOB_APPLICATION_VIDEO",
+      "JOB_OPENING_VIDEO",
+      "KOTOTORO",
+      "LEARN",
+      "LEGACY",
+      "LIVE_CREATIVE_KIT_VIDEO",
+      "LIVE_PHOTO",
+      "LOOK_NOW_DEPRECATED",
+      "MOMENTS_VIDEO",
+      "NO_STORY",
+      "OCULUS_VENUES_BROADCAST",
+      "OFFERS_VIDEO",
+      "PAGES_COVER_VIDEO",
+      "PAGE_REVIEW_SCREENCAST",
+      "PAGE_SLIDESHOW_VIDEO",
+      "PIXELCLOUD",
       "PREMIERE_SOURCE",
       "PRIVATE_GALLERY_VIDEO",
-      "FISTBUMP",
+      "PRODUCT_VIDEO",
+      "PROFILE_COVER_VIDEO",
+      "PROFILE_INTRO_CARD",
       "PROFILE_TO_PAGE_UPLOADED_VIDEO",
-      "KOTOTORO",
-      "DYNAMIC_TEMPLATE_VIDEO",
-      "INSTANT_GAME_CLIP",
-      "CANDIDATE_VIDEOS",
-      "FUNDRAISER_COVER_VIDEO",
+      "PROFILE_VIDEO",
       "PROTON",
-      "BELL_POLL",
-      "CIVIC_PROPOSAL_COVER_VIDEO",
-      "HEURISTIC_CLUSTER_VIDEO",
-      "DCO_AUTOGEN_VIDEO",
+      "QUICK_PROMOTION",
+      "REPLACE_VIDEO",
+      "SAY_THANKS_DEPRECATED",
+      "SLIDESHOW_ANIMOTO",
+      "SLIDESHOW_SHAKR",
       "SOTTO_CONTENT",
-      "OCULUS_VENUES_BROADCAST",
-      "AGE_UP",
+      "STORYLINE",
+      "STORYLINE_WITH_EXTERNAL_MUSIC",
+      "STORY_ARCHIVE_VIDEO",
+      "TAROT_DIGEST",
+      "TEMP_MULTIMEDIA_POST",
+      "UNLISTED",
+      "VIDEO_COMMENT",
+      "WOODHENGE",
+      "YOUR_DAY",
     ]
 
     CONTENT_CATEGORY = [
@@ -131,23 +130,23 @@ module FacebookAds
       "LIFESTYLE",
       "MUSIC",
       "NEWS",
+      "OTHER",
       "POLITICS",
       "SCIENCE",
       "SPORTS",
       "TECHNOLOGY",
       "VIDEO_GAMING",
-      "OTHER",
     ]
 
     FORMATTING = [
-      "PLAINTEXT",
       "MARKDOWN",
+      "PLAINTEXT",
     ]
 
     ORIGINAL_PROJECTION_TYPE = [
-      "equirectangular",
       "cubemap",
       "equiangular_cubemap",
+      "equirectangular",
       "half_equirectangular",
     ]
 
@@ -156,18 +155,18 @@ module FacebookAds
     ]
 
     UNPUBLISHED_CONTENT_TYPE = [
-      "SCHEDULED",
-      "DRAFT",
       "ADS_POST",
+      "DRAFT",
       "INLINE_CREATED",
       "PUBLISHED",
+      "SCHEDULED",
     ]
 
     UPLOAD_PHASE = [
+      "cancel",
+      "finish",
       "start",
       "transfer",
-      "finish",
-      "cancel",
     ]
 
     TYPE = [
@@ -176,12 +175,12 @@ module FacebookAds
     ]
 
     BACKDATED_TIME_GRANULARITY = [
-      "year",
-      "month",
       "day",
       "hour",
       "min",
+      "month",
       "none",
+      "year",
     ]
 
 
@@ -253,7 +252,7 @@ module FacebookAds
     field :composer_source_surface, 'string'
     field :composer_type, 'string'
     field :formatting, { enum: -> { FORMATTING }}
-    field :fun_fact_prompt_id, 'string'
+    field :fun_fact_prompt_id, 'int'
     field :fun_fact_toastee_id, 'int'
     field :is_group_linking_post, 'bool'
     field :has_nickname, 'bool'
@@ -261,7 +260,7 @@ module FacebookAds
     field :instant_game_entry_point_data, 'string'
     field :is_boost_intended, 'bool'
     field :location_source_id, 'string'
-    field :offer_like_post_id, 'string'
+    field :offer_like_post_id, 'int'
     field :publish_event_id, 'int'
     field :react_mode_metadata, 'string'
     field :sales_promo_id, 'int'

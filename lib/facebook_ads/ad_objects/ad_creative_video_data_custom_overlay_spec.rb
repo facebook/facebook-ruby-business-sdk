@@ -27,30 +27,30 @@ module FacebookAds
 
   class AdCreativeVideoDataCustomOverlaySpec < AdObject
     BACKGROUND_OPACITY = [
-      "solid",
       "half",
+      "solid",
     ]
 
     OPTION = [
       "bank_transfer",
       "boleto",
-      "discount_with_boleto",
       "cash_on_delivery",
-      "home_delivery",
-      "free_shipping",
-      "inventory",
-      "pay_on_arrival",
-      "pay_at_hotel",
+      "discount_with_boleto",
       "fast_delivery",
+      "free_shipping",
+      "home_delivery",
+      "inventory",
+      "pay_at_hotel",
+      "pay_on_arrival",
     ]
 
     POSITION = [
-      "top_left",
-      "top_center",
-      "top_right",
-      "middle_left",
       "middle_center",
+      "middle_left",
       "middle_right",
+      "top_center",
+      "top_left",
+      "top_right",
     ]
 
     TEMPLATE = [

@@ -27,23 +27,23 @@ module FacebookAds
 
   class InstantArticleInsightsQueryResult < AdObject
     BREAKDOWN = [
-      "no_breakdown",
-      "platform",
       "age",
-      "region",
       "country",
-      "is_shared_by_ia_owner",
       "gender",
       "gender_and_age",
       "is_organic",
+      "is_shared_by_ia_owner",
+      "no_breakdown",
+      "platform",
+      "region",
     ]
 
     PERIOD = [
       "day",
-      "week",
       "days_28",
-      "month",
       "lifetime",
+      "month",
+      "week",
     ]
 
 

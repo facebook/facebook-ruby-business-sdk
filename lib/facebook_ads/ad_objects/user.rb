@@ -27,23 +27,23 @@ module FacebookAds
 
   class User < AdObject
     TASKS = [
-      "MANAGE",
-      "CREATE_CONTENT",
-      "MODERATE",
-      "MODERATE_COMMUNITY",
-      "MANAGE_JOBS",
       "ADVERTISE",
       "ANALYZE",
+      "CREATE_CONTENT",
+      "MANAGE",
+      "MANAGE_JOBS",
+      "MODERATE",
+      "MODERATE_COMMUNITY",
     ]
 
     LOCAL_NEWS_MEGAPHONE_DISMISS_STATUS = [
-      "YES",
       "NO",
+      "YES",
     ]
 
     LOCAL_NEWS_SUBSCRIPTION_STATUS = [
-      "STATUS_ON",
       "STATUS_OFF",
+      "STATUS_ON",
     ]
 
     RESUME_TYPE = [
@@ -52,64 +52,64 @@ module FacebookAds
     ]
 
     FILTERING = [
+      "ema",
       "groups",
       "groups_social",
-      "ema",
     ]
 
     TYPE = [
-      "generic",
       "content_update",
+      "generic",
     ]
 
     SERVICE_TYPE = [
       "AIM",
-      "GADU",
-      "ICQ",
-      "GTALK",
-      "MSN",
-      "SKYPE",
-      "YAHOO",
-      "YAHOO_JP",
-      "QQ",
-      "NATEON",
-      "TWITTER",
-      "HYVES",
-      "ORKUT",
-      "MYSPACE",
-      "GROUPWISE",
-      "CYWORLD",
-      "MIXI",
-      "QIP",
-      "REDIFF_BOL",
-      "VKONTAKTE",
-      "EBUDDY",
-      "MAILRU",
-      "JABBER",
-      "ICLOUD",
+      "ASK_FM",
       "BBM",
       "BBM_PPID",
-      "INSTAGRAM",
-      "LINE",
-      "WECHAT",
-      "KAKAOTALK",
-      "OTHERS",
-      "SNAPCHAT",
-      "TUMBLR",
-      "SOUND_CLOUD",
-      "LINKED_IN",
-      "PINTEREST",
-      "YOU_TUBE",
-      "MEDIUM",
+      "CYWORLD",
+      "EBUDDY",
       "FOURSQUARE",
-      "SPOTIFY",
-      "VIMEO",
-      "KIK",
-      "ASK_FM",
-      "OK",
+      "GADU",
       "GITHUB",
+      "GROUPWISE",
+      "GTALK",
+      "HYVES",
+      "ICLOUD",
+      "ICQ",
+      "INSTAGRAM",
+      "JABBER",
+      "KAKAOTALK",
+      "KIK",
+      "LINE",
+      "LINKED_IN",
+      "MAILRU",
+      "MEDIUM",
+      "MIXI",
+      "MSN",
+      "MYSPACE",
+      "NATEON",
+      "OK",
+      "ORKUT",
+      "OTHERS",
+      "PINTEREST",
+      "QIP",
+      "QQ",
+      "REDIFF_BOL",
+      "SKYPE",
+      "SNAPCHAT",
+      "SOUND_CLOUD",
+      "SPOTIFY",
+      "TUMBLR",
       "TWITCH",
+      "TWITTER",
+      "VIMEO",
+      "VKONTAKTE",
+      "WECHAT",
       "WHATSAPP",
+      "YAHOO",
+      "YAHOO_JP",
+      "YOU_TUBE",
     ]
 
 
@@ -350,7 +350,7 @@ module FacebookAds
 
     has_edge :bulkcontacts do |edge|
       edge.delete do |api|
-        api.has_param :contact_surface, { enum: %w{ORIGINAL MESSENGER CONNECTIONS GROWTH_CONTACT_IMPORTER CONTACTSAPP }}
+        api.has_param :contact_surface, { enum: %w{CONNECTIONS CONTACTSAPP GROWTH_CONTACT_IMPORTER MESSENGER ORIGINAL }}
       end
     end
 
@@ -449,10 +449,10 @@ module FacebookAds
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :og_hide_object_attachment, 'bool'
         api.has_param :backdated_time, 'datetime'
-        api.has_param :backdated_time_granularity, { enum: %w{year month day hour min none }}
+        api.has_param :backdated_time_granularity, { enum: %w{day hour min month none year }}
         api.has_param :published, 'bool'
         api.has_param :scheduled_publish_time, 'datetime'
-        api.has_param :unpublished_content_type, { enum: %w{SCHEDULED DRAFT ADS_POST INLINE_CREATED PUBLISHED }}
+        api.has_param :unpublished_content_type, { enum: %w{ADS_POST DRAFT INLINE_CREATED PUBLISHED SCHEDULED }}
         api.has_param :application_id, 'string'
         api.has_param :proxied_app_id, 'string'
         api.has_param :ios_bundle_id, 'string'
@@ -478,9 +478,9 @@ module FacebookAds
         api.has_param :text_only_place, 'string'
         api.has_param :connection_class, 'string'
         api.has_param :associated_id, 'string'
-        api.has_param :posting_to_redspace, { enum: %w{enabled disabled }}
+        api.has_param :posting_to_redspace, { enum: %w{disabled enabled }}
         api.has_param :place_attachment_setting, { enum: %w{1 2 }}
-        api.has_param :checkin_entry_point, { enum: %w{BRANDING_CHECKIN BRANDING_STATUS BRANDING_PHOTO BRANDING_OTHER }}
+        api.has_param :checkin_entry_point, { enum: %w{BRANDING_CHECKIN BRANDING_OTHER BRANDING_PHOTO BRANDING_STATUS }}
         api.has_param :is_backout_draft, 'bool'
         api.has_param :sponsor_id, 'string'
         api.has_param :direct_share_status, 'int'
@@ -494,7 +494,7 @@ module FacebookAds
         api.has_param :cta_link, 'string'
         api.has_param :cta_type, 'string'
         api.has_param :place_list_data, { list: 'string' }
-        api.has_param :formatting, { enum: %w{PLAINTEXT MARKDOWN }}
+        api.has_param :formatting, { enum: %w{MARKDOWN PLAINTEXT }}
         api.has_param :target_surface, { enum: %w{STORY TIMELINE }}
         api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
@@ -506,7 +506,7 @@ module FacebookAds
         api.has_param :composer_session_events_log, 'string'
         api.has_param :composer_source_surface, 'string'
         api.has_param :composer_type, 'string'
-        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :is_group_linking_post, 'bool'
         api.has_param :has_nickname, 'bool'
@@ -515,7 +515,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :message, 'string'
-        api.has_param :offer_like_post_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
         api.has_param :page_recommendation, 'string'
         api.has_param :place_list, 'string'
         api.has_param :publish_event_id, 'int'
@@ -539,7 +539,7 @@ module FacebookAds
 
     has_edge :game_items do |edge|
       edge.post do |api|
-        api.has_param :action, { enum: %w{MARK CONSUME DROP }}
+        api.has_param :action, { enum: %w{CONSUME DROP MARK }}
         api.has_param :item_id, 'string'
         api.has_param :drop_table_id, 'string'
         api.has_param :ext_id, 'string'
@@ -550,7 +550,7 @@ module FacebookAds
 
     has_edge :game_times do |edge|
       edge.post do |api|
-        api.has_param :action, { enum: %w{START HEARTBEAT END }}
+        api.has_param :action, { enum: %w{END HEARTBEAT START }}
       end
     end
 
@@ -853,23 +853,6 @@ module FacebookAds
       end
     end
 
-    has_edge :payment_account_emails do |edge|
-      edge.post do |api|
-        api.has_param :user_input_email, 'string'
-        api.has_param :default, 'bool'
-        api.has_param :payment_type, { enum: %w{PAYMENT_SETTINGS IG_PAYMENT_SETTINGS UNKNOWN MP_PAYMENT_SETTINGS IAP_INSTANT_GAME IAP_FAN_FUNDING IAP_GROUP_SUBSCRIPTION IAP_SOTTO FB_BROWSER_PAYMENT MOR_NONE MOR_ADS_CONSENT MOR_ADS_INVOICE MOR_DONATIONS MOR_DONATIONS_MATCHING_CONFIRMATION MOR_DONATIONS_MATCHING_PLEDGE MOR_OCULUS_CV1 MOR_OCULUS_LAUNCH_V1 MOR_OCULUS_LAUNCH_V2 MOR_OZONE MOR_OPEN_GRAPH_PRODUCT MOR_MESSENGER_COMMERCE MOR_P2P_TRANSFER MOR_DUMMY_FIRST_PARTY MOR_DUMMY_THIRD_PARTY MOR_GIFTS MOR_BILL MOR_AIRMAIL MOR_EVENT_TICKETING MOR_PAYMENT_LITE MOR_MESSENGER_API_FEE MOR_WORKPLACE_USAGE MOR_FACEBOOK_SHOP MOR_FAN_FUNDING MOR_GAME_TIPPING_TOKEN MOR_INSTANT_GAMES MOR_BLUEBIRD MOR_GROUP_SUBSCRIPTION MOR_SOTTO NMOR_UNKNOWN NMOR_NONE NMOR_PAGES_COMMERCE NMOR_COMPONENT_FLOW NMOR_BUSINESS_PLATFORM_COMMERCE NMOR_SYNCHRONOUS_COMPONENT_FLOW NMOR_EVENT_TICKETING NMOR_PLATFORM_SELF_SERVE NMOR_MESSENGER_PLATFORM NMOR_MESSENGER_OMNIM NMOR_TIP_JAR NMOR_INSTANT_EXPERIENCES NMOR_CHECKOUT_EXPERIENCES NMOR_C2C_CHECKOUT_EXPERIENCES NMOR_BUY_ON_FACEBOOK NMOR_DONATION_P4P NMOR_WHATSAPP_P2P NMOR_P2P NMOR_MOBILE_TOP_UP NMOR_MFS NMOR_SHIPPING_LABEL NMOR_MARKETPLACE_DROPOFF NMOR_PAGES_SOLUTION NMOR_BLACKBAUD_RWR_DONATION NMOR_MARKETPLACE_SHIPPING NMOR_DUMMY NMOR_PPGF_DONATION NMOR_ADVERTISER_SUBSCRIPTION NMOR_WHATSAPP_P2M NMOR_MOVIE_TICKETING IG_NMOR_P2B IG_NMOR_SHOPPING IG_MOR_DONATIONS NMOR_INSTAGRAM_P2B }}
-      end
-    end
-
-    has_edge :payment_account_phones do |edge|
-      edge.post do |api|
-        api.has_param :raw_input, 'string'
-        api.has_param :country_code, 'string'
-        api.has_param :default, 'bool'
-        api.has_param :payment_type, { enum: %w{PAYMENT_SETTINGS IG_PAYMENT_SETTINGS UNKNOWN MP_PAYMENT_SETTINGS IAP_INSTANT_GAME IAP_FAN_FUNDING IAP_GROUP_SUBSCRIPTION IAP_SOTTO FB_BROWSER_PAYMENT MOR_NONE MOR_ADS_CONSENT MOR_ADS_INVOICE MOR_DONATIONS MOR_DONATIONS_MATCHING_CONFIRMATION MOR_DONATIONS_MATCHING_PLEDGE MOR_OCULUS_CV1 MOR_OCULUS_LAUNCH_V1 MOR_OCULUS_LAUNCH_V2 MOR_OZONE MOR_OPEN_GRAPH_PRODUCT MOR_MESSENGER_COMMERCE MOR_P2P_TRANSFER MOR_DUMMY_FIRST_PARTY MOR_DUMMY_THIRD_PARTY MOR_GIFTS MOR_BILL MOR_AIRMAIL MOR_EVENT_TICKETING MOR_PAYMENT_LITE MOR_MESSENGER_API_FEE MOR_WORKPLACE_USAGE MOR_FACEBOOK_SHOP MOR_FAN_FUNDING MOR_GAME_TIPPING_TOKEN MOR_INSTANT_GAMES MOR_BLUEBIRD MOR_GROUP_SUBSCRIPTION MOR_SOTTO NMOR_UNKNOWN NMOR_NONE NMOR_PAGES_COMMERCE NMOR_COMPONENT_FLOW NMOR_BUSINESS_PLATFORM_COMMERCE NMOR_SYNCHRONOUS_COMPONENT_FLOW NMOR_EVENT_TICKETING NMOR_PLATFORM_SELF_SERVE NMOR_MESSENGER_PLATFORM NMOR_MESSENGER_OMNIM NMOR_TIP_JAR NMOR_INSTANT_EXPERIENCES NMOR_CHECKOUT_EXPERIENCES NMOR_C2C_CHECKOUT_EXPERIENCES NMOR_BUY_ON_FACEBOOK NMOR_DONATION_P4P NMOR_WHATSAPP_P2P NMOR_P2P NMOR_MOBILE_TOP_UP NMOR_MFS NMOR_SHIPPING_LABEL NMOR_MARKETPLACE_DROPOFF NMOR_PAGES_SOLUTION NMOR_BLACKBAUD_RWR_DONATION NMOR_MARKETPLACE_SHIPPING NMOR_DUMMY NMOR_PPGF_DONATION NMOR_ADVERTISER_SUBSCRIPTION NMOR_WHATSAPP_P2M NMOR_MOVIE_TICKETING IG_NMOR_P2B IG_NMOR_SHOPPING IG_MOR_DONATIONS NMOR_INSTAGRAM_P2B }}
-      end
-    end
-
     has_edge :permissions do |edge|
       edge.delete do |api|
         api.has_param :permission, 'string'
@@ -953,7 +936,7 @@ module FacebookAds
 
     has_edge :places do |edge|
       edge.post do |api|
-        api.has_param :type, { enum: %w{PLACE CITY STATE_PROVINCE COUNTRY EVENT RESIDENCE TEXT }}
+        api.has_param :type, { enum: %w{CITY COUNTRY EVENT PLACE RESIDENCE STATE_PROVINCE TEXT }}
         api.has_param :coords, 'object'
         api.has_param :name, 'string'
         api.has_param :description, 'string'
@@ -1097,7 +1080,7 @@ module FacebookAds
         api.has_param :composer_source_surface, 'string'
         api.has_param :composer_type, 'string'
         api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
-        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :is_group_linking_post, 'bool'
         api.has_param :has_nickname, 'bool'
@@ -1106,7 +1089,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :description, 'string'
-        api.has_param :offer_like_post_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
         api.has_param :publish_event_id, 'int'
         api.has_param :react_mode_metadata, 'string'
         api.has_param :sales_promo_id, 'int'

@@ -27,17 +27,17 @@ module FacebookAds
 
   class MediaFingerprint < AdObject
     FINGERPRINT_CONTENT_TYPE = [
-      "SONGTRACK",
-      "EPISODE",
-      "OTHER",
-      "MOVIE",
       "AM_SONGTRACK",
+      "EPISODE",
+      "MOVIE",
+      "OTHER",
+      "SONGTRACK",
     ]
 
     FINGERPRINT_VALIDITY = [
-      "VALID",
-      "EXPIRING",
       "EXPIRED",
+      "EXPIRING",
+      "VALID",
     ]
 
 

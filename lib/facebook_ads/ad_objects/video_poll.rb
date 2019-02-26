@@ -29,9 +29,9 @@ module FacebookAds
     ACTION = [
       "ATTACH_TO_VIDEO",
       "CLOSE",
-      "SHOW_VOTING",
-      "SHOW_RESULTS",
       "DELETE_POLL",
+      "SHOW_RESULTS",
+      "SHOW_VOTING",
     ]
 
 

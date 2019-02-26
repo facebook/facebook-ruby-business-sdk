@@ -27,9 +27,9 @@ module FacebookAds
 
   class AdRule < AdObject
     STATUS = [
-      "ENABLED",
-      "DISABLED",
       "DELETED",
+      "DISABLED",
+      "ENABLED",
     ]
 
 

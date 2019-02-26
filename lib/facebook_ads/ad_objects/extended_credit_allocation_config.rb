@@ -28,20 +28,20 @@ module FacebookAds
   class ExtendedCreditAllocationConfig < AdObject
     LIABILITY_TYPE = [
       "",
+      "MSA",
       "Normal",
       "Sequential",
-      "MSA",
     ]
 
     PARTITION_TYPE = [
-      "FIXED",
       "AUTH",
+      "FIXED",
     ]
 
     SEND_BILL_TO = [
       "",
-      "Agency",
       "Advertiser",
+      "Agency",
     ]
 
 

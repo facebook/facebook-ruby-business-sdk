@@ -27,8 +27,8 @@ module FacebookAds
 
   class VideoGameShow < AdObject
     ACTION = [
-      "START_GAME",
       "END_GAME",
+      "START_GAME",
     ]
 
 

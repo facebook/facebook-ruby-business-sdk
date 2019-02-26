@@ -27,11 +27,11 @@ module FacebookAds
 
   class BusinessUser < AdObject
     ROLE = [
-      "FINANCE_EDITOR",
-      "FINANCE_ANALYST",
-      "ADS_RIGHTS_REVIEWER",
       "ADMIN",
+      "ADS_RIGHTS_REVIEWER",
       "EMPLOYEE",
+      "FINANCE_ANALYST",
+      "FINANCE_EDITOR",
     ]
 
 

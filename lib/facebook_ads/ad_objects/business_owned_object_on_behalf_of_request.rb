@@ -29,8 +29,8 @@ module FacebookAds
     STATUS = [
       "APPROVE",
       "DECLINE",
-      "IN_PROGRESS",
       "EXPIRED",
+      "IN_PROGRESS",
     ]
 
 

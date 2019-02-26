@@ -27,9 +27,9 @@ module FacebookAds
 
   class Page < AdObject
     ATTIRE = [
-      "Unspecified",
       "Casual",
       "Dressy",
+      "Unspecified",
     ]
 
     FOOD_STYLES = [
@@ -93,61 +93,61 @@ module FacebookAds
     ]
 
     SETTING = [
-      "POST_AS_SELF",
       "EMAIL_NOTIF",
       "MOBILE_NOTIF",
+      "POST_AS_SELF",
     ]
 
     AUDIENCE = [
-      "GROUPER",
-      "NCPP",
-      "CUSTOM_AUDIENCE",
-      "LOOKALIKE",
-      "FANS",
-      "LOCAL",
-      "IG_PROMOTED_POST_AUTO",
-      "SAVED_AUDIENCE",
-      "EVENT_ENGAGEMENT",
-      "DISTRICT",
-      "SMART_AUDIENCE",
-      "CREATE_NEW",
       "AUTO_LOOKALIKE",
-      "MULT_CUSTOM_AUDIENCES",
-      "EVENT_CUSTOM_AUDIENCES",
       "AUTO_PAGE_LOOKALIKE",
       "AUTO_TARGETING",
+      "CREATE_NEW",
+      "CUSTOM_AUDIENCE",
+      "DISTRICT",
+      "EVENT_CUSTOM_AUDIENCES",
+      "EVENT_ENGAGEMENT",
+      "FANS",
+      "GROUPER",
+      "IG_PROMOTED_POST_AUTO",
+      "LOCAL",
+      "LOOKALIKE",
+      "MULT_CUSTOM_AUDIENCES",
+      "NCPP",
+      "SAVED_AUDIENCE",
+      "SMART_AUDIENCE",
     ]
 
     PERMITTED_TASKS = [
-      "MANAGE",
-      "CREATE_CONTENT",
-      "MODERATE",
-      "MODERATE_COMMUNITY",
-      "MANAGE_JOBS",
       "ADVERTISE",
       "ANALYZE",
+      "CREATE_CONTENT",
+      "MANAGE",
+      "MANAGE_JOBS",
+      "MODERATE",
+      "MODERATE_COMMUNITY",
     ]
 
     TASKS = [
-      "MANAGE",
-      "CREATE_CONTENT",
-      "MODERATE",
-      "MODERATE_COMMUNITY",
-      "MANAGE_JOBS",
       "ADVERTISE",
       "ANALYZE",
+      "CREATE_CONTENT",
+      "MANAGE",
+      "MANAGE_JOBS",
+      "MODERATE",
+      "MODERATE_COMMUNITY",
     ]
 
     MESSAGING_TYPE = [
+      "MESSAGE_TAG",
       "RESPONSE",
       "UPDATE",
-      "MESSAGE_TAG",
     ]
 
     NOTIFICATION_TYPE = [
+      "NO_PUSH",
       "REGULAR",
       "SILENT_PUSH",
-      "NO_PUSH",
     ]
 
     PUBLISH_STATUS = [
@@ -157,13 +157,13 @@ module FacebookAds
 
     SENDER_ACTION = [
       "MARK_SEEN",
-      "TYPING_ON",
       "TYPING_OFF",
+      "TYPING_ON",
     ]
 
     TYPE = [
-      "STANDARD",
       "REF",
+      "STANDARD",
     ]
 
     MODEL = [
@@ -193,78 +193,78 @@ module FacebookAds
     ]
 
     FILTERING = [
+      "ema",
       "groups",
       "groups_social",
-      "ema",
     ]
 
     SUBSCRIBED_FIELDS = [
-      "feed",
-      "mention",
-      "name",
-      "picture",
-      "category",
-      "description",
-      "conversations",
+      "affiliation",
+      "attire",
+      "awards",
+      "bio",
+      "birthday",
       "branded_camera",
-      "feature_access_list",
-      "standby",
-      "messages",
-      "messaging_account_linking",
-      "messaging_checkout_updates",
-      "message_echoes",
-      "message_deliveries",
-      "messaging_game_plays",
-      "messaging_optins",
-      "messaging_optouts",
-      "messaging_payments",
-      "messaging_postbacks",
-      "messaging_pre_checkouts",
-      "message_reads",
-      "messaging_referrals",
-      "messaging_handovers",
-      "messaging_policy_enforcement",
-      "messaging_page_feedback",
-      "messaging_appointments",
-      "founded",
+      "category",
+      "checkins",
       "company_overview",
-      "mission",
-      "products",
+      "conversations",
+      "culinary_team",
+      "current_location",
+      "description",
+      "email",
+      "feature_access_list",
+      "feed",
+      "founded",
       "general_info",
+      "general_manager",
+      "hometown",
+      "hours",
       "leadgen",
       "leadgen_fat",
+      "live_videos",
       "location",
-      "hours",
-      "parking",
-      "public_transit",
+      "members",
+      "mention",
+      "merchant_review",
+      "message_deliveries",
+      "message_echoes",
+      "message_reads",
+      "messages",
+      "messaging_account_linking",
+      "messaging_appointments",
+      "messaging_checkout_updates",
+      "messaging_game_plays",
+      "messaging_handovers",
+      "messaging_optins",
+      "messaging_optouts",
+      "messaging_page_feedback",
+      "messaging_payments",
+      "messaging_policy_enforcement",
+      "messaging_postbacks",
+      "messaging_pre_checkouts",
+      "messaging_referrals",
+      "mission",
+      "name",
       "page_about_story",
-      "phone",
-      "email",
-      "website",
-      "ratings",
-      "attire",
+      "page_change_proposal",
+      "page_upcoming_change",
+      "parking",
       "payment_options",
-      "culinary_team",
-      "general_manager",
-      "price_range",
-      "awards",
-      "hometown",
-      "current_location",
-      "bio",
-      "affiliation",
-      "birthday",
       "personal_info",
       "personal_interests",
-      "publisher_subscriptions",
-      "members",
-      "checkins",
-      "page_upcoming_change",
-      "page_change_proposal",
-      "merchant_review",
+      "phone",
+      "picture",
+      "price_range",
       "product_review",
-      "videos",
-      "live_videos",
+      "products",
+      "public_transit",
+      "publisher_subscriptions",
+      "ratings",
       "registration",
+      "standby",
+      "videos",
+      "website",
     ]
 
     DOMAIN_ACTION_TYPE = [
@@ -275,6 +275,19 @@ module FacebookAds
     PAYMENT_DEV_MODE_ACTION = [
       "ADD",
       "REMOVE",
+    ]
+
+    SETTING_TYPE = [
+      "ACCOUNT_LINKING",
+      "CALL_TO_ACTIONS",
+      "DOMAIN_WHITELISTING",
+      "GREETING",
+      "PAYMENT",
+    ]
+
+    THREAD_STATE = [
+      "EXISTING_THREAD",
+      "NEW_THREAD",
     ]
 
 
@@ -504,6 +517,9 @@ module FacebookAds
     end
 
     has_edge :assigned_users do |edge|
+      edge.delete do |api|
+        api.has_param :user, 'int'
+      end
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'
       end
@@ -650,9 +666,9 @@ module FacebookAds
       edge.post do |api|
         api.has_param :reference_asset_id, 'string'
         api.has_param :matched_asset_id, 'string'
-        api.has_param :match_content_type, { enum: %w{VIDEO_AND_AUDIO VIDEO_ONLY AUDIO_ONLY }}
-        api.has_param :action, { enum: %w{MANUAL_REVIEW MONITOR BLOCK CLAIM_AD_EARNINGS REQUEST_TAKEDOWN }}
-        api.has_param :action_reason, { enum: %w{UNAUTHORIZED_COMMERCIAL_USE RESTRICTED_CONTENT OBJECTIONABLE_CONTENT ARTIST_OBJECTION PRERELEASE_CONTENT PRODUCT_PARAMETERS PREMIUM_MUSIC_VIDEO }}
+        api.has_param :match_content_type, { enum: %w{AUDIO_ONLY VIDEO_AND_AUDIO VIDEO_ONLY }}
+        api.has_param :action, { enum: %w{BLOCK CLAIM_AD_EARNINGS MANUAL_REVIEW MONITOR REQUEST_TAKEDOWN }}
+        api.has_param :action_reason, { enum: %w{ARTIST_OBJECTION OBJECTIONABLE_CONTENT PREMIUM_MUSIC_VIDEO PRERELEASE_CONTENT PRODUCT_PARAMETERS RESTRICTED_CONTENT UNAUTHORIZED_COMMERCIAL_USE }}
         api.has_param :countries, 'object'
       end
     end
@@ -815,7 +831,7 @@ module FacebookAds
         api.has_param :composer_session_events_log, 'string'
         api.has_param :composer_source_surface, 'string'
         api.has_param :composer_type, 'string'
-        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :is_group_linking_post, 'bool'
         api.has_param :has_nickname, 'bool'
@@ -824,7 +840,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :message, 'string'
-        api.has_param :offer_like_post_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
         api.has_param :page_recommendation, 'string'
         api.has_param :place_list, 'string'
         api.has_param :publish_event_id, 'int'
@@ -1126,7 +1142,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{GET_STARTED PERSISTENT_MENU TARGET_AUDIENCE WHITELISTED_DOMAINS GREETING ACCOUNT_LINKING_URL PAYMENT_SETTINGS HOME_URL }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL PAYMENT_SETTINGS PERSISTENT_MENU TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
       end
       edge.get 'MessengerProfile'
       edge.post 'Page' do |api|
@@ -1508,13 +1524,13 @@ module FacebookAds
 
     has_edge :thread_settings do |edge|
       edge.delete do |api|
-        api.has_param :setting_type, { enum: %w{ACCOUNT_LINKING CALL_TO_ACTIONS GREETING DOMAIN_WHITELISTING PAYMENT }}
-        api.has_param :thread_state, { enum: %w{NEW_THREAD EXISTING_THREAD }}
+        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
+        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
       end
       edge.get 'ThreadSetting'
       edge.post 'Page' do |api|
-        api.has_param :setting_type, { enum: %w{ACCOUNT_LINKING CALL_TO_ACTIONS GREETING DOMAIN_WHITELISTING PAYMENT }}
-        api.has_param :thread_state, { enum: %w{NEW_THREAD EXISTING_THREAD }}
+        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
+        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
         api.has_param :call_to_actions, { list: 'object' }
         api.has_param :greeting, 'object'
         api.has_param :account_linking_url, 'string'
@@ -1635,7 +1651,7 @@ module FacebookAds
         api.has_param :composer_source_surface, 'string'
         api.has_param :composer_type, 'string'
         api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
-        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :is_group_linking_post, 'bool'
         api.has_param :has_nickname, 'bool'
@@ -1644,7 +1660,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :description, 'string'
-        api.has_param :offer_like_post_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
         api.has_param :publish_event_id, 'int'
         api.has_param :react_mode_metadata, 'string'
         api.has_param :sales_promo_id, 'int'

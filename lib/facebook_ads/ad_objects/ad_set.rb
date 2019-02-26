@@ -41,105 +41,105 @@ module FacebookAds
       "OFFER_CLAIMS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
-      "VIDEO_VIEWS",
       "THRUPLAY",
+      "VIDEO_VIEWS",
     ]
 
     CONFIGURED_STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
       "ARCHIVED",
+      "DELETED",
+      "PAUSED",
     ]
 
     EFFECTIVE_STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
-      "PENDING_REVIEW",
-      "DISAPPROVED",
-      "PREAPPROVED",
-      "PENDING_BILLING_INFO",
-      "CAMPAIGN_PAUSED",
-      "ARCHIVED",
       "ADSET_PAUSED",
+      "ARCHIVED",
+      "CAMPAIGN_PAUSED",
+      "DELETED",
+      "DISAPPROVED",
+      "PAUSED",
+      "PENDING_BILLING_INFO",
+      "PENDING_REVIEW",
+      "PREAPPROVED",
       "WITH_ISSUES",
     ]
 
     OPTIMIZATION_GOAL = [
-      "NONE",
+      "AD_RECALL_LIFT",
+      "APP_DOWNLOADS",
       "APP_INSTALLS",
       "BRAND_AWARENESS",
-      "AD_RECALL_LIFT",
       "CLICKS",
+      "DERIVED_EVENTS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",
+      "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
+      "NONE",
       "OFFER_CLAIMS",
       "OFFSITE_CONVERSIONS",
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "REACH",
-      "SOCIAL_IMPRESSIONS",
-      "VIDEO_VIEWS",
-      "APP_DOWNLOADS",
-      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
-      "LANDING_PAGE_VIEWS",
-      "VALUE",
-      "THRUPLAY",
       "REPLIES",
-      "DERIVED_EVENTS",
+      "SOCIAL_IMPRESSIONS",
+      "THRUPLAY",
+      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
+      "VALUE",
+      "VIDEO_VIEWS",
     ]
 
     STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
       "ARCHIVED",
+      "DELETED",
+      "PAUSED",
     ]
 
     DATE_PRESET = [
-      "today",
-      "yesterday",
-      "this_month",
-      "last_month",
-      "this_quarter",
-      "lifetime",
-      "last_3d",
-      "last_7d",
       "last_14d",
       "last_28d",
       "last_30d",
+      "last_3d",
+      "last_7d",
       "last_90d",
+      "last_month",
+      "last_quarter",
       "last_week_mon_sun",
       "last_week_sun_sat",
-      "last_quarter",
       "last_year",
+      "lifetime",
+      "this_month",
+      "this_quarter",
       "this_week_mon_today",
       "this_week_sun_today",
       "this_year",
+      "today",
+      "yesterday",
     ]
 
     DESTINATION_TYPE = [
+      "APP",
+      "APPLINKS_AUTOMATIC",
+      "MESSENGER",
       "UNDEFINED",
       "WEBSITE",
-      "APP",
-      "MESSENGER",
-      "APPLINKS_AUTOMATIC",
     ]
 
     EXECUTION_OPTIONS = [
-      "validate_only",
       "include_recommendations",
+      "validate_only",
     ]
 
     FULL_FUNNEL_EXPLORATION_MODE = [
-      "NONE_EXPLORATION",
-      "LIMITED_EXPLORATION",
       "EXTENDED_EXPLORATION",
+      "LIMITED_EXPLORATION",
+      "NONE_EXPLORATION",
     ]
 
     OPERATOR = [
@@ -149,8 +149,8 @@ module FacebookAds
 
     STATUS_OPTION = [
       "ACTIVE",
-      "PAUSED",
       "INHERITED_FROM_SOURCE",
+      "PAUSED",
     ]
 
 

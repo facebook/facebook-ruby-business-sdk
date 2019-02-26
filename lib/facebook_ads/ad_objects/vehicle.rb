@@ -26,6 +26,81 @@ module FacebookAds
   # pull request for this class.
 
   class Vehicle < AdObject
+    AVAILABILITY = [
+      "AVAILABLE",
+      "NOT_AVAILABLE",
+    ]
+
+    BODY_STYLE = [
+      "CONVERTIBLE",
+      "COUPE",
+      "CROSSOVER",
+      "HATCHBACK",
+      "MINIVAN",
+      "NONE",
+      "OTHER",
+      "SEDAN",
+      "SUV",
+      "TRUCK",
+      "VAN",
+      "WAGON",
+    ]
+
+    CONDITION = [
+      "EXCELLENT",
+      "FAIR",
+      "GOOD",
+      "NONE",
+      "OTHER",
+      "POOR",
+    ]
+
+    DRIVETRAIN = [
+      "AWD",
+      "FOUR_WD",
+      "FWD",
+      "NONE",
+      "OTHER",
+      "RWD",
+      "TWO_WD",
+    ]
+
+    FUEL_TYPE = [
+      "DIESEL",
+      "ELECTRIC",
+      "FLEX",
+      "GASOLINE",
+      "HYBRID",
+      "NONE",
+      "OTHER",
+      "PETROL",
+      "PLUGIN_HYBRID",
+    ]
+
+    STATE_OF_VEHICLE = [
+      "CPO",
+      "NEW",
+      "USED",
+    ]
+
+    TRANSMISSION = [
+      "AUTOMATIC",
+      "MANUAL",
+      "NONE",
+      "OTHER",
+    ]
+
+    VEHICLE_TYPE = [
+      "BOAT",
+      "CAR_TRUCK",
+      "COMMERCIAL",
+      "MOTORCYCLE",
+      "OTHER",
+      "POWERSPORT",
+      "RV_CAMPER",
+      "TRAILER",
+    ]
+
 
     field :address, 'object'
     field :applinks, 'AppLinks'

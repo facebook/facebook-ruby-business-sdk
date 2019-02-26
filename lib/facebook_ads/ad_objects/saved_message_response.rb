@@ -27,20 +27,20 @@ module FacebookAds
 
   class SavedMessageResponse < AdObject
     CATEGORY = [
-      "STANDARD",
-      "INSTANT_REPLY",
+      "APPOINTMENT_REMINDER",
       "AWAY_MESSAGE",
-      "WELCOME_MESSAGE",
       "FOLLOW_UP",
+      "INSTANT_REPLY",
+      "JOB_APPLICATION",
       "MESSENGER_CODE",
       "REFERRAL",
-      "APPOINTMENT_REMINDER",
       "SMART_REPLY_CONTACT",
       "SMART_REPLY_HOURS",
       "SMART_REPLY_LOCATION",
       "SMART_REPLY_NEGATIVE_FEEDBACK",
       "SMART_REPLY_POSITIVE_FEEDBACK",
-      "JOB_APPLICATION",
+      "STANDARD",
+      "WELCOME_MESSAGE",
     ]
 
 

@@ -27,12 +27,12 @@ module FacebookAds
 
   class AdsInsights < AdObject
     ACTION_ATTRIBUTION_WINDOWS = [
-      "1d_view",
-      "7d_view",
-      "28d_view",
       "1d_click",
-      "7d_click",
+      "1d_view",
       "28d_click",
+      "28d_view",
+      "7d_click",
+      "7d_view",
       "default",
     ]
 
@@ -42,7 +42,6 @@ module FacebookAds
       "action_carousel_card_name",
       "action_destination",
       "action_device",
-      "action_link_click_destination",
       "action_reaction",
       "action_target_id",
       "action_type",
@@ -51,62 +50,62 @@ module FacebookAds
     ]
 
     ACTION_REPORT_TIME = [
-      "impression",
       "conversion",
+      "impression",
     ]
 
     BREAKDOWNS = [
-      "age",
-      "country",
-      "dma",
-      "gender",
-      "frequency_value",
-      "hourly_stats_aggregated_by_advertiser_time_zone",
-      "hourly_stats_aggregated_by_audience_time_zone",
-      "impression_device",
-      "place_page_id",
-      "publisher_platform",
-      "platform_position",
-      "device_platform",
-      "product_id",
-      "region",
       "ad_format_asset",
+      "age",
       "body_asset",
       "call_to_action_asset",
+      "country",
       "description_asset",
+      "device_platform",
+      "dma",
+      "frequency_value",
+      "gender",
+      "hourly_stats_aggregated_by_advertiser_time_zone",
+      "hourly_stats_aggregated_by_audience_time_zone",
       "image_asset",
+      "impression_device",
       "link_url_asset",
+      "place_page_id",
+      "platform_position",
+      "product_id",
+      "publisher_platform",
+      "region",
       "title_asset",
       "video_asset",
     ]
 
     DATE_PRESET = [
-      "today",
-      "yesterday",
-      "this_month",
-      "last_month",
-      "this_quarter",
-      "lifetime",
-      "last_3d",
-      "last_7d",
       "last_14d",
       "last_28d",
       "last_30d",
+      "last_3d",
+      "last_7d",
       "last_90d",
+      "last_month",
+      "last_quarter",
       "last_week_mon_sun",
       "last_week_sun_sat",
-      "last_quarter",
       "last_year",
+      "lifetime",
+      "this_month",
+      "this_quarter",
       "this_week_mon_today",
       "this_week_sun_today",
       "this_year",
+      "today",
+      "yesterday",
     ]
 
     LEVEL = [
+      "account",
       "ad",
       "adset",
       "campaign",
-      "account",
     ]
 
     SUMMARY_ACTION_BREAKDOWNS = [
@@ -115,7 +114,6 @@ module FacebookAds
       "action_carousel_card_name",
       "action_destination",
       "action_device",
-      "action_link_click_destination",
       "action_reaction",
       "action_target_id",
       "action_type",

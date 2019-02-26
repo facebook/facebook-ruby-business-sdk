@@ -27,13 +27,13 @@ module FacebookAds
 
   class CpasParentCatalogSettings < AdObject
     ATTRIBUTION_WINDOWS = [
-      "X1D_VIEW",
-      "X7D_VIEW",
-      "X28D_VIEW",
-      "X1D_CLICK",
-      "X7D_CLICK",
-      "X28D_CLICK",
       "DEFAULT",
+      "X1D_CLICK",
+      "X1D_VIEW",
+      "X28D_CLICK",
+      "X28D_VIEW",
+      "X7D_CLICK",
+      "X7D_VIEW",
     ]
 
 

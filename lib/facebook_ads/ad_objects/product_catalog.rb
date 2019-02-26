@@ -51,8 +51,8 @@ module FacebookAds
 
     ITEM_TYPE = [
       "AUTO",
-      "AUTO_MARKET",
       "AUTOMOTIVE_MODEL",
+      "AUTO_MARKET",
       "DESTINATION",
       "FLIGHT",
       "GEO_BASED_ITEM",
@@ -438,6 +438,37 @@ module FacebookAds
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
+      edge.post 'Vehicle' do |api|
+        api.has_param :applinks, 'object'
+        api.has_param :body_style, { enum: -> { Vehicle::BODY_STYLE }}
+        api.has_param :description, 'string'
+        api.has_param :exterior_color, 'string'
+        api.has_param :make, 'string'
+        api.has_param :mileage, 'hash'
+        api.has_param :model, 'string'
+        api.has_param :state_of_vehicle, { enum: -> { Vehicle::STATE_OF_VEHICLE }}
+        api.has_param :vin, 'string'
+        api.has_param :url, 'string'
+        api.has_param :vehicle_id, 'string'
+        api.has_param :year, 'int'
+        api.has_param :images, { list: 'object' }
+        api.has_param :address, 'hash'
+        api.has_param :currency, 'string'
+        api.has_param :price, 'int'
+        api.has_param :title, 'string'
+        api.has_param :transmission, { enum: -> { Vehicle::TRANSMISSION }}
+        api.has_param :drivetrain, { enum: -> { Vehicle::DRIVETRAIN }}
+        api.has_param :fuel_type, { enum: -> { Vehicle::FUEL_TYPE }}
+        api.has_param :trim, 'string'
+        api.has_param :interior_color, 'string'
+        api.has_param :condition, { enum: -> { Vehicle::CONDITION }}
+        api.has_param :date_first_on_lot, 'string'
+        api.has_param :availability, { enum: -> { Vehicle::AVAILABILITY }}
+        api.has_param :dealer_id, 'string'
+        api.has_param :dealer_name, 'string'
+        api.has_param :dealer_phone, 'string'
+        api.has_param :vehicle_type, { enum: -> { Vehicle::VEHICLE_TYPE }}
+      end
     end
 
     has_edge :videos do |edge|
@@ -478,7 +509,7 @@ module FacebookAds
         api.has_param :composer_source_surface, 'string'
         api.has_param :composer_type, 'string'
         api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
-        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :is_group_linking_post, 'bool'
         api.has_param :has_nickname, 'bool'
@@ -487,7 +518,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :description, 'string'
-        api.has_param :offer_like_post_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
         api.has_param :publish_event_id, 'int'
         api.has_param :react_mode_metadata, 'string'
         api.has_param :sales_promo_id, 'int'

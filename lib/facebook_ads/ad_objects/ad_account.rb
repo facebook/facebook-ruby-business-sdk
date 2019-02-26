@@ -84,15 +84,15 @@ module FacebookAds
     ]
 
     PERMITTED_TASKS = [
-      "MANAGE",
       "ADVERTISE",
       "ANALYZE",
+      "MANAGE",
     ]
 
     TASKS = [
-      "MANAGE",
       "ADVERTISE",
       "ANALYZE",
+      "MANAGE",
     ]
 
     CLAIM_OBJECTIVE = [
@@ -119,19 +119,19 @@ module FacebookAds
     ]
 
     SUBTYPE = [
-      "CUSTOM",
-      "WEBSITE",
       "APP",
-      "OFFLINE_CONVERSION",
-      "CLAIM",
-      "PARTNER",
-      "MANAGED",
-      "VIDEO",
-      "LOOKALIKE",
-      "ENGAGEMENT",
       "BAG_OF_ACCOUNTS",
-      "STUDY_RULE_AUDIENCE",
+      "CLAIM",
+      "CUSTOM",
+      "ENGAGEMENT",
       "FOX",
+      "LOOKALIKE",
+      "MANAGED",
+      "OFFLINE_CONVERSION",
+      "PARTNER",
+      "STUDY_RULE_AUDIENCE",
+      "VIDEO",
+      "WEBSITE",
     ]
 
 
@@ -342,28 +342,28 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :user_columns, { list: 'string' }
         api.has_param :user_attribution_windows, { list: 'string' }
-        api.has_param :builtin_column_set, { enum: %w{ APP_ENGAGEMENT AUDIENCE_DIRECT BIDDING_AND_OPTIMIZATION CAROUSEL_ENGAGEMENT CROSS_DEVICE DELIVERY ENGAGEMENT HOUSEHOLD MESSAGING_ENGAGEMENT MESSENGER OFFLINE_CONVERSIONS PERFORMANCE PERFORMANCE_LEGACY TARGETING_AND_CREATIVE VIDEO_ENGAGEMENT VALIDATION_VIEW }}
+        api.has_param :builtin_column_set, { enum: %w{ APP_ENGAGEMENT AUDIENCE_DIRECT BIDDING_AND_OPTIMIZATION CAROUSEL_ENGAGEMENT CROSS_DEVICE DELIVERY ENGAGEMENT HOUSEHOLD MESSAGING_ENGAGEMENT MESSENGER OFFLINE_CONVERSIONS PERFORMANCE PERFORMANCE_LEGACY TARGETING_AND_CREATIVE VALIDATION_VIEW VIDEO_ENGAGEMENT }}
         api.has_param :normalized_filter, { list: 'object' }
         api.has_param :user_filter, { list: 'object' }
         api.has_param :sort, { list: 'object' }
         api.has_param :breakdowns, { list: 'string' }
         api.has_param :insights_section, 'object'
-        api.has_param :level, { enum: %w{politicalad ad adgroup campaign campaign_group account }}
-        api.has_param :date_preset, { enum: %w{today yesterday this_month last_month this_quarter lifetime last_3d last_7d last_14d last_28d last_30d last_90d last_week_mon_sun last_week_sun_sat last_quarter last_year this_week_mon_today this_week_sun_today this_year }}
+        api.has_param :level, { enum: %w{account ad adgroup campaign campaign_group politicalad }}
+        api.has_param :date_preset, { enum: %w{last_14d last_28d last_30d last_3d last_7d last_90d last_month last_quarter last_week_mon_sun last_week_sun_sat last_year lifetime this_month this_quarter this_week_mon_today this_week_sun_today this_year today yesterday }}
         api.has_param :date_interval, 'object'
         api.has_param :format_version, 'int'
-        api.has_param :creation_source, { enum: %w{adsManagerReporting newAdsManager adsExcelAddin }}
-        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type action_converted_product_id interactive_component_sticker_id interactive_component_sticker_response }} }
+        api.has_param :creation_source, { enum: %w{adsExcelAddin adsManagerReporting newAdsManager }}
+        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_converted_product_id action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type interactive_component_sticker_id interactive_component_sticker_response }} }
         api.has_param :custom_column_set_id, 'string'
         api.has_param :data_columns, { list: 'string' }
         api.has_param :emails, { list: 'string' }
         api.has_param :export_columns, 'object'
         api.has_param :filters, { list: 'object' }
-        api.has_param :schedule_frequency, { enum: %w{daily weekly monthly }}
+        api.has_param :schedule_frequency, { enum: %w{daily monthly weekly }}
         api.has_param :sort_by, 'string'
         api.has_param :sort_dir, 'string'
         api.has_param :start_date, 'object'
-        api.has_param :status, { enum: %w{Active Paused Deleted }}
+        api.has_param :status, { enum: %w{Active Deleted Paused }}
         api.has_param :subscribers, { list: 'int' }
         api.has_param :time_increment, 'string'
       end
@@ -418,7 +418,7 @@ module FacebookAds
 
     has_edge :ads do |edge|
       edge.delete do |api|
-        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_OLDEST DELETE_ARCHIVED_BEFORE }}
+        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_ARCHIVED_BEFORE DELETE_OLDEST }}
         api.has_param :object_count, 'int'
         api.has_param :before_date, 'datetime'
         api.has_param :delete_offset, 'int'
@@ -462,7 +462,7 @@ module FacebookAds
 
     has_edge :adsets do |edge|
       edge.delete do |api|
-        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_OLDEST DELETE_ARCHIVED_BEFORE }}
+        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_ARCHIVED_BEFORE DELETE_OLDEST }}
         api.has_param :object_count, 'int'
         api.has_param :before_date, 'datetime'
         api.has_param :delete_offset, 'int'
@@ -600,7 +600,7 @@ module FacebookAds
         api.has_param :composer_source_surface, 'string'
         api.has_param :composer_type, 'string'
         api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
-        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :is_group_linking_post, 'bool'
         api.has_param :has_nickname, 'bool'
@@ -609,7 +609,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :description, 'string'
-        api.has_param :offer_like_post_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
         api.has_param :publish_event_id, 'int'
         api.has_param :react_mode_metadata, 'string'
         api.has_param :sales_promo_id, 'int'
@@ -661,6 +661,9 @@ module FacebookAds
     end
 
     has_edge :assigned_users do |edge|
+      edge.delete do |api|
+        api.has_param :user, 'int'
+      end
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'
       end
@@ -755,7 +758,7 @@ module FacebookAds
 
     has_edge :campaigns do |edge|
       edge.delete do |api|
-        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_OLDEST DELETE_ARCHIVED_BEFORE }}
+        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_ARCHIVED_BEFORE DELETE_OLDEST }}
         api.has_param :object_count, 'int'
         api.has_param :before_date, 'datetime'
         api.has_param :delete_offset, 'int'

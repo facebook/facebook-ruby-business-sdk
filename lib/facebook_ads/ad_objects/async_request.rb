@@ -27,16 +27,16 @@ module FacebookAds
 
   class AsyncRequest < AdObject
     STATUS = [
-      "INITIALIZED",
+      "ERROR",
       "EXECUTING",
       "FINISHED",
-      "ERROR",
+      "INITIALIZED",
     ]
 
     TYPE = [
-      "DRAFTS",
-      "BATCH_API",
       "ASYNC_ADGROUP_CREATION",
+      "BATCH_API",
+      "DRAFTS",
     ]
 
 

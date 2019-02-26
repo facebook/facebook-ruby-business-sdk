@@ -27,91 +27,92 @@ module FacebookAds
 
   class Application < AdObject
     SUPPORTED_PLATFORMS = [
-      "WEB",
-      "CANVAS",
-      "MOBILE_WEB",
-      "IPHONE",
-      "IPAD",
-      "ANDROID",
-      "WINDOWS",
       "AMAZON",
-      "SUPPLEMENTARY_IMAGES",
+      "ANDROID",
+      "CANVAS",
       "GAMEROOM",
       "INSTANT_GAME",
+      "IPAD",
+      "IPHONE",
+      "MOBILE_WEB",
+      "SUPPLEMENTARY_IMAGES",
+      "WEB",
+      "WINDOWS",
     ]
 
     AN_PLATFORMS = [
-      "IOS",
       "ANDROID",
-      "MOBILE_WEB",
       "DESKTOP",
       "INSTANT_ARTICLES",
+      "IOS",
+      "MOBILE_WEB",
       "UNKNOWN",
     ]
 
     AGGREGATION_PERIOD = [
-      "HOUR",
       "DAY",
+      "HOUR",
       "TOTAL",
     ]
 
     BREAKDOWNS = [
       "AGE",
       "APP",
+      "CLICKED_VIEW_TAG",
       "COUNTRY",
-      "DELIVERY_METHOD",
-      "DISPLAY_FORMAT",
       "DEAL",
       "DEAL_AD",
       "DEAL_PAGE",
+      "DELIVERY_METHOD",
+      "DISPLAY_FORMAT",
+      "FAIL_REASON",
       "GENDER",
       "PLACEMENT",
       "PLATFORM",
       "PROPERTY",
-      "CLICKED_VIEW_TAG",
-      "FAIL_REASON",
+      "SDK_VERSION",
     ]
 
     METRICS = [
+      "FB_AD_NETWORK_BIDDING_BID_RATE",
       "FB_AD_NETWORK_BIDDING_REQUEST",
       "FB_AD_NETWORK_BIDDING_RESPONSE",
-      "FB_AD_NETWORK_BIDDING_BID_RATE",
+      "FB_AD_NETWORK_BIDDING_REVENUE",
       "FB_AD_NETWORK_BIDDING_WIN_RATE",
-      "FB_AD_NETWORK_REQUEST",
+      "FB_AD_NETWORK_CLICK",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE_DENOMINATOR",
+      "FB_AD_NETWORK_CLICK_VALUE_SCORE_NUMERATOR",
+      "FB_AD_NETWORK_CPM",
+      "FB_AD_NETWORK_CTR",
+      "FB_AD_NETWORK_DIRECT_PUBLISHER_BILL",
+      "FB_AD_NETWORK_DIRECT_TOTAL_REVENUE",
+      "FB_AD_NETWORK_FAST_CLICK_DENOMINATOR",
+      "FB_AD_NETWORK_FAST_CLICK_NUMERATOR",
+      "FB_AD_NETWORK_FAST_CLICK_RATE",
+      "FB_AD_NETWORK_FAST_RETURN_DENOMINATOR",
+      "FB_AD_NETWORK_FAST_RETURN_NUMERATOR",
+      "FB_AD_NETWORK_FAST_RETURN_RATE",
       "FB_AD_NETWORK_FILLED_REQUEST",
       "FB_AD_NETWORK_FILL_RATE",
       "FB_AD_NETWORK_IMP",
-      "FB_AD_NETWORK_SHOW_RATE",
-      "FB_AD_NETWORK_CLICK",
-      "FB_AD_NETWORK_CTR",
-      "FB_AD_NETWORK_BIDDING_REVENUE",
+      "FB_AD_NETWORK_NO_BID",
+      "FB_AD_NETWORK_NO_FILL",
+      "FB_AD_NETWORK_REQUEST",
       "FB_AD_NETWORK_REVENUE",
-      "FB_AD_NETWORK_CPM",
+      "FB_AD_NETWORK_SHOW_RATE",
       "FB_AD_NETWORK_VIDEO_GUARANTEE_REVENUE",
-      "FB_AD_NETWORK_VIDEO_VIEW",
-      "FB_AD_NETWORK_VIDEO_VIEW_RATE",
       "FB_AD_NETWORK_VIDEO_MRC",
       "FB_AD_NETWORK_VIDEO_MRC_RATE",
+      "FB_AD_NETWORK_VIDEO_VIEW",
+      "FB_AD_NETWORK_VIDEO_VIEW_RATE",
       "FB_AD_NETWORK_WIN_RATE",
-      "FB_AD_NETWORK_DIRECT_TOTAL_REVENUE",
-      "FB_AD_NETWORK_DIRECT_PUBLISHER_BILL",
-      "FB_AD_NETWORK_FAST_CLICK_RATE",
-      "FB_AD_NETWORK_FAST_RETURN_RATE",
-      "FB_AD_NETWORK_CLICK_VALUE_SCORE",
-      "FB_AD_NETWORK_FAST_CLICK_NUMERATOR",
-      "FB_AD_NETWORK_FAST_CLICK_DENOMINATOR",
-      "FB_AD_NETWORK_FAST_RETURN_NUMERATOR",
-      "FB_AD_NETWORK_FAST_RETURN_DENOMINATOR",
-      "FB_AD_NETWORK_CLICK_VALUE_SCORE_NUMERATOR",
-      "FB_AD_NETWORK_CLICK_VALUE_SCORE_DENOMINATOR",
-      "FB_AD_NETWORK_NO_FILL",
-      "FB_AD_NETWORK_NO_BID",
     ]
 
     ORDERING_COLUMN = [
+      "METRIC",
       "TIME",
       "VALUE",
-      "METRIC",
     ]
 
     ORDERING_TYPE = [
@@ -126,19 +127,19 @@ module FacebookAds
 
     REQUEST_TYPE = [
       "APP_INDEXING",
-      "PLUGIN",
       "BUTTON_SAMPLING",
+      "PLUGIN",
     ]
 
     MUTATION_METHOD = [
-      "REPLACE",
       "ADD",
       "DELETE",
+      "REPLACE",
     ]
 
     POST_METHOD = [
-      "EYMT",
       "CODELESS",
+      "EYMT",
     ]
 
     SCORE_TYPE = [
@@ -155,8 +156,8 @@ module FacebookAds
     ROLE = [
       "administrators",
       "developers",
-      "testers",
       "insights users",
+      "testers",
     ]
 
 
@@ -293,7 +294,7 @@ module FacebookAds
 
     has_edge :activities do |edge|
       edge.post do |api|
-        api.has_param :event, { enum: %w{MOBILE_APP_INSTALL CUSTOM_APP_EVENTS DEFERRED_APP_LINK }}
+        api.has_param :event, { enum: %w{CUSTOM_APP_EVENTS DEFERRED_APP_LINK MOBILE_APP_INSTALL }}
         api.has_param :attribution, 'string'
         api.has_param :advertiser_id, 'string'
         api.has_param :anon_id, 'string'
@@ -388,11 +389,11 @@ module FacebookAds
     has_edge :app_insights do |edge|
       edge.get do |api|
         api.has_param :metric_key, 'string'
-        api.has_param :period, { enum: %w{mins_15 hourly daily weekly monthly lifetime days_28 range }}
+        api.has_param :period, { enum: %w{daily days_28 hourly lifetime mins_15 monthly range weekly }}
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
         api.has_param :breakdowns, { list: 'string' }
-        api.has_param :aggregateby, { enum: %w{COUNT COUNT_IDENTIFIED_USERS USERS TOPK SUM SUM_PER_EVENT SUM_IDENTIFIED_USERS USD_SUM USD_SUM_PER_EVENT USD_SUM_IDENTIFIED_USERS USD_SUM_PER_USER UNKNOWN_USERS SCORE MEDIAN_VALUE MEDIAN_VALUE_PER_USER DAU WAU MAU PERCENTILES_COUNT PERCENTILES_VALUE PERCENTILES_USD_VALUE OVERLAP COUNT_PER_USER VALUE_PER_USER USD_VALUE_PER_USER SESSIONS_PER_JOURNEY CONVERTED_JOURNEY_PERCENT MEDIAN_JOURNEY_LENGTH AVERAGE_JOURNEY_LENGTH JOURNEY_CHANNEL_INCLUSION EVENT_SOURCE_IDS SESSION_BOUNCE_RATE JOURNEY_INCLUSION USER_PROPERTY_USER_COUNT }}
+        api.has_param :aggregateby, { enum: %w{AVERAGE_JOURNEY_LENGTH CONVERTED_JOURNEY_PERCENT COUNT COUNT_IDENTIFIED_USERS COUNT_PER_USER DAU EVENT_SOURCE_IDS JOURNEY_CHANNEL_INCLUSION JOURNEY_INCLUSION MAU MEDIAN_JOURNEY_LENGTH MEDIAN_VALUE MEDIAN_VALUE_PER_USER OVERLAP PERCENTILES_COUNT PERCENTILES_USD_VALUE PERCENTILES_VALUE SCORE SESSIONS_PER_JOURNEY SESSION_BOUNCE_RATE SUM SUM_IDENTIFIED_USERS SUM_PER_EVENT TOPK UNKNOWN_USERS USD_SUM USD_SUM_IDENTIFIED_USERS USD_SUM_PER_EVENT USD_SUM_PER_USER USD_VALUE_PER_USER USERS USER_PROPERTY_USER_COUNT VALUE_PER_USER WAU }}
         api.has_param :event_name, 'string'
         api.has_param :ecosystem, { enum: %w{GAME NON_GAME }}
         api.has_param :intervals_to_aggregate, 'int'
@@ -523,7 +524,7 @@ module FacebookAds
       end
       edge.post do |api|
         api.has_param :order_id, 'string'
-        api.has_param :status, { enum: %w{CREATED CONFIRMED CANCELLED DELIVERED READY_FOR_PICKUP OUT_FOR_DELIVERY }}
+        api.has_param :status, { enum: %w{CANCELLED CONFIRMED CREATED DELIVERED OUT_FOR_DELIVERY READY_FOR_PICKUP }}
       end
     end
 

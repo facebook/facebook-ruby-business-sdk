@@ -27,27 +27,27 @@ module FacebookAds
 
   class AdAsyncRequest < AdObject
     STATUS = [
+      "CANCELED",
+      "CANCELED_DEPENDENCY",
+      "ERROR",
+      "ERROR_CONFLICTS",
+      "ERROR_DEPENDENCY",
       "INITIAL",
       "IN_PROGRESS",
-      "SUCCESS",
-      "ERROR",
-      "CANCELED",
       "PENDING_DEPENDENCY",
-      "CANCELED_DEPENDENCY",
-      "ERROR_DEPENDENCY",
-      "ERROR_CONFLICTS",
+      "SUCCESS",
     ]
 
     STATUSES = [
+      "CANCELED",
+      "CANCELED_DEPENDENCY",
+      "ERROR",
+      "ERROR_CONFLICTS",
+      "ERROR_DEPENDENCY",
       "INITIAL",
       "IN_PROGRESS",
-      "SUCCESS",
-      "ERROR",
-      "CANCELED",
       "PENDING_DEPENDENCY",
-      "CANCELED_DEPENDENCY",
-      "ERROR_DEPENDENCY",
-      "ERROR_CONFLICTS",
+      "SUCCESS",
     ]
 
 

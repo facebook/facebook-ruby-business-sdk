@@ -27,26 +27,26 @@ module FacebookAds
 
   class LiveVideo < AdObject
     BROADCAST_STATUS = [
-      "UNPUBLISHED",
       "LIVE",
       "LIVE_STOPPED",
       "PROCESSING",
-      "VOD",
-      "SCHEDULED_UNPUBLISHED",
-      "SCHEDULED_LIVE",
-      "SCHEDULED_EXPIRED",
       "SCHEDULED_CANCELED",
+      "SCHEDULED_EXPIRED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_UNPUBLISHED",
+      "UNPUBLISHED",
+      "VOD",
     ]
 
     PROJECTION = [
-      "EQUIRECTANGULAR",
       "CUBEMAP",
+      "EQUIRECTANGULAR",
       "HALF_EQUIRECTANGULAR",
     ]
 
     SOURCE = [
-      "target",
       "owner",
+      "target",
     ]
 
     SPATIAL_AUDIO_FORMAT = [
@@ -54,30 +54,30 @@ module FacebookAds
     ]
 
     STATUS = [
-      "UNPUBLISHED",
       "LIVE_NOW",
-      "SCHEDULED_UNPUBLISHED",
-      "SCHEDULED_LIVE",
       "SCHEDULED_CANCELED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_UNPUBLISHED",
+      "UNPUBLISHED",
     ]
 
     STEREOSCOPIC_MODE = [
-      "MONO",
       "LEFT_RIGHT",
+      "MONO",
       "TOP_BOTTOM",
     ]
 
     STREAM_TYPE = [
-      "REGULAR",
       "AMBIENT",
+      "REGULAR",
     ]
 
     LIVE_COMMENT_MODERATION_SETTING = [
-      "FOLLOWER",
-      "SLOW",
       "DISCUSSION",
-      "RESTRICTED",
+      "FOLLOWER",
       "PROTECTED_MODE",
+      "RESTRICTED",
+      "SLOW",
       "SUPPORTER",
     ]
 

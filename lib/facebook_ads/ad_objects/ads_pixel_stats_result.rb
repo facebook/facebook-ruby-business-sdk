@@ -32,17 +32,17 @@ module FacebookAds
       "device_os",
       "device_type",
       "event",
+      "event_detection_method",
+      "event_source",
+      "event_total_counts",
+      "event_value_count",
       "host",
       "people_reached",
       "pii_keys",
       "pii_lift",
       "pixel_fire",
-      "event_detection_method",
       "url",
-      "event_value_count",
       "url_by_rule",
-      "event_total_counts",
-      "event_source",
     ]
 
 

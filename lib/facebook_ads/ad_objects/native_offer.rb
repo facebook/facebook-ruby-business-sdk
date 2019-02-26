@@ -27,13 +27,13 @@ module FacebookAds
 
   class NativeOffer < AdObject
     UNIQUE_CODES_FILE_CODE_TYPE = [
-      "discount_codes",
       "barcodes",
-      "online_discount_codes",
-      "instore_discount_codes",
-      "instore_barcodes",
       "discount_and_barcodes",
       "discount_and_discount",
+      "discount_codes",
+      "instore_barcodes",
+      "instore_discount_codes",
+      "online_discount_codes",
     ]
 
     BARCODE_TYPE = [
@@ -53,9 +53,9 @@ module FacebookAds
     ]
 
     LOCATION_TYPE = [
-      "online",
-      "offline",
       "both",
+      "offline",
+      "online",
     ]
 
 

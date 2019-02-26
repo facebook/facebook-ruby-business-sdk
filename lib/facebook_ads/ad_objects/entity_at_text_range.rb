@@ -27,11 +27,11 @@ module FacebookAds
 
   class EntityAtTextRange < AdObject
     TYPE = [
-      "user",
-      "page",
+      "application",
       "event",
       "group",
-      "application",
+      "page",
+      "user",
     ]
 
 

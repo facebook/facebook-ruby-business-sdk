@@ -27,27 +27,27 @@ module FacebookAds
 
   class AdRuleTrigger < AdObject
     OPERATOR = [
-      "GREATER_THAN",
-      "LESS_THAN",
-      "EQUAL",
-      "NOT_EQUAL",
-      "IN_RANGE",
-      "NOT_IN_RANGE",
-      "IN",
-      "NOT_IN",
-      "CONTAIN",
-      "NOT_CONTAIN",
-      "ANY",
       "ALL",
+      "ANY",
+      "CONTAIN",
+      "EQUAL",
+      "GREATER_THAN",
+      "IN",
+      "IN_RANGE",
+      "LESS_THAN",
       "NONE",
+      "NOT_CONTAIN",
+      "NOT_EQUAL",
+      "NOT_IN",
+      "NOT_IN_RANGE",
     ]
 
     TYPE = [
+      "DELIVERY_INSIGHTS_CHANGE",
       "METADATA_CREATION",
       "METADATA_UPDATE",
-      "STATS_MILESTONE",
       "STATS_CHANGE",
-      "DELIVERY_INSIGHTS_CHANGE",
+      "STATS_MILESTONE",
     ]
 
 

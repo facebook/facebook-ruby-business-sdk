@@ -27,8 +27,8 @@ module FacebookAds
 
   class AdPlacePageSet < AdObject
     LOCATION_TYPES = [
-      "recent",
       "home",
+      "recent",
     ]
 
     TARGETED_AREA_TYPE = [

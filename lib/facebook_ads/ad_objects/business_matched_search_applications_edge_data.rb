@@ -28,17 +28,17 @@ module FacebookAds
   class BusinessMatchedSearchApplicationsEdgeData < AdObject
     APP_STORE = [
       "AMAZON_APP_STORE",
-      "GOOGLE_PLAY",
-      "ITUNES",
-      "ITUNES_IPAD",
+      "DOES_NOT_EXIST",
+      "FB_ANDROID_STORE",
       "FB_CANVAS",
       "FB_GAMEROOM",
-      "WINDOWS_STORE",
-      "FB_ANDROID_STORE",
-      "WINDOWS_10_STORE",
-      "ROKU_STORE",
+      "GOOGLE_PLAY",
       "INSTANT_GAME",
-      "DOES_NOT_EXIST",
+      "ITUNES",
+      "ITUNES_IPAD",
+      "ROKU_STORE",
+      "WINDOWS_10_STORE",
+      "WINDOWS_STORE",
     ]
 
 

@@ -27,15 +27,15 @@ module FacebookAds
 
   class AdStudyObjective < AdObject
     TYPE = [
-      "SALES",
-      "NONSALES",
-      "MAE",
-      "TELCO",
-      "FTL",
-      "MAI",
-      "PARTNER",
-      "BRANDLIFT",
       "BRAND",
+      "BRANDLIFT",
+      "FTL",
+      "MAE",
+      "MAI",
+      "NONSALES",
+      "PARTNER",
+      "SALES",
+      "TELCO",
     ]
 
 

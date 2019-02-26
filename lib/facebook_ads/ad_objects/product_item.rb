@@ -37,20 +37,20 @@ module FacebookAds
     ]
 
     AVAILABILITY = [
-      "in stock",
-      "out of stock",
-      "preorder",
       "available for order",
       "discontinued",
+      "in stock",
+      "out of stock",
       "pending",
+      "preorder",
     ]
 
     CONDITION = [
+      "cpo",
       "new",
+      "open_box_new",
       "refurbished",
       "used",
-      "cpo",
-      "open_box_new",
     ]
 
     GENDER = [
@@ -61,22 +61,22 @@ module FacebookAds
 
     REVIEW_STATUS = [
       "",
-      "pending",
-      "rejected",
       "approved",
       "outdated",
+      "pending",
+      "rejected",
     ]
 
     SHIPPING_WEIGHT_UNIT = [
       "g",
       "kg",
-      "oz",
       "lb",
+      "oz",
     ]
 
     VISIBILITY = [
-      "staging",
       "published",
+      "staging",
     ]
 
 

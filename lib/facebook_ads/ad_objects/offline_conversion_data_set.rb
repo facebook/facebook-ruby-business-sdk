@@ -28,21 +28,21 @@ module FacebookAds
   class OfflineConversionDataSet < AdObject
     PERMITTED_ROLES = [
       "ADMIN",
-      "UPLOADER",
       "ADVERTISER",
+      "UPLOADER",
     ]
 
     RELATIONSHIP_TYPE = [
       "AD_MANAGER",
-      "AUDIENCE_MANAGER",
       "AGENCY",
+      "AUDIENCE_MANAGER",
       "OTHER",
     ]
 
     ROLE = [
       "ADMIN",
-      "UPLOADER",
       "ADVERTISER",
+      "UPLOADER",
     ]
 
 
@@ -72,7 +72,7 @@ module FacebookAds
         api.has_param :business_id, 'string'
         api.has_param :start_time, 'datetime'
         api.has_param :end_time, 'datetime'
-        api.has_param :event_type, { enum: %w{dataset_assign_to_adacct dataset_autotrack_on_adacct dataset_disable_autotrack_on_adacct dataset_unassign_from_adacct add_dataset_to_business add_user_to_dataset remove_user_from_dataset update_user_role_on_dataset create_custom_conversion update_custom_conversion create_custom_audience share_custom_audience unshare_custom_audience }}
+        api.has_param :event_type, { enum: %w{add_dataset_to_business add_user_to_dataset create_custom_audience create_custom_conversion dataset_assign_to_adacct dataset_autotrack_on_adacct dataset_disable_autotrack_on_adacct dataset_unassign_from_adacct remove_user_from_dataset share_custom_audience unshare_custom_audience update_custom_conversion update_user_role_on_dataset }}
       end
     end
 
@@ -138,7 +138,7 @@ module FacebookAds
         api.has_param :start, 'int'
         api.has_param :end, 'int'
         api.has_param :skip_empty_values, 'bool'
-        api.has_param :aggr_time, { enum: %w{upload_time event_time }}
+        api.has_param :aggr_time, { enum: %w{event_time upload_time }}
         api.has_param :user_timezone_id, 'int'
         api.has_param :granularity, { enum: %w{daily hourly six_hourly }}
       end
@@ -149,7 +149,7 @@ module FacebookAds
         api.has_param :upload_tag, 'string'
         api.has_param :start_time, 'datetime'
         api.has_param :end_time, 'datetime'
-        api.has_param :sort_by, { enum: %w{CREATION_TIME FIRST_UPLOAD_TIME LAST_UPLOAD_TIME API_CALLS EVENT_TIME_MIN EVENT_TIME_MAX IS_EXCLUDED_FOR_LIFT }}
+        api.has_param :sort_by, { enum: %w{API_CALLS CREATION_TIME EVENT_TIME_MAX EVENT_TIME_MIN FIRST_UPLOAD_TIME IS_EXCLUDED_FOR_LIFT LAST_UPLOAD_TIME }}
         api.has_param :order, { enum: %w{ASCENDING DESCENDING }}
       end
       edge.post do |api|

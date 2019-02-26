@@ -27,8 +27,8 @@ module FacebookAds
 
   class AdCreativeLinkData < AdObject
     ATTACHMENT_STYLE = [
-      "link",
       "default",
+      "link",
     ]
 
     FORMAT_OPTION = [

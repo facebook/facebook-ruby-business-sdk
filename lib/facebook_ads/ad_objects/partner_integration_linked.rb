@@ -52,28 +52,29 @@ module FacebookAds
       "jumpseller",
       "kajabi",
       "kraftly",
+      "m_particle",
       "magento",
       "magento_2",
       "marketo",
       "meesho",
-      "m_particle",
       "now_floats",
       "opencart",
       "prestashop",
       "productsup",
-      "ruby_on_rails",
       "riversoft",
+      "ruby_on_rails",
       "salesforce",
       "salesforce_zap",
       "segment",
+      "shop_up",
       "shopify",
       "shopify_online",
       "shopline",
-      "shop_up",
       "sirclo",
       "squarespace",
       "storeden",
       "test",
+      "ticketmaster",
       "verifone",
       "waca",
       "webflow",
@@ -82,7 +83,6 @@ module FacebookAds
       "woocommerce",
       "wordpress",
       "zoho_zap",
-      "ticketmaster",
     ]
 
     COMPLETED_INTEGRATION_TYPES = [
@@ -93,8 +93,8 @@ module FacebookAds
     ]
 
     SETUP_STATUS = [
-      "START",
       "COMPLETE",
+      "START",
     ]
 
 

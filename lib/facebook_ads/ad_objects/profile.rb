@@ -27,23 +27,23 @@ module FacebookAds
 
   class Profile < AdObject
     PROFILE_TYPE = [
-      "user",
-      "page",
+      "application",
       "event",
       "group",
-      "application",
+      "page",
+      "user",
     ]
 
     TYPE = [
-      "NONE",
+      "ANGRY",
+      "HAHA",
       "LIKE",
       "LOVE",
-      "WOW",
-      "HAHA",
-      "SAD",
-      "ANGRY",
-      "THANKFUL",
+      "NONE",
       "PRIDE",
+      "SAD",
+      "THANKFUL",
+      "WOW",
     ]
 
 

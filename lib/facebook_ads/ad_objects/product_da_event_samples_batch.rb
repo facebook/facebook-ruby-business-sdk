@@ -32,13 +32,13 @@ module FacebookAds
     ]
 
     EVENT = [
-      "ViewContent",
       "AddToCart",
-      "Purchase",
-      "InitiateCheckout",
-      "Search",
-      "Lead",
       "AddToWishlist",
+      "InitiateCheckout",
+      "Lead",
+      "Purchase",
+      "Search",
+      "ViewContent",
     ]
 
 

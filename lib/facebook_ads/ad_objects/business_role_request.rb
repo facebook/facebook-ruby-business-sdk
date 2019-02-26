@@ -27,18 +27,18 @@ module FacebookAds
 
   class BusinessRoleRequest < AdObject
     ROLE = [
-      "FINANCE_EDITOR",
-      "FINANCE_ANALYST",
-      "ADS_RIGHTS_REVIEWER",
       "ADMIN",
+      "ADS_RIGHTS_REVIEWER",
       "EMPLOYEE",
+      "FINANCE_ANALYST",
+      "FINANCE_EDITOR",
     ]
 
     STATUS = [
-      "PENDING",
       "ACCEPTED",
       "DECLINED",
       "EXPIRED",
+      "PENDING",
     ]
 
 

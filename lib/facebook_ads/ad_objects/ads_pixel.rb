@@ -32,31 +32,31 @@ module FacebookAds
     ]
 
     AUTOMATIC_MATCHING_FIELDS = [
+      "ct",
       "em",
       "fn",
+      "ge",
       "ln",
       "ph",
-      "ge",
-      "zp",
-      "ct",
       "st",
+      "zp",
     ]
 
     DATA_USE_SETTING = [
-      "EMPTY",
       "ADVERTISING_AND_ANALYTICS",
       "ANALYTICS_ONLY",
+      "EMPTY",
     ]
 
     FIRST_PARTY_COOKIE_STATUS = [
       "EMPTY",
-      "FIRST_PARTY_COOKIE_ENABLED",
       "FIRST_PARTY_COOKIE_DISABLED",
+      "FIRST_PARTY_COOKIE_ENABLED",
     ]
 
     TASKS = [
-      "EDIT",
       "ANALYZE",
+      "EDIT",
     ]
 
     TYPE = [

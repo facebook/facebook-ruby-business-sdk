@@ -26,19 +26,53 @@ module FacebookAds
   # pull request for this class.
 
   class MeasurementUploadEvent < AdObject
+    AGGREGATION_LEVEL = [
+      "DAILY",
+      "NONE",
+      "WEEKLY",
+    ]
+
+    EVENT_STATUS = [
+      "CANCELCOMPLETED",
+      "CANCELED",
+      "COMPLETED",
+      "FAILED",
+      "STARTED",
+      "UPLOADED",
+    ]
+
     GROUP = [
-      "SUNDAY",
       "MONDAY",
+      "SUNDAY",
+    ]
+
+    LOOKBACK_WINDOW = [
+      "DAYS30",
+      "DAYS45",
+      "DAYS60",
+      "DAYS90",
+    ]
+
+    MATCH_UNIVERSE = [
+      "FULL",
+      "PII",
+      "PIXEL",
     ]
 
     VERSION = [
-      "WEEKLY",
       "EVALUATION",
+      "WEEKLY",
     ]
 
 
+    field :aggregation_level, 'string'
+    field :conversion_end_date, 'string'
+    field :conversion_start_date, 'string'
+    field :event_status, 'string'
     field :group, 'string'
     field :id, 'string'
+    field :lookback_window, 'string'
+    field :match_universe, 'string'
     field :partner, 'Business'
     field :upload_end_time, 'datetime'
     field :upload_start_time, 'datetime'

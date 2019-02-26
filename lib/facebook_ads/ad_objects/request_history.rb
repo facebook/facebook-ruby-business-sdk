@@ -27,9 +27,9 @@ module FacebookAds
 
   class RequestHistory < AdObject
     HTTP_METHOD = [
+      "DELETE",
       "GET",
       "POST",
-      "DELETE",
     ]
 
 

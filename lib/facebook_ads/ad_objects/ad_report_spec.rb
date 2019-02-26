@@ -31,6 +31,7 @@ module FacebookAds
       "action_canvas_component_name",
       "action_carousel_card_id",
       "action_carousel_card_name",
+      "action_converted_product_id",
       "action_destination",
       "action_device",
       "action_event_channel",
@@ -38,42 +39,41 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
-      "action_converted_product_id",
       "interactive_component_sticker_id",
       "interactive_component_sticker_response",
     ]
 
     CREATION_SOURCE = [
+      "adsExcelAddin",
       "adsManagerReporting",
       "newAdsManager",
-      "adsExcelAddin",
     ]
 
     DATE_PRESET = [
-      "today",
-      "yesterday",
-      "this_month",
-      "last_month",
-      "this_quarter",
-      "lifetime",
-      "last_3d",
-      "last_7d",
       "last_14d",
       "last_28d",
       "last_30d",
+      "last_3d",
+      "last_7d",
       "last_90d",
+      "last_month",
+      "last_quarter",
       "last_week_mon_sun",
       "last_week_sun_sat",
-      "last_quarter",
       "last_year",
+      "lifetime",
+      "this_month",
+      "this_quarter",
       "this_week_mon_today",
       "this_week_sun_today",
       "this_year",
+      "today",
+      "yesterday",
     ]
 
     FORMAT = [
-      "JSON",
       "CSV",
+      "JSON",
       "XLS",
       "XLSX",
     ]

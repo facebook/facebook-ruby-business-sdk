@@ -27,67 +27,67 @@ module FacebookAds
 
   class Ad < AdObject
     BID_TYPE = [
+      "ABSOLUTE_OCPM",
+      "CPA",
       "CPC",
       "CPM",
       "MULTI_PREMIUM",
-      "ABSOLUTE_OCPM",
-      "CPA",
     ]
 
     CONFIGURED_STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
       "ARCHIVED",
+      "DELETED",
+      "PAUSED",
     ]
 
     EFFECTIVE_STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
-      "PENDING_REVIEW",
-      "DISAPPROVED",
-      "PREAPPROVED",
-      "PENDING_BILLING_INFO",
-      "CAMPAIGN_PAUSED",
-      "ARCHIVED",
       "ADSET_PAUSED",
+      "ARCHIVED",
+      "CAMPAIGN_PAUSED",
+      "DELETED",
+      "DISAPPROVED",
+      "PAUSED",
+      "PENDING_BILLING_INFO",
+      "PENDING_REVIEW",
+      "PREAPPROVED",
       "WITH_ISSUES",
     ]
 
     STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
       "ARCHIVED",
+      "DELETED",
+      "PAUSED",
     ]
 
     DATE_PRESET = [
-      "today",
-      "yesterday",
-      "this_month",
-      "last_month",
-      "this_quarter",
-      "lifetime",
-      "last_3d",
-      "last_7d",
       "last_14d",
       "last_28d",
       "last_30d",
+      "last_3d",
+      "last_7d",
       "last_90d",
+      "last_month",
+      "last_quarter",
       "last_week_mon_sun",
       "last_week_sun_sat",
-      "last_quarter",
       "last_year",
+      "lifetime",
+      "this_month",
+      "this_quarter",
       "this_week_mon_today",
       "this_week_sun_today",
       "this_year",
+      "today",
+      "yesterday",
     ]
 
     EXECUTION_OPTIONS = [
-      "validate_only",
-      "synchronous_ad_review",
       "include_recommendations",
+      "synchronous_ad_review",
+      "validate_only",
     ]
 
     OPERATOR = [
@@ -97,8 +97,8 @@ module FacebookAds
 
     STATUS_OPTION = [
       "ACTIVE",
-      "PAUSED",
       "INHERITED_FROM_SOURCE",
+      "PAUSED",
     ]
 
 
@@ -148,11 +148,11 @@ module FacebookAds
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
       edge.post 'Ad' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: %w{validate_only }} }
       end
     end
 

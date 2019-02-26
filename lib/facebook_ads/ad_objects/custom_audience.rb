@@ -51,25 +51,25 @@ module FacebookAds
     ]
 
     CUSTOMER_FILE_SOURCE = [
-      "USER_PROVIDED_ONLY",
-      "PARTNER_PROVIDED_ONLY",
       "BOTH_USER_AND_PARTNER_PROVIDED",
+      "PARTNER_PROVIDED_ONLY",
+      "USER_PROVIDED_ONLY",
     ]
 
     SUBTYPE = [
-      "CUSTOM",
-      "WEBSITE",
       "APP",
-      "OFFLINE_CONVERSION",
-      "CLAIM",
-      "PARTNER",
-      "MANAGED",
-      "VIDEO",
-      "LOOKALIKE",
-      "ENGAGEMENT",
       "BAG_OF_ACCOUNTS",
-      "STUDY_RULE_AUDIENCE",
+      "CLAIM",
+      "CUSTOM",
+      "ENGAGEMENT",
       "FOX",
+      "LOOKALIKE",
+      "MANAGED",
+      "OFFLINE_CONVERSION",
+      "PARTNER",
+      "STUDY_RULE_AUDIENCE",
+      "VIDEO",
+      "WEBSITE",
     ]
 
 
@@ -174,8 +174,8 @@ module FacebookAds
 
     has_edge :data do |edge|
       edge.post do |api|
-        api.has_param :action_type, { enum: %w{add remove match optout }}
-        api.has_param :encoding, { enum: %w{md5 sha256 plain }}
+        api.has_param :action_type, { enum: %w{add match optout remove }}
+        api.has_param :encoding, { enum: %w{md5 plain sha256 }}
         api.has_param :entry_type, { enum: %w{0 1 2 3 4 5 6 }}
         api.has_param :entries, { list: 'string' }
         api.has_param :session_id, 'int'

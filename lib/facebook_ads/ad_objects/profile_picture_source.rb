@@ -27,9 +27,9 @@ module FacebookAds
 
   class ProfilePictureSource < AdObject
     TYPE = [
-      "thumbnail",
-      "small",
       "album",
+      "small",
+      "thumbnail",
     ]
 
 

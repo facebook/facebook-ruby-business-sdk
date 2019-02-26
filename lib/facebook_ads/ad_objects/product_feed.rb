@@ -30,25 +30,25 @@ module FacebookAds
       "AUTODETECT",
       "BAR",
       "COMMA",
+      "SEMICOLON",
       "TAB",
       "TILDE",
-      "SEMICOLON",
     ]
 
     QUOTED_FIELDS_MODE = [
       "AUTODETECT",
-      "ON",
       "OFF",
+      "ON",
     ]
 
     ENCODING = [
       "AUTODETECT",
       "LATIN1",
-      "UTF8",
-      "UTF16LE",
       "UTF16BE",
-      "UTF32LE",
+      "UTF16LE",
       "UTF32BE",
+      "UTF32LE",
+      "UTF8",
     ]
 
     FEED_TYPE = [
@@ -62,8 +62,8 @@ module FacebookAds
       "MARKET",
       "MEDIA_TITLE",
       "PRODUCTS",
-      "VEHICLE_OFFER",
       "VEHICLES",
+      "VEHICLE_OFFER",
     ]
 
 

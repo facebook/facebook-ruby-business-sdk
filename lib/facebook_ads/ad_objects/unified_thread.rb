@@ -105,7 +105,7 @@ module FacebookAds
         api.has_param :ttl, 'int'
         api.has_param :use_existing_group, 'bool'
         api.has_param :video_thumbnail, 'file'
-        api.has_param :video_type, { enum: %w{FILE_ATTACHMENT RECORDED_VIDEO SPEAKING_STICKER RECORDED_STICKER VIDEO_MAIL }}
+        api.has_param :video_type, { enum: %w{FILE_ATTACHMENT RECORDED_STICKER RECORDED_VIDEO SPEAKING_STICKER VIDEO_MAIL }}
         api.has_param :message_attempt_id, 'string'
         api.has_param :is_admin_model_v2_enabled, 'bool'
       end

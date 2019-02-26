@@ -27,7 +27,6 @@ module FacebookAds
 
   class InstagramUser < AdObject
     ROLE = [
-      "MANAGER",
       "ANALYST",
     ]
 
