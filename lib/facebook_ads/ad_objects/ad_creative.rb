@@ -101,8 +101,6 @@ module FacebookAds
     STATUS = [
       "ACTIVE",
       "DELETED",
-      "PENDING_PROCESS",
-      "WITH_ISSUES",
     ]
 
     AUTHORIZATION_CATEGORY = [

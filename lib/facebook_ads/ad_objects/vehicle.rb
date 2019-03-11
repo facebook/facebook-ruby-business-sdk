@@ -146,7 +146,6 @@ module FacebookAds
     field :vehicle_type, 'string'
     field :vin, 'string'
     field :year, 'int'
-    has_no_post
     has_no_delete
 
   end

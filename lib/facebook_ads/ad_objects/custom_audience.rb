@@ -65,6 +65,7 @@ module FacebookAds
       "FOX",
       "LOOKALIKE",
       "MANAGED",
+      "MEASUREMENT",
       "OFFLINE_CONVERSION",
       "PARTNER",
       "STUDY_RULE_AUDIENCE",

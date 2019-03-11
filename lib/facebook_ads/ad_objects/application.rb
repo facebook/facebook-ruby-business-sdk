@@ -49,77 +49,6 @@ module FacebookAds
       "UNKNOWN",
     ]
 
-    AGGREGATION_PERIOD = [
-      "DAY",
-      "HOUR",
-      "TOTAL",
-    ]
-
-    BREAKDOWNS = [
-      "AGE",
-      "APP",
-      "CLICKED_VIEW_TAG",
-      "COUNTRY",
-      "DEAL",
-      "DEAL_AD",
-      "DEAL_PAGE",
-      "DELIVERY_METHOD",
-      "DISPLAY_FORMAT",
-      "FAIL_REASON",
-      "GENDER",
-      "PLACEMENT",
-      "PLATFORM",
-      "PROPERTY",
-      "SDK_VERSION",
-    ]
-
-    METRICS = [
-      "FB_AD_NETWORK_BIDDING_BID_RATE",
-      "FB_AD_NETWORK_BIDDING_REQUEST",
-      "FB_AD_NETWORK_BIDDING_RESPONSE",
-      "FB_AD_NETWORK_BIDDING_REVENUE",
-      "FB_AD_NETWORK_BIDDING_WIN_RATE",
-      "FB_AD_NETWORK_CLICK",
-      "FB_AD_NETWORK_CLICK_VALUE_SCORE",
-      "FB_AD_NETWORK_CLICK_VALUE_SCORE_DENOMINATOR",
-      "FB_AD_NETWORK_CLICK_VALUE_SCORE_NUMERATOR",
-      "FB_AD_NETWORK_CPM",
-      "FB_AD_NETWORK_CTR",
-      "FB_AD_NETWORK_DIRECT_PUBLISHER_BILL",
-      "FB_AD_NETWORK_DIRECT_TOTAL_REVENUE",
-      "FB_AD_NETWORK_FAST_CLICK_DENOMINATOR",
-      "FB_AD_NETWORK_FAST_CLICK_NUMERATOR",
-      "FB_AD_NETWORK_FAST_CLICK_RATE",
-      "FB_AD_NETWORK_FAST_RETURN_DENOMINATOR",
-      "FB_AD_NETWORK_FAST_RETURN_NUMERATOR",
-      "FB_AD_NETWORK_FAST_RETURN_RATE",
-      "FB_AD_NETWORK_FILLED_REQUEST",
-      "FB_AD_NETWORK_FILL_RATE",
-      "FB_AD_NETWORK_IMP",
-      "FB_AD_NETWORK_NO_BID",
-      "FB_AD_NETWORK_NO_FILL",
-      "FB_AD_NETWORK_REQUEST",
-      "FB_AD_NETWORK_REVENUE",
-      "FB_AD_NETWORK_SHOW_RATE",
-      "FB_AD_NETWORK_VIDEO_GUARANTEE_REVENUE",
-      "FB_AD_NETWORK_VIDEO_MRC",
-      "FB_AD_NETWORK_VIDEO_MRC_RATE",
-      "FB_AD_NETWORK_VIDEO_VIEW",
-      "FB_AD_NETWORK_VIDEO_VIEW_RATE",
-      "FB_AD_NETWORK_WIN_RATE",
-    ]
-
-    ORDERING_COLUMN = [
-      "METRIC",
-      "TIME",
-      "VALUE",
-    ]
-
-    ORDERING_TYPE = [
-      "ASCENDING",
-      "DESCENDING",
-    ]
-
     PLATFORM = [
       "ANDROID",
       "IOS",
@@ -327,24 +256,24 @@ module FacebookAds
 
     has_edge :adnetworkanalytics do |edge|
       edge.get 'AdNetworkAnalyticsSyncQueryResult' do |api|
-        api.has_param :aggregation_period, { enum: -> { Application::AGGREGATION_PERIOD }}
-        api.has_param :breakdowns, { list: { enum: -> { Application::BREAKDOWNS }} }
+        api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
+        api.has_param :breakdowns, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::BREAKDOWNS }} }
         api.has_param :filters, { list: 'hash' }
         api.has_param :limit, 'int'
-        api.has_param :metrics, { list: { enum: -> { Application::METRICS }} }
-        api.has_param :ordering_column, { enum: -> { Application::ORDERING_COLUMN }}
-        api.has_param :ordering_type, { enum: -> { Application::ORDERING_TYPE }}
+        api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
+        api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
+        api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end
       edge.post 'Application' do |api|
-        api.has_param :aggregation_period, { enum: -> { Application::AGGREGATION_PERIOD }}
-        api.has_param :breakdowns, { list: { enum: -> { Application::BREAKDOWNS }} }
-        api.has_param :metrics, { list: { enum: -> { Application::METRICS }} }
+        api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
+        api.has_param :breakdowns, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::BREAKDOWNS }} }
+        api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
         api.has_param :filters, { list: 'object' }
         api.has_param :limit, 'int'
-        api.has_param :ordering_column, { enum: -> { Application::ORDERING_COLUMN }}
-        api.has_param :ordering_type, { enum: -> { Application::ORDERING_TYPE }}
+        api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
+        api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end

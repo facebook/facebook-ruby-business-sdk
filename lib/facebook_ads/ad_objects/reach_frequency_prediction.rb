@@ -82,7 +82,7 @@ module FacebookAds
     field :curve_reach, { list: 'int' }
     field :daily_grp_curve, { list: 'double' }
     field :daily_impression_curve, { list: 'double' }
-    field :daily_impression_curve_map, { list: 'object' }
+    field :daily_impression_curve_map, 'map<unsigned int, list<float>>'
     field :day_parting_schedule, { list: 'ReachFrequencyDayPart' }
     field :demo_breakdown, 'ReachFrequencyEstimatesDemoBreakdown'
     field :destination_id, 'string'
@@ -101,8 +101,8 @@ module FacebookAds
     field :feed_ratio_0000, 'int'
     field :frequency_cap, 'int'
     field :frequency_distribution, { list: 'double' }
-    field :frequency_distribution_map, { list: 'object' }
-    field :frequency_distribution_map_agg, { list: 'object' }
+    field :frequency_distribution_map, 'map<unsigned int, list<float>>'
+    field :frequency_distribution_map_agg, 'map<unsigned int, list<unsigned int>>'
     field :full_view_ratio_00, 'int'
     field :grp_audience_size, 'double'
     field :grp_avg_probability_map, 'string'
@@ -132,7 +132,7 @@ module FacebookAds
     field :objective_name, 'string'
     field :pause_periods, { list: 'object' }
     field :placement_breakdown, 'ReachFrequencyEstimatesPlacementBreakdown'
-    field :placement_breakdown_map, { list: 'object' }
+    field :placement_breakdown_map, 'map<unsigned int, ReachFrequencyEstimatesPlacementBreakdown>'
     field :plan_name, 'string'
     field :plan_type, 'string'
     field :prediction_mode, 'int'
@@ -150,8 +150,8 @@ module FacebookAds
     field :timezone_id, 'int'
     field :timezone_name, 'string'
     field :topline_id, 'int'
-    field :tv_viewer_cluster_map, { list: 'object' }
-    field :video_view_benchmark_map, { list: 'object' }
+    field :tv_viewer_cluster_map, 'map<unsigned int, Object>'
+    field :video_view_benchmark_map, 'hash'
     field :video_view_length_constraint, 'int'
     field :viewtag, 'string'
     field :action, { enum: -> { ACTION }}

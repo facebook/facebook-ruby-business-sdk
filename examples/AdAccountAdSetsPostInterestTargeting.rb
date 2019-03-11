@@ -16,44 +16,27 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# FB:AUTOGEN
+require 'facebook_ads'
 
-module FacebookAds
-  # This class is auto-generated.
+access_token = '<ACCESS_TOKEN>'
+app_secret = '<APP_SECRET>'
+app_id = '<APP_ID>'
+id = '<AD_ACCOUNT_ID>'
 
-  # For any issues or feature requests related to this class, please let us know
-  # on github and we'll fix in our codegen framework. We'll not be able to accept
-  # pull request for this class.
-
-  class AdsPixelStatsResult < AdObject
-    AGGREGATION = [
-      "browser_type",
-      "custom_data_field",
-      "device_os",
-      "device_type",
-      "event",
-      "event_detection_method",
-      "event_processing_results",
-      "event_source",
-      "event_total_counts",
-      "event_value_count",
-      "host",
-      "people_reached",
-      "pii_keys",
-      "pii_lift",
-      "pixel_fire",
-      "url",
-      "url_by_rule",
-    ]
-
-
-    field :aggregation, 'string'
-    field :data, { list: 'AdsPixelStats' }
-    field :start_time, 'datetime'
-    field :id, 'string'
-    has_no_get
-    has_no_post
-    has_no_delete
-
-  end
+FacebookAds.configure do |config|
+  config.access_token = access_token
+  config.app_secret = app_secret
 end
+
+ad_account = FacebookAds::AdAccount.get(id)
+adsets = ad_account.adsets.create({
+    name: 'My First AdSet',
+    daily_budget: '10000',
+    bid_amount: '300',
+    billing_event: 'IMPRESSIONS',
+    optimization_goal: 'REACH',
+    campaign_id: '<adCampaignLinkClicksID>',
+    promoted_object: {'page_id':'<pageID>'},
+    targeting: {'geo_locations':{'countries':['US'],'regions':[{'key':'4081'}],'cities':[{'key':777934,'radius':10,'distance_unit':'mile'}]},'genders':[1],'age_max':24,'age_min':20,'publisher_platforms':['facebook','audience_network'],'device_platforms':['mobile'],'flexible_spec':[{'interests':[{'id':'<adsInterestID>','name':'<adsInterestName>'}]}]},
+    status: 'PAUSED',
+})

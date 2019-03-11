@@ -37,7 +37,7 @@ module FacebookAds
 
     field :attribute, 'string'
     field :id, 'string'
-    field :params, { list: 'object' }
+    field :params, 'hash'
     field :rule_type, 'string'
 
   end

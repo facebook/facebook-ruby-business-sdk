@@ -25,31 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdsPixelStatsResult < AdObject
-    AGGREGATION = [
-      "browser_type",
-      "custom_data_field",
-      "device_os",
-      "device_type",
-      "event",
-      "event_detection_method",
-      "event_processing_results",
-      "event_source",
-      "event_total_counts",
-      "event_value_count",
-      "host",
-      "people_reached",
-      "pii_keys",
-      "pii_lift",
-      "pixel_fire",
-      "url",
-      "url_by_rule",
-    ]
+  class BrandSafetyBlockListUsage < AdObject
 
-
-    field :aggregation, 'string'
-    field :data, { list: 'AdsPixelStats' }
-    field :start_time, 'datetime'
+    field :current_usage, 'int'
+    field :new_usage, 'int'
+    field :platform, 'string'
+    field :position, 'string'
+    field :threshold, 'int'
     field :id, 'string'
     has_no_get
     has_no_post

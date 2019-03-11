@@ -61,8 +61,8 @@ module FacebookAds
     field :hash, 'string'
     field :http_method, { enum: -> { HTTP_METHOD }}
     field :id, 'string'
-    field :post_params, { list: 'object' }
-    field :query_params, { list: 'object' }
+    field :post_params, 'hash'
+    field :query_params, 'hash'
     has_no_post
 
   end

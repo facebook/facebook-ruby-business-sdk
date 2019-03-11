@@ -126,6 +126,9 @@ module FacebookAds
       "MANAGE_JOBS",
       "MODERATE",
       "MODERATE_COMMUNITY",
+      "PAGES_MESSAGING",
+      "PAGES_MESSAGING_SUBSCRIPTIONS",
+      "READ_PAGE_MAILBOXES",
     ]
 
     TASKS = [
@@ -136,6 +139,9 @@ module FacebookAds
       "MANAGE_JOBS",
       "MODERATE",
       "MODERATE_COMMUNITY",
+      "PAGES_MESSAGING",
+      "PAGES_MESSAGING_SUBSCRIPTIONS",
+      "READ_PAGE_MAILBOXES",
     ]
 
     MESSAGING_TYPE = [
@@ -991,10 +997,6 @@ module FacebookAds
 
     has_edge :leadgen_legal_content do |edge|
       edge.get 'LeadGenLegalContent'
-    end
-
-    has_edge :leadgen_qualifiers do |edge|
-      edge.get 'LeadGenQualifier'
     end
 
     has_edge :leadgen_whitelisted_users do |edge|

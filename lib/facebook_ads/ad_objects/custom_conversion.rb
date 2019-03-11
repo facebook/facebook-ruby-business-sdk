@@ -61,6 +61,7 @@ module FacebookAds
     field :first_fired_time, 'datetime'
     field :id, 'string'
     field :is_archived, 'bool'
+    field :is_unavailable, 'bool'
     field :last_fired_time, 'datetime'
     field :name, 'string'
     field :offline_conversion_data_set, 'OfflineConversionDataSet'

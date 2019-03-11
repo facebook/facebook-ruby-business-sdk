@@ -55,7 +55,6 @@ module FacebookAds
       "AUTO_MARKET",
       "DESTINATION",
       "FLIGHT",
-      "GEO_BASED_ITEM",
       "HOME_LISTING",
       "HOME_SERVICE_PROVIDER",
       "HOME_SERVICE_REVIEW",
@@ -439,7 +438,7 @@ module FacebookAds
         api.has_param :filter, 'object'
       end
       edge.post 'Vehicle' do |api|
-        api.has_param :applinks, 'object'
+        api.has_param :vehicle_id, 'string'
         api.has_param :body_style, { enum: -> { Vehicle::BODY_STYLE }}
         api.has_param :description, 'string'
         api.has_param :exterior_color, 'string'
@@ -449,13 +448,13 @@ module FacebookAds
         api.has_param :state_of_vehicle, { enum: -> { Vehicle::STATE_OF_VEHICLE }}
         api.has_param :vin, 'string'
         api.has_param :url, 'string'
-        api.has_param :vehicle_id, 'string'
         api.has_param :year, 'int'
         api.has_param :images, { list: 'object' }
         api.has_param :address, 'hash'
         api.has_param :currency, 'string'
         api.has_param :price, 'int'
         api.has_param :title, 'string'
+        api.has_param :applinks, 'object'
         api.has_param :transmission, { enum: -> { Vehicle::TRANSMISSION }}
         api.has_param :drivetrain, { enum: -> { Vehicle::DRIVETRAIN }}
         api.has_param :fuel_type, { enum: -> { Vehicle::FUEL_TYPE }}

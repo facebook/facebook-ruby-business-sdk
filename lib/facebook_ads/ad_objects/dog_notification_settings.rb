@@ -29,7 +29,7 @@ module FacebookAds
 
     field :dog_check_key, 'string'
     field :id, 'string'
-    field :subscription_status_per_channel, { list: 'object' }
+    field :subscription_status_per_channel, 'hash'
     has_no_delete
 
   end

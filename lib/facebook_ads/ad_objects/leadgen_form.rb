@@ -91,13 +91,13 @@ module FacebookAds
     field :page, 'Page'
     field :page_id, 'string'
     field :privacy_policy_url, 'string'
-    field :qualifiers, { list: 'LeadGenQualifier' }
+    field :qualifiers, { list: 'object' }
     field :question_page_custom_headline, 'string'
     field :questions, { list: 'LeadGenQuestion' }
     field :status, 'string'
     field :tcpa_compliance, 'bool'
     field :thank_you_page, 'object'
-    field :tracking_parameters, { list: 'object' }
+    field :tracking_parameters, 'hash'
 
     has_edge :leads do |edge|
       edge.get 'Lead'

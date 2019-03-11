@@ -32,7 +32,7 @@ module FacebookAds
     field :guidance, 'object'
     field :id, 'string'
     field :iterative_split_test_original_variant_id, 'string'
-    field :iterative_split_test_variant_to_split_mapping, { list: 'object' }
+    field :iterative_split_test_variant_to_split_mapping, 'hash'
     field :results_window, 'object'
     field :splits, { list: 'int' }
     field :start_time, 'datetime'

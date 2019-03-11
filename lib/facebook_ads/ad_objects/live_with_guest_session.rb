@@ -29,7 +29,7 @@ module FacebookAds
 
     field :conference_name, 'string'
     field :id, 'string'
-    field :participant_call_states, { list: 'object' }
+    field :participant_call_states, 'hash'
     field :server_sdp, 'string'
     has_no_post
     has_no_delete

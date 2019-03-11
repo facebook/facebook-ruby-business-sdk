@@ -27,12 +27,12 @@ module FacebookAds
 
   class DynamicItemDisplayBundle < AdObject
 
-    field :additional_urls, { list: 'object' }
+    field :additional_urls, 'hash'
     field :description, 'string'
     field :id, 'string'
     field :name, 'string'
     field :product_set, 'ProductSet'
-    field :text_tokens, { list: 'object' }
+    field :text_tokens, 'hash'
     field :url, 'string'
 
     has_edge :bundle_folders do |edge|

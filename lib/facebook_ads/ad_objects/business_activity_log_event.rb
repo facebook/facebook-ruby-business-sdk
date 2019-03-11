@@ -40,7 +40,7 @@ module FacebookAds
     field :acting_user_name, 'string'
     field :event_time, 'int'
     field :event_type, 'string'
-    field :extra_data, { list: 'object' }
+    field :extra_data, 'hash'
     field :target_business_id, 'string'
     field :target_business_name, 'string'
     field :target_business_object_id, 'string'

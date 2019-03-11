@@ -25,14 +25,23 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class LeadGenQualifier < AdObject
+  class ThirdPartyMeasurementReportDataset < AdObject
+    CATEGORY = [
+      "MTA",
+    ]
+
+    PRODUCT = [
+      "CUSTOM",
+      "MTA",
+      "VIEWABILITY",
+    ]
+
 
     field :category, 'string'
-    field :field_key, 'string'
     field :id, 'string'
-    field :label, 'string'
-    field :question, 'string'
-    has_no_get
+    field :partner, 'Business'
+    field :product, 'string'
+    field :schema, { list: 'object' }
     has_no_post
     has_no_delete
 

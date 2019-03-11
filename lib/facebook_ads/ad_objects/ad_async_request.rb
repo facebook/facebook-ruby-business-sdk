@@ -26,18 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class AdAsyncRequest < AdObject
-    STATUS = [
-      "CANCELED",
-      "CANCELED_DEPENDENCY",
-      "ERROR",
-      "ERROR_CONFLICTS",
-      "ERROR_DEPENDENCY",
-      "INITIAL",
-      "IN_PROGRESS",
-      "PENDING_DEPENDENCY",
-      "SUCCESS",
-    ]
-
     STATUSES = [
       "CANCELED",
       "CANCELED_DEPENDENCY",
@@ -57,7 +45,7 @@ module FacebookAds
     field :input, 'hash'
     field :result, 'hash'
     field :scope_object_id, 'string'
-    field :status, { enum: -> { STATUS }}
+    field :status, 'string'
     field :type, 'string'
     field :updated_time, 'datetime'
     has_no_post

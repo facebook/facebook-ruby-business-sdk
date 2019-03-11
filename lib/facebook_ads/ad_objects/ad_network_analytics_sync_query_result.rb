@@ -26,6 +26,62 @@ module FacebookAds
   # pull request for this class.
 
   class AdNetworkAnalyticsSyncQueryResult < AdObject
+    AGGREGATION_PERIOD = [
+      "DAY",
+      "TOTAL",
+    ]
+
+    BREAKDOWNS = [
+      "AGE",
+      "APP",
+      "CLICKED_VIEW_TAG",
+      "COUNTRY",
+      "DEAL",
+      "DEAL_AD",
+      "DEAL_PAGE",
+      "DELIVERY_METHOD",
+      "DISPLAY_FORMAT",
+      "FAIL_REASON",
+      "GENDER",
+      "PLACEMENT",
+      "PLATFORM",
+      "PROPERTY",
+      "SDK_VERSION",
+    ]
+
+    METRICS = [
+      "FB_AD_NETWORK_BIDDING_BID_RATE",
+      "FB_AD_NETWORK_BIDDING_REQUEST",
+      "FB_AD_NETWORK_BIDDING_RESPONSE",
+      "FB_AD_NETWORK_BIDDING_REVENUE",
+      "FB_AD_NETWORK_BIDDING_WIN_RATE",
+      "FB_AD_NETWORK_CLICK",
+      "FB_AD_NETWORK_CPM",
+      "FB_AD_NETWORK_CTR",
+      "FB_AD_NETWORK_FILLED_REQUEST",
+      "FB_AD_NETWORK_FILL_RATE",
+      "FB_AD_NETWORK_IMP",
+      "FB_AD_NETWORK_REQUEST",
+      "FB_AD_NETWORK_REVENUE",
+      "FB_AD_NETWORK_SHOW_RATE",
+      "FB_AD_NETWORK_VIDEO_GUARANTEE_REVENUE",
+      "FB_AD_NETWORK_VIDEO_MRC",
+      "FB_AD_NETWORK_VIDEO_MRC_RATE",
+      "FB_AD_NETWORK_VIDEO_VIEW",
+      "FB_AD_NETWORK_VIDEO_VIEW_RATE",
+    ]
+
+    ORDERING_COLUMN = [
+      "METRIC",
+      "TIME",
+      "VALUE",
+    ]
+
+    ORDERING_TYPE = [
+      "ASCENDING",
+      "DESCENDING",
+    ]
+
 
     field :query_id, 'string'
     field :results, { list: 'object' }

@@ -75,8 +75,8 @@ module FacebookAds
     field :asset_feed_id_old, 'string'
     field :bid_amount_new, 'int'
     field :bid_amount_old, 'int'
-    field :bid_info_new, { list: 'object' }
-    field :bid_info_old, { list: 'object' }
+    field :bid_info_new, 'hash'
+    field :bid_info_old, 'hash'
     field :bid_type_new, 'string'
     field :bid_type_old, 'string'
     field :conversion_specs_new, { list: 'object' }

@@ -37,6 +37,7 @@ module FacebookAds
     ]
 
     TYPE = [
+      "CONTINUOUS_LIFT_CONFIG",
       "LIFT",
       "SPLIT_TEST",
     ]

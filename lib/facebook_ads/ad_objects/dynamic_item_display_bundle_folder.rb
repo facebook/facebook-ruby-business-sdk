@@ -32,7 +32,7 @@ module FacebookAds
     field :name, 'string'
     field :product_catalog, 'ProductCatalog'
     field :product_set, 'ProductSet'
-    field :valid_labels, { list: 'object' }
+    field :valid_labels, 'map<string, list<string>>'
     field :bundles, { list: 'string' }
 
     has_edge :bundles do |edge|

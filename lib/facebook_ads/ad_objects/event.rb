@@ -33,35 +33,6 @@ module FacebookAds
       "public",
     ]
 
-    PROJECTION = [
-      "CUBEMAP",
-      "EQUIRECTANGULAR",
-      "HALF_EQUIRECTANGULAR",
-    ]
-
-    SPATIAL_AUDIO_FORMAT = [
-      "ambiX_4",
-    ]
-
-    STATUS = [
-      "LIVE_NOW",
-      "SCHEDULED_CANCELED",
-      "SCHEDULED_LIVE",
-      "SCHEDULED_UNPUBLISHED",
-      "UNPUBLISHED",
-    ]
-
-    STEREOSCOPIC_MODE = [
-      "LEFT_RIGHT",
-      "MONO",
-      "TOP_BOTTOM",
-    ]
-
-    STREAM_TYPE = [
-      "AMBIENT",
-      "REGULAR",
-    ]
-
     EVENT_STATE_FILTER = [
       "canceled",
       "draft",
@@ -122,13 +93,6 @@ module FacebookAds
       edge.get 'User' do |api|
         api.has_param :user, 'int'
       end
-      edge.post 'Event' do |api|
-        api.has_param :eid, 'string'
-        api.has_param :action_context, 'object'
-        api.has_param :app_context, 'object'
-        api.has_param :tracking, 'string'
-        api.has_param :uid, 'int'
-      end
     end
 
     has_edge :comments do |edge|
@@ -153,13 +117,6 @@ module FacebookAds
     has_edge :declined do |edge|
       edge.get 'User' do |api|
         api.has_param :user, 'int'
-      end
-      edge.post 'Event' do |api|
-        api.has_param :eid, 'string'
-        api.has_param :action_context, 'object'
-        api.has_param :app_context, 'object'
-        api.has_param :tracking, 'string'
-        api.has_param :uid, 'int'
       end
     end
 
@@ -289,42 +246,35 @@ module FacebookAds
 
     has_edge :live_videos do |edge|
       edge.get 'NullNode'
-      edge.post 'Event' do |api|
+      edge.post 'LiveVideo' do |api|
         api.has_param :title, 'string'
         api.has_param :description, 'string'
         api.has_param :save_vod, 'bool'
         api.has_param :published, 'bool'
-        api.has_param :status, { enum: -> { Event::STATUS }}
+        api.has_param :status, { enum: -> { LiveVideo::STATUS }}
         api.has_param :privacy, 'string'
         api.has_param :stop_on_delete_stream, 'bool'
-        api.has_param :stream_type, { enum: -> { Event::STREAM_TYPE }}
+        api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
         api.has_param :content_tags, { list: 'string' }
         api.has_param :is_spherical, 'bool'
         api.has_param :is_audio_only, 'bool'
         api.has_param :planned_start_time, 'int'
         api.has_param :schedule_custom_profile_image, 'file'
-        api.has_param :projection, { enum: -> { Event::PROJECTION }}
-        api.has_param :spatial_audio_format, { enum: -> { Event::SPATIAL_AUDIO_FORMAT }}
+        api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
+        api.has_param :spatial_audio_format, { enum: -> { LiveVideo::SPATIAL_AUDIO_FORMAT }}
         api.has_param :encoding_settings, 'string'
         api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
         api.has_param :attribution_app_id, 'string'
-        api.has_param :stereoscopic_mode, { enum: -> { Event::STEREOSCOPIC_MODE }}
+        api.has_param :stereoscopic_mode, { enum: -> { LiveVideo::STEREOSCOPIC_MODE }}
       end
     end
 
     has_edge :maybe do |edge|
       edge.get 'User' do |api|
         api.has_param :user, 'int'
-      end
-      edge.post 'Event' do |api|
-        api.has_param :eid, 'string'
-        api.has_param :action_context, 'object'
-        api.has_param :app_context, 'object'
-        api.has_param :tracking, 'string'
-        api.has_param :uid, 'int'
       end
     end
 

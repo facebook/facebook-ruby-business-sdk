@@ -127,6 +127,7 @@ module FacebookAds
       "FOX",
       "LOOKALIKE",
       "MANAGED",
+      "MEASUREMENT",
       "OFFLINE_CONVERSION",
       "PARTNER",
       "STUDY_RULE_AUDIENCE",
@@ -162,6 +163,7 @@ module FacebookAds
     field :end_advertiser_name, 'string'
     field :extended_credit_invoice_group, 'ExtendedCreditInvoiceGroup'
     field :failed_delivery_checks, { list: 'DeliveryCheck' }
+    field :fb_entity, 'int'
     field :funding_source, 'string'
     field :funding_source_details, 'FundingSourceDetails'
     field :has_migrated_permissions, 'bool'
@@ -1175,6 +1177,7 @@ module FacebookAds
         api.has_param :is_bonus_media, 'bool'
         api.has_param :is_conversion_goal, 'bool'
         api.has_param :is_full_view, 'bool'
+        api.has_param :is_higher_average_frequency, 'bool'
         api.has_param :is_reach_and_frequency_io_buying, 'bool'
         api.has_param :is_reserved_buying, 'bool'
         api.has_param :expiration_time, 'int'

@@ -27,7 +27,7 @@ module FacebookAds
 
   class AdsOptimalDeliveryGrowthOpportunity < AdObject
 
-    field :child_metadata, { list: 'object' }
+    field :child_metadata, 'hash'
     field :metadata, 'object'
     field :optimization_type, 'string'
     field :id, 'string'

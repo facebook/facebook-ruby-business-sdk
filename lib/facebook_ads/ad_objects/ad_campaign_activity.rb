@@ -129,8 +129,8 @@ module FacebookAds
     field :bid_amount_old, 'int'
     field :bid_constraints_new, 'object'
     field :bid_constraints_old, 'object'
-    field :bid_info_new, { list: 'object' }
-    field :bid_info_old, { list: 'object' }
+    field :bid_info_new, 'hash'
+    field :bid_info_old, 'hash'
     field :bid_strategy_new, { enum: -> { BID_STRATEGY_NEW }}
     field :bid_strategy_old, { enum: -> { BID_STRATEGY_OLD }}
     field :bid_type_new, 'string'

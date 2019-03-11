@@ -28,7 +28,7 @@ module FacebookAds
   class ProductFeedRuleSuggestion < AdObject
 
     field :attribute, 'string'
-    field :params, { list: 'object' }
+    field :params, 'hash'
     field :type, 'string'
     field :id, 'string'
     has_no_get

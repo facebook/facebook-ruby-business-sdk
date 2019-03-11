@@ -28,7 +28,7 @@ module FacebookAds
   class SplitTestWinner < AdObject
 
     field :ad_object_level, 'string'
-    field :confidences, { list: 'object' }
+    field :confidences, 'hash'
     field :winner_ad_object_id, 'string'
     field :id, 'string'
     has_no_get
