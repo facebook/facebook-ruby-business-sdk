@@ -65,7 +65,7 @@ module FacebookAds
     field :unique_content_ids_matched_other_catalogs, 'int'
     field :unique_matched_content_ids, 'int'
     field :unique_unmatched_content_ids, 'int'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

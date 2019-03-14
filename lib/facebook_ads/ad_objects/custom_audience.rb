@@ -138,6 +138,7 @@ module FacebookAds
     field :event_source_group, 'string'
     field :product_set_id, 'string'
     field :event_sources, { list: 'hash' }
+    field :enable_fetch_or_create, 'bool'
     field :video_group_ids, { list: 'string' }
     field :dataset_id, 'string'
 

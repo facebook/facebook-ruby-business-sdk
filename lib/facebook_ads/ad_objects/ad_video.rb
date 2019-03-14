@@ -82,6 +82,7 @@ module FacebookAds
       "LEARN",
       "LEGACY",
       "LIVE_CREATIVE_KIT_VIDEO",
+      "LIVE_LINEAR_VIDEO_CHANNEL_INTERNAL_BROADCAST",
       "LIVE_PHOTO",
       "LOOK_NOW_DEPRECATED",
       "MOMENTS_VIDEO",

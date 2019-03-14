@@ -30,7 +30,7 @@ module FacebookAds
     field :action, 'string'
     field :conditions, { list: 'object' }
     field :validity_status, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

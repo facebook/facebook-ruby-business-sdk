@@ -30,7 +30,7 @@ module FacebookAds
     field :estimate_ready, 'bool'
     field :unsupported, 'bool'
     field :users, 'int'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

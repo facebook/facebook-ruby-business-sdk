@@ -41,7 +41,7 @@ module FacebookAds
     field :aggregation, { enum: -> { AGGREGATION }}
     field :data, { list: 'object' }
     field :timestamp, 'datetime'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

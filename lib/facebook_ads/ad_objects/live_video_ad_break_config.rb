@@ -37,7 +37,7 @@ module FacebookAds
     field :preparing_duration, 'int'
     field :time_between_ad_breaks_secs, 'int'
     field :viewer_count_threshold, 'int'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

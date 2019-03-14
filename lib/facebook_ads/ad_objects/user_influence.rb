@@ -30,7 +30,7 @@ module FacebookAds
     field :trust, 'string'
     field :trust_code, 'int'
     field :version, 'int'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

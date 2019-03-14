@@ -92,7 +92,7 @@ module FacebookAds
     field :shape_color, 'string'
     field :text_color, 'string'
     field :text_font, { enum: -> { TEXT_FONT }}
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

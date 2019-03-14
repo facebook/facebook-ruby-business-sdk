@@ -859,6 +859,7 @@ module FacebookAds
         api.has_param :event_source_group, 'string'
         api.has_param :product_set_id, 'string'
         api.has_param :event_sources, { list: 'hash' }
+        api.has_param :enable_fetch_or_create, 'bool'
         api.has_param :video_group_ids, { list: 'string' }
         api.has_param :study_spec, 'hash'
         api.has_param :list_of_accounts, { list: 'int' }
@@ -1117,6 +1118,7 @@ module FacebookAds
         api.has_param :product_set_id, 'string'
         api.has_param :rev_share_policy_id, 'int'
         api.has_param :event_sources, { list: 'hash' }
+        api.has_param :enable_fetch_or_create, 'bool'
         api.has_param :inclusions, { list: 'object' }
         api.has_param :exclusions, { list: 'object' }
       end

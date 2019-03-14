@@ -93,7 +93,7 @@ module FacebookAds
     field :optimization_type, 'string'
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

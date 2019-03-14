@@ -30,7 +30,7 @@ module FacebookAds
     field :length, 'int'
     field :macro, 'string'
     field :offset, 'int'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

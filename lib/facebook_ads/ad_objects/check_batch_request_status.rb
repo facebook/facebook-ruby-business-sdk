@@ -34,7 +34,7 @@ module FacebookAds
     field :status, 'string'
     field :warnings, { list: 'object' }
     field :warnings_total_count, 'int'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

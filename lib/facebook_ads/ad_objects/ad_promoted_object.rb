@@ -75,7 +75,7 @@ module FacebookAds
     field :product_item_id, 'string'
     field :product_set_id, 'string'
     field :retention_days, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

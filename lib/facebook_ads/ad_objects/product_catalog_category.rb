@@ -40,8 +40,8 @@ module FacebookAds
     field :name, 'string'
     field :num_items, 'int'
     field :tokens, 'hash'
-    field :id, 'string'
     field :data, { list: 'hash' }
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

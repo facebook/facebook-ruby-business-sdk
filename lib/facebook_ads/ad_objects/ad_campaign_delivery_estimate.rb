@@ -59,7 +59,7 @@ module FacebookAds
     field :estimate_dau, 'int'
     field :estimate_mau, 'int'
     field :estimate_ready, 'bool'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

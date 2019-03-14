@@ -85,7 +85,7 @@ module FacebookAds
 
     field :query_id, 'string'
     field :results, { list: 'object' }
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

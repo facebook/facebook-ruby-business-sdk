@@ -55,7 +55,7 @@ module FacebookAds
     field :user_adclusters, { list: 'IdName' }
     field :work_employers, { list: 'IdName' }
     field :work_positions, { list: 'IdName' }
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

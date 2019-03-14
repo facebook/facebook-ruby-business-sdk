@@ -33,7 +33,7 @@ module FacebookAds
     field :reach_upper, { list: 'int' }
     field :uniq_video_views_2s_upper, { list: 'int' }
     field :video_views_2s_upper, { list: 'int' }
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

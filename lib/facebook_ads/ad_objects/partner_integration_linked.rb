@@ -70,6 +70,7 @@ module FacebookAds
       "shopify",
       "shopify_online",
       "shopline",
+      "singular",
       "sirclo",
       "squarespace",
       "storeden",

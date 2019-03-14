@@ -259,7 +259,7 @@ module FacebookAds
     field :website_ctr, { list: 'AdsActionStats' }
     field :website_purchase_roas, { list: 'AdsActionStats' }
     field :wish_bid, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

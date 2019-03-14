@@ -31,7 +31,7 @@ module FacebookAds
     field :available_payment_options, { list: 'object' }
     field :country, 'string'
     field :currency, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

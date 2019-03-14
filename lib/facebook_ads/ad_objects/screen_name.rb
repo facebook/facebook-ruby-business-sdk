@@ -30,7 +30,7 @@ module FacebookAds
     field :service_name, 'string'
     field :service_type, 'string'
     field :value, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

@@ -49,27 +49,6 @@ module FacebookAds
       "google",
     ]
 
-    ITEM_TYPE = [
-      "AUTO",
-      "AUTOMOTIVE_MODEL",
-      "AUTO_MARKET",
-      "DESTINATION",
-      "FLIGHT",
-      "HOME_LISTING",
-      "HOME_SERVICE_PROVIDER",
-      "HOME_SERVICE_REVIEW",
-      "HOTEL",
-      "HOTEL_ROOM",
-      "MEDIA_TITLE",
-      "OTHER_TEST_DYNAMIC_ITEM",
-      "PRODUCT_GROUP",
-      "PRODUCT_ITEM",
-      "STORE_PRODUCT_ITEM",
-      "TEST_DYNAMIC_ITEM",
-      "VEHICLE",
-      "VEHICLE_OFFER",
-    ]
-
     ROLE = [
       "ADMIN",
       "ADVERTISER",
@@ -274,7 +253,7 @@ module FacebookAds
     has_edge :items_batch do |edge|
       edge.post 'ProductCatalog' do |api|
         api.has_param :requests, 'hash'
-        api.has_param :item_type, { enum: -> { ProductCatalog::ITEM_TYPE }}
+        api.has_param :item_type, 'string'
         api.has_param :allow_upsert, 'bool'
       end
     end

@@ -541,6 +541,7 @@ module FacebookAds
         api.has_param :view_attr_window, 'int'
         api.has_param :decline_reason, 'string'
         api.has_param :auditing_token, 'string'
+        api.has_param :custom_events, { list: 'object' }
       end
     end
 

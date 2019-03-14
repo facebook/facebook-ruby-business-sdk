@@ -31,7 +31,7 @@ module FacebookAds
     field :phone_number_last4, 'string'
     field :pricepoints, { list: 'object' }
     field :user_currency, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

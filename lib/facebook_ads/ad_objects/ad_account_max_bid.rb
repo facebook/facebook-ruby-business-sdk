@@ -28,7 +28,7 @@ module FacebookAds
   class AdAccountMaxBid < AdObject
 
     field :max_bid, 'int'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

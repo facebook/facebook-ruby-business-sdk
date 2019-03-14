@@ -40,7 +40,7 @@ module FacebookAds
     field :http_method, { enum: -> { HTTP_METHOD }}
     field :post_params, 'hash'
     field :query_params, 'hash'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

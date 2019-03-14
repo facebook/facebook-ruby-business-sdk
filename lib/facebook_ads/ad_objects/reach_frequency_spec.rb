@@ -36,7 +36,7 @@ module FacebookAds
     field :min_campaign_duration, 'object'
     field :min_reach_limits, 'object'
     field :supports_video_view_benchmark_per_country, 'object'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

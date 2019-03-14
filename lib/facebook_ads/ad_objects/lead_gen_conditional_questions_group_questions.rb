@@ -30,7 +30,7 @@ module FacebookAds
     field :field_key, 'string'
     field :input_type, 'string'
     field :name, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

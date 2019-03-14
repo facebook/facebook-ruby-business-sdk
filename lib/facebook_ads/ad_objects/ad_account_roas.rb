@@ -56,7 +56,7 @@ module FacebookAds
     field :yield_3d, 'double'
     field :yield_7d, 'double'
     field :yield_90d, 'double'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

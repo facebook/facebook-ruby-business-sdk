@@ -32,7 +32,7 @@ module FacebookAds
     field :min_daily_budget_imp, 'int'
     field :min_daily_budget_low_freq, 'int'
     field :min_daily_budget_video_views, 'int'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

@@ -353,10 +353,6 @@ module FacebookAds
       edge.get 'Business'
     end
 
-    has_edge :credit_cards do |edge|
-      edge.get 'BusinessCreditCardLegacy'
-    end
-
     has_edge :creditcards do |edge|
       edge.get 'BusinessCreditCardLegacy'
     end

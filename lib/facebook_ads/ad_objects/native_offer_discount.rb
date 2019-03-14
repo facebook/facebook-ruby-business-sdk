@@ -33,7 +33,7 @@ module FacebookAds
     field :type, 'string'
     field :value1, 'double'
     field :value2, 'double'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

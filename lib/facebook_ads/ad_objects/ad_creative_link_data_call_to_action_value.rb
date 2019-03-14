@@ -38,7 +38,7 @@ module FacebookAds
     field :page, 'string'
     field :product_link, 'string'
     field :whatsapp_number, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

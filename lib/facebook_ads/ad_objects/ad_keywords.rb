@@ -31,7 +31,7 @@ module FacebookAds
     field :product_categories, { list: 'string' }
     field :product_names, { list: 'string' }
     field :search_terms, { list: 'string' }
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

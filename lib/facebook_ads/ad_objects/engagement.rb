@@ -34,7 +34,7 @@ module FacebookAds
     field :social_sentence, 'string'
     field :social_sentence_with_like, 'string'
     field :social_sentence_without_like, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

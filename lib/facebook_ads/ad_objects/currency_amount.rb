@@ -31,7 +31,7 @@ module FacebookAds
     field :amount_in_hundredths, 'string'
     field :currency, 'string'
     field :offsetted_amount, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

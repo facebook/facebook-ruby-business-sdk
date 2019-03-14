@@ -34,7 +34,7 @@ module FacebookAds
     field :link_url_label, 'AdAssetFeedSpecAssetLabel'
     field :title_label, 'AdAssetFeedSpecAssetLabel'
     field :video_label, 'AdAssetFeedSpecAssetLabel'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

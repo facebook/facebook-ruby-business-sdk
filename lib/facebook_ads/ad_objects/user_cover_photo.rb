@@ -30,7 +30,7 @@ module FacebookAds
     field :offset_x, 'double'
     field :offset_y, 'double'
     field :source, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

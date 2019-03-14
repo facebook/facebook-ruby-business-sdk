@@ -33,7 +33,7 @@ module FacebookAds
     field :last_sig_edit_ts, 'int'
     field :status, 'string'
     field :types, { list: 'string' }
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

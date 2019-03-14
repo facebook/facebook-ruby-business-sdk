@@ -30,7 +30,7 @@ module FacebookAds
     field :promotable_app_ids, { list: 'string' }
     field :promotable_page_ids, { list: 'string' }
     field :promotable_urls, { list: 'string' }
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

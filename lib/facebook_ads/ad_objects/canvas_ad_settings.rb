@@ -34,7 +34,7 @@ module FacebookAds
     field :leads_count, 'int'
     field :product_set_id, 'string'
     field :use_retailer_item_ids, 'bool'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

@@ -34,7 +34,7 @@ module FacebookAds
     field :image_hash, 'string'
     field :page_welcome_message, 'string'
     field :url, 'string'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

@@ -32,7 +32,7 @@ module FacebookAds
     field :event_time, 'string'
     field :event_type, 'string'
     field :extra_data, 'object'
-    field :id, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete
