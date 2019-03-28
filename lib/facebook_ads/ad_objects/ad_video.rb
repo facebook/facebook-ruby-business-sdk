@@ -87,6 +87,7 @@ module FacebookAds
       "LOOK_NOW_DEPRECATED",
       "MOMENTS_VIDEO",
       "NO_STORY",
+      "OCULUS_CREATOR_PORTAL",
       "OCULUS_VENUES_BROADCAST",
       "OFFERS_VIDEO",
       "PAGES_COVER_VIDEO",

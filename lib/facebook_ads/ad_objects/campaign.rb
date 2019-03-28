@@ -139,7 +139,7 @@ module FacebookAds
     field :pacing_type, { list: 'string' }
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
-    field :source_campaign, 'Campaign'
+    field :source_campaign, 'object'
     field :source_campaign_id, 'string'
     field :spend_cap, 'string'
     field :start_time, 'datetime'
@@ -181,6 +181,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
         api.has_param :ad_draft_id, 'string'
+        api.has_param :include_drafts, 'bool'
       end
     end
 
@@ -191,6 +192,7 @@ module FacebookAds
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :ad_draft_id, 'string'
+        api.has_param :include_drafts, 'bool'
       end
     end
 

@@ -25,22 +25,31 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ShadowIgComment < AdObject
+  class AdsPost < AdObject
 
-    field :hidden, 'bool'
+    field :admin_creator, 'User'
+    field :creation_time, 'datetime'
+    field :feed_audience_description, 'string'
+    field :feed_targeting, 'Targeting'
     field :id, 'string'
-    field :like_count, 'int'
-    field :media, 'ShadowIgMedia'
-    field :text, 'string'
-    field :timestamp, 'datetime'
-    field :user, 'ShadowIgUser'
-    field :username, 'string'
+    field :message, 'string'
+    field :modified_time, 'datetime'
+    field :og_action_summary, 'string'
+    field :permalink_url, 'string'
+    field :place, 'Place'
+    field :privacy_description, 'string'
+    field :promotion_info, 'object'
+    field :scheduled_publish_time, 'datetime'
+    field :story_token, 'string'
+    field :thumbnail, 'string'
+    field :type, 'string'
+    field :video_id, 'string'
+    has_no_get
+    has_no_post
+    has_no_delete
 
-    has_edge :replies do |edge|
-      edge.get 'ShadowIgComment'
-      edge.post 'ShadowIgComment' do |api|
-        api.has_param :message, 'string'
-      end
+    has_edge :insights do |edge|
+      edge.get 'InsightsResult'
     end
 
   end

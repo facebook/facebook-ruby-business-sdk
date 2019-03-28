@@ -25,39 +25,21 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ShadowIgMedia < AdObject
+  class IgComment < AdObject
 
-    field :caption, 'string'
-    field :comments_count, 'int'
+    field :hidden, 'bool'
     field :id, 'string'
-    field :ig_id, 'string'
-    field :is_comment_enabled, 'bool'
     field :like_count, 'int'
-    field :media_type, 'string'
-    field :media_url, 'string'
-    field :owner, 'ShadowIgUser'
-    field :permalink, 'string'
-    field :shortcode, 'string'
-    field :thumbnail_url, 'string'
+    field :media, 'IgMedia'
+    field :text, 'string'
     field :timestamp, 'datetime'
+    field :user, 'object'
     field :username, 'string'
-    has_no_delete
 
-    has_edge :children do |edge|
-      edge.get 'ShadowIgMedia'
-    end
-
-    has_edge :comments do |edge|
-      edge.get 'ShadowIgComment'
-      edge.post 'ShadowIgComment' do |api|
+    has_edge :replies do |edge|
+      edge.get 'IgComment'
+      edge.post 'IgComment' do |api|
         api.has_param :message, 'string'
-      end
-    end
-
-    has_edge :insights do |edge|
-      edge.get 'InstagramInsightsResult' do |api|
-        api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
-        api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
       end
     end
 

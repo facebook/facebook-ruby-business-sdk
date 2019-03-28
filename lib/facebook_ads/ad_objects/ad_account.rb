@@ -432,6 +432,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
         api.has_param :ad_draft_id, 'string'
+        api.has_param :include_drafts, 'bool'
       end
       edge.post 'Ad' do |api|
         api.has_param :audience_id, 'string'
@@ -476,6 +477,7 @@ module FacebookAds
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :ad_draft_id, 'string'
+        api.has_param :include_drafts, 'bool'
       end
       edge.post 'AdSet' do |api|
         api.has_param :ad_keywords, 'object'
@@ -1161,6 +1163,7 @@ module FacebookAds
         api.has_param :frequency_cap, 'int'
         api.has_param :budget, 'int'
         api.has_param :prediction_mode, 'int'
+        api.has_param :deal_id, 'string'
         api.has_param :destination_id, 'int'
         api.has_param :destination_ids, { list: 'string' }
         api.has_param :story_event_type, 'int'

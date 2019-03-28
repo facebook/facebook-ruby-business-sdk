@@ -25,67 +25,40 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ShadowIgUser < AdObject
+  class IgMedia < AdObject
 
-    field :biography, 'string'
-    field :business_discovery, 'ShadowIgUser'
-    field :followers_count, 'int'
-    field :follows_count, 'int'
+    field :caption, 'string'
+    field :comments_count, 'int'
     field :id, 'string'
-    field :ig_id, 'int'
-    field :media_count, 'int'
-    field :mentioned_comment, 'ShadowIgComment'
-    field :mentioned_media, 'ShadowIgMedia'
-    field :name, 'string'
-    field :profile_picture_url, 'string'
+    field :ig_id, 'string'
+    field :is_comment_enabled, 'bool'
+    field :like_count, 'int'
+    field :media_type, 'string'
+    field :media_url, 'string'
+    field :owner, 'object'
+    field :permalink, 'string'
+    field :shortcode, 'string'
+    field :thumbnail_url, 'string'
+    field :timestamp, 'datetime'
     field :username, 'string'
-    field :website, 'string'
-    has_no_post
     has_no_delete
 
-    has_edge :Mentions do |edge|
-      edge.post do |api|
-        api.has_param :media_id, 'string'
-        api.has_param :comment_id, 'string'
+    has_edge :children do |edge|
+      edge.get 'IgMedia'
+    end
+
+    has_edge :comments do |edge|
+      edge.get 'IgComment'
+      edge.post 'IgComment' do |api|
         api.has_param :message, 'string'
       end
     end
 
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
         api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
         api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
       end
-    end
-
-    has_edge :media do |edge|
-      edge.get 'ShadowIgMedia'
-      edge.post 'ShadowIgMedia' do |api|
-        api.has_param :media_type, 'string'
-        api.has_param :caption, 'string'
-        api.has_param :image_url, 'string'
-        api.has_param :children, { list: 'int' }
-      end
-    end
-
-    has_edge :media_publish do |edge|
-      edge.post 'ShadowIgMedia' do |api|
-        api.has_param :creation_id, 'int'
-      end
-    end
-
-    has_edge :recently_searched_hashtags do |edge|
-      edge.get
-    end
-
-    has_edge :stories do |edge|
-      edge.get 'ShadowIgMedia'
-    end
-
-    has_edge :tags do |edge|
-      edge.get 'ShadowIgMedia'
     end
 
   end

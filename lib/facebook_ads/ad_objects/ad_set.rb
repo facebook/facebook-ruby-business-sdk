@@ -168,7 +168,7 @@ module FacebookAds
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :billing_event, { enum: -> { BILLING_EVENT }}
     field :budget_remaining, 'string'
-    field :campaign, 'Campaign'
+    field :campaign, 'object'
     field :campaign_id, 'string'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
     field :created_time, 'datetime'
@@ -197,7 +197,7 @@ module FacebookAds
     field :recurring_budget_semantics, 'bool'
     field :review_feedback, 'string'
     field :rf_prediction_id, 'string'
-    field :source_adset, 'AdSet'
+    field :source_adset, 'object'
     field :source_adset_id, 'string'
     field :start_time, 'datetime'
     field :status, { enum: -> { STATUS }}
@@ -262,6 +262,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
         api.has_param :ad_draft_id, 'string'
+        api.has_param :include_drafts, 'bool'
       end
     end
 

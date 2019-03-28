@@ -25,32 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessMatchedSearchApplicationsEdgeData < AdObject
-    APP_STORE = [
-      "AMAZON_APP_STORE",
-      "DOES_NOT_EXIST",
-      "FB_ANDROID_STORE",
-      "FB_CANVAS",
-      "FB_GAMEROOM",
-      "GOOGLE_PLAY",
-      "INSTANT_GAME",
-      "ITUNES",
-      "ITUNES_IPAD",
-      "ROKU_STORE",
-      "WINDOWS_10_STORE",
-      "WINDOWS_STORE",
-    ]
+  class DynamicContentSet < AdObject
 
-
-    field :app_id, 'string'
-    field :icon_url, 'string'
+    field :business_id, 'string'
+    field :id, 'string'
     field :name, 'string'
-    field :search_source_store, 'string'
-    field :store, 'string'
-    field :unique_id, 'string'
-    field :url, 'string'
-    has_no_id
-    has_no_get
     has_no_post
     has_no_delete
 

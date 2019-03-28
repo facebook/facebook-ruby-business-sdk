@@ -299,7 +299,7 @@ module FacebookAds
 
     field :about, 'string'
     field :access_token, 'string'
-    field :ad_campaign, 'AdSet'
+    field :ad_campaign, 'object'
     field :affiliation, 'string'
     field :app_id, 'string'
     field :app_links, 'AppLinks'
@@ -320,7 +320,7 @@ module FacebookAds
     field :category_list, { list: 'PageCategory' }
     field :checkins, 'int'
     field :company_overview, 'string'
-    field :connected_instagram_account, 'ShadowIgUser'
+    field :connected_instagram_account, 'object'
     field :contact_address, 'MailingAddress'
     field :context, 'OpenGraphContext'
     field :copyright_attribution_insights, 'CopyrightAttributionInsights'
@@ -354,7 +354,7 @@ module FacebookAds
     field :id, 'string'
     field :impressum, 'string'
     field :influences, 'string'
-    field :instagram_business_account, 'ShadowIgUser'
+    field :instagram_business_account, 'object'
     field :instant_articles_review_status, 'string'
     field :is_always_open, 'bool'
     field :is_chain, 'bool'
@@ -487,6 +487,12 @@ module FacebookAds
         api.has_param :audience, { enum: -> { Page::AUDIENCE }}
         api.has_param :targeting, 'Targeting'
         api.has_param :campaign_length, 'datetime'
+      end
+    end
+
+    has_edge :ads_posts do |edge|
+      edge.get 'AdsPost' do |api|
+        api.has_param :include_inline_create, 'bool'
       end
     end
 
@@ -1159,6 +1165,13 @@ module FacebookAds
       end
     end
 
+    has_edge :messenger_thread_settings do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :psid, 'string'
+        api.has_param :thread_banner, 'object'
+      end
+    end
+
     has_edge :milestones do |edge|
       edge.get 'LifeEvent'
       edge.post 'LifeEvent' do |api|
@@ -1261,6 +1274,7 @@ module FacebookAds
       end
       edge.post 'Photo' do |api|
         api.has_param :aid, 'string'
+        api.has_param :alt_text_custom, 'string'
         api.has_param :caption, 'string'
         api.has_param :url, 'string'
         api.has_param :uid, 'int'

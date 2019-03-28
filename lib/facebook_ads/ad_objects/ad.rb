@@ -105,12 +105,12 @@ module FacebookAds
     field :account_id, 'string'
     field :ad_review_feedback, 'AdgroupReviewFeedback'
     field :adlabels, { list: 'AdLabel' }
-    field :adset, 'AdSet'
+    field :adset, 'object'
     field :adset_id, 'string'
     field :bid_amount, 'int'
     field :bid_info, 'map<string, unsigned int>'
     field :bid_type, { enum: -> { BID_TYPE }}
-    field :campaign, 'Campaign'
+    field :campaign, 'object'
     field :campaign_id, 'string'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
     field :conversion_specs, { list: 'ConversionActionQuery' }
@@ -127,7 +127,7 @@ module FacebookAds
     field :name, 'string'
     field :priority, 'int'
     field :recommendations, { list: 'AdRecommendation' }
-    field :source_ad, 'Ad'
+    field :source_ad, 'object'
     field :source_ad_id, 'string'
     field :status, { enum: -> { STATUS }}
     field :targeting, 'Targeting'

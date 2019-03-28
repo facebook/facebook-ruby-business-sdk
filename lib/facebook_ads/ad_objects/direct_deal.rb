@@ -38,7 +38,7 @@ module FacebookAds
 
 
     field :adbreaks_enabled, 'bool'
-    field :adset, 'AdSet'
+    field :adset, 'object'
     field :advertiser, 'object'
     field :advertiser_lead_email, 'string'
     field :advertiser_page, 'string'

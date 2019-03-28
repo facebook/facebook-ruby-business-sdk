@@ -876,6 +876,7 @@ module FacebookAds
       end
       edge.post 'Photo' do |api|
         api.has_param :aid, 'string'
+        api.has_param :alt_text_custom, 'string'
         api.has_param :caption, 'string'
         api.has_param :url, 'string'
         api.has_param :uid, 'int'

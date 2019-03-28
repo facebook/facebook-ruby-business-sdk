@@ -71,6 +71,8 @@ module FacebookAds
 
 
     field :album, 'Album'
+    field :alt_text, 'string'
+    field :alt_text_custom, 'string'
     field :backdated_time, 'datetime'
     field :backdated_time_granularity, 'string'
     field :can_backdate, 'bool'
@@ -158,6 +160,7 @@ module FacebookAds
     has_edge :photos do |edge|
       edge.post 'Photo' do |api|
         api.has_param :aid, 'string'
+        api.has_param :alt_text_custom, 'string'
         api.has_param :caption, 'string'
         api.has_param :url, 'string'
         api.has_param :uid, 'int'

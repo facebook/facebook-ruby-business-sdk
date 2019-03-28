@@ -83,6 +83,19 @@ module FacebookAds
       "MODERATOR",
     ]
 
+    PAGE_PERMITTED_TASKS = [
+      "ADVERTISE",
+      "ANALYZE",
+      "CREATE_CONTENT",
+      "MANAGE",
+      "MANAGE_JOBS",
+      "MODERATE",
+      "MODERATE_COMMUNITY",
+      "PAGES_MESSAGING",
+      "PAGES_MESSAGING_SUBSCRIPTIONS",
+      "READ_PAGE_MAILBOXES",
+    ]
+
     ROLE = [
       "ADMIN",
       "ADS_RIGHTS_REVIEWER",
@@ -434,15 +447,6 @@ module FacebookAds
       end
     end
 
-    has_edge :matched_search_applications do |edge|
-      edge.get 'BusinessMatchedSearchApplicationsEdgeData' do |api|
-        api.has_param :app_store, { enum: -> { BusinessMatchedSearchApplicationsEdgeData::APP_STORE }}
-        api.has_param :app_store_country, 'string'
-        api.has_param :query_term, 'string'
-        api.has_param :allow_incomplete_app, 'bool'
-      end
-    end
-
     has_edge :measurement_reports do |edge|
       edge.get 'MeasurementReport' do |api|
         api.has_param :report_type, { enum: -> { MeasurementReport::REPORT_TYPE }}
@@ -500,6 +504,7 @@ module FacebookAds
         api.has_param :sales_rep_email, 'string'
         api.has_param :shared_page_id, 'string'
         api.has_param :page_permitted_roles, { list: { enum: -> { Business::PAGE_PERMITTED_ROLES }} }
+        api.has_param :page_permitted_tasks, { list: { enum: -> { Business::PAGE_PERMITTED_TASKS }} }
       end
     end
 
@@ -694,13 +699,10 @@ module FacebookAds
         api.has_param :conversion_end_date, 'string'
         api.has_param :conversion_start_date, 'string'
         api.has_param :event_status, { enum: -> { MeasurementUploadEvent::EVENT_STATUS }}
-        api.has_param :group, { enum: -> { MeasurementUploadEvent::GROUP }}
         api.has_param :lookback_window, { enum: -> { MeasurementUploadEvent::LOOKBACK_WINDOW }}
         api.has_param :match_universe, { enum: -> { MeasurementUploadEvent::MATCH_UNIVERSE }}
-        api.has_param :upload_end_time, 'datetime'
-        api.has_param :upload_start_time, 'datetime'
+        api.has_param :timezone, { enum: -> { MeasurementUploadEvent::TIMEZONE }}
         api.has_param :upload_tag, 'string'
-        api.has_param :version, { enum: -> { MeasurementUploadEvent::VERSION }}
       end
     end
 

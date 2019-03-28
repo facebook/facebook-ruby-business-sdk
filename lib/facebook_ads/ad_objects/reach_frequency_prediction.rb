@@ -159,6 +159,7 @@ module FacebookAds
     field :reach, 'int'
     field :impression, 'int'
     field :budget, 'int'
+    field :deal_id, 'string'
     field :destination_ids, { list: 'string' }
     field :rf_prediction_id, 'string'
     field :rf_prediction_id_to_release, 'string'

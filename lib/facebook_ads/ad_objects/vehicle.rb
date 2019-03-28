@@ -40,6 +40,7 @@ module FacebookAds
       "NONE",
       "OTHER",
       "SEDAN",
+      "SMALL_CAR",
       "SUV",
       "TRUCK",
       "VAN",

@@ -93,6 +93,7 @@ module FacebookAds
         api.has_param :applications, { list: 'object' }
         api.has_param :offsitepixels, { list: 'object' }
         api.has_param :offline_conversion_data_sets, { list: 'object' }
+        api.has_param :product_sets, { list: 'object' }
       end
     end
 

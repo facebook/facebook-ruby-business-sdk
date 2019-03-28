@@ -33,6 +33,7 @@ module FacebookAds
       "backer_founder",
       "bandzoogle",
       "big_commerce",
+      "branch",
       "cart_3d",
       "default",
       "drupal",
