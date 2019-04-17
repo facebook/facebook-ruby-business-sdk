@@ -63,8 +63,8 @@ module FacebookAds
       end
       edge.post 'InstagramUser' do |api|
         api.has_param :business, 'string'
-        api.has_param :user, 'object'
         api.has_param :role, { enum: -> { InstagramUser::ROLE }}
+        api.has_param :user, 'object'
       end
     end
 
@@ -85,8 +85,8 @@ module FacebookAds
     has_edge :userpermissions do |edge|
       edge.post 'InstagramUser' do |api|
         api.has_param :business, 'string'
-        api.has_param :user, 'object'
         api.has_param :role, { enum: -> { InstagramUser::ROLE }}
+        api.has_param :user, 'object'
       end
     end
 

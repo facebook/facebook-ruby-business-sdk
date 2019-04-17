@@ -50,9 +50,9 @@ module FacebookAds
 
     has_edge :history do |edge|
       edge.get 'AdRuleHistory' do |api|
-        api.has_param :object_id, 'string'
         api.has_param :action, { enum: -> { AdRuleHistory::ACTION }}
         api.has_param :hide_no_changes, 'bool'
+        api.has_param :object_id, 'string'
       end
     end
 

@@ -83,16 +83,16 @@ module FacebookAds
 
     has_edge :assigned_users do |edge|
       edge.delete do |api|
-        api.has_param :user, 'int'
         api.has_param :business, 'string'
+        api.has_param :user, 'int'
       end
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'
       end
       edge.post 'AdsPixel' do |api|
-        api.has_param :user, 'int'
-        api.has_param :tasks, { list: { enum: -> { AdsPixel::TASKS }} }
         api.has_param :business, 'string'
+        api.has_param :tasks, { list: { enum: -> { AdsPixel::TASKS }} }
+        api.has_param :user, 'int'
       end
     end
 
@@ -146,11 +146,11 @@ module FacebookAds
 
     has_edge :stats do |edge|
       edge.get 'AdsPixelStatsResult' do |api|
-        api.has_param :start_time, 'datetime'
-        api.has_param :end_time, 'datetime'
         api.has_param :aggregation, { enum: -> { AdsPixelStatsResult::AGGREGATION }}
+        api.has_param :end_time, 'datetime'
         api.has_param :event, 'string'
         api.has_param :event_source, 'string'
+        api.has_param :start_time, 'datetime'
       end
     end
 

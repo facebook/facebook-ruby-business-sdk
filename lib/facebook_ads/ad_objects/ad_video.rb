@@ -41,6 +41,7 @@ module FacebookAds
       "BROADCAST",
       "CANDIDATE_VIDEOS",
       "CANVAS",
+      "CFC_VIDEO",
       "CIVIC_PROPOSAL_COVER_VIDEO",
       "CONTAINED_POST_ATTACHMENT",
       "CONTAINED_POST_AUDIO_BROADCAST",
@@ -104,6 +105,7 @@ module FacebookAds
       "PROTON",
       "QUICK_PROMOTION",
       "REPLACE_VIDEO",
+      "SALES_CLIENT_INTERACTION",
       "SAY_THANKS_DEPRECATED",
       "SLIDESHOW_ANIMOTO",
       "SLIDESHOW_SHAKR",
@@ -111,6 +113,7 @@ module FacebookAds
       "STORYLINE",
       "STORYLINE_WITH_EXTERNAL_MUSIC",
       "STORY_ARCHIVE_VIDEO",
+      "STORY_CARD_TEMPLATE",
       "TAROT_DIGEST",
       "TEMP_MULTIMEDIA_POST",
       "UNLISTED",
@@ -223,73 +226,73 @@ module FacebookAds
     field :tv_banner_ad, 'object'
     field :universal_video_id, 'string'
     field :updated_time, 'datetime'
-    field :unpublished_content_type, { enum: -> { UNPUBLISHED_CONTENT_TYPE }}
-    field :time_since_original_post, 'int'
-    field :file_url, 'string'
-    field :composer_session_id, 'string'
-    field :waterfall_id, 'string'
-    field :og_action_type_id, 'string'
-    field :og_object_id, 'string'
-    field :og_phrase, 'string'
-    field :og_icon_id, 'string'
-    field :og_suggestion_mechanism, 'string'
-    field :thumb, 'file'
-    field :original_projection_type, { enum: -> { ORIGINAL_PROJECTION_TYPE }}
-    field :initial_heading, 'int'
-    field :initial_pitch, 'int'
-    field :fov, 'int'
-    field :original_fov, 'int'
-    field :fisheye_video_cropped, 'bool'
-    field :front_z_rotation, 'double'
-    field :guide_enabled, 'bool'
-    field :guide, { list: { list: 'int' } }
-    field :audio_story_wave_animation_handle, 'string'
     field :adaptive_type, 'string'
     field :animated_effect_id, 'int'
+    field :application_id, 'string'
     field :asked_fun_fact_prompt_id, 'int'
+    field :attribution_app_id, 'string'
+    field :audio_story_wave_animation_handle, 'string'
+    field :chunk_session_id, 'string'
     field :composer_entry_picker, 'string'
     field :composer_entry_point, 'string'
     field :composer_entry_time, 'int'
     field :composer_session_events_log, 'string'
+    field :composer_session_id, 'string'
     field :composer_source_surface, 'string'
     field :composer_type, 'string'
+    field :container_type, { enum: -> { CONTAINER_TYPE }}
+    field :end_offset, 'int'
+    field :fbuploader_video_file_chunk, 'string'
+    field :file_size, 'int'
+    field :file_url, 'string'
+    field :fisheye_video_cropped, 'bool'
     field :formatting, { enum: -> { FORMATTING }}
+    field :fov, 'int'
+    field :front_z_rotation, 'double'
     field :fun_fact_prompt_id, 'int'
     field :fun_fact_toastee_id, 'int'
-    field :is_group_linking_post, 'bool'
+    field :guide, { list: { list: 'int' } }
+    field :guide_enabled, 'bool'
     field :has_nickname, 'bool'
     field :holiday_card, 'string'
+    field :initial_heading, 'int'
+    field :initial_pitch, 'int'
     field :instant_game_entry_point_data, 'string'
     field :is_boost_intended, 'bool'
+    field :is_group_linking_post, 'bool'
+    field :is_voice_clip, 'bool'
     field :location_source_id, 'string'
+    field :name, 'string'
     field :offer_like_post_id, 'int'
+    field :og_action_type_id, 'string'
+    field :og_icon_id, 'string'
+    field :og_object_id, 'string'
+    field :og_phrase, 'string'
+    field :og_suggestion_mechanism, 'string'
+    field :original_fov, 'int'
+    field :original_projection_type, { enum: -> { ORIGINAL_PROJECTION_TYPE }}
     field :publish_event_id, 'int'
     field :react_mode_metadata, 'string'
-    field :sales_promo_id, 'int'
-    field :text_format_metadata, 'string'
-    field :throwback_camera_roll_media, 'string'
-    field :video_start_time_ms, 'int'
-    field :application_id, 'string'
-    field :upload_phase, { enum: -> { UPLOAD_PHASE }}
-    field :file_size, 'int'
-    field :start_offset, 'int'
-    field :end_offset, 'int'
-    field :video_file_chunk, 'string'
-    field :fbuploader_video_file_chunk, 'string'
-    field :upload_session_id, 'string'
-    field :is_voice_clip, 'bool'
-    field :attribution_app_id, 'string'
-    field :slideshow_spec, 'hash'
-    field :upload_setting_properties, 'string'
-    field :transcode_setting_properties, 'string'
-    field :container_type, { enum: -> { CONTAINER_TYPE }}
     field :referenced_sticker_id, 'string'
     field :replace_video_id, 'string'
+    field :sales_promo_id, 'int'
+    field :slideshow_spec, 'hash'
+    field :start_offset, 'int'
     field :swap_mode, { enum: -> { SWAP_MODE }}
-    field :name, 'string'
-    field :chunk_session_id, 'string'
-    field :manual_privacy, 'bool'
+    field :text_format_metadata, 'string'
+    field :throwback_camera_roll_media, 'string'
+    field :thumb, 'file'
+    field :time_since_original_post, 'int'
+    field :transcode_setting_properties, 'string'
+    field :unpublished_content_type, { enum: -> { UNPUBLISHED_CONTENT_TYPE }}
+    field :upload_phase, { enum: -> { UPLOAD_PHASE }}
+    field :upload_session_id, 'string'
+    field :upload_setting_properties, 'string'
+    field :video_file_chunk, 'string'
+    field :video_start_time_ms, 'int'
+    field :waterfall_id, 'string'
     field :is_explicit_share, 'bool'
+    field :manual_privacy, 'bool'
 
     has_edge :auto_generated_captions do |edge|
       edge.get
@@ -297,15 +300,15 @@ module FacebookAds
 
     has_edge :auto_trims do |edge|
       edge.post 'AdVideo' do |api|
-        api.has_param :target_id, 'int'
         api.has_param :auto_trim_type, 'string'
+        api.has_param :target_id, 'int'
       end
     end
 
     has_edge :blocked_users do |edge|
       edge.post 'AdVideo' do |api|
-        api.has_param :uid, 'object'
         api.has_param :remove_block, 'bool'
+        api.has_param :uid, 'object'
       end
     end
 
@@ -315,8 +318,8 @@ module FacebookAds
       end
       edge.get
       edge.post 'AdVideo' do |api|
-        api.has_param :default_locale, 'string'
         api.has_param :captions_file, 'file'
+        api.has_param :default_locale, 'string'
         api.has_param :locales_to_delete, { list: 'string' }
       end
     end
@@ -324,22 +327,22 @@ module FacebookAds
     has_edge :comments do |edge|
       edge.get 'Comment' do |api|
         api.has_param :filter, { enum: -> { Comment::FILTER }}
-        api.has_param :order, { enum: -> { Comment::ORDER }}
         api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
+        api.has_param :order, { enum: -> { Comment::ORDER }}
         api.has_param :since, 'datetime'
       end
       edge.post 'Comment' do |api|
+        api.has_param :attachment_id, 'string'
+        api.has_param :attachment_share_url, 'string'
+        api.has_param :attachment_url, 'string'
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
+        api.has_param :facepile_mentioned_ids, { list: 'string' }
+        api.has_param :feedback_source, 'string'
+        api.has_param :is_offline, 'bool'
+        api.has_param :message, 'string'
+        api.has_param :nectar_module, 'string'
         api.has_param :object_id, 'string'
         api.has_param :parent_comment_id, 'object'
-        api.has_param :nectar_module, 'string'
-        api.has_param :attachment_id, 'string'
-        api.has_param :attachment_url, 'string'
-        api.has_param :attachment_share_url, 'string'
-        api.has_param :feedback_source, 'string'
-        api.has_param :facepile_mentioned_ids, { list: 'string' }
-        api.has_param :is_offline, 'bool'
-        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
-        api.has_param :message, 'string'
         api.has_param :text, 'string'
         api.has_param :tracking, 'string'
       end
@@ -351,30 +354,30 @@ module FacebookAds
 
     has_edge :likes do |edge|
       edge.delete do |api|
-        api.has_param :tracking, 'string'
+        api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :notify, 'bool'
-        api.has_param :feedback_source, 'string'
+        api.has_param :tracking, 'string'
       end
       edge.get 'Profile'
       edge.post 'AdVideo' do |api|
-        api.has_param :tracking, 'string'
+        api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :notify, 'bool'
-        api.has_param :feedback_source, 'string'
+        api.has_param :tracking, 'string'
       end
     end
 
     has_edge :polls do |edge|
       edge.get 'VideoPoll'
       edge.post 'VideoPoll' do |api|
-        api.has_param :question, 'string'
-        api.has_param :options, { list: 'string' }
+        api.has_param :close_after_voting, 'bool'
         api.has_param :correct_option, 'int'
         api.has_param :default_open, 'bool'
-        api.has_param :show_results, 'bool'
+        api.has_param :options, { list: 'string' }
+        api.has_param :question, 'string'
         api.has_param :show_gradient, 'bool'
-        api.has_param :close_after_voting, 'bool'
+        api.has_param :show_results, 'bool'
       end
     end
 
@@ -394,25 +397,25 @@ module FacebookAds
 
     has_edge :summarizations do |edge|
       edge.post 'AdVideo' do |api|
-        api.has_param :target_id, 'int'
         api.has_param :summarization_type, 'string'
+        api.has_param :target_id, 'int'
       end
     end
 
     has_edge :tags do |edge|
       edge.get 'TaggableSubject'
       edge.post 'AdVideo' do |api|
+        api.has_param :tag_uid, 'int'
         api.has_param :uid, 'int'
         api.has_param :vid, 'string'
-        api.has_param :tag_uid, 'int'
       end
     end
 
     has_edge :thumbnails do |edge|
       edge.get 'VideoThumbnail'
       edge.post 'AdVideo' do |api|
-        api.has_param :source, 'file'
         api.has_param :is_preferred, 'bool'
+        api.has_param :source, 'file'
       end
     end
 

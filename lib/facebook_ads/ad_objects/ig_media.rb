@@ -35,7 +35,7 @@ module FacebookAds
     field :like_count, 'int'
     field :media_type, 'string'
     field :media_url, 'string'
-    field :owner, 'object'
+    field :owner, 'IgUser'
     field :permalink, 'string'
     field :shortcode, 'string'
     field :thumbnail_url, 'string'

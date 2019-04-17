@@ -118,8 +118,8 @@ module FacebookAds
     has_edge :comments do |edge|
       edge.get 'Comment' do |api|
         api.has_param :filter, { enum: -> { Comment::FILTER }}
-        api.has_param :order, { enum: -> { Comment::ORDER }}
         api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
+        api.has_param :order, { enum: -> { Comment::ORDER }}
         api.has_param :since, 'datetime'
       end
     end
@@ -156,13 +156,13 @@ module FacebookAds
     has_edge :polls do |edge|
       edge.get 'VideoPoll'
       edge.post 'VideoPoll' do |api|
-        api.has_param :question, 'string'
-        api.has_param :options, { list: 'string' }
+        api.has_param :close_after_voting, 'bool'
         api.has_param :correct_option, 'int'
         api.has_param :default_open, 'bool'
-        api.has_param :show_results, 'bool'
+        api.has_param :options, { list: 'string' }
+        api.has_param :question, 'string'
         api.has_param :show_gradient, 'bool'
-        api.has_param :close_after_voting, 'bool'
+        api.has_param :show_results, 'bool'
       end
     end
 

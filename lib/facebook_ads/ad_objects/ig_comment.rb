@@ -33,7 +33,7 @@ module FacebookAds
     field :media, 'IgMedia'
     field :text, 'string'
     field :timestamp, 'datetime'
-    field :user, 'object'
+    field :user, 'IgUser'
     field :username, 'string'
 
     has_edge :replies do |edge|

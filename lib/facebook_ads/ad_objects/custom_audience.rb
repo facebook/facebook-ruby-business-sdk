@@ -111,36 +111,36 @@ module FacebookAds
     field :time_content_updated, 'int'
     field :time_created, 'int'
     field :time_updated, 'int'
-    field :creation_params, 'hash'
-    field :parent_audience_id, 'int'
-    field :tags, { list: 'string' }
-    field :associated_audience_id, 'int'
-    field :is_household_exclusion, 'bool'
-    field :allowed_domains, { list: 'string' }
-    field :partner_reference_key, 'string'
-    field :prefill, 'bool'
-    field :inclusions, { list: 'object' }
-    field :exclusions, { list: 'object' }
-    field :countries, 'string'
-    field :origin_audience_id, 'string'
-    field :details, 'string'
-    field :source, 'string'
-    field :isprivate, 'bool'
-    field :additionalmetadata, 'string'
-    field :minage, 'int'
-    field :maxage, 'int'
-    field :expectedsize, 'int'
-    field :gender, 'string'
-    field :partnerid, 'string'
     field :accountid, 'string'
+    field :additionalmetadata, 'string'
+    field :allowed_domains, { list: 'string' }
+    field :associated_audience_id, 'int'
     field :claim_objective, { enum: -> { CLAIM_OBJECTIVE }}
     field :content_type, { enum: -> { CONTENT_TYPE }}
-    field :event_source_group, 'string'
-    field :product_set_id, 'string'
-    field :event_sources, { list: 'hash' }
-    field :enable_fetch_or_create, 'bool'
-    field :video_group_ids, { list: 'string' }
+    field :countries, 'string'
+    field :creation_params, 'hash'
     field :dataset_id, 'string'
+    field :details, 'string'
+    field :enable_fetch_or_create, 'bool'
+    field :event_source_group, 'string'
+    field :event_sources, { list: 'hash' }
+    field :exclusions, { list: 'object' }
+    field :expectedsize, 'int'
+    field :gender, 'string'
+    field :inclusions, { list: 'object' }
+    field :isprivate, 'bool'
+    field :is_household_exclusion, 'bool'
+    field :maxage, 'int'
+    field :minage, 'int'
+    field :origin_audience_id, 'string'
+    field :parent_audience_id, 'int'
+    field :partnerid, 'string'
+    field :partner_reference_key, 'string'
+    field :prefill, 'bool'
+    field :product_set_id, 'string'
+    field :source, 'string'
+    field :tags, { list: 'string' }
+    field :video_group_ids, { list: 'string' }
 
     has_edge :adaccounts do |edge|
       edge.delete do |api|
@@ -152,8 +152,8 @@ module FacebookAds
       edge.post 'CustomAudience' do |api|
         api.has_param :adaccounts, { list: 'string' }
         api.has_param :permissions, 'string'
-        api.has_param :replace, 'bool'
         api.has_param :relationship_type, { list: 'string' }
+        api.has_param :replace, 'bool'
       end
     end
 
@@ -177,12 +177,12 @@ module FacebookAds
     has_edge :data do |edge|
       edge.post do |api|
         api.has_param :action_type, { enum: %w{add match optout remove }}
-        api.has_param :encoding, { enum: %w{md5 plain sha256 }}
-        api.has_param :entry_type, { enum: %w{0 1 2 3 4 5 6 }}
-        api.has_param :entries, { list: 'string' }
-        api.has_param :session_id, 'int'
         api.has_param :batch_seq, 'int'
+        api.has_param :encoding, { enum: %w{md5 plain sha256 }}
+        api.has_param :entries, { list: 'string' }
+        api.has_param :entry_type, { enum: %w{0 1 2 3 4 5 6 }}
         api.has_param :last_batch_flag, 'bool'
+        api.has_param :session_id, 'int'
       end
     end
 
@@ -202,27 +202,27 @@ module FacebookAds
 
     has_edge :upload do |edge|
       edge.delete do |api|
-        api.has_param :session, 'object'
-        api.has_param :payload, 'object'
         api.has_param :namespace, 'string'
+        api.has_param :payload, 'object'
+        api.has_param :session, 'object'
       end
       edge.post 'CustomAudience' do |api|
-        api.has_param :session, 'object'
-        api.has_param :payload, 'object'
         api.has_param :namespace, 'string'
+        api.has_param :payload, 'object'
+        api.has_param :session, 'object'
       end
     end
 
     has_edge :users do |edge|
       edge.delete do |api|
-        api.has_param :session, 'object'
-        api.has_param :payload, 'object'
         api.has_param :namespace, 'string'
+        api.has_param :payload, 'object'
+        api.has_param :session, 'object'
       end
       edge.post 'CustomAudience' do |api|
-        api.has_param :session, 'object'
-        api.has_param :payload, 'object'
         api.has_param :namespace, 'string'
+        api.has_param :payload, 'object'
+        api.has_param :session, 'object'
       end
     end
 

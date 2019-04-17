@@ -30,7 +30,6 @@ module FacebookAds
     field :budget, 'int'
     field :early_winner_declaration_enabled, 'bool'
     field :end_time, 'datetime'
-    field :extend_winner_enabled, 'bool'
     field :splits, { list: 'int' }
     field :start_time, 'datetime'
     field :test_variable, 'string'

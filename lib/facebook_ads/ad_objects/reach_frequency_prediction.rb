@@ -103,7 +103,6 @@ module FacebookAds
     field :frequency_distribution, { list: 'double' }
     field :frequency_distribution_map, 'map<unsigned int, list<float>>'
     field :frequency_distribution_map_agg, 'map<unsigned int, list<unsigned int>>'
-    field :full_view_ratio_00, 'int'
     field :grp_audience_size, 'double'
     field :grp_avg_probability_map, 'string'
     field :grp_country_audience_size, 'double'
@@ -155,21 +154,21 @@ module FacebookAds
     field :video_view_length_constraint, 'int'
     field :viewtag, 'string'
     field :action, { enum: -> { ACTION }}
-    field :stop_time, 'int'
-    field :reach, 'int'
-    field :impression, 'int'
     field :budget, 'int'
     field :deal_id, 'string'
     field :destination_ids, { list: 'string' }
+    field :exceptions, 'bool'
+    field :existing_campaign_id, 'string'
+    field :grp_buying, 'bool'
+    field :impression, 'int'
+    field :is_full_view, 'bool'
+    field :is_reach_and_frequency_io_buying, 'bool'
+    field :num_curve_points, 'int'
+    field :reach, 'int'
     field :rf_prediction_id, 'string'
     field :rf_prediction_id_to_release, 'string'
     field :rf_prediction_id_to_share, 'string'
-    field :num_curve_points, 'int'
-    field :grp_buying, 'bool'
-    field :is_full_view, 'bool'
-    field :is_reach_and_frequency_io_buying, 'bool'
-    field :existing_campaign_id, 'string'
-    field :exceptions, 'bool'
+    field :stop_time, 'int'
     has_no_post
     has_no_delete
 

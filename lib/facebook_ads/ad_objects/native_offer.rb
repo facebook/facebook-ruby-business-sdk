@@ -90,26 +90,26 @@ module FacebookAds
 
     has_edge :codes do |edge|
       edge.post 'NativeOffer' do |api|
-        api.has_param :unique_codes_file_code_type, { enum: -> { NativeOffer::UNIQUE_CODES_FILE_CODE_TYPE }}
         api.has_param :file, 'file'
+        api.has_param :unique_codes_file_code_type, { enum: -> { NativeOffer::UNIQUE_CODES_FILE_CODE_TYPE }}
       end
     end
 
     has_edge :nativeofferviews do |edge|
       edge.post 'NativeOffer' do |api|
-        api.has_param :urls, { list: 'string' }
-        api.has_param :photos, { list: 'string' }
         api.has_param :ad_account, 'string'
         api.has_param :ad_image_hashes, { list: 'string' }
-        api.has_param :image_crops, { list: 'hash' }
-        api.has_param :published_ads, 'bool'
-        api.has_param :published, 'bool'
-        api.has_param :message, 'string'
-        api.has_param :place_data, 'object'
-        api.has_param :deeplinks, { list: 'string' }
         api.has_param :carousel_captions, { list: 'string' }
-        api.has_param :carousel_links, { list: 'string' }
         api.has_param :carousel_data, { list: 'object' }
+        api.has_param :carousel_links, { list: 'string' }
+        api.has_param :deeplinks, { list: 'string' }
+        api.has_param :image_crops, { list: 'hash' }
+        api.has_param :message, 'string'
+        api.has_param :photos, { list: 'string' }
+        api.has_param :place_data, 'object'
+        api.has_param :published, 'bool'
+        api.has_param :published_ads, 'bool'
+        api.has_param :urls, { list: 'string' }
         api.has_param :videos, { list: 'string' }
       end
     end

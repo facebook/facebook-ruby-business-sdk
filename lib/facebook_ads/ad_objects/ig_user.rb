@@ -28,7 +28,7 @@ module FacebookAds
   class IgUser < AdObject
 
     field :biography, 'string'
-    field :business_discovery, 'object'
+    field :business_discovery, 'IgUser'
     field :followers_count, 'int'
     field :follows_count, 'int'
     field :id, 'string'
@@ -45,28 +45,28 @@ module FacebookAds
 
     has_edge :Mentions do |edge|
       edge.post do |api|
-        api.has_param :media_id, 'string'
         api.has_param :comment_id, 'string'
+        api.has_param :media_id, 'string'
         api.has_param :message, 'string'
       end
     end
 
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
         api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
         api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
     end
 
     has_edge :media do |edge|
       edge.get 'IgMedia'
       edge.post 'IgMedia' do |api|
-        api.has_param :media_type, 'string'
         api.has_param :caption, 'string'
-        api.has_param :image_url, 'string'
         api.has_param :children, { list: 'int' }
+        api.has_param :image_url, 'string'
+        api.has_param :media_type, 'string'
       end
     end
 

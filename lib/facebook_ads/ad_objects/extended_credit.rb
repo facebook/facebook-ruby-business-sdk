@@ -54,8 +54,8 @@ module FacebookAds
     has_edge :extended_credit_invoice_groups do |edge|
       edge.get 'ExtendedCreditInvoiceGroup'
       edge.post 'ExtendedCreditInvoiceGroup' do |api|
-        api.has_param :name, 'string'
         api.has_param :emails, { list: 'string' }
+        api.has_param :name, 'string'
       end
     end
 
@@ -64,11 +64,11 @@ module FacebookAds
         api.has_param :receiving_business_id, 'string'
       end
       edge.post 'ExtendedCreditAllocationConfig' do |api|
-        api.has_param :receiving_business_id, 'string'
         api.has_param :amount, 'object'
         api.has_param :liability_type, { enum: -> { ExtendedCreditAllocationConfig::LIABILITY_TYPE }}
-        api.has_param :send_bill_to, { enum: -> { ExtendedCreditAllocationConfig::SEND_BILL_TO }}
         api.has_param :partition_type, { enum: -> { ExtendedCreditAllocationConfig::PARTITION_TYPE }}
+        api.has_param :receiving_business_id, 'string'
+        api.has_param :send_bill_to, { enum: -> { ExtendedCreditAllocationConfig::SEND_BILL_TO }}
       end
     end
 

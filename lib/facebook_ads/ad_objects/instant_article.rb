@@ -40,11 +40,11 @@ module FacebookAds
 
     has_edge :insights do |edge|
       edge.get 'InstantArticleInsightsQueryResult' do |api|
+        api.has_param :breakdown, { enum: -> { InstantArticleInsightsQueryResult::BREAKDOWN }}
         api.has_param :metric, { list: 'object' }
         api.has_param :period, { enum: -> { InstantArticleInsightsQueryResult::PERIOD }}
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
-        api.has_param :breakdown, { enum: -> { InstantArticleInsightsQueryResult::BREAKDOWN }}
       end
     end
 

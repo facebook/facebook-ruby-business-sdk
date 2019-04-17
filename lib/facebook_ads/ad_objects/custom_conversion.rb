@@ -68,15 +68,15 @@ module FacebookAds
     field :pixel, 'AdsPixel'
     field :retention_days, 'int'
     field :rule, 'string'
-    field :event_source_id, 'string'
     field :advanced_rule, 'string'
+    field :event_source_id, 'string'
     field :custom_conversion_id, 'string'
 
     has_edge :activities do |edge|
       edge.get 'CustomConversionActivities' do |api|
-        api.has_param :start_time, 'datetime'
         api.has_param :end_time, 'datetime'
         api.has_param :event_type, { enum: -> { CustomConversionActivities::EVENT_TYPE }}
+        api.has_param :start_time, 'datetime'
       end
     end
 
@@ -96,9 +96,9 @@ module FacebookAds
 
     has_edge :stats do |edge|
       edge.get 'CustomConversionStatsResult' do |api|
-        api.has_param :start_time, 'datetime'
-        api.has_param :end_time, 'datetime'
         api.has_param :aggregation, { enum: -> { CustomConversionStatsResult::AGGREGATION }}
+        api.has_param :end_time, 'datetime'
+        api.has_param :start_time, 'datetime'
       end
     end
 

@@ -59,10 +59,10 @@ module FacebookAds
     field :updated_by, 'User'
     field :updated_time, 'datetime'
     field :cells, { list: 'object' }
+    field :client_business, 'string'
+    field :confidence_level, 'double'
     field :objectives, { list: 'object' }
     field :viewers, { list: 'int' }
-    field :confidence_level, 'double'
-    field :client_business, 'string'
 
     has_edge :cells do |edge|
       edge.get 'AdStudyCell'
@@ -70,11 +70,11 @@ module FacebookAds
 
     has_edge :customaudiences do |edge|
       edge.post 'AdStudy' do |api|
-        api.has_param :cell_id, 'string'
-        api.has_param :objective_id, 'string'
         api.has_param :account_id, 'string'
         api.has_param :audience_name, 'string'
         api.has_param :audience_type, { enum: -> { AdStudy::AUDIENCE_TYPE }}
+        api.has_param :cell_id, 'string'
+        api.has_param :objective_id, 'string'
       end
     end
 
@@ -85,30 +85,30 @@ module FacebookAds
     has_edge :objectives do |edge|
       edge.get 'AdStudyObjective'
       edge.post 'AdStudyObjective' do |api|
+        api.has_param :adspixels, { list: 'object' }
+        api.has_param :applications, { list: 'object' }
+        api.has_param :customconversions, { list: 'object' }
         api.has_param :is_primary, 'bool'
         api.has_param :name, 'string'
-        api.has_param :type, { enum: -> { AdStudyObjective::TYPE }}
-        api.has_param :adspixels, { list: 'object' }
-        api.has_param :customconversions, { list: 'object' }
-        api.has_param :applications, { list: 'object' }
-        api.has_param :offsitepixels, { list: 'object' }
         api.has_param :offline_conversion_data_sets, { list: 'object' }
+        api.has_param :offsitepixels, { list: 'object' }
         api.has_param :product_sets, { list: 'object' }
+        api.has_param :type, { enum: -> { AdStudyObjective::TYPE }}
       end
     end
 
     has_edge :userpermissions do |edge|
       edge.delete do |api|
-        api.has_param :user, 'int'
-        api.has_param :email, 'string'
         api.has_param :business, 'string'
+        api.has_param :email, 'string'
+        api.has_param :user, 'int'
       end
       edge.get 'AdStudyAdsAssetUserPermissions'
       edge.post 'AdStudy' do |api|
-        api.has_param :user, 'int'
+        api.has_param :business, 'string'
         api.has_param :email, 'string'
         api.has_param :role, { enum: -> { AdStudy::ROLE }}
-        api.has_param :business, 'string'
+        api.has_param :user, 'int'
       end
     end
 

@@ -53,8 +53,8 @@ module FacebookAds
         api.has_param :user, 'int'
       end
       edge.post 'EventSourceGroup' do |api|
-        api.has_param :user, 'int'
         api.has_param :role, { enum: -> { EventSourceGroup::ROLE }}
+        api.has_param :user, 'int'
       end
     end
 

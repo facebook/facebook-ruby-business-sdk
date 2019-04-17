@@ -28,7 +28,6 @@ module FacebookAds
   class OwnedDomain < AdObject
     PERMITTED_ROLES = [
       "ADMIN",
-      "WEBMASTER_DEVELOPER",
     ]
 
 

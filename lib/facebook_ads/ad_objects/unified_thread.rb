@@ -69,6 +69,7 @@ module FacebookAds
         api.has_param :external_attachment_url, 'string'
         api.has_param :image_type, { enum: %w{FILE_ATTACHMENT MESSENGER_CAM TRANSPARENT }}
         api.has_param :ios_bundle_id, 'string'
+        api.has_param :is_admin_model_v2_enabled, 'bool'
         api.has_param :is_broadcast, 'bool'
         api.has_param :is_montage, 'bool'
         api.has_param :is_voicemail, 'bool'
@@ -79,14 +80,15 @@ module FacebookAds
         api.has_param :log_info, 'hash'
         api.has_param :mark_read_watermark_timestamp, 'int'
         api.has_param :media, { list: 'string' }
+        api.has_param :message_attempt_id, 'string'
         api.has_param :message_source_data, 'object'
-        api.has_param :montage_frame_style, { enum: %w{no_border }}
         api.has_param :montage_business_platform_data, 'hash'
-        api.has_param :montage_overlays, { list: 'hash' }
-        api.has_param :montage_supported_features, { list: { enum: %w{LIGHTWEIGHT_REPLY SHOW_STORY_IN_MESSENGER_THREAD }} }
+        api.has_param :montage_frame_style, { enum: %w{no_border }}
         api.has_param :montage_mentions, 'hash'
-        api.has_param :montage_targets, { list: 'string' }
+        api.has_param :montage_overlays, { list: 'hash' }
         api.has_param :montage_reply_data, 'object'
+        api.has_param :montage_supported_features, { list: { enum: %w{LIGHTWEIGHT_REPLY SHOW_STORY_IN_MESSENGER_THREAD }} }
+        api.has_param :montage_targets, { list: 'string' }
         api.has_param :object_attachment, 'string'
         api.has_param :offline_threading_id, 'string'
         api.has_param :platform_xmd, 'string'
@@ -106,8 +108,6 @@ module FacebookAds
         api.has_param :use_existing_group, 'bool'
         api.has_param :video_thumbnail, 'file'
         api.has_param :video_type, { enum: %w{FILE_ATTACHMENT RECORDED_STICKER RECORDED_VIDEO SPEAKING_STICKER VIDEO_MAIL }}
-        api.has_param :message_attempt_id, 'string'
-        api.has_param :is_admin_model_v2_enabled, 'bool'
       end
     end
 

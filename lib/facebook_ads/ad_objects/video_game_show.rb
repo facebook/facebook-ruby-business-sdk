@@ -42,9 +42,9 @@ module FacebookAds
     has_edge :questions do |edge|
       edge.get
       edge.post do |api|
-        api.has_param :question, 'string'
-        api.has_param :options, { list: 'string' }
         api.has_param :correct_option, 'int'
+        api.has_param :options, { list: 'string' }
+        api.has_param :question, 'string'
       end
     end
 

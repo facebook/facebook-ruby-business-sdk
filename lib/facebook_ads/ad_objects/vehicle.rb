@@ -54,6 +54,7 @@ module FacebookAds
       "NONE",
       "OTHER",
       "POOR",
+      "VERY_GOOD",
     ]
 
     DRIVETRAIN = [

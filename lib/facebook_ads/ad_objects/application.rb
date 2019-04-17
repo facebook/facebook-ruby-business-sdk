@@ -190,12 +190,6 @@ module FacebookAds
     field :weekly_active_users, 'string'
     has_no_delete
 
-    has_edge :LocalServiceBookingTest do |edge|
-      edge.post do |api|
-        api.has_param :api_name, { enum: %w{AVAILABILITY }}
-      end
-    end
-
     has_edge :accounts do |edge|
       edge.delete do |api|
         api.has_param :type, { enum: %w{test-users }}
@@ -205,13 +199,13 @@ module FacebookAds
         api.has_param :type, { enum: %w{test-users }}
       end
       edge.post do |api|
-        api.has_param :uid, 'int'
-        api.has_param :owner_access_token, 'string'
         api.has_param :installed, 'bool'
-        api.has_param :permissions, { list: 'Permission' }
-        api.has_param :name, 'string'
         api.has_param :minor, 'bool'
+        api.has_param :name, 'string'
+        api.has_param :owner_access_token, 'string'
+        api.has_param :permissions, { list: 'Permission' }
         api.has_param :type, { enum: %w{test-users }}
+        api.has_param :uid, 'int'
       end
     end
 
@@ -223,34 +217,34 @@ module FacebookAds
 
     has_edge :activities do |edge|
       edge.post do |api|
-        api.has_param :event, { enum: %w{CUSTOM_APP_EVENTS DEFERRED_APP_LINK MOBILE_APP_INSTALL }}
-        api.has_param :attribution, 'string'
         api.has_param :advertiser_id, 'string'
-        api.has_param :anon_id, 'string'
         api.has_param :advertiser_tracking_enabled, 'bool'
+        api.has_param :anon_id, 'string'
+        api.has_param :app_user_id, 'string'
         api.has_param :application_tracking_enabled, 'bool'
-        api.has_param :extinfo, 'object'
-        api.has_param :bundle_id, 'string'
-        api.has_param :bundle_version, 'string'
-        api.has_param :bundle_short_version, 'string'
+        api.has_param :attribution, 'string'
         api.has_param :auto_publish, 'bool'
+        api.has_param :bundle_id, 'string'
+        api.has_param :bundle_short_version, 'string'
+        api.has_param :bundle_version, 'string'
+        api.has_param :consider_views, 'bool'
         api.has_param :custom_events, { list: 'object' }
         api.has_param :custom_events_file, 'file'
+        api.has_param :device_token, 'string'
+        api.has_param :event, { enum: %w{CUSTOM_APP_EVENTS DEFERRED_APP_LINK MOBILE_APP_INSTALL }}
+        api.has_param :extinfo, 'object'
+        api.has_param :include_dwell_data, 'bool'
+        api.has_param :include_video_data, 'bool'
         api.has_param :installer_package, 'string'
         api.has_param :migration_bundle, 'string'
-        api.has_param :url_schemes, { list: 'string' }
-        api.has_param :device_token, 'string'
-        api.has_param :windows_attribution_id, 'string'
-        api.has_param :consider_views, 'bool'
-        api.has_param :include_video_data, 'bool'
-        api.has_param :include_dwell_data, 'bool'
         api.has_param :page_id, 'int'
         api.has_param :page_scoped_user_id, 'int'
+        api.has_param :receipt_data, 'string'
         api.has_param :ud, 'hash'
+        api.has_param :url_schemes, { list: 'string' }
         api.has_param :user_id, 'string'
         api.has_param :user_id_type, { enum: %w{INSTANT_GAMES_PLAYER_ID }}
-        api.has_param :app_user_id, 'string'
-        api.has_param :receipt_data, 'string'
+        api.has_param :windows_attribution_id, 'string'
       end
     end
 
@@ -269,9 +263,9 @@ module FacebookAds
       edge.post 'Application' do |api|
         api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
         api.has_param :breakdowns, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::BREAKDOWNS }} }
-        api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
         api.has_param :filters, { list: 'object' }
         api.has_param :limit, 'int'
+        api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
         api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
         api.has_param :since, 'datetime'
@@ -300,11 +294,11 @@ module FacebookAds
     has_edge :app_indexing do |edge|
       edge.post 'Application' do |api|
         api.has_param :app_version, 'string'
-        api.has_param :platform, { enum: -> { Application::PLATFORM }}
-        api.has_param :tree, 'hash'
-        api.has_param :extra_info, 'string'
-        api.has_param :request_type, { enum: -> { Application::REQUEST_TYPE }}
         api.has_param :device_session_id, 'string'
+        api.has_param :extra_info, 'string'
+        api.has_param :platform, { enum: -> { Application::PLATFORM }}
+        api.has_param :request_type, { enum: -> { Application::REQUEST_TYPE }}
+        api.has_param :tree, 'hash'
       end
     end
 
@@ -317,15 +311,15 @@ module FacebookAds
 
     has_edge :app_insights do |edge|
       edge.get do |api|
+        api.has_param :aggregateby, { enum: %w{AVERAGE_JOURNEY_LENGTH CONVERTED_JOURNEY_PERCENT COUNT COUNT_IDENTIFIED_USERS COUNT_PER_USER DAU EVENT_SOURCE_IDS JOURNEY_CHANNEL_INCLUSION JOURNEY_INCLUSION MAU MEDIAN_JOURNEY_LENGTH MEDIAN_VALUE MEDIAN_VALUE_PER_USER OVERLAP PERCENTILES_COUNT PERCENTILES_USD_VALUE PERCENTILES_VALUE SCORE SESSIONS_PER_JOURNEY SESSION_BOUNCE_RATE SUM SUM_IDENTIFIED_USERS SUM_PER_EVENT TOPK UNKNOWN_USERS USD_SUM USD_SUM_IDENTIFIED_USERS USD_SUM_PER_EVENT USD_SUM_PER_USER USD_VALUE_PER_USER USERS USER_PROPERTY_USER_COUNT VALUE_PER_USER WAU }}
+        api.has_param :breakdowns, { list: 'string' }
+        api.has_param :ecosystem, { enum: %w{GAME NON_GAME }}
+        api.has_param :event_name, 'string'
+        api.has_param :intervals_to_aggregate, 'int'
         api.has_param :metric_key, 'string'
         api.has_param :period, { enum: %w{daily days_28 hourly lifetime mins_15 monthly range weekly }}
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
-        api.has_param :breakdowns, { list: 'string' }
-        api.has_param :aggregateby, { enum: %w{AVERAGE_JOURNEY_LENGTH CONVERTED_JOURNEY_PERCENT COUNT COUNT_IDENTIFIED_USERS COUNT_PER_USER DAU EVENT_SOURCE_IDS JOURNEY_CHANNEL_INCLUSION JOURNEY_INCLUSION MAU MEDIAN_JOURNEY_LENGTH MEDIAN_VALUE MEDIAN_VALUE_PER_USER OVERLAP PERCENTILES_COUNT PERCENTILES_USD_VALUE PERCENTILES_VALUE SCORE SESSIONS_PER_JOURNEY SESSION_BOUNCE_RATE SUM SUM_IDENTIFIED_USERS SUM_PER_EVENT TOPK UNKNOWN_USERS USD_SUM USD_SUM_IDENTIFIED_USERS USD_SUM_PER_EVENT USD_SUM_PER_USER USD_VALUE_PER_USER USERS USER_PROPERTY_USER_COUNT VALUE_PER_USER WAU }}
-        api.has_param :event_name, 'string'
-        api.has_param :ecosystem, { enum: %w{GAME NON_GAME }}
-        api.has_param :intervals_to_aggregate, 'int'
       end
     end
 
@@ -396,26 +390,26 @@ module FacebookAds
     has_edge :button_indexing do |edge|
       edge.post 'Application' do |api|
         api.has_param :app_version, 'string'
-        api.has_param :indexed_button_list, { list: 'hash' }
         api.has_param :device_id, 'string'
         api.has_param :extinfo, 'string'
+        api.has_param :indexed_button_list, { list: 'hash' }
       end
     end
 
     has_edge :codeless_event_bindings do |edge|
       edge.post 'Application' do |api|
+        api.has_param :bindings, { list: 'hash' }
         api.has_param :mutation_method, { enum: -> { Application::MUTATION_METHOD }}
         api.has_param :platform, { enum: -> { Application::PLATFORM }}
-        api.has_param :bindings, { list: 'hash' }
       end
     end
 
     has_edge :codeless_event_mappings do |edge|
       edge.post 'Application' do |api|
+        api.has_param :mappings, { list: 'hash' }
         api.has_param :mutation_method, { enum: -> { Application::MUTATION_METHOD }}
         api.has_param :platform, { enum: -> { Application::PLATFORM }}
         api.has_param :post_method, { enum: -> { Application::POST_METHOD }}
-        api.has_param :mappings, { list: 'hash' }
       end
     end
 
@@ -442,18 +436,8 @@ module FacebookAds
 
     has_edge :events do |edge|
       edge.get 'Event' do |api|
-        api.has_param :type, { enum: -> { Event::TYPE }}
         api.has_param :include_canceled, 'bool'
-      end
-    end
-
-    has_edge :food_drink_orders do |edge|
-      edge.get do |api|
-        api.has_param :order_id, 'string'
-      end
-      edge.post do |api|
-        api.has_param :order_id, 'string'
-        api.has_param :status, { enum: %w{CANCELLED CONFIRMED CREATED DELIVERED OUT_FOR_DELIVERY READY_FOR_PICKUP }}
+        api.has_param :type, { enum: -> { Event::TYPE }}
       end
     end
 
@@ -483,11 +467,11 @@ module FacebookAds
 
     has_edge :leaderboards_create do |edge|
       edge.post 'Application' do |api|
-        api.has_param :name, 'string'
         api.has_param :context_id, 'string'
-        api.has_param :sort_order, { enum: -> { Application::SORT_ORDER }}
-        api.has_param :score_type, { enum: -> { Application::SCORE_TYPE }}
         api.has_param :decimal_offset, 'int'
+        api.has_param :name, 'string'
+        api.has_param :score_type, { enum: -> { Application::SCORE_TYPE }}
+        api.has_param :sort_order, { enum: -> { Application::SORT_ORDER }}
         api.has_param :unit, 'string'
       end
     end
@@ -508,17 +492,10 @@ module FacebookAds
 
     has_edge :leaderboards_set_score do |edge|
       edge.post 'Application' do |api|
-        api.has_param :name, 'string'
-        api.has_param :score, 'int'
-        api.has_param :player_id, 'string'
         api.has_param :extra_data, 'string'
-      end
-    end
-
-    has_edge :local_service_booking_config do |edge|
-      edge.get
-      edge.post do |api|
-        api.has_param :base_url, 'string'
+        api.has_param :name, 'string'
+        api.has_param :player_id, 'string'
+        api.has_param :score, 'int'
       end
     end
 
@@ -528,20 +505,20 @@ module FacebookAds
 
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
-        api.has_param :event, 'string'
-        api.has_param :is_fb, 'bool'
-        api.has_param :fb_ad_id, 'int'
-        api.has_param :attribution, 'string'
         api.has_param :advertiser_id, 'string'
+        api.has_param :attribution, 'string'
+        api.has_param :attribution_model, 'string'
+        api.has_param :auditing_token, 'string'
+        api.has_param :click_attr_window, 'int'
+        api.has_param :custom_events, { list: 'object' }
+        api.has_param :decline_reason, 'string'
+        api.has_param :event, 'string'
+        api.has_param :event_reported_time, 'int'
+        api.has_param :fb_ad_id, 'int'
         api.has_param :fb_click_time, 'int'
         api.has_param :fb_view_time, 'int'
-        api.has_param :event_reported_time, 'int'
-        api.has_param :attribution_model, 'string'
-        api.has_param :click_attr_window, 'int'
+        api.has_param :is_fb, 'bool'
         api.has_param :view_attr_window, 'int'
-        api.has_param :decline_reason, 'string'
-        api.has_param :auditing_token, 'string'
-        api.has_param :custom_events, { list: 'object' }
       end
     end
 
@@ -573,19 +550,19 @@ module FacebookAds
 
     has_edge :occludespopups do |edge|
       edge.post do |api|
-        api.has_param :unity, 'bool'
         api.has_param :flash, 'bool'
+        api.has_param :unity, 'bool'
       end
     end
 
     has_edge :ozone_release do |edge|
       edge.get
       edge.post do |api|
-        api.has_param :release_name, 'string'
-        api.has_param :changelog, 'string'
-        api.has_param :rollout_percentage, 'double'
         api.has_param :auto_push_to_prod, 'bool'
+        api.has_param :changelog, 'string'
         api.has_param :channel_id, 'int'
+        api.has_param :release_name, 'string'
+        api.has_param :rollout_percentage, 'double'
       end
     end
 
@@ -610,74 +587,74 @@ module FacebookAds
 
     has_edge :permissions do |edge|
       edge.get do |api|
-        api.has_param :permission, { list: 'Permission' }
-        api.has_param :status, { list: { enum: %w{live unapproved }} }
         api.has_param :android_key_hash, 'string'
         api.has_param :ios_bundle_id, 'string'
+        api.has_param :permission, { list: 'Permission' }
         api.has_param :proxied_app_id, 'int'
+        api.has_param :status, { list: { enum: %w{live unapproved }} }
       end
     end
 
     has_edge :photos do |edge|
       edge.post 'Photo' do |api|
         api.has_param :aid, 'string'
+        api.has_param :allow_spherical_photo, 'bool'
         api.has_param :alt_text_custom, 'string'
-        api.has_param :caption, 'string'
-        api.has_param :url, 'string'
-        api.has_param :uid, 'int'
-        api.has_param :profile_id, 'int'
-        api.has_param :target_id, 'int'
-        api.has_param :vault_image_id, 'string'
-        api.has_param :tags, { list: 'object' }
-        api.has_param :place, 'object'
-        api.has_param :is_explicit_place, 'bool'
-        api.has_param :is_explicit_location, 'bool'
-        api.has_param :og_action_type_id, 'string'
-        api.has_param :og_object_id, 'string'
-        api.has_param :og_phrase, 'string'
-        api.has_param :og_icon_id, 'string'
-        api.has_param :og_suggestion_mechanism, 'string'
-        api.has_param :og_set_profile_badge, 'bool'
-        api.has_param :privacy, 'string'
-        api.has_param :targeting, 'object'
-        api.has_param :feed_targeting, 'object'
-        api.has_param :no_story, 'bool'
-        api.has_param :published, 'bool'
-        api.has_param :offline_id, 'int'
+        api.has_param :android_key_hash, 'string'
+        api.has_param :application_id, 'string'
         api.has_param :attempt, 'int'
+        api.has_param :audience_exp, 'bool'
         api.has_param :backdated_time, 'datetime'
         api.has_param :backdated_time_granularity, { enum: -> { Photo::BACKDATED_TIME_GRANULARITY }}
-        api.has_param :time_since_original_post, 'int'
-        api.has_param :filter_type, 'int'
-        api.has_param :scheduled_publish_time, 'int'
-        api.has_param :unpublished_content_type, { enum: -> { Photo::UNPUBLISHED_CONTENT_TYPE }}
-        api.has_param :full_res_is_coming_later, 'bool'
+        api.has_param :caption, 'string'
         api.has_param :composer_session_id, 'string'
-        api.has_param :qn, 'string'
-        api.has_param :manual_privacy, 'bool'
-        api.has_param :audience_exp, 'bool'
-        api.has_param :proxied_app_id, 'string'
-        api.has_param :ios_bundle_id, 'string'
-        api.has_param :android_key_hash, 'string'
-        api.has_param :user_selected_tags, 'bool'
-        api.has_param :allow_spherical_photo, 'bool'
-        api.has_param :spherical_metadata, 'hash'
+        api.has_param :direct_share_status, 'int'
+        api.has_param :feed_targeting, 'object'
+        api.has_param :filter_type, 'int'
+        api.has_param :full_res_is_coming_later, 'bool'
         api.has_param :initial_view_heading_override_degrees, 'int'
         api.has_param :initial_view_pitch_override_degrees, 'int'
         api.has_param :initial_view_vertical_fov_override_degrees, 'int'
-        api.has_param :sponsor_id, 'string'
-        api.has_param :direct_share_status, 'int'
-        api.has_param :sponsor_relationship, 'int'
-        api.has_param :application_id, 'string'
-        api.has_param :name, 'string'
+        api.has_param :ios_bundle_id, 'string'
+        api.has_param :is_explicit_location, 'bool'
+        api.has_param :is_explicit_place, 'bool'
+        api.has_param :manual_privacy, 'bool'
         api.has_param :message, 'string'
+        api.has_param :name, 'string'
+        api.has_param :no_story, 'bool'
+        api.has_param :offline_id, 'int'
+        api.has_param :og_action_type_id, 'string'
+        api.has_param :og_icon_id, 'string'
+        api.has_param :og_object_id, 'string'
+        api.has_param :og_phrase, 'string'
+        api.has_param :og_set_profile_badge, 'bool'
+        api.has_param :og_suggestion_mechanism, 'string'
+        api.has_param :place, 'object'
+        api.has_param :privacy, 'string'
+        api.has_param :profile_id, 'int'
+        api.has_param :proxied_app_id, 'string'
+        api.has_param :published, 'bool'
+        api.has_param :qn, 'string'
+        api.has_param :scheduled_publish_time, 'int'
+        api.has_param :spherical_metadata, 'hash'
+        api.has_param :sponsor_id, 'string'
+        api.has_param :sponsor_relationship, 'int'
+        api.has_param :tags, { list: 'object' }
+        api.has_param :target_id, 'int'
+        api.has_param :targeting, 'object'
+        api.has_param :time_since_original_post, 'int'
+        api.has_param :uid, 'int'
+        api.has_param :unpublished_content_type, { enum: -> { Photo::UNPUBLISHED_CONTENT_TYPE }}
+        api.has_param :url, 'string'
+        api.has_param :user_selected_tags, 'bool'
+        api.has_param :vault_image_id, 'string'
       end
     end
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
-        api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :redirect, 'bool'
+        api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
       end
     end
 
@@ -699,8 +676,8 @@ module FacebookAds
       end
       edge.get
       edge.post 'Application' do |api|
-        api.has_param :user, 'int'
         api.has_param :role, { enum: -> { Application::ROLE }}
+        api.has_param :user, 'int'
       end
     end
 
@@ -728,34 +705,34 @@ module FacebookAds
 
     has_edge :subscriptions do |edge|
       edge.delete do |api|
-        api.has_param :object, 'string'
         api.has_param :fields, { list: 'string' }
+        api.has_param :object, 'string'
       end
       edge.post do |api|
-        api.has_param :object, 'string'
-        api.has_param :fields, { list: 'string' }
         api.has_param :callback_url, 'string'
-        api.has_param :verify_token, 'string'
+        api.has_param :fields, { list: 'string' }
         api.has_param :include_values, 'bool'
+        api.has_param :object, 'string'
+        api.has_param :verify_token, 'string'
       end
     end
 
     has_edge :subscriptions_sample do |edge|
       edge.post 'Application' do |api|
-        api.has_param :object_id, 'string'
-        api.has_param :object, 'string'
-        api.has_param :field, 'string'
-        api.has_param :stress_run, 'int'
         api.has_param :custom_fields, 'string'
+        api.has_param :field, 'string'
+        api.has_param :object, 'string'
+        api.has_param :object_id, 'string'
+        api.has_param :stress_run, 'int'
       end
     end
 
     has_edge :uploads do |edge|
       edge.post do |api|
-        api.has_param :session_type, { enum: %w{attachment }}
-        api.has_param :file_type, 'string'
         api.has_param :file_length, 'int'
         api.has_param :file_name, 'string'
+        api.has_param :file_type, 'string'
+        api.has_param :session_type, { enum: %w{attachment }}
       end
     end
 

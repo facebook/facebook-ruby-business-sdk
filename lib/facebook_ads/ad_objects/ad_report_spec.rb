@@ -97,12 +97,12 @@ module FacebookAds
     field :time_increment, 'string'
     field :time_interval, 'object'
     field :time_ranges, { list: 'object' }
+    field :business_id, 'string'
+    field :bypass_async, 'bool'
     field :format, { enum: -> { FORMAT }}
+    field :limit, 'int'
     field :report_run_id, 'string'
     field :user_report, 'bool'
-    field :business_id, 'string'
-    field :limit, 'int'
-    field :bypass_async, 'bool'
 
   end
 end

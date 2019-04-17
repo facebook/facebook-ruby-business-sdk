@@ -41,11 +41,13 @@ module FacebookAds
       "BUY_TICKETS",
       "CALL",
       "CALL_ME",
+      "CONTACT",
       "CONTACT_US",
       "DONATE",
       "DONATE_NOW",
       "DOWNLOAD",
       "EVENT_RSVP",
+      "FIND_A_GROUP",
       "FOLLOW_NEWS_STORYLINE",
       "GET_DIRECTIONS",
       "GET_OFFER",
@@ -159,6 +161,7 @@ module FacebookAds
     field :instagram_actor_id, 'string'
     field :instagram_permalink_url, 'string'
     field :instagram_story_id, 'string'
+    field :interactive_components_spec, 'AdCreativeInteractiveComponentsSpec'
     field :link_deep_link_url, 'string'
     field :link_og_id, 'string'
     field :link_url, 'string'
@@ -184,10 +187,9 @@ module FacebookAds
     field :url_tags, 'string'
     field :use_page_actor_override, 'bool'
     field :video_id, 'string'
-    field :is_dco_internal, 'bool'
     field :call_to_action, 'object'
     field :image_file, 'string'
-    field :interactive_components_spec, 'hash'
+    field :is_dco_internal, 'bool'
     field :mockup_id, 'string'
     field :page_id, 'string'
 
@@ -203,19 +205,19 @@ module FacebookAds
     has_edge :previews do |edge|
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
+        api.has_param :dynamic_asset_label, 'string'
         api.has_param :dynamic_creative_spec, 'object'
         api.has_param :dynamic_customization, 'object'
-        api.has_param :dynamic_asset_label, 'string'
-        api.has_param :interactive, 'bool'
-        api.has_param :post, 'object'
-        api.has_param :height, 'int'
-        api.has_param :width, 'int'
-        api.has_param :place_page_id, 'int'
-        api.has_param :product_item_ids, { list: 'string' }
-        api.has_param :start_date, 'datetime'
         api.has_param :end_date, 'datetime'
+        api.has_param :height, 'int'
+        api.has_param :interactive, 'bool'
         api.has_param :locale, 'string'
+        api.has_param :place_page_id, 'int'
+        api.has_param :post, 'object'
+        api.has_param :product_item_ids, { list: 'string' }
         api.has_param :render_type, { enum: -> { AdPreview::RENDER_TYPE }}
+        api.has_param :start_date, 'datetime'
+        api.has_param :width, 'int'
       end
     end
 

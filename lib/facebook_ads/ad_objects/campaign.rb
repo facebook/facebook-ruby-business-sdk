@@ -139,7 +139,7 @@ module FacebookAds
     field :pacing_type, { list: 'string' }
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
-    field :source_campaign, 'object'
+    field :source_campaign, 'Campaign'
     field :source_campaign_id, 'string'
     field :spend_cap, 'string'
     field :start_time, 'datetime'
@@ -149,8 +149,8 @@ module FacebookAds
     field :updated_time, 'datetime'
     field :adbatch, { list: 'object' }
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
-    field :upstream_events, 'hash'
     field :iterative_split_test_configs, { list: 'object' }
+    field :upstream_events, 'hash'
 
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
@@ -175,60 +175,60 @@ module FacebookAds
 
     has_edge :ads do |edge|
       edge.get 'Ad' do |api|
-        api.has_param :effective_status, { list: 'string' }
+        api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
+        api.has_param :effective_status, { list: 'string' }
         api.has_param :include_deleted, 'bool'
+        api.has_param :include_drafts, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
-        api.has_param :ad_draft_id, 'string'
-        api.has_param :include_drafts, 'bool'
       end
     end
 
     has_edge :adsets do |edge|
       edge.get 'AdSet' do |api|
-        api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
+        api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
+        api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
+        api.has_param :include_drafts, 'bool'
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
-        api.has_param :ad_draft_id, 'string'
-        api.has_param :include_drafts, 'bool'
       end
     end
 
     has_edge :copies do |edge|
       edge.get 'Campaign' do |api|
-        api.has_param :effective_status, { list: { enum: -> { Campaign::EFFECTIVE_STATUS }} }
         api.has_param :date_preset, { enum: -> { Campaign::DATE_PRESET }}
+        api.has_param :effective_status, { list: { enum: -> { Campaign::EFFECTIVE_STATUS }} }
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
       end
       edge.post 'Campaign' do |api|
         api.has_param :deep_copy, 'bool'
-        api.has_param :rename_options, 'object'
-        api.has_param :status_option, { enum: -> { Campaign::STATUS_OPTION }}
-        api.has_param :start_time, 'datetime'
         api.has_param :end_time, 'datetime'
+        api.has_param :rename_options, 'object'
+        api.has_param :start_time, 'datetime'
+        api.has_param :status_option, { enum: -> { Campaign::STATUS_OPTION }}
       end
     end
 
     has_edge :insights do |edge|
       edge.get 'AdsInsights' do |api|
-        api.has_param :default_summary, 'bool'
-        api.has_param :fields, { list: 'string' }
-        api.has_param :filtering, { list: 'object' }
-        api.has_param :summary, { list: 'string' }
-        api.has_param :sort, { list: 'string' }
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
         api.has_param :action_breakdowns, { list: { enum: -> { AdsInsights::ACTION_BREAKDOWNS }} }
         api.has_param :action_report_time, { enum: -> { AdsInsights::ACTION_REPORT_TIME }}
         api.has_param :breakdowns, { list: { enum: -> { AdsInsights::BREAKDOWNS }} }
         api.has_param :date_preset, { enum: -> { AdsInsights::DATE_PRESET }}
+        api.has_param :default_summary, 'bool'
         api.has_param :export_columns, { list: 'string' }
         api.has_param :export_format, 'string'
         api.has_param :export_name, 'string'
+        api.has_param :fields, { list: 'string' }
+        api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :product_id_limit, 'int'
+        api.has_param :sort, { list: 'string' }
+        api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
@@ -236,21 +236,21 @@ module FacebookAds
         api.has_param :use_account_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
-        api.has_param :default_summary, 'bool'
-        api.has_param :fields, { list: 'string' }
-        api.has_param :filtering, { list: 'object' }
-        api.has_param :summary, { list: 'string' }
-        api.has_param :sort, { list: 'string' }
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
         api.has_param :action_breakdowns, { list: { enum: -> { AdsInsights::ACTION_BREAKDOWNS }} }
         api.has_param :action_report_time, { enum: -> { AdsInsights::ACTION_REPORT_TIME }}
         api.has_param :breakdowns, { list: { enum: -> { AdsInsights::BREAKDOWNS }} }
         api.has_param :date_preset, { enum: -> { AdsInsights::DATE_PRESET }}
+        api.has_param :default_summary, 'bool'
         api.has_param :export_columns, { list: 'string' }
         api.has_param :export_format, 'string'
         api.has_param :export_name, 'string'
+        api.has_param :fields, { list: 'string' }
+        api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :product_id_limit, 'int'
+        api.has_param :sort, { list: 'string' }
+        api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'

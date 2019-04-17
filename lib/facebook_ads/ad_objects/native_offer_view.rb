@@ -35,12 +35,12 @@ module FacebookAds
     has_edge :photos do |edge|
       edge.get 'Photo'
       edge.post 'NativeOfferView' do |api|
-        api.has_param :urls, { list: 'string' }
-        api.has_param :photos, { list: 'string' }
         api.has_param :ad_account, 'string'
         api.has_param :ad_image_hashes, { list: 'string' }
-        api.has_param :image_crops, { list: 'hash' }
         api.has_param :file, 'file'
+        api.has_param :image_crops, { list: 'hash' }
+        api.has_param :photos, { list: 'string' }
+        api.has_param :urls, { list: 'string' }
       end
     end
 

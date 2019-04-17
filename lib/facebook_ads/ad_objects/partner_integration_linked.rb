@@ -52,6 +52,7 @@ module FacebookAds
       "joomla",
       "jumpseller",
       "kajabi",
+      "kochava",
       "kraftly",
       "m_particle",
       "magento",
