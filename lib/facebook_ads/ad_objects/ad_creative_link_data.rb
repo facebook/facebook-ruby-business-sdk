@@ -49,7 +49,6 @@ module FacebookAds
     field :caption, 'string'
     field :child_attachments, { list: 'AdCreativeLinkDataChildAttachment' }
     field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
-    field :custom_overlay_spec, 'AdCreativeLinkDataCustomOverlaySpec'
     field :customization_rules_spec, { list: 'AdCustomizationRuleSpec' }
     field :description, 'string'
     field :event_id, 'string'
@@ -71,7 +70,6 @@ module FacebookAds
     field :preferred_image_tags, { list: 'string' }
     field :retailer_item_ids, { list: 'string' }
     field :show_multiple_images, 'bool'
-    field :sponsorship_info, 'AdCreativeLinkDataSponsorshipInfoSpec'
     field :static_fallback_spec, 'AdCreativeStaticFallbackSpec'
     field :use_flexible_image_aspect_ratio, 'bool'
     has_no_id

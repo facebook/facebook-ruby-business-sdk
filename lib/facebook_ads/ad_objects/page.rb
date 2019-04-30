@@ -470,6 +470,17 @@ module FacebookAds
       end
     end
 
+    has_edge :admin_sticky_settings do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :ad_account_id, 'string'
+        api.has_param :audience, { enum: -> { Page::AUDIENCE }}
+        api.has_param :budget, 'int'
+        api.has_param :campaign_length, 'datetime'
+        api.has_param :currency, 'string'
+        api.has_param :targeting, 'Targeting'
+      end
+    end
+
     has_edge :admins do |edge|
       edge.delete do |api|
         api.has_param :admin_id, 'int'
@@ -479,17 +490,6 @@ module FacebookAds
         api.has_param :admin_id, 'int'
         api.has_param :tasks, { list: { enum: -> { User::TASKS }} }
         api.has_param :trusted, 'bool'
-      end
-    end
-
-    has_edge :adminstickysettings do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :ad_account_id, 'string'
-        api.has_param :audience, { enum: -> { Page::AUDIENCE }}
-        api.has_param :budget, 'int'
-        api.has_param :campaign_length, 'datetime'
-        api.has_param :currency, 'string'
-        api.has_param :targeting, 'Targeting'
       end
     end
 
@@ -1377,17 +1377,6 @@ module FacebookAds
 
     has_edge :product_catalogs do |edge|
       edge.get 'ProductCatalog'
-    end
-
-    has_edge :promotable_posts do |edge|
-      edge.get 'PagePost' do |api|
-        api.has_param :include_hidden, 'bool'
-        api.has_param :include_inline, 'bool'
-        api.has_param :is_published, 'bool'
-        api.has_param :q, 'string'
-        api.has_param :show_expired, 'bool'
-        api.has_param :with, { enum: -> { PagePost::WITH }}
-      end
     end
 
     has_edge :promotions do |edge|

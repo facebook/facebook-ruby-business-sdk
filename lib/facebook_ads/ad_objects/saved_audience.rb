@@ -30,7 +30,6 @@ module FacebookAds
     field :account, 'AdAccount'
     field :approximate_count, 'int'
     field :description, 'string'
-    field :expiry_time, 'datetime'
     field :id, 'string'
     field :name, 'string'
     field :permission_for_actions, 'AudiencePermissionForActions'

@@ -130,6 +130,7 @@ module FacebookAds
       "MEASUREMENT",
       "OFFLINE_CONVERSION",
       "PARTNER",
+      "REGULATED_CATEGORIES_AUDIENCE",
       "STUDY_RULE_AUDIENCE",
       "VIDEO",
       "WEBSITE",
@@ -157,7 +158,6 @@ module FacebookAds
     field :capabilities, { list: 'string' }
     field :created_time, 'datetime'
     field :currency, 'string'
-    field :direct_deals_tos_accepted, 'bool'
     field :disable_reason, 'int'
     field :end_advertiser, 'string'
     field :end_advertiser_name, 'string'
@@ -248,7 +248,6 @@ module FacebookAds
         api.has_param :category_media_source, { enum: -> { AdCreative::CATEGORY_MEDIA_SOURCE }}
         api.has_param :destination_set_id, 'string'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
-        api.has_param :enable_direct_install, 'bool'
         api.has_param :enable_launch_instant_app, 'bool'
         api.has_param :image_crops, 'hash'
         api.has_param :image_file, 'string'
@@ -509,6 +508,7 @@ module FacebookAds
         api.has_param :line_number, 'int'
         api.has_param :name, 'string'
         api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
+        api.has_param :optimization_sub_event, { enum: -> { AdSet::OPTIMIZATION_SUB_EVENT }}
         api.has_param :pacing_type, { list: 'string' }
         api.has_param :promoted_object, 'object'
         api.has_param :rb_prediction_id, 'string'
@@ -802,16 +802,6 @@ module FacebookAds
       end
     end
 
-    has_edge :contextual_targeting_browse do |edge|
-      edge.get 'AdAccountContextualTargeting'
-    end
-
-    has_edge :coupons do |edge|
-      edge.post 'AdAccount' do |api|
-        api.has_param :coupon_code, 'string'
-      end
-    end
-
     has_edge :customaudiences do |edge|
       edge.get 'CustomAudience' do |api|
         api.has_param :business_id, 'string'
@@ -857,6 +847,7 @@ module FacebookAds
         api.has_param :pixel_id, 'string'
         api.has_param :prefill, 'bool'
         api.has_param :product_set_id, 'string'
+        api.has_param :regulated_audience_spec, 'string'
         api.has_param :retention_days, 'int'
         api.has_param :rev_share_policy_id, 'int'
         api.has_param :rule, 'string'
@@ -872,6 +863,10 @@ module FacebookAds
 
     has_edge :customaudiencestos do |edge|
       edge.get 'CustomAudiencesTos'
+      edge.post 'AdAccount' do |api|
+        api.has_param :business_id, 'string'
+        api.has_param :tos_id, 'string'
+      end
     end
 
     has_edge :customconversions do |edge|
@@ -903,16 +898,6 @@ module FacebookAds
       edge.get 'AdSet' do |api|
         api.has_param :type, 'string'
       end
-    end
-
-    has_edge :direct_deals do |edge|
-      edge.get 'DirectDeal' do |api|
-        api.has_param :status, { enum: -> { DirectDeal::STATUS }}
-      end
-    end
-
-    has_edge :direct_deals_tos do |edge|
-      edge.post 'AdAccount'
     end
 
     has_edge :emailimport do |edge|
@@ -1000,12 +985,6 @@ module FacebookAds
     has_edge :leadgen_forms do |edge|
       edge.get 'LeadgenForm' do |api|
         api.has_param :query, 'string'
-      end
-    end
-
-    has_edge :locationclusters do |edge|
-      edge.post 'AdAccount' do |api|
-        api.has_param :locations, { list: 'string' }
       end
     end
 
@@ -1302,21 +1281,6 @@ module FacebookAds
       edge.get 'AdAccountTrackingData'
       edge.post 'AdAccount' do |api|
         api.has_param :tracking_specs, 'object'
-      end
-    end
-
-    has_edge :usermatch do |edge|
-      edge.delete do |api|
-        api.has_param :bidirectional, 'bool'
-        api.has_param :namespace, 'string'
-        api.has_param :payload, 'object'
-      end
-      edge.post do |api|
-        api.has_param :action, 'string'
-        api.has_param :bidirectional, 'bool'
-        api.has_param :namespace, 'string'
-        api.has_param :payload, 'object'
-        api.has_param :retention, 'string'
       end
     end
 

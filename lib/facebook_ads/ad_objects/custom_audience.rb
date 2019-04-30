@@ -68,6 +68,7 @@ module FacebookAds
       "MEASUREMENT",
       "OFFLINE_CONVERSION",
       "PARTNER",
+      "REGULATED_CATEGORIES_AUDIENCE",
       "STUDY_RULE_AUDIENCE",
       "VIDEO",
       "WEBSITE",
@@ -83,7 +84,6 @@ module FacebookAds
     field :delivery_status, 'CustomAudienceStatus'
     field :description, 'string'
     field :excluded_custom_audiences, { list: 'CustomAudience' }
-    field :expiry_time, 'int'
     field :external_event_source, 'AdsPixel'
     field :household_audience, 'int'
     field :id, 'string'
@@ -91,7 +91,6 @@ module FacebookAds
     field :is_household, 'bool'
     field :is_snapshot, 'bool'
     field :is_value_based, 'bool'
-    field :list_of_accounts, { list: 'string' }
     field :lookalike_audience_ids, { list: 'string' }
     field :lookalike_spec, 'LookalikeSpec'
     field :name, 'string'
@@ -99,6 +98,7 @@ module FacebookAds
     field :opt_out_link, 'string'
     field :permission_for_actions, 'AudiencePermissionForActions'
     field :pixel_id, 'string'
+    field :regulated_audience_spec, 'LookalikeSpec'
     field :retention_days, 'int'
     field :rev_share_policy_id, 'int'
     field :rule, 'string'
@@ -106,7 +106,6 @@ module FacebookAds
     field :rule_v2, 'string'
     field :seed_audience, 'int'
     field :sharing_status, 'CustomAudienceSharingStatus'
-    field :study_spec, 'AudienceInsightsStudySpec'
     field :subtype, 'string'
     field :time_content_updated, 'int'
     field :time_created, 'int'
@@ -130,6 +129,7 @@ module FacebookAds
     field :inclusions, { list: 'object' }
     field :isprivate, 'bool'
     field :is_household_exclusion, 'bool'
+    field :list_of_accounts, { list: 'int' }
     field :maxage, 'int'
     field :minage, 'int'
     field :origin_audience_id, 'string'
@@ -139,6 +139,7 @@ module FacebookAds
     field :prefill, 'bool'
     field :product_set_id, 'string'
     field :source, 'string'
+    field :study_spec, 'hash'
     field :tags, { list: 'string' }
     field :video_group_ids, { list: 'string' }
 

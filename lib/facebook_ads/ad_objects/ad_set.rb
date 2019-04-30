@@ -142,6 +142,19 @@ module FacebookAds
       "NONE_EXPLORATION",
     ]
 
+    OPTIMIZATION_SUB_EVENT = [
+      "NONE",
+      "TRAVEL_INTENT",
+      "TRAVEL_INTENT_BUCKET_01",
+      "TRAVEL_INTENT_BUCKET_02",
+      "TRAVEL_INTENT_BUCKET_03",
+      "TRAVEL_INTENT_BUCKET_04",
+      "TRAVEL_INTENT_BUCKET_05",
+      "TRAVEL_INTENT_NO_DESTINATION_INTENT",
+      "TRIP_CONSIDERATION",
+      "VIDEO_SOUND_ON",
+    ]
+
     OPERATOR = [
       "ALL",
       "ANY",
@@ -191,6 +204,7 @@ module FacebookAds
     field :lifetime_spend_cap, 'string'
     field :name, 'string'
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}
+    field :optimization_sub_event, 'string'
     field :pacing_type, { list: 'string' }
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }

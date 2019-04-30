@@ -31,11 +31,6 @@ module FacebookAds
       "NOT_MOST_RESPONSIVE",
     ]
 
-    ROLE = [
-      "ADMIN",
-      "ANALYST",
-    ]
-
     TYPE = [
       "CONTINUOUS_LIFT_CONFIG",
       "LIFT",
@@ -94,21 +89,6 @@ module FacebookAds
         api.has_param :offsitepixels, { list: 'object' }
         api.has_param :product_sets, { list: 'object' }
         api.has_param :type, { enum: -> { AdStudyObjective::TYPE }}
-      end
-    end
-
-    has_edge :userpermissions do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'string'
-        api.has_param :email, 'string'
-        api.has_param :user, 'int'
-      end
-      edge.get 'AdStudyAdsAssetUserPermissions'
-      edge.post 'AdStudy' do |api|
-        api.has_param :business, 'string'
-        api.has_param :email, 'string'
-        api.has_param :role, { enum: -> { AdStudy::ROLE }}
-        api.has_param :user, 'int'
       end
     end
 

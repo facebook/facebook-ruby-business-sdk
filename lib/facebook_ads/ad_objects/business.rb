@@ -75,14 +75,6 @@ module FacebookAds
       "PUBLISHER",
     ]
 
-    PAGE_PERMITTED_ROLES = [
-      "ADVERTISER",
-      "CONTENT_CREATOR",
-      "INSIGHTS_ANALYST",
-      "MANAGER",
-      "MODERATOR",
-    ]
-
     PAGE_PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
@@ -272,6 +264,10 @@ module FacebookAds
       end
     end
 
+    has_edge :an_placements do |edge|
+      edge.get 'AdPlacement'
+    end
+
     has_edge :apps do |edge|
       edge.delete do |api|
         api.has_param :app_id, 'int'
@@ -291,7 +287,10 @@ module FacebookAds
     has_edge :business_invoices do |edge|
       edge.get 'OracleTransaction' do |api|
         api.has_param :end_date, 'string'
+        api.has_param :issue_end_date, 'string'
+        api.has_param :issue_start_date, 'string'
         api.has_param :start_date, 'string'
+        api.has_param :type, { enum: -> { OracleTransaction::TYPE }}
       end
     end
 
@@ -365,10 +364,6 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'Business'
-    end
-
-    has_edge :creditcards do |edge|
-      edge.get 'BusinessCreditCardLegacy'
     end
 
     has_edge :customconversions do |edge|
@@ -497,7 +492,6 @@ module FacebookAds
       end
       edge.post 'Business' do |api|
         api.has_param :name, 'string'
-        api.has_param :page_permitted_roles, { list: { enum: -> { Business::PAGE_PERMITTED_ROLES }} }
         api.has_param :page_permitted_tasks, { list: { enum: -> { Business::PAGE_PERMITTED_TASKS }} }
         api.has_param :sales_rep_email, 'string'
         api.has_param :shared_page_id, 'string'

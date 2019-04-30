@@ -178,12 +178,6 @@ module FacebookAds
     field :website, 'string'
     field :work, { list: 'WorkExperience' }
 
-    has_edge :PaymentCurrencies do |edge|
-      edge.post 'User' do |api|
-        api.has_param :currency, 'string'
-      end
-    end
-
     has_edge :access_tokens do |edge|
       edge.post 'User' do |api|
         api.has_param :business_app, 'int'
@@ -565,15 +559,7 @@ module FacebookAds
       end
     end
 
-    has_edge :games_stats do |edge|
-      edge.post do |api|
-        api.has_param :inc, 'int'
-        api.has_param :set, 'int'
-        api.has_param :stat_name, 'string'
-      end
-    end
-
-    has_edge :gamesachieves do |edge|
+    has_edge :games.achieves do |edge|
       edge.post do |api|
         api.has_param :added, 'string'
         api.has_param :alias, 'string'
@@ -606,6 +592,14 @@ module FacebookAds
         api.has_param :to, 'string'
         api.has_param :user_selected_place, 'bool'
         api.has_param :user_selected_tags, 'bool'
+      end
+    end
+
+    has_edge :games_stats do |edge|
+      edge.post do |api|
+        api.has_param :inc, 'int'
+        api.has_param :set, 'int'
+        api.has_param :stat_name, 'string'
       end
     end
 
@@ -858,6 +852,12 @@ module FacebookAds
       end
     end
 
+    has_edge :payment_currencies do |edge|
+      edge.post 'User' do |api|
+        api.has_param :currency, 'string'
+      end
+    end
+
     has_edge :permissions do |edge|
       edge.delete do |api|
         api.has_param :permission, 'string'
@@ -999,7 +999,7 @@ module FacebookAds
       edge.get 'PlatformSessionKey'
     end
 
-    has_edge :stagingresources do |edge|
+    has_edge :staging_resources do |edge|
       edge.post 'User' do |api|
         api.has_param :file, 'file'
       end

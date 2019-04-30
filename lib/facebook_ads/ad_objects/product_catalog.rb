@@ -54,11 +54,6 @@ module FacebookAds
       "google",
     ]
 
-    ROLE = [
-      "ADMIN",
-      "ADVERTISER",
-    ]
-
 
     field :business, 'Business'
     field :cpas_parent_catalog_settings, 'CpasParentCatalogSettings'
@@ -410,24 +405,6 @@ module FacebookAds
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'
-      end
-    end
-
-    has_edge :userpermissions do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'string'
-        api.has_param :email, 'string'
-        api.has_param :user, 'int'
-      end
-      edge.get 'ProductCatalogUserPermissions' do |api|
-        api.has_param :business, 'string'
-        api.has_param :user, 'int'
-      end
-      edge.post 'ProductCatalog' do |api|
-        api.has_param :business, 'string'
-        api.has_param :email, 'string'
-        api.has_param :role, { enum: -> { ProductCatalog::ROLE }}
-        api.has_param :user, 'int'
       end
     end
 

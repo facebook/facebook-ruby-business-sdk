@@ -43,14 +43,6 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :Mentions do |edge|
-      edge.post do |api|
-        api.has_param :comment_id, 'string'
-        api.has_param :media_id, 'string'
-        api.has_param :message, 'string'
-      end
-    end
-
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
         api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
@@ -73,6 +65,14 @@ module FacebookAds
     has_edge :media_publish do |edge|
       edge.post 'IgMedia' do |api|
         api.has_param :creation_id, 'int'
+      end
+    end
+
+    has_edge :mentions do |edge|
+      edge.post do |api|
+        api.has_param :comment_id, 'string'
+        api.has_param :media_id, 'string'
+        api.has_param :message, 'string'
       end
     end
 

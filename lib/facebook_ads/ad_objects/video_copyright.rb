@@ -42,6 +42,7 @@ module FacebookAds
     field :content_category, 'string'
     field :copyright_content_id, 'string'
     field :creator, 'User'
+    field :excluded_ownership_segments, { list: 'VideoCopyrightSegment' }
     field :id, 'string'
     field :in_conflict, 'bool'
     field :monitoring_status, 'string'

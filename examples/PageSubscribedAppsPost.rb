@@ -16,28 +16,19 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# FB:AUTOGEN
+require 'facebook_ads'
 
-module FacebookAds
-  # This class is auto-generated.
+access_token = '<ACCESS_TOKEN>'
+app_secret = '<APP_SECRET>'
+app_id = '<APP_ID>'
+id = '<PAGE_ID>'
 
-  # For any issues or feature requests related to this class, please let us know
-  # on github and we'll fix in our codegen framework. We'll not be able to accept
-  # pull request for this class.
-
-  class AdAccountContextualTargeting < AdObject
-
-    field :description, 'string'
-    field :enabled_in_ui, 'bool'
-    field :id, 'string'
-    field :key, 'string'
-    field :name, 'string'
-    field :parent, 'string'
-    field :path, { list: 'string' }
-    field :type, 'string'
-    has_no_get
-    has_no_post
-    has_no_delete
-
-  end
+FacebookAds.configure do |config|
+  config.access_token = access_token
+  config.app_secret = app_secret
 end
+
+page = FacebookAds::Page.get(id)
+subscribed_apps = page.subscribed_apps.create({
+    subscribed_fields: 'leadgen',
+})

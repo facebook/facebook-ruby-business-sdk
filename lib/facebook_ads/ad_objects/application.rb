@@ -82,6 +82,16 @@ module FacebookAds
       "LOWER_IS_BETTER",
     ]
 
+    LOGGING_SOURCE = [
+      "MESSENGER_BOT",
+    ]
+
+    LOGGING_TARGET = [
+      "APP",
+      "APP_AND_PAGE",
+      "PAGE",
+    ]
+
     ROLE = [
       "administrators",
       "developers",
@@ -525,6 +535,7 @@ module FacebookAds
     has_edge :mobile_sdk_gk do |edge|
       edge.get do |api|
         api.has_param :device_id, 'string'
+        api.has_param :extinfo, 'object'
         api.has_param :platform, { enum: %w{ANDROID IOS }}
         api.has_param :sdk_version, 'string'
       end
@@ -566,22 +577,24 @@ module FacebookAds
       end
     end
 
+    has_edge :page_activities do |edge|
+      edge.post 'Application' do |api|
+        api.has_param :advertiser_tracking_enabled, 'bool'
+        api.has_param :application_tracking_enabled, 'bool'
+        api.has_param :custom_events, { list: 'object' }
+        api.has_param :logging_source, { enum: -> { Application::LOGGING_SOURCE }}
+        api.has_param :logging_target, { enum: -> { Application::LOGGING_TARGET }}
+        api.has_param :page_id, 'int'
+        api.has_param :page_scoped_user_id, 'int'
+      end
+    end
+
     has_edge :payment_currencies do |edge|
       edge.delete do |api|
         api.has_param :currency_url, 'string'
       end
       edge.post 'Application' do |api|
         api.has_param :currency_url, 'string'
-      end
-    end
-
-    has_edge :payments_test_users do |edge|
-      edge.delete do |api|
-        api.has_param :uids, { list: 'int' }
-      end
-      edge.get 'User'
-      edge.post 'Application' do |api|
-        api.has_param :uids, { list: 'int' }
       end
     end
 
@@ -681,7 +694,7 @@ module FacebookAds
       end
     end
 
-    has_edge :stagingresources do |edge|
+    has_edge :staging_resources do |edge|
       edge.post 'Application' do |api|
         api.has_param :file, 'file'
       end

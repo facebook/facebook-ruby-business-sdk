@@ -26,20 +26,15 @@ module FacebookAds
   # pull request for this class.
 
   class OwnedDomain < AdObject
-    PERMITTED_ROLES = [
-      "ADMIN",
-    ]
-
 
     field :domain_name, 'string'
     field :id, 'string'
     has_no_post
     has_no_delete
 
-    has_edge :Agencies do |edge|
+    has_edge :agencies do |edge|
       edge.post 'OwnedDomain' do |api|
         api.has_param :business, 'string'
-        api.has_param :permitted_roles, { list: { enum: -> { OwnedDomain::PERMITTED_ROLES }} }
       end
     end
 

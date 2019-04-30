@@ -26,7 +26,19 @@ module FacebookAds
   # pull request for this class.
 
   class Group < AdObject
-    GROUP_TYPE = [
+    JOIN_SETTING = [
+      "ADMIN_ONLY",
+      "ANYONE",
+      "NONE",
+    ]
+
+    POST_PERMISSIONS = [
+      "ADMIN_ONLY",
+      "ANYONE",
+      "NONE",
+    ]
+
+    PURPOSE = [
       "CASUAL",
       "CLOSE_FRIENDS",
       "CLUB",
@@ -73,19 +85,7 @@ module FacebookAds
       "WORK_TEAMWORK",
     ]
 
-    JOIN_SETTING = [
-      "ADMIN_ONLY",
-      "ANYONE",
-      "NONE",
-    ]
-
-    POST_PERMISSIONS = [
-      "ADMIN_ONLY",
-      "ANYONE",
-      "NONE",
-    ]
-
-    PURPOSE = [
+    GROUP_TYPE = [
       "CASUAL",
       "CLOSE_FRIENDS",
       "CLUB",

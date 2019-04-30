@@ -44,6 +44,7 @@ module FacebookAds
       "FAIL_REASON",
       "GENDER",
       "PLACEMENT",
+      "PLACEMENT_NAME",
       "PLATFORM",
       "PROPERTY",
       "SDK_VERSION",

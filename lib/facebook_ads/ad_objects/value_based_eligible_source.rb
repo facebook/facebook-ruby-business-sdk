@@ -25,19 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdStudyAdsAssetUserPermissions < AdObject
+  class ValueBasedEligibleSource < AdObject
 
-    field :business, 'Business'
-    field :business_persona, 'object'
-    field :created_by, 'User'
-    field :created_time, 'datetime'
-    field :email, 'string'
-    field :role, 'string'
-    field :status, 'string'
-    field :updated_by, 'User'
-    field :updated_time, 'datetime'
-    field :user, 'User'
-    has_no_id
+    field :id, 'string'
+    field :title, 'string'
+    field :type, 'string'
     has_no_get
     has_no_post
     has_no_delete

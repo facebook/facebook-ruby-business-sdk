@@ -47,7 +47,6 @@ module FacebookAds
     field :audience_network_positions, { list: 'string' }
     field :behaviors, { list: 'IdName' }
     field :brand_safety_content_filter_levels, { list: 'string' }
-    field :brand_safety_content_severity_levels, { list: 'string' }
     field :catalog_based_targeting, 'CatalogBasedTargeting'
     field :cities, { list: 'IdName' }
     field :college_years, { list: 'int' }
