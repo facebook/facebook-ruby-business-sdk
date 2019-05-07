@@ -35,10 +35,6 @@ module FacebookAds
       edge.get 'User'
     end
 
-    has_edge :friends_who_like do |edge|
-      edge.get 'User'
-    end
-
     has_edge :music_listen_friends do |edge|
       edge.get 'User'
     end

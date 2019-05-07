@@ -172,21 +172,6 @@ module FacebookAds
       "TRAVEL",
     ]
 
-    STATUS = [
-      "APPEAL_APPROVED",
-      "APPEAL_DISAPPROVED",
-      "APPEAL_PENDING",
-      "APPEAL_UNDER_REVIEW",
-      "APPROVED",
-      "AUTO_APPROVED",
-      "AUTO_DISAPPROVED",
-      "CANCELLED",
-      "DISAPPROVED",
-      "PENDING",
-      "REQUESTED_CHANGE",
-      "UNDER_REVIEW",
-    ]
-
 
     field :ad_accounts_currency, 'string'
     field :ad_accounts_info, { list: 'object' }
@@ -225,32 +210,10 @@ module FacebookAds
     field :advertiser_business_id, 'string'
     field :business_registration, 'file'
     field :promotable_page_urls, { list: 'string' }
+    has_no_delete
 
     has_edge :adaccounts do |edge|
       edge.get 'AdAccount'
-    end
-
-    has_edge :vietnam do |edge|
-      edge.post 'AdAccountCreationRequest' do |api|
-        api.has_param :ad_accounts_info, { list: 'object' }
-        api.has_param :additional_comment, 'string'
-        api.has_param :address_in_english, 'object'
-        api.has_param :address_in_local_language, 'string'
-        api.has_param :advertiser_business_id, 'string'
-        api.has_param :business_registration, 'file'
-        api.has_param :business_registration_id, 'string'
-        api.has_param :contact, 'object'
-        api.has_param :english_legal_entity_name, 'string'
-        api.has_param :legal_entity_name_in_local_language, 'string'
-        api.has_param :official_website_url, 'string'
-        api.has_param :planning_agency_business_id, 'string'
-        api.has_param :promotable_app_ids, { list: 'string' }
-        api.has_param :promotable_page_ids, { list: 'int' }
-        api.has_param :promotable_page_urls, { list: 'string' }
-        api.has_param :promotable_urls, { list: 'string' }
-        api.has_param :subvertical, { enum: -> { AdAccountCreationRequest::SUBVERTICAL }}
-        api.has_param :vertical, { enum: -> { AdAccountCreationRequest::VERTICAL }}
-      end
     end
 
   end

@@ -136,19 +136,6 @@ module FacebookAds
       edge.get 'LiveVideoError'
     end
 
-    has_edge :game_shows do |edge|
-      edge.get 'VideoGameShow'
-    end
-
-    has_edge :guest_sessions do |edge|
-      edge.get 'LiveWithGuestSession'
-      edge.post 'LiveWithGuestSession'
-    end
-
-    has_edge :input_streams do |edge|
-      edge.post 'LiveVideo'
-    end
-
     has_edge :likes do |edge|
       edge.get 'Profile'
     end

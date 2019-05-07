@@ -33,16 +33,7 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     has_no_post
-
-    has_edge :users do |edge|
-      edge.delete do |api|
-        api.has_param :user_ids, { list: 'int' }
-      end
-      edge.get 'User'
-      edge.post 'PageLabel' do |api|
-        api.has_param :user_ids, { list: 'int' }
-      end
-    end
+    has_no_delete
 
   end
 end

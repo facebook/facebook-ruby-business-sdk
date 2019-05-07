@@ -42,6 +42,7 @@ module FacebookAds
     field :report_type, 'string'
     field :status, 'string'
     field :upload_urls, { list: 'string' }
+    has_no_delete
 
   end
 end

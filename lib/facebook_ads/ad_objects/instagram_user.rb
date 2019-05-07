@@ -26,10 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class InstagramUser < AdObject
-    ROLE = [
-      "ANALYST",
-    ]
-
 
     field :follow_count, 'int'
     field :followed_by_count, 'int'
@@ -48,24 +44,6 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'Business'
-      edge.post 'InstagramUser' do |api|
-        api.has_param :business, 'string'
-      end
-    end
-
-    has_edge :assigned_users do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'string'
-        api.has_param :user, 'object'
-      end
-      edge.get 'AssignedUser' do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'InstagramUser' do |api|
-        api.has_param :business, 'string'
-        api.has_param :role, { enum: -> { InstagramUser::ROLE }}
-        api.has_param :user, 'object'
-      end
     end
 
     has_edge :authorized_adaccounts do |edge|
@@ -79,14 +57,6 @@ module FacebookAds
       edge.post 'InstagramUser' do |api|
         api.has_param :account_id, 'string'
         api.has_param :business, 'string'
-      end
-    end
-
-    has_edge :userpermissions do |edge|
-      edge.post 'InstagramUser' do |api|
-        api.has_param :business, 'string'
-        api.has_param :role, { enum: -> { InstagramUser::ROLE }}
-        api.has_param :user, 'object'
       end
     end
 

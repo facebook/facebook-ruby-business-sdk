@@ -32,6 +32,7 @@ module FacebookAds
     field :id, 'string'
     field :user, 'User'
     has_no_post
+    has_no_delete
 
   end
 end

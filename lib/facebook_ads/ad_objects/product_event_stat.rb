@@ -46,6 +46,7 @@ module FacebookAds
       "Lead",
       "Purchase",
       "Search",
+      "Subscribe",
       "ViewContent",
     ]
 

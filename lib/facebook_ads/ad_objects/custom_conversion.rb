@@ -72,23 +72,8 @@ module FacebookAds
     field :event_source_id, 'string'
     field :custom_conversion_id, 'string'
 
-    has_edge :activities do |edge|
-      edge.get 'CustomConversionActivities' do |api|
-        api.has_param :end_time, 'datetime'
-        api.has_param :event_type, { enum: -> { CustomConversionActivities::EVENT_TYPE }}
-        api.has_param :start_time, 'datetime'
-      end
-    end
-
     has_edge :adaccounts do |edge|
       edge.delete do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :business, 'string'
-      end
-      edge.get 'AdAccount' do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'CustomConversion' do |api|
         api.has_param :account_id, 'string'
         api.has_param :business, 'string'
       end

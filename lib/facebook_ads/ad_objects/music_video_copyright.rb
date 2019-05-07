@@ -32,7 +32,6 @@ module FacebookAds
     field :id, 'string'
     field :in_conflict, 'bool'
     field :isrc, 'string'
-    field :match_rule, 'VideoCopyrightRule'
     field :ownership_countries, { list: 'string' }
     field :reference_file_status, 'string'
     field :ridge_monitoring_status, 'string'

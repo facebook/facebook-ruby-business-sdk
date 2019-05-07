@@ -248,6 +248,7 @@ module FacebookAds
     field :video_p75_watched_actions, { list: 'AdsActionStats' }
     field :video_p95_watched_actions, { list: 'AdsActionStats' }
     field :video_play_actions, { list: 'AdsActionStats' }
+    field :video_play_curve_actions, { list: 'object' }
     field :video_play_retention_0_to_15s_actions, { list: 'object' }
     field :video_play_retention_20_to_60s_actions, { list: 'object' }
     field :video_play_retention_graph_actions, { list: 'object' }

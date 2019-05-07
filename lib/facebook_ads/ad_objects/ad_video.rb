@@ -292,12 +292,6 @@ module FacebookAds
     field :video_file_chunk, 'string'
     field :video_start_time_ms, 'int'
     field :waterfall_id, 'string'
-    field :is_explicit_share, 'bool'
-    field :manual_privacy, 'bool'
-
-    has_edge :auto_generated_captions do |edge|
-      edge.get
-    end
 
     has_edge :auto_trims do |edge|
       edge.post 'AdVideo' do |api|
@@ -306,17 +300,7 @@ module FacebookAds
       end
     end
 
-    has_edge :blocked_users do |edge|
-      edge.post 'AdVideo' do |api|
-        api.has_param :remove_block, 'bool'
-        api.has_param :uid, 'object'
-      end
-    end
-
     has_edge :captions do |edge|
-      edge.delete do |api|
-        api.has_param :locale, 'string'
-      end
       edge.get
       edge.post 'AdVideo' do |api|
         api.has_param :captions_file, 'file'
@@ -354,12 +338,6 @@ module FacebookAds
     end
 
     has_edge :likes do |edge|
-      edge.delete do |api|
-        api.has_param :feedback_source, 'string'
-        api.has_param :nectar_module, 'string'
-        api.has_param :notify, 'bool'
-        api.has_param :tracking, 'string'
-      end
       edge.get 'Profile'
       edge.post 'AdVideo' do |api|
         api.has_param :feedback_source, 'string'
@@ -390,10 +368,6 @@ module FacebookAds
 
     has_edge :sharedposts do |edge|
       edge.get 'Post'
-    end
-
-    has_edge :sponsor_tags do |edge|
-      edge.get 'Page'
     end
 
     has_edge :summarizations do |edge|

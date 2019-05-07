@@ -205,10 +205,6 @@ module FacebookAds
 
     has_edge :docs do |edge|
       edge.get
-      edge.post do |api|
-        api.has_param :body, 'string'
-        api.has_param :title, 'string'
-      end
     end
 
     has_edge :events do |edge|
@@ -332,13 +328,6 @@ module FacebookAds
       end
     end
 
-    has_edge :group_threads do |edge|
-      edge.post do |api|
-        api.has_param :joinable, 'bool'
-        api.has_param :thread_id, 'object'
-      end
-    end
-
     has_edge :groups do |edge|
       edge.get 'Group'
       edge.post 'Group' do |api|
@@ -400,15 +389,6 @@ module FacebookAds
         api.has_param :member, 'int'
         api.has_param :rate, 'int'
         api.has_param :source, 'string'
-      end
-    end
-
-    has_edge :moderators do |edge|
-      edge.delete do |api|
-        api.has_param :uid, 'int'
-      end
-      edge.post 'Group' do |api|
-        api.has_param :uid, 'int'
       end
     end
 

@@ -232,11 +232,6 @@ module FacebookAds
 
     has_edge :leads do |edge|
       edge.get 'Lead'
-      edge.post 'Lead' do |api|
-        api.has_param :end_time, 'datetime'
-        api.has_param :session_id, 'string'
-        api.has_param :start_time, 'datetime'
-      end
     end
 
     has_edge :previews do |edge|
@@ -263,7 +258,6 @@ module FacebookAds
     end
 
     has_edge :trackingtag do |edge|
-      edge.delete
       edge.post do |api|
         api.has_param :add_template_param, 'bool'
         api.has_param :url, 'string'

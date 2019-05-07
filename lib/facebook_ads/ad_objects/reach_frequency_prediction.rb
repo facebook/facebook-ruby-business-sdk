@@ -58,14 +58,6 @@ module FacebookAds
       "SPORTS",
     ]
 
-    STATUS = [
-      "ACTIVE",
-      "COMPLETED",
-      "DRAFT",
-      "EXPIRED",
-      "PENDING",
-    ]
-
 
     field :account_id, 'int'
     field :activity_status, 'ReachFrequencyActivity'

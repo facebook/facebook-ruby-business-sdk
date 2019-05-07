@@ -37,18 +37,11 @@ module FacebookAds
     field :message, 'string'
     field :multi_share_optimized, 'bool'
     field :name, 'string'
-    field :picture, 'string'
     field :privacy, 'Privacy'
     field :via, 'object'
     has_no_post
 
     has_edge :comments do |edge|
-      edge.get 'Comment' do |api|
-        api.has_param :filter, { enum: -> { Comment::FILTER }}
-        api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
-        api.has_param :order, { enum: -> { Comment::ORDER }}
-        api.has_param :since, 'datetime'
-      end
       edge.post 'Comment' do |api|
         api.has_param :attachment_id, 'string'
         api.has_param :attachment_share_url, 'string'
@@ -63,28 +56,6 @@ module FacebookAds
         api.has_param :parent_comment_id, 'object'
         api.has_param :text, 'string'
         api.has_param :tracking, 'string'
-      end
-    end
-
-    has_edge :likes do |edge|
-      edge.delete do |api|
-        api.has_param :feedback_source, 'string'
-        api.has_param :nectar_module, 'string'
-        api.has_param :notify, 'bool'
-        api.has_param :tracking, 'string'
-      end
-      edge.get 'Profile'
-      edge.post 'Link' do |api|
-        api.has_param :feedback_source, 'string'
-        api.has_param :nectar_module, 'string'
-        api.has_param :notify, 'bool'
-        api.has_param :tracking, 'string'
-      end
-    end
-
-    has_edge :reactions do |edge|
-      edge.get 'Profile' do |api|
-        api.has_param :type, { enum: -> { Profile::TYPE }}
       end
     end
 

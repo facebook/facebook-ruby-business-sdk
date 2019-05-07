@@ -44,6 +44,7 @@ module FacebookAds
     field :post, 'Link'
     field :retailer_item_id, 'string'
     has_no_post
+    has_no_delete
 
   end
 end

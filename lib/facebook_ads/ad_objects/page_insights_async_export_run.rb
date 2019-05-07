@@ -39,9 +39,5 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :insights_exports do |edge|
-      edge.delete
-    end
-
   end
 end

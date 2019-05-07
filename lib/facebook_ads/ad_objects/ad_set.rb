@@ -280,19 +280,7 @@ module FacebookAds
       end
     end
 
-    has_edge :asyncadrequests do |edge|
-      edge.get 'AdAsyncRequest' do |api|
-        api.has_param :statuses, { list: { enum: -> { AdAsyncRequest::STATUSES }} }
-      end
-    end
-
     has_edge :copies do |edge|
-      edge.get 'AdSet' do |api|
-        api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
-        api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
-        api.has_param :is_completed, 'bool'
-        api.has_param :time_range, 'object'
-      end
       edge.post 'AdSet' do |api|
         api.has_param :campaign_id, 'string'
         api.has_param :create_dco_adset, 'bool'

@@ -59,11 +59,6 @@ module FacebookAds
       "EDIT",
     ]
 
-    TYPE = [
-      "PRIMARY",
-      "SECONDARY",
-    ]
-
 
     field :automatic_matching_fields, { list: 'string' }
     field :can_proxy, 'bool'
@@ -102,23 +97,9 @@ module FacebookAds
       end
     end
 
-    has_edge :create_server_to_server_keys do |edge|
-      edge.post 'AdsPixel'
-    end
-
     has_edge :da_checks do |edge|
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
-      end
-    end
-
-    has_edge :pending_shared_agencies do |edge|
-      edge.get 'Business'
-    end
-
-    has_edge :reset_server_to_server_key do |edge|
-      edge.post 'AdsPixel' do |api|
-        api.has_param :type, { enum: -> { AdsPixel::TYPE }}
       end
     end
 
@@ -137,10 +118,6 @@ module FacebookAds
     end
 
     has_edge :shared_agencies do |edge|
-      edge.delete do |api|
-        api.has_param :agency_id, 'string'
-        api.has_param :business, 'string'
-      end
       edge.get 'Business'
     end
 

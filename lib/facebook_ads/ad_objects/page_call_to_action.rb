@@ -107,6 +107,8 @@ module FacebookAds
     field :updated_time, 'datetime'
     field :web_destination_type, 'string'
     field :web_url, 'string'
+    has_no_post
+    has_no_delete
 
   end
 end

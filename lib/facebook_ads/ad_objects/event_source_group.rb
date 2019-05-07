@@ -26,9 +26,9 @@ module FacebookAds
   # pull request for this class.
 
   class EventSourceGroup < AdObject
-    ROLE = [
-      "ANALYST",
-      "LIMITED_ANALYST",
+    TASKS = [
+      "ANALYZE",
+      "ANALYZE_WITH_LIMITATIONS",
     ]
 
 
@@ -53,7 +53,7 @@ module FacebookAds
         api.has_param :user, 'int'
       end
       edge.post 'EventSourceGroup' do |api|
-        api.has_param :role, { enum: -> { EventSourceGroup::ROLE }}
+        api.has_param :tasks, { list: { enum: -> { EventSourceGroup::TASKS }} }
         api.has_param :user, 'int'
       end
     end

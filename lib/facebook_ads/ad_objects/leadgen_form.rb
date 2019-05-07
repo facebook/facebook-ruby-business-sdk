@@ -70,7 +70,6 @@ module FacebookAds
 
     field :allow_organic_lead, 'bool'
     field :block_display_for_non_targeted_viewer, 'bool'
-    field :context_card, 'LeadGenContextCard'
     field :created_time, 'datetime'
     field :creator, 'User'
     field :creator_id, 'int'
@@ -83,7 +82,6 @@ module FacebookAds
     field :is_optimized_for_quality, 'bool'
     field :leadgen_export_csv_url, 'string'
     field :leads_count, 'int'
-    field :legal_content, 'LeadGenLegalContent'
     field :locale, 'string'
     field :messenger_welcome_message, 'string'
     field :name, 'string'
@@ -96,16 +94,10 @@ module FacebookAds
     field :questions, { list: 'LeadGenQuestion' }
     field :status, 'string'
     field :tcpa_compliance, 'bool'
-    field :thank_you_page, 'object'
     field :tracking_parameters, 'hash'
 
     has_edge :leads do |edge|
       edge.get 'Lead'
-      edge.post 'Lead' do |api|
-        api.has_param :end_time, 'datetime'
-        api.has_param :session_id, 'string'
-        api.has_param :start_time, 'datetime'
-      end
     end
 
     has_edge :test_leads do |edge|

@@ -52,10 +52,6 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :campaigns do |edge|
-      edge.get 'InvoiceCampaign'
-    end
-
     has_edge :data do |edge|
       edge.get 'AtlasUrl' do |api|
         api.has_param :redirect, 'bool'

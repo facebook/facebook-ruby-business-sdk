@@ -53,20 +53,12 @@ module FacebookAds
       edge.get 'AdAccount'
     end
 
-    has_edge :assigned_monetization_properties do |edge|
-      edge.get 'AdMonetizationProperty'
-    end
-
     has_edge :assigned_pages do |edge|
       edge.get 'Page'
     end
 
     has_edge :assigned_product_catalogs do |edge|
       edge.get 'ProductCatalog'
-    end
-
-    has_edge :businesssettinglogs do |edge|
-      edge.get 'BusinessSettingLogsData'
     end
 
   end

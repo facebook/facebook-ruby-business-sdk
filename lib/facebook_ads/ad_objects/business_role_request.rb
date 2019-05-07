@@ -34,13 +34,6 @@ module FacebookAds
       "FINANCE_EDITOR",
     ]
 
-    STATUS = [
-      "ACCEPTED",
-      "DECLINED",
-      "EXPIRED",
-      "PENDING",
-    ]
-
 
     field :created_by, 'object'
     field :created_time, 'datetime'

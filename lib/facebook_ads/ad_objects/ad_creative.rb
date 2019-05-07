@@ -192,8 +192,6 @@ module FacebookAds
     field :call_to_action, 'object'
     field :image_file, 'string'
     field :is_dco_internal, 'bool'
-    field :mockup_id, 'string'
-    field :page_id, 'string'
 
     has_edge :adlabels do |edge|
       edge.delete do |api|
