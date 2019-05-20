@@ -189,6 +189,13 @@ module FacebookAds
       "year",
     ]
 
+    VIDEO_POLL_WWW_PLACEMENT = [
+      "BOTTOM_LEFT",
+      "BOTTOM_RIGHT",
+      "TOP_LEFT",
+      "TOP_RIGHT",
+    ]
+
 
     field :ad_breaks, { list: 'int' }
     field :backdated_time, 'datetime'
@@ -344,6 +351,14 @@ module FacebookAds
         api.has_param :nectar_module, 'string'
         api.has_param :notify, 'bool'
         api.has_param :tracking, 'string'
+      end
+    end
+
+    has_edge :poll_settings do |edge|
+      edge.get
+      edge.post 'AdVideo' do |api|
+        api.has_param :enable_was_live_voting, 'bool'
+        api.has_param :video_poll_www_placement, { enum: -> { AdVideo::VIDEO_POLL_WWW_PLACEMENT }}
       end
     end
 

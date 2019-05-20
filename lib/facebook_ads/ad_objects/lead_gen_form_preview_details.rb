@@ -36,6 +36,7 @@ module FacebookAds
     field :personal_info_text, 'string'
     field :phone_number_inline_context_text, 'string'
     field :review_your_info_text, 'string'
+    field :secure_sharing_text, 'string'
     field :slide_to_submit_text, 'string'
     field :submit_button_text, 'string'
     has_no_id

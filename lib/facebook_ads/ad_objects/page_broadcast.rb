@@ -26,11 +26,14 @@ module FacebookAds
   # pull request for this class.
 
   class PageBroadcast < AdObject
+    OPERATION = [
+      "CANCEL",
+    ]
+
 
     field :id, 'string'
     field :scheduled_time, 'string'
     field :status, 'string'
-    has_no_post
     has_no_delete
 
     has_edge :insights do |edge|

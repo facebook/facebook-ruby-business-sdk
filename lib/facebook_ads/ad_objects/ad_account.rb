@@ -551,6 +551,9 @@ module FacebookAds
     end
 
     has_edge :advideos do |edge|
+      edge.delete do |api|
+        api.has_param :video_id, 'string'
+      end
       edge.get 'AdVideo' do |api|
         api.has_param :max_aspect_ratio, 'double'
         api.has_param :maxheight, 'int'

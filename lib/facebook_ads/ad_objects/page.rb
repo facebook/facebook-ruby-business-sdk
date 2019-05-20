@@ -906,6 +906,24 @@ module FacebookAds
         api.has_param :store_number, 'int'
       end
       edge.get 'Page'
+      edge.post 'Page' do |api|
+        api.has_param :always_open, 'bool'
+        api.has_param :hours, 'hash'
+        api.has_param :ignore_warnings, 'bool'
+        api.has_param :location, 'object'
+        api.has_param :location_page_id, 'string'
+        api.has_param :old_store_number, 'int'
+        api.has_param :page_username, 'string'
+        api.has_param :permanently_closed, 'bool'
+        api.has_param :phone, 'string'
+        api.has_param :place_topics, { list: 'string' }
+        api.has_param :price_range, 'string'
+        api.has_param :store_code, 'string'
+        api.has_param :store_location_descriptor, 'string'
+        api.has_param :store_name, 'string'
+        api.has_param :store_number, 'int'
+        api.has_param :website, 'string'
+      end
     end
 
     has_edge :media_fingerprints do |edge|

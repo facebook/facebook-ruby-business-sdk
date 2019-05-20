@@ -54,16 +54,9 @@ module FacebookAds
 
     EFFECTIVE_STATUS = [
       "ACTIVE",
-      "ADSET_PAUSED",
       "ARCHIVED",
-      "CAMPAIGN_PAUSED",
       "DELETED",
-      "DISAPPROVED",
       "PAUSED",
-      "PENDING_BILLING_INFO",
-      "PENDING_REVIEW",
-      "PREAPPROVED",
-      "WITH_ISSUES",
     ]
 
     OPTIMIZATION_GOAL = [

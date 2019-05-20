@@ -170,6 +170,7 @@ module FacebookAds
     field :property_id, 'string'
     field :real_time_mode_devices, { list: 'string' }
     field :restrictions, 'object'
+    field :restrictive_data_filter_rules, 'string'
     field :sdk_update_message, 'string'
     field :seamless_login, 'int'
     field :secure_canvas_url, 'string'
@@ -276,10 +277,6 @@ module FacebookAds
       end
     end
 
-    has_edge :agencies do |edge|
-      edge.get 'Business'
-    end
-
     has_edge :app_event_types do |edge|
       edge.get
     end
@@ -329,15 +326,7 @@ module FacebookAds
     end
 
     has_edge :authorized_adaccounts do |edge|
-      edge.delete do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :business, 'string'
-      end
       edge.get 'AdAccount' do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'Application' do |api|
-        api.has_param :account_id, 'string'
         api.has_param :business, 'string'
       end
     end

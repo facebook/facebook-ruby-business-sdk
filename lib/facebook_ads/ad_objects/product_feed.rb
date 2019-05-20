@@ -66,6 +66,11 @@ module FacebookAds
       "VEHICLE_OFFER",
     ]
 
+    OVERRIDE_TYPE = [
+      "COUNTRY",
+      "LANGUAGE",
+    ]
+
 
     field :country, 'string'
     field :created_time, 'datetime'

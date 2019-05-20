@@ -57,11 +57,6 @@ module FacebookAds
       "TRAVEL",
     ]
 
-    ACCESS_TYPE = [
-      "AGENCY",
-      "OWNER",
-    ]
-
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
@@ -87,14 +82,6 @@ module FacebookAds
       "PAGES_MESSAGING_SUBSCRIPTIONS",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
-    ]
-
-    ROLE = [
-      "ADMIN",
-      "ADS_RIGHTS_REVIEWER",
-      "EMPLOYEE",
-      "FINANCE_ANALYST",
-      "FINANCE_EDITOR",
     ]
 
 
@@ -166,16 +153,16 @@ module FacebookAds
 
     has_edge :adaccountcreationrequests do |edge|
       edge.post 'AdAccountCreationRequest' do |api|
-        api.has_param :ad_accounts_info, { list: 'object' }
+        api.has_param :ad_accounts_info, { list: 'hash' }
         api.has_param :additional_comment, 'string'
         api.has_param :address_in_chinese, 'string'
-        api.has_param :address_in_english, 'object'
+        api.has_param :address_in_english, 'hash'
         api.has_param :address_in_local_language, 'string'
         api.has_param :advertiser_business_id, 'string'
         api.has_param :business_registration, 'file'
         api.has_param :business_registration_id, 'string'
         api.has_param :chinese_legal_entity_name, 'string'
-        api.has_param :contact, 'object'
+        api.has_param :contact, 'hash'
         api.has_param :english_legal_entity_name, 'string'
         api.has_param :extended_credit_id, 'string'
         api.has_param :is_smb, 'bool'
@@ -184,7 +171,7 @@ module FacebookAds
         api.has_param :official_website_url, 'string'
         api.has_param :planning_agency_business_id, 'string'
         api.has_param :promotable_app_ids, { list: 'string' }
-        api.has_param :promotable_page_ids, { list: 'string' }
+        api.has_param :promotable_page_ids, { list: 'int' }
         api.has_param :promotable_page_urls, { list: 'string' }
         api.has_param :promotable_urls, { list: 'string' }
         api.has_param :subvertical, { enum: -> { AdAccountCreationRequest::SUBVERTICAL }}
@@ -254,24 +241,8 @@ module FacebookAds
       edge.get 'Business'
     end
 
-    has_edge :agency_pages do |edge|
-      edge.get 'Page' do |api|
-        api.has_param :agency_id, 'string'
-      end
-    end
-
     has_edge :an_placements do |edge|
       edge.get 'AdPlacement'
-    end
-
-    has_edge :apps do |edge|
-      edge.delete do |api|
-        api.has_param :app_id, 'int'
-      end
-      edge.post 'Business' do |api|
-        api.has_param :access_type, { enum: -> { Business::ACCESS_TYPE }}
-        api.has_param :app_id, 'object'
-      end
     end
 
     has_edge :block_list_drafts do |edge|
@@ -637,24 +608,6 @@ module FacebookAds
         api.has_param :match_universe, { enum: -> { MeasurementUploadEvent::MATCH_UNIVERSE }}
         api.has_param :timezone, { enum: -> { MeasurementUploadEvent::TIMEZONE }}
         api.has_param :upload_tag, 'string'
-      end
-    end
-
-    has_edge :user_invitations do |edge|
-      edge.delete do |api|
-        api.has_param :email, 'string'
-      end
-    end
-
-    has_edge :userpermissions do |edge|
-      edge.delete do |api|
-        api.has_param :email, 'string'
-        api.has_param :user, 'int'
-      end
-      edge.post 'Business' do |api|
-        api.has_param :email, 'string'
-        api.has_param :role, { enum: -> { Business::ROLE }}
-        api.has_param :user, 'int'
       end
     end
 
