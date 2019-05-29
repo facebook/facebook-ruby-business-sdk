@@ -224,6 +224,56 @@ module FacebookAds
       end
     end
 
+    has_edge :ad_sets do |edge|
+      edge.post 'AdSet' do |api|
+        api.has_param :ad_keywords, 'object'
+        api.has_param :adlabels, { list: 'object' }
+        api.has_param :adset_schedule, { list: 'object' }
+        api.has_param :attribution_spec, { list: 'hash' }
+        api.has_param :bid_adjustments, 'object'
+        api.has_param :bid_amount, 'int'
+        api.has_param :bid_constraints, 'hash'
+        api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
+        api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
+        api.has_param :campaign_id, 'string'
+        api.has_param :campaign_spec, 'object'
+        api.has_param :creative_sequence, { list: 'string' }
+        api.has_param :daily_budget, 'int'
+        api.has_param :daily_imps, 'int'
+        api.has_param :daily_min_spend_target, 'int'
+        api.has_param :daily_spend_cap, 'int'
+        api.has_param :date_format, 'string'
+        api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
+        api.has_param :end_time, 'datetime'
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :frequency_control_specs, { list: 'object' }
+        api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
+        api.has_param :is_dynamic_creative, 'bool'
+        api.has_param :lifetime_budget, 'int'
+        api.has_param :lifetime_imps, 'int'
+        api.has_param :lifetime_min_spend_target, 'int'
+        api.has_param :lifetime_spend_cap, 'int'
+        api.has_param :line_number, 'int'
+        api.has_param :name, 'string'
+        api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
+        api.has_param :optimization_sub_event, { enum: -> { AdSet::OPTIMIZATION_SUB_EVENT }}
+        api.has_param :pacing_type, { list: 'string' }
+        api.has_param :promoted_object, 'object'
+        api.has_param :rb_prediction_id, 'string'
+        api.has_param :rf_prediction_id, 'string'
+        api.has_param :source_adset_id, 'string'
+        api.has_param :start_time, 'datetime'
+        api.has_param :status, { enum: -> { AdSet::STATUS }}
+        api.has_param :targeting, 'Targeting'
+        api.has_param :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
+        api.has_param :time_based_ad_rotation_intervals, { list: 'int' }
+        api.has_param :time_start, 'datetime'
+        api.has_param :time_stop, 'datetime'
+        api.has_param :topline_id, 'string'
+        api.has_param :upstream_events, 'hash'
+      end
+    end
+
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
     end
@@ -326,7 +376,6 @@ module FacebookAds
 
     has_edge :adreportruns do |edge|
       edge.delete
-      edge.get 'AdReportRun'
     end
 
     has_edge :adreportschedules do |edge|
@@ -424,6 +473,7 @@ module FacebookAds
         api.has_param :include_drafts, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
+        api.has_param :use_employee_draft, 'bool'
       end
       edge.post 'Ad' do |api|
         api.has_param :adlabels, { list: 'object' }
@@ -469,53 +519,7 @@ module FacebookAds
         api.has_param :include_drafts, 'bool'
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
-      end
-      edge.post 'AdSet' do |api|
-        api.has_param :ad_keywords, 'object'
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :adset_schedule, { list: 'object' }
-        api.has_param :attribution_spec, { list: 'hash' }
-        api.has_param :bid_adjustments, 'object'
-        api.has_param :bid_amount, 'int'
-        api.has_param :bid_constraints, 'hash'
-        api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
-        api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
-        api.has_param :campaign_id, 'string'
-        api.has_param :campaign_spec, 'object'
-        api.has_param :creative_sequence, { list: 'string' }
-        api.has_param :daily_budget, 'int'
-        api.has_param :daily_imps, 'int'
-        api.has_param :daily_min_spend_target, 'int'
-        api.has_param :daily_spend_cap, 'int'
-        api.has_param :date_format, 'string'
-        api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
-        api.has_param :end_time, 'datetime'
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
-        api.has_param :frequency_control_specs, { list: 'object' }
-        api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
-        api.has_param :is_dynamic_creative, 'bool'
-        api.has_param :lifetime_budget, 'int'
-        api.has_param :lifetime_imps, 'int'
-        api.has_param :lifetime_min_spend_target, 'int'
-        api.has_param :lifetime_spend_cap, 'int'
-        api.has_param :line_number, 'int'
-        api.has_param :name, 'string'
-        api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
-        api.has_param :optimization_sub_event, { enum: -> { AdSet::OPTIMIZATION_SUB_EVENT }}
-        api.has_param :pacing_type, { list: 'string' }
-        api.has_param :promoted_object, 'object'
-        api.has_param :rb_prediction_id, 'string'
-        api.has_param :rf_prediction_id, 'string'
-        api.has_param :source_adset_id, 'string'
-        api.has_param :start_time, 'datetime'
-        api.has_param :status, { enum: -> { AdSet::STATUS }}
-        api.has_param :targeting, 'Targeting'
-        api.has_param :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
-        api.has_param :time_based_ad_rotation_intervals, { list: 'int' }
-        api.has_param :time_start, 'datetime'
-        api.has_param :time_stop, 'datetime'
-        api.has_param :topline_id, 'string'
-        api.has_param :upstream_events, 'hash'
+        api.has_param :use_employee_draft, 'bool'
       end
     end
 
@@ -1127,6 +1131,7 @@ module FacebookAds
         api.has_param :include_nodes, 'bool'
         api.has_param :is_exclusion, 'bool'
         api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
+        api.has_param :regulated_categories, { list: { enum: -> { AdAccountTargetingUnified::REGULATED_CATEGORIES }} }
         api.has_param :whitelisted_types, { list: { enum: -> { AdAccountTargetingUnified::WHITELISTED_TYPES }} }
       end
     end
@@ -1138,6 +1143,7 @@ module FacebookAds
         api.has_param :is_exclusion, 'bool'
         api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
         api.has_param :q, 'string'
+        api.has_param :regulated_categories, { list: { enum: -> { AdAccountTargetingUnified::REGULATED_CATEGORIES }} }
         api.has_param :session_id, 'int'
         api.has_param :targeting_list, { list: 'object' }
         api.has_param :whitelisted_types, { list: { enum: -> { AdAccountTargetingUnified::WHITELISTED_TYPES }} }
@@ -1160,6 +1166,7 @@ module FacebookAds
         api.has_param :mode, { enum: -> { AdAccountTargetingUnified::MODE }}
         api.has_param :objective, { enum: -> { AdAccountTargetingUnified::OBJECTIVE }}
         api.has_param :objects, 'object'
+        api.has_param :regulated_categories, { list: { enum: -> { AdAccountTargetingUnified::REGULATED_CATEGORIES }} }
         api.has_param :session_id, 'int'
         api.has_param :targeting_list, { list: 'object' }
         api.has_param :whitelisted_types, { list: { enum: -> { AdAccountTargetingUnified::WHITELISTED_TYPES }} }

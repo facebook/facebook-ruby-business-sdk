@@ -26,15 +26,15 @@ module FacebookAds
   # pull request for this class.
 
   class AdStudy < AdObject
-    AUDIENCE_TYPE = [
-      "MOST_RESPONSIVE",
-      "NOT_MOST_RESPONSIVE",
-    ]
-
     TYPE = [
       "CONTINUOUS_LIFT_CONFIG",
       "LIFT",
       "SPLIT_TEST",
+    ]
+
+    AUDIENCE_TYPE = [
+      "MOST_RESPONSIVE",
+      "NOT_MOST_RESPONSIVE",
     ]
 
 

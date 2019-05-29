@@ -28,6 +28,7 @@ module FacebookAds
   class Permission < AdObject
     STATUS = [
       "declined",
+      "expired",
       "granted",
     ]
 

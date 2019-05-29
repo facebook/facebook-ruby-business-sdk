@@ -32,6 +32,7 @@ module FacebookAds
       "CREATE_CONTENT",
       "MANAGE",
       "MANAGE_JOBS",
+      "MANAGE_LEADS",
       "MODERATE",
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
@@ -307,14 +308,6 @@ module FacebookAds
       edge.get 'Business'
     end
 
-    has_edge :conversations do |edge|
-      edge.get 'UnifiedThread' do |api|
-        api.has_param :folder, 'string'
-        api.has_param :tags, { list: 'string' }
-        api.has_param :user_id, 'string'
-      end
-    end
-
     has_edge :events do |edge|
       edge.get 'Event' do |api|
         api.has_param :include_canceled, 'bool'
@@ -324,10 +317,6 @@ module FacebookAds
 
     has_edge :family do |edge|
       edge.get 'User'
-    end
-
-    has_edge :favorite_requests do |edge|
-      edge.get
     end
 
     has_edge :feed do |edge|

@@ -109,12 +109,6 @@ module FacebookAds
     field :total_views, 'string'
     field :video, 'AdVideo'
 
-    has_edge :blocked_users do |edge|
-      edge.get 'User' do |api|
-        api.has_param :uid, 'object'
-      end
-    end
-
     has_edge :comments do |edge|
       edge.get 'Comment' do |api|
         api.has_param :filter, { enum: -> { Comment::FILTER }}

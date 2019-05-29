@@ -25,16 +25,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Recommendation < AdObject
+  class InvoiceCampaign < AdObject
 
-    field :created_time, 'datetime'
-    field :has_rating, 'bool'
-    field :has_review, 'bool'
-    field :open_graph_story, 'object'
-    field :rating, 'int'
-    field :recommendation_type, 'string'
-    field :review_text, 'string'
-    field :reviewer, 'User'
+    field :ad_account_id, 'string'
+    field :billed_amount_details, 'BilledAmountDetails'
+    field :campaign_id, 'string'
+    field :campaign_name, 'string'
+    field :clicks, 'int'
+    field :conversions, 'int'
+    field :impressions, 'int'
+    field :tags, { list: 'string' }
     has_no_id
     has_no_get
     has_no_post

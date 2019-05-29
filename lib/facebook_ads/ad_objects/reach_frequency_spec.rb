@@ -35,7 +35,6 @@ module FacebookAds
     field :max_pause_without_prediction_rerun, 'object'
     field :min_campaign_duration, 'object'
     field :min_reach_limits, 'object'
-    field :supports_video_view_benchmark_per_country, 'object'
     has_no_id
     has_no_get
     has_no_post

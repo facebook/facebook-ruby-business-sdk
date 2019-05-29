@@ -30,7 +30,6 @@ module FacebookAds
     field :admins, { list: 'object' }
     field :application, 'object'
     field :audio, { list: 'object' }
-    field :context, 'OpenGraphContext'
     field :created_time, 'datetime'
     field :description, 'string'
     field :determiner, 'string'

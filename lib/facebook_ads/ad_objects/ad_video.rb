@@ -393,7 +393,6 @@ module FacebookAds
     end
 
     has_edge :tags do |edge|
-      edge.get 'TaggableSubject'
       edge.post 'AdVideo' do |api|
         api.has_param :tag_uid, 'int'
         api.has_param :uid, 'int'

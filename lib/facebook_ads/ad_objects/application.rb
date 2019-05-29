@@ -470,9 +470,6 @@ module FacebookAds
     end
 
     has_edge :objects do |edge|
-      edge.get 'OpenGraphObject' do |api|
-        api.has_param :type, 'object'
-      end
       edge.post 'OpenGraphObject' do |api|
         api.has_param :object, 'object'
         api.has_param :type, 'string'
@@ -586,6 +583,15 @@ module FacebookAds
         api.has_param :object, 'string'
         api.has_param :object_id, 'string'
         api.has_param :stress_run, 'int'
+      end
+    end
+
+    has_edge :uploads do |edge|
+      edge.post do |api|
+        api.has_param :file_length, 'int'
+        api.has_param :file_name, 'string'
+        api.has_param :file_type, 'string'
+        api.has_param :session_type, { enum: %w{attachment }}
       end
     end
 

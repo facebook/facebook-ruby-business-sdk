@@ -94,28 +94,6 @@ module FacebookAds
       "PAUSED",
     ]
 
-    DATE_PRESET = [
-      "last_14d",
-      "last_28d",
-      "last_30d",
-      "last_3d",
-      "last_7d",
-      "last_90d",
-      "last_month",
-      "last_quarter",
-      "last_week_mon_sun",
-      "last_week_sun_sat",
-      "last_year",
-      "lifetime",
-      "this_month",
-      "this_quarter",
-      "this_week_mon_today",
-      "this_week_sun_today",
-      "this_year",
-      "today",
-      "yesterday",
-    ]
-
     DESTINATION_TYPE = [
       "APP",
       "APPLINKS_AUTOMATIC",
@@ -146,6 +124,28 @@ module FacebookAds
       "TRAVEL_INTENT_NO_DESTINATION_INTENT",
       "TRIP_CONSIDERATION",
       "VIDEO_SOUND_ON",
+    ]
+
+    DATE_PRESET = [
+      "LAST_14D",
+      "LAST_28D",
+      "LAST_30D",
+      "LAST_3D",
+      "LAST_7D",
+      "LAST_90D",
+      "LAST_MONTH",
+      "LAST_QUARTER",
+      "LAST_WEEK_MON_SUN",
+      "LAST_WEEK_SUN_SAT",
+      "LAST_YEAR",
+      "LIFETIME",
+      "THIS_MONTH",
+      "THIS_QUARTER",
+      "THIS_WEEK_MON_TODAY",
+      "THIS_WEEK_SUN_TODAY",
+      "THIS_YEAR",
+      "TODAY",
+      "YESTERDAY",
     ]
 
     OPERATOR = [

@@ -19,6 +19,6 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  VERSION = '0.3.3.2'
+  VERSION = '0.3.3.3'
   API_VERSION = '3.3'
 end

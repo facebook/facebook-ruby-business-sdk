@@ -76,6 +76,7 @@ module FacebookAds
       "CREATE_CONTENT",
       "MANAGE",
       "MANAGE_JOBS",
+      "MANAGE_LEADS",
       "MODERATE",
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
@@ -110,6 +111,12 @@ module FacebookAds
       edge.post 'Business' do |api|
         api.has_param :app_id, 'string'
         api.has_param :scope, { list: 'Permission' }
+      end
+    end
+
+    has_edge :ad_accounts do |edge|
+      edge.delete do |api|
+        api.has_param :adaccount_id, 'string'
       end
     end
 
@@ -179,12 +186,6 @@ module FacebookAds
       end
     end
 
-    has_edge :adaccounts do |edge|
-      edge.delete do |api|
-        api.has_param :adaccount_id, 'string'
-      end
-    end
-
     has_edge :adnetworkanalytics do |edge|
       edge.get 'AdNetworkAnalyticsSyncQueryResult' do |api|
         api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
@@ -248,18 +249,6 @@ module FacebookAds
     has_edge :block_list_drafts do |edge|
       edge.post 'Business' do |api|
         api.has_param :publisher_urls_file, 'file'
-      end
-    end
-
-    has_edge :business_invoices do |edge|
-      edge.get 'OracleTransaction' do |api|
-        api.has_param :end_date, 'string'
-        api.has_param :invoice_id, 'int'
-        api.has_param :issue_end_date, 'string'
-        api.has_param :issue_start_date, 'string'
-        api.has_param :root_id, 'int'
-        api.has_param :start_date, 'string'
-        api.has_param :type, { enum: -> { OracleTransaction::TYPE }}
       end
     end
 
@@ -365,13 +354,6 @@ module FacebookAds
       edge.get 'ExtendedCredit'
     end
 
-    has_edge :initiated_audience_sharing_requests do |edge|
-      edge.get do |api|
-        api.has_param :recipient_id, 'string'
-        api.has_param :request_status, { enum: %w{APPROVE DECLINE EXPIRED IN_PROGRESS }}
-      end
-    end
-
     has_edge :initiated_sharing_agreements do |edge|
       edge.get 'BusinessAgreement' do |api|
         api.has_param :receiving_business_id, 'string'
@@ -396,13 +378,6 @@ module FacebookAds
         api.has_param :survey_num_people, 'int'
         api.has_param :timezone_id, 'int'
         api.has_param :vertical, { enum: -> { Business::VERTICAL }}
-      end
-    end
-
-    has_edge :measurement_reports do |edge|
-      edge.get 'MeasurementReport' do |api|
-        api.has_param :filters, { list: 'object' }
-        api.has_param :report_type, { enum: -> { MeasurementReport::REPORT_TYPE }}
       end
     end
 
@@ -456,7 +431,6 @@ module FacebookAds
     end
 
     has_edge :owned_domains do |edge|
-      edge.get
       edge.post do |api|
         api.has_param :domain_name, 'string'
       end
@@ -545,13 +519,6 @@ module FacebookAds
     has_edge :received_audience_permissions do |edge|
       edge.get 'AudiencePermission' do |api|
         api.has_param :partner_id, 'string'
-      end
-    end
-
-    has_edge :received_audience_sharing_requests do |edge|
-      edge.get do |api|
-        api.has_param :initiator_id, 'string'
-        api.has_param :request_status, { enum: %w{APPROVE DECLINE EXPIRED IN_PROGRESS }}
       end
     end
 

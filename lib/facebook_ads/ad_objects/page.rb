@@ -104,6 +104,7 @@ module FacebookAds
       "CREATE_CONTENT",
       "MANAGE",
       "MANAGE_JOBS",
+      "MANAGE_LEADS",
       "MODERATE",
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
@@ -118,6 +119,7 @@ module FacebookAds
       "CREATE_CONTENT",
       "MANAGE",
       "MANAGE_JOBS",
+      "MANAGE_LEADS",
       "MODERATE",
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
@@ -418,10 +420,6 @@ module FacebookAds
     field :written_by, 'string'
     has_no_delete
 
-    has_edge :admin_notes do |edge|
-      edge.get 'PageAdminNote'
-    end
-
     has_edge :admin_settings do |edge|
       edge.post 'Page' do |api|
         api.has_param :setting, { enum: -> { Page::SETTING }}
@@ -575,6 +573,7 @@ module FacebookAds
 
     has_edge :canvases do |edge|
       edge.get 'Canvas' do |api|
+        api.has_param :is_hidden, 'bool'
         api.has_param :is_published, 'bool'
       end
       edge.post 'Canvas' do |api|
@@ -630,6 +629,7 @@ module FacebookAds
     end
 
     has_edge :custom_labels do |edge|
+      edge.get 'PageUserMessageThreadLabel'
       edge.post 'PageUserMessageThreadLabel' do |api|
         api.has_param :name, 'string'
       end
@@ -906,24 +906,6 @@ module FacebookAds
         api.has_param :store_number, 'int'
       end
       edge.get 'Page'
-      edge.post 'Page' do |api|
-        api.has_param :always_open, 'bool'
-        api.has_param :hours, 'hash'
-        api.has_param :ignore_warnings, 'bool'
-        api.has_param :location, 'object'
-        api.has_param :location_page_id, 'string'
-        api.has_param :old_store_number, 'int'
-        api.has_param :page_username, 'string'
-        api.has_param :permanently_closed, 'bool'
-        api.has_param :phone, 'string'
-        api.has_param :place_topics, { list: 'string' }
-        api.has_param :price_range, 'string'
-        api.has_param :store_code, 'string'
-        api.has_param :store_location_descriptor, 'string'
-        api.has_param :store_name, 'string'
-        api.has_param :store_number, 'int'
-        api.has_param :website, 'string'
-      end
     end
 
     has_edge :media_fingerprints do |edge|
@@ -1188,10 +1170,6 @@ module FacebookAds
       end
     end
 
-    has_edge :ratings do |edge|
-      edge.get 'Recommendation'
-    end
-
     has_edge :request_thread_control do |edge|
       edge.post 'Page' do |api|
         api.has_param :metadata, 'string'
@@ -1257,7 +1235,6 @@ module FacebookAds
         api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
         api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
       end
-      edge.get
       edge.post 'Page' do |api|
         api.has_param :account_linking_url, 'string'
         api.has_param :call_to_actions, { list: 'object' }
@@ -1288,13 +1265,6 @@ module FacebookAds
     has_edge :unlink_accounts do |edge|
       edge.post 'Page' do |api|
         api.has_param :psid, 'string'
-      end
-    end
-
-    has_edge :video_copyright_rules do |edge|
-      edge.get 'VideoCopyrightRule' do |api|
-        api.has_param :selected_rule_id, 'string'
-        api.has_param :source, { enum: -> { VideoCopyrightRule::SOURCE }}
       end
     end
 

@@ -55,6 +55,13 @@ module FacebookAds
       "work_positions",
     ]
 
+    REGULATED_CATEGORIES = [
+      "EMPLOYMENT",
+      "FINANCING",
+      "HOUSING",
+      "NONE",
+    ]
+
     WHITELISTED_TYPES = [
       "adgroup_id",
       "age_max",
