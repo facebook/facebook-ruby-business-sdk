@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+  - 2.0
+  - 2.2
+
+branches:
+  only:
+    - master
+
+install: bundle install
+script: gem build facebookbusiness.gemspec --strict
