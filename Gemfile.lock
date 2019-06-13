@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     facebookbusiness (0.3.3.3)
-      faraday
-      json
+      faraday (~> 0.15)
+      json (~> 2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -37,7 +37,7 @@ GEM
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
       rspec-mocks (~> 3.8.0)
-    rspec-core (3.8.0)
+    rspec-core (3.8.1)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.4)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -61,17 +61,17 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  awesome_print
-  bundler
-  byebug
-  dotenv
+  awesome_print (~> 1.8)
+  bundler (~> 1.17)
+  byebug (~> 11.0)
+  dotenv (~> 2.7)
   facebookbusiness!
-  minitest (>= 5.0.0)
-  pry
-  pry-coolline
-  rake
-  rspec
-  rubocop
+  minitest (~> 5.0)
+  pry (~> 0.12)
+  pry-coolline (~> 0.2)
+  rake (~> 12.3)
+  rspec (~> 3.8)
+  rubocop (~> 0.71)
 
 BUNDLED WITH
-   2.0.2
+   1.17.1
