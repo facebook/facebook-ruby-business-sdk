@@ -29,24 +29,24 @@ Gem::Specification.new do |s|
   s.authors     = ['Facebook']
   s.email       = ''
   s.homepage    =
-    'https://github.com/facebook/facebook-ruby-ads-sdk'
+    'https://github.com/facebook/facebook-ruby-business-sdk'
   s.license = 'Nonstandard'
 
   s.required_ruby_version = '~> 2.0'
 
-  s.add_dependency('faraday')
-  s.add_dependency('json')
+  s.add_dependency 'faraday', '~> 0.15'
+  s.add_dependency 'json', '~> 2.2'
 
-  s.add_development_dependency('rake')
-  s.add_development_dependency('byebug')
-  s.add_development_dependency('minitest', '>= 5.0.0')
-  s.add_development_dependency('pry')
-  s.add_development_dependency('pry-coolline')
-  s.add_development_dependency('dotenv')
-  s.add_development_dependency('awesome_print')
-  s.add_development_dependency('rspec')
-  s.add_development_dependency('bundler')
-  s.add_development_dependency('rubocop')
+  s.add_development_dependency 'awesome_print', '~> 1.8'
+  s.add_development_dependency 'bundler', '~> 1.17'
+  s.add_development_dependency 'byebug', '~> 11.0'
+  s.add_development_dependency 'dotenv', '~> 2.7'
+  s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'pry', '~> 0.12'
+  s.add_development_dependency 'pry-coolline', '~> 0.2'
+  s.add_development_dependency 'rake', '~> 12.3'
+  s.add_development_dependency 'rspec', '~> 3.8'
+  s.add_development_dependency 'rubocop', '~> 0.71'
 
   s.files = Dir['LICENSE.txt', 'README.md', 'lib/**/*', 'bin/*']
   s.executables = s.files.grep(%r{^bin/}).map { |f| File.basename(f) }

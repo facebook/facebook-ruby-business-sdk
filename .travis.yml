@@ -1,0 +1,14 @@
+language: ruby
+rvm:
+  - 2.3
+
+branches:
+  only:
+    - master
+
+before_install:
+  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
+  - gem install bundler -v '< 2'
+
+install: bundle install
+script: gem build facebookbusiness.gemspec
