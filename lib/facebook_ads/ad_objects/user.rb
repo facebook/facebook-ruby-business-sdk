@@ -469,7 +469,7 @@ module FacebookAds
       end
     end
 
-    has_edge :games.achieves do |edge|
+    has_edge :games_achieves do |edge|
       edge.post do |api|
         api.has_param :added, 'string'
         api.has_param :alias, 'string'
