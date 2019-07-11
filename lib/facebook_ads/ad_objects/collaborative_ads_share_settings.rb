@@ -25,14 +25,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ReachEstimate < AdObject
+  class CollaborativeAdsShareSettings < AdObject
 
-    field :estimate_ready, 'bool'
-    field :unsupported, 'bool'
-    field :users, 'int'
-    has_no_id
-    has_no_get
-    has_no_post
+    field :agency_business, 'Business'
+    field :id, 'string'
+    field :product_catalog_proxy_id, 'string'
+    field :utm_campaign, 'string'
+    field :utm_medium, 'string'
+    field :utm_source, 'string'
     has_no_delete
 
   end

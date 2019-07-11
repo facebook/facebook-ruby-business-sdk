@@ -71,6 +71,7 @@ module FacebookAds
     field :engagement_specs, { list: 'TargetingDynamicRule' }
     field :ethnic_affinity, { list: 'IdName' }
     field :exclude_reached_since, { list: 'string' }
+    field :excluded_brand_safety_content_types, { list: 'string' }
     field :excluded_connections, { list: 'IdName' }
     field :excluded_custom_audiences, { list: 'IdName' }
     field :excluded_dynamic_audience_ids, { list: 'string' }

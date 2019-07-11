@@ -161,7 +161,6 @@ module FacebookAds
 
 
     field :account_id, 'string'
-    field :ad_keywords, 'AdKeywords'
     field :adlabels, { list: 'AdLabel' }
     field :adset_schedule, { list: 'DayPart' }
     field :asset_feed_id, 'string'
@@ -244,17 +243,6 @@ module FacebookAds
       edge.get 'AdCreative'
     end
 
-    has_edge :adlabels do |edge|
-      edge.delete do |api|
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
-      end
-      edge.post 'AdSet' do |api|
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
-      end
-    end
-
     has_edge :adrules_governed do |edge|
       edge.get 'AdRule' do |api|
         api.has_param :pass_evaluation, 'bool'
@@ -274,6 +262,12 @@ module FacebookAds
     end
 
     has_edge :copies do |edge|
+      edge.get 'AdSet' do |api|
+        api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
+        api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
+        api.has_param :is_completed, 'bool'
+        api.has_param :time_range, 'object'
+      end
       edge.post 'AdSet' do |api|
         api.has_param :campaign_id, 'string'
         api.has_param :create_dco_adset, 'bool'
@@ -337,6 +331,17 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
         api.has_param :use_account_attribution_setting, 'bool'
+      end
+    end
+
+    has_edge :labels do |edge|
+      edge.delete do |api|
+        api.has_param :adlabels, { list: 'object' }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+      end
+      edge.post 'AdSet' do |api|
+        api.has_param :adlabels, { list: 'object' }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
       end
     end
 

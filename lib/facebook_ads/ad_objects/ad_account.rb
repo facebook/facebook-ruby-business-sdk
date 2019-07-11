@@ -86,12 +86,16 @@ module FacebookAds
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "CREATIVE",
+      "FB_EMPLOYEE_DSO_ADVERTISE",
       "MANAGE",
     ]
 
     TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "CREATIVE",
+      "FB_EMPLOYEE_DSO_ADVERTISE",
       "MANAGE",
     ]
 
@@ -161,6 +165,7 @@ module FacebookAds
     field :disable_reason, 'int'
     field :end_advertiser, 'string'
     field :end_advertiser_name, 'string'
+    field :extended_credit_invoice_group, 'ExtendedCreditInvoiceGroup'
     field :failed_delivery_checks, { list: 'DeliveryCheck' }
     field :fb_entity, 'int'
     field :funding_source, 'string'
@@ -225,8 +230,13 @@ module FacebookAds
     end
 
     has_edge :ad_sets do |edge|
+      edge.delete do |api|
+        api.has_param :before_date, 'datetime'
+        api.has_param :delete_offset, 'int'
+        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_ARCHIVED_BEFORE DELETE_OLDEST }}
+        api.has_param :object_count, 'int'
+      end
       edge.post 'AdSet' do |api|
-        api.has_param :ad_keywords, 'object'
         api.has_param :adlabels, { list: 'object' }
         api.has_param :adset_schedule, { list: 'object' }
         api.has_param :attribution_spec, { list: 'hash' }
@@ -505,12 +515,6 @@ module FacebookAds
     end
 
     has_edge :adsets do |edge|
-      edge.delete do |api|
-        api.has_param :before_date, 'datetime'
-        api.has_param :delete_offset, 'int'
-        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_ARCHIVED_BEFORE DELETE_OLDEST }}
-        api.has_param :object_count, 'int'
-      end
       edge.get 'AdSet' do |api|
         api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
@@ -720,15 +724,6 @@ module FacebookAds
     has_edge :block_list_drafts do |edge|
       edge.post 'AdAccount' do |api|
         api.has_param :publisher_urls_file, 'file'
-      end
-    end
-
-    has_edge :brand_audiences do |edge|
-      edge.post do |api|
-        api.has_param :description, 'string'
-        api.has_param :name, 'string'
-        api.has_param :target_size, 'int'
-        api.has_param :targeting, 'object'
       end
     end
 
@@ -996,14 +991,6 @@ module FacebookAds
       end
     end
 
-    has_edge :partnerrequests do |edge|
-      edge.post do |api|
-        api.has_param :account_ids, { list: 'int' }
-        api.has_param :category_ids, { list: 'string' }
-        api.has_param :type, { enum: %w{SHARE_PC }}
-      end
-    end
-
     has_edge :product_audiences do |edge|
       edge.post 'CustomAudience' do |api|
         api.has_param :allowed_domains, { list: 'string' }
@@ -1044,7 +1031,7 @@ module FacebookAds
     end
 
     has_edge :reachestimate do |edge|
-      edge.get 'ReachEstimate' do |api|
+      edge.get 'AdAccountReachEstimate' do |api|
         api.has_param :adgroup_ids, { list: 'string' }
         api.has_param :caller_id, 'string'
         api.has_param :concepts, 'string'
@@ -1193,15 +1180,7 @@ module FacebookAds
     end
 
     has_edge :users do |edge|
-      edge.delete do |api|
-        api.has_param :uid, 'int'
-        api.has_param :uids, { list: 'string' }
-      end
       edge.get 'AdAccountUser'
-      edge.post 'AdAccount' do |api|
-        api.has_param :tasks, { list: { enum: -> { AdAccount::TASKS }} }
-        api.has_param :uid, 'int'
-      end
     end
 
     has_edge :usersofanyaudience do |edge|

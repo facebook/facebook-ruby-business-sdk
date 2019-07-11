@@ -46,6 +46,10 @@ module FacebookAds
       "normal",
     ]
 
+    WITH = [
+      "LOCATION",
+    ]
+
 
     field :actions, { list: 'string' }
     field :admin_creator, 'object'
@@ -165,7 +169,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :ad_account_id, 'string'
         api.has_param :ad_conversion_pixel_id, 'int'
-        api.has_param :audience, { enum: %w{AUTO_LOOKALIKE AUTO_PAGE_LOOKALIKE AUTO_TARGETING CREATE_NEW CUSTOM_AUDIENCE DISTRICT EVENT_CUSTOM_AUDIENCES EVENT_ENGAGEMENT FANS GROUPER IG_PROMOTED_POST_AUTO LOCAL LOOKALIKE MULT_CUSTOM_AUDIENCES NCPP SAVED_AUDIENCE SMART_AUDIENCE }}
+        api.has_param :audience, { enum: %w{AUTO_LOOKALIKE AUTO_PAGE_LOOKALIKE AUTO_TARGETING CREATE_NEW CUSTOM_AUDIENCE DISTRICT EVENT_CUSTOM_AUDIENCES EVENT_ENGAGEMENT FANS GROUPER HEC_AUDIENCE IG_PROMOTED_POST_AUTO LOCAL LOOKALIKE MULT_CUSTOM_AUDIENCES NCPP SAVED_AUDIENCE SMART_AUDIENCE }}
         api.has_param :audience_id, 'string'
         api.has_param :bid_amount, 'int'
         api.has_param :budget, 'int'

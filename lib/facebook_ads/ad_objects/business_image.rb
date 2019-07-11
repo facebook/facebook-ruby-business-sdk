@@ -25,12 +25,22 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class NullNode < AdObject
+  class BusinessImage < AdObject
 
-    has_no_id
-    has_no_get
+    field :business, 'Business'
+    field :creation_time, 'datetime'
+    field :hash, 'string'
+    field :height, 'int'
+    field :id, 'string'
+    field :name, 'string'
+    field :url, 'string'
+    field :url_128, 'string'
+    field :width, 'int'
     has_no_post
-    has_no_delete
+
+    has_edge :insights do |edge|
+      edge.get
+    end
 
   end
 end

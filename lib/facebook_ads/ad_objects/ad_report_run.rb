@@ -65,9 +65,5 @@ module FacebookAds
       edge.get 'AdsInsights'
     end
 
-    has_edge :retry do |edge|
-      edge.post 'AdReportRun'
-    end
-
   end
 end

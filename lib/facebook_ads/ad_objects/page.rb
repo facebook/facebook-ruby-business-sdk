@@ -191,6 +191,7 @@ module FacebookAds
       "branded_camera",
       "category",
       "checkins",
+      "commerce_order",
       "company_overview",
       "conversations",
       "culinary_team",
@@ -427,18 +428,6 @@ module FacebookAds
       end
     end
 
-    has_edge :admins do |edge|
-      edge.delete do |api|
-        api.has_param :admin_id, 'int'
-        api.has_param :trusted, 'bool'
-      end
-      edge.post 'User' do |api|
-        api.has_param :admin_id, 'int'
-        api.has_param :tasks, { list: { enum: -> { User::TASKS }} }
-        api.has_param :trusted, 'bool'
-      end
-    end
-
     has_edge :ads_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :exclude_dynamic_ads, 'bool'
@@ -495,9 +484,10 @@ module FacebookAds
 
     has_edge :blocked do |edge|
       edge.delete do |api|
-        api.has_param :asid, 'int'
-        api.has_param :uid, 'int'
-        api.has_param :user, 'int'
+        api.has_param :asid, 'object'
+        api.has_param :psid, 'object'
+        api.has_param :uid, 'object'
+        api.has_param :user, 'object'
       end
       edge.get 'Profile' do |api|
         api.has_param :uid, 'int'
@@ -505,6 +495,7 @@ module FacebookAds
       end
       edge.post do |api|
         api.has_param :asid, { list: 'string' }
+        api.has_param :psid, { list: 'object' }
         api.has_param :uid, { list: 'string' }
         api.has_param :user, { list: 'string' }
       end

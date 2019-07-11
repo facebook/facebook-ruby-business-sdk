@@ -71,5 +71,9 @@ module FacebookAds
       edge.get 'OffsitePixel'
     end
 
+    has_edge :partnerstudies do |edge|
+      edge.get 'PartnerStudy'
+    end
+
   end
 end

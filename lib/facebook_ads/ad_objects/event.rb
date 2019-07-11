@@ -89,12 +89,7 @@ module FacebookAds
       edge.get 'Profile'
     end
 
-    has_edge :comments do |edge|
-      edge.get 'NullNode'
-    end
-
     has_edge :feed do |edge|
-      edge.get 'NullNode'
       edge.post do |api|
         api.has_param :actions, 'object'
         api.has_param :adaptive_type, 'string'
@@ -212,7 +207,6 @@ module FacebookAds
     end
 
     has_edge :live_videos do |edge|
-      edge.get 'NullNode'
       edge.post 'LiveVideo' do |api|
         api.has_param :attribution_app_id, 'string'
         api.has_param :content_tags, { list: 'string' }
@@ -240,7 +234,6 @@ module FacebookAds
     end
 
     has_edge :photos do |edge|
-      edge.get 'NullNode'
       edge.post 'Photo' do |api|
         api.has_param :aid, 'string'
         api.has_param :allow_spherical_photo, 'bool'
@@ -297,19 +290,16 @@ module FacebookAds
     end
 
     has_edge :picture do |edge|
-      edge.get 'NullNode'
-    end
-
-    has_edge :posts do |edge|
-      edge.get 'NullNode'
+      edge.get 'ProfilePictureSource' do |api|
+        api.has_param :height, 'int'
+        api.has_param :redirect, 'bool'
+        api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
+        api.has_param :width, 'int'
+      end
     end
 
     has_edge :roles do |edge|
       edge.get 'Profile'
-    end
-
-    has_edge :videos do |edge|
-      edge.get 'NullNode'
     end
 
   end

@@ -36,6 +36,7 @@ module FacebookAds
     field :label, 'string'
     field :options, { list: 'LeadGenQuestionOption' }
     field :type, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

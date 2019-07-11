@@ -27,11 +27,14 @@ module FacebookAds
 
   class ProductCatalog < AdObject
     VERTICAL = [
+      "bookable",
       "commerce",
       "destinations",
       "flights",
       "home_listings",
       "hotels",
+      "ticketed_experiences",
+      "transactable_items",
       "vehicles",
     ]
 
@@ -83,14 +86,12 @@ module FacebookAds
 
     has_edge :assigned_users do |edge|
       edge.delete do |api|
-        api.has_param :business, 'string'
         api.has_param :user, 'int'
       end
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'
       end
       edge.post 'ProductCatalog' do |api|
-        api.has_param :business, 'string'
         api.has_param :tasks, { list: { enum: -> { ProductCatalog::TASKS }} }
         api.has_param :user, 'int'
       end
@@ -142,6 +143,10 @@ module FacebookAds
         api.has_param :handle, 'string'
         api.has_param :load_ids_of_invalid_requests, 'bool'
       end
+    end
+
+    has_edge :collaborative_ads_share_settings do |edge|
+      edge.get 'CollaborativeAdsShareSettings'
     end
 
     has_edge :destinations do |edge|

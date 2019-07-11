@@ -82,6 +82,7 @@ module FacebookAds
     field :is_optimized_for_quality, 'bool'
     field :leadgen_export_csv_url, 'string'
     field :leads_count, 'int'
+    field :legal_content, 'object'
     field :locale, 'string'
     field :messenger_welcome_message, 'string'
     field :name, 'string'

@@ -170,6 +170,7 @@ module FacebookAds
     field :property_id, 'string'
     field :real_time_mode_devices, { list: 'string' }
     field :restrictions, 'object'
+    field :restrictive_data_filter_params, 'string'
     field :restrictive_data_filter_rules, 'string'
     field :sdk_update_message, 'string'
     field :seamless_login, 'int'
@@ -275,6 +276,10 @@ module FacebookAds
       edge.get 'AdNetworkAnalyticsAsyncQueryResult' do |api|
         api.has_param :query_ids, { list: 'string' }
       end
+    end
+
+    has_edge :agencies do |edge|
+      edge.get 'Business'
     end
 
     has_edge :app_event_types do |edge|

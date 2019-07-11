@@ -72,6 +72,7 @@ module FacebookAds
       "GROUP_POST",
       "HEURISTIC_CLUSTER_VIDEO",
       "HEURISTIC_PREVIEW",
+      "HIGHLIGHT_CLIP_VIDEO",
       "INSPIRATION_VIDEO",
       "INSTAGRAM_VIDEO_COPY",
       "INSTANT_APPLICATION_PREVIEW",
@@ -299,6 +300,7 @@ module FacebookAds
     field :video_file_chunk, 'string'
     field :video_start_time_ms, 'int'
     field :waterfall_id, 'string'
+    field :creative_folder_id, 'string'
 
     has_edge :auto_trims do |edge|
       edge.post 'AdVideo' do |api|

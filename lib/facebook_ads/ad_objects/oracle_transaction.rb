@@ -32,6 +32,7 @@ module FacebookAds
     field :amount_due, 'CurrencyAmount'
     field :billed_amount_details, 'BilledAmountDetails'
     field :billing_period, 'string'
+    field :cdn_download_uri, 'string'
     field :currency, 'string'
     field :download_uri, 'string'
     field :due_date, 'datetime'

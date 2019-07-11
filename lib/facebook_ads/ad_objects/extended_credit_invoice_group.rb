@@ -39,6 +39,9 @@ module FacebookAds
         api.has_param :ad_account_id, 'string'
       end
       edge.get 'AdAccount'
+      edge.post 'AdAccount' do |api|
+        api.has_param :ad_account_id, 'string'
+      end
     end
 
   end

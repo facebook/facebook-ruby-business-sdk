@@ -25,36 +25,32 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdgroupPlacementSpecificReviewFeedback < AdObject
+  class PartnerStudy < AdObject
 
-    field :account_admin, 'hash'
-    field :ad, 'hash'
-    field :b2c, 'hash'
-    field :bsg, 'hash'
-    field :city_community, 'hash'
-    field :daily_deals, 'hash'
-    field :daily_deals_legacy, 'hash'
-    field :dpa, 'hash'
-    field :facebook, 'hash'
-    field :instagram, 'hash'
-    field :instagram_shop, 'hash'
-    field :marketplace, 'hash'
-    field :marketplace_home_rentals, 'hash'
-    field :marketplace_home_sales, 'hash'
-    field :marketplace_motors, 'hash'
-    field :max_review_placements, 'hash'
-    field :page_admin, 'hash'
-    field :product, 'hash'
-    field :product_service, 'hash'
-    field :profile, 'hash'
-    field :seller, 'hash'
-    field :shops, 'hash'
-    field :traffic_quality, 'hash'
-    field :whatsapp, 'hash'
-    has_no_id
-    has_no_get
+    field :additional_info, 'string'
+    field :brand, 'string'
+    field :client_name, 'string'
+    field :emails, 'string'
+    field :id, 'string'
+    field :input_ids, { list: 'string' }
+    field :is_export, 'bool'
+    field :lift_study, 'AdStudy'
+    field :location, 'string'
+    field :match_file_ds, 'string'
+    field :name, 'string'
+    field :partner_defined_id, 'string'
+    field :partner_household_graph_dataset_id, 'string'
+    field :status, 'string'
+    field :study_end_date, 'datetime'
+    field :study_start_date, 'datetime'
+    field :study_type, 'string'
+    field :submit_date, 'datetime'
     has_no_post
     has_no_delete
+
+    has_edge :submitters do |edge|
+      edge.get 'User'
+    end
 
   end
 end

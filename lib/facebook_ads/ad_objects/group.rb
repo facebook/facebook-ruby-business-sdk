@@ -394,7 +394,7 @@ module FacebookAds
       end
     end
 
-    has_edge :opengraphactionfeed do |edge|
+    has_edge :open_graph_action_feed do |edge|
       edge.post do |api|
         api.has_param :added, 'string'
         api.has_param :alias, 'string'

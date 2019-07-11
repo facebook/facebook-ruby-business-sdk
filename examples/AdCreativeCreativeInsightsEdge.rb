@@ -16,29 +16,3 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# FB:AUTOGEN
-
-module FacebookAds
-  # This class is auto-generated.
-
-  # For any issues or feature requests related to this class, please let us know
-  # on github and we'll fix in our codegen framework. We'll not be able to accept
-  # pull request for this class.
-
-  class EventSourceGroup < AdObject
-
-    field :business, 'Business'
-    field :event_sources, { list: 'ExternalEventSource' }
-    field :id, 'string'
-    field :name, 'string'
-    has_no_delete
-
-    has_edge :shared_accounts do |edge|
-      edge.get 'AdAccount'
-      edge.post 'EventSourceGroup' do |api|
-        api.has_param :accounts, { list: 'string' }
-      end
-    end
-
-  end
-end

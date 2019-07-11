@@ -60,6 +60,8 @@ module FacebookAds
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "CREATIVE",
+      "FB_EMPLOYEE_DSO_ADVERTISE",
       "MANAGE",
     ]
 
@@ -317,6 +319,19 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :creative_folders do |edge|
+      edge.get 'BusinessCreativeFolder'
+      edge.post 'BusinessCreativeFolder' do |api|
+        api.has_param :name, 'string'
+      end
+    end
+
+    has_edge :creatives do |edge|
+      edge.get 'BusinessCreative' do |api|
+        api.has_param :creative_folder_id, 'string'
+      end
+    end
+
     has_edge :customconversions do |edge|
       edge.get 'CustomConversion' do |api|
         api.has_param :include_archived, 'bool'
@@ -352,6 +367,14 @@ module FacebookAds
 
     has_edge :extendedcredits do |edge|
       edge.get 'ExtendedCredit'
+    end
+
+    has_edge :images do |edge|
+      edge.post do |api|
+        api.has_param :bytes, 'object'
+        api.has_param :creative_folder_id, 'string'
+        api.has_param :name, 'string'
+      end
     end
 
     has_edge :initiated_sharing_agreements do |edge|
@@ -469,10 +492,6 @@ module FacebookAds
       end
     end
 
-    has_edge :partners do |edge|
-      edge.get 'Business'
-    end
-
     has_edge :pending_client_ad_accounts do |edge|
       edge.get 'BusinessAdAccountRequest'
     end
@@ -495,6 +514,10 @@ module FacebookAds
 
     has_edge :pending_owned_pages do |edge|
       edge.get 'BusinessPageRequest'
+    end
+
+    has_edge :pending_shared_creative_folders do |edge|
+      edge.get 'BusinessCreativeFolder'
     end
 
     has_edge :pending_shared_pixels do |edge|
@@ -575,6 +598,82 @@ module FacebookAds
         api.has_param :match_universe, { enum: -> { MeasurementUploadEvent::MATCH_UNIVERSE }}
         api.has_param :timezone, { enum: -> { MeasurementUploadEvent::TIMEZONE }}
         api.has_param :upload_tag, 'string'
+      end
+    end
+
+    has_edge :videos do |edge|
+      edge.post 'AdVideo' do |api|
+        api.has_param :adaptive_type, 'string'
+        api.has_param :animated_effect_id, 'int'
+        api.has_param :application_id, 'string'
+        api.has_param :asked_fun_fact_prompt_id, 'int'
+        api.has_param :attribution_app_id, 'string'
+        api.has_param :audio_story_wave_animation_handle, 'string'
+        api.has_param :chunk_session_id, 'string'
+        api.has_param :composer_entry_picker, 'string'
+        api.has_param :composer_entry_point, 'string'
+        api.has_param :composer_entry_time, 'int'
+        api.has_param :composer_session_events_log, 'string'
+        api.has_param :composer_session_id, 'string'
+        api.has_param :composer_source_surface, 'string'
+        api.has_param :composer_type, 'string'
+        api.has_param :container_type, { enum: -> { AdVideo::CONTAINER_TYPE }}
+        api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
+        api.has_param :creative_folder_id, 'string'
+        api.has_param :description, 'string'
+        api.has_param :embeddable, 'bool'
+        api.has_param :end_offset, 'int'
+        api.has_param :fbuploader_video_file_chunk, 'string'
+        api.has_param :file_size, 'int'
+        api.has_param :file_url, 'string'
+        api.has_param :fisheye_video_cropped, 'bool'
+        api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
+        api.has_param :fov, 'int'
+        api.has_param :front_z_rotation, 'double'
+        api.has_param :fun_fact_prompt_id, 'int'
+        api.has_param :fun_fact_toastee_id, 'int'
+        api.has_param :guide, { list: { list: 'int' } }
+        api.has_param :guide_enabled, 'bool'
+        api.has_param :has_nickname, 'bool'
+        api.has_param :holiday_card, 'string'
+        api.has_param :initial_heading, 'int'
+        api.has_param :initial_pitch, 'int'
+        api.has_param :instant_game_entry_point_data, 'string'
+        api.has_param :is_boost_intended, 'bool'
+        api.has_param :is_group_linking_post, 'bool'
+        api.has_param :is_voice_clip, 'bool'
+        api.has_param :location_source_id, 'string'
+        api.has_param :offer_like_post_id, 'int'
+        api.has_param :og_action_type_id, 'string'
+        api.has_param :og_icon_id, 'string'
+        api.has_param :og_object_id, 'string'
+        api.has_param :og_phrase, 'string'
+        api.has_param :og_suggestion_mechanism, 'string'
+        api.has_param :original_fov, 'int'
+        api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
+        api.has_param :publish_event_id, 'int'
+        api.has_param :react_mode_metadata, 'string'
+        api.has_param :referenced_sticker_id, 'string'
+        api.has_param :replace_video_id, 'string'
+        api.has_param :sales_promo_id, 'int'
+        api.has_param :slideshow_spec, 'hash'
+        api.has_param :source, 'string'
+        api.has_param :spherical, 'bool'
+        api.has_param :start_offset, 'int'
+        api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
+        api.has_param :text_format_metadata, 'string'
+        api.has_param :throwback_camera_roll_media, 'string'
+        api.has_param :thumb, 'file'
+        api.has_param :time_since_original_post, 'int'
+        api.has_param :title, 'string'
+        api.has_param :transcode_setting_properties, 'string'
+        api.has_param :unpublished_content_type, { enum: -> { AdVideo::UNPUBLISHED_CONTENT_TYPE }}
+        api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
+        api.has_param :upload_session_id, 'string'
+        api.has_param :upload_setting_properties, 'string'
+        api.has_param :video_file_chunk, 'string'
+        api.has_param :video_start_time_ms, 'int'
+        api.has_param :waterfall_id, 'string'
       end
     end
 

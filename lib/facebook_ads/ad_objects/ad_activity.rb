@@ -48,6 +48,7 @@ module FacebookAds
       "billing_event",
       "campaign_ended",
       "campaign_spending_limit_reached",
+      "conversion_event_updated",
       "create_ad",
       "create_ad_set",
       "create_audience",

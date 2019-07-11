@@ -26,6 +26,12 @@ module FacebookAds
   # pull request for this class.
 
   class VideoPoll < AdObject
+    STATUS = [
+      "closed",
+      "results_open",
+      "voting_open",
+    ]
+
     ACTION = [
       "ATTACH_TO_VIDEO",
       "CLOSE",
@@ -41,7 +47,7 @@ module FacebookAds
     field :question, 'string'
     field :show_gradient, 'bool'
     field :show_results, 'bool'
-    field :status, 'string'
+    field :status, { enum: -> { STATUS }}
     has_no_delete
 
     has_edge :poll_options do |edge|

@@ -70,6 +70,7 @@ module FacebookAds
     field :first_party_cookie_status, 'string'
     field :id, 'string'
     field :is_created_by_business, 'bool'
+    field :is_unavailable, 'bool'
     field :last_fired_time, 'datetime'
     field :name, 'string'
     field :owner_ad_account, 'AdAccount'
@@ -78,14 +79,12 @@ module FacebookAds
 
     has_edge :assigned_users do |edge|
       edge.delete do |api|
-        api.has_param :business, 'string'
         api.has_param :user, 'int'
       end
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'
       end
       edge.post 'AdsPixel' do |api|
-        api.has_param :business, 'string'
         api.has_param :tasks, { list: { enum: -> { AdsPixel::TASKS }} }
         api.has_param :user, 'int'
       end

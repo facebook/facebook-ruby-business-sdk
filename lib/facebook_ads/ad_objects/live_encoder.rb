@@ -26,6 +26,20 @@ module FacebookAds
   # pull request for this class.
 
   class LiveEncoder < AdObject
+    CAP_AUDIO_CODECS = [
+      "AAC",
+    ]
+
+    CAP_STREAMING_PROTOCOLS = [
+      "HTTPS_DASH",
+      "RTMPS",
+      "WEBRTC",
+    ]
+
+    CAP_VIDEO_CODECS = [
+      "H264",
+    ]
+
     STATUS = [
       "CAPTURE",
       "LIVE",

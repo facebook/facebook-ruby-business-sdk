@@ -37,12 +37,14 @@ module FacebookAds
     field :custom_disclaimer_responses, { list: 'UserLeadGenDisclaimerResponse' }
     field :field_data, { list: 'UserLeadGenFieldData' }
     field :form_id, 'string'
+    field :home_listing, 'HomeListing'
     field :id, 'string'
     field :is_organic, 'bool'
     field :partner_name, 'string'
     field :platform, 'string'
     field :post, 'Link'
     field :retailer_item_id, 'string'
+    field :vehicle, 'Vehicle'
     has_no_post
     has_no_delete
 
