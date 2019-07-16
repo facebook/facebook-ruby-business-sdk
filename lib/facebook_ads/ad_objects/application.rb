@@ -148,7 +148,6 @@ module FacebookAds
     field :ios_supports_system_auth, 'bool'
     field :ipad_app_store_id, 'string'
     field :iphone_app_store_id, 'string'
-    field :is_viewer_admin, 'bool'
     field :latest_sdk_version, 'object'
     field :link, 'string'
     field :logging_token, 'string'

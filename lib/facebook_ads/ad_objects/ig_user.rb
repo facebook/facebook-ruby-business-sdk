@@ -58,7 +58,9 @@ module FacebookAds
         api.has_param :caption, 'string'
         api.has_param :children, { list: 'int' }
         api.has_param :image_url, 'string'
+        api.has_param :location_id, 'string'
         api.has_param :media_type, 'string'
+        api.has_param :user_tags, { list: 'hash' }
       end
     end
 

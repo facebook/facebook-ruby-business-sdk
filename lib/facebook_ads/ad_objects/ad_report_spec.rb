@@ -31,6 +31,8 @@ module FacebookAds
       "action_canvas_component_name",
       "action_carousel_card_id",
       "action_carousel_card_name",
+      "action_converted_brand_tag_id",
+      "action_converted_category_tag_id",
       "action_converted_product_id",
       "action_destination",
       "action_device",
@@ -39,6 +41,8 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "brand",
+      "category",
       "interactive_component_sticker_id",
       "interactive_component_sticker_response",
     ]

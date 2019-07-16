@@ -55,6 +55,7 @@ module FacebookAds
       "REGULAR_SPORTS",
       "REGULAR_STYLE",
       "REGULAR_TV_MOVIES",
+      "SPANISH",
       "SPORTS",
     ]
 

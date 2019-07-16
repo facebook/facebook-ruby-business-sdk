@@ -70,6 +70,7 @@ module FacebookAds
 
     field :allow_organic_lead, 'bool'
     field :block_display_for_non_targeted_viewer, 'bool'
+    field :context_card, 'object'
     field :created_time, 'datetime'
     field :creator, 'User'
     field :creator_id, 'int'
@@ -95,6 +96,7 @@ module FacebookAds
     field :questions, { list: 'LeadGenQuestion' }
     field :status, 'string'
     field :tcpa_compliance, 'bool'
+    field :thank_you_page, 'object'
     field :tracking_parameters, 'hash'
 
     has_edge :leads do |edge|

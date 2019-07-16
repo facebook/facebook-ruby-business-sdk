@@ -249,6 +249,7 @@ module FacebookAds
       "ratings",
       "registration",
       "standby",
+      "video_text_question_responses",
       "videos",
       "website",
     ]

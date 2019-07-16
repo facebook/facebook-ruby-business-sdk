@@ -391,7 +391,7 @@ module FacebookAds
     has_edge :adreportschedules do |edge|
       edge.get
       edge.post do |api|
-        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_converted_product_id action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type interactive_component_sticker_id interactive_component_sticker_response }} }
+        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_converted_brand_tag_id action_converted_category_tag_id action_converted_product_id action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type brand category interactive_component_sticker_id interactive_component_sticker_response }} }
         api.has_param :breakdowns, { list: 'string' }
         api.has_param :builtin_column_set, { enum: %w{ APP_ENGAGEMENT AUDIENCE_DIRECT BIDDING_AND_OPTIMIZATION CAROUSEL_ENGAGEMENT CROSS_DEVICE DELIVERY ENGAGEMENT HOUSEHOLD MESSAGING_ENGAGEMENT MESSENGER OFFLINE_CONVERSIONS PERFORMANCE PERFORMANCE_LEGACY TARGETING_AND_CREATIVE VALIDATION_VIEW VIDEO_ENGAGEMENT }}
         api.has_param :creation_source, { enum: %w{adsExcelAddin adsManagerReporting newAdsManager }}

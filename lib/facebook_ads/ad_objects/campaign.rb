@@ -44,6 +44,7 @@ module FacebookAds
       "ARCHIVED",
       "DELETED",
       "PAUSED",
+      "WITH_ISSUES",
     ]
 
     STATUS = [

@@ -31,5 +31,5 @@ end
 ad_account = FacebookAds::AdAccount.get(id)
 adcreatives = ad_account.adcreatives.create({
     name: 'Image crop creative',
-    object_story_spec: {'page_id':'<pageID>','link_data':{'image_crops':{'191x100':[[63,0],[617,290]]},'image_hash':'<imageHash>','link':'<url>','message':'Ad message'}},
+    object_story_spec: {'page_id':'<pageID>','link_data':{'image_crops':{'100x100':[[0,0],[100,100]]},'image_hash':'<imageHash>','link':'<url>','message':'Ad message'}},
 })

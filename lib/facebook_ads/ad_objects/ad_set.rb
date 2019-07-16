@@ -57,6 +57,7 @@ module FacebookAds
       "ARCHIVED",
       "DELETED",
       "PAUSED",
+      "WITH_ISSUES",
     ]
 
     OPTIMIZATION_GOAL = [

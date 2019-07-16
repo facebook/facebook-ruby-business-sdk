@@ -56,8 +56,8 @@ module FacebookAds
     ]
 
     REGULATED_CATEGORIES = [
+      "CREDIT",
       "EMPLOYMENT",
-      "FINANCING",
       "HOUSING",
       "NONE",
     ]

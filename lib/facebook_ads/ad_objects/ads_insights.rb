@@ -244,6 +244,7 @@ module FacebookAds
     field :dwell_5_sec, 'string'
     field :dwell_7_sec, 'string'
     field :dwell_rate, 'string'
+    field :earned_impression, 'string'
     field :estimated_ad_recall_rate, 'string'
     field :estimated_ad_recall_rate_lower_bound, 'string'
     field :estimated_ad_recall_rate_upper_bound, 'string'

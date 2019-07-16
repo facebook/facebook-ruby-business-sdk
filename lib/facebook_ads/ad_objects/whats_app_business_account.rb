@@ -48,6 +48,7 @@ module FacebookAds
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'
+    field :purchase_order_number, 'string'
     field :status, 'string'
     field :timezone_id, 'string'
     has_no_post
