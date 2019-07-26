@@ -474,6 +474,9 @@ module FacebookAds
     end
 
     has_edge :objects do |edge|
+      edge.get 'OpenGraphObject' do |api|
+        api.has_param :type, 'object'
+      end
       edge.post 'OpenGraphObject' do |api|
         api.has_param :object, 'object'
         api.has_param :type, 'string'

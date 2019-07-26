@@ -210,7 +210,6 @@ module FacebookAds
         api.has_param :dynamic_customization, 'object'
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
-        api.has_param :interactive, 'bool'
         api.has_param :locale, 'string'
         api.has_param :place_page_id, 'int'
         api.has_param :post, 'object'

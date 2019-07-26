@@ -46,7 +46,6 @@ module FacebookAds
       "CONTAINED_POST_ATTACHMENT",
       "CONTAINED_POST_AUDIO_BROADCAST",
       "CONTAINED_POST_BROADCAST",
-      "CONTAINED_YOUR_DAY",
       "COPYRIGHT_REFERENCE_BROADCAST",
       "COPYRIGHT_REFERENCE_VIDEO",
       "CULTURAL_MOMENT_DEPRECATED",
@@ -113,6 +112,7 @@ module FacebookAds
       "SLIDESHOW_ANIMOTO",
       "SLIDESHOW_SHAKR",
       "SOTTO_CONTENT",
+      "STORIES_VIDEO",
       "STORYLINE",
       "STORYLINE_WITH_EXTERNAL_MUSIC",
       "STORY_ARCHIVE_VIDEO",
@@ -121,6 +121,7 @@ module FacebookAds
       "TEMP_MULTIMEDIA_POST",
       "UNLISTED",
       "VIDEO_COMMENT",
+      "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
       "WOODHENGE",
       "YOUR_DAY",
     ]
@@ -204,6 +205,8 @@ module FacebookAds
     field :backdated_time_granularity, 'string'
     field :content_category, 'string'
     field :content_tags, { list: 'string' }
+    field :copyright, 'VideoCopyright'
+    field :copyright_monitoring_status, 'string'
     field :created_time, 'datetime'
     field :custom_labels, { list: 'string' }
     field :description, 'string'
@@ -219,9 +222,11 @@ module FacebookAds
     field :is_crossposting_eligible, 'bool'
     field :is_episode, 'bool'
     field :is_instagram_eligible, 'bool'
+    field :is_reference_only, 'bool'
     field :length, 'double'
     field :live_audience_count, 'int'
     field :live_status, 'string'
+    field :music_video_copyright, 'MusicVideoCopyright'
     field :permalink_url, 'string'
     field :picture, 'string'
     field :place, 'Place'
@@ -396,6 +401,7 @@ module FacebookAds
     end
 
     has_edge :tags do |edge|
+      edge.get 'TaggableSubject'
       edge.post 'AdVideo' do |api|
         api.has_param :tag_uid, 'int'
         api.has_param :uid, 'int'

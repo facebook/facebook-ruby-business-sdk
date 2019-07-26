@@ -84,7 +84,6 @@ module FacebookAds
     field :name, 'string'
     field :override_type, 'string'
     field :product_count, 'int'
-    field :qualified_product_count, 'int'
     field :quoted_fields_mode, { enum: -> { QUOTED_FIELDS_MODE }}
     field :schedule, 'ProductFeedSchedule'
     field :update_schedule, 'ProductFeedSchedule'

@@ -39,7 +39,6 @@ module FacebookAds
     ]
 
 
-    field :custom_attributes, { list: 'string' }
     field :id, 'string'
     field :is_primary, 'bool'
     field :last_updated_results, 'string'

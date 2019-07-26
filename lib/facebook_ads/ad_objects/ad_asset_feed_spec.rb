@@ -86,7 +86,6 @@ module FacebookAds
     field :ad_formats, { list: 'string' }
     field :additional_data, 'object'
     field :asset_customization_rules, { list: 'object' }
-    field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }
     field :call_to_action_types, { list: { enum: -> { CALL_TO_ACTION_TYPES }} }
     field :captions, { list: 'AdAssetFeedSpecCaption' }

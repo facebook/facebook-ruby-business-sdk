@@ -87,6 +87,7 @@ module FacebookAds
       "ADVERTISE",
       "ANALYZE",
       "CREATIVE",
+      "DRAFT",
       "FB_EMPLOYEE_DSO_ADVERTISE",
       "MANAGE",
     ]
@@ -95,6 +96,7 @@ module FacebookAds
       "ADVERTISE",
       "ANALYZE",
       "CREATIVE",
+      "DRAFT",
       "FB_EMPLOYEE_DSO_ADVERTISE",
       "MANAGE",
     ]
@@ -221,6 +223,15 @@ module FacebookAds
 
     has_edge :ad_place_page_sets do |edge|
       edge.get 'AdPlacePageSet'
+      edge.post 'AdPlacePageSet' do |api|
+        api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
+        api.has_param :name, 'string'
+        api.has_param :parent_page, 'string'
+        api.has_param :targeted_area_type, { enum: -> { AdPlacePageSet::TARGETED_AREA_TYPE }}
+      end
+    end
+
+    has_edge :ad_place_page_sets_async do |edge|
       edge.post 'AdPlacePageSet' do |api|
         api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
         api.has_param :name, 'string'
@@ -391,7 +402,7 @@ module FacebookAds
     has_edge :adreportschedules do |edge|
       edge.get
       edge.post do |api|
-        api.has_param :actions_group_by, { list: { enum: %w{action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_converted_brand_tag_id action_converted_category_tag_id action_converted_product_id action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type brand category interactive_component_sticker_id interactive_component_sticker_response }} }
+        api.has_param :actions_group_by, { list: { enum: %w{action_brand action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_category action_converted_brand_tag_id action_converted_category_tag_id action_converted_product_id action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type interactive_component_sticker_id interactive_component_sticker_response }} }
         api.has_param :breakdowns, { list: 'string' }
         api.has_param :builtin_column_set, { enum: %w{ APP_ENGAGEMENT AUDIENCE_DIRECT BIDDING_AND_OPTIMIZATION CAROUSEL_ENGAGEMENT CROSS_DEVICE DELIVERY ENGAGEMENT HOUSEHOLD MESSAGING_ENGAGEMENT MESSENGER OFFLINE_CONVERSIONS PERFORMANCE PERFORMANCE_LEGACY TARGETING_AND_CREATIVE VALIDATION_VIEW VIDEO_ENGAGEMENT }}
         api.has_param :creation_source, { enum: %w{adsExcelAddin adsManagerReporting newAdsManager }}
@@ -418,32 +429,6 @@ module FacebookAds
         api.has_param :user_attribution_windows, { list: 'string' }
         api.has_param :user_columns, { list: 'string' }
         api.has_param :user_filter, { list: 'object' }
-      end
-    end
-
-    has_edge :adreportspecs do |edge|
-      edge.post 'AdReportSpec' do |api|
-        api.has_param :actions_group_by, { list: { enum: -> { AdReportSpec::ACTIONS_GROUP_BY }} }
-        api.has_param :business_id, 'string'
-        api.has_param :bypass_async, 'bool'
-        api.has_param :creation_source, { enum: -> { AdReportSpec::CREATION_SOURCE }}
-        api.has_param :data_columns, { list: 'string' }
-        api.has_param :date_preset, { enum: -> { AdReportSpec::DATE_PRESET }}
-        api.has_param :export_columns, 'object'
-        api.has_param :filters, { list: 'object' }
-        api.has_param :format, { enum: -> { AdReportSpec::FORMAT }}
-        api.has_param :format_version, 'int'
-        api.has_param :insights_section, 'object'
-        api.has_param :limit, 'int'
-        api.has_param :name, 'string'
-        api.has_param :report_run_id, 'string'
-        api.has_param :report_schedule_id, 'string'
-        api.has_param :sort_by, 'string'
-        api.has_param :sort_dir, 'string'
-        api.has_param :time_increment, 'string'
-        api.has_param :time_interval, 'object'
-        api.has_param :time_ranges, { list: 'string' }
-        api.has_param :user_report, 'bool'
       end
     end
 
@@ -889,7 +874,6 @@ module FacebookAds
         api.has_param :dynamic_customization, 'object'
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
-        api.has_param :interactive, 'bool'
         api.has_param :locale, 'string'
         api.has_param :place_page_id, 'int'
         api.has_param :post, 'object'
@@ -1180,7 +1164,15 @@ module FacebookAds
     end
 
     has_edge :users do |edge|
+      edge.delete do |api|
+        api.has_param :uid, 'int'
+        api.has_param :uids, { list: 'string' }
+      end
       edge.get 'AdAccountUser'
+      edge.post 'AdAccount' do |api|
+        api.has_param :tasks, { list: { enum: -> { AdAccount::TASKS }} }
+        api.has_param :uid, 'int'
+      end
     end
 
     has_edge :usersofanyaudience do |edge|

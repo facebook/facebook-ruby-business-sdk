@@ -32,11 +32,6 @@ module FacebookAds
       "SPLIT_TEST",
     ]
 
-    AUDIENCE_TYPE = [
-      "MOST_RESPONSIVE",
-      "NOT_MOST_RESPONSIVE",
-    ]
-
 
     field :business, 'Business'
     field :canceled_time, 'datetime'
@@ -61,16 +56,6 @@ module FacebookAds
 
     has_edge :cells do |edge|
       edge.get 'AdStudyCell'
-    end
-
-    has_edge :customaudiences do |edge|
-      edge.post 'AdStudy' do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :audience_name, 'string'
-        api.has_param :audience_type, { enum: -> { AdStudy::AUDIENCE_TYPE }}
-        api.has_param :cell_id, 'string'
-        api.has_param :objective_id, 'string'
-      end
     end
 
     has_edge :health_check_errors do |edge|

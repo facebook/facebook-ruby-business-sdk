@@ -27,10 +27,12 @@ module FacebookAds
 
   class AdReportSpec < AdObject
     ACTIONS_GROUP_BY = [
+      "action_brand",
       "action_canvas_component_id",
       "action_canvas_component_name",
       "action_carousel_card_id",
       "action_carousel_card_name",
+      "action_category",
       "action_converted_brand_tag_id",
       "action_converted_category_tag_id",
       "action_converted_product_id",
@@ -41,8 +43,6 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
-      "brand",
-      "category",
       "interactive_component_sticker_id",
       "interactive_component_sticker_response",
     ]
@@ -101,12 +101,6 @@ module FacebookAds
     field :time_increment, 'string'
     field :time_interval, 'object'
     field :time_ranges, { list: 'object' }
-    field :business_id, 'string'
-    field :bypass_async, 'bool'
-    field :format, { enum: -> { FORMAT }}
-    field :limit, 'int'
-    field :report_run_id, 'string'
-    field :user_report, 'bool'
 
   end
 end

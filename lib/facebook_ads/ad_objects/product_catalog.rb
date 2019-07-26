@@ -67,7 +67,6 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :product_count, 'int'
-    field :qualified_product_count, 'int'
     field :vertical, 'string'
     field :destination_catalog_settings, 'hash'
     field :flight_catalog_settings, 'hash'

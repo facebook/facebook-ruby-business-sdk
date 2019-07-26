@@ -61,6 +61,7 @@ module FacebookAds
       "ADVERTISE",
       "ANALYZE",
       "CREATIVE",
+      "DRAFT",
       "FB_EMPLOYEE_DSO_ADVERTISE",
       "MANAGE",
     ]
@@ -83,6 +84,7 @@ module FacebookAds
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
+      "PLATFORM_MANAGE_PAGES",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -254,6 +256,18 @@ module FacebookAds
       end
     end
 
+    has_edge :business_invoices do |edge|
+      edge.get 'OracleTransaction' do |api|
+        api.has_param :end_date, 'string'
+        api.has_param :invoice_id, 'int'
+        api.has_param :issue_end_date, 'string'
+        api.has_param :issue_start_date, 'string'
+        api.has_param :root_id, 'int'
+        api.has_param :start_date, 'string'
+        api.has_param :type, { enum: -> { OracleTransaction::TYPE }}
+      end
+    end
+
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
       edge.post 'BusinessUser' do |api|
@@ -322,6 +336,7 @@ module FacebookAds
     has_edge :creative_folders do |edge|
       edge.get 'BusinessCreativeFolder'
       edge.post 'BusinessCreativeFolder' do |api|
+        api.has_param :description, 'string'
         api.has_param :name, 'string'
       end
     end
@@ -581,11 +596,6 @@ module FacebookAds
 
     has_edge :third_party_measurement_report_dataset do |edge|
       edge.get 'ThirdPartyMeasurementReportDataset'
-      edge.post 'ThirdPartyMeasurementReportDataset' do |api|
-        api.has_param :category, { enum: -> { ThirdPartyMeasurementReportDataset::CATEGORY }}
-        api.has_param :product, { enum: -> { ThirdPartyMeasurementReportDataset::PRODUCT }}
-        api.has_param :schema, { list: 'hash' }
-      end
     end
 
     has_edge :upload_event do |edge|

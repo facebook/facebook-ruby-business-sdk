@@ -26,6 +26,22 @@ module FacebookAds
   # pull request for this class.
 
   class User < AdObject
+    TASKS = [
+      "ADVERTISE",
+      "ANALYZE",
+      "CREATE_CONTENT",
+      "MANAGE",
+      "MANAGE_JOBS",
+      "MANAGE_LEADS",
+      "MODERATE",
+      "MODERATE_COMMUNITY",
+      "PAGES_MESSAGING",
+      "PAGES_MESSAGING_SUBSCRIPTIONS",
+      "PLATFORM_MANAGE_PAGES",
+      "READ_PAGE_MAILBOXES",
+      "VIEW_MONETIZATION_INSIGHTS",
+    ]
+
     LOCAL_NEWS_MEGAPHONE_DISMISS_STATUS = [
       "NO",
       "YES",
@@ -288,6 +304,14 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :conversations do |edge|
+      edge.get 'UnifiedThread' do |api|
+        api.has_param :folder, 'string'
+        api.has_param :tags, { list: 'string' }
+        api.has_param :user_id, 'string'
+      end
+    end
+
     has_edge :custom_labels do |edge|
       edge.get 'PageUserMessageThreadLabel'
     end
@@ -301,6 +325,10 @@ module FacebookAds
 
     has_edge :family do |edge|
       edge.get 'User'
+    end
+
+    has_edge :favorite_requests do |edge|
+      edge.get
     end
 
     has_edge :feed do |edge|
@@ -592,7 +620,6 @@ module FacebookAds
         api.has_param :source, { enum: -> { LiveVideo::SOURCE }}
       end
       edge.post 'LiveVideo' do |api|
-        api.has_param :attribution_app_id, 'string'
         api.has_param :content_tags, { list: 'string' }
         api.has_param :description, 'string'
         api.has_param :encoding_settings, 'string'

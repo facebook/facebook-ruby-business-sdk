@@ -265,7 +265,6 @@ module FacebookAds
     field :impression_device, 'string'
     field :impressions, 'string'
     field :impressions_auto_refresh, 'string'
-    field :impressions_dummy, 'string'
     field :impressions_gross, 'string'
     field :inline_link_click_ctr, 'string'
     field :inline_link_clicks, 'string'

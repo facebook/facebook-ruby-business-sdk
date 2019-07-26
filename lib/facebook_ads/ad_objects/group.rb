@@ -355,7 +355,6 @@ module FacebookAds
         api.has_param :source, { enum: -> { LiveVideo::SOURCE }}
       end
       edge.post 'LiveVideo' do |api|
-        api.has_param :attribution_app_id, 'string'
         api.has_param :content_tags, { list: 'string' }
         api.has_param :description, 'string'
         api.has_param :encoding_settings, 'string'

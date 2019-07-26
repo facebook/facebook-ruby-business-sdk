@@ -172,18 +172,6 @@ module FacebookAds
       end
     end
 
-    has_edge :data do |edge|
-      edge.post do |api|
-        api.has_param :action_type, { enum: %w{add match optout remove }}
-        api.has_param :batch_seq, 'int'
-        api.has_param :encoding, { enum: %w{md5 plain sha256 }}
-        api.has_param :entries, { list: 'string' }
-        api.has_param :entry_type, { enum: %w{0 1 2 3 4 5 6 }}
-        api.has_param :last_batch_flag, 'bool'
-        api.has_param :session_id, 'int'
-      end
-    end
-
     has_edge :prefills do |edge|
       edge.get 'CustomAudiencePrefillState'
     end

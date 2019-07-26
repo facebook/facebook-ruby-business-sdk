@@ -92,12 +92,6 @@ module FacebookAds
       "Vietnamese",
     ]
 
-    SETTING = [
-      "EMAIL_NOTIF",
-      "MOBILE_NOTIF",
-      "POST_AS_SELF",
-    ]
-
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
@@ -109,6 +103,7 @@ module FacebookAds
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
+      "PLATFORM_MANAGE_PAGES",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -124,6 +119,7 @@ module FacebookAds
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
+      "PLATFORM_MANAGE_PAGES",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -303,7 +299,6 @@ module FacebookAds
     field :company_overview, 'string'
     field :connected_instagram_account, 'IgUser'
     field :contact_address, 'MailingAddress'
-    field :copyright_attribution_insights, 'CopyrightAttributionInsights'
     field :copyright_whitelisted_ig_partners, { list: 'string' }
     field :country_page_likes, 'int'
     field :cover, 'CoverPhoto'
@@ -422,10 +417,15 @@ module FacebookAds
     field :written_by, 'string'
     has_no_delete
 
-    has_edge :admin_settings do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :setting, { enum: -> { Page::SETTING }}
-        api.has_param :value, 'bool'
+    has_edge :admins do |edge|
+      edge.delete do |api|
+        api.has_param :admin_id, 'int'
+        api.has_param :trusted, 'bool'
+      end
+      edge.post 'User' do |api|
+        api.has_param :admin_id, 'int'
+        api.has_param :tasks, { list: { enum: -> { User::TASKS }} }
+        api.has_param :trusted, 'bool'
       end
     end
 
@@ -479,10 +479,6 @@ module FacebookAds
       end
     end
 
-    has_edge :audio_media_copyrights do |edge|
-      edge.get 'AudioCopyright'
-    end
-
     has_edge :blocked do |edge|
       edge.delete do |api|
         api.has_param :asid, 'object'
@@ -508,7 +504,6 @@ module FacebookAds
         api.has_param :message_creative_id, 'string'
         api.has_param :messaging_type, { enum: -> { Page::MESSAGING_TYPE }}
         api.has_param :notification_type, { enum: -> { Page::NOTIFICATION_TYPE }}
-        api.has_param :schedule_local_time, 'string'
         api.has_param :schedule_time, 'datetime'
         api.has_param :tag, 'object'
         api.has_param :targeting, 'object'
@@ -862,7 +857,6 @@ module FacebookAds
         api.has_param :source, { enum: -> { LiveVideo::SOURCE }}
       end
       edge.post 'LiveVideo' do |api|
-        api.has_param :attribution_app_id, 'string'
         api.has_param :content_tags, { list: 'string' }
         api.has_param :crossposting_actions, { list: 'hash' }
         api.has_param :custom_labels, { list: 'string' }
@@ -877,7 +871,6 @@ module FacebookAds
         api.has_param :original_fov, 'int'
         api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
-        api.has_param :product_items, { list: 'string' }
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
         api.has_param :save_vod, 'bool'
@@ -898,6 +891,24 @@ module FacebookAds
         api.has_param :store_number, 'int'
       end
       edge.get 'Page'
+      edge.post 'Page' do |api|
+        api.has_param :always_open, 'bool'
+        api.has_param :hours, 'hash'
+        api.has_param :ignore_warnings, 'bool'
+        api.has_param :location, 'object'
+        api.has_param :location_page_id, 'string'
+        api.has_param :old_store_number, 'int'
+        api.has_param :page_username, 'string'
+        api.has_param :permanently_closed, 'bool'
+        api.has_param :phone, 'string'
+        api.has_param :place_topics, { list: 'string' }
+        api.has_param :price_range, 'string'
+        api.has_param :store_code, 'string'
+        api.has_param :store_location_descriptor, 'string'
+        api.has_param :store_name, 'string'
+        api.has_param :store_number, 'int'
+        api.has_param :website, 'string'
+      end
     end
 
     has_edge :media_fingerprints do |edge|
@@ -1160,6 +1171,10 @@ module FacebookAds
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end
+    end
+
+    has_edge :ratings do |edge|
+      edge.get 'Recommendation'
     end
 
     has_edge :request_thread_control do |edge|

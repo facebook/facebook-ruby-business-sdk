@@ -44,7 +44,7 @@ module FacebookAds
     field :name, 'string'
     field :pages_count, 'int'
     field :parent_page, 'Page'
-    field :targeted_area_type, { enum: -> { TARGETED_AREA_TYPE }}
+    field :targeted_area_type, 'adaccountad_place_page_sets_targeted_area_type_enum_param'
     has_no_delete
 
   end

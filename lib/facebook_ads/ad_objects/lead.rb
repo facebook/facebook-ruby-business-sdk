@@ -46,7 +46,6 @@ module FacebookAds
     field :retailer_item_id, 'string'
     field :vehicle, 'Vehicle'
     has_no_post
-    has_no_delete
 
   end
 end

@@ -29,7 +29,6 @@ module FacebookAds
 
     field :branded_content_shared_to_sponsor_status, 'string'
     field :branded_content_sponsor_page_id, 'string'
-    field :branded_content_sponsor_relationship, 'string'
     field :caption, 'string'
     field :image_hash, 'string'
     field :page_welcome_message, 'string'

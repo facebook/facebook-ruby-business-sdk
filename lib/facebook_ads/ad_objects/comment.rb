@@ -59,6 +59,7 @@ module FacebookAds
     field :can_hide, 'bool'
     field :can_like, 'bool'
     field :can_remove, 'bool'
+    field :can_reply_privately, 'bool'
     field :comment_count, 'int'
     field :created_time, 'datetime'
     field :from, 'object'
@@ -72,6 +73,7 @@ module FacebookAds
     field :object, 'object'
     field :parent, 'Comment'
     field :permalink_url, 'string'
+    field :private_reply_conversation, 'object'
     field :user_likes, 'bool'
 
     has_edge :comments do |edge|
@@ -80,6 +82,21 @@ module FacebookAds
         api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
         api.has_param :order, { enum: -> { Comment::ORDER }}
         api.has_param :since, 'datetime'
+      end
+      edge.post 'Comment' do |api|
+        api.has_param :attachment_id, 'string'
+        api.has_param :attachment_share_url, 'string'
+        api.has_param :attachment_url, 'string'
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
+        api.has_param :facepile_mentioned_ids, { list: 'string' }
+        api.has_param :feedback_source, 'string'
+        api.has_param :is_offline, 'bool'
+        api.has_param :message, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :object_id, 'string'
+        api.has_param :parent_comment_id, 'object'
+        api.has_param :text, 'string'
+        api.has_param :tracking, 'string'
       end
     end
 
@@ -94,6 +111,12 @@ module FacebookAds
         api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :tracking, 'string'
+      end
+    end
+
+    has_edge :private_replies do |edge|
+      edge.post do |api|
+        api.has_param :message, 'string'
       end
     end
 

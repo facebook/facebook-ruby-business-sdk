@@ -26,16 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class ThirdPartyMeasurementReportDataset < AdObject
-    CATEGORY = [
-      "MTA",
-    ]
-
-    PRODUCT = [
-      "CUSTOM",
-      "MTA",
-      "VIEWABILITY",
-    ]
-
 
     field :category, 'string'
     field :id, 'string'

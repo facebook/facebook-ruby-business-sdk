@@ -26,6 +26,34 @@ module FacebookAds
   # pull request for this class.
 
   class Event < AdObject
+    CATEGORY = [
+      "ART_EVENT",
+      "BOOK_EVENT",
+      "CLASS_EVENT",
+      "COMEDY_EVENT",
+      "CONFERENCE_EVENT",
+      "DANCE_EVENT",
+      "DINING_EVENT",
+      "FAMILY_EVENT",
+      "FESTIVAL_EVENT",
+      "FITNESS",
+      "FOOD_TASTING",
+      "FUNDRAISER",
+      "LECTURE",
+      "MEETUP",
+      "MOVIE_EVENT",
+      "MUSIC_EVENT",
+      "NEIGHBORHOOD",
+      "NIGHTLIFE",
+      "OTHER",
+      "RELIGIOUS_EVENT",
+      "SHOPPING",
+      "SPORTS_EVENT",
+      "THEATER_EVENT",
+      "VOLUNTEERING",
+      "WORKSHOP",
+    ]
+
     TYPE = [
       "community",
       "group",
@@ -54,7 +82,7 @@ module FacebookAds
 
     field :attending_count, 'int'
     field :can_guests_invite, 'bool'
-    field :category, 'string'
+    field :category, { enum: -> { CATEGORY }}
     field :cover, 'CoverPhoto'
     field :declined_count, 'int'
     field :description, 'string'
@@ -208,7 +236,6 @@ module FacebookAds
 
     has_edge :live_videos do |edge|
       edge.post 'LiveVideo' do |api|
-        api.has_param :attribution_app_id, 'string'
         api.has_param :content_tags, { list: 'string' }
         api.has_param :description, 'string'
         api.has_param :encoding_settings, 'string'

@@ -42,7 +42,6 @@ module FacebookAds
     field :owner_business, 'Business'
     field :owner_business_name, 'string'
     field :partition_from, 'string'
-    field :receiving_credit_allocation_config, 'ExtendedCreditAllocationConfig'
     field :send_bill_to_biz_name, 'string'
     has_no_post
     has_no_delete

@@ -25,13 +25,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CopyrightAttributionInsights < AdObject
+  class Recommendation < AdObject
 
-    field :l7_attribution_page_view, 'int'
-    field :l7_attribution_page_view_delta, 'double'
-    field :l7_attribution_video_view, 'int'
-    field :l7_attribution_video_view_delta, 'double'
-    field :metrics_ending_date, 'string'
+    field :created_time, 'datetime'
+    field :has_rating, 'bool'
+    field :has_review, 'bool'
+    field :open_graph_story, 'object'
+    field :rating, 'int'
+    field :recommendation_type, 'string'
+    field :review_text, 'string'
+    field :reviewer, 'User'
     has_no_id
     has_no_get
     has_no_post

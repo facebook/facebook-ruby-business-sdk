@@ -36,10 +36,8 @@ module FacebookAds
 
 
     field :duration_in_sec, 'double'
-    field :expiration_time, 'datetime'
     field :fingerprint_content_type, 'string'
     field :fingerprint_type, 'string'
-    field :fingerprint_validity, 'string'
     field :id, 'string'
     field :metadata, 'object'
     field :title, 'string'
