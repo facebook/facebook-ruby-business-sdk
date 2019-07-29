@@ -124,6 +124,11 @@ module FacebookAds
       "VIEW_MONETIZATION_INSIGHTS",
     ]
 
+    PUBLISH_STATUS = [
+      "DRAFT",
+      "LIVE",
+    ]
+
     MESSAGING_TYPE = [
       "MESSAGE_TAG",
       "RESPONSE",
@@ -134,11 +139,6 @@ module FacebookAds
       "NO_PUSH",
       "REGULAR",
       "SILENT_PUSH",
-    ]
-
-    PUBLISH_STATUS = [
-      "DRAFT",
-      "LIVE",
     ]
 
     SENDER_ACTION = [
@@ -417,18 +417,6 @@ module FacebookAds
     field :written_by, 'string'
     has_no_delete
 
-    has_edge :admins do |edge|
-      edge.delete do |api|
-        api.has_param :admin_id, 'int'
-        api.has_param :trusted, 'bool'
-      end
-      edge.post 'User' do |api|
-        api.has_param :admin_id, 'int'
-        api.has_param :tasks, { list: { enum: -> { User::TASKS }} }
-        api.has_param :trusted, 'bool'
-      end
-    end
-
     has_edge :ads_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :exclude_dynamic_ads, 'bool'
@@ -498,25 +486,6 @@ module FacebookAds
       end
     end
 
-    has_edge :broadcast_messages do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :custom_label_id, 'int'
-        api.has_param :message_creative_id, 'string'
-        api.has_param :messaging_type, { enum: -> { Page::MESSAGING_TYPE }}
-        api.has_param :notification_type, { enum: -> { Page::NOTIFICATION_TYPE }}
-        api.has_param :schedule_time, 'datetime'
-        api.has_param :tag, 'object'
-        api.has_param :targeting, 'object'
-      end
-    end
-
-    has_edge :broadcast_reach_estimations do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :custom_label_id, 'int'
-        api.has_param :targeting, 'object'
-      end
-    end
-
     has_edge :businessprojects do |edge|
       edge.get 'BusinessProject' do |api|
         api.has_param :business, 'string'
@@ -543,7 +512,8 @@ module FacebookAds
     end
 
     has_edge :canvas_elements do |edge|
-      edge.post do |api|
+      edge.get 'CanvasBodyElement'
+      edge.post 'CanvasBodyElement' do |api|
         api.has_param :canvas_button, 'object'
         api.has_param :canvas_carousel, 'object'
         api.has_param :canvas_footer, 'object'
@@ -615,6 +585,10 @@ module FacebookAds
       edge.get 'Profile'
     end
 
+    has_edge :crosspost_whitelisted_pages do |edge|
+      edge.get 'Page'
+    end
+
     has_edge :custom_labels do |edge|
       edge.get 'PageUserMessageThreadLabel'
       edge.post 'PageUserMessageThreadLabel' do |api|
@@ -629,6 +603,10 @@ module FacebookAds
         api.has_param :time_filter, { enum: -> { Event::TIME_FILTER }}
         api.has_param :type, { enum: -> { Event::TYPE }}
       end
+    end
+
+    has_edge :featured_videos_collection do |edge|
+      edge.get 'AdVideo'
     end
 
     has_edge :feed do |edge|
@@ -1154,6 +1132,10 @@ module FacebookAds
       end
     end
 
+    has_edge :product_catalogs do |edge|
+      edge.get 'ProductCatalog'
+    end
+
     has_edge :promotions do |edge|
       edge.post do |api|
         api.has_param :ad_account_id, 'string'
@@ -1184,12 +1166,23 @@ module FacebookAds
       end
     end
 
+    has_edge :roles do |edge|
+      edge.get 'User' do |api|
+        api.has_param :include_deactivated, 'bool'
+        api.has_param :uid, 'object'
+      end
+    end
+
     has_edge :rtb_dynamic_posts do |edge|
       edge.get 'RtbDynamicPost'
     end
 
     has_edge :scheduled_posts do |edge|
       edge.get 'PagePost'
+    end
+
+    has_edge :screennames do |edge|
+      edge.get 'ScreenName'
     end
 
     has_edge :secondary_receivers do |edge|
@@ -1201,6 +1194,10 @@ module FacebookAds
       edge.post 'Page' do |api|
         api.has_param :option, 'object'
       end
+    end
+
+    has_edge :show_playlists do |edge|
+      edge.get 'VideoList'
     end
 
     has_edge :subscribed_apps do |edge|

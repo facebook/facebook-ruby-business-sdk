@@ -146,6 +146,10 @@ module FacebookAds
     field :iterative_split_test_configs, { list: 'object' }
     field :upstream_events, 'hash'
 
+    has_edge :ad_studies do |edge|
+      edge.get 'AdStudy'
+    end
+
     has_edge :adlabels do |edge|
       edge.delete do |api|
         api.has_param :adlabels, { list: 'object' }

@@ -303,6 +303,20 @@ module FacebookAds
       end
     end
 
+    has_edge :app_insights do |edge|
+      edge.get do |api|
+        api.has_param :aggregateby, { enum: %w{AVERAGE_JOURNEY_LENGTH CONVERTED_JOURNEY_PERCENT COUNT COUNT_IDENTIFIED_USERS COUNT_PER_USER DAU EVENT_SOURCE_IDS JOURNEY_CHANNEL_INCLUSION JOURNEY_INCLUSION MAU MEDIAN_JOURNEY_LENGTH MEDIAN_VALUE MEDIAN_VALUE_PER_USER OVERLAP PERCENTILES_COUNT PERCENTILES_USD_VALUE PERCENTILES_VALUE SCORE SESSIONS_PER_JOURNEY SESSION_BOUNCE_RATE SUM SUM_IDENTIFIED_USERS SUM_PER_EVENT TOPK UNKNOWN_USERS USD_SUM USD_SUM_IDENTIFIED_USERS USD_SUM_PER_EVENT USD_SUM_PER_USER USD_VALUE_PER_USER USERS USER_PROPERTY_USER_COUNT VALUE_PER_USER WAU }}
+        api.has_param :breakdowns, { list: 'string' }
+        api.has_param :ecosystem, { enum: %w{GAME NON_GAME }}
+        api.has_param :event_name, 'string'
+        api.has_param :intervals_to_aggregate, 'int'
+        api.has_param :metric_key, 'string'
+        api.has_param :period, { enum: %w{daily days_28 days_60 days_90 hourly lifetime mins_15 monthly range weekly }}
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+      end
+    end
+
     has_edge :app_installed_groups do |edge|
       edge.get 'Group' do |api|
         api.has_param :group_id, 'string'

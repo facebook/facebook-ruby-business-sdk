@@ -26,22 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class User < AdObject
-    TASKS = [
-      "ADVERTISE",
-      "ANALYZE",
-      "CREATE_CONTENT",
-      "MANAGE",
-      "MANAGE_JOBS",
-      "MANAGE_LEADS",
-      "MODERATE",
-      "MODERATE_COMMUNITY",
-      "PAGES_MESSAGING",
-      "PAGES_MESSAGING_SUBSCRIPTIONS",
-      "PLATFORM_MANAGE_PAGES",
-      "READ_PAGE_MAILBOXES",
-      "VIEW_MONETIZATION_INSIGHTS",
-    ]
-
     LOCAL_NEWS_MEGAPHONE_DISMISS_STATUS = [
       "NO",
       "YES",
@@ -314,6 +298,10 @@ module FacebookAds
 
     has_edge :custom_labels do |edge|
       edge.get 'PageUserMessageThreadLabel'
+    end
+
+    has_edge :domains do |edge|
+      edge.get 'Domain'
     end
 
     has_edge :events do |edge|
@@ -807,11 +795,21 @@ module FacebookAds
       edge.get 'RequestHistory'
     end
 
+    has_edge :rich_media_documents do |edge|
+      edge.get 'Canvas' do |api|
+        api.has_param :query, 'string'
+      end
+    end
+
     has_edge :screennames do |edge|
       edge.post 'User' do |api|
         api.has_param :service_type, { enum: -> { User::SERVICE_TYPE }}
         api.has_param :value, 'string'
       end
+    end
+
+    has_edge :session_keys do |edge|
+      edge.get 'PlatformSessionKey'
     end
 
     has_edge :staging_resources do |edge|

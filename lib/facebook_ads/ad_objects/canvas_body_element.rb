@@ -25,32 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdAsyncRequest < AdObject
-    STATUSES = [
-      "CANCELED",
-      "CANCELED_DEPENDENCY",
-      "ERROR",
-      "ERROR_CONFLICTS",
-      "ERROR_DEPENDENCY",
-      "INITIAL",
-      "IN_PROGRESS",
-      "PENDING_DEPENDENCY",
-      "SUCCESS",
-      "USER_CANCELED",
-      "USER_CANCELED_DEPENDENCY",
-    ]
+  class CanvasBodyElement < AdObject
 
-
-    field :async_request_set, 'AdAsyncRequestSet'
-    field :created_time, 'datetime'
-    field :id, 'string'
-    field :input, 'hash'
-    field :result, 'hash'
-    field :scope_object_id, 'string'
-    field :status, 'string'
-    field :type, 'string'
-    field :updated_time, 'datetime'
+    field :element, 'object'
+    has_no_id
+    has_no_get
     has_no_post
+    has_no_delete
 
   end
 end

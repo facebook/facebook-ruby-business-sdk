@@ -97,5 +97,9 @@ module FacebookAds
       end
     end
 
+    has_edge :views do |edge|
+      edge.get 'NativeOfferView'
+    end
+
   end
 end

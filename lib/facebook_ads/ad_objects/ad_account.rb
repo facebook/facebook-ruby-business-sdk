@@ -1164,15 +1164,7 @@ module FacebookAds
     end
 
     has_edge :users do |edge|
-      edge.delete do |api|
-        api.has_param :uid, 'int'
-        api.has_param :uids, { list: 'string' }
-      end
       edge.get 'AdAccountUser'
-      edge.post 'AdAccount' do |api|
-        api.has_param :tasks, { list: { enum: -> { AdAccount::TASKS }} }
-        api.has_param :uid, 'int'
-      end
     end
 
     has_edge :usersofanyaudience do |edge|

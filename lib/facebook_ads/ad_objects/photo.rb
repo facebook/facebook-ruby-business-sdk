@@ -133,6 +133,10 @@ module FacebookAds
       edge.get 'Post'
     end
 
+    has_edge :sponsor_tags do |edge|
+      edge.get 'Page'
+    end
+
     has_edge :tags do |edge|
       edge.get 'TaggableSubject'
     end

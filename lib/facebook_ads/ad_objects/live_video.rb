@@ -136,6 +136,10 @@ module FacebookAds
       edge.get 'LiveVideoError'
     end
 
+    has_edge :input_streams do |edge|
+      edge.post 'LiveVideoInputStream'
+    end
+
     has_edge :likes do |edge|
       edge.get 'Profile'
     end

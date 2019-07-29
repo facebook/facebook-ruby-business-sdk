@@ -336,7 +336,6 @@ module FacebookAds
     field :video_15_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_30_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_asset, 'object'
-    field :video_avg_percent_watched_actions, { list: 'AdsActionStats' }
     field :video_avg_time_watched_actions, { list: 'AdsActionStats' }
     field :video_complete_watched_actions, { list: 'AdsActionStats' }
     field :video_completed_view_or_15s_passed_actions, { list: 'AdsActionStats' }
@@ -345,7 +344,6 @@ module FacebookAds
     field :video_p25_watched_actions, { list: 'AdsActionStats' }
     field :video_p50_watched_actions, { list: 'AdsActionStats' }
     field :video_p75_watched_actions, { list: 'AdsActionStats' }
-    field :video_p95_watched_actions, { list: 'AdsActionStats' }
     field :video_play_actions, { list: 'AdsActionStats' }
     field :video_play_curve_actions, { list: 'object' }
     field :video_play_retention_0_to_15s_actions, { list: 'object' }

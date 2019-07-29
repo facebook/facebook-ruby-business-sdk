@@ -143,6 +143,10 @@ module FacebookAds
       edge.get 'RtbDynamicPost'
     end
 
+    has_edge :edit_actions do |edge|
+      edge.get
+    end
+
     has_edge :insights do |edge|
       edge.get 'InsightsResult' do |api|
         api.has_param :date_preset, { enum: -> { InsightsResult::DATE_PRESET }}
@@ -198,7 +202,15 @@ module FacebookAds
       edge.get 'Post'
     end
 
+    has_edge :sponsor_tags do |edge|
+      edge.get 'Page'
+    end
+
     has_edge :to do |edge|
+      edge.get 'Profile'
+    end
+
+    has_edge :with_tags do |edge|
       edge.get 'Profile'
     end
 

@@ -42,7 +42,6 @@ module FacebookAds
       "CANDIDATE_VIDEOS",
       "CANVAS",
       "CFC_VIDEO",
-      "CIVIC_PROPOSAL_COVER_VIDEO",
       "CONTAINED_POST_ATTACHMENT",
       "CONTAINED_POST_AUDIO_BROADCAST",
       "CONTAINED_POST_BROADCAST",
@@ -391,6 +390,10 @@ module FacebookAds
 
     has_edge :sharedposts do |edge|
       edge.get 'Post'
+    end
+
+    has_edge :sponsor_tags do |edge|
+      edge.get 'Page'
     end
 
     has_edge :summarizations do |edge|

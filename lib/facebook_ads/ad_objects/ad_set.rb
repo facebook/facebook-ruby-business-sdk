@@ -166,7 +166,6 @@ module FacebookAds
     field :adset_schedule, { list: 'DayPart' }
     field :asset_feed_id, 'string'
     field :attribution_spec, { list: 'AttributionSpec' }
-    field :best_creative, 'AdDynamicCreative'
     field :bid_adjustments, 'AdBidAdjustments'
     field :bid_amount, 'int'
     field :bid_constraints, 'AdCampaignBidConstraint'
@@ -259,6 +258,12 @@ module FacebookAds
         api.has_param :include_drafts, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
+      end
+    end
+
+    has_edge :asyncadrequests do |edge|
+      edge.get 'AdAsyncRequest' do |api|
+        api.has_param :statuses, { list: { enum: -> { AdAsyncRequest::STATUSES }} }
       end
     end
 
