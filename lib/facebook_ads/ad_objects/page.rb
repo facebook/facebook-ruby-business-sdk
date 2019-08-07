@@ -493,6 +493,7 @@ module FacebookAds
     end
 
     has_edge :call_to_actions do |edge|
+      edge.get 'PageCallToAction'
       edge.post 'PageCallToAction' do |api|
         api.has_param :android_app_id, 'int'
         api.has_param :android_deeplink, 'string'
@@ -1117,10 +1118,15 @@ module FacebookAds
         api.has_param :set_profile_photo_shield, 'string'
         api.has_param :sticker_id, 'int'
         api.has_param :sticker_source_object_id, 'int'
+        api.has_param :suppress_stories, 'bool'
         api.has_param :width, 'int'
         api.has_param :x, 'int'
         api.has_param :y, 'int'
       end
+    end
+
+    has_edge :place_topics do |edge|
+      edge.get 'PlaceTopic'
     end
 
     has_edge :posts do |edge|
@@ -1269,6 +1275,12 @@ module FacebookAds
     has_edge :unlink_accounts do |edge|
       edge.post 'Page' do |api|
         api.has_param :psid, 'string'
+      end
+    end
+
+    has_edge :upcoming_changes do |edge|
+      edge.get 'PageUpcomingChange' do |api|
+        api.has_param :include_inactive, 'bool'
       end
     end
 

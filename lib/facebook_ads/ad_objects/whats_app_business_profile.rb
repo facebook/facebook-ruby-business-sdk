@@ -25,15 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessAdvertisableApplicationsResult < AdObject
+  class WhatsAppBusinessProfile < AdObject
 
-    field :are_app_events_unavailable, 'bool'
-    field :business, 'Business'
-    field :has_insight_permission, 'bool'
     field :id, 'string'
-    field :name, 'string'
-    field :photo_url, 'string'
-    has_no_get
+    field :name_verification, 'object'
+    field :verified_name, 'string'
     has_no_post
     has_no_delete
 

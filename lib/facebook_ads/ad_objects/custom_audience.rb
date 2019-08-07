@@ -166,6 +166,9 @@ module FacebookAds
     end
 
     has_edge :capabilities do |edge|
+      edge.delete do |api|
+        api.has_param :adaccounts, { list: 'string' }
+      end
       edge.post do |api|
         api.has_param :accounts_capabilities, 'string'
         api.has_param :relationship_type, { list: 'string' }

@@ -392,6 +392,13 @@ module FacebookAds
       end
     end
 
+    has_edge :initiated_audience_sharing_requests do |edge|
+      edge.get 'BusinessAssetSharingAgreement' do |api|
+        api.has_param :recipient_id, 'string'
+        api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
+      end
+    end
+
     has_edge :initiated_sharing_agreements do |edge|
       edge.get 'BusinessAgreement' do |api|
         api.has_param :receiving_business_id, 'string'
@@ -557,6 +564,13 @@ module FacebookAds
     has_edge :received_audience_permissions do |edge|
       edge.get 'AudiencePermission' do |api|
         api.has_param :partner_id, 'string'
+      end
+    end
+
+    has_edge :received_audience_sharing_requests do |edge|
+      edge.get 'BusinessAssetSharingAgreement' do |api|
+        api.has_param :initiator_id, 'string'
+        api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
       end
     end
 

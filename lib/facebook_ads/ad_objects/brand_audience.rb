@@ -25,15 +25,18 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessAdvertisableApplicationsResult < AdObject
+  class BrandAudience < AdObject
 
-    field :are_app_events_unavailable, 'bool'
-    field :business, 'Business'
-    field :has_insight_permission, 'bool'
+    field :account, 'AdAccount'
+    field :delivery_targeting, 'Targeting'
+    field :description, 'string'
     field :id, 'string'
     field :name, 'string'
-    field :photo_url, 'string'
-    has_no_get
+    field :sentence_lines, { list: 'string' }
+    field :status, 'string'
+    field :targeting, 'Targeting'
+    field :time_created, 'datetime'
+    field :time_updated, 'datetime'
     has_no_post
     has_no_delete
 

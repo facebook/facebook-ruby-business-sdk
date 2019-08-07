@@ -30,7 +30,7 @@ module FacebookAds
     field :errors, { list: 'object' }
     field :errors_total_count, 'int'
     field :handle, 'string'
-    field :invalid_item_ids, { list: 'string' }
+    field :ids_of_invalid_requests, { list: 'string' }
     field :status, 'string'
     field :warnings, { list: 'object' }
     field :warnings_total_count, 'int'

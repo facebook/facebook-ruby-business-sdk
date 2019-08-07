@@ -28,7 +28,6 @@ module FacebookAds
   class ReachFrequencyEstimatesCurve < AdObject
 
     field :budget, { list: 'int' }
-    field :click, { list: 'int' }
     field :conversion, { list: 'int' }
     field :impression, { list: 'int' }
     field :interpolated_reach, 'double'

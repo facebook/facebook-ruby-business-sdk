@@ -43,6 +43,7 @@ module FacebookAds
       "ACTIVE",
       "ARCHIVED",
       "DELETED",
+      "IN_PROCESS",
       "PAUSED",
       "WITH_ISSUES",
     ]

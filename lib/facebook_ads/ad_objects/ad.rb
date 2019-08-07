@@ -48,6 +48,7 @@ module FacebookAds
       "CAMPAIGN_PAUSED",
       "DELETED",
       "DISAPPROVED",
+      "IN_PROCESS",
       "PAUSED",
       "PENDING_BILLING_INFO",
       "PENDING_REVIEW",

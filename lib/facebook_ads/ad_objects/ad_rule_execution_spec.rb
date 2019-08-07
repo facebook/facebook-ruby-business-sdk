@@ -29,6 +29,7 @@ module FacebookAds
     EXECUTION_TYPE = [
       "CHANGE_BID",
       "CHANGE_BUDGET",
+      "CHANGE_CAMPAIGN_BUDGET",
       "NOTIFICATION",
       "PAUSE",
       "PING_ENDPOINT",

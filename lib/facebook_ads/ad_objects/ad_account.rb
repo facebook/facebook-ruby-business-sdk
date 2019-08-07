@@ -633,6 +633,10 @@ module FacebookAds
       end
     end
 
+    has_edge :affectedadsets do |edge|
+      edge.get 'AdSet'
+    end
+
     has_edge :agencies do |edge|
       edge.delete do |api|
         api.has_param :business, 'string'
@@ -710,6 +714,10 @@ module FacebookAds
       edge.post 'AdAccount' do |api|
         api.has_param :publisher_urls_file, 'file'
       end
+    end
+
+    has_edge :brand_audiences do |edge|
+      edge.get 'BrandAudience'
     end
 
     has_edge :broadtargetingcategories do |edge|
@@ -862,6 +870,13 @@ module FacebookAds
     has_edge :deprecatedtargetingadsets do |edge|
       edge.get 'AdSet' do |api|
         api.has_param :type, 'string'
+      end
+    end
+
+    has_edge :emailimport do |edge|
+      edge.post do |api|
+        api.has_param :name, 'string'
+        api.has_param :third_party_data, 'string'
       end
     end
 

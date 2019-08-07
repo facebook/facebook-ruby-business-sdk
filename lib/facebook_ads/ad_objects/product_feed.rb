@@ -67,6 +67,7 @@ module FacebookAds
     ]
 
     OVERRIDE_TYPE = [
+      "CATALOG_SEGMENT_CUSTOMIZE_DEFAULT",
       "COUNTRY",
       "LANGUAGE",
     ]

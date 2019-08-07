@@ -56,6 +56,7 @@ module FacebookAds
       "ACTIVE",
       "ARCHIVED",
       "DELETED",
+      "IN_PROCESS",
       "PAUSED",
       "WITH_ISSUES",
     ]
@@ -98,6 +99,7 @@ module FacebookAds
     DESTINATION_TYPE = [
       "APP",
       "APPLINKS_AUTOMATIC",
+      "FACEBOOK",
       "MESSENGER",
       "UNDEFINED",
       "WEBSITE",

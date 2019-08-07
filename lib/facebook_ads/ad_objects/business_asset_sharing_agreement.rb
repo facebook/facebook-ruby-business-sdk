@@ -25,16 +25,21 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessAdvertisableApplicationsResult < AdObject
+  class BusinessAssetSharingAgreement < AdObject
+    REQUEST_STATUS = [
+      "APPROVE",
+      "DECLINE",
+      "EXPIRED",
+      "IN_PROGRESS",
+    ]
 
-    field :are_app_events_unavailable, 'bool'
-    field :business, 'Business'
-    field :has_insight_permission, 'bool'
+
     field :id, 'string'
-    field :name, 'string'
-    field :photo_url, 'string'
-    has_no_get
-    has_no_post
+    field :initiator, 'Business'
+    field :recipient, 'Business'
+    field :relationship_type, { list: 'string' }
+    field :request_status, 'string'
+    field :request_type, 'string'
     has_no_delete
 
   end

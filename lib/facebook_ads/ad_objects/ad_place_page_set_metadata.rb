@@ -28,6 +28,7 @@ module FacebookAds
   class AdPlacePageSetMetadata < AdObject
 
     field :audience, 'object'
+    field :custom, 'object'
     field :extra_data, 'string'
     field :fixed_radius, 'object'
     has_no_id
