@@ -45,9 +45,9 @@ module FacebookAds
 
     field :business, 'Business'
     field :creation_time, 'datetime'
+    field :description, 'string'
     field :id, 'string'
     field :name, 'string'
-    field :description, 'string'
 
     has_edge :agencies do |edge|
       edge.delete do |api|

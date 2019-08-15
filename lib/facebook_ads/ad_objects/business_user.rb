@@ -53,6 +53,12 @@ module FacebookAds
       edge.get 'AdAccount'
     end
 
+    has_edge :assigned_business_asset_groups do |edge|
+      edge.get 'BusinessAssetGroup' do |api|
+        api.has_param :contained_asset_id, 'string'
+      end
+    end
+
     has_edge :assigned_pages do |edge|
       edge.get 'Page'
     end

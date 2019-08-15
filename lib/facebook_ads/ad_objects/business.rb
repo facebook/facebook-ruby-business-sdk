@@ -256,6 +256,10 @@ module FacebookAds
       end
     end
 
+    has_edge :business_asset_groups do |edge|
+      edge.get 'BusinessAssetGroup'
+    end
+
     has_edge :business_invoices do |edge|
       edge.get 'OracleTransaction' do |api|
         api.has_param :end_date, 'string'

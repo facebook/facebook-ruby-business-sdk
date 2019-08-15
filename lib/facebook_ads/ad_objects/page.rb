@@ -891,6 +891,10 @@ module FacebookAds
     end
 
     has_edge :media_fingerprints do |edge|
+      edge.get 'MediaFingerprint' do |api|
+        api.has_param :fingerprint_validity, { enum: -> { MediaFingerprint::FINGERPRINT_VALIDITY }}
+        api.has_param :universal_content_id, 'string'
+      end
       edge.post 'MediaFingerprint' do |api|
         api.has_param :fingerprint_content_type, { enum: -> { MediaFingerprint::FINGERPRINT_CONTENT_TYPE }}
         api.has_param :metadata, { list: 'string' }
@@ -1221,6 +1225,14 @@ module FacebookAds
       edge.get 'Tab' do |api|
         api.has_param :tab, { list: 'string' }
       end
+      edge.post 'Page' do |api|
+        api.has_param :app_id, 'int'
+        api.has_param :custom_image_url, 'string'
+        api.has_param :custom_name, 'string'
+        api.has_param :is_non_connection_landing_tab, 'bool'
+        api.has_param :position, 'int'
+        api.has_param :tab, 'string'
+      end
     end
 
     has_edge :tagged do |edge|
@@ -1281,6 +1293,13 @@ module FacebookAds
     has_edge :upcoming_changes do |edge|
       edge.get 'PageUpcomingChange' do |api|
         api.has_param :include_inactive, 'bool'
+      end
+    end
+
+    has_edge :video_copyright_rules do |edge|
+      edge.get 'VideoCopyrightRule' do |api|
+        api.has_param :selected_rule_id, 'string'
+        api.has_param :source, { enum: -> { VideoCopyrightRule::SOURCE }}
       end
     end
 

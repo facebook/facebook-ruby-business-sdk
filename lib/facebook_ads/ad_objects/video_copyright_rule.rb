@@ -26,6 +26,12 @@ module FacebookAds
   # pull request for this class.
 
   class VideoCopyrightRule < AdObject
+    SOURCE = [
+      "MATCH_SETTINGS_DIALOG",
+      "RULES_SELECTOR",
+      "RULES_TAB",
+    ]
+
 
     field :condition_groups, { list: 'VideoCopyrightConditionGroup' }
     field :copyrights, { list: 'string' }
