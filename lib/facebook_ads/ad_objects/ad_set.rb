@@ -55,6 +55,7 @@ module FacebookAds
     EFFECTIVE_STATUS = [
       "ACTIVE",
       "ARCHIVED",
+      "CAMPAIGN_PAUSED",
       "DELETED",
       "IN_PROCESS",
       "PAUSED",

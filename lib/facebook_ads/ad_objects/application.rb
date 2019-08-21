@@ -350,6 +350,9 @@ module FacebookAds
     end
 
     has_edge :banned do |edge|
+      edge.delete do |api|
+        api.has_param :uids, { list: 'int' }
+      end
       edge.get 'User' do |api|
         api.has_param :uid, 'int'
       end
@@ -414,6 +417,28 @@ module FacebookAds
       edge.post do |api|
         api.has_param :app_version, 'string'
         api.has_param :full_app_indexing_info_classes, { list: 'hash' }
+      end
+    end
+
+    has_edge :insights_push_schedule do |edge|
+      edge.post do |api|
+        api.has_param :ad_account_ids, { list: 'string' }
+        api.has_param :breakdowns, { list: 'string' }
+        api.has_param :date_preset, 'string'
+        api.has_param :level, { enum: %w{ACCOUNT AD ADSET CAMPAIGN }}
+        api.has_param :metrics, { list: 'string' }
+        api.has_param :object_id, 'string'
+        api.has_param :owner_id, 'object'
+        api.has_param :schedule, { enum: %w{DAILY FINE_15_MIN FINE_5_MIN MONTHLY WEEKLY }}
+        api.has_param :status, { enum: %w{ACTIVE DISABLED ERROR }}
+        api.has_param :time_created, 'datetime'
+        api.has_param :time_increment, 'int'
+        api.has_param :time_last_fail, 'datetime'
+        api.has_param :time_last_run, 'datetime'
+        api.has_param :time_last_success, 'datetime'
+        api.has_param :time_start, 'datetime'
+        api.has_param :time_stop, 'datetime'
+        api.has_param :time_updated, 'datetime'
       end
     end
 

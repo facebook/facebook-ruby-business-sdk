@@ -39,7 +39,9 @@ module FacebookAds
     has_no_post
 
     has_edge :insights do |edge|
-      edge.get
+      edge.get do |api|
+        api.has_param :time_range, 'object'
+      end
     end
 
   end

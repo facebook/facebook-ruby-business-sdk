@@ -144,7 +144,6 @@ module FacebookAds
 
     has_edge :adaccount do |edge|
       edge.post 'AdAccount' do |api|
-        api.has_param :billing_address_id, 'string'
         api.has_param :currency, 'string'
         api.has_param :end_advertiser, 'object'
         api.has_param :funding_id, 'string'
@@ -152,12 +151,10 @@ module FacebookAds
         api.has_param :invoice_group_id, 'string'
         api.has_param :invoicing_emails, { list: 'string' }
         api.has_param :io, 'bool'
-        api.has_param :liable_address_id, 'string'
         api.has_param :media_agency, 'string'
         api.has_param :name, 'string'
         api.has_param :partner, 'string'
         api.has_param :po_number, 'string'
-        api.has_param :sold_to_address_id, 'string'
         api.has_param :timezone_id, 'int'
       end
     end
