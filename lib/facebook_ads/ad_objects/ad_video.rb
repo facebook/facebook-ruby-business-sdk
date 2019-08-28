@@ -62,6 +62,7 @@ module FacebookAds
       "FACECAST_DVR",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
+      "GAMING_UPDATE_VIDEO",
       "GEMSTONE",
       "GOODWILL_ANNIVERSARY_DEPRECATED",
       "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
@@ -177,6 +178,35 @@ module FacebookAds
       "finish",
       "start",
       "transfer",
+    ]
+
+    VALIDATION_AD_PLACEMENT = [
+      "AUDIENCE_NETWORK_INSTREAM_VIDEO",
+      "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
+      "AUDIENCE_NETWORK_OUTSTREAM_VIDEO",
+      "AUDIENCE_NETWORK_REWARDED_VIDEO",
+      "DESKTOP_FEED_STANDARD",
+      "FACEBOOK_STORY_MOBILE",
+      "INSTAGRAM_STANDARD",
+      "INSTAGRAM_STORY",
+      "INSTANT_ARTICLE_RECIRCULATION_AD",
+      "INSTANT_ARTICLE_STANDARD",
+      "INSTREAM_VIDEO_DESKTOP",
+      "INSTREAM_VIDEO_MOBILE",
+      "MARKETPLACE_MOBILE",
+      "MESSENGER_MOBILE_INBOX_MEDIA",
+      "MESSENGER_MOBILE_STORY_MEDIA",
+      "MOBILE_BANNER",
+      "MOBILE_FEED_BASIC",
+      "MOBILE_FEED_STANDARD",
+      "MOBILE_FULLWIDTH",
+      "MOBILE_INTERSTITIAL",
+      "MOBILE_MEDIUM_RECTANGLE",
+      "MOBILE_NATIVE",
+      "RIGHT_COLUMN_STANDARD",
+      "SUGGESTED_VIDEO_DESKTOP",
+      "SUGGESTED_VIDEO_MOBILE",
+      "WATCH_FEED_MOBILE",
     ]
 
     TYPE = [
@@ -308,6 +338,7 @@ module FacebookAds
     field :video_start_time_ms, 'int'
     field :waterfall_id, 'string'
     field :creative_folder_id, 'string'
+    field :validation_ad_placement, { enum: -> { VALIDATION_AD_PLACEMENT }}
 
     has_edge :auto_trims do |edge|
       edge.post 'AdVideo' do |api|

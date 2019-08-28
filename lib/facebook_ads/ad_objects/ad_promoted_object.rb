@@ -60,6 +60,7 @@ module FacebookAds
 
     field :application_id, 'string'
     field :custom_conversion_id, 'string'
+    field :custom_event_str, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :event_id, 'string'
     field :fundraiser_campaign_id, 'string'

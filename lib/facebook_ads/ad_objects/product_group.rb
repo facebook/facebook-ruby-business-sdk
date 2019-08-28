@@ -69,6 +69,7 @@ module FacebookAds
         api.has_param :iphone_app_name, 'string'
         api.has_param :iphone_app_store_id, 'int'
         api.has_param :iphone_url, 'string'
+        api.has_param :launch_date, 'string'
         api.has_param :manufacturer_part_number, 'string'
         api.has_param :material, 'string'
         api.has_param :mobile_link, 'string'

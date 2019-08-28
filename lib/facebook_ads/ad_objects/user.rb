@@ -673,6 +673,10 @@ module FacebookAds
       end
     end
 
+    has_edge :partner_coupon_offer do |edge|
+      edge.get 'PartnerCouponOffer'
+    end
+
     has_edge :permissions do |edge|
       edge.delete do |api|
         api.has_param :permission, 'string'

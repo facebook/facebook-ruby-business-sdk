@@ -104,6 +104,7 @@ module FacebookAds
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
       "PLATFORM_MANAGE_PAGES",
+      "PLATFORM_READ_INSIGHTS",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -120,6 +121,7 @@ module FacebookAds
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
       "PLATFORM_MANAGE_PAGES",
+      "PLATFORM_READ_INSIGHTS",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -1012,6 +1014,10 @@ module FacebookAds
     has_edge :page_backed_instagram_accounts do |edge|
       edge.get 'InstagramUser'
       edge.post 'InstagramUser'
+    end
+
+    has_edge :partner_coupon_offer do |edge|
+      edge.get 'PartnerCouponOffer'
     end
 
     has_edge :pass_thread_control do |edge|

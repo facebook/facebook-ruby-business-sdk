@@ -146,6 +146,7 @@ module FacebookAds
     field :iphone_app_name, 'string'
     field :iphone_app_store_id, 'int'
     field :iphone_url, 'string'
+    field :launch_date, 'string'
     field :offer_price_amount, 'int'
     field :offer_price_end_date, 'datetime'
     field :offer_price_start_date, 'datetime'

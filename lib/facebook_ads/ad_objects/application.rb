@@ -529,16 +529,6 @@ module FacebookAds
       end
     end
 
-    has_edge :ozone_release do |edge|
-      edge.post do |api|
-        api.has_param :auto_push_to_prod, 'bool'
-        api.has_param :changelog, 'string'
-        api.has_param :channel_id, 'int'
-        api.has_param :release_name, 'string'
-        api.has_param :rollout_percentage, 'double'
-      end
-    end
-
     has_edge :page_activities do |edge|
       edge.post 'Application' do |api|
         api.has_param :advertiser_tracking_enabled, 'bool'
@@ -619,16 +609,6 @@ module FacebookAds
         api.has_param :include_values, 'bool'
         api.has_param :object, 'string'
         api.has_param :verify_token, 'string'
-      end
-    end
-
-    has_edge :subscriptions_sample do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :custom_fields, 'string'
-        api.has_param :field, 'string'
-        api.has_param :object, 'string'
-        api.has_param :object_id, 'string'
-        api.has_param :stress_run, 'int'
       end
     end
 

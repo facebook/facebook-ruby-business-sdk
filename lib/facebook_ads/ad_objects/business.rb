@@ -85,6 +85,7 @@ module FacebookAds
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
       "PLATFORM_MANAGE_PAGES",
+      "PLATFORM_READ_INSIGHTS",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -386,10 +387,11 @@ module FacebookAds
     end
 
     has_edge :images do |edge|
-      edge.post do |api|
+      edge.post 'BusinessImage' do |api|
         api.has_param :bytes, 'object'
         api.has_param :creative_folder_id, 'string'
         api.has_param :name, 'string'
+        api.has_param :validation_ad_placements, { list: { enum: -> { BusinessImage::VALIDATION_AD_PLACEMENTS }} }
       end
     end
 
@@ -424,6 +426,13 @@ module FacebookAds
         api.has_param :survey_num_people, 'int'
         api.has_param :timezone_id, 'int'
         api.has_param :vertical, { enum: -> { Business::VERTICAL }}
+      end
+    end
+
+    has_edge :move_asset do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :asset_id, 'string'
+        api.has_param :client_id, 'string'
       end
     end
 
@@ -696,6 +705,7 @@ module FacebookAds
         api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
         api.has_param :upload_session_id, 'string'
         api.has_param :upload_setting_properties, 'string'
+        api.has_param :validation_ad_placement, { enum: -> { AdVideo::VALIDATION_AD_PLACEMENT }}
         api.has_param :video_file_chunk, 'string'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'

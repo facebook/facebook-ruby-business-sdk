@@ -25,49 +25,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessImage < AdObject
-    VALIDATION_AD_PLACEMENTS = [
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO",
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
-      "AUDIENCE_NETWORK_REWARDED_VIDEO",
-      "DESKTOP_FEED_STANDARD",
-      "FACEBOOK_STORY_MOBILE",
-      "INSTAGRAM_STANDARD",
-      "INSTAGRAM_STORY",
-      "INSTANT_ARTICLE_STANDARD",
-      "INSTREAM_VIDEO_DESKTOP",
-      "INSTREAM_VIDEO_MOBILE",
-      "MESSENGER_MOBILE_INBOX_MEDIA",
-      "MESSENGER_MOBILE_STORY_MEDIA",
-      "MOBILE_FEED_STANDARD",
-      "MOBILE_FULLWIDTH",
-      "MOBILE_INTERSTITIAL",
-      "MOBILE_MEDIUM_RECTANGLE",
-      "MOBILE_NATIVE",
-      "RIGHT_COLUMN_STANDARD",
-      "SUGGESTED_VIDEO_MOBILE",
-    ]
+  class PartnerCouponOffer < AdObject
 
-
-    field :business, 'Business'
-    field :creation_time, 'datetime'
-    field :hash, 'string'
-    field :height, 'int'
+    field :claim_by, 'datetime'
+    field :currency, 'string'
+    field :expiration_days, 'int'
     field :id, 'string'
-    field :name, 'string'
-    field :url, 'string'
-    field :url_128, 'string'
-    field :width, 'int'
-    field :bytes, 'object'
-    field :creative_folder_id, 'string'
-    field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
+    field :minimum_spend, 'int'
+    field :offer_amount, 'int'
     has_no_post
-
-    has_edge :insights do |edge|
-      edge.get do |api|
-        api.has_param :time_range, 'object'
-      end
-    end
+    has_no_delete
 
   end
 end
