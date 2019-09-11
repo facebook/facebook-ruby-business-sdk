@@ -1111,6 +1111,15 @@ module FacebookAds
       end
     end
 
+    has_edge :subscribed_apps do |edge|
+      edge.delete do |api|
+        api.has_param :app_id, 'string'
+      end
+      edge.post 'Application' do |api|
+        api.has_param :app_id, 'string'
+      end
+    end
+
     has_edge :targetingbrowse do |edge|
       edge.get 'AdAccountTargetingUnified' do |api|
         api.has_param :excluded_category, 'string'

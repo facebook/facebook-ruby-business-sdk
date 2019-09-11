@@ -58,6 +58,7 @@ module FacebookAds
     field :url, 'string'
     field :url_128, 'string'
     field :width, 'int'
+    field :ad_placements_validation_only, 'bool'
     field :bytes, 'object'
     field :creative_folder_id, 'string'
     field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }

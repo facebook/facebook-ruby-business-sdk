@@ -191,6 +191,7 @@ module FacebookAds
     field :user_support_url, 'string'
     field :website_url, 'string'
     field :weekly_active_users, 'string'
+    field :app_id, 'string'
     has_no_delete
 
     has_edge :accounts do |edge|

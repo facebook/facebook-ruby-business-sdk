@@ -183,6 +183,7 @@ module FacebookAds
     field :conditional_time_spent_ms_over_6s_actions, { list: 'AdsActionStats' }
     field :contact_actions, { list: 'AdsActionStats' }
     field :contact_value, { list: 'AdsActionStats' }
+    field :conversion_rate_ranking, 'string'
     field :conversion_values, { list: 'AdsActionStats' }
     field :conversions, { list: 'AdsActionStats' }
     field :cost_per_10_sec_video_view, { list: 'AdsActionStats' }
@@ -245,6 +246,7 @@ module FacebookAds
     field :dwell_7_sec, 'string'
     field :dwell_rate, 'string'
     field :earned_impression, 'string'
+    field :engagement_rate_ranking, 'string'
     field :estimated_ad_recall_rate, 'string'
     field :estimated_ad_recall_rate_lower_bound, 'string'
     field :estimated_ad_recall_rate_upper_bound, 'string'
@@ -293,6 +295,7 @@ module FacebookAds
     field :product_id, 'string'
     field :publisher_platform, 'string'
     field :purchase_roas, { list: 'AdsActionStats' }
+    field :quality_ranking, 'string'
     field :quality_score_ectr, 'string'
     field :quality_score_ecvr, 'string'
     field :quality_score_enfbr, 'string'

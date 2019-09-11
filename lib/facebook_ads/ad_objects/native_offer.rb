@@ -26,6 +26,16 @@ module FacebookAds
   # pull request for this class.
 
   class NativeOffer < AdObject
+    UNIQUE_CODES_FILE_CODE_TYPE = [
+      "barcodes",
+      "discount_and_barcodes",
+      "discount_and_discount",
+      "discount_codes",
+      "instore_barcodes",
+      "instore_discount_codes",
+      "online_discount_codes",
+    ]
+
     BARCODE_TYPE = [
       "CODE128",
       "CODE128B",
@@ -77,6 +87,13 @@ module FacebookAds
     field :unique_codes_file_upload_status, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :codes do |edge|
+      edge.post 'NativeOffer' do |api|
+        api.has_param :file, 'file'
+        api.has_param :unique_codes_file_code_type, { enum: -> { NativeOffer::UNIQUE_CODES_FILE_CODE_TYPE }}
+      end
+    end
 
     has_edge :nativeofferviews do |edge|
       edge.post 'NativeOffer' do |api|

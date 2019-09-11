@@ -53,6 +53,7 @@ module FacebookAds
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
       "PLATFORM_MANAGE_PAGES",
+      "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
       "PLATFORM_READ_INSIGHTS",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -66,6 +67,7 @@ module FacebookAds
 
     field :id, 'string'
     field :name, 'string'
+    has_no_delete
 
     has_edge :assigned_users do |edge|
       edge.delete do |api|

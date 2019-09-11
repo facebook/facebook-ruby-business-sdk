@@ -85,6 +85,7 @@ module FacebookAds
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
       "PLATFORM_MANAGE_PAGES",
+      "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
       "PLATFORM_READ_INSIGHTS",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -388,6 +389,7 @@ module FacebookAds
 
     has_edge :images do |edge|
       edge.post 'BusinessImage' do |api|
+        api.has_param :ad_placements_validation_only, 'bool'
         api.has_param :bytes, 'object'
         api.has_param :creative_folder_id, 'string'
         api.has_param :name, 'string'
@@ -514,6 +516,7 @@ module FacebookAds
         api.has_param :destination_catalog_settings, 'hash'
         api.has_param :flight_catalog_settings, 'hash'
         api.has_param :name, 'string'
+        api.has_param :store_catalog_settings, 'hash'
         api.has_param :vertical, { enum: -> { ProductCatalog::VERTICAL }}
       end
     end
@@ -637,6 +640,7 @@ module FacebookAds
 
     has_edge :videos do |edge|
       edge.post 'AdVideo' do |api|
+        api.has_param :ad_placements_validation_only, 'bool'
         api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
@@ -705,7 +709,7 @@ module FacebookAds
         api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
         api.has_param :upload_session_id, 'string'
         api.has_param :upload_setting_properties, 'string'
-        api.has_param :validation_ad_placement, { enum: -> { AdVideo::VALIDATION_AD_PLACEMENT }}
+        api.has_param :validation_ad_placements, { list: { enum: -> { AdVideo::VALIDATION_AD_PLACEMENTS }} }
         api.has_param :video_file_chunk, 'string'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'

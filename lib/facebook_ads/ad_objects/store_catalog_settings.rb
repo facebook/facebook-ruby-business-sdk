@@ -25,36 +25,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdgroupPlacementSpecificReviewFeedback < AdObject
+  class StoreCatalogSettings < AdObject
 
-    field :account_admin, 'hash'
-    field :ad, 'hash'
-    field :b2c, 'hash'
-    field :bsg, 'hash'
-    field :city_community, 'hash'
-    field :daily_deals, 'hash'
-    field :daily_deals_legacy, 'hash'
-    field :dpa, 'hash'
-    field :facebook, 'hash'
-    field :instagram, 'hash'
-    field :instagram_shop, 'hash'
-    field :marketplace, 'hash'
-    field :marketplace_home_rentals, 'hash'
-    field :marketplace_home_sales, 'hash'
-    field :marketplace_motors, 'hash'
-    field :marketplace_shops, 'hash'
-    field :max_review_placements, 'hash'
-    field :page_admin, 'hash'
-    field :product, 'hash'
-    field :product_service, 'hash'
-    field :profile, 'hash'
-    field :seller, 'hash'
-    field :shops, 'hash'
-    field :traffic_quality, 'hash'
-    field :whatsapp, 'hash'
-    has_no_id
-    has_no_get
-    has_no_post
+    field :id, 'string'
+    field :page, 'Page'
     has_no_delete
 
   end

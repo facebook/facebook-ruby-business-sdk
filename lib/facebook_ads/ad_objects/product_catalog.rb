@@ -33,6 +33,7 @@ module FacebookAds
       "flights",
       "home_listings",
       "hotels",
+      "offline_commerce",
       "ticketed_experiences",
       "transactable_items",
       "vehicles",
@@ -67,6 +68,7 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :product_count, 'int'
+    field :store_catalog_settings, 'StoreCatalogSettings'
     field :vertical, 'string'
     field :destination_catalog_settings, 'hash'
     field :flight_catalog_settings, 'hash'
@@ -380,6 +382,13 @@ module FacebookAds
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'
+      end
+    end
+
+    has_edge :store_product_items_batch do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :allow_upsert, 'bool'
+        api.has_param :requests, { list: 'hash' }
       end
     end
 

@@ -104,6 +104,7 @@ module FacebookAds
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
       "PLATFORM_MANAGE_PAGES",
+      "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
       "PLATFORM_READ_INSIGHTS",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -121,6 +122,7 @@ module FacebookAds
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
       "PLATFORM_MANAGE_PAGES",
+      "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
       "PLATFORM_READ_INSIGHTS",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -471,7 +473,7 @@ module FacebookAds
 
     has_edge :blocked do |edge|
       edge.delete do |api|
-        api.has_param :asid, 'object'
+        api.has_param :asid, 'string'
         api.has_param :psid, 'object'
         api.has_param :uid, 'object'
         api.has_param :user, 'object'
