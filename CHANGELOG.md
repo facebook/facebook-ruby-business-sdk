@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 
 ## Unreleased
+### Fixed
+ - Add back `source` param in `adaccount, edge.post 'AdVideo'`.
 
 ## v0.4.0.0
 ### Changed
