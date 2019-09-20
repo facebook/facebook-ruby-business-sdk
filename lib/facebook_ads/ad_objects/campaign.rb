@@ -99,6 +99,13 @@ module FacebookAds
       "VIDEO_VIEWS",
     ]
 
+    SPECIAL_AD_CATEGORY = [
+      "CREDIT",
+      "EMPLOYMENT",
+      "HOUSING",
+      "NONE",
+    ]
+
     OPERATOR = [
       "ALL",
       "ANY",
@@ -136,6 +143,7 @@ module FacebookAds
     field :recommendations, { list: 'AdRecommendation' }
     field :source_campaign, 'Campaign'
     field :source_campaign_id, 'string'
+    field :special_ad_category, 'string'
     field :spend_cap, 'string'
     field :start_time, 'datetime'
     field :status, { enum: -> { STATUS }}

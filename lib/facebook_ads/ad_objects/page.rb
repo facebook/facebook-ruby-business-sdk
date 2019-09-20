@@ -1018,10 +1018,6 @@ module FacebookAds
       edge.post 'InstagramUser'
     end
 
-    has_edge :partner_coupon_offer do |edge|
-      edge.get 'PartnerCouponOffer'
-    end
-
     has_edge :pass_thread_control do |edge|
       edge.post 'Page' do |api|
         api.has_param :metadata, 'string'

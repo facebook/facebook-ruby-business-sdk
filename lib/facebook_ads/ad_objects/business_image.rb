@@ -66,6 +66,7 @@ module FacebookAds
 
     has_edge :insights do |edge|
       edge.get do |api|
+        api.has_param :breakdowns, { list: { enum: %w{age country gender }} }
         api.has_param :time_range, 'object'
       end
     end

@@ -291,6 +291,7 @@ module FacebookAds
         api.has_param :time_start, 'datetime'
         api.has_param :time_stop, 'datetime'
         api.has_param :topline_id, 'string'
+        api.has_param :tune_for_category, { enum: -> { AdSet::TUNE_FOR_CATEGORY }}
         api.has_param :upstream_events, 'hash'
       end
     end
@@ -393,10 +394,6 @@ module FacebookAds
         api.has_param :source_url, 'string'
         api.has_param :source_zip, 'file'
       end
-    end
-
-    has_edge :adreportruns do |edge|
-      edge.delete
     end
 
     has_edge :adreportschedules do |edge|
@@ -762,6 +759,7 @@ module FacebookAds
         api.has_param :pacing_type, { list: 'string' }
         api.has_param :promoted_object, 'object'
         api.has_param :source_campaign_id, 'string'
+        api.has_param :special_ad_category, { enum: -> { Campaign::SPECIAL_AD_CATEGORY }}
         api.has_param :spend_cap, 'int'
         api.has_param :status, { enum: -> { Campaign::STATUS }}
         api.has_param :topline_id, 'string'
@@ -1116,7 +1114,7 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :app_id, 'string'
       end
-      edge.post 'Application' do |api|
+      edge.post do |api|
         api.has_param :app_id, 'string'
       end
     end

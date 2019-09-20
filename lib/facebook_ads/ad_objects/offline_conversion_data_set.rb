@@ -35,6 +35,7 @@ module FacebookAds
     RELATIONSHIP_TYPE = [
       "AD_MANAGER",
       "AGENCY",
+      "AGGREGATOR",
       "AUDIENCE_MANAGER",
       "OTHER",
     ]

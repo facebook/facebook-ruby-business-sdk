@@ -93,6 +93,7 @@ module FacebookAds
     ]
 
 
+    field :aam_rules, 'string'
     field :an_ad_space_limit, 'int'
     field :an_platforms, { list: 'string' }
     field :android_key_hash, { list: 'string' }
@@ -191,7 +192,6 @@ module FacebookAds
     field :user_support_url, 'string'
     field :website_url, 'string'
     field :weekly_active_users, 'string'
-    field :app_id, 'string'
     has_no_delete
 
     has_edge :accounts do |edge|
@@ -422,6 +422,7 @@ module FacebookAds
     end
 
     has_edge :insights_push_schedule do |edge|
+      edge.get
       edge.post do |api|
         api.has_param :ad_account_ids, { list: 'string' }
         api.has_param :breakdowns, { list: 'string' }
@@ -432,14 +433,9 @@ module FacebookAds
         api.has_param :owner_id, 'object'
         api.has_param :schedule, { enum: %w{DAILY FINE_15_MIN FINE_5_MIN MONTHLY WEEKLY }}
         api.has_param :status, { enum: %w{ACTIVE DISABLED ERROR }}
-        api.has_param :time_created, 'datetime'
         api.has_param :time_increment, 'int'
-        api.has_param :time_last_fail, 'datetime'
-        api.has_param :time_last_run, 'datetime'
-        api.has_param :time_last_success, 'datetime'
         api.has_param :time_start, 'datetime'
         api.has_param :time_stop, 'datetime'
-        api.has_param :time_updated, 'datetime'
       end
     end
 
@@ -575,12 +571,6 @@ module FacebookAds
 
     has_edge :roles do |edge|
       edge.get
-    end
-
-    has_edge :staging_resources do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :file, 'file'
-      end
     end
 
     has_edge :subscribed_domains do |edge|

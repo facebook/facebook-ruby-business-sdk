@@ -321,10 +321,6 @@ module FacebookAds
       edge.get 'User'
     end
 
-    has_edge :favorite_requests do |edge|
-      edge.get
-    end
-
     has_edge :feed do |edge|
       edge.post do |api|
         api.has_param :actions, 'object'
@@ -434,7 +430,7 @@ module FacebookAds
         api.has_param :time_since_original_post, 'int'
         api.has_param :title, 'string'
         api.has_param :tracking_info, 'string'
-        api.has_param :unpublished_content_type, { enum: %w{ADS_POST DRAFT INLINE_CREATED PUBLISHED SCHEDULED SCHEDULED_RECURRING }}
+        api.has_param :unpublished_content_type, { enum: %w{ADS_POST DRAFT INLINE_CREATED PUBLISHED REVIEWABLE_BRANDED_CONTENT SCHEDULED SCHEDULED_RECURRING }}
         api.has_param :user_selected_tags, 'bool'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :viewer_coordinates, 'object'
@@ -673,10 +669,6 @@ module FacebookAds
       end
     end
 
-    has_edge :partner_coupon_offer do |edge|
-      edge.get 'PartnerCouponOffer'
-    end
-
     has_edge :permissions do |edge|
       edge.delete do |api|
         api.has_param :permission, 'string'
@@ -756,27 +748,6 @@ module FacebookAds
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
-      end
-    end
-
-    has_edge :places do |edge|
-      edge.post do |api|
-        api.has_param :address, 'object'
-        api.has_param :city_id, 'string'
-        api.has_param :coords, 'object'
-        api.has_param :custom_provider, 'string'
-        api.has_param :description, 'string'
-        api.has_param :geometry, 'object'
-        api.has_param :name, 'string'
-        api.has_param :neighborhood_name, 'string'
-        api.has_param :override_ids, { list: 'int' }
-        api.has_param :phone, 'string'
-        api.has_param :pin_source, 'string'
-        api.has_param :privacy, 'string'
-        api.has_param :topics, { list: 'string' }
-        api.has_param :type, { enum: %w{CITY COUNTRY EVENT PLACE RESIDENCE STATE_PROVINCE TEXT }}
-        api.has_param :uid, 'int'
-        api.has_param :website, 'string'
       end
     end
 

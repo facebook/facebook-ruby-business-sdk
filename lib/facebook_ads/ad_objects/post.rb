@@ -194,10 +194,6 @@ module FacebookAds
       end
     end
 
-    has_edge :seen do |edge|
-      edge.get 'User'
-    end
-
     has_edge :sharedposts do |edge|
       edge.get 'Post'
     end

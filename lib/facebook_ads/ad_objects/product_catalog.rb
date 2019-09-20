@@ -323,6 +323,7 @@ module FacebookAds
         api.has_param :return_only_approved_products, 'bool'
       end
       edge.post 'ProductItem' do |api|
+        api.has_param :additional_image_files, { list: 'file' }
         api.has_param :additional_image_urls, { list: 'string' }
         api.has_param :additional_variant_attributes, 'hash'
         api.has_param :android_app_name, 'string'
@@ -334,6 +335,7 @@ module FacebookAds
         api.has_param :category, 'string'
         api.has_param :checkout_url, 'string'
         api.has_param :color, 'string'
+        api.has_param :commerce_tax_category, { enum: -> { ProductItem::COMMERCE_TAX_CATEGORY }}
         api.has_param :condition, { enum: -> { ProductItem::CONDITION }}
         api.has_param :currency, 'string'
         api.has_param :custom_data, 'hash'
@@ -371,6 +373,7 @@ module FacebookAds
         api.has_param :product_type, 'string'
         api.has_param :retailer_id, 'string'
         api.has_param :retailer_product_group_id, 'string'
+        api.has_param :return_policy_days, 'int'
         api.has_param :sale_price, 'int'
         api.has_param :sale_price_end_date, 'datetime'
         api.has_param :sale_price_start_date, 'datetime'

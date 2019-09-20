@@ -114,7 +114,6 @@ module FacebookAds
     field :product_audience_specs, { list: 'TargetingProductAudienceSpec' }
     field :prospecting_audience, 'TargetingProspectingAudience'
     field :publisher_platforms, { list: 'string' }
-    field :publisher_visibility_categories, { list: 'string' }
     field :radius, 'string'
     field :regions, { list: 'IdName' }
     field :relationship_statuses, { list: 'int' }

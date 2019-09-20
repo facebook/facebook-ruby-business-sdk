@@ -113,6 +113,7 @@ module FacebookAds
       "SHOWREEL_NATIVE_DUMMY_VIDEO",
       "SLIDESHOW_ANIMOTO",
       "SLIDESHOW_SHAKR",
+      "SLIDESHOW_VARIATION_VIDEO",
       "SOTTO_CONTENT",
       "STORIES_VIDEO",
       "STORYLINE",
@@ -170,6 +171,7 @@ module FacebookAds
       "DRAFT",
       "INLINE_CREATED",
       "PUBLISHED",
+      "REVIEWABLE_BRANDED_CONTENT",
       "SCHEDULED",
       "SCHEDULED_RECURRING",
     ]

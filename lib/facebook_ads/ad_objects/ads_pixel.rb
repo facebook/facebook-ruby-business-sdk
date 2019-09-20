@@ -104,11 +104,9 @@ module FacebookAds
 
     has_edge :events do |edge|
       edge.post 'AdsPixel' do |api|
-        api.has_param :agent, 'string'
         api.has_param :data, { list: 'string' }
         api.has_param :test_event_code, 'string'
         api.has_param :trace, 'int'
-        api.has_param :upload_tag, 'string'
       end
     end
 

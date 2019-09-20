@@ -130,6 +130,13 @@ module FacebookAds
       "VIDEO_SOUND_ON",
     ]
 
+    TUNE_FOR_CATEGORY = [
+      "CREDIT",
+      "EMPLOYMENT",
+      "HOUSING",
+      "NONE",
+    ]
+
     DATE_PRESET = [
       "LAST_14D",
       "LAST_28D",
@@ -224,6 +231,7 @@ module FacebookAds
     field :time_start, 'datetime'
     field :time_stop, 'datetime'
     field :topline_id, 'string'
+    field :tune_for_category, { enum: -> { TUNE_FOR_CATEGORY }}
     field :upstream_events, 'hash'
 
     has_edge :activities do |edge|

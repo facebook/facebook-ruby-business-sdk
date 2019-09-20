@@ -75,6 +75,7 @@ module FacebookAds
       "DRAFT",
       "INLINE_CREATED",
       "PUBLISHED",
+      "REVIEWABLE_BRANDED_CONTENT",
       "SCHEDULED",
       "SCHEDULED_RECURRING",
     ]
@@ -217,10 +218,6 @@ module FacebookAds
       edge.get 'Profile' do |api|
         api.has_param :type, { enum: -> { Profile::TYPE }}
       end
-    end
-
-    has_edge :seen do |edge|
-      edge.get 'User'
     end
 
     has_edge :sharedposts do |edge|
