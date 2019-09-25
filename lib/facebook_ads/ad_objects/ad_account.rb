@@ -610,7 +610,7 @@ module FacebookAds
         api.has_param :replace_video_id, 'string'
         api.has_param :sales_promo_id, 'int'
         api.has_param :slideshow_spec, 'hash'
-        api.has_param :source, file
+        api.has_param :source, 'file'
         api.has_param :spherical, 'bool'
         api.has_param :start_offset, 'int'
         api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
@@ -624,7 +624,7 @@ module FacebookAds
         api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
         api.has_param :upload_session_id, 'string'
         api.has_param :upload_setting_properties, 'string'
-        api.has_param :video_file_chunk, file
+        api.has_param :video_file_chunk, 'file'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'
         api.accepts_files!
