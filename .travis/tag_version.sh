@@ -11,4 +11,5 @@ else
   git tag $VERSION_TAG -a -m "Version $VERSION_TAG" || die "get error when add new tag"
   echo 'push tag...'
   git push origin $VERSION_TAG
+
 fi
