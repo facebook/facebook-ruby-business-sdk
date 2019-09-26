@@ -8,6 +8,7 @@ if [ "$VERSION_TAG" == "$GIT_RAW_TAG" ]; then
   echo 'versions are updated, no need to add new tag.'
 else
   echo 'versions are not updated, start to add new tag.'
+  git remote add origin https://oauth2:${GH_TOKEN}@github.com:facebook/facebook-ruby-business-sdk.git
   git tag $VERSION_TAG -a -m "Version $VERSION_TAG" || die "get error when add new tag"
   echo 'push tag...'
   git push origin $VERSION_TAG
