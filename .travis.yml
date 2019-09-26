@@ -17,10 +17,10 @@ before_deploy:
   - git config --local user.name ${GH_NAME}
   - git config --local user.email ${GH_EMAIL}
   - export TRAVIS_TAG=$(sed -n "s/.* VERSION = '\(.*\)\'/\1/p" lib/facebook_ads/version.rb)
-  - echo $TRAVIS_TAG
   - git tag $TRAVIS_TAG
 deploy:
-  provider: releases
+  provider: script
+  script: echo $TRAVIS_TAG
   api_key: ${GH_TOKEN}
   skip_cleanup: true
 
