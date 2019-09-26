@@ -1,10 +1,7 @@
 language: ruby
 rvm:
 - 2.3
-branches:
-  only:
-  - master
-  - add-tag
+
 before_install:
 - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
 - gem install bundler -v '< 2'
@@ -23,6 +20,8 @@ deploy:
   script: echo $TRAVIS_TAG
   api_key: ${GH_TOKEN}
   skip_cleanup: true
+  on:
+    all_branches: true
 
 env:
   global:
