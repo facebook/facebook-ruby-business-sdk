@@ -11,4 +11,6 @@ before_install:
   - gem install bundler -v '< 2'
 
 install: bundle install
-script: gem build facebookbusiness.gemspec
+script:
+  - gem build facebookbusiness.gemspec
+  - ./.travis/tag_version.sh
