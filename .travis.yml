@@ -11,14 +11,14 @@ script:
 
 before_deploy:
   # Set up git user name and tag this commit
-  - git config --local user.name ${GH_NAME}
-  - git config --local user.email ${GH_EMAIL}
+  - git config --local user.name "Jing Ping"
+  - git config --local user.email "jingping@fb.com"
   - export TRAVIS_TAG=$(sed -n "s/.* VERSION = '\(.*\)\'/\1/p" lib/facebook_ads/version.rb)
   - git tag $TRAVIS_TAG
 deploy:
   provider: script
   script: echo $TRAVIS_TAG
-  api_key: ${GH_TOKEN}
+  api_key: $GH_TOKEN
   skip_cleanup: true
   on:
     all_branches: true
