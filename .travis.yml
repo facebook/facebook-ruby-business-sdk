@@ -1,30 +1,26 @@
 language: ruby
 rvm:
 - 2.3
-
 before_install:
 - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
 - gem install bundler -v '< 2'
 install: bundle install
 script:
 - gem build facebookbusiness.gemspec
-
 before_deploy:
-  # Set up git user name and tag this commit
-  - git config --local user.name "Jing Ping"
-  - git config --local user.email "jingping@fb.com"
-  - export TRAVIS_TAG=$(sed -n "s/.* VERSION = '\(.*\)\'/\1/p" lib/facebook_ads/version.rb)
-  - echo $TRAVIS_TAG
-  - git tag $TRAVIS_TAG
+- git config --local user.name "Jing Ping"
+- git config --local user.email "jingping@fb.com"
+- export TRAVIS_TAG=$(sed -n "s/.* VERSION = '\(.*\)\'/\1/p" lib/facebook_ads/version.rb)
+- echo $TRAVIS_TAG
+- git tag $TRAVIS_TAG
 deploy:
   provider: releases
-  tag_name: $TRAVIS_TAG
   api_key:
-    secure: y5V2iYaddGSeI6kpPIQnokTuNT07oQZaONbb/Sgxu+sIVZ9OeRpko3bt4ItAzKxPOMCE7edeJZHCqF9sj1NvZo+oU5A/nnH7MkjIXwI7Lyf/pGtD6nzsFoNyEV3LHHe9gbzSjJWUix3e3EqicwwJGqIzW5EA4VaWx6Cd4uoK6uTo4Rzyh2cMtD4WYRtdytEdkY25XuAAx0G5i1rGNZseGGeM5us0DIq+AWMakmYWrUO/EHEOcv7vQhJkoOLcNAToqkOJVhVSOZ6oEEN+A99Rz3j54Pq5nzr1TMgeDrYBF7xYoT4lRTddbE5kuFjcz7SN3FwWfc4D37594phfaiWRNrJ32spZWqOR4FhrHdymc6ftGBfx5OTPYrfYT6GLoWLeEzQFp0/ZqoKWqz4JUU4HmvXu3nDQePw2cflg9QoU3gr77uNn0cAWRmYYULmK9WA7Qrj2i322jcfjChV3As9yiSbt1U6Rpsw+P5u4j9hfrjx2whsCblAvu6D+fQky0qG+csUW4o/y4QznN8g626fCObfO8YXwEjFj4p0r2u7Suej2YK4X4wa7wzSa1G3DOFFBt8tgBabnNCx45GYmpmfichCBbTNY3J5uGBjnyYxKQI+dZveJjB8dvb7uSjx9KflKQ4u3XFnRPRvWa3mFxHy1laN4JXpZeV2IzvyIl2J7f+Y=
-  skip_cleanup: true
+    secure: pr1PujCPx4pI7jtONRO4U91+ug4+F4KKiyxPeSnGLz2LbpLfIeiTUgitDHj8lLCnw/4/Jz4xNKRpcmLB9eBWdB7R4+P6aGR8s67itxVS09D1hH5MKyxqzApTGU5U2fbfJkJY6WB7bdVRiCSBEmeOxFHKBHDQU26qDiEvIpT1/QDB7PQKmGpC7opODWUcsjBR4mqpfzQYmZXsC8Q/ksGb5IW1zP01To5y5gcC/CZKGAZH5b775XbF3xeZyPt5UXJAhQ9BPHHsBtVqxpUsQBBTc8h3Iof2uZx8wBJftvORQrNX0Ua4NosgRlaaugcq0n3c24WaTKqEshzXBrBBNLI8fR65Re335WF/W1IvjCw4Gkr6R0PnA4gFpzLXgasp6znCC8eP6y0+f7c/DLSNT+rZqHemyO+aYoqHyVFdL/uTWirAnwQevH9agQKwVZENCZsrI5HpzkEe5R23hUumdayQhYMiUlk/BYsBzA5bV7/GjdZB7RhBgK4+RyASeFzZa4JY6pTAVcLcbGzfFaNscGyvTcnTD5qi1LeL4vztfNebUXke+V3NwJmmpPkuaVayKL8LhBkDJBmzGteBqJfmGnuveo2dnBW1f/fpkd3VGvRZpDo+rCa218T8U02j1MsNzSlQ94L2owW+wL8uxjBmsGgfAm+VSE00wlQ/ASWtUzndSFM=
+  file: ''
   on:
-    all_branches: true
-
+    repo: facebook/facebook-ruby-business-sdk
+    branch: add-tag
 env:
   global:
   - secure: y5V2iYaddGSeI6kpPIQnokTuNT07oQZaONbb/Sgxu+sIVZ9OeRpko3bt4ItAzKxPOMCE7edeJZHCqF9sj1NvZo+oU5A/nnH7MkjIXwI7Lyf/pGtD6nzsFoNyEV3LHHe9gbzSjJWUix3e3EqicwwJGqIzW5EA4VaWx6Cd4uoK6uTo4Rzyh2cMtD4WYRtdytEdkY25XuAAx0G5i1rGNZseGGeM5us0DIq+AWMakmYWrUO/EHEOcv7vQhJkoOLcNAToqkOJVhVSOZ6oEEN+A99Rz3j54Pq5nzr1TMgeDrYBF7xYoT4lRTddbE5kuFjcz7SN3FwWfc4D37594phfaiWRNrJ32spZWqOR4FhrHdymc6ftGBfx5OTPYrfYT6GLoWLeEzQFp0/ZqoKWqz4JUU4HmvXu3nDQePw2cflg9QoU3gr77uNn0cAWRmYYULmK9WA7Qrj2i322jcfjChV3As9yiSbt1U6Rpsw+P5u4j9hfrjx2whsCblAvu6D+fQky0qG+csUW4o/y4QznN8g626fCObfO8YXwEjFj4p0r2u7Suej2YK4X4wa7wzSa1G3DOFFBt8tgBabnNCx45GYmpmfichCBbTNY3J5uGBjnyYxKQI+dZveJjB8dvb7uSjx9KflKQ4u3XFnRPRvWa3mFxHy1laN4JXpZeV2IzvyIl2J7f+Y=
