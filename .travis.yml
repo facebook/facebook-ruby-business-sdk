@@ -12,6 +12,7 @@ deploy:
   api_key:
     secure: iUR+ESPr+Mj70qChbklKvPKMGyhMNDcA+m92lNsbh+pQ541lXPk+2uYCYj46ZVHOUUAt4XzxbU4zPjxJU7CxB/jLSIZKgwMoofna+LazH1Ib0FlJJXhTsGDm+8WNpmNFZ/TPf4nU7hKE8d7DBmCvd5zufXMzhFt5FjLEWOg9t80zWKhKDCAjrlR7UHQ1cgvRDZR1CVzA+b3LZOlMxhH6WUVsG8bUcyn1206u+4qRA2qb0g11vksajiv3MIjQxesVVh0LdndwfBhQ6ljt4kHw1I5QiRaxcrEt10lorqDrstH0lyC/lPBbI2EidAI+DT6KfB1ZakL3vOzOvhGXA9e0B/7iEGj6fz08r4jLEWpMOkvneGA+s7dkNraj5KfaRJfMJnQumkptSjzm8kAx5YdjBU3Bulq7qZ/sRIAdDYeIqI++8/CnQJHxKMYxO+KPU5ICJtm1NgNNO54R/+bC5TSfAYC4nDBtwWAWBjeD4DFGn5JOQcrSSSBxAtT0YOerhDAgWGRNTrsRZnsY8qaB2GwaaMVza3q1vhZKe6TJU5ey9piQXGD8251PpE48DeYPCnTv0msAjLdaSfykYu+jCZouU2CgFJjp4eC7Gkaw0eRNJ1C2u1B2/KpecimOouYpv820CrARaMNTNU/GkHEpO7eZHQDU41D7LyDjXBNXJo/LY4o=
   file: "./"
+  skip_cleanup: true
   on:
     repo: facebook/facebook-ruby-business-sdk
     branch: add-tag
