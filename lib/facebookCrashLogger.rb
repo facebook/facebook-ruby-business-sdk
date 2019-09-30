@@ -27,7 +27,7 @@ module FacebookAds
             APIRequest.new(
               :post,
               '/instruments',
-              session: Session.current_session,
+              session: Session.anonymous_session,
               params: params,
               options: {} # batch options, not necessary for now
             ).execute do |response|
