@@ -17,7 +17,7 @@ deploy:
   provider: releases
   api_key:
     secure: pr1PujCPx4pI7jtONRO4U91+ug4+F4KKiyxPeSnGLz2LbpLfIeiTUgitDHj8lLCnw/4/Jz4xNKRpcmLB9eBWdB7R4+P6aGR8s67itxVS09D1hH5MKyxqzApTGU5U2fbfJkJY6WB7bdVRiCSBEmeOxFHKBHDQU26qDiEvIpT1/QDB7PQKmGpC7opODWUcsjBR4mqpfzQYmZXsC8Q/ksGb5IW1zP01To5y5gcC/CZKGAZH5b775XbF3xeZyPt5UXJAhQ9BPHHsBtVqxpUsQBBTc8h3Iof2uZx8wBJftvORQrNX0Ua4NosgRlaaugcq0n3c24WaTKqEshzXBrBBNLI8fR65Re335WF/W1IvjCw4Gkr6R0PnA4gFpzLXgasp6znCC8eP6y0+f7c/DLSNT+rZqHemyO+aYoqHyVFdL/uTWirAnwQevH9agQKwVZENCZsrI5HpzkEe5R23hUumdayQhYMiUlk/BYsBzA5bV7/GjdZB7RhBgK4+RyASeFzZa4JY6pTAVcLcbGzfFaNscGyvTcnTD5qi1LeL4vztfNebUXke+V3NwJmmpPkuaVayKL8LhBkDJBmzGteBqJfmGnuveo2dnBW1f/fpkd3VGvRZpDo+rCa218T8U02j1MsNzSlQ94L2owW+wL8uxjBmsGgfAm+VSE00wlQ/ASWtUzndSFM=
-  file: ''
+  file: './'
   on:
     repo: facebook/facebook-ruby-business-sdk
     branch: add-tag
