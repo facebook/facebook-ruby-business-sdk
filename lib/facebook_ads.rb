@@ -18,7 +18,7 @@
 
 require 'facebook_ads/version'
 require 'facebook_ads/helpers/shortcuts'
-require 'facebookCrashLogger'
+require 'facebook_ads/crash_logger'
 
 module FacebookAds
   DEFAULT_API_VERSION = 'v' + API_VERSION
@@ -37,7 +37,7 @@ module FacebookAds
   def configure
     @config ||= Config.new
     yield @config if block_given?
-    FacebookCrashLogger.enable if @config.crash_logging_enabled
+    CrashLogger.enable if @config.crash_logging_enabled
     @config
   end
 
