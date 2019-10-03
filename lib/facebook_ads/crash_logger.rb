@@ -16,7 +16,7 @@ module FacebookAds
           params = {
             'bizsdk_crash_report': {
               'reason': formatted_reason(error),
-              'platform': 'platform',
+              'platform': "ruby #{RUBY_VERSION}",
               'callstack': error.backtrace
             }
           }
@@ -40,7 +40,7 @@ module FacebookAds
 
       def is_facebook_error(error)
         error.backtrace.any? { |frame|
-          frame.match? 'facebook'
+          frame.match? 'facebook_ads'
         } if error
       end
 
