@@ -97,6 +97,28 @@ module FacebookAds
       "PAUSED",
     ]
 
+    DATE_PRESET = [
+      "LAST_14D",
+      "LAST_28D",
+      "LAST_30D",
+      "LAST_3D",
+      "LAST_7D",
+      "LAST_90D",
+      "LAST_MONTH",
+      "LAST_QUARTER",
+      "LAST_WEEK_MON_SUN",
+      "LAST_WEEK_SUN_SAT",
+      "LAST_YEAR",
+      "LIFETIME",
+      "THIS_MONTH",
+      "THIS_QUARTER",
+      "THIS_WEEK_MON_TODAY",
+      "THIS_WEEK_SUN_TODAY",
+      "THIS_YEAR",
+      "TODAY",
+      "YESTERDAY",
+    ]
+
     DESTINATION_TYPE = [
       "APP",
       "APPLINKS_AUTOMATIC",
@@ -135,28 +157,6 @@ module FacebookAds
       "EMPLOYMENT",
       "HOUSING",
       "NONE",
-    ]
-
-    DATE_PRESET = [
-      "LAST_14D",
-      "LAST_28D",
-      "LAST_30D",
-      "LAST_3D",
-      "LAST_7D",
-      "LAST_90D",
-      "LAST_MONTH",
-      "LAST_QUARTER",
-      "LAST_WEEK_MON_SUN",
-      "LAST_WEEK_SUN_SAT",
-      "LAST_YEAR",
-      "LIFETIME",
-      "THIS_MONTH",
-      "THIS_QUARTER",
-      "THIS_WEEK_MON_TODAY",
-      "THIS_WEEK_SUN_TODAY",
-      "THIS_YEAR",
-      "TODAY",
-      "YESTERDAY",
     ]
 
     OPERATOR = [
@@ -275,6 +275,16 @@ module FacebookAds
     has_edge :asyncadrequests do |edge|
       edge.get 'AdAsyncRequest' do |api|
         api.has_param :statuses, { list: { enum: -> { AdAsyncRequest::STATUSES }} }
+      end
+    end
+
+    has_edge :content_delivery_report do |edge|
+      edge.get 'ContentDeliveryReport' do |api|
+        api.has_param :end_date, 'datetime'
+        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
+        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
+        api.has_param :start_date, 'datetime'
+        api.has_param :summary, 'bool'
       end
     end
 

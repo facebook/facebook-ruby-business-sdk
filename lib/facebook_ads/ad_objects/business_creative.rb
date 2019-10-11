@@ -42,5 +42,9 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :ad_placement_validation_results do |edge|
+      edge.get
+    end
+
   end
 end

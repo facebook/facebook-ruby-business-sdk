@@ -43,6 +43,7 @@ module FacebookAds
 
 
     field :app_id, 'string'
+    field :are_app_events_unavailable, 'bool'
     field :icon_url, 'string'
     field :name, 'string'
     field :search_source_store, 'string'

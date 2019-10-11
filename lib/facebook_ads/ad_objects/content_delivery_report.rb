@@ -25,9 +25,47 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCreativeDegreesOfFreedomSpec < AdObject
+  class ContentDeliveryReport < AdObject
+    PLATFORM = [
+      "AUDIENCE_NETWORK",
+      "FACEBOOK",
+      "INSTAGRAM",
+      "MESSENGER",
+      "UNKNOWN",
+      "WHATSAPP",
+    ]
 
-    field :degrees_of_freedom_type, 'string'
+    POSITION = [
+      "ALL_PLACEMENTS",
+      "AN_CLASSIC",
+      "FACEBOOK_GROUPS",
+      "FACEBOOK_STORIES",
+      "FEED",
+      "GROUPS",
+      "INSTAGRAM_EXPLORE",
+      "INSTAGRAM_STORIES",
+      "INSTANT_ARTICLE",
+      "INSTREAM_VIDEO",
+      "MARKETPLACE",
+      "MESSENGER_INBOX",
+      "MESSENGER_STORIES",
+      "OTHERS",
+      "REWARDED_VIDEO",
+      "RIGHT_HAND_COLUMN",
+      "SEARCH",
+      "SEARCH_SERP",
+      "STATUS",
+      "SUGGESTED_VIDEO",
+      "UNKNOWN",
+      "VIDEO_FEEDS",
+    ]
+
+
+    field :content_name, 'string'
+    field :content_url, 'string'
+    field :creator_name, 'string'
+    field :creator_url, 'string'
+    field :estimated_impressions, 'int'
     has_no_id
     has_no_get
     has_no_post

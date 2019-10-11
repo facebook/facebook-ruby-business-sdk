@@ -51,6 +51,7 @@ module FacebookAds
       "DCO_AD_ASSET_FEED",
       "DCO_AUTOGEN_VIDEO",
       "DCO_TRIMMED_VIDEO",
+      "DIM_SUM",
       "DIRECTED_POST_ATTACHMENT",
       "DIRECT_INBOX",
       "DIRECT_INBOX_REACTION",

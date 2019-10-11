@@ -235,6 +235,20 @@ module FacebookAds
 
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
+      edge.post 'AdStudy' do |api|
+        api.has_param :cells, { list: 'object' }
+        api.has_param :client_business, 'string'
+        api.has_param :confidence_level, 'double'
+        api.has_param :cooldown_start_time, 'int'
+        api.has_param :description, 'string'
+        api.has_param :end_time, 'int'
+        api.has_param :name, 'string'
+        api.has_param :objectives, { list: 'object' }
+        api.has_param :observation_end_time, 'int'
+        api.has_param :start_time, 'int'
+        api.has_param :type, { enum: -> { AdStudy::TYPE }}
+        api.has_param :viewers, { list: 'int' }
+      end
     end
 
     has_edge :adaccounts do |edge|

@@ -51,6 +51,9 @@ module FacebookAds
       "open_box_new",
       "refurbished",
       "used",
+      "used_fair",
+      "used_good",
+      "used_like_new",
     ]
 
     GENDER = [

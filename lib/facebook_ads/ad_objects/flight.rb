@@ -42,7 +42,6 @@ module FacebookAds
     field :price, 'string'
     field :sanitized_images, { list: 'string' }
     field :url, 'string'
-    has_no_post
     has_no_delete
 
   end

@@ -30,6 +30,7 @@ module FacebookAds
     field :account, 'AdAccount'
     field :approximate_count, 'int'
     field :description, 'string'
+    field :extra_info, 'string'
     field :id, 'string'
     field :name, 'string'
     field :permission_for_actions, 'AudiencePermissionForActions'

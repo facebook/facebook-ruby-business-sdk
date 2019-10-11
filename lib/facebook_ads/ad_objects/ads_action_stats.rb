@@ -49,6 +49,7 @@ module FacebookAds
     field :action_video_asset_id, 'string'
     field :action_video_sound, 'string'
     field :action_video_type, 'string'
+    field :dda, 'string'
     field :inline, 'string'
     field :interactive_component_sticker_id, 'string'
     field :interactive_component_sticker_response, 'string'

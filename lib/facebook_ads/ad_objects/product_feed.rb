@@ -90,6 +90,7 @@ module FacebookAds
     field :update_schedule, 'ProductFeedSchedule'
     field :feed_type, { enum: -> { FEED_TYPE }}
     field :rules, { list: 'string' }
+    field :upload_schedule, 'string'
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|

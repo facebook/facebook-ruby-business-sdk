@@ -505,10 +505,6 @@ module FacebookAds
       end
     end
 
-    has_edge :moods_for_application do |edge|
-      edge.get
-    end
-
     has_edge :objects do |edge|
       edge.get 'OpenGraphObject' do |api|
         api.has_param :type, 'object'

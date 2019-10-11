@@ -43,6 +43,7 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "attribution_model_type",
       "interactive_component_sticker_id",
       "interactive_component_sticker_response",
     ]

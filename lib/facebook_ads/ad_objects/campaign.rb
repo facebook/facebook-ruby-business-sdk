@@ -199,6 +199,16 @@ module FacebookAds
       end
     end
 
+    has_edge :content_delivery_report do |edge|
+      edge.get 'ContentDeliveryReport' do |api|
+        api.has_param :end_date, 'datetime'
+        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
+        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
+        api.has_param :start_date, 'datetime'
+        api.has_param :summary, 'bool'
+      end
+    end
+
     has_edge :copies do |edge|
       edge.get 'Campaign' do |api|
         api.has_param :date_preset, { enum: -> { Campaign::DATE_PRESET }}

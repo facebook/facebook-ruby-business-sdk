@@ -87,7 +87,7 @@ module FacebookAds
         api.has_param :montage_mentions, 'hash'
         api.has_param :montage_overlays, { list: 'hash' }
         api.has_param :montage_reply_data, 'object'
-        api.has_param :montage_supported_features, { list: { enum: %w{LIGHTWEIGHT_REPLY SHOW_STORY_IN_MESSENGER_THREAD }} }
+        api.has_param :montage_supported_features, { list: { enum: %w{AUTHOR_IN_PRODUCER_QE_FOR_SMART_REPLIES LIGHTWEIGHT_REPLY SHOW_STORY_IN_MESSENGER_THREAD }} }
         api.has_param :montage_targets, { list: 'string' }
         api.has_param :object_attachment, 'string'
         api.has_param :offline_threading_id, 'string'

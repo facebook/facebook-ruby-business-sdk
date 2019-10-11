@@ -28,6 +28,7 @@ module FacebookAds
   class Url < AdObject
     SCOPES = [
       "NEWS_TAB",
+      "NEWS_TAB_DEV_ENV",
     ]
 
 

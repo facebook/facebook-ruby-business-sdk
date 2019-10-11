@@ -34,5 +34,13 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :atlas_sales_accesses do |edge|
+      edge.get
+      edge.post do |api|
+        api.has_param :access_request_id, 'string'
+        api.has_param :status, 'string'
+      end
+    end
+
   end
 end

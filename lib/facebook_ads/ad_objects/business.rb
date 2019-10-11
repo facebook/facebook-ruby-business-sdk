@@ -161,34 +161,6 @@ module FacebookAds
       end
     end
 
-    has_edge :adaccountcreationrequests do |edge|
-      edge.post 'AdAccountCreationRequest' do |api|
-        api.has_param :ad_accounts_info, { list: 'hash' }
-        api.has_param :additional_comment, 'string'
-        api.has_param :address_in_chinese, 'string'
-        api.has_param :address_in_english, 'hash'
-        api.has_param :address_in_local_language, 'string'
-        api.has_param :advertiser_business_id, 'string'
-        api.has_param :business_registration, 'file'
-        api.has_param :business_registration_id, 'string'
-        api.has_param :chinese_legal_entity_name, 'string'
-        api.has_param :contact, 'hash'
-        api.has_param :english_legal_entity_name, 'string'
-        api.has_param :extended_credit_id, 'string'
-        api.has_param :is_smb, 'bool'
-        api.has_param :is_test, 'bool'
-        api.has_param :legal_entity_name_in_local_language, 'string'
-        api.has_param :official_website_url, 'string'
-        api.has_param :planning_agency_business_id, 'string'
-        api.has_param :promotable_app_ids, { list: 'string' }
-        api.has_param :promotable_page_ids, { list: 'int' }
-        api.has_param :promotable_page_urls, { list: 'string' }
-        api.has_param :promotable_urls, { list: 'string' }
-        api.has_param :subvertical, { enum: -> { AdAccountCreationRequest::SUBVERTICAL }}
-        api.has_param :vertical, { enum: -> { AdAccountCreationRequest::VERTICAL }}
-      end
-    end
-
     has_edge :adnetworkanalytics do |edge|
       edge.get 'AdNetworkAnalyticsSyncQueryResult' do |api|
         api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
@@ -228,13 +200,6 @@ module FacebookAds
       end
       edge.post 'AdsPixel' do |api|
         api.has_param :name, 'string'
-      end
-    end
-
-    has_edge :advertisable_applications do |edge|
-      edge.get 'BusinessAdvertisableApplicationsResult' do |api|
-        api.has_param :adaccount_id, 'int'
-        api.has_param :offset, 'int'
       end
     end
 
@@ -334,6 +299,16 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'Business'
+    end
+
+    has_edge :content_delivery_report do |edge|
+      edge.get 'ContentDeliveryReport' do |api|
+        api.has_param :end_date, 'datetime'
+        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
+        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
+        api.has_param :start_date, 'datetime'
+        api.has_param :summary, 'bool'
+      end
     end
 
     has_edge :creative_folders do |edge|

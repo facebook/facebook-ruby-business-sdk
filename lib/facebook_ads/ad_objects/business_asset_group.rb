@@ -39,6 +39,7 @@ module FacebookAds
       "ADVERTISE",
       "MANAGE",
       "UPLOAD",
+      "VIEW",
     ]
 
     PAGE_TASKS = [

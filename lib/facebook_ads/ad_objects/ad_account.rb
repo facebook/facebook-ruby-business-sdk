@@ -203,6 +203,7 @@ module FacebookAds
     field :timezone_offset_hours_utc, 'double'
     field :tos_accepted, 'hash'
     field :user_role, 'string'
+    field :user_tasks, { list: 'string' }
     field :user_tos_accepted, 'hash'
     has_no_delete
 
@@ -246,53 +247,6 @@ module FacebookAds
         api.has_param :delete_offset, 'int'
         api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_ARCHIVED_BEFORE DELETE_OLDEST }}
         api.has_param :object_count, 'int'
-      end
-      edge.post 'AdSet' do |api|
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :adset_schedule, { list: 'object' }
-        api.has_param :attribution_spec, { list: 'hash' }
-        api.has_param :bid_adjustments, 'object'
-        api.has_param :bid_amount, 'int'
-        api.has_param :bid_constraints, 'hash'
-        api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
-        api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
-        api.has_param :campaign_id, 'string'
-        api.has_param :campaign_spec, 'object'
-        api.has_param :creative_sequence, { list: 'string' }
-        api.has_param :daily_budget, 'int'
-        api.has_param :daily_imps, 'int'
-        api.has_param :daily_min_spend_target, 'int'
-        api.has_param :daily_spend_cap, 'int'
-        api.has_param :date_format, 'string'
-        api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
-        api.has_param :end_time, 'datetime'
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
-        api.has_param :frequency_control_specs, { list: 'object' }
-        api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
-        api.has_param :is_dynamic_creative, 'bool'
-        api.has_param :lifetime_budget, 'int'
-        api.has_param :lifetime_imps, 'int'
-        api.has_param :lifetime_min_spend_target, 'int'
-        api.has_param :lifetime_spend_cap, 'int'
-        api.has_param :line_number, 'int'
-        api.has_param :name, 'string'
-        api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
-        api.has_param :optimization_sub_event, { enum: -> { AdSet::OPTIMIZATION_SUB_EVENT }}
-        api.has_param :pacing_type, { list: 'string' }
-        api.has_param :promoted_object, 'object'
-        api.has_param :rb_prediction_id, 'string'
-        api.has_param :rf_prediction_id, 'string'
-        api.has_param :source_adset_id, 'string'
-        api.has_param :start_time, 'datetime'
-        api.has_param :status, { enum: -> { AdSet::STATUS }}
-        api.has_param :targeting, 'Targeting'
-        api.has_param :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
-        api.has_param :time_based_ad_rotation_intervals, { list: 'int' }
-        api.has_param :time_start, 'datetime'
-        api.has_param :time_stop, 'datetime'
-        api.has_param :topline_id, 'string'
-        api.has_param :tune_for_category, { enum: -> { AdSet::TUNE_FOR_CATEGORY }}
-        api.has_param :upstream_events, 'hash'
       end
     end
 
@@ -399,7 +353,7 @@ module FacebookAds
     has_edge :adreportschedules do |edge|
       edge.get
       edge.post do |api|
-        api.has_param :actions_group_by, { list: { enum: %w{action_brand action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_category action_converted_brand_tag_id action_converted_category_tag_id action_converted_product_id action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type interactive_component_sticker_id interactive_component_sticker_response }} }
+        api.has_param :actions_group_by, { list: { enum: %w{action_brand action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_category action_converted_brand_tag_id action_converted_category_tag_id action_converted_product_id action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type attribution_model_type interactive_component_sticker_id interactive_component_sticker_response }} }
         api.has_param :breakdowns, { list: 'string' }
         api.has_param :builtin_column_set, { enum: %w{ APP_ENGAGEMENT AUDIENCE_DIRECT BIDDING_AND_OPTIMIZATION CAROUSEL_ENGAGEMENT CROSS_DEVICE DELIVERY ENGAGEMENT HOUSEHOLD MESSAGING_ENGAGEMENT MESSENGER OFFLINE_CONVERSIONS PERFORMANCE PERFORMANCE_LEGACY TARGETING_AND_CREATIVE VALIDATION_VIEW VIDEO_ENGAGEMENT }}
         api.has_param :creation_source, { enum: %w{adsExcelAddin adsManagerReporting newAdsManager }}
@@ -489,6 +443,10 @@ module FacebookAds
       end
     end
 
+    has_edge :ads_volume do |edge|
+      edge.get 'AdAccountAdVolume'
+    end
+
     has_edge :adsbylabels do |edge|
       edge.get 'Ad' do |api|
         api.has_param :ad_label_ids, { list: 'string' }
@@ -506,6 +464,53 @@ module FacebookAds
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :use_employee_draft, 'bool'
+      end
+      edge.post 'AdSet' do |api|
+        api.has_param :adlabels, { list: 'object' }
+        api.has_param :adset_schedule, { list: 'object' }
+        api.has_param :attribution_spec, { list: 'hash' }
+        api.has_param :bid_adjustments, 'object'
+        api.has_param :bid_amount, 'int'
+        api.has_param :bid_constraints, 'hash'
+        api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
+        api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
+        api.has_param :campaign_id, 'string'
+        api.has_param :campaign_spec, 'object'
+        api.has_param :creative_sequence, { list: 'string' }
+        api.has_param :daily_budget, 'int'
+        api.has_param :daily_imps, 'int'
+        api.has_param :daily_min_spend_target, 'int'
+        api.has_param :daily_spend_cap, 'int'
+        api.has_param :date_format, 'string'
+        api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
+        api.has_param :end_time, 'datetime'
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :frequency_control_specs, { list: 'object' }
+        api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
+        api.has_param :is_dynamic_creative, 'bool'
+        api.has_param :lifetime_budget, 'int'
+        api.has_param :lifetime_imps, 'int'
+        api.has_param :lifetime_min_spend_target, 'int'
+        api.has_param :lifetime_spend_cap, 'int'
+        api.has_param :line_number, 'int'
+        api.has_param :name, 'string'
+        api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
+        api.has_param :optimization_sub_event, { enum: -> { AdSet::OPTIMIZATION_SUB_EVENT }}
+        api.has_param :pacing_type, { list: 'string' }
+        api.has_param :promoted_object, 'object'
+        api.has_param :rb_prediction_id, 'string'
+        api.has_param :rf_prediction_id, 'string'
+        api.has_param :source_adset_id, 'string'
+        api.has_param :start_time, 'datetime'
+        api.has_param :status, { enum: -> { AdSet::STATUS }}
+        api.has_param :targeting, 'Targeting'
+        api.has_param :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
+        api.has_param :time_based_ad_rotation_intervals, { list: 'int' }
+        api.has_param :time_start, 'datetime'
+        api.has_param :time_stop, 'datetime'
+        api.has_param :topline_id, 'string'
+        api.has_param :tune_for_category, { enum: -> { AdSet::TUNE_FOR_CATEGORY }}
+        api.has_param :upstream_events, 'hash'
       end
     end
 
@@ -771,6 +776,16 @@ module FacebookAds
       edge.get 'Campaign' do |api|
         api.has_param :ad_label_ids, { list: 'string' }
         api.has_param :operator, { enum: -> { Campaign::OPERATOR }}
+      end
+    end
+
+    has_edge :content_delivery_report do |edge|
+      edge.get 'ContentDeliveryReport' do |api|
+        api.has_param :end_date, 'datetime'
+        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
+        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
+        api.has_param :start_date, 'datetime'
+        api.has_param :summary, 'bool'
       end
     end
 

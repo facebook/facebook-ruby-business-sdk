@@ -64,6 +64,10 @@ module FacebookAds
     field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
     has_no_post
 
+    has_edge :ad_placement_validation_results do |edge|
+      edge.get
+    end
+
     has_edge :insights do |edge|
       edge.get do |api|
         api.has_param :breakdowns, { list: { enum: %w{age country gender }} }

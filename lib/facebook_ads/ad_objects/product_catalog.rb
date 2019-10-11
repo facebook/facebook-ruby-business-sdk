@@ -278,6 +278,7 @@ module FacebookAds
         api.has_param :rules, { list: 'string' }
         api.has_param :schedule, 'string'
         api.has_param :update_schedule, 'string'
+        api.has_param :upload_schedule, 'string'
       end
     end
 
