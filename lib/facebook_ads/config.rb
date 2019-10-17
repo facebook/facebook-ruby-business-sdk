@@ -33,6 +33,7 @@ module FacebookAds
     setting :api_version, FacebookAds::DEFAULT_API_VERSION
     setting :access_token, ENV['FB_ACCESS_TOKEN']
     setting :app_secret, ENV['FB_APP_SECRET']
+    setting :crash_logging_enabled, false
 
     setting :log_api_bodies, false
 
