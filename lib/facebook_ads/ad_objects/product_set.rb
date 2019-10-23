@@ -76,6 +76,13 @@ module FacebookAds
       end
     end
 
+    has_edge :vehicle_offers do |edge|
+      edge.get 'VehicleOffer' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
     has_edge :vehicles do |edge|
       edge.get 'Vehicle' do |api|
         api.has_param :bulk_pagination, 'bool'

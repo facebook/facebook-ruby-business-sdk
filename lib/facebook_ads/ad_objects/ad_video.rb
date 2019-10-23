@@ -337,13 +337,6 @@ module FacebookAds
     field :creative_folder_id, 'string'
     field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
 
-    has_edge :auto_trims do |edge|
-      edge.post 'AdVideo' do |api|
-        api.has_param :auto_trim_type, 'string'
-        api.has_param :target_id, 'int'
-      end
-    end
-
     has_edge :captions do |edge|
       edge.get
       edge.post 'AdVideo' do |api|
@@ -424,13 +417,6 @@ module FacebookAds
 
     has_edge :sponsor_tags do |edge|
       edge.get 'Page'
-    end
-
-    has_edge :summarizations do |edge|
-      edge.post 'AdVideo' do |api|
-        api.has_param :summarization_type, 'string'
-        api.has_param :target_id, 'int'
-      end
     end
 
     has_edge :tags do |edge|

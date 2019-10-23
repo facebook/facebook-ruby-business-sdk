@@ -154,6 +154,7 @@ module FacebookAds
     field :destination_set_id, 'string'
     field :dynamic_ad_voice, 'string'
     field :effective_authorization_category, 'string'
+    field :effective_instagram_media_id, 'string'
     field :effective_instagram_story_id, 'string'
     field :effective_object_story_id, 'string'
     field :enable_direct_install, 'bool'
@@ -202,6 +203,10 @@ module FacebookAds
       edge.post 'AdCreative' do |api|
         api.has_param :adlabels, { list: 'object' }
       end
+    end
+
+    has_edge :creative_insights do |edge|
+      edge.get 'AdCreativeInsights'
     end
 
     has_edge :previews do |edge|

@@ -254,10 +254,6 @@ module FacebookAds
       edge.get 'AdStudy'
     end
 
-    has_edge :adcontracts do |edge|
-      edge.get 'AdContract'
-    end
-
     has_edge :adcreatives do |edge|
       edge.get 'AdCreative'
       edge.post 'AdCreative' do |api|
@@ -528,14 +524,6 @@ module FacebookAds
       edge.post 'AdsPixel' do |api|
         api.has_param :name, 'string'
       end
-    end
-
-    has_edge :adtoplinedetails do |edge|
-      edge.get 'AdToplineDetail'
-    end
-
-    has_edge :adtoplines do |edge|
-      edge.get 'AdTopline'
     end
 
     has_edge :advertisable_applications do |edge|
@@ -1129,7 +1117,8 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :app_id, 'string'
       end
-      edge.post do |api|
+      edge.get 'AdAccountSubscribedApps'
+      edge.post 'AdAccountSubscribedApps' do |api|
         api.has_param :app_id, 'string'
       end
     end

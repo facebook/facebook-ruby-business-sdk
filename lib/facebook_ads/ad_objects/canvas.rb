@@ -37,7 +37,16 @@ module FacebookAds
     field :name, 'string'
     field :owner, 'Page'
     field :update_time, 'int'
-    has_no_delete
+
+    has_edge :duplicate_canvas do |edge|
+      edge.post 'Canvas'
+    end
+
+    has_edge :preview_notifications do |edge|
+      edge.post 'Canvas' do |api|
+        api.has_param :user_ids, { list: 'int' }
+      end
+    end
 
   end
 end

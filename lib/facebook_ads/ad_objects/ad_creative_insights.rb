@@ -25,36 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstagramUser < AdObject
+  class AdCreativeInsights < AdObject
 
-    field :follow_count, 'int'
-    field :followed_by_count, 'int'
-    field :has_profile_picture, 'bool'
-    field :id, 'string'
-    field :is_private, 'bool'
-    field :is_published, 'bool'
-    field :media_count, 'int'
-    field :profile_pic, 'string'
-    field :username, 'string'
+    field :aesthetics, 'hash'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :agencies do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'string'
-      end
-      edge.get 'Business'
-    end
-
-    has_edge :authorized_adaccounts do |edge|
-      edge.get 'AdAccount' do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'InstagramUser' do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :business, 'string'
-      end
-    end
 
   end
 end

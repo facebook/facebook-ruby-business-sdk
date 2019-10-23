@@ -25,23 +25,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdToplineDetail < AdObject
+  class CollaborativeAdsPartnerInfoListItem < AdObject
 
-    field :active_status, 'int'
-    field :ad_account_id, 'string'
-    field :flight_end_date, 'datetime'
-    field :flight_start_date, 'datetime'
-    field :id, 'string'
-    field :io_number, 'int'
-    field :line_number, 'int'
-    field :price, 'double'
-    field :quantity, 'double'
-    field :sf_detail_line_id, 'string'
-    field :subline_id, 'string'
-    field :targets, 'string'
-    field :time_created, 'datetime'
-    field :time_updated, 'datetime'
-    field :topline_id, 'AdTopline'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

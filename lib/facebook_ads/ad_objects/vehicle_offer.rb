@@ -25,36 +25,41 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstagramUser < AdObject
+  class VehicleOffer < AdObject
 
-    field :follow_count, 'int'
-    field :followed_by_count, 'int'
-    field :has_profile_picture, 'bool'
+    field :amount_currency, 'string'
+    field :amount_percentage, 'double'
+    field :amount_price, 'string'
+    field :amount_qualifier, 'string'
+    field :applinks, 'AppLinks'
+    field :body_style, 'string'
+    field :cashback_currency, 'string'
+    field :cashback_price, 'string'
+    field :currency, 'string'
+    field :dma_codes, { list: 'string' }
+    field :downpayment_currency, 'string'
+    field :downpayment_price, 'string'
+    field :downpayment_qualifier, 'string'
+    field :end_date, 'string'
+    field :end_time, 'int'
     field :id, 'string'
-    field :is_private, 'bool'
-    field :is_published, 'bool'
-    field :media_count, 'int'
-    field :profile_pic, 'string'
-    field :username, 'string'
+    field :images, { list: 'string' }
+    field :offer_description, 'string'
+    field :offer_disclaimer, 'string'
+    field :offer_type, 'string'
+    field :price, 'string'
+    field :sanitized_images, { list: 'string' }
+    field :start_date, 'string'
+    field :start_time, 'int'
+    field :term_length, 'int'
+    field :term_qualifier, 'string'
+    field :title, 'string'
+    field :trim, 'string'
+    field :url, 'string'
+    field :vehicle_offer_id, 'string'
+    field :year, 'int'
     has_no_post
     has_no_delete
-
-    has_edge :agencies do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'string'
-      end
-      edge.get 'Business'
-    end
-
-    has_edge :authorized_adaccounts do |edge|
-      edge.get 'AdAccount' do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'InstagramUser' do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :business, 'string'
-      end
-    end
 
   end
 end

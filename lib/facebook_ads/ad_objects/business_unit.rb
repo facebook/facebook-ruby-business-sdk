@@ -29,8 +29,13 @@ module FacebookAds
 
     field :business, 'Business'
     field :creation_time, 'datetime'
+    field :currency, 'string'
+    field :excluded_sources, 'object'
     field :id, 'string'
+    field :is_enabled_for_measurement, 'bool'
     field :name, 'string'
+    field :time_zone, 'string'
+    field :visits_available_date, 'int'
     has_no_post
     has_no_delete
 

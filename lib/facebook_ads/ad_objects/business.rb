@@ -146,6 +146,7 @@ module FacebookAds
 
     has_edge :adaccount do |edge|
       edge.post 'AdAccount' do |api|
+        api.has_param :ad_account_created_from_bm_flag, 'bool'
         api.has_param :currency, 'string'
         api.has_param :end_advertiser, 'object'
         api.has_param :funding_id, 'string'

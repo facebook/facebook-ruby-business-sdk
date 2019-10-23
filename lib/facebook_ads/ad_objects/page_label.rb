@@ -28,7 +28,7 @@ module FacebookAds
   class PageLabel < AdObject
 
     field :creation_time, 'datetime'
-    field :creator_id, 'Profile'
+    field :creator_id, 'string'
     field :from, 'Page'
     field :id, 'string'
     field :name, 'string'

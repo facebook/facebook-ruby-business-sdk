@@ -214,6 +214,7 @@ module FacebookAds
       "merchant_review",
       "message_deliveries",
       "message_echoes",
+      "message_mention",
       "message_reads",
       "messages",
       "messaging_account_linking",
@@ -574,15 +575,6 @@ module FacebookAds
         api.has_param :match_content_type, { enum: %w{AUDIO_ONLY VIDEO_AND_AUDIO VIDEO_ONLY }}
         api.has_param :matched_asset_id, 'string'
         api.has_param :reference_asset_id, 'string'
-      end
-    end
-
-    has_edge :copyright_whitelisted_ig_partners do |edge|
-      edge.delete do |api|
-        api.has_param :usernames, { list: 'string' }
-      end
-      edge.post do |api|
-        api.has_param :usernames, { list: 'string' }
       end
     end
 
@@ -950,7 +942,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL PAYMENT_SETTINGS PERSISTENT_MENU TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
       end
       edge.get 'MessengerProfile'
       edge.post 'Page' do |api|
@@ -958,6 +950,7 @@ module FacebookAds
         api.has_param :get_started, 'object'
         api.has_param :greeting, { list: 'object' }
         api.has_param :home_url, 'object'
+        api.has_param :ice_breakers, { list: 'hash' }
         api.has_param :payment_settings, 'object'
         api.has_param :persistent_menu, { list: 'object' }
         api.has_param :target_audience, 'object'
@@ -1016,6 +1009,13 @@ module FacebookAds
     has_edge :page_backed_instagram_accounts do |edge|
       edge.get 'InstagramUser'
       edge.post 'InstagramUser'
+    end
+
+    has_edge :page_whatsapp_number_verification do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :verification_code, 'string'
+        api.has_param :whatsapp_number, 'string'
+      end
     end
 
     has_edge :pass_thread_control do |edge|

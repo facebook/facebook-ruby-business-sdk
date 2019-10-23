@@ -70,6 +70,8 @@ module FacebookAds
       "CATALOG_SEGMENT_CUSTOMIZE_DEFAULT",
       "COUNTRY",
       "LANGUAGE",
+      "LANGUAGE_AND_COUNTRY",
+      "LOCAL",
     ]
 
 
@@ -151,6 +153,13 @@ module FacebookAds
         api.has_param :update_only, 'bool'
         api.has_param :url, 'string'
         api.has_param :username, 'string'
+      end
+    end
+
+    has_edge :vehicle_offers do |edge|
+      edge.get 'VehicleOffer' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
       end
     end
 

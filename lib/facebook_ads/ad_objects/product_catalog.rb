@@ -396,6 +396,13 @@ module FacebookAds
       end
     end
 
+    has_edge :vehicle_offers do |edge|
+      edge.get 'VehicleOffer' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
     has_edge :vehicles do |edge|
       edge.get 'Vehicle' do |api|
         api.has_param :bulk_pagination, 'bool'
@@ -415,6 +422,7 @@ module FacebookAds
         api.has_param :description, 'string'
         api.has_param :drivetrain, { enum: -> { Vehicle::DRIVETRAIN }}
         api.has_param :exterior_color, 'string'
+        api.has_param :fb_page_id, 'string'
         api.has_param :fuel_type, { enum: -> { Vehicle::FUEL_TYPE }}
         api.has_param :images, { list: 'object' }
         api.has_param :interior_color, 'string'
