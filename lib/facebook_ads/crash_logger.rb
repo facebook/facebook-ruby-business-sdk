@@ -10,9 +10,13 @@ module FacebookAds
 
       def logCrash
         error = $!
-
         if is_facebook_error(error)
+          app_id = get_app_id
           # TODO: Determine what platform information should be logged
+          if app_id.nil?
+            puts "Unable to log the crash: We're missing an app id."
+            return
+          end
           params = {
             'bizsdk_crash_report': {
               'reason': formatted_reason(error),
@@ -22,7 +26,7 @@ module FacebookAds
           }
           APIRequest.new(
             :post,
-            '/instruments',
+            "#{app_id}/instruments",
             session: Session.anonymous_session,
             params: params,
             options: {} # batch options, not necessary for now
@@ -53,6 +57,32 @@ module FacebookAds
           reason = 'SDK Error'
         end
         reason
+      end
+
+      def get_app_id
+        params = {
+          'input_token': Session.default_session.access_token,
+          'fields': 'app_id'
+        }
+        begin
+          APIRequest.new(
+            :get,
+            '/debug_token',
+            session: Session.default_session,
+            params: params,
+            options: {} # batch options, not necessary for now
+          ).execute do |response|
+            if (response.result.has_key?('data') &&
+              response.result['data'].has_key?('app_id')
+            )
+              response.result['data']['app_id']
+            else
+              nil
+            end
+          end
+        rescue
+          nil
+        end
       end
 
       public
