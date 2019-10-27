@@ -30,7 +30,6 @@ module FacebookAds
         error = $!
         if is_facebook_error(error)
           app_id = get_app_id
-          # TODO: Determine what platform information should be logged
           if app_id.nil?
             puts "Unable to log the crash: We're missing an app id."
             return
@@ -42,14 +41,22 @@ module FacebookAds
               'callstack': error.backtrace
             }
           }
-          APIRequest.new(
-            :post,
-            "#{app_id}/instruments",
-            session: Session.anonymous_session,
-            params: params,
-            options: {} # batch options, not necessary for now
-          ).execute do |response|
-            puts response
+          begin
+            APIRequest.new(
+              :post,
+              "#{app_id}/instruments",
+              session: Session.anonymous_session,
+              params: params,
+              options: {} # batch options, not necessary for now
+            ).execute do |response|
+              if response.result.has_key?('success') && response.result['success'] == true
+                puts 'Successfully sent report'
+                return
+              end
+              puts 'Failed to send report'
+            end
+          rescue
+            puts 'Failed to send report'
           end
         end
       end
