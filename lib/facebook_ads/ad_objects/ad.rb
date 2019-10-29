@@ -227,12 +227,6 @@ module FacebookAds
       end
     end
 
-    has_edge :keywordstats do |edge|
-      edge.get 'AdKeywordStats' do |api|
-        api.has_param :date, 'datetime'
-      end
-    end
-
     has_edge :leads do |edge|
       edge.get 'Lead'
     end

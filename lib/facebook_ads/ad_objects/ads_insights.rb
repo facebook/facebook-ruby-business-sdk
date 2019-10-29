@@ -184,7 +184,6 @@ module FacebookAds
     field :conversion_rate_ranking, 'string'
     field :conversion_values, { list: 'AdsActionStats' }
     field :conversions, { list: 'AdsActionStats' }
-    field :cost_per_10_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_15_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_result, 'AdsActionStats'
@@ -301,7 +300,6 @@ module FacebookAds
     field :reach, 'string'
     field :recurring_subscription_payment_actions, { list: 'AdsActionStats' }
     field :region, 'string'
-    field :relevance_score, 'AdgroupRelevanceScore'
     field :rule_asset, 'object'
     field :schedule_actions, { list: 'AdsActionStats' }
     field :schedule_value, { list: 'AdsActionStats' }
@@ -330,10 +328,8 @@ module FacebookAds
     field :unique_outbound_clicks, { list: 'AdsActionStats' }
     field :unique_outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :unique_video_continuous_2_sec_watched_actions, { list: 'AdsActionStats' }
-    field :unique_video_view_10_sec, { list: 'AdsActionStats' }
     field :unique_video_view_15_sec, { list: 'AdsActionStats' }
     field :updated_time, 'string'
-    field :video_10_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_15_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_30_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_asset, 'object'

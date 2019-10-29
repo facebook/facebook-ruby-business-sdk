@@ -39,11 +39,40 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :ad_platforms do |edge|
+      edge.get do |api|
+        api.has_param :filter_by, 'string'
+        api.has_param :metric_scope, 'hash'
+        api.has_param :order_by, 'string'
+      end
+    end
+
     has_edge :atlas_sales_accesses do |edge|
       edge.get
       edge.post do |api|
         api.has_param :access_request_id, 'string'
         api.has_param :status, 'string'
+      end
+    end
+
+    has_edge :custom_breakdowns do |edge|
+      edge.get do |api|
+        api.has_param :filter_by, 'string'
+        api.has_param :order_by, 'string'
+      end
+    end
+
+    has_edge :diagnostics do |edge|
+      edge.get do |api|
+        api.has_param :filter_by, 'string'
+        api.has_param :order_by, 'string'
+      end
+    end
+
+    has_edge :external_import_file do |edge|
+      edge.get do |api|
+        api.has_param :filter_by, 'string'
+        api.has_param :order_by, 'string'
       end
     end
 

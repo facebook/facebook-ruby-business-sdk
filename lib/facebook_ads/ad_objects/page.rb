@@ -215,6 +215,7 @@ module FacebookAds
       "message_deliveries",
       "message_echoes",
       "message_mention",
+      "message_reactions",
       "message_reads",
       "messages",
       "messaging_account_linking",
@@ -350,8 +351,6 @@ module FacebookAds
     field :is_webhooks_subscribed, 'bool'
     field :keywords, 'object'
     field :leadgen_form_preview_details, 'LeadGenFormPreviewDetails'
-    field :leadgen_has_crm_integration, 'bool'
-    field :leadgen_has_fat_ping_crm_integration, 'bool'
     field :leadgen_tos_acceptance_time, 'datetime'
     field :leadgen_tos_accepted, 'bool'
     field :leadgen_tos_accepting_user, 'User'
@@ -903,12 +902,6 @@ module FacebookAds
     has_edge :message_attachments do |edge|
       edge.post do |api|
         api.has_param :message, 'object'
-      end
-    end
-
-    has_edge :message_creatives do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :messages, { list: 'object' }
       end
     end
 

@@ -202,7 +202,6 @@ module FacebookAds
     field :timezone_name, 'string'
     field :timezone_offset_hours_utc, 'double'
     field :tos_accepted, 'hash'
-    field :user_role, 'string'
     field :user_tasks, { list: 'string' }
     field :user_tos_accepted, 'hash'
     has_no_delete
@@ -954,12 +953,6 @@ module FacebookAds
 
     has_edge :instagram_accounts do |edge|
       edge.get 'InstagramUser'
-    end
-
-    has_edge :leadgen_forms do |edge|
-      edge.get 'LeadgenForm' do |api|
-        api.has_param :query, 'string'
-      end
     end
 
     has_edge :matched_search_applications do |edge|

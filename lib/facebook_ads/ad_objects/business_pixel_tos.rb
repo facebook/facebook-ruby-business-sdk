@@ -25,29 +25,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdKeywordStats < AdObject
+  class BusinessPixelTos < AdObject
 
-    field :actions, { list: 'AdsActionStats' }
-    field :clicks, 'int'
-    field :cost_per_total_action, 'double'
-    field :cost_per_unique_click, 'double'
-    field :cpc, 'double'
-    field :cpm, 'double'
-    field :cpp, 'double'
-    field :ctr, 'double'
-    field :frequency, 'double'
+    field :accept_time, 'int'
     field :id, 'string'
-    field :impressions, 'int'
-    field :name, 'string'
-    field :reach, 'int'
-    field :spend, 'double'
-    field :total_actions, 'int'
-    field :total_unique_actions, 'int'
-    field :unique_actions, { list: 'AdsActionStats' }
-    field :unique_clicks, 'int'
-    field :unique_ctr, 'double'
-    field :unique_impressions, 'int'
-    has_no_get
     has_no_post
     has_no_delete
 

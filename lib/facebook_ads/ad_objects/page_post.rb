@@ -208,12 +208,6 @@ module FacebookAds
       end
     end
 
-    has_edge :private_replies do |edge|
-      edge.post 'PagePost' do |api|
-        api.has_param :message, 'string'
-      end
-    end
-
     has_edge :reactions do |edge|
       edge.get 'Profile' do |api|
         api.has_param :type, { enum: -> { Profile::TYPE }}

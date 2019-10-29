@@ -463,12 +463,6 @@ module FacebookAds
       end
     end
 
-    has_edge :owned_domains do |edge|
-      edge.post do |api|
-        api.has_param :domain_name, 'string'
-      end
-    end
-
     has_edge :owned_instagram_accounts do |edge|
       edge.get 'InstagramUser'
     end
@@ -548,6 +542,10 @@ module FacebookAds
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
       end
+    end
+
+    has_edge :pixel_tos do |edge|
+      edge.get 'BusinessPixelTos'
     end
 
     has_edge :received_audience_permissions do |edge|

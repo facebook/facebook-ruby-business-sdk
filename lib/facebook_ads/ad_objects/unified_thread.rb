@@ -47,7 +47,7 @@ module FacebookAds
 
     has_edge :messages do |edge|
       edge.get do |api|
-        api.has_param :source, { enum: %w{ALL USER }}
+        api.has_param :source, { enum: %w{ALL PARTICIPANTS }}
         api.has_param :user, 'int'
       end
       edge.post do |api|
