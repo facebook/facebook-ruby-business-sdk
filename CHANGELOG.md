@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## v0.5.0.0
+### Changed
+- Graph API call upgrade to [v5.0](https://developers.facebook.com/docs/graph-api/changelog/version5.0)
+
 ## v0.4.0.7
 ### Fixed
  - [PR81](https://github.com/facebook/facebook-ruby-business-sdk/pull/81)
