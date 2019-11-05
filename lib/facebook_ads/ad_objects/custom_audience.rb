@@ -45,6 +45,7 @@ module FacebookAds
       "HOME_LISTING",
       "HOTEL",
       "MEDIA_TITLE",
+      "OFFLINE_PRODUCT",
       "PRODUCT",
       "VEHICLE",
       "VEHICLE_OFFER",
@@ -162,16 +163,6 @@ module FacebookAds
       edge.get 'Ad' do |api|
         api.has_param :effective_status, { list: 'string' }
         api.has_param :status, { list: 'string' }
-      end
-    end
-
-    has_edge :capabilities do |edge|
-      edge.delete do |api|
-        api.has_param :adaccounts, { list: 'string' }
-      end
-      edge.post do |api|
-        api.has_param :accounts_capabilities, 'string'
-        api.has_param :relationship_type, { list: 'string' }
       end
     end
 

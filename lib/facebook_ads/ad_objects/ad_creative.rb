@@ -96,6 +96,7 @@ module FacebookAds
       "OFFER",
       "PAGE",
       "PHOTO",
+      "POST_DELETED",
       "SHARE",
       "STATUS",
       "STORE_ITEM",

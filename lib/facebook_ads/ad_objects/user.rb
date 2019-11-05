@@ -128,7 +128,6 @@ module FacebookAds
     field :is_famedeeplinkinguser, 'bool'
     field :is_shared_login, 'bool'
     field :is_verified, 'bool'
-    field :labels, { list: 'PageLabel' }
     field :languages, { list: 'Experience' }
     field :last_name, 'string'
     field :link, 'string'

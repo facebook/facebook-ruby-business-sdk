@@ -91,6 +91,7 @@ module FacebookAds
       "LIVE_PHOTO",
       "LOOK_NOW_DEPRECATED",
       "MOMENTS_VIDEO",
+      "NEO_ASYNC_GAME_VIDEO",
       "NO_STORY",
       "OCULUS_CREATOR_PORTAL",
       "OCULUS_VENUES_BROADCAST",
@@ -126,6 +127,7 @@ module FacebookAds
       "UNLISTED",
       "VIDEO_COMMENT",
       "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
+      "VIDEO_SUPERRES",
       "WOODHENGE",
       "YOUR_DAY",
     ]

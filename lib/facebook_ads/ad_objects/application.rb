@@ -430,7 +430,7 @@ module FacebookAds
         api.has_param :level, { enum: %w{ACCOUNT AD ADSET CAMPAIGN }}
         api.has_param :metrics, { list: 'string' }
         api.has_param :object_id, 'string'
-        api.has_param :owner_id, 'object'
+        api.has_param :owner_id, 'int'
         api.has_param :schedule, { enum: %w{DAILY FINE_15_MIN FINE_5_MIN MONTHLY WEEKLY }}
         api.has_param :status, { enum: %w{ACTIVE DISABLED ERROR }}
         api.has_param :time_increment, 'int'

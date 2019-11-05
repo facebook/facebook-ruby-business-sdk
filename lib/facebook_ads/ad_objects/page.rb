@@ -209,6 +209,7 @@ module FacebookAds
       "leadgen_fat",
       "live_videos",
       "location",
+      "mcom_invoice_change",
       "members",
       "mention",
       "merchant_review",
@@ -474,9 +475,9 @@ module FacebookAds
     has_edge :blocked do |edge|
       edge.delete do |api|
         api.has_param :asid, 'string'
-        api.has_param :psid, 'object'
-        api.has_param :uid, 'object'
-        api.has_param :user, 'object'
+        api.has_param :psid, 'int'
+        api.has_param :uid, 'int'
+        api.has_param :user, 'int'
       end
       edge.get 'Profile' do |api|
         api.has_param :uid, 'int'
@@ -484,7 +485,7 @@ module FacebookAds
       end
       edge.post do |api|
         api.has_param :asid, { list: 'string' }
-        api.has_param :psid, { list: 'object' }
+        api.has_param :psid, { list: 'int' }
         api.has_param :uid, { list: 'string' }
         api.has_param :user, { list: 'string' }
       end
@@ -1176,7 +1177,7 @@ module FacebookAds
     has_edge :roles do |edge|
       edge.get 'User' do |api|
         api.has_param :include_deactivated, 'bool'
-        api.has_param :uid, 'object'
+        api.has_param :uid, 'int'
       end
     end
 
@@ -1186,10 +1187,6 @@ module FacebookAds
 
     has_edge :scheduled_posts do |edge|
       edge.get 'PagePost'
-    end
-
-    has_edge :screennames do |edge|
-      edge.get 'ScreenName'
     end
 
     has_edge :secondary_receivers do |edge|

@@ -33,8 +33,6 @@ module FacebookAds
     field :created_time, 'datetime'
     field :credit_new, 'object'
     field :credit_old, 'object'
-    field :credit_status_new, 'string'
-    field :credit_status_old, 'string'
     field :currency_new, 'string'
     field :currency_old, 'string'
     field :daily_spend_limit_new, 'object'

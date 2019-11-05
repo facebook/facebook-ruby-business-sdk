@@ -55,6 +55,22 @@ module FacebookAds
       end
     end
 
+    has_edge :campaigns do |edge|
+      edge.get 'AtlasCampaign' do |api|
+        api.has_param :filter_by, 'string'
+        api.has_param :metric_scope, 'hash'
+        api.has_param :order_by, 'string'
+      end
+    end
+
+    has_edge :conversion_events do |edge|
+      edge.get do |api|
+        api.has_param :filter_by, 'string'
+        api.has_param :metric_scope, 'hash'
+        api.has_param :order_by, 'string'
+      end
+    end
+
     has_edge :custom_breakdowns do |edge|
       edge.get do |api|
         api.has_param :filter_by, 'string'
@@ -72,6 +88,22 @@ module FacebookAds
     has_edge :external_import_file do |edge|
       edge.get do |api|
         api.has_param :filter_by, 'string'
+        api.has_param :order_by, 'string'
+      end
+    end
+
+    has_edge :fb_conversion_events do |edge|
+      edge.get do |api|
+        api.has_param :filter_by, 'string'
+        api.has_param :metric_scope, 'hash'
+        api.has_param :order_by, 'string'
+      end
+    end
+
+    has_edge :sources do |edge|
+      edge.get do |api|
+        api.has_param :filter_by, 'string'
+        api.has_param :metric_scope, 'hash'
         api.has_param :order_by, 'string'
       end
     end

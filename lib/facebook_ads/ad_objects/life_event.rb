@@ -27,7 +27,6 @@ module FacebookAds
 
   class LifeEvent < AdObject
 
-    field :created_time, 'datetime'
     field :description, 'string'
     field :end_time, 'datetime'
     field :from, 'Page'

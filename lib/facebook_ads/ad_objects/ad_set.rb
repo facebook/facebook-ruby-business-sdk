@@ -156,6 +156,7 @@ module FacebookAds
       "CREDIT",
       "EMPLOYMENT",
       "HOUSING",
+      "ISSUES_ELECTIONS_POLITICS",
       "NONE",
     ]
 
@@ -252,6 +253,17 @@ module FacebookAds
 
     has_edge :adcreatives do |edge|
       edge.get 'AdCreative'
+    end
+
+    has_edge :adlabels do |edge|
+      edge.delete do |api|
+        api.has_param :adlabels, { list: 'object' }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+      end
+      edge.post 'AdSet' do |api|
+        api.has_param :adlabels, { list: 'object' }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+      end
     end
 
     has_edge :adrules_governed do |edge|
@@ -358,17 +370,6 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
         api.has_param :use_account_attribution_setting, 'bool'
-      end
-    end
-
-    has_edge :labels do |edge|
-      edge.delete do |api|
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
-      end
-      edge.post 'AdSet' do |api|
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
       end
     end
 

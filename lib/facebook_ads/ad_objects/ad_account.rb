@@ -119,6 +119,7 @@ module FacebookAds
       "HOME_LISTING",
       "HOTEL",
       "MEDIA_TITLE",
+      "OFFLINE_PRODUCT",
       "PRODUCT",
       "VEHICLE",
       "VEHICLE_OFFER",

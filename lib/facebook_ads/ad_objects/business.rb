@@ -252,12 +252,6 @@ module FacebookAds
       end
     end
 
-    has_edge :catalog_segment_producer_tos do |edge|
-      edge.post 'Business' do |api|
-        api.has_param :catalog_segment_id, 'string'
-      end
-    end
-
     has_edge :claim_custom_conversions do |edge|
       edge.post 'CustomConversion' do |api|
         api.has_param :custom_conversion_id, 'string'
@@ -448,7 +442,7 @@ module FacebookAds
         api.has_param :client_id, 'string'
       end
       edge.get 'Business' do |api|
-        api.has_param :client_user_id, 'object'
+        api.has_param :client_user_id, 'int'
       end
       edge.post 'Business' do |api|
         api.has_param :name, 'string'
@@ -546,6 +540,7 @@ module FacebookAds
 
     has_edge :pixel_tos do |edge|
       edge.get 'BusinessPixelTos'
+      edge.post 'BusinessPixelTos'
     end
 
     has_edge :received_audience_permissions do |edge|
