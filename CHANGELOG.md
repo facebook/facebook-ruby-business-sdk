@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 
 ## Unreleased
+### Added
+  - Added `CrashLogger`, more context available [here](https://developers.facebook.com/docs/business-sdk/guides/crash-reports)
 
 ## v0.5.0.0
 ### Changed
