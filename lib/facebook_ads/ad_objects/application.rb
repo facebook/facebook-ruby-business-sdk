@@ -181,6 +181,7 @@ module FacebookAds
     field :smart_login_menu_icon_url, 'string'
     field :social_discovery, 'int'
     field :subcategory, 'string'
+    field :suggested_events_setting, 'string'
     field :supported_platforms, { list: { enum: -> { SUPPORTED_PLATFORMS }} }
     field :supports_apprequests_fast_app_switch, 'object'
     field :supports_attribution, 'bool'

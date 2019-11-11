@@ -30,7 +30,6 @@ module FacebookAds
     field :id, 'string'
     field :name_verification, 'object'
     field :verified_name, 'string'
-    has_no_post
     has_no_delete
 
   end

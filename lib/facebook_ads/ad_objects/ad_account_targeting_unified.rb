@@ -59,7 +59,6 @@ module FacebookAds
       "CREDIT",
       "EMPLOYMENT",
       "HOUSING",
-      "ISSUES_ELECTIONS_POLITICS",
       "NONE",
     ]
 

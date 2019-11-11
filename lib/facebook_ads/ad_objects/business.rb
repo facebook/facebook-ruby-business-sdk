@@ -237,6 +237,10 @@ module FacebookAds
       end
     end
 
+    has_edge :business_units do |edge|
+      edge.get 'BusinessUnit'
+    end
+
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
       edge.post 'BusinessUser' do |api|

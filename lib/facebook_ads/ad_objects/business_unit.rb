@@ -71,6 +71,18 @@ module FacebookAds
       end
     end
 
+    has_edge :conversion_paths do |edge|
+      edge.get do |api|
+        api.has_param :click_lookback_window, 'int'
+        api.has_param :date_range, 'object'
+        api.has_param :fb_conversion_event_id, 'int'
+        api.has_param :limit, 'int'
+        api.has_param :metric_context, 'hash'
+        api.has_param :time_period, { enum: %w{all_available all_dates custom date_range fifteen_days last_fourteen_days last_hundred_fourty_four_hours last_month last_ninety_days last_quarter last_seven_days last_sixty_days last_thirty_days last_twenty_four_hours last_year month_to_date quarter_to_date seven_days thirty_days this_month_whole_days today week_to_date year_to_date yesterday }}
+        api.has_param :view_lookback_window, 'int'
+      end
+    end
+
     has_edge :custom_breakdowns do |edge|
       edge.get do |api|
         api.has_param :filter_by, 'string'

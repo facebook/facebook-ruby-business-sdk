@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdVideo < AdObject
     CONTAINER_TYPE = [
+      "ACO_VIDEO_VARIATION",
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
       "AGE_UP",

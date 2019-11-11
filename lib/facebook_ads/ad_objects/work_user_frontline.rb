@@ -27,6 +27,7 @@ module FacebookAds
 
   class WorkUserFrontline < AdObject
 
+    field :has_access, 'bool'
     field :is_frontline, 'bool'
     has_no_id
     has_no_get

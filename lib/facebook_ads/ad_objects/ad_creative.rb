@@ -169,6 +169,7 @@ module FacebookAds
     field :instagram_story_id, 'string'
     field :interactive_components_spec, 'AdCreativeInteractiveComponentsSpec'
     field :link_deep_link_url, 'string'
+    field :link_destination_display_url, 'string'
     field :link_og_id, 'string'
     field :link_url, 'string'
     field :messenger_sponsored_message, 'string'
