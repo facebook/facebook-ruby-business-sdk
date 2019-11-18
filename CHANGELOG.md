@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 
 ## Unreleased
+  - Added function `getHeaders` in errors class which provides header information
 
 ## v0.5.0.2
 
@@ -33,4 +34,3 @@ All notable changes to this project will be documented in this file.
 ## v0.3.3.0
 ### Changed
 - Graph API call upgrade to [v3.3](https://developers.facebook.com/docs/graph-api/changelog/version3.3)
-
