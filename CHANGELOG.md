@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
   - Added function `getHeaders` in errors class which provides header information
+  - Server-Side API for web with model object - https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/
 
 ## v0.5.0.2
 
@@ -29,7 +30,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.3.3.1
 ### Changed
-- Remove list of API call from Business SDK, any [these APIs](https://developers.facebook.com/docs/graph-api/changelog/4-30-2019-endpoint-deprecations) included in Business SDK will be deprecated.   
+- Remove list of API call from Business SDK, any [these APIs](https://developers.facebook.com/docs/graph-api/changelog/4-30-2019-endpoint-deprecations) included in Business SDK will be deprecated.
 
 ## v0.3.3.0
 ### Changed

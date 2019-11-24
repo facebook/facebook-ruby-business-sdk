@@ -60,8 +60,14 @@ module FacebookAds
   require 'facebook_ads/batch_api/batch'
   require 'facebook_ads/batch_api/batch_proxy'
 
-  # Autoload Ab Objects Helpers
+  # Autoload Ad Objects Helpers
   Dir.glob(File.expand_path(File.join(__FILE__, '..', 'facebook_ads', 'ad_objects', 'helpers', '*.rb'))).each do |file|
+    class_name = File.basename(file, '.rb').split('_').map(&:capitalize).join.to_sym
+    autoload class_name, file
+  end
+
+  # Autoload Server-Side API
+  Dir.glob(File.expand_path(File.join(__FILE__, '..', 'facebook_ads', 'ad_objects', 'server_side', '*.rb'))).each do |file|
     class_name = File.basename(file, '.rb').split('_').map(&:capitalize).join.to_sym
     autoload class_name, file
   end
