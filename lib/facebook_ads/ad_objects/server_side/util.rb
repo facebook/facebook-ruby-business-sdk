@@ -19,13 +19,207 @@
 require 'digest'
 
 module FacebookAds
-  module ServerSide
+	module ServerSide
 
-    # @return [String] SHA 256 hash of input string
-    def self.sha256Hash(input)
-      unless input.nil?
-        Digest::SHA256.hexdigest input
+		PHONE_NUMBER_IGNORE_CHAR_SET = /[\-\s\(\)]+/
+		PHONE_NUMBER_DROP_PREFIX_ZEROS = /^\+?0{0,2}/
+		US_PHONE_NUMBER_REGEX = /^1\(?\d{3}\)?\d{7}$/
+		INTL_PHONE_NUMBER_REGEX = /^\d{1,4}\(?\d{2,3}\)?\d{4,}$/
+
+		# RFC 2822 for email format
+		EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
+		# @return [String] SHA 256 hash of input string
+		def self.sha256Hash(input)
+			unless input.nil?
+				Digest::SHA256.hexdigest input
+			end
+		end
+
+		# Normalizes the input string given the field_type
+		# @param [String] input Input string that needs to be normalized
+		# @param [String] field_type Type/Key for the value provided
+		# @return [String] Normalized value for the input and field_type.
+		def self.normalize(input, field_type)
+
+			if input.nil? or field_type.nil?
+				return nil;
+			end
+
+			input = input.strip.downcase
+
+			# If the data is already hashed, we by-pass input normalization
+			if FacebookAds::ServerSide::is_already_hashed?(input) == true
+				return input
       end
-    end
-  end
+
+			normalized_input = input;
+
+			case field_type
+			when 'country'
+				normalized_input = FacebookAds::ServerSide::normalize_country input
+			when 'ct'
+        normalized_input = FacebookAds::ServerSide::normalize_city input
+      when 'currency'
+        return FacebookAds::ServerSide::normalize_currency input
+			when 'em'
+				normalized_input = FacebookAds::ServerSide::normalize_email input
+			when 'ge'
+				normalized_input = FacebookAds::ServerSide::normalize_gender input
+			when 'ph'
+				normalized_input = FacebookAds::ServerSide::normalize_phone input
+			when 'st'
+				normalized_input = FacebookAds::ServerSide::normalize_state input
+			when 'zp'
+				normalized_input = FacebookAds::ServerSide::normalize_zip input
+      end
+
+      normalized_input = FacebookAds::ServerSide::sha256Hash normalized_input
+
+			return normalized_input
+		end
+
+    # Boolean method which checks if a input is already hashed with MD5 or SHA256
+		# @param [String] input Input string that is to be validated
+		# @return [TrueClass|FalseClass] representing whether the value is hashed
+    def self.is_already_hashed?(input)
+
+			# We support Md5 and SHA256, and highly recommend users to use SHA256 for hashing PII keys.
+			md5_match = /^[a-f0-9]{32}$/.match(input)
+      sha256_match = /^[a-f0-9]{64}$/.match(input)
+
+			if md5_match != nil or sha256_match != nil
+				return true
+			end
+
+			return false
+		end
+
+		# Normalizes the given country code and returns acceptable hashed country ISO code
+		def self.normalize_country(country)
+
+			# Replace unwanted characters and retain only alpha characters bounded for ISO code.
+			country = country.gsub(/[^a-z]/,'')
+
+			if country.length != 2
+				raise ArgumentError, "Invalid format for country:'" + country + "'.Please follow ISO 2-letter ISO 3166-1 standard for representing country. eg: us"
+			end
+
+			return  country
+		end
+
+		# Normalizes the given city and returns acceptable hashed city value
+    def self.normalize_city(city)
+
+      # Remove commonly occuring characters from city name.
+			city = city.gsub(/[0-9.\s\-()]/,'')
+
+			return city
+		end
+
+		# Normalizes the given currency code and returns acceptable hashed currency ISO code
+		def self.normalize_currency(currency)
+
+			# Retain only alpha characters bounded for ISO code.
+			currency = currency.gsub(/[^a-z]/,'')
+
+			if currency.length != 3
+				raise ArgumentError, "Invalid format for currency:'" + currency + "'.Please follow ISO 3-letter ISO 4217 standard for representing currency. Eg: usd"
+			end
+
+			return currency;
+		end
+
+		# Normalizes the given email and returns acceptable hashed email value
+		def self.normalize_email(email)
+
+			if EMAIL_REGEX.match(email) == nil
+				return ArgumentError, "Invalid email format for the passed email:' + email + '.Please check the passed email format."
+			end
+
+			return email
+		end
+
+		# Normalizes the given gender and returns acceptable hashed gender value
+    def self.normalize_gender(gender)
+
+      # Replace extra characters with space, to bound under alpha characters set.
+      gender = gender.gsub(/[^a-z]/,'')
+
+			case gender
+			when 'female' , 'f'
+				gender = 'f'
+			when 'male' , 'm'
+				gender = 'm'
+			else
+				return nil
+			end
+
+			return gender
+		end
+
+		# Normalizes the given phone and returns acceptable hashed phone value
+		def self.normalize_phone(phone)
+
+			# Drop the spaces, hyphen and parenthesis from the Phone Number
+			normalized_phone = phone.gsub(PHONE_NUMBER_IGNORE_CHAR_SET, '')
+
+			if(FacebookAds::ServerSide::is_international_number?(normalized_phone))
+				normalized_phone = normalized_phone.gsub(PHONE_NUMBER_DROP_PREFIX_ZEROS, '')
+			end
+
+			if normalized_phone.length < 7 || normalized_phone.length > 15
+				return nil;
+			end
+
+			return normalized_phone
+		end
+
+		# Normalizes the given city and returns acceptable hashed city value
+		def self.normalize_state(state)
+			state = state.gsub(/[0-9.\s\-()]/,'')
+
+			return state
+		end
+
+		# Normalizes the given zip and returns acceptable hashed zip code value
+		def self.normalize_zip(zip)
+
+			# Remove spaces from the Postal code
+			zip = zip.gsub(/[\s]/,'')
+
+      # If the zip code '-', we retain just the first part alone.
+			zip = zip.split('-')[0]
+
+			if zip.length < 2
+				return nil
+			end
+
+			return zip
+		end
+
+    # Boolean method which checks if a given number is represented in international format
+    # @param [String] phone_number that has to be tested.
+		# @return [TrueClass | FalseClass] boolean value representing if a number is international
+		def self.is_international_number?(phone_number)
+
+			# Drop upto 2 leading 0s from the number
+			phone_number = phone_number.gsub(PHONE_NUMBER_DROP_PREFIX_ZEROS, '')
+
+			if phone_number.start_with?('0')
+				return false;
+			end
+
+			if phone_number.start_with?('1') && US_PHONE_NUMBER_REGEX.match(phone_number) != nil
+				return false;
+			end
+
+			if INTL_PHONE_NUMBER_REGEX.match(phone_number) != nil
+				return true;
+			end
+
+			return false;
+		end
+
+	end
 end

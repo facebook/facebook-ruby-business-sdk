@@ -345,34 +345,34 @@ module FacebookAds
       def normalize
         hash = {}
         unless email.nil?
-          hash['em'] = FacebookAds::ServerSide::sha256Hash email
+          hash['em'] = FacebookAds::ServerSide::normalize(email, 'em')
         end
         unless phone.nil?
-          hash['ph'] = FacebookAds::ServerSide::sha256Hash phone
+          hash['ph'] = FacebookAds::ServerSide::normalize(phone, 'ph')
         end
         unless gender.nil?
-          hash['ge'] = FacebookAds::ServerSide::sha256Hash gender
+          hash['ge'] = FacebookAds::ServerSide::normalize(gender, 'ge')
         end
         unless date_of_birth.nil?
-          hash['db'] = FacebookAds::ServerSide::sha256Hash date_of_birth
+          hash['db'] = FacebookAds::ServerSide::normalize(date_of_birth, 'db')
         end
         unless last_name.nil?
-          hash['ln'] = FacebookAds::ServerSide::sha256Hash last_name
+          hash['ln'] = FacebookAds::ServerSide::normalize(last_name, 'ln')
         end
         unless first_name.nil?
-          hash['fn'] = FacebookAds::ServerSide::sha256Hash first_name
+          hash['fn'] = FacebookAds::ServerSide::normalize(first_name, 'fn')
         end
         unless city.nil?
-          hash['ct'] = FacebookAds::ServerSide::sha256Hash city
+          hash['ct'] = FacebookAds::ServerSide::normalize(city, 'ct')
         end
         unless country_code.nil?
-          hash['country'] = FacebookAds::ServerSide::sha256Hash country_code
+          hash['country'] = FacebookAds::ServerSide::normalize(country_code, 'country')
         end
         unless state.nil?
-          hash['st'] = FacebookAds::ServerSide::sha256Hash state
+          hash['st'] = FacebookAds::ServerSide::normalize(state, 'st')
         end
         unless zip_code.nil?
-          hash['zp'] = FacebookAds::ServerSide::sha256Hash zip_code
+          hash['zp'] = FacebookAds::ServerSide::normalize(zip_code, 'zp')
         end
         unless external_id.nil?
           hash['external_id'] = external_id
@@ -391,7 +391,6 @@ module FacebookAds
         end
         hash
       end
-
     end
   end
 end
