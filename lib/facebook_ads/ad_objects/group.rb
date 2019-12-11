@@ -33,9 +33,9 @@ module FacebookAds
     ]
 
     POST_PERMISSIONS = [
-      "ADMIN_ONLY",
-      "ANYONE",
-      "NONE",
+      "0",
+      "1",
+      "2",
     ]
 
     PURPOSE = [
@@ -460,6 +460,7 @@ module FacebookAds
         api.has_param :ios_bundle_id, 'string'
         api.has_param :is_explicit_location, 'bool'
         api.has_param :is_explicit_place, 'bool'
+        api.has_param :is_visual_search, 'bool'
         api.has_param :manual_privacy, 'bool'
         api.has_param :message, 'string'
         api.has_param :name, 'string'

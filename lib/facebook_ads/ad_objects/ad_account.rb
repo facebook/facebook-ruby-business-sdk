@@ -717,12 +717,6 @@ module FacebookAds
       end
     end
 
-    has_edge :businessprojects do |edge|
-      edge.get 'BusinessProject' do |api|
-        api.has_param :business, 'string'
-      end
-    end
-
     has_edge :campaigns do |edge|
       edge.delete do |api|
         api.has_param :before_date, 'datetime'

@@ -239,6 +239,9 @@ module FacebookAds
 
     has_edge :business_units do |edge|
       edge.get 'BusinessUnit'
+      edge.post 'BusinessUnit' do |api|
+        api.has_param :business_units, { list: 'object' }
+      end
     end
 
     has_edge :business_users do |edge|
@@ -246,13 +249,6 @@ module FacebookAds
       edge.post 'BusinessUser' do |api|
         api.has_param :email, 'string'
         api.has_param :role, { enum: -> { BusinessUser::ROLE }}
-      end
-    end
-
-    has_edge :businessprojects do |edge|
-      edge.get 'BusinessProject'
-      edge.post 'BusinessProject' do |api|
-        api.has_param :name, 'string'
       end
     end
 

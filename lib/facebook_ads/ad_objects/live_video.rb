@@ -98,6 +98,7 @@ module FacebookAds
     field :is_reference_only, 'bool'
     field :live_encoders, { list: 'LiveEncoder' }
     field :live_views, 'int'
+    field :overlay_url, 'string'
     field :permalink_url, 'string'
     field :planned_start_time, 'datetime'
     field :seconds_left, 'int'

@@ -60,8 +60,10 @@ module FacebookAds
       "custom",
       "disclaimer",
       "from_price",
+      "guest_rating",
       "percentage_off",
       "price",
+      "star_rating",
       "strikethrough_price",
     ]
 

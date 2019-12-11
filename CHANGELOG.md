@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 
 ## Unreleased
+
+## v0.5.0.3
+
   - Added function `getHeaders` in errors class which provides header information
   - Server-Side API for web with model object - https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/
 
@@ -35,3 +38,4 @@ All notable changes to this project will be documented in this file.
 ## v0.3.3.0
 ### Changed
 - Graph API call upgrade to [v3.3](https://developers.facebook.com/docs/graph-api/changelog/version3.3)
+

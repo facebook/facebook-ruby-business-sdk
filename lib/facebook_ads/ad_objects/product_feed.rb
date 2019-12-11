@@ -144,9 +144,17 @@ module FacebookAds
       end
     end
 
+    has_edge :upload_schedules do |edge|
+      edge.get 'ProductFeedSchedule'
+      edge.post 'ProductFeed' do |api|
+        api.has_param :upload_schedule, 'string'
+      end
+    end
+
     has_edge :uploads do |edge|
       edge.get 'ProductFeedUpload'
       edge.post 'ProductFeedUpload' do |api|
+        api.has_param :fbe_external_business_id, 'string'
         api.has_param :file, 'file'
         api.has_param :password, 'string'
         api.has_param :update_only, 'bool'

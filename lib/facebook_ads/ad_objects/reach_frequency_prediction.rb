@@ -90,7 +90,6 @@ module FacebookAds
     field :external_minimum_impression, 'int'
     field :external_minimum_reach, 'int'
     field :external_reach, 'int'
-    field :external_values_breakdown, 'string'
     field :feed_ratio_0000, 'int'
     field :frequency_cap, 'int'
     field :frequency_distribution, { list: 'double' }

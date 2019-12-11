@@ -97,6 +97,7 @@ module FacebookAds
       "PAGE",
       "PHOTO",
       "POST_DELETED",
+      "PRIVACY_CHECK_FAIL",
       "SHARE",
       "STATUS",
       "STORE_ITEM",

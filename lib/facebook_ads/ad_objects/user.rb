@@ -79,6 +79,7 @@ module FacebookAds
       "MSN",
       "MYSPACE",
       "NATEON",
+      "OCULUS",
       "OK",
       "ORKUT",
       "OTHERS",
@@ -126,6 +127,7 @@ module FacebookAds
     field :installed, 'bool'
     field :interested_in, { list: 'string' }
     field :is_famedeeplinkinguser, 'bool'
+    field :is_guest_user, 'bool'
     field :is_shared_login, 'bool'
     field :is_verified, 'bool'
     field :languages, { list: 'Experience' }
@@ -305,6 +307,17 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'Business'
+      edge.post 'Business' do |api|
+        api.has_param :email, 'string'
+        api.has_param :name, 'string'
+        api.has_param :primary_page, 'string'
+        api.has_param :sales_rep_email, 'string'
+        api.has_param :survey_business_type, { enum: -> { Business::SURVEY_BUSINESS_TYPE }}
+        api.has_param :survey_num_assets, 'int'
+        api.has_param :survey_num_people, 'int'
+        api.has_param :timezone_id, 'int'
+        api.has_param :vertical, { enum: -> { Business::VERTICAL }}
+      end
     end
 
     has_edge :conversations do |edge|
@@ -722,6 +735,7 @@ module FacebookAds
         api.has_param :ios_bundle_id, 'string'
         api.has_param :is_explicit_location, 'bool'
         api.has_param :is_explicit_place, 'bool'
+        api.has_param :is_visual_search, 'bool'
         api.has_param :manual_privacy, 'bool'
         api.has_param :message, 'string'
         api.has_param :name, 'string'

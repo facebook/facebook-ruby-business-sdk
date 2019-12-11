@@ -21,20 +21,14 @@ require 'facebook_ads'
 access_token = '<ACCESS_TOKEN>'
 app_secret = '<APP_SECRET>'
 app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
+id = '<ADS_PIXEL_ID>'
 
 FacebookAds.configure do |config|
   config.access_token = access_token
   config.app_secret = app_secret
 end
 
-ad_account = FacebookAds::AdAccount.get(id)
-adsets = ad_account.adsets.create({
-    name: 'My Ad Set',
-    optimization_goal: 'LINK_CLICKS',
-    billing_event: 'LINK_CLICKS',
-    bid_amount: '2',
-    daily_budget: '1000',
-    campaign_id: '<adCampaignLinkClicksID>',
-    targeting: {'device_platforms':['mobile'],'geo_locations':{'countries':['US']},'publisher_platforms':['facebook','audience_network'],'facebook_positions':['feed']},
+ads_pixel = FacebookAds::AdsPixel.get(id)
+events = ads_pixel.events.create({
+    data: [{'event_name':'PageView','event_time':1569260711,'user_data':{'fbc':'fb.1.1554763741205.AbCdEfGhIjKlMnOpQrStUvWxYz1234567890','fbp':'fb.1.1558571054389.1098115397','em':'309a0a5c3e211326ae75ca18196d301a9bdbd1a882a4d2569511033da23f0abd'}}],
 })

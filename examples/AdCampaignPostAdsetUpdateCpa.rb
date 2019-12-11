@@ -29,5 +29,5 @@ FacebookAds.configure do |config|
 end
 
 ad_set = FacebookAds::AdSet.get(id)
-ad_set.billing_event = 'IMPRESSIONS'ad_set.optimization_goal = 'LINK_CLICKS'ad_set.bid_amount = '200'
+ad_set.billing_event = 'IMPRESSIONS'ad_set.optimization_goal = 'LINK_CLICKS'ad_set.bid_amount = '200'ad_set.targeting = {'geo_locations':{'countries':['US']},'facebook_positions':['feed']}
 ad_set.save

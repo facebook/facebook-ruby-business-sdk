@@ -77,9 +77,5 @@ module FacebookAds
       end
     end
 
-    has_edge :viewers do |edge|
-      edge.get 'User'
-    end
-
   end
 end

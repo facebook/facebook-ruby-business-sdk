@@ -70,7 +70,7 @@ module FacebookAds
 
     has_edge :insights do |edge|
       edge.get do |api|
-        api.has_param :breakdowns, { list: { enum: %w{age country device_platform gender platform_position publisher_platform }} }
+        api.has_param :breakdowns, { list: { enum: %w{ad_id age country device_platform gender platform_position publisher_platform }} }
         api.has_param :time_range, 'object'
       end
     end

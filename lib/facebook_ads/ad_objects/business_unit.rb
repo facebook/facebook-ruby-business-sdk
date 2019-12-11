@@ -36,8 +36,13 @@ module FacebookAds
     field :name, 'string'
     field :time_zone, 'string'
     field :visits_available_date, 'int'
+    field :business_units, { list: 'object' }
     has_no_post
     has_no_delete
+
+    has_edge :ad_accounts do |edge|
+      edge.get 'AdAccount'
+    end
 
     has_edge :ad_platforms do |edge|
       edge.get do |api|
@@ -104,7 +109,7 @@ module FacebookAds
       end
     end
 
-    has_edge :fb_conversion_events do |edge|
+    has_edge :reports do |edge|
       edge.get do |api|
         api.has_param :filter_by, 'string'
         api.has_param :metric_scope, 'hash'
@@ -118,6 +123,10 @@ module FacebookAds
         api.has_param :metric_scope, 'hash'
         api.has_param :order_by, 'string'
       end
+    end
+
+    has_edge :users do |edge|
+      edge.get 'BusinessUser'
     end
 
   end

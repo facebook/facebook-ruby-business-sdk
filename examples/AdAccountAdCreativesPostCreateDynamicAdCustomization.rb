@@ -29,12 +29,9 @@ FacebookAds.configure do |config|
 end
 
 ad_account = FacebookAds::AdAccount.get(id)
-adsets = ad_account.adsets.create({
-    name: 'My Ad Set',
-    optimization_goal: 'LINK_CLICKS',
-    billing_event: 'LINK_CLICKS',
-    bid_amount: '2',
-    daily_budget: '1000',
-    campaign_id: '<adCampaignLinkClicksID>',
-    targeting: {'device_platforms':['mobile'],'geo_locations':{'countries':['US']},'publisher_platforms':['facebook','audience_network'],'facebook_positions':['feed']},
+adcreatives = ad_account.adcreatives.create({
+    name: 'Dynamic Ad Template Creative Sample',
+    object_story_spec: {'page_id':'<pageID>','template_data':{'message':'English Test {{product.name | titleize}}','link':'http://www.example.com/englishurl','name':'English Headline {{product.price}}','description':'English Description {{product.description}}','customization_rules_spec':[{'customization_spec':{'language':'en_XX'}},{'customization_spec':{'language':'fr_XX'},'message':'French Test {{product.name | titleize}}','link':'http://www.example.com/frenchurl','name':'French Headline {{product.price}}','description':'French Description {{product.description}}','template_url_spec':{'web':{'url':'http://www.example.com/frenchdeeplink'}}}]}},
+    product_set_id: '<productSetID>',
+    template_url_spec: {'web':{'url':'http://www.example.com/englishdeeplink'}},
 })

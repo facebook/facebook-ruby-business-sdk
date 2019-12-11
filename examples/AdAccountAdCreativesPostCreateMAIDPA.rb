@@ -29,12 +29,8 @@ FacebookAds.configure do |config|
 end
 
 ad_account = FacebookAds::AdAccount.get(id)
-adsets = ad_account.adsets.create({
-    name: 'My Ad Set',
-    optimization_goal: 'LINK_CLICKS',
-    billing_event: 'LINK_CLICKS',
-    bid_amount: '2',
-    daily_budget: '1000',
-    campaign_id: '<adCampaignLinkClicksID>',
-    targeting: {'device_platforms':['mobile'],'geo_locations':{'countries':['US']},'publisher_platforms':['facebook','audience_network'],'facebook_positions':['feed']},
+adcreatives = ad_account.adcreatives.create({
+    name: 'Dynamic Ad Template Creative Sample',
+    object_story_spec: {'page_id':'<pageID>','template_data':{'call_to_action':{'type':'INSTALL_MOBILE_APP','value':{'link':'http://www.example.com/appstoreurl'}},'message':'Test {{product.name | titleize}}','link':'http://www.example.com/appstoreurl','name':'Headline {{product.price}}','description':'Description {{product.description}}'}},
+    product_set_id: '<productSetID>',
 })

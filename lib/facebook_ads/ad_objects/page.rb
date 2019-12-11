@@ -210,6 +210,7 @@ module FacebookAds
       "leadgen_fat",
       "live_videos",
       "location",
+      "mcom_invoice_change",
       "members",
       "mention",
       "merchant_review",
@@ -491,12 +492,6 @@ module FacebookAds
       end
     end
 
-    has_edge :businessprojects do |edge|
-      edge.get 'BusinessProject' do |api|
-        api.has_param :business, 'string'
-      end
-    end
-
     has_edge :call_to_actions do |edge|
       edge.get 'PageCallToAction'
       edge.post 'PageCallToAction' do |api|
@@ -590,6 +585,17 @@ module FacebookAds
       edge.get 'PageUserMessageThreadLabel'
       edge.post 'PageUserMessageThreadLabel' do |api|
         api.has_param :name, 'string'
+      end
+    end
+
+    has_edge :custom_user_settings do |edge|
+      edge.delete do |api|
+        api.has_param :params, { list: { enum: %w{PERSISTENT_MENU }} }
+        api.has_param :psid, 'string'
+      end
+      edge.post 'Page' do |api|
+        api.has_param :persistent_menu, { list: 'object' }
+        api.has_param :psid, 'string'
       end
     end
 
@@ -1056,6 +1062,7 @@ module FacebookAds
         api.has_param :ios_bundle_id, 'string'
         api.has_param :is_explicit_location, 'bool'
         api.has_param :is_explicit_place, 'bool'
+        api.has_param :is_visual_search, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :manual_privacy, 'bool'
         api.has_param :message, 'string'

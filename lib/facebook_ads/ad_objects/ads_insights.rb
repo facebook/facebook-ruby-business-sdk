@@ -295,7 +295,6 @@ module FacebookAds
     field :quality_ranking, 'string'
     field :quality_score_ectr, 'string'
     field :quality_score_ecvr, 'string'
-    field :quality_score_enfbr, 'string'
     field :quality_score_organic, 'string'
     field :reach, 'string'
     field :recurring_subscription_payment_actions, { list: 'AdsActionStats' }
