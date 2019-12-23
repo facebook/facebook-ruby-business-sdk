@@ -39,8 +39,11 @@ module FacebookAds
       # If set to true, we only use the event for attribution.
       attr_accessor :opt_out
 
-      # An ID used by Facebook to deduplicate the same event sent from both server and browser.
-      # This is used with event_name to determine if events are identical.
+      # This ID can be any unique string chosen by the advertiser.
+      # event_id is used to deduplicate events sent by both Facebook Pixel and
+      # Server-Side API. event_name is also used in the deduplication process.
+      # For deduplication, the eventID from Facebook pixel must match the
+      # event_id in the corresponding Server-Side API event.
       attr_accessor :event_id
 
       # An Object that contains user data.

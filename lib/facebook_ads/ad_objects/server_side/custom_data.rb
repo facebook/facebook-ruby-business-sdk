@@ -66,6 +66,10 @@ module FacebookAds
       # Example: 'registered'.
       attr_accessor :status
 
+      # Use only with Search events. A search query made by a user.
+      # Example: 'lettuce'.
+      attr_accessor :search_string
+
 
       # @param [Float] value
       # @param [String] currency
@@ -78,6 +82,7 @@ module FacebookAds
       # @param [Float] predicted_ltv
       # @param [Integer] num_items
       # @param [String] status
+      # @param [String] search_string
       def initialize(value: nil,
                      currency: nil,
                      content_name: nil,
@@ -88,7 +93,8 @@ module FacebookAds
                      order_id: nil,
                      predicted_ltv: nil,
                      num_items: nil,
-                     status: nil)
+                     status: nil,
+                     search_string: nil)
 
         unless value.nil?
           self.value = value
@@ -122,6 +128,9 @@ module FacebookAds
         end
         unless status.nil?
           self.status = status
+        end
+        unless search_string.nil?
+          self.search_string = search_string
         end
       end
 
@@ -181,6 +190,10 @@ module FacebookAds
         if attributes.has_key?(:'status')
           self.status = attributes[:'status']
         end
+
+        if attributes.has_key?(:'search_string')
+          self.search_string = attributes[:'search_string']
+        end
       end
 
       # Checks equality by comparing each attribute.
@@ -197,7 +210,8 @@ module FacebookAds
             order_id == o.order_id &&
             predicted_ltv == o.predicted_ltv &&
             num_items == o.num_items &&
-            status == o.status
+            status == o.status &&
+            search_string == o.search_string
       end
 
       # @see the `==` method
@@ -219,7 +233,8 @@ module FacebookAds
             order_id,
             predicted_ltv,
             num_items,
-            status
+            status,
+            search_string
         ].hash
       end
 
@@ -260,6 +275,9 @@ module FacebookAds
         unless status.nil?
           hash['status'] = status
         end
+        unless search_string.nil?
+          hash['search_string'] = search_string
+        end
         hash.to_s
       end
 
@@ -296,6 +314,9 @@ module FacebookAds
         end
         unless status.nil?
           hash['status'] = status
+        end
+        unless search_string.nil?
+          hash['search_string'] = search_string
         end
 
         unless contents.nil?
