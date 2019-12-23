@@ -66,15 +66,17 @@ module FacebookAds
     autoload class_name, file
   end
 
-  # Autoload Server-Side API
-  Dir.glob(File.expand_path(File.join(__FILE__, '..', 'facebook_ads', 'ad_objects', 'server_side', '*.rb'))).each do |file|
-    class_name = File.basename(file, '.rb').split('_').map(&:capitalize).join.to_sym
-    autoload class_name, file
-  end
-
   # Autoload AdObjects
   Dir.glob(File.expand_path(File.join(__FILE__, '..', 'facebook_ads', 'ad_objects', '*.rb'))).each do |file|
     class_name = File.basename(file, '.rb').split('_').map(&:capitalize).join.to_sym
     autoload class_name, file
+  end
+
+  module ServerSide
+    # Autoload Server-Side API
+    Dir.glob(File.expand_path(File.join(__FILE__, '..', 'facebook_ads', 'ad_objects', 'server_side', '*.rb'))).each do |file|
+      class_name = File.basename(file, '.rb').split('_').map(&:capitalize).join.to_sym
+      autoload class_name, file
+    end
   end
 end

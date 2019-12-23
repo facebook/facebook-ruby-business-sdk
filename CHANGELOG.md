@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 
 ## Unreleased
+
   - Server-side API added search-string field to custom data.
+  - Fix facebook_ads to autoload Server-side API classes.
 
 ## v0.5.0.3
 
