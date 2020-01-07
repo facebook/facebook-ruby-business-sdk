@@ -30,6 +30,7 @@ module FacebookAds
     field :admins, { list: 'object' }
     field :application, 'object'
     field :audio, { list: 'object' }
+    field :context, 'OpenGraphContext'
     field :created_time, 'datetime'
     field :description, 'string'
     field :determiner, 'string'
@@ -48,7 +49,6 @@ module FacebookAds
     field :type, 'string'
     field :updated_time, 'datetime'
     field :video, { list: 'object' }
-    has_no_post
     has_no_delete
 
     has_edge :comments do |edge|
@@ -58,10 +58,31 @@ module FacebookAds
         api.has_param :order, { enum: -> { Comment::ORDER }}
         api.has_param :since, 'datetime'
       end
+      edge.post 'Comment' do |api|
+        api.has_param :attachment_id, 'string'
+        api.has_param :attachment_share_url, 'string'
+        api.has_param :attachment_url, 'string'
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
+        api.has_param :facepile_mentioned_ids, { list: 'string' }
+        api.has_param :feedback_source, 'string'
+        api.has_param :is_offline, 'bool'
+        api.has_param :message, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :object_id, 'string'
+        api.has_param :parent_comment_id, 'object'
+        api.has_param :text, 'string'
+        api.has_param :tracking, 'string'
+      end
     end
 
     has_edge :likes do |edge|
       edge.get 'Profile'
+      edge.post 'OpenGraphObject' do |api|
+        api.has_param :action, 'string'
+        api.has_param :message, 'string'
+        api.has_param :ref, 'string'
+        api.has_param :url, 'string'
+      end
     end
 
     has_edge :picture do |edge|

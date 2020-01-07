@@ -241,6 +241,22 @@ module FacebookAds
       end
     end
 
+    has_edge :ad_saved_locations do |edge|
+      edge.get 'AdSavedLocation' do |api|
+        api.has_param :fields, { list: 'string' }
+      end
+      edge.post 'AdSavedLocation' do |api|
+        api.has_param :cities, { list: 'object' }
+        api.has_param :countries, { list: 'string' }
+        api.has_param :country_groups, { list: 'string' }
+        api.has_param :custom_locations, { list: 'object' }
+        api.has_param :geo_markets, { list: 'object' }
+        api.has_param :name, 'string'
+        api.has_param :regions, { list: 'object' }
+        api.has_param :zips, { list: 'object' }
+      end
+    end
+
     has_edge :ad_sets do |edge|
       edge.delete do |api|
         api.has_param :before_date, 'datetime'
@@ -302,6 +318,13 @@ module FacebookAds
       end
     end
 
+    has_edge :adcreatives_from_mockups do |edge|
+      edge.post 'AdCreative' do |api|
+        api.has_param :mockup_id, 'string'
+        api.has_param :page_id, 'string'
+      end
+    end
+
     has_edge :adcreativesbylabels do |edge|
       edge.get 'AdCreative' do |api|
         api.has_param :ad_label_ids, { list: 'string' }
@@ -344,6 +367,10 @@ module FacebookAds
         api.has_param :source_url, 'string'
         api.has_param :source_zip, 'file'
       end
+    end
+
+    has_edge :adreportruns do |edge|
+      edge.get 'AdReportRun'
     end
 
     has_edge :adreportschedules do |edge|
@@ -717,6 +744,10 @@ module FacebookAds
       end
     end
 
+    has_edge :businesssettinglogs do |edge|
+      edge.get 'BusinessSettingLogsData'
+    end
+
     has_edge :campaigns do |edge|
       edge.delete do |api|
         api.has_param :before_date, 'datetime'
@@ -823,7 +854,6 @@ module FacebookAds
         api.has_param :rule_aggregation, 'string'
         api.has_param :seed_audience, 'int'
         api.has_param :source, 'string'
-        api.has_param :study_spec, 'hash'
         api.has_param :subtype, { enum: -> { CustomAudience::SUBTYPE }}
         api.has_param :tags, { list: 'string' }
         api.has_param :video_group_ids, { list: 'string' }
@@ -970,14 +1000,52 @@ module FacebookAds
       end
     end
 
+    has_edge :mockups do |edge|
+      edge.post do |api|
+        api.has_param :mockup_access_token, 'string'
+        api.has_param :page_id, 'string'
+        api.has_param :source_mockup_id, 'string'
+      end
+    end
+
     has_edge :offline_conversion_data_sets do |edge|
       edge.get 'OfflineConversionDataSet'
+    end
+
+    has_edge :offsitepixels do |edge|
+      edge.get 'OffsitePixel'
     end
 
     has_edge :onbehalf_requests do |edge|
       edge.get 'BusinessOwnedObjectOnBehalfOfRequest' do |api|
         api.has_param :status, { enum: -> { BusinessOwnedObjectOnBehalfOfRequest::STATUS }}
       end
+    end
+
+    has_edge :partner_integrations do |edge|
+      edge.get 'PartnerIntegrationLinked'
+      edge.post 'PartnerIntegrationLinked' do |api|
+        api.has_param :external_id, 'string'
+        api.has_param :gtm_account_id, 'string'
+        api.has_param :gtm_container_id, 'string'
+        api.has_param :name, 'string'
+        api.has_param :page_id, 'string'
+        api.has_param :partner, { enum: -> { PartnerIntegrationLinked::PARTNER }}
+      end
+    end
+
+    has_edge :partnercategories do |edge|
+      edge.get 'PartnerCategory' do |api|
+        api.has_param :hide_pc, 'bool'
+        api.has_param :is_exclusion, 'bool'
+        api.has_param :limit, 'int'
+        api.has_param :private_or_public, { enum: -> { PartnerCategory::PRIVATE_OR_PUBLIC }}
+        api.has_param :targeting_type, 'string'
+      end
+    end
+
+    has_edge :partners do |edge|
+      edge.get 'AdsDataPartner'
     end
 
     has_edge :product_audiences do |edge|
@@ -1075,6 +1143,22 @@ module FacebookAds
       end
     end
 
+    has_edge :referral do |edge|
+      edge.get 'Referral'
+      edge.post 'Referral' do |api|
+        api.has_param :invite_limit, 'int'
+        api.has_param :messenger_cta, 'string'
+        api.has_param :messenger_promotion_text, 'string'
+        api.has_param :namespace, 'int'
+        api.has_param :need_promo_code, 'bool'
+        api.has_param :offer_origin, 'string'
+        api.has_param :promotion_text, 'string'
+        api.has_param :receiver_benefits_text, 'string'
+        api.has_param :referral_link_uri, 'string'
+        api.has_param :sender_benefits_text, 'string'
+      end
+    end
+
     has_edge :roas do |edge|
       edge.get 'AdAccountRoas' do |api|
         api.has_param :fields, { list: 'string' }
@@ -1165,6 +1249,12 @@ module FacebookAds
         api.has_param :is_exclusion, 'bool'
         api.has_param :name_list, { list: 'string' }
         api.has_param :targeting_list, { list: 'object' }
+      end
+    end
+
+    has_edge :timezoneoffsets do |edge|
+      edge.get 'TimezoneOffset' do |api|
+        api.has_param :start_year, 'int'
       end
     end
 

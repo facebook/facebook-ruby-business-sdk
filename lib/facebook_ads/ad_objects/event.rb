@@ -117,8 +117,35 @@ module FacebookAds
       edge.get 'Profile'
     end
 
+    has_edge :attending do |edge|
+      edge.get 'User' do |api|
+        api.has_param :user, 'int'
+      end
+    end
+
     has_edge :comments do |edge|
       edge.get 'NullNode'
+      edge.post 'Comment' do |api|
+        api.has_param :attachment_id, 'string'
+        api.has_param :attachment_share_url, 'string'
+        api.has_param :attachment_url, 'string'
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
+        api.has_param :facepile_mentioned_ids, { list: 'string' }
+        api.has_param :feedback_source, 'string'
+        api.has_param :is_offline, 'bool'
+        api.has_param :message, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :object_id, 'string'
+        api.has_param :parent_comment_id, 'object'
+        api.has_param :text, 'string'
+        api.has_param :tracking, 'string'
+      end
+    end
+
+    has_edge :declined do |edge|
+      edge.get 'User' do |api|
+        api.has_param :user, 'int'
+      end
     end
 
     has_edge :feed do |edge|
@@ -239,6 +266,12 @@ module FacebookAds
       end
     end
 
+    has_edge :interested do |edge|
+      edge.get 'User' do |api|
+        api.has_param :user, 'int'
+      end
+    end
+
     has_edge :live_videos do |edge|
       edge.get 'NullNode'
       edge.post 'LiveVideo' do |api|
@@ -263,6 +296,18 @@ module FacebookAds
         api.has_param :stop_on_delete_stream, 'bool'
         api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
         api.has_param :title, 'string'
+      end
+    end
+
+    has_edge :maybe do |edge|
+      edge.get 'User' do |api|
+        api.has_param :user, 'int'
+      end
+    end
+
+    has_edge :noreply do |edge|
+      edge.get 'User' do |api|
+        api.has_param :user, 'int'
       end
     end
 
@@ -338,6 +383,79 @@ module FacebookAds
 
     has_edge :videos do |edge|
       edge.get 'NullNode'
+      edge.post 'AdVideo' do |api|
+        api.has_param :adaptive_type, 'string'
+        api.has_param :animated_effect_id, 'int'
+        api.has_param :application_id, 'string'
+        api.has_param :asked_fun_fact_prompt_id, 'int'
+        api.has_param :attribution_app_id, 'string'
+        api.has_param :audio_story_wave_animation_handle, 'string'
+        api.has_param :composer_entry_picker, 'string'
+        api.has_param :composer_entry_point, 'string'
+        api.has_param :composer_entry_time, 'int'
+        api.has_param :composer_session_events_log, 'string'
+        api.has_param :composer_session_id, 'string'
+        api.has_param :composer_source_surface, 'string'
+        api.has_param :composer_type, 'string'
+        api.has_param :container_type, { enum: -> { AdVideo::CONTAINER_TYPE }}
+        api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
+        api.has_param :description, 'string'
+        api.has_param :embeddable, 'bool'
+        api.has_param :end_offset, 'int'
+        api.has_param :fbuploader_video_file_chunk, 'string'
+        api.has_param :file_size, 'int'
+        api.has_param :file_url, 'string'
+        api.has_param :fisheye_video_cropped, 'bool'
+        api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
+        api.has_param :fov, 'int'
+        api.has_param :front_z_rotation, 'double'
+        api.has_param :fun_fact_prompt_id, 'int'
+        api.has_param :fun_fact_toastee_id, 'int'
+        api.has_param :guide, { list: { list: 'int' } }
+        api.has_param :guide_enabled, 'bool'
+        api.has_param :has_nickname, 'bool'
+        api.has_param :holiday_card, 'string'
+        api.has_param :initial_heading, 'int'
+        api.has_param :initial_pitch, 'int'
+        api.has_param :instant_game_entry_point_data, 'string'
+        api.has_param :is_boost_intended, 'bool'
+        api.has_param :is_explicit_share, 'bool'
+        api.has_param :is_group_linking_post, 'bool'
+        api.has_param :is_voice_clip, 'bool'
+        api.has_param :location_source_id, 'string'
+        api.has_param :manual_privacy, 'bool'
+        api.has_param :offer_like_post_id, 'int'
+        api.has_param :og_action_type_id, 'string'
+        api.has_param :og_icon_id, 'string'
+        api.has_param :og_object_id, 'string'
+        api.has_param :og_phrase, 'string'
+        api.has_param :og_suggestion_mechanism, 'string'
+        api.has_param :original_fov, 'int'
+        api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
+        api.has_param :publish_event_id, 'int'
+        api.has_param :react_mode_metadata, 'string'
+        api.has_param :referenced_sticker_id, 'string'
+        api.has_param :replace_video_id, 'string'
+        api.has_param :sales_promo_id, 'int'
+        api.has_param :slideshow_spec, 'hash'
+        api.has_param :source, 'string'
+        api.has_param :spherical, 'bool'
+        api.has_param :start_offset, 'int'
+        api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
+        api.has_param :text_format_metadata, 'string'
+        api.has_param :throwback_camera_roll_media, 'string'
+        api.has_param :thumb, 'file'
+        api.has_param :time_since_original_post, 'int'
+        api.has_param :title, 'string'
+        api.has_param :transcode_setting_properties, 'string'
+        api.has_param :unpublished_content_type, { enum: -> { AdVideo::UNPUBLISHED_CONTENT_TYPE }}
+        api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
+        api.has_param :upload_session_id, 'string'
+        api.has_param :upload_setting_properties, 'string'
+        api.has_param :video_file_chunk, 'string'
+        api.has_param :video_start_time_ms, 'int'
+        api.has_param :waterfall_id, 'string'
+      end
     end
 
   end

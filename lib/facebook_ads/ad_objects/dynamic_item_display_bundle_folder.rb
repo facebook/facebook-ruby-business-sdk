@@ -33,11 +33,13 @@ module FacebookAds
     field :product_catalog, 'ProductCatalog'
     field :product_set, 'ProductSet'
     field :valid_labels, 'map<string, list<string>>'
+    field :bundles, { list: 'string' }
 
     has_edge :bundles do |edge|
       edge.delete do |api|
         api.has_param :bundle, 'string'
       end
+      edge.get 'DynamicItemDisplayBundle'
       edge.post 'DynamicItemDisplayBundleFolder' do |api|
         api.has_param :bundle, 'string'
       end

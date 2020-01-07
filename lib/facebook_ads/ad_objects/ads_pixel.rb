@@ -59,6 +59,11 @@ module FacebookAds
       "EDIT",
     ]
 
+    TYPE = [
+      "PRIMARY",
+      "SECONDARY",
+    ]
+
 
     field :automatic_matching_fields, { list: 'string' }
     field :can_proxy, 'bool'
@@ -96,6 +101,10 @@ module FacebookAds
       end
     end
 
+    has_edge :create_server_to_server_keys do |edge|
+      edge.post 'AdsPixel'
+    end
+
     has_edge :da_checks do |edge|
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
@@ -107,6 +116,12 @@ module FacebookAds
         api.has_param :data, { list: 'string' }
         api.has_param :test_event_code, 'string'
         api.has_param :trace, 'int'
+      end
+    end
+
+    has_edge :reset_server_to_server_key do |edge|
+      edge.post 'AdsPixel' do |api|
+        api.has_param :type, { enum: -> { AdsPixel::TYPE }}
       end
     end
 

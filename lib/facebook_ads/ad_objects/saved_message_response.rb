@@ -26,6 +26,23 @@ module FacebookAds
   # pull request for this class.
 
   class SavedMessageResponse < AdObject
+    CATEGORY = [
+      "APPOINTMENT_REMINDER",
+      "AWAY_MESSAGE",
+      "FOLLOW_UP",
+      "INSTANT_REPLY",
+      "JOB_APPLICATION",
+      "MESSENGER_CODE",
+      "REFERRAL",
+      "SMART_REPLY_CONTACT",
+      "SMART_REPLY_HOURS",
+      "SMART_REPLY_LOCATION",
+      "SMART_REPLY_NEGATIVE_FEEDBACK",
+      "SMART_REPLY_POSITIVE_FEEDBACK",
+      "STANDARD",
+      "WELCOME_MESSAGE",
+    ]
+
 
     field :category, 'string'
     field :id, 'string'
@@ -33,8 +50,10 @@ module FacebookAds
     field :is_enabled, 'bool'
     field :message, 'string'
     field :title, 'string'
-    has_no_post
-    has_no_delete
+
+    has_edge :macros do |edge|
+      edge.get 'SavedMessageResponseMacro'
+    end
 
   end
 end

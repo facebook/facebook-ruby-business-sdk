@@ -92,6 +92,13 @@ module FacebookAds
       "PAGE",
     ]
 
+    ROLE = [
+      "administrators",
+      "developers",
+      "insights users",
+      "testers",
+    ]
+
 
     field :aam_rules, 'string'
     field :an_ad_space_limit, 'int'
@@ -125,6 +132,7 @@ module FacebookAds
     field :company, 'string'
     field :configured_ios_sso, 'bool'
     field :contact_email, 'string'
+    field :context, 'object'
     field :created_time, 'datetime'
     field :creator_uid, 'string'
     field :daily_active_users, 'string'
@@ -283,6 +291,10 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :android_dialog_configs do |edge|
+      edge.get
+    end
+
     has_edge :app_event_types do |edge|
       edge.get
     end
@@ -345,6 +357,12 @@ module FacebookAds
       end
     end
 
+    has_edge :audiences do |edge|
+      edge.get 'CustomAudience' do |api|
+        api.has_param :ad_account, 'string'
+      end
+    end
+
     has_edge :authorized_adaccounts do |edge|
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'
@@ -357,6 +375,9 @@ module FacebookAds
       end
       edge.get 'User' do |api|
         api.has_param :uid, 'int'
+      end
+      edge.post 'User' do |api|
+        api.has_param :uids, { list: 'int' }
       end
     end
 
@@ -392,6 +413,10 @@ module FacebookAds
       end
     end
 
+    has_edge :connections do |edge|
+      edge.get
+    end
+
     has_edge :custom_audience_third_party_id do |edge|
       edge.get do |api|
         api.has_param :limit_event_usage, 'bool'
@@ -403,6 +428,10 @@ module FacebookAds
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
       end
+    end
+
+    has_edge :direct_deals do |edge|
+      edge.get 'DirectDeal'
     end
 
     has_edge :events do |edge|
@@ -419,6 +448,16 @@ module FacebookAds
       edge.post do |api|
         api.has_param :app_version, 'string'
         api.has_param :full_app_indexing_info_classes, { list: 'hash' }
+      end
+    end
+
+    has_edge :insights_event_labels do |edge|
+      edge.get do |api|
+        api.has_param :add, { list: 'string' }
+        api.has_param :delete, 'int'
+        api.has_param :ecosystem, 'bool'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
       end
     end
 
@@ -506,11 +545,31 @@ module FacebookAds
       end
     end
 
+    has_edge :monetization do |edge|
+      edge.post do |api|
+        api.has_param :breakdowns, { list: { enum: %w{COUNTRY }} }
+        api.has_param :campaign_id, 'string'
+        api.has_param :device_list, { list: 'string' }
+        api.has_param :query_id, 'string'
+        api.has_param :request_id, 'string'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+      end
+    end
+
+    has_edge :object_types do |edge|
+      edge.get
+    end
+
     has_edge :occludespopups do |edge|
       edge.post do |api|
         api.has_param :flash, 'bool'
         api.has_param :unity, 'bool'
       end
+    end
+
+    has_edge :ozone_release do |edge|
+      edge.get
     end
 
     has_edge :page_activities do |edge|
@@ -557,7 +616,14 @@ module FacebookAds
     end
 
     has_edge :roles do |edge|
+      edge.delete do |api|
+        api.has_param :user, 'int'
+      end
       edge.get
+      edge.post 'Application' do |api|
+        api.has_param :role, { enum: -> { Application::ROLE }}
+        api.has_param :user, 'int'
+      end
     end
 
     has_edge :subscribed_domains do |edge|

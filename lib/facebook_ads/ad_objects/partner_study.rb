@@ -48,6 +48,10 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :partners do |edge|
+      edge.get 'AdsDataPartner'
+    end
+
     has_edge :submitters do |edge|
       edge.get 'User'
     end

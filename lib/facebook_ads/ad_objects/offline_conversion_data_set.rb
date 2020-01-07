@@ -63,7 +63,20 @@ module FacebookAds
     field :valid_entries, 'int'
     field :auto_assign_to_new_accounts_only, 'bool'
 
+    has_edge :activities do |edge|
+      edge.get do |api|
+        api.has_param :business_id, 'string'
+        api.has_param :end_time, 'datetime'
+        api.has_param :event_type, { enum: %w{add_dataset_to_business add_user_to_dataset create_custom_audience create_custom_conversion dataset_assign_to_adacct dataset_autotrack_on_adacct dataset_disable_autotrack_on_adacct dataset_unassign_from_adacct remove_user_from_dataset share_custom_audience unshare_custom_audience update_custom_conversion update_user_role_on_dataset }}
+        api.has_param :start_time, 'datetime'
+      end
+    end
+
     has_edge :adaccounts do |edge|
+      edge.delete do |api|
+        api.has_param :account_id, 'string'
+        api.has_param :business, 'string'
+      end
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'
       end
@@ -93,6 +106,12 @@ module FacebookAds
     has_edge :customconversions do |edge|
       edge.get 'CustomConversion' do |api|
         api.has_param :ad_account, 'string'
+      end
+    end
+
+    has_edge :da_checks do |edge|
+      edge.get 'DaCheck' do |api|
+        api.has_param :checks, { list: 'string' }
       end
     end
 
@@ -132,6 +151,9 @@ module FacebookAds
     end
 
     has_edge :users do |edge|
+      edge.delete do |api|
+        api.has_param :data, { list: 'object' }
+      end
       edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :data, { list: 'object' }
       end

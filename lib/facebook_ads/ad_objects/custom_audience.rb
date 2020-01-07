@@ -140,7 +140,6 @@ module FacebookAds
     field :prefill, 'bool'
     field :product_set_id, 'string'
     field :source, 'string'
-    field :study_spec, 'hash'
     field :tags, { list: 'string' }
     field :video_group_ids, { list: 'string' }
 

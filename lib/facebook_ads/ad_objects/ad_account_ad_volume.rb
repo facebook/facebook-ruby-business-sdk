@@ -29,10 +29,7 @@ module FacebookAds
 
     field :actor_id, 'string'
     field :ads_running_or_in_review_count, 'int'
-    field :has_hit_total_live_ads_limit, 'bool'
-    field :live_ads_quota_left, 'int'
-    field :total_live_ads_in_current_account, 'int'
-    field :total_live_ads_limit, 'int'
+    field :current_account_ads_running_or_in_review_count, 'int'
     has_no_id
     has_no_get
     has_no_post

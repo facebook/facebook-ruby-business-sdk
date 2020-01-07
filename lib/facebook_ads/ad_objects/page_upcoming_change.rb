@@ -31,6 +31,7 @@ module FacebookAds
     field :effective_time, 'datetime'
     field :id, 'string'
     field :page, 'Page'
+    field :proposal, 'PageChangeProposal'
     field :timer_status, 'string'
     has_no_delete
 

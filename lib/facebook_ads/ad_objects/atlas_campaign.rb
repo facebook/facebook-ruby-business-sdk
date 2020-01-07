@@ -140,15 +140,6 @@ module FacebookAds
       edge.get 'BusinessUnit'
     end
 
-    has_edge :importtemplate do |edge|
-      edge.post 'AtlasCampaign' do |api|
-        api.has_param :export, 'string'
-        api.has_param :filename, 'string'
-        api.has_param :format, 'string'
-        api.has_param :template, 'string'
-      end
-    end
-
     has_edge :metrics_breakdown do |edge|
       edge.get do |api|
         api.has_param :dimensions, { list: { enum: %w{DEVICE_TYPE SOURCE_CHANNEL }} }

@@ -117,6 +117,7 @@ module FacebookAds
       edge.post 'Business' do |api|
         api.has_param :app_id, 'string'
         api.has_param :scope, { list: 'Permission' }
+        api.has_param :system_user_name, 'string'
       end
     end
 
@@ -160,6 +161,10 @@ module FacebookAds
         api.has_param :po_number, 'string'
         api.has_param :timezone_id, 'int'
       end
+    end
+
+    has_edge :adaccountcreationrequests do |edge|
+      edge.get 'AdAccountCreationRequest'
     end
 
     has_edge :adnetworkanalytics do |edge|
@@ -389,6 +394,9 @@ module FacebookAds
     end
 
     has_edge :managed_businesses do |edge|
+      edge.delete do |api|
+        api.has_param :existing_client_business_id, 'string'
+      end
       edge.post 'Business' do |api|
         api.has_param :existing_client_business_id, 'string'
         api.has_param :name, 'string'
@@ -457,6 +465,17 @@ module FacebookAds
       end
     end
 
+    has_edge :owned_custom_conversions do |edge|
+      edge.get 'CustomConversion'
+    end
+
+    has_edge :owned_domains do |edge|
+      edge.get 'OwnedDomain'
+      edge.post 'OwnedDomain' do |api|
+        api.has_param :domain_name, 'string'
+      end
+    end
+
     has_edge :owned_instagram_accounts do |edge|
       edge.get 'InstagramUser'
     end
@@ -488,6 +507,18 @@ module FacebookAds
     has_edge :pages do |edge|
       edge.delete do |api|
         api.has_param :page_id, 'int'
+      end
+    end
+
+    has_edge :partner_integrations do |edge|
+      edge.get 'PartnerIntegrationLinked'
+      edge.post 'PartnerIntegrationLinked' do |api|
+        api.has_param :external_id, 'string'
+        api.has_param :gtm_account_id, 'string'
+        api.has_param :gtm_container_id, 'string'
+        api.has_param :name, 'string'
+        api.has_param :page_id, 'string'
+        api.has_param :partner, { enum: -> { PartnerIntegrationLinked::PARTNER }}
       end
     end
 
@@ -581,6 +612,12 @@ module FacebookAds
       end
     end
 
+    has_edge :spaco_dataset_collections do |edge|
+      edge.post do |api|
+        api.has_param :spaco_data_collections, { list: 'string' }
+      end
+    end
+
     has_edge :system_users do |edge|
       edge.get 'SystemUser'
       edge.post 'SystemUser' do |api|
@@ -595,6 +632,7 @@ module FacebookAds
     end
 
     has_edge :upload_event do |edge|
+      edge.get 'MeasurementUploadEvent'
       edge.post 'MeasurementUploadEvent' do |api|
         api.has_param :aggregation_level, { enum: -> { MeasurementUploadEvent::AGGREGATION_LEVEL }}
         api.has_param :conversion_end_date, 'string'
@@ -682,6 +720,34 @@ module FacebookAds
         api.has_param :video_file_chunk, 'string'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'
+      end
+    end
+
+    has_edge :vietnamadaccountcreationrequests do |edge|
+      edge.post 'AdAccountCreationRequest' do |api|
+        api.has_param :ad_accounts_currency, 'string'
+        api.has_param :ad_accounts_info, { list: 'object' }
+        api.has_param :additional_comment, 'string'
+        api.has_param :address_in_english, 'object'
+        api.has_param :address_in_local_language, 'string'
+        api.has_param :advertiser_business_id, 'string'
+        api.has_param :business_registration, 'file'
+        api.has_param :business_registration_id, 'string'
+        api.has_param :contact, 'object'
+        api.has_param :credit_card_id, 'string'
+        api.has_param :english_legal_entity_name, 'string'
+        api.has_param :extended_credit_id, 'string'
+        api.has_param :is_smb, 'bool'
+        api.has_param :is_test, 'bool'
+        api.has_param :legal_entity_name_in_local_language, 'string'
+        api.has_param :official_website_url, 'string'
+        api.has_param :planning_agency_business_id, 'string'
+        api.has_param :promotable_app_ids, { list: 'string' }
+        api.has_param :promotable_page_ids, { list: 'int' }
+        api.has_param :promotable_page_urls, { list: 'string' }
+        api.has_param :promotable_urls, { list: 'string' }
+        api.has_param :subvertical, { enum: -> { AdAccountCreationRequest::SUBVERTICAL }}
+        api.has_param :vertical, { enum: -> { AdAccountCreationRequest::VERTICAL }}
       end
     end
 

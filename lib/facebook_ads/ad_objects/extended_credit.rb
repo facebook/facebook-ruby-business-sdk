@@ -46,6 +46,10 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :extended_credit_emails do |edge|
+      edge.get
+    end
+
     has_edge :extended_credit_invoice_groups do |edge|
       edge.get 'ExtendedCreditInvoiceGroup'
       edge.post 'ExtendedCreditInvoiceGroup' do |api|

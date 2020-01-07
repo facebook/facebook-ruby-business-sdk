@@ -37,6 +37,7 @@ module FacebookAds
     field :message, 'string'
     field :multi_share_optimized, 'bool'
     field :name, 'string'
+    field :picture, 'string'
     field :privacy, 'Privacy'
     field :via, 'object'
     has_no_post
@@ -67,7 +68,19 @@ module FacebookAds
     end
 
     has_edge :likes do |edge|
+      edge.delete do |api|
+        api.has_param :feedback_source, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :notify, 'bool'
+        api.has_param :tracking, 'string'
+      end
       edge.get 'Profile'
+      edge.post 'Link' do |api|
+        api.has_param :feedback_source, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :notify, 'bool'
+        api.has_param :tracking, 'string'
+      end
     end
 
     has_edge :reactions do |edge|

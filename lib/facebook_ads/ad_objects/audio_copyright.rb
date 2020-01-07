@@ -26,6 +26,12 @@ module FacebookAds
   # pull request for this class.
 
   class AudioCopyright < AdObject
+    UPDATE_SOURCE = [
+      "ddex",
+      "edit_reference_dialog",
+      "reference_conflict_dialog",
+    ]
+
 
     field :creation_time, 'datetime'
     field :displayed_matches_count, 'int'
@@ -39,7 +45,6 @@ module FacebookAds
     field :update_time, 'datetime'
     field :whitelisted_fb_users, { list: 'object' }
     field :whitelisted_ig_users, { list: 'string' }
-    has_no_post
     has_no_delete
 
   end

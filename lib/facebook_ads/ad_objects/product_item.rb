@@ -365,6 +365,24 @@ module FacebookAds
     field :windows_phone_app_name, 'string'
     field :windows_phone_url, 'string'
 
+    has_edge :comments do |edge|
+      edge.post 'Comment' do |api|
+        api.has_param :attachment_id, 'string'
+        api.has_param :attachment_share_url, 'string'
+        api.has_param :attachment_url, 'string'
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
+        api.has_param :facepile_mentioned_ids, { list: 'string' }
+        api.has_param :feedback_source, 'string'
+        api.has_param :is_offline, 'bool'
+        api.has_param :message, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :object_id, 'string'
+        api.has_param :parent_comment_id, 'object'
+        api.has_param :text, 'string'
+        api.has_param :tracking, 'string'
+      end
+    end
+
     has_edge :product_sets do |edge|
       edge.get 'ProductSet'
     end

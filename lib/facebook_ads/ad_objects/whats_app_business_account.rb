@@ -43,9 +43,7 @@ module FacebookAds
 
     field :analytics, 'object'
     field :currency, 'string'
-    field :eligible_for_sending_notifications, 'bool'
     field :id, 'string'
-    field :ineligible_for_sending_notifications_reason, 'string'
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'

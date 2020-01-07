@@ -40,7 +40,7 @@ module FacebookAds
     field :sanitized_images, { list: 'string' }
     field :types, { list: 'string' }
     field :url, 'string'
-    has_no_post
+    field :target_radius_in_km, 'double'
     has_no_delete
 
   end

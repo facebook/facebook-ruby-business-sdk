@@ -91,6 +91,7 @@ module FacebookAds
       "LIVE_LINEAR_VIDEO_CHANNEL_INTERNAL_BROADCAST",
       "LIVE_PHOTO",
       "LOOK_NOW_DEPRECATED",
+      "MARKETPLACE_LISTING_VIDEO",
       "MOMENTS_VIDEO",
       "NEO_ASYNC_GAME_VIDEO",
       "NO_STORY",
@@ -339,8 +340,24 @@ module FacebookAds
     field :ad_placements_validation_only, 'bool'
     field :creative_folder_id, 'string'
     field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
+    field :is_explicit_share, 'bool'
+    field :manual_privacy, 'bool'
+
+    has_edge :auto_generated_captions do |edge|
+      edge.get
+    end
+
+    has_edge :blocked_users do |edge|
+      edge.post 'AdVideo' do |api|
+        api.has_param :remove_block, 'bool'
+        api.has_param :uid, 'object'
+      end
+    end
 
     has_edge :captions do |edge|
+      edge.delete do |api|
+        api.has_param :locale, 'string'
+      end
       edge.get
       edge.post 'AdVideo' do |api|
         api.has_param :captions_file, 'file'
@@ -378,6 +395,12 @@ module FacebookAds
     end
 
     has_edge :likes do |edge|
+      edge.delete do |api|
+        api.has_param :feedback_source, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :notify, 'bool'
+        api.has_param :tracking, 'string'
+      end
       edge.get 'Profile'
       edge.post 'AdVideo' do |api|
         api.has_param :feedback_source, 'string'

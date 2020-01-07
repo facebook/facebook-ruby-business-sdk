@@ -55,7 +55,6 @@ module FacebookAds
     field :reference_owner_id, 'string'
     field :rule_ids, { list: 'VideoCopyrightRule' }
     field :whitelisted_ids, { list: 'string' }
-    has_no_delete
 
   end
 end

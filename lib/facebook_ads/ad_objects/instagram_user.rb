@@ -44,6 +44,15 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'Business'
+      edge.post 'InstagramUser' do |api|
+        api.has_param :business, 'string'
+      end
+    end
+
+    has_edge :assigned_users do |edge|
+      edge.get 'AssignedUser' do |api|
+        api.has_param :business, 'string'
+      end
     end
 
     has_edge :authorized_adaccounts do |edge|

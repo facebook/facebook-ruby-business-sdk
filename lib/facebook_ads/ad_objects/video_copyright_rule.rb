@@ -41,7 +41,6 @@ module FacebookAds
     field :is_in_migration, 'bool'
     field :name, 'string'
     has_no_post
-    has_no_delete
 
   end
 end
