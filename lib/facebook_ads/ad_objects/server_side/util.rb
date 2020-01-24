@@ -17,6 +17,8 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'digest'
+require 'countries'
+require 'money'
 
 module FacebookAds
 	module ServerSide
@@ -100,8 +102,8 @@ module FacebookAds
 
 			# Replace unwanted characters and retain only alpha characters bounded for ISO code.
 			country = country.gsub(/[^a-z]/,'')
-
-			if country.length != 2
+			iso_country = ISO3166::Country.search(country)
+			if iso_country == nil
 				raise ArgumentError, "Invalid format for country:'" + country + "'.Please follow ISO 2-letter ISO 3166-1 standard for representing country. eg: us"
 			end
 
@@ -117,28 +119,29 @@ module FacebookAds
 			return city
 		end
 
-		# Normalizes the given currency code and returns acceptable hashed currency ISO code
-		def self.normalize_currency(currency)
+	# Normalizes the given currency code and returns acceptable hashed currency ISO code
+	def self.normalize_currency(currency)
 
-			# Retain only alpha characters bounded for ISO code.
-			currency = currency.gsub(/[^a-z]/,'')
+		# Retain only alpha characters bounded for ISO code.
+		currency = currency.gsub(/[^a-z]/,'')
 
-			if currency.length != 3
-				raise ArgumentError, "Invalid format for currency:'" + currency + "'.Please follow ISO 3-letter ISO 4217 standard for representing currency. Eg: usd"
-			end
-
-			return currency;
+		iso_currency = Money::Currency.find(currency)
+		if iso_currency == nil
+			raise ArgumentError, "Invalid format for currency:'" + currency + "'.Please follow ISO 3-letter ISO 4217 standard for representing currency. Eg: usd"
 		end
 
-		# Normalizes the given email and returns acceptable hashed email value
-		def self.normalize_email(email)
+		return currency;
+	end
 
-			if EMAIL_REGEX.match(email) == nil
-				return ArgumentError, "Invalid email format for the passed email:' + email + '.Please check the passed email format."
-			end
+	# Normalizes the given email and returns acceptable hashed email value
+	def self.normalize_email(email)
 
-			return email
+		if EMAIL_REGEX.match(email) == nil
+			return ArgumentError, "Invalid email format for the passed email:' + email + '.Please check the passed email format."
 		end
+
+		return email
+	end
 
 		# Normalizes the given gender and returns acceptable hashed gender value
     def self.normalize_gender(gender)
