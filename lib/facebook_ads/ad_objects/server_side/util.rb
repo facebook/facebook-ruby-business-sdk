@@ -114,10 +114,10 @@ module FacebookAds
     def self.normalize_city(city)
 
       # Remove commonly occuring characters from city name.
-			city = city.gsub(/[0-9.\s\-()]/,'')
+		city = city.gsub(/[0-9.\s\-()]/,'')
 
-			return city
-		end
+		return city
+	end
 
 	# Normalizes the given currency code and returns acceptable hashed currency ISO code
 	def self.normalize_currency(currency)
