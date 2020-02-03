@@ -53,12 +53,6 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :assigned_users do |edge|
-      edge.get 'AssignedUser' do |api|
-        api.has_param :business, 'string'
-      end
-    end
-
     has_edge :message_templates do |edge|
       edge.delete do |api|
         api.has_param :name, 'string'

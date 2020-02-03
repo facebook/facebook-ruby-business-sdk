@@ -137,10 +137,6 @@ module FacebookAds
       edge.get 'LiveVideoError'
     end
 
-    has_edge :game_shows do |edge|
-      edge.get 'VideoGameShow'
-    end
-
     has_edge :input_streams do |edge|
       edge.post 'LiveVideoInputStream'
     end

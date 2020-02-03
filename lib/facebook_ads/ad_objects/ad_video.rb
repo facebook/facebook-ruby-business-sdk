@@ -340,24 +340,8 @@ module FacebookAds
     field :ad_placements_validation_only, 'bool'
     field :creative_folder_id, 'string'
     field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
-    field :is_explicit_share, 'bool'
-    field :manual_privacy, 'bool'
-
-    has_edge :auto_generated_captions do |edge|
-      edge.get
-    end
-
-    has_edge :blocked_users do |edge|
-      edge.post 'AdVideo' do |api|
-        api.has_param :remove_block, 'bool'
-        api.has_param :uid, 'object'
-      end
-    end
 
     has_edge :captions do |edge|
-      edge.delete do |api|
-        api.has_param :locale, 'string'
-      end
       edge.get
       edge.post 'AdVideo' do |api|
         api.has_param :captions_file, 'file'
@@ -395,12 +379,6 @@ module FacebookAds
     end
 
     has_edge :likes do |edge|
-      edge.delete do |api|
-        api.has_param :feedback_source, 'string'
-        api.has_param :nectar_module, 'string'
-        api.has_param :notify, 'bool'
-        api.has_param :tracking, 'string'
-      end
       edge.get 'Profile'
       edge.post 'AdVideo' do |api|
         api.has_param :feedback_source, 'string'
@@ -431,12 +409,6 @@ module FacebookAds
       end
     end
 
-    has_edge :reactions do |edge|
-      edge.get 'Profile' do |api|
-        api.has_param :type, { enum: -> { Profile::TYPE }}
-      end
-    end
-
     has_edge :sharedposts do |edge|
       edge.get 'Post'
     end
@@ -446,7 +418,7 @@ module FacebookAds
     end
 
     has_edge :tags do |edge|
-      edge.get 'TaggableSubject'
+      edge.get
       edge.post 'AdVideo' do |api|
         api.has_param :tag_uid, 'int'
         api.has_param :uid, 'int'

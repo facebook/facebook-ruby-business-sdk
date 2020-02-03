@@ -160,10 +160,6 @@ module FacebookAds
     end
 
     has_edge :adlabels do |edge|
-      edge.delete do |api|
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
-      end
       edge.post 'Campaign' do |api|
         api.has_param :adlabels, { list: 'object' }
         api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
@@ -181,7 +177,6 @@ module FacebookAds
         api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :include_deleted, 'bool'
         api.has_param :include_drafts, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'

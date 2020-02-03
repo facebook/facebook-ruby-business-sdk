@@ -77,7 +77,6 @@ module FacebookAds
     field :daily_impression_curve, { list: 'double' }
     field :daily_impression_curve_map, 'map<unsigned int, list<float>>'
     field :day_parting_schedule, { list: 'ReachFrequencyDayPart' }
-    field :demo_breakdown, 'ReachFrequencyEstimatesDemoBreakdown'
     field :destination_id, 'string'
     field :end_time, 'datetime'
     field :expiration_time, 'datetime'

@@ -149,10 +149,6 @@ module FacebookAds
     end
 
     has_edge :adlabels do |edge|
-      edge.delete do |api|
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
-      end
       edge.post 'Ad' do |api|
         api.has_param :adlabels, { list: 'object' }
         api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
@@ -169,7 +165,6 @@ module FacebookAds
       edge.get 'Ad' do |api|
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :include_deleted, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
       end
@@ -229,11 +224,6 @@ module FacebookAds
 
     has_edge :leads do |edge|
       edge.get 'Lead'
-      edge.post 'Lead' do |api|
-        api.has_param :end_time, 'datetime'
-        api.has_param :session_id, 'string'
-        api.has_param :start_time, 'datetime'
-      end
     end
 
     has_edge :previews do |edge|
@@ -256,14 +246,6 @@ module FacebookAds
 
     has_edge :targetingsentencelines do |edge|
       edge.get 'TargetingSentenceLine'
-    end
-
-    has_edge :trackingtag do |edge|
-      edge.delete
-      edge.post do |api|
-        api.has_param :add_template_param, 'bool'
-        api.has_param :url, 'string'
-      end
     end
 
   end

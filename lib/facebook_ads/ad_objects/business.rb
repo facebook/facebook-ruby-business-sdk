@@ -121,12 +121,6 @@ module FacebookAds
       end
     end
 
-    has_edge :ad_accounts do |edge|
-      edge.delete do |api|
-        api.has_param :adaccount_id, 'string'
-      end
-    end
-
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
       edge.post 'AdStudy' do |api|
@@ -161,10 +155,6 @@ module FacebookAds
         api.has_param :po_number, 'string'
         api.has_param :timezone_id, 'int'
       end
-    end
-
-    has_edge :adaccountcreationrequests do |edge|
-      edge.get 'AdAccountCreationRequest'
     end
 
     has_edge :adnetworkanalytics do |edge|
@@ -316,6 +306,7 @@ module FacebookAds
       edge.post 'BusinessCreativeFolder' do |api|
         api.has_param :description, 'string'
         api.has_param :name, 'string'
+        api.has_param :parent_folder_id, 'string'
       end
     end
 
@@ -326,9 +317,6 @@ module FacebookAds
     end
 
     has_edge :customconversions do |edge|
-      edge.get 'CustomConversion' do |api|
-        api.has_param :include_archived, 'bool'
-      end
       edge.post 'CustomConversion' do |api|
         api.has_param :advanced_rule, 'string'
         api.has_param :custom_event_type, { enum: -> { CustomConversion::CUSTOM_EVENT_TYPE }}
@@ -337,16 +325,6 @@ module FacebookAds
         api.has_param :event_source_id, 'string'
         api.has_param :name, 'string'
         api.has_param :rule, 'string'
-      end
-    end
-
-    has_edge :deal_shows_pages do |edge|
-      edge.get 'Page'
-    end
-
-    has_edge :direct_deals do |edge|
-      edge.get 'DirectDeal' do |api|
-        api.has_param :status, { enum: -> { DirectDeal::STATUS }}
       end
     end
 
@@ -376,13 +354,6 @@ module FacebookAds
       edge.get 'BusinessAssetSharingAgreement' do |api|
         api.has_param :recipient_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
-      end
-    end
-
-    has_edge :initiated_sharing_agreements do |edge|
-      edge.get 'BusinessAgreement' do |api|
-        api.has_param :receiving_business_id, 'string'
-        api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
       end
     end
 
@@ -427,10 +398,6 @@ module FacebookAds
       end
     end
 
-    has_edge :offline_terms_of_service do |edge|
-      edge.get 'OfflineTermsOfService'
-    end
-
     has_edge :owned_ad_accounts do |edge|
       edge.get 'AdAccount'
       edge.post 'Business' do |api|
@@ -462,17 +429,6 @@ module FacebookAds
         api.has_param :survey_num_people, 'int'
         api.has_param :timezone_id, 'int'
         api.has_param :vertical, { enum: -> { Business::VERTICAL }}
-      end
-    end
-
-    has_edge :owned_custom_conversions do |edge|
-      edge.get 'CustomConversion'
-    end
-
-    has_edge :owned_domains do |edge|
-      edge.get 'OwnedDomain'
-      edge.post 'OwnedDomain' do |api|
-        api.has_param :domain_name, 'string'
       end
     end
 
@@ -510,18 +466,6 @@ module FacebookAds
       end
     end
 
-    has_edge :partner_integrations do |edge|
-      edge.get 'PartnerIntegrationLinked'
-      edge.post 'PartnerIntegrationLinked' do |api|
-        api.has_param :external_id, 'string'
-        api.has_param :gtm_account_id, 'string'
-        api.has_param :gtm_container_id, 'string'
-        api.has_param :name, 'string'
-        api.has_param :page_id, 'string'
-        api.has_param :partner, { enum: -> { PartnerIntegrationLinked::PARTNER }}
-      end
-    end
-
     has_edge :pending_client_ad_accounts do |edge|
       edge.get 'BusinessAdAccountRequest'
     end
@@ -534,10 +478,6 @@ module FacebookAds
       edge.get 'BusinessPageRequest'
     end
 
-    has_edge :pending_offline_conversion_data_sets do |edge|
-      edge.get 'OfflineConversionDataSet'
-    end
-
     has_edge :pending_owned_ad_accounts do |edge|
       edge.get 'BusinessAdAccountRequest'
     end
@@ -548,10 +488,6 @@ module FacebookAds
 
     has_edge :pending_shared_creative_folders do |edge|
       edge.get 'BusinessCreativeFolder'
-    end
-
-    has_edge :pending_shared_pixels do |edge|
-      edge.get 'AdsPixel'
     end
 
     has_edge :pending_users do |edge|
@@ -574,47 +510,10 @@ module FacebookAds
       edge.post 'BusinessPixelTos'
     end
 
-    has_edge :received_audience_permissions do |edge|
-      edge.get 'AudiencePermission' do |api|
-        api.has_param :partner_id, 'string'
-      end
-    end
-
     has_edge :received_audience_sharing_requests do |edge|
       edge.get 'BusinessAssetSharingAgreement' do |api|
         api.has_param :initiator_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
-      end
-    end
-
-    has_edge :received_inprogress_onbehalf_requests do |edge|
-      edge.get 'BusinessOwnedObjectOnBehalfOfRequest'
-    end
-
-    has_edge :received_sharing_agreements do |edge|
-      edge.get 'BusinessAgreement' do |api|
-        api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
-        api.has_param :requesting_business_id, 'string'
-      end
-    end
-
-    has_edge :sent_inprogress_onbehalf_requests do |edge|
-      edge.get 'BusinessOwnedObjectOnBehalfOfRequest'
-      edge.post 'BusinessOwnedObjectOnBehalfOfRequest' do |api|
-        api.has_param :business_owned_object, 'string'
-        api.has_param :receiving_business, 'string'
-      end
-    end
-
-    has_edge :shared_audience_permissions do |edge|
-      edge.get 'AudiencePermission' do |api|
-        api.has_param :partner_id, 'string'
-      end
-    end
-
-    has_edge :spaco_dataset_collections do |edge|
-      edge.post do |api|
-        api.has_param :spaco_data_collections, { list: 'string' }
       end
     end
 
@@ -632,7 +531,6 @@ module FacebookAds
     end
 
     has_edge :upload_event do |edge|
-      edge.get 'MeasurementUploadEvent'
       edge.post 'MeasurementUploadEvent' do |api|
         api.has_param :aggregation_level, { enum: -> { MeasurementUploadEvent::AGGREGATION_LEVEL }}
         api.has_param :conversion_end_date, 'string'
@@ -720,34 +618,6 @@ module FacebookAds
         api.has_param :video_file_chunk, 'string'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'
-      end
-    end
-
-    has_edge :vietnamadaccountcreationrequests do |edge|
-      edge.post 'AdAccountCreationRequest' do |api|
-        api.has_param :ad_accounts_currency, 'string'
-        api.has_param :ad_accounts_info, { list: 'object' }
-        api.has_param :additional_comment, 'string'
-        api.has_param :address_in_english, 'object'
-        api.has_param :address_in_local_language, 'string'
-        api.has_param :advertiser_business_id, 'string'
-        api.has_param :business_registration, 'file'
-        api.has_param :business_registration_id, 'string'
-        api.has_param :contact, 'object'
-        api.has_param :credit_card_id, 'string'
-        api.has_param :english_legal_entity_name, 'string'
-        api.has_param :extended_credit_id, 'string'
-        api.has_param :is_smb, 'bool'
-        api.has_param :is_test, 'bool'
-        api.has_param :legal_entity_name_in_local_language, 'string'
-        api.has_param :official_website_url, 'string'
-        api.has_param :planning_agency_business_id, 'string'
-        api.has_param :promotable_app_ids, { list: 'string' }
-        api.has_param :promotable_page_ids, { list: 'int' }
-        api.has_param :promotable_page_urls, { list: 'string' }
-        api.has_param :promotable_urls, { list: 'string' }
-        api.has_param :subvertical, { enum: -> { AdAccountCreationRequest::SUBVERTICAL }}
-        api.has_param :vertical, { enum: -> { AdAccountCreationRequest::VERTICAL }}
       end
     end
 

@@ -27,7 +27,6 @@ module FacebookAds
 
   class HotelRoom < AdObject
 
-    field :applinks, 'AppLinks'
     field :base_price, 'string'
     field :currency, 'string'
     field :description, 'string'
@@ -38,7 +37,6 @@ module FacebookAds
     field :room_id, 'string'
     field :sale_price, 'string'
     field :url, 'string'
-    field :pricing_variables, { list: 'object' }
 
     has_edge :pricing_variables do |edge|
       edge.get 'DynamicPriceConfigByDate'

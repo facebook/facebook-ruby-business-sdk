@@ -28,8 +28,8 @@ module FacebookAds
   class Hotel < AdObject
 
     field :address, 'string'
-    field :applinks, 'AppLinks'
     field :brand, 'string'
+    field :category, 'string'
     field :currency, 'string'
     field :description, 'string'
     field :guest_ratings, 'string'
@@ -45,23 +45,11 @@ module FacebookAds
     field :sanitized_images, { list: 'string' }
     field :star_rating, 'double'
     field :url, 'string'
+    field :applinks, 'object'
     field :base_price, 'int'
 
     has_edge :hotel_rooms do |edge|
       edge.get 'HotelRoom'
-      edge.post 'HotelRoom' do |api|
-        api.has_param :applinks, 'object'
-        api.has_param :base_price, 'double'
-        api.has_param :currency, 'string'
-        api.has_param :description, 'string'
-        api.has_param :images, { list: 'object' }
-        api.has_param :margin_level, 'int'
-        api.has_param :name, 'string'
-        api.has_param :pricing_variables, { list: 'object' }
-        api.has_param :room_id, 'string'
-        api.has_param :sale_price, 'double'
-        api.has_param :url, 'string'
-      end
     end
 
   end

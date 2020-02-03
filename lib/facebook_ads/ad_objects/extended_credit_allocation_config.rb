@@ -55,7 +55,6 @@ module FacebookAds
     field :receiving_credential, 'ExtendedCredit'
     field :request_status, 'string'
     field :send_bill_to, 'string'
-    has_no_post
 
   end
 end

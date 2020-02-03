@@ -92,27 +92,6 @@ module FacebookAds
       "Vietnamese",
     ]
 
-    AUDIENCE = [
-      "AUTO_LOOKALIKE",
-      "AUTO_PAGE_LOOKALIKE",
-      "AUTO_TARGETING",
-      "CREATE_NEW",
-      "CUSTOM_AUDIENCE",
-      "DISTRICT",
-      "EVENT_CUSTOM_AUDIENCES",
-      "EVENT_ENGAGEMENT",
-      "FANS",
-      "GROUPER",
-      "HEC_AUDIENCE",
-      "IG_PROMOTED_POST_AUTO",
-      "LOCAL",
-      "LOOKALIKE",
-      "MULT_CUSTOM_AUDIENCES",
-      "NCPP",
-      "SAVED_AUDIENCE",
-      "SMART_AUDIENCE",
-    ]
-
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
@@ -172,11 +151,6 @@ module FacebookAds
       "TYPING_ON",
     ]
 
-    TYPE = [
-      "REF",
-      "STANDARD",
-    ]
-
     MODEL = [
       "ARABIC",
       "CHINESE",
@@ -201,12 +175,6 @@ module FacebookAds
       "SPANISH",
       "SWEDISH",
       "VIETNAMESE",
-    ]
-
-    FILTERING = [
-      "ema",
-      "groups",
-      "groups_social",
     ]
 
     SUBSCRIBED_FIELDS = [
@@ -314,7 +282,6 @@ module FacebookAds
     field :ad_campaign, 'AdSet'
     field :affiliation, 'string'
     field :app_id, 'string'
-    field :app_links, 'AppLinks'
     field :artists_we_like, 'string'
     field :attire, 'string'
     field :awards, 'string'
@@ -334,7 +301,6 @@ module FacebookAds
     field :company_overview, 'string'
     field :connected_instagram_account, 'IgUser'
     field :contact_address, 'MailingAddress'
-    field :context, 'OpenGraphContext'
     field :copyright_whitelisted_ig_partners, { list: 'string' }
     field :country_page_likes, 'int'
     field :cover, 'CoverPhoto'
@@ -451,31 +417,6 @@ module FacebookAds
     field :written_by, 'string'
     has_no_delete
 
-    has_edge :activities do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :advertiser_tracking_enabled, 'bool'
-        api.has_param :app_id, 'string'
-        api.has_param :custom_events, { list: 'object' }
-        api.has_param :page_scoped_user_id, 'int'
-        api.has_param :user_ref, 'string'
-      end
-    end
-
-    has_edge :admin_notes do |edge|
-      edge.get 'PageAdminNote'
-    end
-
-    has_edge :admin_sticky_settings do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :ad_account_id, 'string'
-        api.has_param :audience, { enum: -> { Page::AUDIENCE }}
-        api.has_param :budget, 'int'
-        api.has_param :campaign_length, 'datetime'
-        api.has_param :currency, 'string'
-        api.has_param :targeting, 'Targeting'
-      end
-    end
-
     has_edge :ads_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :exclude_dynamic_ads, 'bool'
@@ -513,10 +454,6 @@ module FacebookAds
       end
     end
 
-    has_edge :asset3ds do |edge|
-      edge.get 'WithAsset3D'
-    end
-
     has_edge :assigned_users do |edge|
       edge.delete do |api|
         api.has_param :user, 'int'
@@ -549,28 +486,8 @@ module FacebookAds
       end
     end
 
-    has_edge :broadcast_messages do |edge|
-      edge.get 'PageBroadcast'
-    end
-
     has_edge :call_to_actions do |edge|
       edge.get 'PageCallToAction'
-      edge.post 'PageCallToAction' do |api|
-        api.has_param :android_app_id, 'int'
-        api.has_param :android_deeplink, 'string'
-        api.has_param :android_destination_type, { enum: -> { PageCallToAction::ANDROID_DESTINATION_TYPE }}
-        api.has_param :android_package_name, 'string'
-        api.has_param :android_url, 'string'
-        api.has_param :email_address, 'string'
-        api.has_param :intl_number_with_plus, 'string'
-        api.has_param :iphone_app_id, 'int'
-        api.has_param :iphone_deeplink, 'string'
-        api.has_param :iphone_destination_type, { enum: -> { PageCallToAction::IPHONE_DESTINATION_TYPE }}
-        api.has_param :iphone_url, 'string'
-        api.has_param :type, { enum: -> { PageCallToAction::TYPE }}
-        api.has_param :web_destination_type, { enum: -> { PageCallToAction::WEB_DESTINATION_TYPE }}
-        api.has_param :web_url, 'string'
-      end
     end
 
     has_edge :canvas_elements do |edge|
@@ -605,10 +522,6 @@ module FacebookAds
       end
     end
 
-    has_edge :change_proposals do |edge|
-      edge.get 'PageChangeProposal'
-    end
-
     has_edge :claimed_urls do |edge|
       edge.delete do |api|
         api.has_param :url, 'string'
@@ -639,19 +552,7 @@ module FacebookAds
     end
 
     has_edge :copyright_whitelisted_partners do |edge|
-      edge.delete do |api|
-        api.has_param :partner_ids, { list: 'string' }
-        api.has_param :urls, { list: 'string' }
-      end
       edge.get 'Profile'
-      edge.post do |api|
-        api.has_param :partner_ids, { list: 'string' }
-        api.has_param :urls, { list: 'string' }
-      end
-    end
-
-    has_edge :crosspost_pending_approval_pages do |edge|
-      edge.get 'Page'
     end
 
     has_edge :crosspost_whitelisted_pages do |edge|
@@ -688,14 +589,6 @@ module FacebookAds
       end
     end
 
-    has_edge :expired_posts do |edge|
-      edge.get 'ExpirablePost'
-    end
-
-    has_edge :expiring_posts do |edge|
-      edge.get 'ExpirablePost'
-    end
-
     has_edge :featured_videos_collection do |edge|
       edge.get 'AdVideo'
     end
@@ -703,6 +596,7 @@ module FacebookAds
     has_edge :feed do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :include_hidden, 'bool'
+        api.has_param :limit, 'int'
         api.has_param :show_expired, 'bool'
         api.has_param :with, { enum: -> { PagePost::WITH }}
       end
@@ -823,23 +717,8 @@ module FacebookAds
       end
     end
 
-    has_edge :flags do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :endpoint, 'string'
-        api.has_param :entry_point, 'string'
-        api.has_param :flag, 'string'
-        api.has_param :page_id, 'int'
-        api.has_param :page_ids, { list: 'int' }
-        api.has_param :value, 'bool'
-      end
-    end
-
     has_edge :global_brand_children do |edge|
       edge.get 'Page'
-    end
-
-    has_edge :indexed_video_copyrights do |edge|
-      edge.get 'VideoCopyright'
     end
 
     has_edge :indexed_videos do |edge|
@@ -854,13 +733,6 @@ module FacebookAds
         api.has_param :show_description_from_api_doc, 'bool'
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
-      end
-    end
-
-    has_edge :insights_exports do |edge|
-      edge.get 'PageInsightsAsyncExportRun' do |api|
-        api.has_param :data_level, { list: 'string' }
-        api.has_param :from_creation_date, 'datetime'
       end
     end
 
@@ -894,36 +766,6 @@ module FacebookAds
       edge.post 'Page' do |api|
         api.has_param :canonical_url, 'string'
         api.has_param :publish_status, { enum: -> { Page::PUBLISH_STATUS }}
-      end
-    end
-
-    has_edge :labels do |edge|
-      edge.get 'PageLabel'
-    end
-
-    has_edge :leadgen_conditional_questions_group do |edge|
-      edge.post do |api|
-        api.has_param :conditional_questions_group_csv, 'file'
-      end
-    end
-
-    has_edge :leadgen_draft_forms do |edge|
-      edge.get 'LeadGenDataDraft'
-      edge.post 'LeadGenDataDraft' do |api|
-        api.has_param :block_display_for_non_targeted_viewer, 'bool'
-        api.has_param :context_card, 'object'
-        api.has_param :context_card_id, 'string'
-        api.has_param :custom_disclaimer, 'object'
-        api.has_param :follow_up_action_url, 'string'
-        api.has_param :is_optimized_for_quality, 'bool'
-        api.has_param :legal_content_id, 'string'
-        api.has_param :locale, { enum: -> { LeadGenDataDraft::LOCALE }}
-        api.has_param :name, 'string'
-        api.has_param :privacy_policy, 'hash'
-        api.has_param :question_page_custom_headline, 'string'
-        api.has_param :questions, { list: 'object' }
-        api.has_param :thank_you_page, 'hash'
-        api.has_param :tracking_parameters, 'hash'
       end
     end
 
@@ -1065,14 +907,6 @@ module FacebookAds
       edge.get 'MessengerDestinationPageWelcomeMessage'
     end
 
-    has_edge :messenger_codes do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :data, 'string'
-        api.has_param :image_size, 'int'
-        api.has_param :type, { enum: -> { Page::TYPE }}
-      end
-    end
-
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
         api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
@@ -1088,15 +922,6 @@ module FacebookAds
         api.has_param :persistent_menu, { list: 'object' }
         api.has_param :target_audience, 'object'
         api.has_param :whitelisted_domains, { list: 'string' }
-      end
-    end
-
-    has_edge :milestones do |edge|
-      edge.get 'LifeEvent'
-      edge.post 'LifeEvent' do |api|
-        api.has_param :description, 'string'
-        api.has_param :start_time, 'datetime'
-        api.has_param :title, 'string'
       end
     end
 
@@ -1135,19 +960,6 @@ module FacebookAds
         api.has_param :nlp_enabled, 'bool'
         api.has_param :other_language_support, 'hash'
         api.has_param :verbose, 'bool'
-      end
-    end
-
-    has_edge :notifications do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :filtering, { list: { enum: -> { Page::FILTERING }} }
-        api.has_param :href, 'object'
-        api.has_param :notif_ids, { list: 'string' }
-        api.has_param :read, 'bool'
-        api.has_param :ref, 'string'
-        api.has_param :seen, 'bool'
-        api.has_param :template, 'object'
-        api.has_param :type, { enum: -> { Page::TYPE }}
       end
     end
 
@@ -1296,6 +1108,7 @@ module FacebookAds
     has_edge :posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :include_hidden, 'bool'
+        api.has_param :limit, 'int'
         api.has_param :q, 'string'
         api.has_param :show_expired, 'bool'
         api.has_param :with, { enum: -> { PagePost::WITH }}
@@ -1347,34 +1160,8 @@ module FacebookAds
       edge.get 'RtbDynamicPost'
     end
 
-    has_edge :saved_filters do |edge|
-      edge.get 'PageSavedFilter' do |api|
-        api.has_param :section, { enum: -> { PageSavedFilter::SECTION }}
-      end
-      edge.post 'PageSavedFilter' do |api|
-        api.has_param :display_name, 'string'
-        api.has_param :filters, { list: 'object' }
-        api.has_param :section, { enum: -> { PageSavedFilter::SECTION }}
-      end
-    end
-
-    has_edge :saved_message_responses do |edge|
-      edge.get 'SavedMessageResponse'
-      edge.post 'SavedMessageResponse' do |api|
-        api.has_param :category, { enum: -> { SavedMessageResponse::CATEGORY }}
-        api.has_param :image, 'string'
-        api.has_param :is_enabled, 'bool'
-        api.has_param :message, 'string'
-        api.has_param :title, 'string'
-      end
-    end
-
     has_edge :scheduled_posts do |edge|
       edge.get 'PagePost'
-    end
-
-    has_edge :seasons do |edge|
-      edge.get 'VideoList'
     end
 
     has_edge :secondary_receivers do |edge|
@@ -1388,25 +1175,11 @@ module FacebookAds
       end
     end
 
-    has_edge :show_playlists do |edge|
-      edge.get 'VideoList'
-    end
-
     has_edge :subscribed_apps do |edge|
       edge.delete
       edge.get 'Application'
       edge.post 'Page' do |api|
         api.has_param :subscribed_fields, { list: { enum: -> { Page::SUBSCRIBED_FIELDS }} }
-      end
-    end
-
-    has_edge :subscriptions do |edge|
-      edge.post do |api|
-        api.has_param :callback_url, 'string'
-        api.has_param :fields, { list: 'string' }
-        api.has_param :include_values, 'bool'
-        api.has_param :object, 'string'
-        api.has_param :verify_token, 'string'
       end
     end
 
@@ -1449,7 +1222,6 @@ module FacebookAds
         api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
         api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
       end
-      edge.get 'ThreadSetting'
       edge.post 'Page' do |api|
         api.has_param :account_linking_url, 'string'
         api.has_param :call_to_actions, { list: 'object' }
@@ -1489,18 +1261,10 @@ module FacebookAds
       end
     end
 
-    has_edge :video_broadcasts do |edge|
-      edge.get 'LiveVideo'
-    end
-
     has_edge :video_copyright_rules do |edge|
       edge.get 'VideoCopyrightRule' do |api|
         api.has_param :selected_rule_id, 'string'
         api.has_param :source, { enum: -> { VideoCopyrightRule::SOURCE }}
-      end
-      edge.post 'VideoCopyrightRule' do |api|
-        api.has_param :condition_groups, { list: 'object' }
-        api.has_param :name, 'string'
       end
     end
 
@@ -1523,14 +1287,7 @@ module FacebookAds
     end
 
     has_edge :video_lists do |edge|
-      edge.delete do |api|
-        api.has_param :video_list_id, 'string'
-      end
       edge.get 'VideoList'
-      edge.post 'Page' do |api|
-        api.has_param :description, 'string'
-        api.has_param :title, 'string'
-      end
     end
 
     has_edge :videos do |edge|
@@ -1632,10 +1389,6 @@ module FacebookAds
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'
       end
-    end
-
-    has_edge :videos_you_can_use do |edge|
-      edge.get 'PageVideosYouCanUse'
     end
 
     has_edge :visitor_posts do |edge|

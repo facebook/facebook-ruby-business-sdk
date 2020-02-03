@@ -397,12 +397,6 @@ module FacebookAds
       end
     end
 
-    has_edge :moderators do |edge|
-      edge.post 'Group' do |api|
-        api.has_param :uid, 'int'
-      end
-    end
-
     has_edge :open_graph_action_feed do |edge|
       edge.post do |api|
         api.has_param :added, 'string'

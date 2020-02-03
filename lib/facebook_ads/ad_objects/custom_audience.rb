@@ -179,19 +179,6 @@ module FacebookAds
       edge.get 'CustomAudiencesharedAccountInfo'
     end
 
-    has_edge :upload do |edge|
-      edge.delete do |api|
-        api.has_param :namespace, 'string'
-        api.has_param :payload, 'object'
-        api.has_param :session, 'object'
-      end
-      edge.post 'CustomAudience' do |api|
-        api.has_param :namespace, 'string'
-        api.has_param :payload, 'object'
-        api.has_param :session, 'object'
-      end
-    end
-
     has_edge :users do |edge|
       edge.delete do |api|
         api.has_param :namespace, 'string'

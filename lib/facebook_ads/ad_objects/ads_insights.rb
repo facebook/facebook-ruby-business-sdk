@@ -207,6 +207,7 @@ module FacebookAds
     field :cost_per_outbound_click, { list: 'AdsActionStats' }
     field :cost_per_schedule, { list: 'AdsActionStats' }
     field :cost_per_start_trial, { list: 'AdsActionStats' }
+    field :cost_per_store_visit_action, { list: 'AdsActionStats' }
     field :cost_per_submit_application, { list: 'AdsActionStats' }
     field :cost_per_subscribe, { list: 'AdsActionStats' }
     field :cost_per_thruplay, { list: 'AdsActionStats' }
@@ -306,6 +307,7 @@ module FacebookAds
     field :spend, 'string'
     field :start_trial_actions, { list: 'AdsActionStats' }
     field :start_trial_value, { list: 'AdsActionStats' }
+    field :store_visit_actions, { list: 'AdsActionStats' }
     field :submit_application_actions, { list: 'AdsActionStats' }
     field :submit_application_value, { list: 'AdsActionStats' }
     field :subscribe_actions, { list: 'AdsActionStats' }

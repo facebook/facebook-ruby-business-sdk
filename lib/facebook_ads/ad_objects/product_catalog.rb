@@ -65,13 +65,13 @@ module FacebookAds
     field :default_image_url, 'string'
     field :fallback_image_url, { list: 'string' }
     field :feed_count, 'int'
-    field :flight_catalog_settings, 'FlightCatalogSettings'
     field :id, 'string'
     field :name, 'string'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
     field :vertical, 'string'
     field :destination_catalog_settings, 'hash'
+    field :flight_catalog_settings, 'hash'
 
     has_edge :agencies do |edge|
       edge.delete do |api|
@@ -114,15 +114,12 @@ module FacebookAds
     end
 
     has_edge :bundle_folders do |edge|
-      edge.get 'DynamicItemDisplayBundleFolder'
       edge.post 'DynamicItemDisplayBundleFolder' do |api|
-        api.has_param :bundles, { list: 'string' }
         api.has_param :name, 'string'
       end
     end
 
     has_edge :bundles do |edge|
-      edge.get 'DynamicItemDisplayBundle'
       edge.post 'DynamicItemDisplayBundle' do |api|
         api.has_param :additional_urls, 'hash'
         api.has_param :description, 'string'
@@ -154,30 +151,10 @@ module FacebookAds
       edge.get 'CollaborativeAdsShareSettings'
     end
 
-    has_edge :da_event_samples do |edge|
-      edge.get 'ProductDaEventSamplesBatch' do |api|
-        api.has_param :aggregation_type, { enum: -> { ProductDaEventSamplesBatch::AGGREGATION_TYPE }}
-        api.has_param :event, { enum: -> { ProductDaEventSamplesBatch::EVENT }}
-        api.has_param :source_id, 'string'
-      end
-    end
-
     has_edge :destinations do |edge|
       edge.get 'Destination' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
-      end
-      edge.post 'Destination' do |api|
-        api.has_param :address, 'object'
-        api.has_param :currency, 'string'
-        api.has_param :description, 'string'
-        api.has_param :destination_id, 'string'
-        api.has_param :images, { list: 'object' }
-        api.has_param :name, 'string'
-        api.has_param :price, 'int'
-        api.has_param :target_radius_in_km, 'double'
-        api.has_param :types, 'string'
-        api.has_param :url, 'string'
       end
     end
 
@@ -201,15 +178,6 @@ module FacebookAds
       edge.get 'Flight' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
-      end
-      edge.post 'Flight' do |api|
-        api.has_param :currency, 'string'
-        api.has_param :description, 'string'
-        api.has_param :destination_airport, 'string'
-        api.has_param :images, { list: 'object' }
-        api.has_param :origin_airport, 'string'
-        api.has_param :price, 'int'
-        api.has_param :url, 'string'
       end
     end
 
@@ -471,82 +439,6 @@ module FacebookAds
         api.has_param :vehicle_type, { enum: -> { Vehicle::VEHICLE_TYPE }}
         api.has_param :vin, 'string'
         api.has_param :year, 'int'
-      end
-    end
-
-    has_edge :videos do |edge|
-      edge.post 'AdVideo' do |api|
-        api.has_param :adaptive_type, 'string'
-        api.has_param :animated_effect_id, 'int'
-        api.has_param :application_id, 'string'
-        api.has_param :asked_fun_fact_prompt_id, 'int'
-        api.has_param :attribution_app_id, 'string'
-        api.has_param :audio_story_wave_animation_handle, 'string'
-        api.has_param :composer_entry_picker, 'string'
-        api.has_param :composer_entry_point, 'string'
-        api.has_param :composer_entry_time, 'int'
-        api.has_param :composer_session_events_log, 'string'
-        api.has_param :composer_session_id, 'string'
-        api.has_param :composer_source_surface, 'string'
-        api.has_param :composer_type, 'string'
-        api.has_param :container_type, { enum: -> { AdVideo::CONTAINER_TYPE }}
-        api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
-        api.has_param :description, 'string'
-        api.has_param :embeddable, 'bool'
-        api.has_param :end_offset, 'int'
-        api.has_param :fbuploader_video_file_chunk, 'string'
-        api.has_param :file_size, 'int'
-        api.has_param :file_url, 'string'
-        api.has_param :fisheye_video_cropped, 'bool'
-        api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
-        api.has_param :fov, 'int'
-        api.has_param :front_z_rotation, 'double'
-        api.has_param :fun_fact_prompt_id, 'int'
-        api.has_param :fun_fact_toastee_id, 'int'
-        api.has_param :guide, { list: { list: 'int' } }
-        api.has_param :guide_enabled, 'bool'
-        api.has_param :has_nickname, 'bool'
-        api.has_param :holiday_card, 'string'
-        api.has_param :initial_heading, 'int'
-        api.has_param :initial_pitch, 'int'
-        api.has_param :instant_game_entry_point_data, 'string'
-        api.has_param :is_boost_intended, 'bool'
-        api.has_param :is_explicit_share, 'bool'
-        api.has_param :is_group_linking_post, 'bool'
-        api.has_param :is_voice_clip, 'bool'
-        api.has_param :location_source_id, 'string'
-        api.has_param :manual_privacy, 'bool'
-        api.has_param :offer_like_post_id, 'int'
-        api.has_param :og_action_type_id, 'string'
-        api.has_param :og_icon_id, 'string'
-        api.has_param :og_object_id, 'string'
-        api.has_param :og_phrase, 'string'
-        api.has_param :og_suggestion_mechanism, 'string'
-        api.has_param :original_fov, 'int'
-        api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
-        api.has_param :publish_event_id, 'int'
-        api.has_param :react_mode_metadata, 'string'
-        api.has_param :referenced_sticker_id, 'string'
-        api.has_param :replace_video_id, 'string'
-        api.has_param :sales_promo_id, 'int'
-        api.has_param :slideshow_spec, 'hash'
-        api.has_param :source, 'string'
-        api.has_param :spherical, 'bool'
-        api.has_param :start_offset, 'int'
-        api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
-        api.has_param :text_format_metadata, 'string'
-        api.has_param :throwback_camera_roll_media, 'string'
-        api.has_param :thumb, 'file'
-        api.has_param :time_since_original_post, 'int'
-        api.has_param :title, 'string'
-        api.has_param :transcode_setting_properties, 'string'
-        api.has_param :unpublished_content_type, { enum: -> { AdVideo::UNPUBLISHED_CONTENT_TYPE }}
-        api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
-        api.has_param :upload_session_id, 'string'
-        api.has_param :upload_setting_properties, 'string'
-        api.has_param :video_file_chunk, 'string'
-        api.has_param :video_start_time_ms, 'int'
-        api.has_param :waterfall_id, 'string'
       end
     end
 

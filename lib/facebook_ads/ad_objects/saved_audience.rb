@@ -41,9 +41,5 @@ module FacebookAds
     field :time_updated, 'datetime'
     has_no_post
 
-    has_edge :adsets do |edge|
-      edge.get 'AdSet'
-    end
-
   end
 end

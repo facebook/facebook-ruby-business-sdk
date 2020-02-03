@@ -41,12 +41,6 @@ module FacebookAds
       end
     end
 
-    has_edge :da_checks do |edge|
-      edge.get 'DaCheck' do |api|
-        api.has_param :checks, { list: 'string' }
-      end
-    end
-
     has_edge :destinations do |edge|
       edge.get 'Destination' do |api|
         api.has_param :bulk_pagination, 'bool'

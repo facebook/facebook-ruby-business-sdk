@@ -39,6 +39,7 @@ module FacebookAds
     field :product_id, 'string'
     field :title, 'string'
     has_no_post
+    has_no_delete
 
     has_edge :comments do |edge|
       edge.get 'Comment' do |api|

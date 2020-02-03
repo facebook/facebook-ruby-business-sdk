@@ -48,7 +48,6 @@ module FacebookAds
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "THRUPLAY",
-      "VIDEO_VIEWS",
     ]
 
     BILLING_EVENT_OLD = [
@@ -61,7 +60,6 @@ module FacebookAds
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "THRUPLAY",
-      "VIDEO_VIEWS",
     ]
 
     OPTIMIZATION_GOAL_NEW = [
@@ -89,7 +87,6 @@ module FacebookAds
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
-      "VIDEO_VIEWS",
     ]
 
     OPTIMIZATION_GOAL_OLD = [
@@ -117,7 +114,6 @@ module FacebookAds
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
-      "VIDEO_VIEWS",
     ]
 
 

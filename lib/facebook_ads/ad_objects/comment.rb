@@ -106,7 +106,6 @@ module FacebookAds
         api.has_param :nectar_module, 'string'
         api.has_param :tracking, 'string'
       end
-      edge.get 'Profile'
       edge.post 'Comment' do |api|
         api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'

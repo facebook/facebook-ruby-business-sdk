@@ -56,10 +56,6 @@ module FacebookAds
       end
     end
 
-    has_edge :assigned_monetization_properties do |edge|
-      edge.get 'AdMonetizationProperty'
-    end
-
     has_edge :assigned_pages do |edge|
       edge.get 'Page'
     end

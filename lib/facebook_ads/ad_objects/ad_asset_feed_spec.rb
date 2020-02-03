@@ -90,6 +90,7 @@ module FacebookAds
     field :bodies, { list: 'AdAssetFeedSpecBody' }
     field :call_to_action_types, { list: { enum: -> { CALL_TO_ACTION_TYPES }} }
     field :captions, { list: 'AdAssetFeedSpecCaption' }
+    field :carousels, { list: 'object' }
     field :descriptions, { list: 'AdAssetFeedSpecDescription' }
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }

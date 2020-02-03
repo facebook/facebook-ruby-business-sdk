@@ -5,14 +5,18 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## v6.0.0
+### Changed
+- Graph API call upgrade to [v6.0](https://developers.facebook.com/docs/graph-api/changelog/version6.0)
+
 ## v0.5.0.4
-
-
+### Added
   - Server-side API added search-string field to custom data.
+### Fixed
   - Fix facebook_ads to autoload Server-side API classes.
 
 ## v0.5.0.3
-
+### Added
   - Added function `getHeaders` in errors class which provides header information
   - Server-Side API for web with model object - https://developers.facebook.com/docs/marketing-api/facebook-pixel/server-side-api/
 

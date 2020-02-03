@@ -38,7 +38,7 @@ module FacebookAds
     POSITION = [
       "ALL_PLACEMENTS",
       "AN_CLASSIC",
-      "FACEBOOK_GROUPS",
+      "FACEBOOK_GROUPS_FEED",
       "FACEBOOK_STORIES",
       "FEED",
       "GROUPS",

@@ -32,7 +32,6 @@ module FacebookAds
     ]
 
 
-    field :app_links, 'AppLinks'
     field :development_instant_article, 'InstantArticle'
     field :engagement, 'object'
     field :id, 'string'

@@ -27,7 +27,6 @@ module FacebookAds
 
   class Flight < AdObject
 
-    field :applinks, 'AppLinks'
     field :currency, 'string'
     field :description, 'string'
     field :destination_airport, 'string'

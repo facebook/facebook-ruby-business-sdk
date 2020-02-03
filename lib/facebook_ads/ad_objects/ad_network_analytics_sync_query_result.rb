@@ -32,6 +32,7 @@ module FacebookAds
     ]
 
     BREAKDOWNS = [
+      "AD_SPACE",
       "AGE",
       "APP",
       "CLICKED_VIEW_TAG",

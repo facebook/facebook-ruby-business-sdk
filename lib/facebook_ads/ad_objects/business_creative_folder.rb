@@ -45,9 +45,12 @@ module FacebookAds
 
     field :business, 'Business'
     field :creation_time, 'datetime'
+    field :creative_insight_permissions, 'hash'
     field :description, 'string'
     field :id, 'string'
     field :name, 'string'
+    field :parent_folder, 'BusinessCreativeFolder'
+    field :parent_folder_id, 'string'
 
     has_edge :agencies do |edge|
       edge.delete do |api|
@@ -68,6 +71,10 @@ module FacebookAds
         api.has_param :tasks, { list: { enum: -> { BusinessCreativeFolder::TASKS }} }
         api.has_param :user, 'int'
       end
+    end
+
+    has_edge :subfolders do |edge|
+      edge.get 'BusinessCreativeFolder'
     end
 
   end

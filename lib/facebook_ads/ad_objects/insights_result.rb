@@ -26,10 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class InsightsResult < AdObject
-    METRIC = [
-      "messages_sent",
-    ]
-
     DATE_PRESET = [
       "last_14d",
       "last_28d",

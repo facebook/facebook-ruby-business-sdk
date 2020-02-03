@@ -27,7 +27,6 @@ module FacebookAds
 
   class AutomotiveModel < AdObject
 
-    field :applinks, 'AppLinks'
     field :automotive_model_id, 'string'
     field :availability, 'string'
     field :body_style, 'string'

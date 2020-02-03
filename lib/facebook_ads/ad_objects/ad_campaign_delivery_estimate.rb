@@ -51,7 +51,6 @@ module FacebookAds
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
-      "VIDEO_VIEWS",
     ]
 
 

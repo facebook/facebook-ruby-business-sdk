@@ -31,7 +31,6 @@ module FacebookAds
     field :amount_percentage, 'double'
     field :amount_price, 'string'
     field :amount_qualifier, 'string'
-    field :applinks, 'AppLinks'
     field :body_style, 'string'
     field :cashback_currency, 'string'
     field :cashback_price, 'string'
@@ -44,6 +43,8 @@ module FacebookAds
     field :end_time, 'int'
     field :id, 'string'
     field :images, { list: 'string' }
+    field :make, 'string'
+    field :model, 'string'
     field :offer_description, 'string'
     field :offer_disclaimer, 'string'
     field :offer_type, 'string'

@@ -94,11 +94,6 @@ module FacebookAds
 
     has_edge :leads do |edge|
       edge.get 'Lead'
-      edge.post 'Lead' do |api|
-        api.has_param :end_time, 'datetime'
-        api.has_param :session_id, 'string'
-        api.has_param :start_time, 'datetime'
-      end
     end
 
     has_edge :test_leads do |edge|
