@@ -70,6 +70,10 @@ module FacebookAds
       # Example: 'lettuce'.
       attr_accessor :search_string
 
+      # Use for custom properties
+      # Example: {'slug' => 'annual-pass'}
+      attr_accessor :custom_properties
+
 
       # @param [Float] value
       # @param [String] currency
@@ -83,54 +87,46 @@ module FacebookAds
       # @param [Integer] num_items
       # @param [String] status
       # @param [String] search_string
-      def initialize(value: nil,
-                     currency: nil,
-                     content_name: nil,
-                     content_category: nil,
-                     content_ids: nil,
-                     contents: nil,
-                     content_type: nil,
-                     order_id: nil,
-                     predicted_ltv: nil,
-                     num_items: nil,
-                     status: nil,
-                     search_string: nil)
+      def initialize(**data)
 
-        unless value.nil?
-          self.value = value
+        unless data[:value].nil?
+          self.value = data.delete(:value)
         end
-        unless currency.nil?
-          self.currency = currency
+        unless data[:currency].nil?
+          self.currency = data.delete(:currency)
         end
-        unless content_name.nil?
-          self.content_name = content_name
+        unless data[:content_name].nil?
+          self.content_name = data.delete(:content_name)
         end
-        unless content_category.nil?
-          self.content_category = content_category
+        unless data[:content_category].nil?
+          self.content_category = data.delete(:content_category)
         end
-        unless content_ids.nil?
-          self.content_ids = content_ids
+        unless data[:content_ids].nil?
+          self.content_ids = data.delete(:content_ids)
         end
-        unless contents.nil?
-          self.contents = contents
+        unless data[:contents].nil?
+          self.contents = data.delete(:contents)
         end
-        unless content_type.nil?
-          self.content_type = content_type
+        unless data[:content_type].nil?
+          self.content_type = data.delete(:content_type)
         end
-        unless order_id.nil?
-          self.order_id = order_id
+        unless data[:order_id].nil?
+          self.order_id = data.delete(:order_id)
         end
-        unless predicted_ltv.nil?
-          self.predicted_ltv = predicted_ltv
+        unless data[:predicted_ltv].nil?
+          self.predicted_ltv = data.delete(:predicted_ltv)
         end
-        unless num_items.nil?
-          self.num_items = num_items
+        unless data[:num_items].nil?
+          self.num_items = data.delete(:num_items)
         end
-        unless status.nil?
-          self.status = status
+        unless data[:status].nil?
+          self.status = data.delete(:status)
         end
-        unless search_string.nil?
-          self.search_string = search_string
+        unless data[:search_string].nil?
+          self.search_string = data.delete(:search_string)
+        end
+        unless data.keys.empty?
+          self.custom_properties = data
         end
       end
 
@@ -194,6 +190,10 @@ module FacebookAds
         if attributes.has_key?(:'search_string')
           self.search_string = attributes[:'search_string']
         end
+
+        if attributes.has_key?(:'custom_properties')
+          self.custom_properties = attributes[:'custom_properties']
+        end
       end
 
       # Checks equality by comparing each attribute.
@@ -211,7 +211,8 @@ module FacebookAds
             predicted_ltv == o.predicted_ltv &&
             num_items == o.num_items &&
             status == o.status &&
-            search_string == o.search_string
+            search_string == o.search_string &&
+            custom_properties == o.custom_properties
       end
 
       # @see the `==` method
@@ -234,7 +235,8 @@ module FacebookAds
             predicted_ltv,
             num_items,
             status,
-            search_string
+            search_string,
+            custom_properties
         ].hash
       end
 
@@ -277,6 +279,9 @@ module FacebookAds
         end
         unless search_string.nil?
           hash['search_string'] = search_string
+        end
+        unless custom_properties.nil?
+          hash['custom_properties'] = custom_properties
         end
         hash.to_s
       end
@@ -325,6 +330,10 @@ module FacebookAds
             content_array.push(content.normalize)
           end
           hash['contents'] = content_array
+        end
+
+        unless custom_properties.nil?
+          hash = hash.merge(custom_properties.stringify_keys)
         end
         hash
       end
