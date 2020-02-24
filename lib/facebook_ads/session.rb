@@ -17,6 +17,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'faraday'
+require 'faraday_middleware'
 require 'openssl'
 require 'logger'
 require 'facebook_ads/videos/video_request'
@@ -63,7 +64,7 @@ module FacebookAds
         faraday.request  :multipart
         # TODO Json Request
         # TODO URL Encode - stringify json
-        faraday.request  :url_encoded
+        faraday.request :json
 
         faraday.response :logger, Utils.logger, bodies: FacebookAds.config.log_api_bodies
         faraday.adapter  Faraday.default_adapter

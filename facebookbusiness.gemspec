@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '~> 2.0'
 
   s.add_dependency 'faraday', '~> 0.15'
+  s.add_dependency 'faraday_middleware', '~> 0.14'
   s.add_dependency 'json', '~> 2.2'
 
   s.add_development_dependency 'awesome_print', '~> 1.8'
