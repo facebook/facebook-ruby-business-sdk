@@ -31,12 +31,6 @@ module FacebookAds
     field :campaign_active, 'bool'
     field :campaign_started, 'bool'
     field :creative_uploaded, 'bool'
-    field :delivered_budget, 'int'
-    field :delivered_daily_grp, { list: 'double' }
-    field :delivered_daily_impression, { list: 'double' }
-    field :delivered_impression, 'int'
-    field :delivered_reach, 'int'
-    field :delivered_total_impression, 'int'
     field :io_approved, 'bool'
     field :sf_link, 'string'
     has_no_id

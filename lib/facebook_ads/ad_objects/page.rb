@@ -106,6 +106,12 @@ module FacebookAds
       "PLATFORM_MANAGE_PAGES",
       "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
       "PLATFORM_READ_INSIGHTS",
+      "PROFILE_PLUS_ADVERTISE",
+      "PROFILE_PLUS_ANALYZE",
+      "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MESSAGING",
+      "PROFILE_PLUS_MODERATE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -124,6 +130,12 @@ module FacebookAds
       "PLATFORM_MANAGE_PAGES",
       "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
       "PLATFORM_READ_INSIGHTS",
+      "PROFILE_PLUS_ADVERTISE",
+      "PROFILE_PLUS_ANALYZE",
+      "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MESSAGING",
+      "PROFILE_PLUS_MODERATE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -147,8 +159,10 @@ module FacebookAds
 
     SENDER_ACTION = [
       "MARK_SEEN",
+      "REACT",
       "TYPING_OFF",
       "TYPING_ON",
+      "UNREACT",
     ]
 
     MODEL = [
@@ -346,7 +360,6 @@ module FacebookAds
     field :is_verified, 'bool'
     field :is_webhooks_subscribed, 'bool'
     field :keywords, 'object'
-    field :leadgen_form_preview_details, 'LeadGenFormPreviewDetails'
     field :leadgen_tos_acceptance_time, 'datetime'
     field :leadgen_tos_accepted, 'bool'
     field :leadgen_tos_accepting_user, 'User'
@@ -403,6 +416,7 @@ module FacebookAds
     field :store_location_descriptor, 'string'
     field :store_number, 'int'
     field :studio, 'string'
+    field :supports_donate_button_in_live_video, 'bool'
     field :supports_instant_articles, 'bool'
     field :talking_about_count, 'int'
     field :unread_message_count, 'int'
@@ -1281,6 +1295,7 @@ module FacebookAds
         api.has_param :monitoring_type, { enum: -> { VideoCopyright::MONITORING_TYPE }}
         api.has_param :ownership_countries, { list: 'string' }
         api.has_param :rule_id, 'string'
+        api.has_param :tags, { list: 'string' }
         api.has_param :whitelisted_ids, { list: 'string' }
         api.has_param :whitelisted_ig_user_ids, { list: 'string' }
       end

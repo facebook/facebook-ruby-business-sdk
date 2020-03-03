@@ -33,6 +33,7 @@ module FacebookAds
       "flights",
       "home_listings",
       "hotels",
+      "offer_items",
       "offline_commerce",
       "ticketed_experiences",
       "transactable_items",
@@ -275,10 +276,12 @@ module FacebookAds
         api.has_param :file_name, 'string'
         api.has_param :name, 'string'
         api.has_param :override_type, { enum: -> { ProductFeed::OVERRIDE_TYPE }}
+        api.has_param :override_value, 'string'
         api.has_param :quoted_fields_mode, { enum: -> { ProductFeed::QUOTED_FIELDS_MODE }}
         api.has_param :rules, { list: 'string' }
         api.has_param :schedule, 'string'
         api.has_param :update_schedule, 'string'
+        api.has_param :whitelisted_properties, { list: 'string' }
       end
     end
 

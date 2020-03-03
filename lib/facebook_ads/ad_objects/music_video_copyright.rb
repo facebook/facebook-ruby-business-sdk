@@ -36,6 +36,7 @@ module FacebookAds
     field :ownership_countries, { list: 'string' }
     field :reference_file_status, 'string'
     field :ridge_monitoring_status, 'string'
+    field :tags, { list: 'string' }
     field :update_time, 'datetime'
     field :video_asset, 'CopyrightReferenceContainer'
     field :whitelisted_fb_users, { list: 'object' }

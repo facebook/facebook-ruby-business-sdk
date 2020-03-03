@@ -63,7 +63,7 @@ module FacebookAds
         api.has_param :language, { list: 'string' }
         api.has_param :name, 'string'
         api.has_param :name_or_content, 'string'
-        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED PENDING PENDING_DELETION REJECTED }} }
+        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED IN_APPEAL PENDING PENDING_DELETION REJECTED }} }
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}

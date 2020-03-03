@@ -46,6 +46,7 @@ module FacebookAds
     field :time_interval, 'object'
     field :time_ranges, { list: 'object' }
     has_no_post
+    has_no_delete
 
   end
 end

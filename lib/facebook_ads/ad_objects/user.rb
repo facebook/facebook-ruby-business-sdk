@@ -36,11 +36,6 @@ module FacebookAds
       "STATUS_ON",
     ]
 
-    RESUME_TYPE = [
-      "BOT_ACTION",
-      "NATIVE",
-    ]
-
     FILTERING = [
       "ema",
       "groups",
@@ -50,57 +45,6 @@ module FacebookAds
     TYPE = [
       "content_update",
       "generic",
-    ]
-
-    SERVICE_TYPE = [
-      "AIM",
-      "ASK_FM",
-      "BBM",
-      "BBM_PPID",
-      "CYWORLD",
-      "EBUDDY",
-      "FOURSQUARE",
-      "GADU",
-      "GITHUB",
-      "GROUPWISE",
-      "GTALK",
-      "HYVES",
-      "ICLOUD",
-      "ICQ",
-      "INSTAGRAM",
-      "JABBER",
-      "KAKAOTALK",
-      "KIK",
-      "LINE",
-      "LINKED_IN",
-      "MAILRU",
-      "MEDIUM",
-      "MIXI",
-      "MSN",
-      "MYSPACE",
-      "NATEON",
-      "OCULUS",
-      "OK",
-      "ORKUT",
-      "OTHERS",
-      "PINTEREST",
-      "QIP",
-      "QQ",
-      "REDIFF_BOL",
-      "SKYPE",
-      "SNAPCHAT",
-      "SOUND_CLOUD",
-      "SPOTIFY",
-      "TUMBLR",
-      "TWITCH",
-      "TWITTER",
-      "VIMEO",
-      "VKONTAKTE",
-      "WECHAT",
-      "WHATSAPP",
-      "YAHOO",
-      "YAHOO_JP",
-      "YOU_TUBE",
     ]
 
 
@@ -153,6 +97,7 @@ module FacebookAds
     field :short_name, 'string'
     field :significant_other, 'User'
     field :sports, { list: 'Experience' }
+    field :supports_donate_button_in_live_video, 'bool'
     field :test_group, 'int'
     field :third_party_id, 'string'
     field :timezone, 'double'
@@ -558,17 +503,6 @@ module FacebookAds
       end
     end
 
-    has_edge :insights do |edge|
-      edge.get 'InsightsResult' do |api|
-        api.has_param :date_preset, { enum: -> { InsightsResult::DATE_PRESET }}
-        api.has_param :metric, { list: 'object' }
-        api.has_param :period, { enum: -> { InsightsResult::PERIOD }}
-        api.has_param :show_description_from_api_doc, 'bool'
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
-      end
-    end
-
     has_edge :likes do |edge|
       edge.get 'Page' do |api|
         api.has_param :target_id, 'string'
@@ -613,16 +547,6 @@ module FacebookAds
         api.has_param :stop_on_delete_stream, 'bool'
         api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
         api.has_param :title, 'string'
-      end
-    end
-
-    has_edge :mfs_account_pin_reset do |edge|
-      edge.post 'User' do |api|
-        api.has_param :password_token, 'string'
-        api.has_param :provider_id, 'string'
-        api.has_param :resume_payload, 'string'
-        api.has_param :resume_type, { enum: -> { User::RESUME_TYPE }}
-        api.has_param :should_bypass_token_proxy, 'bool'
       end
     end
 
@@ -734,14 +658,6 @@ module FacebookAds
       end
     end
 
-    has_edge :posts do |edge|
-      edge.get 'Post' do |api|
-        api.has_param :include_hidden, 'bool'
-        api.has_param :show_expired, 'bool'
-        api.has_param :with, { enum: -> { Post::WITH }}
-      end
-    end
-
     has_edge :request_history do |edge|
       edge.get 'RequestHistory'
     end
@@ -749,13 +665,6 @@ module FacebookAds
     has_edge :rich_media_documents do |edge|
       edge.get 'Canvas' do |api|
         api.has_param :query, 'string'
-      end
-    end
-
-    has_edge :screennames do |edge|
-      edge.post 'User' do |api|
-        api.has_param :service_type, { enum: -> { User::SERVICE_TYPE }}
-        api.has_param :value, 'string'
       end
     end
 

@@ -28,6 +28,7 @@ module FacebookAds
   class AdStudy < AdObject
     TYPE = [
       "CONTINUOUS_LIFT_CONFIG",
+      "GEO_LIFT",
       "LIFT",
       "SPLIT_TEST",
     ]
@@ -56,10 +57,6 @@ module FacebookAds
 
     has_edge :cells do |edge|
       edge.get 'AdStudyCell'
-    end
-
-    has_edge :health_check_errors do |edge|
-      edge.get 'AdsTalHealthCheckError'
     end
 
     has_edge :objectives do |edge|

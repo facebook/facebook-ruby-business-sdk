@@ -91,7 +91,9 @@ module FacebookAds
     field :schedule, 'ProductFeedSchedule'
     field :update_schedule, 'ProductFeedSchedule'
     field :feed_type, { enum: -> { FEED_TYPE }}
+    field :override_value, 'string'
     field :rules, { list: 'string' }
+    field :whitelisted_properties, { list: 'string' }
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|

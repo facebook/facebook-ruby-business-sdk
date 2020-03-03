@@ -87,6 +87,12 @@ module FacebookAds
       "PLATFORM_MANAGE_PAGES",
       "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
       "PLATFORM_READ_INSIGHTS",
+      "PROFILE_PLUS_ADVERTISE",
+      "PROFILE_PLUS_ANALYZE",
+      "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MESSAGING",
+      "PROFILE_PLUS_MODERATE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -439,6 +445,7 @@ module FacebookAds
     has_edge :owned_pages do |edge|
       edge.get 'Page'
       edge.post 'Business' do |api|
+        api.has_param :code, 'string'
         api.has_param :ig_password, 'string'
         api.has_param :page_id, 'int'
       end

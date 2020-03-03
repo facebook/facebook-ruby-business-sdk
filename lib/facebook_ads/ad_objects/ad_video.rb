@@ -62,6 +62,7 @@ module FacebookAds
       "EVENT_COVER_VIDEO",
       "EVENT_TOUR",
       "FACECAST_DVR",
+      "FB_SHORTS",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
       "GAMING_UPDATE_VIDEO",

@@ -46,10 +46,6 @@ module FacebookAds
       "normal",
     ]
 
-    WITH = [
-      "LOCATION",
-    ]
-
 
     field :actions, { list: 'string' }
     field :admin_creator, 'object'
