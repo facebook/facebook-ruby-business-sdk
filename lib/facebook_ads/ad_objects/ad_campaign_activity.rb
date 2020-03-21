@@ -87,6 +87,7 @@ module FacebookAds
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
+      "VISIT_INSTAGRAM_PROFILE",
     ]
 
     OPTIMIZATION_GOAL_OLD = [
@@ -114,6 +115,7 @@ module FacebookAds
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
+      "VISIT_INSTAGRAM_PROFILE",
     ]
 
 

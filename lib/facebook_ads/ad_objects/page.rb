@@ -92,9 +92,16 @@ module FacebookAds
       "Vietnamese",
     ]
 
+    TEMPORARY_STATUS = [
+      "DIFFERENTLY_OPEN",
+      "OPERATING_AS_USUAL",
+      "TEMPORARILY_CLOSED",
+    ]
+
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "CASHIER_ROLE",
       "CREATE_CONTENT",
       "MANAGE",
       "MANAGE_JOBS",
@@ -119,6 +126,7 @@ module FacebookAds
     TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "CASHIER_ROLE",
       "CREATE_CONTENT",
       "MANAGE",
       "MANAGE_JOBS",
@@ -419,6 +427,7 @@ module FacebookAds
     field :supports_donate_button_in_live_video, 'bool'
     field :supports_instant_articles, 'bool'
     field :talking_about_count, 'int'
+    field :temporary_status, 'string'
     field :unread_message_count, 'int'
     field :unread_notif_count, 'int'
     field :unseen_message_count, 'int'

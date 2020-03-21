@@ -76,6 +76,7 @@ module FacebookAds
     PAGE_PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "CASHIER_ROLE",
       "CREATE_CONTENT",
       "MANAGE",
       "MANAGE_JOBS",
@@ -216,6 +217,13 @@ module FacebookAds
       edge.get 'AdPlacement'
     end
 
+    has_edge :attempted_sharing_agreements do |edge|
+      edge.get 'BusinessCreativeFolderSharingAgreement' do |api|
+        api.has_param :request_status, { enum: -> { BusinessCreativeFolderSharingAgreement::REQUEST_STATUS }}
+        api.has_param :requesting_business_id, 'string'
+      end
+    end
+
     has_edge :block_list_drafts do |edge|
       edge.post 'Business' do |api|
         api.has_param :publisher_urls_file, 'file'
@@ -300,11 +308,16 @@ module FacebookAds
     has_edge :content_delivery_report do |edge|
       edge.get 'ContentDeliveryReport' do |api|
         api.has_param :end_date, 'datetime'
+        api.has_param :page_id, 'int'
         api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
         api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
         api.has_param :start_date, 'datetime'
         api.has_param :summary, 'bool'
       end
+    end
+
+    has_edge :creative_asset_tags do |edge|
+      edge.get 'CreativeAssetTag'
     end
 
     has_edge :creative_folders do |edge|

@@ -44,6 +44,7 @@ module FacebookAds
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
+      "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
       "OFFLINE_PRODUCT",
       "PRODUCT",

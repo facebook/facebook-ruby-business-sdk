@@ -25,58 +25,17 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessCreativeFolder < AdObject
-    PERMITTED_TASKS = [
-      "CREATE_CONTENT",
-      "MANAGE_CONTENT",
-      "MANAGE_PERMISSIONS",
-      "VIEW_CONTENT",
-      "VIEW_INSIGHTS",
-    ]
+  class AdsInterest < AdObject
 
-    TASKS = [
-      "CREATE_CONTENT",
-      "MANAGE_CONTENT",
-      "MANAGE_PERMISSIONS",
-      "VIEW_CONTENT",
-      "VIEW_INSIGHTS",
-    ]
-
-
-    field :business, 'Business'
-    field :creation_time, 'datetime'
-    field :creative_insight_permissions, 'hash'
+    field :audience_size, 'int'
     field :description, 'string'
+    field :disambiguation_category, 'string'
     field :id, 'string'
-    field :media_library_url, 'string'
     field :name, 'string'
-    field :parent_folder, 'BusinessCreativeFolder'
-    field :parent_folder_id, 'string'
-
-    has_edge :agencies do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'string'
-      end
-      edge.get 'Business'
-      edge.post 'BusinessCreativeFolder' do |api|
-        api.has_param :business, 'string'
-        api.has_param :permitted_tasks, { list: { enum: -> { BusinessCreativeFolder::PERMITTED_TASKS }} }
-      end
-    end
-
-    has_edge :assigned_users do |edge|
-      edge.get 'AssignedUser' do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'BusinessCreativeFolder' do |api|
-        api.has_param :tasks, { list: { enum: -> { BusinessCreativeFolder::TASKS }} }
-        api.has_param :user, 'int'
-      end
-    end
-
-    has_edge :subfolders do |edge|
-      edge.get 'BusinessCreativeFolder'
-    end
+    field :path, { list: 'string' }
+    field :topic, 'string'
+    has_no_post
+    has_no_delete
 
   end
 end

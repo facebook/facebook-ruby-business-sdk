@@ -78,9 +78,6 @@ module FacebookAds
     has_no_delete
 
     has_edge :assigned_users do |edge|
-      edge.delete do |api|
-        api.has_param :user, 'int'
-      end
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'
       end

@@ -67,6 +67,7 @@ module FacebookAds
     field :fallback_image_url, { list: 'string' }
     field :feed_count, 'int'
     field :id, 'string'
+    field :is_catalog_segment, 'bool'
     field :name, 'string'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
@@ -310,14 +311,6 @@ module FacebookAds
       edge.get 'ProductCatalogProductSetsBatch' do |api|
         api.has_param :handle, 'string'
       end
-      edge.post 'ProductCatalog' do |api|
-        api.has_param :file, 'file'
-        api.has_param :password, 'string'
-        api.has_param :standard, { enum: -> { ProductCatalog::STANDARD }}
-        api.has_param :update_only, 'bool'
-        api.has_param :url, 'string'
-        api.has_param :username, 'string'
-      end
     end
 
     has_edge :products do |edge|
@@ -389,13 +382,6 @@ module FacebookAds
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'
-      end
-    end
-
-    has_edge :store_product_items_batch do |edge|
-      edge.post 'ProductCatalog' do |api|
-        api.has_param :allow_upsert, 'bool'
-        api.has_param :requests, { list: 'hash' }
       end
     end
 

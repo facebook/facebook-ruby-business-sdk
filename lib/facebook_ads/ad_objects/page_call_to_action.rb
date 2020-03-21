@@ -28,6 +28,7 @@ module FacebookAds
   class PageCallToAction < AdObject
     ANDROID_DESTINATION_TYPE = [
       "APP_DEEPLINK",
+      "BECOME_A_VOLUNTEER",
       "EMAIL",
       "FACEBOOK_APP",
       "MESSENGER",
@@ -49,6 +50,7 @@ module FacebookAds
     ]
 
     TYPE = [
+      "BECOME_A_VOLUNTEER",
       "BOOK_APPOINTMENT",
       "BOOK_NOW",
       "BUY_TICKETS",
@@ -79,6 +81,7 @@ module FacebookAds
     ]
 
     WEB_DESTINATION_TYPE = [
+      "BECOME_A_VOLUNTEER",
       "BECOME_SUPPORTER",
       "EMAIL",
       "MESSENGER",

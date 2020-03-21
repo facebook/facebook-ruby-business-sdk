@@ -45,6 +45,7 @@ module FacebookAds
     PAGE_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "CASHIER_ROLE",
       "CREATE_CONTENT",
       "MANAGE",
       "MANAGE_JOBS",

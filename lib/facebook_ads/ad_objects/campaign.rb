@@ -197,6 +197,7 @@ module FacebookAds
     has_edge :content_delivery_report do |edge|
       edge.get 'ContentDeliveryReport' do |api|
         api.has_param :end_date, 'datetime'
+        api.has_param :page_id, 'int'
         api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
         api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
         api.has_param :start_date, 'datetime'

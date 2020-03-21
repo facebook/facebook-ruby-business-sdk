@@ -51,6 +51,7 @@ module FacebookAds
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
+      "VISIT_INSTAGRAM_PROFILE",
     ]
 
 

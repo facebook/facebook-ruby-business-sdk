@@ -141,16 +141,12 @@ module FacebookAds
     ]
 
     SUGGESTION_CATEGORY = [
-      "CLOSE_FRIENDS_GENERIC",
       "EVENT",
-      "FAMILY",
-      "LIFE_EVENT",
       "MESSENGER",
       "WORK",
       "WORKPLACE",
       "WORKPLACE_1_1",
       "WORKPLACE_MANAGER",
-      "WORK_GENERIC",
     ]
 
 

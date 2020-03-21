@@ -54,6 +54,7 @@ module FacebookAds
     field :hash, 'string'
     field :height, 'int'
     field :id, 'string'
+    field :media_library_url, 'string'
     field :name, 'string'
     field :url, 'string'
     field :url_128, 'string'
@@ -66,6 +67,20 @@ module FacebookAds
 
     has_edge :ad_placement_validation_results do |edge|
       edge.get
+    end
+
+    has_edge :creative_asset_tags do |edge|
+      edge.delete do |api|
+        api.has_param :business_id, 'string'
+        api.has_param :tag_name, 'string'
+      end
+      edge.get 'CreativeAssetTag' do |api|
+        api.has_param :business_id, 'string'
+      end
+      edge.post 'BusinessImage' do |api|
+        api.has_param :business_id, 'string'
+        api.has_param :tag_name, 'string'
+      end
     end
 
     has_edge :insights do |edge|

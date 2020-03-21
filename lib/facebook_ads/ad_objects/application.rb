@@ -236,6 +236,7 @@ module FacebookAds
         api.has_param :include_video_data, 'bool'
         api.has_param :install_referrer, 'string'
         api.has_param :installer_package, 'string'
+        api.has_param :limited_data_use, 'bool'
         api.has_param :migration_bundle, 'string'
         api.has_param :page_id, 'int'
         api.has_param :page_scoped_user_id, 'int'
@@ -391,16 +392,6 @@ module FacebookAds
       edge.get 'Event' do |api|
         api.has_param :include_canceled, 'bool'
         api.has_param :type, { enum: -> { Event::TYPE }}
-      end
-    end
-
-    has_edge :full_app_indexing_infos do |edge|
-      edge.get do |api|
-        api.has_param :app_version, 'string'
-      end
-      edge.post do |api|
-        api.has_param :app_version, 'string'
-        api.has_param :full_app_indexing_info_classes, { list: 'hash' }
       end
     end
 
@@ -600,6 +591,7 @@ module FacebookAds
     has_edge :user_properties do |edge|
       edge.post do |api|
         api.has_param :data, { list: 'object' }
+        api.has_param :limited_data_use, 'bool'
       end
     end
 

@@ -19,6 +19,22 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  VERSION = '0.6.0.2'
-  API_VERSION = '6.0'
+  # This class is auto-generated.
+
+  # For any issues or feature requests related to this class, please let us know
+  # on github and we'll fix in our codegen framework. We'll not be able to accept
+  # pull request for this class.
+
+  class CatalogItemAppealStatus < AdObject
+
+    field :handle, 'string'
+    field :item_id, 'int'
+    field :status, 'string'
+    field :use_cases, 'hash'
+    has_no_id
+    has_no_get
+    has_no_post
+    has_no_delete
+
+  end
 end

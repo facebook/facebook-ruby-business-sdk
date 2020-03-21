@@ -118,6 +118,7 @@ module FacebookAds
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
+      "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
       "OFFLINE_PRODUCT",
       "PRODUCT",
@@ -348,35 +349,6 @@ module FacebookAds
 
     has_edge :adreportschedules do |edge|
       edge.get
-      edge.post do |api|
-        api.has_param :actions_group_by, { list: { enum: %w{action_brand action_canvas_component_id action_canvas_component_name action_carousel_card_id action_carousel_card_name action_category action_converted_brand_tag_id action_converted_category_tag_id action_converted_product_id action_destination action_device action_event_channel action_target_id action_type action_video_sound action_video_type attribution_model_type interactive_component_sticker_id interactive_component_sticker_response }} }
-        api.has_param :breakdowns, { list: 'string' }
-        api.has_param :builtin_column_set, { enum: %w{ APP_ENGAGEMENT AUDIENCE_DIRECT BIDDING_AND_OPTIMIZATION CAROUSEL_ENGAGEMENT CROSS_DEVICE DELIVERY ENGAGEMENT HOUSEHOLD MESSAGING_ENGAGEMENT MESSENGER OFFLINE_CONVERSIONS PERFORMANCE PERFORMANCE_LEGACY TARGETING_AND_CREATIVE VALIDATION_VIEW VIDEO_ENGAGEMENT }}
-        api.has_param :creation_source, { enum: %w{adsExcelAddin adsManagerReporting newAdsManager }}
-        api.has_param :custom_column_set_id, 'string'
-        api.has_param :data_columns, { list: 'string' }
-        api.has_param :date_interval, 'object'
-        api.has_param :date_preset, { enum: %w{last_14d last_28d last_30d last_3d last_7d last_90d last_month last_quarter last_week_mon_sun last_week_sun_sat last_year lifetime this_month this_quarter this_week_mon_today this_week_sun_today this_year today yesterday }}
-        api.has_param :emails, { list: 'string' }
-        api.has_param :export_columns, 'object'
-        api.has_param :filters, { list: 'object' }
-        api.has_param :format_version, 'int'
-        api.has_param :insights_section, 'object'
-        api.has_param :level, { enum: %w{account ad adgroup campaign campaign_group politicalad }}
-        api.has_param :name, 'string'
-        api.has_param :normalized_filter, { list: 'object' }
-        api.has_param :schedule_frequency, { enum: %w{daily monthly weekly }}
-        api.has_param :sort, { list: 'object' }
-        api.has_param :sort_by, 'string'
-        api.has_param :sort_dir, 'string'
-        api.has_param :start_date, 'object'
-        api.has_param :status, { enum: %w{Active Deleted Paused }}
-        api.has_param :subscribers, { list: 'int' }
-        api.has_param :time_increment, 'string'
-        api.has_param :user_attribution_windows, { list: 'string' }
-        api.has_param :user_columns, { list: 'string' }
-        api.has_param :user_filter, { list: 'object' }
-      end
     end
 
     has_edge :adrules_history do |edge|
@@ -755,6 +727,7 @@ module FacebookAds
     has_edge :content_delivery_report do |edge|
       edge.get 'ContentDeliveryReport' do |api|
         api.has_param :end_date, 'datetime'
+        api.has_param :page_id, 'int'
         api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
         api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
         api.has_param :start_date, 'datetime'

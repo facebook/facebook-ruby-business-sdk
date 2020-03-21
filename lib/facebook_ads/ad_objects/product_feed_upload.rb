@@ -27,6 +27,7 @@ module FacebookAds
 
   class ProductFeedUpload < AdObject
     INPUT_METHOD = [
+      "Google Sheets Fetch",
       "Manual Upload",
       "Reupload Last File",
       "Server Fetch",
