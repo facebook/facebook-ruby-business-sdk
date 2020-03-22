@@ -9,8 +9,9 @@ script: gem build facebookbusiness.gemspec
 deploy:
   provider: rubygems
   api_key:
-    secure: Eok2SISlgG/e9P/l2ZEAGulhocgrTdIog9DL+J44FbPisAefMRs/sa+vwZNa04dXyKfceo7UyY6RB7CY3+VjhteDn5OztuHppKTPZ+WOwpIIPSYWqQC23hTFFS0qyo/p5Iwgd477mmgY4YSUX/EWUnjUYLrZ7lyYeknVRHrD98+ivmq7vJxtesLN3IhLwN8Yz4L0xLPRboGVLZZHu+js316llw4dnvcSrhj47HSMk0kK3XLT3Lm3etidPo+HOw4EOy/8a3+WM+1pjA1nVYpAiK8mPPzl7WZ6IkkS3hA8bR/qK8tDYCZb48KL1cOYA0lDqSYQ0x/BcTBHw06nwbPTuS0/Uk0eyu1MGjsZtWQYURgelwyvdQZ1ztR/EUr2baI08MoFdGhWod1kmPRAH7hQ465cFXXRJWJZeN/m4yc+Ojb0TCHgoWzO5JPoK1LVHz7D3mzoBysBT6QjFkcnerdfWiQTSvbN5v42DYtnDpC7P9USVMvy8Eu6YIjqM4BU9XEMfp5wkzJ/LjqjH/bnREYVuoo3xK9dHBBOcHJhICcZBdzyWohdj/yD9XFySG7E5oFemYlv61mSU21178xhyXm+HSU57avG8CI1zX9JiPtgx3tCB+rKq1+ZRmzepmq5+vS4A+EnK34Oau4DyMfAWOWY5zdP723absee+inLRHnzBDo=
+    secure: a0LEmoM6WagYxCadbQw4j6JRKfj2NoNMd7izWTJFF1V2pF66MciEo2QwSsCNXbfmmy7lhNcVYSc1xUglvfqJJZorfkrPkHDzydDHYo50Hz+qvmABCUjg83E69cK3LSsAyQ6oX7OiJMkZxIL6buqyKQ5qd9m64hoSS84HVwRywuE=
   gem: facebookbusiness
   on:
-    tags: true
+    # tags: true
+    all_branches: true
     repo: facebook/facebook-ruby-business-sdk
