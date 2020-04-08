@@ -278,6 +278,7 @@ module FacebookAds
         api.has_param :image_url, 'string'
         api.has_param :instagram_actor_id, 'string'
         api.has_param :instagram_permalink_url, 'string'
+        api.has_param :instant_checkout_setting, { enum: -> { AdCreative::INSTANT_CHECKOUT_SETTING }}
         api.has_param :interactive_components_spec, 'hash'
         api.has_param :is_dco_internal, 'bool'
         api.has_param :link_og_id, 'string'
@@ -407,7 +408,7 @@ module FacebookAds
     has_edge :ads_volume do |edge|
       edge.get 'AdAccountAdVolume' do |api|
         api.has_param :page_id, 'int'
-        api.has_param :show_ad_limit_by_actor, 'bool'
+        api.has_param :show_breakdown_by_actor, 'bool'
       end
     end
 
@@ -653,18 +654,6 @@ module FacebookAds
       edge.post do |api|
         api.has_param :payload, 'object'
         api.has_param :session, 'object'
-      end
-    end
-
-    has_edge :batchreplace do |edge|
-      edge.post do |api|
-        api.has_param :payload, { list: 'string' }
-      end
-    end
-
-    has_edge :batchupload do |edge|
-      edge.post do |api|
-        api.has_param :payload, { list: 'string' }
       end
     end
 

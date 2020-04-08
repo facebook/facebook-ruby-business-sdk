@@ -54,9 +54,6 @@ module FacebookAds
     field :parent_folder_id, 'string'
 
     has_edge :agencies do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'string'
-      end
       edge.get 'Business'
       edge.post 'BusinessCreativeFolder' do |api|
         api.has_param :business, 'string'

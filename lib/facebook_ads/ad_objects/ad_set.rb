@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdSet < AdObject
     BID_STRATEGY = [
+      "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
       "TARGET_COST",

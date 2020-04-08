@@ -88,6 +88,7 @@ module FacebookAds
     field :interested_count, 'int'
     field :is_canceled, 'bool'
     field :is_draft, 'bool'
+    field :is_online, 'bool'
     field :is_page_owned, 'bool'
     field :maybe_count, 'int'
     field :name, 'string'

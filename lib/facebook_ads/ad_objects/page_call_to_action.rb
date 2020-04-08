@@ -40,6 +40,7 @@ module FacebookAds
 
     IPHONE_DESTINATION_TYPE = [
       "APP_DEEPLINK",
+      "BECOME_A_VOLUNTEER",
       "EMAIL",
       "FACEBOOK_APP",
       "MESSENGER",

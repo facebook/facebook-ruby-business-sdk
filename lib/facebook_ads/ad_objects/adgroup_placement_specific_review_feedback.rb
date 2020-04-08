@@ -36,6 +36,7 @@ module FacebookAds
     field :daily_deals_legacy, 'hash'
     field :dpa, 'hash'
     field :facebook, 'hash'
+    field :facebook_pages_live_shopping, 'hash'
     field :instagram, 'hash'
     field :instagram_shop, 'hash'
     field :lead_gen_honeypot, 'hash'

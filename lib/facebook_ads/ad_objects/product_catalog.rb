@@ -115,23 +115,6 @@ module FacebookAds
       end
     end
 
-    has_edge :bundle_folders do |edge|
-      edge.post 'DynamicItemDisplayBundleFolder' do |api|
-        api.has_param :name, 'string'
-      end
-    end
-
-    has_edge :bundles do |edge|
-      edge.post 'DynamicItemDisplayBundle' do |api|
-        api.has_param :additional_urls, 'hash'
-        api.has_param :description, 'string'
-        api.has_param :name, 'string'
-        api.has_param :product_set, 'string'
-        api.has_param :text_tokens, 'hash'
-        api.has_param :url, 'string'
-      end
-    end
-
     has_edge :categories do |edge|
       edge.get 'ProductCatalogCategory' do |api|
         api.has_param :categorization_criteria, { enum: -> { ProductCatalogCategory::CATEGORIZATION_CRITERIA }}

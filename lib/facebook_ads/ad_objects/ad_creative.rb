@@ -134,6 +134,11 @@ module FacebookAds
       "STORY_OWNER",
     ]
 
+    INSTANT_CHECKOUT_SETTING = [
+      "off",
+      "on",
+    ]
+
     OPERATOR = [
       "ALL",
       "ANY",
@@ -197,6 +202,7 @@ module FacebookAds
     field :video_id, 'string'
     field :call_to_action, 'object'
     field :image_file, 'string'
+    field :instant_checkout_setting, { enum: -> { INSTANT_CHECKOUT_SETTING }}
     field :is_dco_internal, 'bool'
 
     has_edge :adlabels do |edge|

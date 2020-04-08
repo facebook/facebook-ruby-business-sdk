@@ -27,12 +27,14 @@ module FacebookAds
 
   class AdCampaignActivity < AdObject
     BID_STRATEGY_NEW = [
+      "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
       "TARGET_COST",
     ]
 
     BID_STRATEGY_OLD = [
+      "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
       "TARGET_COST",

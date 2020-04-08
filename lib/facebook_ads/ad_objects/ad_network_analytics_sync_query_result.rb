@@ -44,6 +44,8 @@ module FacebookAds
       "DISPLAY_FORMAT",
       "FAIL_REASON",
       "GENDER",
+      "INSTANT_ARTICLE_ID",
+      "INSTANT_ARTICLE_PAGE_ID",
       "PLACEMENT",
       "PLACEMENT_NAME",
       "PLATFORM",

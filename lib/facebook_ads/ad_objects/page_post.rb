@@ -26,6 +26,10 @@ module FacebookAds
   # pull request for this class.
 
   class PagePost < AdObject
+    WITH = [
+      "LOCATION",
+    ]
+
     BACKDATED_TIME_GRANULARITY = [
       "day",
       "hour",
@@ -33,55 +37,6 @@ module FacebookAds
       "month",
       "none",
       "year",
-    ]
-
-    CHECKIN_ENTRY_POINT = [
-      "BRANDING_CHECKIN",
-      "BRANDING_OTHER",
-      "BRANDING_PHOTO",
-      "BRANDING_STATUS",
-    ]
-
-    FORMATTING = [
-      "MARKDOWN",
-      "PLAINTEXT",
-    ]
-
-    PLACE_ATTACHMENT_SETTING = [
-      "1",
-      "2",
-    ]
-
-    POST_SURFACES_BLACKLIST = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ]
-
-    POSTING_TO_REDSPACE = [
-      "disabled",
-      "enabled",
-    ]
-
-    TARGET_SURFACE = [
-      "STORY",
-      "TIMELINE",
-    ]
-
-    UNPUBLISHED_CONTENT_TYPE = [
-      "ADS_POST",
-      "DRAFT",
-      "INLINE_CREATED",
-      "PUBLISHED",
-      "REVIEWABLE_BRANDED_CONTENT",
-      "SCHEDULED",
-      "SCHEDULED_RECURRING",
-    ]
-
-    WITH = [
-      "LOCATION",
     ]
 
     FEED_STORY_VISIBILITY = [

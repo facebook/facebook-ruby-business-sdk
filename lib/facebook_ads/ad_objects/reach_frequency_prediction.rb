@@ -139,7 +139,6 @@ module FacebookAds
     field :timezone_id, 'int'
     field :timezone_name, 'string'
     field :topline_id, 'int'
-    field :tv_viewer_cluster_map, 'map<unsigned int, Object>'
     field :video_view_length_constraint, 'int'
     field :viewtag, 'string'
     field :action, { enum: -> { ACTION }}
