@@ -30,8 +30,8 @@ end
 
 ad_account = FacebookAds::AdAccount.get(id)
 campaigns = ad_account.campaigns.create({
-    special_ad_category: 'NONE',
     name: 'Local ad campaign',
     objective: 'REACH',
     status: 'PAUSED',
+    special_ad_categories: [],
 })

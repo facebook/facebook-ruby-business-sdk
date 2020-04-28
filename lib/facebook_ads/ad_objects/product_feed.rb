@@ -61,6 +61,7 @@ module FacebookAds
       "LOCAL_INVENTORY",
       "MARKET",
       "MEDIA_TITLE",
+      "OFFER",
       "PRODUCTS",
       "VEHICLES",
       "VEHICLE_OFFER",

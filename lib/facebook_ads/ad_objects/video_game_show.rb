@@ -26,17 +26,13 @@ module FacebookAds
   # pull request for this class.
 
   class VideoGameShow < AdObject
-    ACTION = [
-      "END_GAME",
-      "START_GAME",
-    ]
-
 
     field :end_time, 'datetime'
     field :game_status, 'string'
     field :game_type, 'string'
     field :id, 'string'
     field :start_time, 'datetime'
+    has_no_post
     has_no_delete
 
   end

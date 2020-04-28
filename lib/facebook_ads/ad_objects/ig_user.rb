@@ -38,6 +38,7 @@ module FacebookAds
     field :mentioned_media, 'IgMedia'
     field :name, 'string'
     field :profile_picture_url, 'string'
+    field :shopping_review_status, 'string'
     field :username, 'string'
     field :website, 'string'
     has_no_post

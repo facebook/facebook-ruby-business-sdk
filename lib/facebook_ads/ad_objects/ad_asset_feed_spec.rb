@@ -44,6 +44,7 @@ module FacebookAds
       "FIND_A_GROUP",
       "FIND_YOUR_GROUPS",
       "FOLLOW_NEWS_STORYLINE",
+      "FOLLOW_USER",
       "GET_DIRECTIONS",
       "GET_OFFER",
       "GET_OFFER_VIEW",
@@ -61,8 +62,10 @@ module FacebookAds
       "NO_BUTTON",
       "OPEN_LINK",
       "ORDER_NOW",
+      "PAY_TO_ACCESS",
       "PLAY_GAME",
       "RECORD_NOW",
+      "REQUEST_TIME",
       "SAY_THANKS",
       "SEE_MORE",
       "SELL_NOW",
@@ -89,6 +92,7 @@ module FacebookAds
     field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }
     field :call_to_action_types, { list: { enum: -> { CALL_TO_ACTION_TYPES }} }
+    field :call_to_actions, { list: 'object' }
     field :captions, { list: 'AdAssetFeedSpecCaption' }
     field :carousels, { list: 'object' }
     field :descriptions, { list: 'AdAssetFeedSpecDescription' }

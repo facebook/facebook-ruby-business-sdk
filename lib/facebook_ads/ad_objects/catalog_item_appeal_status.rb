@@ -30,7 +30,7 @@ module FacebookAds
     field :handle, 'string'
     field :item_id, 'int'
     field :status, 'string'
-    field :use_cases, 'hash'
+    field :use_cases, { list: 'object' }
     has_no_id
     has_no_get
     has_no_post

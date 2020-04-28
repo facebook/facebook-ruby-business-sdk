@@ -479,18 +479,6 @@ module FacebookAds
       end
     end
 
-    has_edge :monetization do |edge|
-      edge.post do |api|
-        api.has_param :breakdowns, { list: { enum: %w{COUNTRY }} }
-        api.has_param :campaign_id, 'string'
-        api.has_param :device_list, { list: 'string' }
-        api.has_param :query_id, 'string'
-        api.has_param :request_id, 'string'
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
-      end
-    end
-
     has_edge :occludespopups do |edge|
       edge.post do |api|
         api.has_param :flash, 'bool'

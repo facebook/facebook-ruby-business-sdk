@@ -166,6 +166,7 @@ module FacebookAds
       "rtb_flag",
       "site_category",
       "targeting_optimization",
+      "targeting_relaxation_types",
       "timezones",
       "topic",
       "trending",

@@ -175,10 +175,8 @@ module FacebookAds
 
     has_edge :ads do |edge|
       edge.get 'Ad' do |api|
-        api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :include_drafts, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
       end
@@ -186,10 +184,8 @@ module FacebookAds
 
     has_edge :adsets do |edge|
       edge.get 'AdSet' do |api|
-        api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
         api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
-        api.has_param :include_drafts, 'bool'
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
       end

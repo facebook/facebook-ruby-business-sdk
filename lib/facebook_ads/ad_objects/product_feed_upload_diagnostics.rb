@@ -25,26 +25,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdPlacePageSet < AdObject
-    LOCATION_TYPES = [
-      "home",
-      "recent",
-    ]
+  class ProductFeedUploadDiagnostics < AdObject
 
-    TARGETED_AREA_TYPE = [
-      "CUSTOM_RADIUS",
-      "MARKETING_AREA",
-      "NONE",
-    ]
-
-
-    field :account_id, 'string'
-    field :id, 'string'
-    field :location_types, { list: 'string' }
-    field :name, 'string'
-    field :pages_count, 'int'
-    field :parent_page, 'Page'
-    field :targeted_area_type, 'adaccountad_place_page_sets_targeted_area_type_enum_param'
+    field :last_modified_time, 'string'
+    field :report_url, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

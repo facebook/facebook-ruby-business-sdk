@@ -375,13 +375,10 @@ module FacebookAds
 
     has_edge :ads do |edge|
       edge.get 'Ad' do |api|
-        api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :include_drafts, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
-        api.has_param :use_employee_draft, 'bool'
       end
       edge.post 'Ad' do |api|
         api.has_param :adlabels, { list: 'object' }
@@ -421,13 +418,10 @@ module FacebookAds
 
     has_edge :adsets do |edge|
       edge.get 'AdSet' do |api|
-        api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
         api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
-        api.has_param :include_drafts, 'bool'
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
-        api.has_param :use_employee_draft, 'bool'
       end
       edge.post 'AdSet' do |api|
         api.has_param :adlabels, { list: 'object' }
@@ -457,6 +451,7 @@ module FacebookAds
         api.has_param :lifetime_min_spend_target, 'int'
         api.has_param :lifetime_spend_cap, 'int'
         api.has_param :line_number, 'int'
+        api.has_param :multi_optimization_goal_weight, { enum: -> { AdSet::MULTI_OPTIMIZATION_GOAL_WEIGHT }}
         api.has_param :name, 'string'
         api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
         api.has_param :optimization_sub_event, { enum: -> { AdSet::OPTIMIZATION_SUB_EVENT }}
@@ -679,10 +674,8 @@ module FacebookAds
       edge.get 'Campaign' do |api|
         api.has_param :date_preset, { enum: -> { Campaign::DATE_PRESET }}
         api.has_param :effective_status, { list: { enum: -> { Campaign::EFFECTIVE_STATUS }} }
-        api.has_param :include_drafts, 'bool'
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
-        api.has_param :use_employee_draft, 'bool'
       end
       edge.post 'Campaign' do |api|
         api.has_param :adlabels, { list: 'object' }

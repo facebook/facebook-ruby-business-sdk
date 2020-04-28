@@ -76,6 +76,7 @@ module FacebookAds
     field :is_eligible_for_promotion, 'bool'
     field :is_expired, 'bool'
     field :is_hidden, 'bool'
+    field :is_inline_created, 'bool'
     field :is_instagram_eligible, 'bool'
     field :is_popular, 'bool'
     field :is_published, 'bool'

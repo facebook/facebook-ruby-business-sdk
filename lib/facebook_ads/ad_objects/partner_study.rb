@@ -48,9 +48,5 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :submitters do |edge|
-      edge.get 'User'
-    end
-
   end
 end

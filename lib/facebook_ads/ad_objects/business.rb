@@ -85,10 +85,6 @@ module FacebookAds
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
-      "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
-      "PLATFORM_PAGE_ADMINISTER",
-      "PLATFORM_PAGE_BASIC_ADMIN",
-      "PLATFORM_READ_INSIGHTS",
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
@@ -357,7 +353,9 @@ module FacebookAds
     end
 
     has_edge :extendedcredits do |edge|
-      edge.get 'ExtendedCredit'
+      edge.get 'ExtendedCredit' do |api|
+        api.has_param :order_by_is_owned_credential, 'bool'
+      end
     end
 
     has_edge :images do |edge|
@@ -527,8 +525,7 @@ module FacebookAds
     end
 
     has_edge :pixel_tos do |edge|
-      edge.get 'BusinessPixelTos'
-      edge.post 'BusinessPixelTos'
+      edge.post
     end
 
     has_edge :received_audience_sharing_requests do |edge|

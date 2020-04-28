@@ -111,10 +111,6 @@ module FacebookAds
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
-      "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
-      "PLATFORM_PAGE_ADMINISTER",
-      "PLATFORM_PAGE_BASIC_ADMIN",
-      "PLATFORM_READ_INSIGHTS",
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
@@ -137,10 +133,6 @@ module FacebookAds
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
       "PAGES_MESSAGING_SUBSCRIPTIONS",
-      "PLATFORM_PAGES_MANAGE_INSTANT_ARTICLES",
-      "PLATFORM_PAGE_ADMINISTER",
-      "PLATFORM_PAGE_BASIC_ADMIN",
-      "PLATFORM_READ_INSIGHTS",
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
@@ -280,6 +272,7 @@ module FacebookAds
       "hometown",
       "hours",
       "invoice_access_invoice_change",
+      "invoice_access_onboarding_status_active",
       "leadgen",
       "leadgen_fat",
       "live_videos",
@@ -327,6 +320,7 @@ module FacebookAds
       "ratings",
       "registration",
       "standby",
+      "user_action",
       "video_text_question_responses",
       "videos",
       "website",
@@ -385,6 +379,7 @@ module FacebookAds
     field :cover, 'CoverPhoto'
     field :culinary_team, 'string'
     field :current_location, 'string'
+    field :delivery_and_pickup_option_info, { list: 'string' }
     field :description, 'string'
     field :description_html, 'string'
     field :differently_open_offerings, 'hash'

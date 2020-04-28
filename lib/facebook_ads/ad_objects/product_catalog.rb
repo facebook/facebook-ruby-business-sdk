@@ -33,6 +33,7 @@ module FacebookAds
       "flights",
       "home_listings",
       "hotels",
+      "jobs",
       "offer_items",
       "offline_commerce",
       "ticketed_experiences",

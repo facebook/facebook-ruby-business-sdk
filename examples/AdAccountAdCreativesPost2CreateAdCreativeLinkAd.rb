@@ -16,32 +16,20 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# FB:AUTOGEN
+require 'facebook_ads'
 
-module FacebookAds
-  # This class is auto-generated.
+access_token = '<ACCESS_TOKEN>'
+app_secret = '<APP_SECRET>'
+app_id = '<APP_ID>'
+id = '<AD_ACCOUNT_ID>'
 
-  # For any issues or feature requests related to this class, please let us know
-  # on github and we'll fix in our codegen framework. We'll not be able to accept
-  # pull request for this class.
-
-  class InstagramComment < AdObject
-
-    field :comment_type, 'string'
-    field :created_at, 'datetime'
-    field :id, 'string'
-    field :instagram_comment_id, 'string'
-    field :instagram_user, 'InstagramUser'
-    field :mentioned_instagram_users, { list: 'InstagramUser' }
-    field :message, 'string'
-
-    has_edge :replies do |edge|
-      edge.get 'InstagramComment'
-      edge.post 'InstagramComment' do |api|
-        api.has_param :ad_id, 'object'
-        api.has_param :message, 'string'
-      end
-    end
-
-  end
+FacebookAds.configure do |config|
+  config.access_token = access_token
+  config.app_secret = app_secret
 end
+
+ad_account = FacebookAds::AdAccount.get(id)
+adcreatives = ad_account.adcreatives.create({
+    name: 'Sample Creative',
+    object_story_spec: {'page_id':'<pageID>','link_data':{'image_hash':'<imageHash>','link':'https:\/\/facebook.com\/<pageID>','message':'try it out'}},
+})
