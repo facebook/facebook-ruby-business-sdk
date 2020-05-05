@@ -35,6 +35,7 @@ module FacebookAds
     field :agent_fb_page_id, 'Page'
     field :agent_name, 'string'
     field :agent_phone, 'string'
+    field :applinks, 'CatalogItemAppLinks'
     field :area_size, 'int'
     field :area_unit, 'string'
     field :availability, 'string'

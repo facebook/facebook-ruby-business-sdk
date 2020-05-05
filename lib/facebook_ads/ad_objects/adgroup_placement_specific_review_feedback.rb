@@ -35,6 +35,7 @@ module FacebookAds
     field :daily_deals, 'hash'
     field :daily_deals_legacy, 'hash'
     field :dpa, 'hash'
+    field :dri_counterfeit, 'hash'
     field :facebook, 'hash'
     field :facebook_pages_live_shopping, 'hash'
     field :instagram, 'hash'

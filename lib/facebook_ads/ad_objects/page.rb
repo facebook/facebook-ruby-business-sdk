@@ -271,6 +271,7 @@ module FacebookAds
       "general_manager",
       "hometown",
       "hours",
+      "inbox_labels",
       "invoice_access_invoice_change",
       "invoice_access_onboarding_status_active",
       "leadgen",
@@ -515,19 +516,6 @@ module FacebookAds
 
     has_edge :albums do |edge|
       edge.get 'Album'
-      edge.post 'Album' do |api|
-        api.has_param :contributors, { list: 'int' }
-        api.has_param :description, 'string'
-        api.has_param :is_default, 'bool'
-        api.has_param :location, 'string'
-        api.has_param :make_shared_album, 'bool'
-        api.has_param :message, 'string'
-        api.has_param :name, 'string'
-        api.has_param :place, 'object'
-        api.has_param :privacy, 'string'
-        api.has_param :tags, { list: 'int' }
-        api.has_param :visible, 'string'
-      end
     end
 
     has_edge :assigned_users do |edge|
@@ -663,10 +651,6 @@ module FacebookAds
         api.has_param :time_filter, { enum: -> { Event::TIME_FILTER }}
         api.has_param :type, { enum: -> { Event::TYPE }}
       end
-    end
-
-    has_edge :featured_videos_collection do |edge|
-      edge.get 'AdVideo'
     end
 
     has_edge :feed do |edge|
@@ -993,7 +977,6 @@ module FacebookAds
         api.has_param :account_linking_url, 'string'
         api.has_param :get_started, 'object'
         api.has_param :greeting, { list: 'object' }
-        api.has_param :home_url, 'object'
         api.has_param :ice_breakers, { list: 'hash' }
         api.has_param :payment_settings, 'object'
         api.has_param :persistent_menu, { list: 'object' }
@@ -1331,12 +1314,6 @@ module FacebookAds
     has_edge :unlink_accounts do |edge|
       edge.post 'Page' do |api|
         api.has_param :psid, 'string'
-      end
-    end
-
-    has_edge :upcoming_changes do |edge|
-      edge.get 'PageUpcomingChange' do |api|
-        api.has_param :include_inactive, 'bool'
       end
     end
 

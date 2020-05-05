@@ -30,7 +30,6 @@ module FacebookAds
     field :account_linking_url, 'string'
     field :get_started, 'object'
     field :greeting, { list: 'object' }
-    field :home_url, 'object'
     field :ice_breakers, { list: 'object' }
     field :payment_settings, 'object'
     field :persistent_menu, { list: 'object' }

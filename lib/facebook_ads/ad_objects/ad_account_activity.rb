@@ -27,9 +27,7 @@ module FacebookAds
 
   class AdAccountActivity < AdObject
 
-    field :billing_address_new, 'string'
-    field :billing_address_old, 'string'
-    field :created_by, 'string'
+    field :created_by, 'Profile'
     field :created_time, 'datetime'
     field :credit_new, 'object'
     field :credit_old, 'object'
@@ -44,8 +42,8 @@ module FacebookAds
     field :grace_period_time_new, 'int'
     field :grace_period_time_old, 'int'
     field :id, 'string'
-    field :manager_id_new, 'string'
-    field :manager_id_old, 'string'
+    field :manager_id_new, 'Profile'
+    field :manager_id_old, 'Profile'
     field :name_new, 'string'
     field :name_old, 'string'
     field :spend_cap_new, 'object'

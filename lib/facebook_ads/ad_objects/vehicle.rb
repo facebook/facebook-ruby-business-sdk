@@ -105,6 +105,7 @@ module FacebookAds
 
 
     field :address, 'object'
+    field :applinks, 'CatalogItemAppLinks'
     field :availability, 'string'
     field :body_style, 'string'
     field :condition, 'string'
@@ -147,7 +148,6 @@ module FacebookAds
     field :vehicle_type, 'string'
     field :vin, 'string'
     field :year, 'int'
-    field :applinks, 'object'
     has_no_delete
 
   end

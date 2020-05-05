@@ -34,6 +34,7 @@ module FacebookAds
       "home_listings",
       "hotels",
       "jobs",
+      "local_service_businesses",
       "offer_items",
       "offline_commerce",
       "ticketed_experiences",
@@ -62,7 +63,6 @@ module FacebookAds
 
 
     field :business, 'Business'
-    field :cpas_parent_catalog_settings, 'CpasParentCatalogSettings'
     field :da_display_settings, 'ProductCatalogImageSettings'
     field :default_image_url, 'string'
     field :fallback_image_url, { list: 'string' }

@@ -208,6 +208,7 @@ module FacebookAds
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :place_page_name, 'string'
     field :purchase_roas, { list: 'AdsActionStats' }
+    field :qualifying_question_qualify_answer_rate, 'string'
     field :quality_ranking, 'string'
     field :quality_score_ectr, 'string'
     field :quality_score_ecvr, 'string'

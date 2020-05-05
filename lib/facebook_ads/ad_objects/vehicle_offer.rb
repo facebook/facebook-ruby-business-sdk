@@ -31,6 +31,7 @@ module FacebookAds
     field :amount_percentage, 'double'
     field :amount_price, 'string'
     field :amount_qualifier, 'string'
+    field :applinks, 'CatalogItemAppLinks'
     field :body_style, 'string'
     field :cashback_currency, 'string'
     field :cashback_price, 'string'

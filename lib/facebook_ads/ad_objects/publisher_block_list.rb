@@ -38,12 +38,6 @@ module FacebookAds
     field :owner_ad_account_id, 'string'
     field :web_publishers, { list: 'object' }
 
-    has_edge :paged_app_publishers do |edge|
-      edge.get do |api|
-        api.has_param :draft_id, 'string'
-      end
-    end
-
     has_edge :paged_web_publishers do |edge|
       edge.get do |api|
         api.has_param :draft_id, 'string'

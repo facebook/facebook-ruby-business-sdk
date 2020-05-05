@@ -28,6 +28,7 @@ module FacebookAds
   class Destination < AdObject
 
     field :address, 'string'
+    field :applinks, 'CatalogItemAppLinks'
     field :currency, 'string'
     field :description, 'string'
     field :destination_id, 'string'

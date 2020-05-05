@@ -201,12 +201,6 @@ module FacebookAds
       edge.get 'ProductCatalog'
     end
 
-    has_edge :books do |edge|
-      edge.get 'Page' do |api|
-        api.has_param :target_id, 'string'
-      end
-    end
-
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
     end
@@ -392,12 +386,6 @@ module FacebookAds
       end
     end
 
-    has_edge :games do |edge|
-      edge.get 'Page' do |api|
-        api.has_param :target_id, 'string'
-      end
-    end
-
     has_edge :games_plays do |edge|
       edge.post do |api|
         api.has_param :added, 'string'
@@ -511,12 +499,6 @@ module FacebookAds
         api.has_param :stop_on_delete_stream, 'bool'
         api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
         api.has_param :title, 'string'
-      end
-    end
-
-    has_edge :movies do |edge|
-      edge.get 'Page' do |api|
-        api.has_param :target_id, 'string'
       end
     end
 
@@ -640,12 +622,6 @@ module FacebookAds
 
     has_edge :taggable_friends do |edge|
       edge.get 'UserTaggableFriend'
-    end
-
-    has_edge :television do |edge|
-      edge.get 'Page' do |api|
-        api.has_param :target_id, 'string'
-      end
     end
 
     has_edge :videos do |edge|

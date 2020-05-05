@@ -680,7 +680,6 @@ module FacebookAds
       edge.post 'Campaign' do |api|
         api.has_param :adlabels, { list: 'object' }
         api.has_param :bid_strategy, { enum: -> { Campaign::BID_STRATEGY }}
-        api.has_param :budget_rebalance_flag, 'bool'
         api.has_param :buying_type, 'string'
         api.has_param :daily_budget, 'int'
         api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
@@ -691,7 +690,7 @@ module FacebookAds
         api.has_param :pacing_type, { list: 'string' }
         api.has_param :promoted_object, 'object'
         api.has_param :source_campaign_id, 'string'
-        api.has_param :special_ad_category, { enum: -> { Campaign::SPECIAL_AD_CATEGORY }}
+        api.has_param :special_ad_categories, { list: { enum: -> { Campaign::SPECIAL_AD_CATEGORIES }} }
         api.has_param :spend_cap, 'int'
         api.has_param :status, { enum: -> { Campaign::STATUS }}
         api.has_param :topline_id, 'string'

@@ -100,7 +100,7 @@ module FacebookAds
       "VIDEO_VIEWS",
     ]
 
-    SPECIAL_AD_CATEGORY = [
+    SPECIAL_AD_CATEGORIES = [
       "CREDIT",
       "EMPLOYMENT",
       "HOUSING",
@@ -110,6 +110,13 @@ module FacebookAds
     OPERATOR = [
       "ALL",
       "ANY",
+    ]
+
+    SPECIAL_AD_CATEGORY = [
+      "CREDIT",
+      "EMPLOYMENT",
+      "HOUSING",
+      "NONE",
     ]
 
     STATUS_OPTION = [
@@ -144,6 +151,7 @@ module FacebookAds
     field :recommendations, { list: 'AdRecommendation' }
     field :source_campaign, 'Campaign'
     field :source_campaign_id, 'string'
+    field :special_ad_categories, { list: 'string' }
     field :special_ad_category, 'string'
     field :spend_cap, 'string'
     field :start_time, 'datetime'
