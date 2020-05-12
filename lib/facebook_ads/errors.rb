@@ -26,7 +26,7 @@ module FacebookAds
     ERROR_ATTRS = [
       :headers, :fb_message, :type, :code,
       :error_subcode, :is_transient, :error_user_title,
-      :error_user_msg, :fbtrace_id,
+      :error_user_msg, :error_data, :fbtrace_id,
     ]
 
     attr_accessor *ERROR_ATTRS
