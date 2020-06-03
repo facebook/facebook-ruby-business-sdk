@@ -328,6 +328,9 @@ module FacebookAds
         unless client_ip_address.nil?
           hash['client_ip_address'] = client_ip_address
         end
+        unless client_user_agent.nil?
+          hash['client_user_agent'] = client_user_agent
+        end
         unless fbc.nil?
           hash['fbc'] = fbc
         end
@@ -379,6 +382,9 @@ module FacebookAds
         end
         unless client_ip_address.nil?
           hash['client_ip_address'] = client_ip_address
+        end
+        unless client_user_agent.nil?
+          hash['client_user_agent'] = client_user_agent
         end
         unless fbc.nil?
           hash['fbc'] = fbc
