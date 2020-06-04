@@ -29,6 +29,7 @@ module FacebookAds
     ROLE = [
       "ADMIN",
       "ADS_RIGHTS_REVIEWER",
+      "DEVELOPER",
       "EMPLOYEE",
       "FINANCE_ANALYST",
       "FINANCE_EDITOR",

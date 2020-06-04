@@ -28,6 +28,7 @@ module FacebookAds
   class StreamingReaction < AdObject
     REACTION_TYPE = [
       "ANGRY",
+      "CARE",
       "HAHA",
       "LIKE",
       "LOVE",

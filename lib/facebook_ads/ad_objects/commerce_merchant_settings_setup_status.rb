@@ -25,48 +25,17 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessUser < AdObject
-    ROLE = [
-      "ADMIN",
-      "ADS_RIGHTS_REVIEWER",
-      "DEVELOPER",
-      "EMPLOYEE",
-      "FINANCE_ANALYST",
-      "FINANCE_EDITOR",
-    ]
+  class CommerceMerchantSettingsSetupStatus < AdObject
 
-
-    field :business, 'Business'
-    field :email, 'string'
-    field :finance_permission, 'string'
-    field :first_name, 'string'
-    field :id, 'string'
-    field :ip_permission, 'string'
-    field :last_name, 'string'
-    field :marked_for_removal, 'bool'
-    field :name, 'string'
-    field :pending_email, 'string'
-    field :role, 'string'
-    field :title, 'string'
-    field :two_fac_status, 'string'
-
-    has_edge :assigned_ad_accounts do |edge|
-      edge.get 'AdAccount'
-    end
-
-    has_edge :assigned_business_asset_groups do |edge|
-      edge.get 'BusinessAssetGroup' do |api|
-        api.has_param :contained_asset_id, 'string'
-      end
-    end
-
-    has_edge :assigned_pages do |edge|
-      edge.get 'Page'
-    end
-
-    has_edge :assigned_product_catalogs do |edge|
-      edge.get 'ProductCatalog'
-    end
+    field :deals_setup, 'string'
+    field :marketplace_approval_status, 'string'
+    field :marketplace_approval_status_details, 'object'
+    field :payment_setup, 'string'
+    field :shop_setup, 'string'
+    has_no_id
+    has_no_get
+    has_no_post
+    has_no_delete
 
   end
 end

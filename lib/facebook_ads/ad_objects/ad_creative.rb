@@ -50,6 +50,7 @@ module FacebookAds
       "FIND_A_GROUP",
       "FIND_YOUR_GROUPS",
       "FOLLOW_NEWS_STORYLINE",
+      "FOLLOW_PAGE",
       "FOLLOW_USER",
       "GET_DIRECTIONS",
       "GET_OFFER",
@@ -210,9 +211,6 @@ module FacebookAds
     field :is_dco_internal, 'bool'
 
     has_edge :adlabels do |edge|
-      edge.delete do |api|
-        api.has_param :adlabels, { list: 'object' }
-      end
       edge.post 'AdCreative' do |api|
         api.has_param :adlabels, { list: 'object' }
       end

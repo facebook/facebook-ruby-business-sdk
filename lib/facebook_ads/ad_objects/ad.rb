@@ -123,7 +123,6 @@ module FacebookAds
     field :engagement_audience, 'bool'
     field :failed_delivery_checks, { list: 'DeliveryCheck' }
     field :id, 'string'
-    field :is_autobid, 'bool'
     field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
     field :name, 'string'

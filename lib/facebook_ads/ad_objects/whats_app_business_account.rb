@@ -77,5 +77,9 @@ module FacebookAds
       edge.get
     end
 
+    has_edge :subscribed_apps do |edge|
+      edge.post 'WhatsAppBusinessAccount'
+    end
+
   end
 end

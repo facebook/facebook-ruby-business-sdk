@@ -63,6 +63,7 @@ module FacebookAds
 
 
     field :business, 'Business'
+    field :commerce_merchant_settings, 'CommerceMerchantSettings'
     field :da_display_settings, 'ProductCatalogImageSettings'
     field :default_image_url, 'string'
     field :fallback_image_url, { list: 'string' }
@@ -75,6 +76,7 @@ module FacebookAds
     field :vertical, 'string'
     field :destination_catalog_settings, 'hash'
     field :flight_catalog_settings, 'hash'
+    field :onsite_commerce_merchant, 'object'
 
     has_edge :agencies do |edge|
       edge.delete do |api|
@@ -232,6 +234,12 @@ module FacebookAds
         api.has_param :allow_upsert, 'bool'
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'
+      end
+    end
+
+    has_edge :onsite_commerce_merchant do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :onsite_commerce_merchant, 'object'
       end
     end
 

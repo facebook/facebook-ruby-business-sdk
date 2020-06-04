@@ -78,6 +78,7 @@ module FacebookAds
     end
 
     has_edge :likes do |edge|
+      edge.get 'Profile'
       edge.post 'Album' do |api|
         api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'
@@ -148,6 +149,12 @@ module FacebookAds
       edge.get 'ProfilePictureSource' do |api|
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
+      end
+    end
+
+    has_edge :reactions do |edge|
+      edge.get 'Profile' do |api|
+        api.has_param :type, { enum: -> { Profile::TYPE }}
       end
     end
 

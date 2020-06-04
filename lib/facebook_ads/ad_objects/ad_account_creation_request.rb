@@ -47,7 +47,6 @@ module FacebookAds
     field :id, 'string'
     field :is_smb, 'bool'
     field :is_test, 'bool'
-    field :is_under_authorization, 'bool'
     field :legal_entity_name_in_local_language, 'string'
     field :oe_request_id, 'string'
     field :official_website_url, 'string'

@@ -25,15 +25,24 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CustomAudiencePrefillState < AdObject
+  class CommerceOrderTransactionDetail < AdObject
 
-    field :description, 'string'
-    field :num_added, 'int'
-    field :status, 'string'
-    has_no_id
+    field :net_payment_amount, 'object'
+    field :order_details, 'CommerceOrder'
+    field :payout_reference_id, 'string'
+    field :processing_fee, 'object'
+    field :tax_rate, 'string'
+    field :transaction_date, 'string'
+    field :transaction_type, 'string'
+    field :transfer_id, 'string'
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :tax_details do |edge|
+      edge.get
+    end
 
   end
 end

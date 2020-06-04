@@ -33,6 +33,7 @@ module FacebookAds
       "28d_view",
       "7d_click",
       "7d_view",
+      "dda",
       "default",
     ]
 
@@ -152,6 +153,10 @@ module FacebookAds
     field :campaign_name, 'string'
     field :canvas_avg_view_percent, 'string'
     field :canvas_avg_view_time, 'string'
+    field :catalog_segment_value, { list: 'AdsActionStats' }
+    field :catalog_segment_value_mobile_purchase_roas, { list: 'AdsActionStats' }
+    field :catalog_segment_value_omni_purchase_roas, { list: 'AdsActionStats' }
+    field :catalog_segment_value_website_purchase_roas, { list: 'AdsActionStats' }
     field :clicks, 'string'
     field :conversion_rate_ranking, 'string'
     field :conversion_values, { list: 'AdsActionStats' }

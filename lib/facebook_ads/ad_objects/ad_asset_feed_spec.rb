@@ -44,6 +44,7 @@ module FacebookAds
       "FIND_A_GROUP",
       "FIND_YOUR_GROUPS",
       "FOLLOW_NEWS_STORYLINE",
+      "FOLLOW_PAGE",
       "FOLLOW_USER",
       "GET_DIRECTIONS",
       "GET_OFFER",

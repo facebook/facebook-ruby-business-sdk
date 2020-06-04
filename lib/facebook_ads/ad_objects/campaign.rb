@@ -97,6 +97,7 @@ module FacebookAds
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",
       "REACH",
+      "STORE_VISITS",
       "VIDEO_VIEWS",
     ]
 

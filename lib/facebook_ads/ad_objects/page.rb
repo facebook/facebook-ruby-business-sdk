@@ -292,6 +292,7 @@ module FacebookAds
       "messaging_appointments",
       "messaging_checkout_updates",
       "messaging_direct_sends",
+      "messaging_fblogin_account_linking",
       "messaging_game_plays",
       "messaging_handovers",
       "messaging_optins",
@@ -494,6 +495,13 @@ module FacebookAds
     field :written_by, 'string'
     has_no_delete
 
+    has_edge :acknowledge_orders do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :idempotency_key, 'string'
+        api.has_param :orders, { list: 'hash' }
+      end
+    end
+
     has_edge :ads_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :exclude_dynamic_ads, 'bool'
@@ -593,6 +601,34 @@ module FacebookAds
       edge.get 'Url'
       edge.post 'Page' do |api|
         api.has_param :url, 'string'
+      end
+    end
+
+    has_edge :commerce_merchant_settings do |edge|
+      edge.get 'CommerceMerchantSettings'
+    end
+
+    has_edge :commerce_orders do |edge|
+      edge.get 'CommerceOrder' do |api|
+        api.has_param :filters, { list: { enum: -> { CommerceOrder::FILTERS }} }
+        api.has_param :state, { list: { enum: -> { CommerceOrder::STATE }} }
+        api.has_param :updated_after, 'datetime'
+        api.has_param :updated_before, 'datetime'
+      end
+    end
+
+    has_edge :commerce_payouts do |edge|
+      edge.get 'CommercePayout' do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :start_time, 'datetime'
+      end
+    end
+
+    has_edge :commerce_transactions do |edge|
+      edge.get 'CommerceOrderTransactionDetail' do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :payout_reference_id, 'string'
+        api.has_param :start_time, 'datetime'
       end
     end
 
@@ -909,6 +945,7 @@ module FacebookAds
       edge.get 'Page'
       edge.post 'Page' do |api|
         api.has_param :always_open, 'bool'
+        api.has_param :delivery_and_pickup_option_info, { list: 'string' }
         api.has_param :differently_open_offerings, 'hash'
         api.has_param :hours, 'hash'
         api.has_param :ignore_warnings, 'bool'
@@ -1181,18 +1218,6 @@ module FacebookAds
       edge.get 'ProductCatalog'
     end
 
-    has_edge :promotions do |edge|
-      edge.post do |api|
-        api.has_param :ad_account_id, 'string'
-        api.has_param :budget, 'int'
-        api.has_param :duration, 'string'
-        api.has_param :gender, 'int'
-        api.has_param :geo_level, 'string'
-        api.has_param :max_age, 'int'
-        api.has_param :min_age, 'int'
-      end
-    end
-
     has_edge :published_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :since, 'datetime'
@@ -1235,6 +1260,10 @@ module FacebookAds
       edge.post 'Page' do |api|
         api.has_param :option, 'object'
       end
+    end
+
+    has_edge :shop_setup_status do |edge|
+      edge.get 'CommerceMerchantSettingsSetupStatus'
     end
 
     has_edge :subscribed_apps do |edge|
@@ -1321,10 +1350,6 @@ module FacebookAds
       edge.get 'VideoCopyrightRule' do |api|
         api.has_param :selected_rule_id, 'string'
         api.has_param :source, { enum: -> { VideoCopyrightRule::SOURCE }}
-      end
-      edge.post 'VideoCopyrightRule' do |api|
-        api.has_param :condition_groups, { list: 'object' }
-        api.has_param :name, 'string'
       end
     end
 

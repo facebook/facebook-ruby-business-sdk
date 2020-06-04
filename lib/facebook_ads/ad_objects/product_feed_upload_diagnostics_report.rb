@@ -25,46 +25,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class OpenGraphObject < AdObject
+  class ProductFeedUploadDiagnosticsReport < AdObject
 
-    field :admins, { list: 'object' }
-    field :application, 'object'
-    field :audio, { list: 'object' }
-    field :created_time, 'datetime'
-    field :description, 'string'
-    field :determiner, 'string'
-    field :engagement, 'Engagement'
-    field :id, 'string'
-    field :image, { list: 'object' }
-    field :is_scraped, 'bool'
-    field :locale, 'object'
-    field :location, 'Location'
-    field :post_action_id, 'string'
-    field :profile_id, 'object'
-    field :restrictions, 'object'
-    field :see_also, { list: 'string' }
-    field :site_name, 'string'
-    field :title, 'string'
-    field :type, 'string'
-    field :updated_time, 'datetime'
-    field :video, { list: 'object' }
+    field :last_updated_time, 'string'
+    field :report_url, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :comments do |edge|
-      edge.get 'Comment' do |api|
-        api.has_param :filter, { enum: -> { Comment::FILTER }}
-        api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
-        api.has_param :order, { enum: -> { Comment::ORDER }}
-        api.has_param :since, 'datetime'
-      end
-    end
-
-    has_edge :reactions do |edge|
-      edge.get 'Profile' do |api|
-        api.has_param :type, { enum: -> { Profile::TYPE }}
-      end
-    end
 
   end
 end

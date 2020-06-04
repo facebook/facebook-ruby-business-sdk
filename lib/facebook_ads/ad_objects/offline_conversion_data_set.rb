@@ -131,12 +131,6 @@ module FacebookAds
       end
     end
 
-    has_edge :users do |edge|
-      edge.post 'OfflineConversionDataSet' do |api|
-        api.has_param :data, { list: 'object' }
-      end
-    end
-
     has_edge :validate do |edge|
       edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :data, { list: 'string' }

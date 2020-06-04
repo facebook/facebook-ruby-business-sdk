@@ -25,21 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class RequestHistory < AdObject
-    HTTP_METHOD = [
-      "DELETE",
-      "GET",
-      "POST",
-    ]
+  class CommercePayout < AdObject
 
-
-    field :api_version, 'string'
-    field :created_time, 'datetime'
-    field :error_code, 'int'
-    field :graph_path, 'string'
-    field :http_method, { enum: -> { HTTP_METHOD }}
-    field :post_params, 'hash'
-    field :query_params, 'hash'
+    field :amount, 'object'
+    field :payout_date, 'string'
+    field :payout_reference_id, 'string'
+    field :status, 'string'
+    field :transfer_id, 'string'
     has_no_id
     has_no_get
     has_no_post

@@ -36,6 +36,7 @@ module FacebookAds
 
     TYPE = [
       "ANGRY",
+      "CARE",
       "HAHA",
       "LIKE",
       "LOVE",

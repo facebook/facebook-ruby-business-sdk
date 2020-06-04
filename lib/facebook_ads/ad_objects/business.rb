@@ -302,6 +302,10 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :commerce_merchant_settings do |edge|
+      edge.get 'CommerceMerchantSettings'
+    end
+
     has_edge :content_delivery_report do |edge|
       edge.get 'ContentDeliveryReport' do |api|
         api.has_param :end_date, 'datetime'
@@ -372,6 +376,13 @@ module FacebookAds
       edge.get 'BusinessAssetSharingAgreement' do |api|
         api.has_param :recipient_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
+      end
+    end
+
+    has_edge :initiated_sharing_agreements do |edge|
+      edge.get 'BusinessAgreement' do |api|
+        api.has_param :receiving_business_id, 'string'
+        api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
       end
     end
 
@@ -458,7 +469,6 @@ module FacebookAds
       edge.get 'Page'
       edge.post 'Business' do |api|
         api.has_param :code, 'string'
-        api.has_param :ig_password, 'string'
         api.has_param :page_id, 'int'
       end
     end
@@ -470,10 +480,12 @@ module FacebookAds
     has_edge :owned_product_catalogs do |edge|
       edge.get 'ProductCatalog'
       edge.post 'ProductCatalog' do |api|
+        api.has_param :commerce_merchant_settings, 'object'
         api.has_param :da_display_settings, 'object'
         api.has_param :destination_catalog_settings, 'hash'
         api.has_param :flight_catalog_settings, 'hash'
         api.has_param :name, 'string'
+        api.has_param :onsite_commerce_merchant, 'object'
         api.has_param :store_catalog_settings, 'hash'
         api.has_param :vertical, { enum: -> { ProductCatalog::VERTICAL }}
       end
@@ -532,6 +544,13 @@ module FacebookAds
       edge.get 'BusinessAssetSharingAgreement' do |api|
         api.has_param :initiator_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
+      end
+    end
+
+    has_edge :received_sharing_agreements do |edge|
+      edge.get 'BusinessAgreement' do |api|
+        api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
+        api.has_param :requesting_business_id, 'string'
       end
     end
 

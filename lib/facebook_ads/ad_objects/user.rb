@@ -422,14 +422,6 @@ module FacebookAds
       end
     end
 
-    has_edge :games_stats do |edge|
-      edge.post do |api|
-        api.has_param :inc, 'int'
-        api.has_param :set, 'int'
-        api.has_param :stat_name, 'string'
-      end
-    end
-
     has_edge :groups do |edge|
       edge.get 'Group' do |api|
         api.has_param :admin_only, 'bool'
@@ -602,10 +594,6 @@ module FacebookAds
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
       end
-    end
-
-    has_edge :request_history do |edge|
-      edge.get 'RequestHistory'
     end
 
     has_edge :rich_media_documents do |edge|

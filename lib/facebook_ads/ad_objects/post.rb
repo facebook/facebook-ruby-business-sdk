@@ -59,16 +59,20 @@ module FacebookAds
     field :comments_mirroring_domain, 'string'
     field :coordinates, 'object'
     field :created_time, 'datetime'
+    field :delivery_growth_optimizations, { list: 'string' }
     field :description, 'string'
+    field :entities, 'object'
     field :event, 'Event'
     field :expanded_height, 'int'
     field :expanded_width, 'int'
     field :feed_targeting, 'object'
+    field :formatting, 'string'
     field :from, 'object'
     field :full_picture, 'string'
     field :height, 'int'
     field :icon, 'string'
     field :id, 'string'
+    field :implicit_place, 'Place'
     field :instagram_eligibility, 'string'
     field :is_app_share, 'bool'
     field :is_eligible_for_promotion, 'bool'
@@ -80,6 +84,7 @@ module FacebookAds
     field :is_published, 'bool'
     field :is_spherical, 'bool'
     field :link, 'string'
+    field :live_video_eligibility, { list: 'string' }
     field :message, 'string'
     field :message_tags, { list: 'string' }
     field :multi_share_end_card, 'bool'
@@ -94,6 +99,7 @@ module FacebookAds
     field :promotable_id, 'string'
     field :promotion_status, 'string'
     field :properties, { list: 'string' }
+    field :publishing_stats, 'int'
     field :scheduled_publish_time, 'double'
     field :shares, 'object'
     field :source, 'string'
@@ -104,11 +110,13 @@ module FacebookAds
     field :target, 'Profile'
     field :targeting, 'object'
     field :timeline_visibility, 'string'
+    field :translations, 'hash'
     field :type, 'string'
     field :updated_time, 'datetime'
     field :via, 'object'
     field :video_buying_eligibility, { list: 'string' }
     field :width, 'int'
+    field :will_be_autocropped_when_deliver_to_instagram, 'bool'
 
     has_edge :attachments do |edge|
       edge.get
@@ -170,7 +178,7 @@ module FacebookAds
         api.has_param :audience_id, 'string'
         api.has_param :bid_amount, 'int'
         api.has_param :budget, 'int'
-        api.has_param :cta_type, { enum: %w{ADD_TO_CART APPLY_NOW BOOK_TRAVEL BUY BUY_NOW BUY_TICKETS CALL CALL_ME CONTACT CONTACT_US DONATE DONATE_NOW DOWNLOAD EVENT_RSVP FIND_A_GROUP FIND_YOUR_GROUPS FOLLOW_NEWS_STORYLINE FOLLOW_USER GET_DIRECTIONS GET_OFFER GET_OFFER_VIEW GET_QUOTE GET_SHOWTIMES INSTALL_APP INSTALL_MOBILE_APP LEARN_MORE LIKE_PAGE LISTEN_MUSIC LISTEN_NOW MESSAGE_PAGE MOBILE_DOWNLOAD MOMENTS NO_BUTTON OPEN_LINK ORDER_NOW PAY_TO_ACCESS PLAY_GAME PURCHASE_GIFT_CARDS RECORD_NOW REQUEST_TIME SAY_THANKS SEE_MORE SELL_NOW SHARE SHOP_NOW SIGN_UP SOTTO_SUBSCRIBE SUBSCRIBE UPDATE_APP USE_APP USE_MOBILE_APP VIDEO_ANNOTATION VISIT_PAGES_FEED WATCH_MORE WATCH_VIDEO WHATSAPP_MESSAGE WOODHENGE_SUPPORT }}
+        api.has_param :cta_type, { enum: %w{ADD_TO_CART APPLY_NOW BOOK_TRAVEL BUY BUY_NOW BUY_TICKETS CALL CALL_ME CONTACT CONTACT_US DONATE DONATE_NOW DOWNLOAD EVENT_RSVP FIND_A_GROUP FIND_YOUR_GROUPS FOLLOW_NEWS_STORYLINE FOLLOW_PAGE FOLLOW_USER GET_DIRECTIONS GET_OFFER GET_OFFER_VIEW GET_QUOTE GET_SHOWTIMES INSTALL_APP INSTALL_MOBILE_APP LEARN_MORE LIKE_PAGE LISTEN_MUSIC LISTEN_NOW MESSAGE_PAGE MOBILE_DOWNLOAD MOMENTS NO_BUTTON OPEN_LINK ORDER_NOW PAY_TO_ACCESS PLAY_GAME PURCHASE_GIFT_CARDS RECORD_NOW REQUEST_TIME SAY_THANKS SEE_MORE SELL_NOW SHARE SHOP_NOW SIGN_UP SOTTO_SUBSCRIBE SUBSCRIBE UPDATE_APP USE_APP USE_MOBILE_APP VIDEO_ANNOTATION VISIT_PAGES_FEED WATCH_MORE WATCH_VIDEO WHATSAPP_MESSAGE WOODHENGE_SUPPORT }}
         api.has_param :currency, 'string'
         api.has_param :flow_id, 'string'
         api.has_param :placement, 'string'

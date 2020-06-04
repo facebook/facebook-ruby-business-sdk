@@ -16,23 +16,20 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# FB:AUTOGEN
+require 'facebook_ads'
 
-module FacebookAds
-  # This class is auto-generated.
+access_token = '<ACCESS_TOKEN>'
+app_secret = '<APP_SECRET>'
+app_id = '<APP_ID>'
+id = '<AD_ACCOUNT_ID>'
 
-  # For any issues or feature requests related to this class, please let us know
-  # on github and we'll fix in our codegen framework. We'll not be able to accept
-  # pull request for this class.
-
-  class ProductFeedUploadDiagnostics < AdObject
-
-    field :last_modified_time, 'string'
-    field :report_url, 'string'
-    has_no_id
-    has_no_get
-    has_no_post
-    has_no_delete
-
-  end
+FacebookAds.configure do |config|
+  config.access_token = access_token
+  config.app_secret = app_secret
 end
+
+ad_account = FacebookAds::AdAccount.get(id)
+adcreatives = ad_account.adcreatives.create({
+    object_story_spec: {'page_id':'<pageID>','video_data':{'video_id':'<videoID>','image_url':'<imageURL>','title':'English Creative title','message':'English Creative message','call_to_action':{'type':'LEARN_MORE','value':{'link':'<canvasURI>'}},'retailer_item_ids':[0,0,0,0],'customization_rules_spec':[{'customization_spec':{'language':'en_XX'}},{'customization_spec':{'language':'fr_XX'},'video_id':'<videoIDFR>','picture':'<imageURLFR>','link':'<canvasURIFR>','name':'French Creative title','message':'French Creative message'}]}},
+    product_set_id: '<productSetID>',
+})

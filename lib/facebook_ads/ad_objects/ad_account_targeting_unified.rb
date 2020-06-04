@@ -134,6 +134,7 @@ module FacebookAds
       "industries",
       "instagram_hashtags",
       "instagram_positions",
+      "instream_video_skippable_excluded",
       "instream_video_sponsorship_placements",
       "interest_defaults_source",
       "interested_in",
@@ -204,6 +205,7 @@ module FacebookAds
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",
       "REACH",
+      "STORE_VISITS",
       "VIDEO_VIEWS",
     ]
 
