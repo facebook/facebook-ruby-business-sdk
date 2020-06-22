@@ -52,6 +52,17 @@ module FacebookAds
       # An Object that includes additional business data about the event.
       attr_accessor :custom_data
 
+      # Processing options you would like to enable for a specific event.
+      # For more details see https://developers.facebook.com/docs/marketing-apis/data-processing-options
+      attr_accessor :data_processing_options
+
+      # A country that you want to associate to this data processing option
+      # For more details see https://developers.facebook.com/docs/marketing-apis/data-processing-options
+      attr_accessor :data_processing_options_country
+
+      # A state that you want to associate with this data processing option.
+      # For more details see https://developers.facebook.com/docs/marketing-apis/data-processing-options
+      attr_accessor :data_processing_options_state
 
       # @param [String] event_name
       # @param [int] event_time
@@ -60,13 +71,19 @@ module FacebookAds
       # @param [String] event_id
       # @param [FacebookAds::ServerSide::UserData] user_data
       # @param [FacebookAds::ServerSide::CustomData] custom_data
+      # @param [Array<String>] data_processing_options
+      # @param [int] data_processing_options_country
+      # @param [int] data_processing_options_state
       def initialize(event_name: nil,
                      event_time: nil,
                      event_source_url: nil,
                      opt_out: nil,
                      event_id: nil,
                      user_data: nil,
-                     custom_data: nil)
+                     custom_data: nil,
+                     data_processing_options: nil,
+                     data_processing_options_country: nil,
+                     data_processing_options_state: nil)
 
         unless event_name.nil?
           self.event_name = event_name
@@ -88,6 +105,15 @@ module FacebookAds
         end
         unless custom_data.nil?
           self.custom_data = custom_data
+        end
+        unless data_processing_options.nil?
+          self.data_processing_options = data_processing_options
+        end
+        unless data_processing_options_country.nil?
+          self.data_processing_options_country = data_processing_options_country
+        end
+        unless data_processing_options_state.nil?
+          self.data_processing_options_state = data_processing_options_state
         end
       end
 
@@ -125,6 +151,18 @@ module FacebookAds
 
         if attributes.has_key?(:'custom_data')
           self.custom_data = attributes[:'custom_data']
+        end
+
+        if attributes.has_key?(:'data_processing_options')
+          self.custom_data = attributes[:'data_processing_options']
+        end
+
+        if attributes.has_key?(:'data_processing_options_country')
+          self.custom_data = attributes[:'data_processing_options_country']
+        end
+
+        if attributes.has_key?(:'data_processing_options_state')
+          self.custom_data = attributes[:'data_processing_options_state']
         end
       end
 
@@ -166,7 +204,10 @@ module FacebookAds
             opt_out == o.opt_out &&
             event_id == o.event_id &&
             user_data == o.user_data &&
-            custom_data == o.custom_data
+            custom_data == o.custom_data &&
+            data_processing_options == o.data_processing_options &&
+            data_processing_options_country == o.data_processing_options_country &&
+            data_processing_options_state == o.data_processing_options_state
       end
 
       # @see the `==` method
@@ -177,7 +218,7 @@ module FacebookAds
       # Calculates hash code according to all attributes.
       # @return [Fixnum] Hash code
       def hash
-        [event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data].hash
+        [event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, data_processing_options, data_processing_options_country, data_processing_options_state].hash
       end
 
       def to_s
@@ -202,6 +243,15 @@ module FacebookAds
         end
         unless custom_data.nil?
           hash['custom_data'] = custom_data.to_s
+        end
+        unless data_processing_options.nil?
+          hash['data_processing_options'] = data_processing_options.to_s
+        end
+        unless data_processing_options_country.nil?
+          hash['data_processing_options_country'] = data_processing_options_country.to_s
+        end
+        unless data_processing_options_state.nil?
+          hash['data_processing_options_state'] = data_processing_options_state.to_s
         end
         hash.to_s
       end
@@ -230,6 +280,15 @@ module FacebookAds
         end
         unless custom_data.nil?
           hash['custom_data'] = custom_data.normalize
+        end
+        unless data_processing_options.nil?
+          hash['data_processing_options'] = data_processing_options
+        end
+        unless data_processing_options_country.nil?
+          hash['data_processing_options_country'] = data_processing_options_country
+        end
+        unless data_processing_options_state.nil?
+          hash['data_processing_options_state'] = data_processing_options_state
         end
         hash
       end
