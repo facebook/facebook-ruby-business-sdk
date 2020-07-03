@@ -38,7 +38,9 @@ event = FacebookAds::ServerSide::Event.new(
     event_name: 'Purchase',
     event_time: Time.now.to_i,
     user_data: user_data,
-    custom_data: custom_data)
+    custom_data: custom_data,
+    data_processing_options: []
+  )
 
 
 request = FacebookAds::ServerSide::EventRequest.new(
