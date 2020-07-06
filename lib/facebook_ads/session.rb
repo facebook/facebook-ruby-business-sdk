@@ -68,6 +68,8 @@ module FacebookAds
 
         faraday.response :logger, Utils.logger, bodies: FacebookAds.config.log_api_bodies
         faraday.adapter  Faraday.default_adapter
+        faraday.options[:open_timeout] = 300
+        faraday.options[:timeout] = 300
       end
     end
 
