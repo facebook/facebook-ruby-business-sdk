@@ -26,6 +26,8 @@ module FacebookAds
   class Session
     attr_accessor :access_token, :app_secret, :api_version, :server_host
 
+    TIMEOUT_IN_SECONDS = 300
+
     def initialize(access_token: nil,
                    app_secret:   nil,
                    server_host:  FacebookAds.config.server_host,
@@ -68,8 +70,8 @@ module FacebookAds
 
         faraday.response :logger, Utils.logger, bodies: FacebookAds.config.log_api_bodies
         faraday.adapter  Faraday.default_adapter
-        faraday.options[:open_timeout] = 300
-        faraday.options[:timeout] = 300
+        faraday.options[:open_timeout] = TIMEOUT_IN_SECONDS
+        faraday.options[:timeout] = TIMEOUT_IN_SECONDS
       end
     end
 
