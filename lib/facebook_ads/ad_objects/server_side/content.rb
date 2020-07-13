@@ -101,14 +101,13 @@ module FacebookAds
 
       # Checks equality by comparing each attribute.
       def ==(o)
-        return true if self.equal?(o)
-        self.class == o.class &&
+        return self.class == o.class &&
             product_id == o.product_id &&
             quantity == o.quantity &&
-            item_price == o.item_price
-            title == o.title
-            description == o.description
-            brand == o.brand
+            item_price == o.item_price &&
+            title == o.title &&
+            description == o.description &&
+            brand == o.brand &&
             category == o.category
       end
 
