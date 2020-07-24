@@ -69,7 +69,11 @@ module FacebookAds
       # Use only with Search events. A search query made by a user.
       # Example: 'lettuce'.
       attr_accessor :search_string
-      
+
+      # The item number.
+      # Example: 'item1234'.
+      attr_accessor :item_number
+
       # Custom Properties bag for storing other custom fields
       attr_accessor :custom_properties
 
@@ -86,6 +90,7 @@ module FacebookAds
       # @param [Integer] num_items
       # @param [String] status
       # @param [String] search_string
+      # @param [String] item_number
       # @param [String] custom_properties
       def initialize(value: nil,
                      currency: nil,
@@ -99,6 +104,7 @@ module FacebookAds
                      num_items: nil,
                      status: nil,
                      search_string: nil,
+                     item_number: nil,
                      custom_properties: {})
 
         unless value.nil?
@@ -136,6 +142,9 @@ module FacebookAds
         end
         unless search_string.nil?
           self.search_string = search_string
+        end
+        unless item_number.nil?
+          self.item_number = item_number
         end
         unless custom_properties.nil?
           self.custom_properties = custom_properties
@@ -203,6 +212,10 @@ module FacebookAds
           self.search_string = attributes[:'search_string']
         end
 
+        if attributes.has_key?(:'item_number')
+          self.item_number = attributes[:'item_number']
+        end
+
         if attributes.has_key?(:'custom_properties')
           self.custom_properties = attributes[:'custom_properties']
         end
@@ -224,6 +237,7 @@ module FacebookAds
             num_items == o.num_items &&
             status == o.status &&
             search_string == o.search_string &&
+            item_number == o.item_number &&
             custom_properties == o.custom_properties
       end
 
@@ -248,6 +262,7 @@ module FacebookAds
             num_items,
             status,
             search_string,
+            item_number,
             custom_properties
         ].hash
       end
@@ -294,17 +309,17 @@ module FacebookAds
         end
         unless custom_properties.nil?
           hash['custom_properties'] = custom_properties
-        end        
+        end
         hash.to_s
       end
 
       # Add other custom fields to custom properties.
       def add_custom_property(key, value)
-        custom_properties[key] = value;        
+        custom_properties[key] = value;
       end
 
       # Normalize input fields to server request format.
-      def normalize        
+      def normalize
         hash = {}
         unless value.nil?
           hash['value'] = value
@@ -339,6 +354,9 @@ module FacebookAds
         unless search_string.nil?
           hash['search_string'] = search_string
         end
+        unless item_number.nil?
+          hash['item_number'] = item_number
+        end
 
         unless contents.nil?
           content_array = []
@@ -348,7 +366,7 @@ module FacebookAds
           hash['contents'] = content_array
         end
 
-        hash.merge!(custom_properties) unless custom_properties.nil?        
+        hash.merge!(custom_properties) unless custom_properties.nil?
         hash
       end
     end
