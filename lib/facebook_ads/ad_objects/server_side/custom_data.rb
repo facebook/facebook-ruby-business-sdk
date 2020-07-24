@@ -310,7 +310,7 @@ module FacebookAds
           hash['value'] = value
         end
         unless currency.nil?
-          hash['currency'] = FacebookAds::ServerSide::normalize(currency, 'currency')
+          hash['currency'] = FacebookAds::ServerSide::Util.normalize(currency, 'currency')
         end
         unless content_name.nil?
           hash['content_name'] = content_name

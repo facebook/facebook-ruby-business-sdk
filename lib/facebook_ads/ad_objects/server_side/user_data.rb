@@ -16,8 +16,6 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require_relative 'util'
-
 module FacebookAds
   module ServerSide
 
@@ -348,34 +346,34 @@ module FacebookAds
       def normalize
         hash = {}
         unless email.nil?
-          hash['em'] = FacebookAds::ServerSide::normalize(email, 'em')
+          hash['em'] = FacebookAds::ServerSide::Util.normalize(email, 'em')
         end
         unless phone.nil?
-          hash['ph'] = FacebookAds::ServerSide::normalize(phone, 'ph')
+          hash['ph'] = FacebookAds::ServerSide::Util.normalize(phone, 'ph')
         end
         unless gender.nil?
-          hash['ge'] = FacebookAds::ServerSide::normalize(gender, 'ge')
+          hash['ge'] = FacebookAds::ServerSide::Util.normalize(gender, 'ge')
         end
         unless date_of_birth.nil?
-          hash['db'] = FacebookAds::ServerSide::normalize(date_of_birth, 'db')
+          hash['db'] = FacebookAds::ServerSide::Util.normalize(date_of_birth, 'db')
         end
         unless last_name.nil?
-          hash['ln'] = FacebookAds::ServerSide::normalize(last_name, 'ln')
+          hash['ln'] = FacebookAds::ServerSide::Util.normalize(last_name, 'ln')
         end
         unless first_name.nil?
-          hash['fn'] = FacebookAds::ServerSide::normalize(first_name, 'fn')
+          hash['fn'] = FacebookAds::ServerSide::Util.normalize(first_name, 'fn')
         end
         unless city.nil?
-          hash['ct'] = FacebookAds::ServerSide::normalize(city, 'ct')
+          hash['ct'] = FacebookAds::ServerSide::Util.normalize(city, 'ct')
         end
         unless country_code.nil?
-          hash['country'] = FacebookAds::ServerSide::normalize(country_code, 'country')
+          hash['country'] = FacebookAds::ServerSide::Util.normalize(country_code, 'country')
         end
         unless state.nil?
-          hash['st'] = FacebookAds::ServerSide::normalize(state, 'st')
+          hash['st'] = FacebookAds::ServerSide::Util.normalize(state, 'st')
         end
         unless zip_code.nil?
-          hash['zp'] = FacebookAds::ServerSide::normalize(zip_code, 'zp')
+          hash['zp'] = FacebookAds::ServerSide::Util.normalize(zip_code, 'zp')
         end
         unless external_id.nil?
           hash['external_id'] = external_id
