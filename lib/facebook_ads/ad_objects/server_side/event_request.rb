@@ -39,11 +39,28 @@ module FacebookAds
       # Platform from which the event is sent e.g. wordpress
       attr_accessor :partner_agent
 
+      # Scope used to resolve extern_id or Third-party ID. Can be another data set or data partner ID.
+      attr_accessor :namespace_id
+
+      # Unique id used to denote the current set being uploaded.
+      attr_accessor :upload_id
+
+      # Tag string added to track your Offline event uploads.
+      attr_accessor :upload_tag
+
+      # The origin/source of data for the dataset to be uploaded.
+      attr_accessor :upload_source
+
       # @param [String] pixel_id
       # @param [Array(FacebookAds::ServerSide::Event)] events
       # @param [String] test_event_code
       # @param [String] partner_agent
-      def initialize(pixel_id: nil, events: nil, test_event_code: nil, partner_agent: nil)
+      # @param [String] namespace_id
+      # @param [String] upload_id
+      # @param [String] upload_tag
+      # @param [String] upload_source
+      def initialize(pixel_id: nil, events: nil, test_event_code: nil, partner_agent: nil,
+          namespace_id: nil, upload_id: nil, upload_tag: nil, upload_source: nil)
         unless pixel_id.nil?
           self.pixel_id = pixel_id
         end
@@ -55,6 +72,18 @@ module FacebookAds
         end
         unless partner_agent.nil?
           self.partner_agent = partner_agent
+        end
+        unless namespace_id.nil?
+          self.namespace_id = namespace_id
+        end
+        unless upload_id.nil?
+          self.upload_id = upload_id
+        end
+        unless upload_tag.nil?
+          self.upload_tag = upload_tag
+        end
+        unless upload_source.nil?
+          self.upload_source = upload_source
         end
       end
 
@@ -83,6 +112,22 @@ module FacebookAds
         if attributes.has_key?(:'partner_agent')
           self.partner_agent = attributes[:'partner_agent']
         end
+
+        if attributes.has_key?(:'namespace_id')
+          self.namespace_id = attributes[:'namespace_id']
+        end
+
+        if attributes.has_key?(:'upload_id')
+          self.upload_id = attributes[:'upload_id']
+        end
+
+        if attributes.has_key?(:'upload_tag')
+          self.upload_tag = attributes[:'upload_tag']
+        end
+
+        if attributes.has_key?(:'upload_source')
+          self.upload_source = attributes[:'upload_source']
+        end
       end
 
       # Execute request
@@ -96,7 +141,11 @@ module FacebookAds
             {
                 data: normalized_events,
                 test_event_code: test_event_code,
-                partner_agent: partner_agent
+                partner_agent: partner_agent,
+                namespace_id: namespace_id,
+                upload_id: upload_id,
+                upload_tag: upload_tag,
+                upload_source: upload_source,
             }
         )
         json_response_object = JSON.parse(JSON.generate(response), object_class: OpenStruct)
@@ -137,9 +186,14 @@ module FacebookAds
       def ==(o)
         return true if self.equal?(o)
         self.class == o.class &&
+            pixel_id == o.pixel_id &&
             events == o.events &&
-            test_event_code == o.test_event_code
-            partner_agent == o.partner_agent
+            test_event_code == o.test_event_code &&
+            partner_agent == o.partner_agent &&
+            namespace_id == o.namespace_id &&
+            upload_id == o.upload_id &&
+            upload_tag == o.upload_tag &&
+            upload_source == o.upload_source
       end
 
       # @see the `==` method
@@ -150,7 +204,16 @@ module FacebookAds
       # Calculates hash code according to all attributes.
       # @return [Fixnum] Hash code
       def hash
-        [events, test_event_code, partner_agent].hash
+        [
+          pixel_id,
+          events,
+          test_event_code,
+          partner_agent,
+          namespace_id,
+          upload_id,
+          upload_tag,
+          upload_source,
+        ].hash
       end
 
       def to_s
@@ -167,9 +230,20 @@ module FacebookAds
         unless partner_agent.nil?
           hash['partner_agent'] = partner_agent
         end
+        unless namespace_id.nil?
+          hash['namespace_id'] = namespace_id
+        end
+        unless upload_id.nil?
+          hash['upload_id'] = upload_id
+        end
+        unless upload_tag.nil?
+          hash['upload_tag'] = upload_tag
+        end
+        unless upload_source.nil?
+          hash['upload_source'] = upload_source
+        end
         hash.to_s
       end
     end
   end
 end
-
