@@ -91,6 +91,24 @@ module FacebookAds
       # The subscription ID for the user in this transaction. This is similar to the order ID for an individual product.
       attr_accessor :subscription_id
 
+      # The first 5 letters of the first name.
+      attr_accessor :f5first
+
+      # The first 5 letters of the last name.
+      attr_accessor :f5last
+
+      # The first initial.
+      attr_accessor :fi
+
+      # The date of birth day.
+      attr_accessor :dobd
+
+      # The date of birth month.
+      attr_accessor :dobm
+
+      # THe date of birth year.
+      attr_accessor :doby
+
       #UserData is a set of identifiers Facebook can use for targeted attribution
       # @param [String] email
       # @param [String] phone
@@ -108,10 +126,17 @@ module FacebookAds
       # @param [String] fbc
       # @param [String] fbp
       # @param [String] subscription_id
+      # @param [String] f5first
+      # @param [String] f5last
+      # @param [String] fi
+      # @param [String] dobd
+      # @param [String] dobm
+      # @param [String] doby
       def initialize(email: nil, phone: nil, gender: nil, date_of_birth: nil,
                      last_name: nil, first_name: nil, city: nil, state: nil,
                      country_code: nil, zip_code: nil, external_id: nil, client_ip_address: nil,
-                     client_user_agent: nil, fbc: nil, fbp: nil, subscription_id: nil)
+                     client_user_agent: nil, fbc: nil, fbp: nil, subscription_id: nil,
+                     f5first: nil, f5last: nil, fi: nil, dobd: nil, dobm: nil, doby: nil)
         unless email.nil?
           self.email = email
         end
@@ -159,6 +184,24 @@ module FacebookAds
         end
         unless subscription_id.nil?
           self.subscription_id = subscription_id
+        end
+        unless f5first.nil?
+          self.f5first = f5first
+        end
+        unless f5last.nil?
+          self.f5last = f5last
+        end
+        unless fi.nil?
+          self.fi = fi
+        end
+        unless dobd.nil?
+          self.dobd = dobd
+        end
+        unless dobm.nil?
+          self.dobm = dobm
+        end
+        unless doby.nil?
+          self.doby = doby
         end
       end
 
@@ -230,8 +273,28 @@ module FacebookAds
           self.fbp = attributes[:'fbp']
         end
 
-        if attributes.has_key?(:'subscription_id')
-          self.subscription_id = attributes[:'subscription_id']
+        if attributes.has_key?(:'f5first')
+          self.f5first = attributes[:'f5first']
+        end
+
+        if attributes.has_key?(:'f5last')
+          self.f5last = attributes[:'f5last']
+        end
+
+        if attributes.has_key?(:'fi')
+          self.fi = attributes[:'fi']
+        end
+
+        if attributes.has_key?(:'dobd')
+          self.dobd = attributes[:'dobd']
+        end
+
+        if attributes.has_key?(:'dobm')
+          self.dobm = attributes[:'dobm']
+        end
+
+        if attributes.has_key?(:'doby')
+          self.doby = attributes[:'doby']
         end
       end
 
@@ -254,7 +317,13 @@ module FacebookAds
             client_user_agent == o.client_user_agent &&
             fbc == o.fbc &&
             fbp == o.fbp &&
-            subscription_id == o.subscription_id
+            subscription_id == o.subscription_id &&
+            f5first == o.f5first &&
+            f5last == o.f5last &&
+            fi == o.fi &&
+            dobd == o.dobd &&
+            dobm == o.dobm &&
+            doby == o.doby
       end
 
       # @see the `==` method
@@ -281,7 +350,13 @@ module FacebookAds
             client_user_agent,
             fbc,
             fbp,
-            subscription_id
+            subscription_id,
+            f5first,
+            f5last,
+            fi,
+            dobd,
+            dobm,
+            doby,
         ].hash
 
       end
@@ -338,6 +413,24 @@ module FacebookAds
         unless subscription_id.nil?
           hash['subscription_id'] = subscription_id
         end
+        unless f5first.nil?
+          hash['f5first'] = f5first
+        end
+        unless f5last.nil?
+          hash['f5last'] = f5last
+        end
+        unless fi.nil?
+          hash['fi'] = fi
+        end
+        unless dobd.nil?
+          hash['dobd'] = dobd
+        end
+        unless dobm.nil?
+          hash['dobm'] = dobm
+        end
+        unless doby.nil?
+          hash['doby'] = doby
+        end
         hash.to_s
       end
 
@@ -392,6 +485,24 @@ module FacebookAds
         end
         unless subscription_id.nil?
           hash['subscription_id'] = subscription_id
+        end
+        unless f5first.nil?
+          hash['f5first'] = FacebookAds::ServerSide::Util.normalize(f5first, 'f5first')
+        end
+        unless f5last.nil?
+          hash['f5last'] = FacebookAds::ServerSide::Util.normalize(f5last, 'f5last')
+        end
+        unless fi.nil?
+          hash['fi'] = FacebookAds::ServerSide::Util.normalize(fi, 'fi')
+        end
+        unless dobd.nil?
+          hash['dobd'] = FacebookAds::ServerSide::Util.normalize(dobd, 'dobd')
+        end
+        unless dobm.nil?
+          hash['dobm'] = FacebookAds::ServerSide::Util.normalize(dobm, 'dobm')
+        end
+        unless doby.nil?
+          hash['doby'] = FacebookAds::ServerSide::Util.normalize(doby, 'doby')
         end
         hash
       end

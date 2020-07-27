@@ -19,6 +19,7 @@
 require 'digest'
 require 'countries'
 require 'money'
+require 'time'
 
 module FacebookAds
 	module ServerSide
@@ -67,6 +68,18 @@ module FacebookAds
 					normalized_input = normalize_state input
 				when 'zp'
 					normalized_input = normalize_zip input
+				when 'f5first'
+					normalized_input = normalize_f5 input
+				when 'f5last'
+					normalized_input = normalize_f5 input
+				when 'fi'
+					normalized_input = normalize_fi input
+				when 'dobd'
+					normalized_input = normalize_dobd input
+				when 'dobm'
+					normalized_input = normalize_dobm input
+				when 'doby'
+					normalized_input = normalize_doby input
 				end
 
 				normalized_input = sha256Hash normalized_input
@@ -222,6 +235,37 @@ module FacebookAds
 				end
 
 				return false;
+			end
+
+			def self.normalize_f5(input)
+				input[0, 5]
+			end
+
+			def self.normalize_fi(input)
+				input[0, 1]
+			end
+
+			def self.normalize_dobd(input)
+				begin
+					return Time.strptime(input, '%d').strftime('%d')
+				rescue ArgumentError
+					raise ArgumentError.new("Invalid dobd format: '#{input}'. Please pass in a valid date of birth day in 'DD' format.")
+				end
+			end
+
+			def self.normalize_dobm(input)
+				begin
+					return Time.strptime(input, '%m').strftime('%m')
+				rescue ArgumentError
+					raise ArgumentError.new("Invalid dobm format: '#{input}'. Please pass in a valid date of birth month in 'MM' format.")
+				end
+			end
+
+			def self.normalize_doby(input)
+				unless input.match("^[0-9]{4}$")
+					raise ArgumentError.new("Invalid doby format: '#{input}'. Please pass in a valid birth year in 'YYYY' format.")
+				end
+				input
 			end
 		end
 	end

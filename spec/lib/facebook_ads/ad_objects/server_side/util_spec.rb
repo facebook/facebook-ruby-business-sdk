@@ -49,6 +49,66 @@ RSpec.describe 'FacebookAds::ServerSide::Util' do
         it 'normalizes zip' do
             expect(FacebookAds::ServerSide::Util.normalize('12345-67890', 'zp')).to eq(FacebookAds::ServerSide::Util.sha256Hash('12345'))
         end
+
+        it 'normalizes f5first' do
+            expect(FacebookAds::ServerSide::Util.normalize('George', 'f5first')).to eq(FacebookAds::ServerSide::Util.sha256Hash('georg'))
+            expect(FacebookAds::ServerSide::Util.normalize('John', 'f5first')).to eq(FacebookAds::ServerSide::Util.sha256Hash('john'))
+            expect(FacebookAds::ServerSide::Util.normalize('', 'f5first')).to eq(FacebookAds::ServerSide::Util.sha256Hash(''))
+            expect(FacebookAds::ServerSide::Util.normalize(nil, 'f5first')).to eq(nil)
+        end
+
+        it 'normalizes f5last' do
+            expect(FacebookAds::ServerSide::Util.normalize('Washington', 'f5last')).to eq(FacebookAds::ServerSide::Util.sha256Hash('washi'))
+            expect(FacebookAds::ServerSide::Util.normalize('Adams', 'f5last')).to eq(FacebookAds::ServerSide::Util.sha256Hash('adams'))
+            expect(FacebookAds::ServerSide::Util.normalize('', 'f5last')).to eq(FacebookAds::ServerSide::Util.sha256Hash(''))
+            expect(FacebookAds::ServerSide::Util.normalize(nil, 'f5last')).to eq(nil)
+        end
+
+        it 'normalizes fi' do
+            expect(FacebookAds::ServerSide::Util.normalize('GW', 'fi')).to eq(FacebookAds::ServerSide::Util.sha256Hash('g'))
+            expect(FacebookAds::ServerSide::Util.normalize('a', 'fi')).to eq(FacebookAds::ServerSide::Util.sha256Hash('a'))
+            expect(FacebookAds::ServerSide::Util.normalize('', 'fi')).to eq(FacebookAds::ServerSide::Util.sha256Hash(''))
+            expect(FacebookAds::ServerSide::Util.normalize(nil, 'fi')).to eq(nil)
+        end
+
+        it 'normalizes dobd' do
+            expect(FacebookAds::ServerSide::Util.normalize('1', 'dobd')).to eq(FacebookAds::ServerSide::Util.sha256Hash('01'))
+            expect(FacebookAds::ServerSide::Util.normalize('05', 'dobd')).to eq(FacebookAds::ServerSide::Util.sha256Hash('05'))
+            expect(FacebookAds::ServerSide::Util.normalize('9', 'dobd')).to eq(FacebookAds::ServerSide::Util.sha256Hash('09'))
+            expect(FacebookAds::ServerSide::Util.normalize('31', 'dobd')).to eq(FacebookAds::ServerSide::Util.sha256Hash('31'))
+            expect(FacebookAds::ServerSide::Util.normalize(nil, 'dobd')).to eq(nil)
+
+            expect{FacebookAds::ServerSide::Util.normalize('-1', 'dobd')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('0', 'dobd')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('32', 'dobd')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('tenth', 'dobd')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('', 'dobd')}.to raise_error(ArgumentError)
+        end
+
+        it 'normalizes dobm' do
+            expect(FacebookAds::ServerSide::Util.normalize('1', 'dobm')).to eq(FacebookAds::ServerSide::Util.sha256Hash('01'))
+            expect(FacebookAds::ServerSide::Util.normalize('05', 'dobm')).to eq(FacebookAds::ServerSide::Util.sha256Hash('05'))
+            expect(FacebookAds::ServerSide::Util.normalize('9', 'dobm')).to eq(FacebookAds::ServerSide::Util.sha256Hash('09'))
+            expect(FacebookAds::ServerSide::Util.normalize('12', 'dobm')).to eq(FacebookAds::ServerSide::Util.sha256Hash('12'))
+            expect(FacebookAds::ServerSide::Util.normalize(nil, 'dobm')).to eq(nil)
+
+            expect{FacebookAds::ServerSide::Util.normalize('-1', 'dobm')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('0', 'dobm')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('13', 'dobm')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('De', 'dobm')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('', 'dobm')}.to raise_error(ArgumentError)
+        end
+
+        it 'normalizes doby' do
+            expect(FacebookAds::ServerSide::Util.normalize('2000', 'doby')).to eq(FacebookAds::ServerSide::Util.sha256Hash('2000'))
+            expect(FacebookAds::ServerSide::Util.normalize('9999', 'doby')).to eq(FacebookAds::ServerSide::Util.sha256Hash('9999'))
+            expect(FacebookAds::ServerSide::Util.normalize(nil, 'doby')).to eq(nil)
+
+            expect{FacebookAds::ServerSide::Util.normalize('-1', 'doby')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('10', 'doby')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('12345', 'doby')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('', 'doby')}.to raise_error(ArgumentError)
+        end
     end
 
     context 'sha256Hash' do

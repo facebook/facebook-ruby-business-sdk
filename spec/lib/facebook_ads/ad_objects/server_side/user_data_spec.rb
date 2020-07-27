@@ -28,6 +28,12 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
         country_code = 'country-code-8'
         state = 'state-9'
         zip_code = 'zip-code-10'
+        f5first = 'f5first-11'
+        f5last = 'f5last-12'
+        fi = 'fi-13'
+        dobd = 'dobd-14'
+        dobm = 'dobm-15'
+        doby = 'doby-16'
         allow(FacebookAds::ServerSide::Util).to receive(:normalize) do |input, field_type|
             "#{field_type}_#{input}-normalized"
         end
@@ -42,6 +48,12 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             country_code: country_code,
             state: state,
             zip_code: zip_code,
+            f5first: f5first,
+            f5last: f5last,
+            fi: fi,
+            dobd: dobd,
+            dobm: dobm,
+            doby: doby,
         )
         normalized = user_data.normalize
 
@@ -56,6 +68,104 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             'country' => "country_#{country_code}-normalized",
             'st' => "st_#{state}-normalized",
             'zp' => "zp_#{zip_code}-normalized",
+            'f5first' => "f5first_#{f5first}-normalized",
+            'f5last' => "f5last_#{f5last}-normalized",
+            'fi' => "fi_#{fi}-normalized",
+            'dobd' => "dobd_#{dobd}-normalized",
+            'dobm' => "dobm_#{dobm}-normalized",
+            'doby' => "doby_#{doby}-normalized",
         )
+    end
+
+    it 'equals works' do
+        user_data1 = FacebookAds::ServerSide::UserData.new()
+        user_data2 = FacebookAds::ServerSide::UserData.new()
+        expect(user_data1).to eq(user_data2)
+        expect(user_data1.hash).to eq(user_data2.hash)
+
+        user_data1 = FacebookAds::ServerSide::UserData.new(
+            email: 'email-1',
+            phone: 'phone-2',
+            gender: 'gender-3',
+            date_of_birth: 'dob-4',
+            last_name: 'first-name-5',
+            first_name: 'last-name-6',
+            city: 'city-7',
+            country_code: 'country-code-8',
+            state: 'state-9',
+            zip_code: 'zip-code-10',
+            f5first: 'f5first-11',
+            f5last: 'f5last-12',
+            fi: 'fi-13',
+            dobd: 'dobd-14',
+            dobm: 'dobm-15',
+            doby: 'doby-16',
+        )
+        user_data2 = FacebookAds::ServerSide::UserData.new(
+            email: 'email-1',
+            phone: 'phone-2',
+            gender: 'gender-3',
+            date_of_birth: 'dob-4',
+            last_name: 'first-name-5',
+            first_name: 'last-name-6',
+            city: 'city-7',
+            country_code: 'country-code-8',
+            state: 'state-9',
+            zip_code: 'zip-code-10',
+            f5first: 'f5first-11',
+            f5last: 'f5last-12',
+            fi: 'fi-13',
+            dobd: 'dobd-14',
+            dobm: 'dobm-15',
+            doby: 'doby-16',
+        )
+        expect(user_data1).to eq(user_data2)
+        expect(user_data1.hash).to eq(user_data2.hash)
+    end
+
+    it 'not equals works' do
+        user_data1 = FacebookAds::ServerSide::UserData.new(email: 'test@email.com')
+        user_data2 = FacebookAds::ServerSide::UserData.new()
+        expect(user_data1).to_not eq(user_data2)
+        expect(user_data1.hash).to_not eq(user_data2.hash)
+
+        user_data1 = FacebookAds::ServerSide::UserData.new(
+            email: 'email-1',
+            phone: 'phone-2',
+            gender: 'gender-3',
+            date_of_birth: 'dob-4',
+            last_name: 'first-name-5',
+            first_name: 'last-name-6',
+            city: 'city-7',
+            country_code: 'country-code-8',
+            state: 'state-9',
+            zip_code: 'zip-code-10',
+            f5first: 'f5first-11',
+            f5last: 'f5last-12',
+            fi: 'fi-13',
+            dobd: 'dobd-14',
+            dobm: 'dobm-15',
+            doby: 'doby-16',
+        )
+        user_data2 = FacebookAds::ServerSide::UserData.new(
+            email: 'email-1',
+            phone: 'phone-2',
+            gender: 'gender-3',
+            date_of_birth: 'dob-4',
+            last_name: 'first-name-5',
+            first_name: 'last-name-6',
+            city: 'city-7',
+            country_code: 'country-code-8',
+            state: 'state-9',
+            zip_code: 'zip-code-10',
+            f5first: 'f5first-11',
+            f5last: 'f5last-12',
+            fi: 'fi-13',
+            dobd: 'dobd-14',
+            # no dobm
+            doby: 'doby-16',
+        )
+        expect(user_data1).to_not eq(user_data2)
+        expect(user_data1.hash).to_not eq(user_data2.hash)
     end
 end
