@@ -80,6 +80,7 @@ RSpec.describe 'FacebookAds::ServerSide::Util' do
 
             expect{FacebookAds::ServerSide::Util.normalize('-1', 'dobd')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('0', 'dobd')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('0a', 'dobd')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('32', 'dobd')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('tenth', 'dobd')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('', 'dobd')}.to raise_error(ArgumentError)
@@ -94,6 +95,7 @@ RSpec.describe 'FacebookAds::ServerSide::Util' do
 
             expect{FacebookAds::ServerSide::Util.normalize('-1', 'dobm')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('0', 'dobm')}.to raise_error(ArgumentError)
+            expect{FacebookAds::ServerSide::Util.normalize('0a', 'dobm')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('13', 'dobm')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('De', 'dobm')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('', 'dobm')}.to raise_error(ArgumentError)

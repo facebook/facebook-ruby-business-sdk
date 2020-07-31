@@ -241,31 +241,41 @@ module FacebookAds
 				input[0, 5]
 			end
 
-			def self.normalize_fi(input)
-				input[0, 1]
+			def self.normalize_fi(fi)
+				fi[0, 1]
 			end
 
-			def self.normalize_dobd(input)
-				begin
-					return Time.strptime(input, '%d').strftime('%d')
-				rescue ArgumentError
-					raise ArgumentError.new("Invalid dobd format: '#{input}'. Please pass in a valid date of birth day in 'DD' format.")
+			def self.normalize_dobd(dobd)
+				if dobd.length == 1
+					dobd = '0' + dobd
 				end
+
+				dobd_int = dobd.to_i
+				if dobd.length > 2 or dobd_int < 1 or dobd_int > 31
+					raise ArgumentError.new("Invalid dobd format: '#{dobd}'. Please pass in a valid date of birth day in 'DD' format.")
+				end
+
+				return dobd
 			end
 
-			def self.normalize_dobm(input)
-				begin
-					return Time.strptime(input, '%m').strftime('%m')
-				rescue ArgumentError
-					raise ArgumentError.new("Invalid dobm format: '#{input}'. Please pass in a valid date of birth month in 'MM' format.")
+			def self.normalize_dobm(dobm)
+				if dobm.length == 1
+					dobm = '0' + dobm
 				end
+
+				dobm_int = dobm.to_i
+				if dobm.length > 2 or dobm_int < 1 or dobm_int > 12
+					raise ArgumentError.new("Invalid dobm format: '#{dobm}'. Please pass in a valid date of birth month in 'MM' format.")
+				end
+
+				return dobm
 			end
 
-			def self.normalize_doby(input)
-				unless input.match("^[0-9]{4}$")
-					raise ArgumentError.new("Invalid doby format: '#{input}'. Please pass in a valid birth year in 'YYYY' format.")
+			def self.normalize_doby(doby)
+				unless doby.match("^[0-9]{4}$")
+					raise ArgumentError.new("Invalid doby format: '#{doby}'. Please pass in a valid birth year in 'YYYY' format.")
 				end
-				input
+				doby
 			end
 		end
 	end
