@@ -25,23 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class StreamingReaction < AdObject
-    REACTION_TYPE = [
-      "ANGRY",
-      "CARE",
-      "HAHA",
-      "LIKE",
-      "LOVE",
-      "NONE",
-      "PRIDE",
-      "SAD",
-      "THANKFUL",
-      "WOW",
-    ]
+  class ProductSetMetadata < AdObject
 
-
-    field :count, 'int'
-    field :reaction_type, { enum: -> { REACTION_TYPE }}
+    field :cover_image_url, 'string'
+    field :description, 'string'
+    field :integrity_review_status, 'string'
     has_no_id
     has_no_get
     has_no_post

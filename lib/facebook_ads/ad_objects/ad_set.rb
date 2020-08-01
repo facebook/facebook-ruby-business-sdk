@@ -81,6 +81,7 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_LEAD",
       "REACH",
       "REPLIES",
       "SOCIAL_IMPRESSIONS",
@@ -163,6 +164,7 @@ module FacebookAds
       "CREDIT",
       "EMPLOYMENT",
       "HOUSING",
+      "ISSUES_ELECTIONS_POLITICS",
       "NONE",
     ]
 

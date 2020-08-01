@@ -25,13 +25,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class MessengerPlatformReferral < AdObject
+  class WorkMeetingLink < AdObject
 
-    field :ad_id, 'string'
     field :id, 'string'
-    field :ref, 'string'
-    field :source, 'string'
-    field :type, 'string'
+    field :owner, 'User'
     has_no_post
     has_no_delete
 

@@ -257,7 +257,6 @@ module FacebookAds
       "branded_camera",
       "category",
       "checkins",
-      "commerce_order",
       "company_overview",
       "conversations",
       "culinary_team",
@@ -293,6 +292,7 @@ module FacebookAds
       "messaging_checkout_updates",
       "messaging_direct_sends",
       "messaging_fblogin_account_linking",
+      "messaging_feedback",
       "messaging_game_plays",
       "messaging_handovers",
       "messaging_optins",
@@ -1051,6 +1051,7 @@ module FacebookAds
 
     has_edge :nlp_configs do |edge|
       edge.post 'Page' do |api|
+        api.has_param :api_version, 'object'
         api.has_param :custom_token, 'string'
         api.has_param :model, { enum: -> { Page::MODEL }}
         api.has_param :n_best, 'int'
@@ -1123,7 +1124,6 @@ module FacebookAds
         api.has_param :initial_view_heading_override_degrees, 'int'
         api.has_param :initial_view_pitch_override_degrees, 'int'
         api.has_param :initial_view_vertical_fov_override_degrees, 'int'
-        api.has_param :instagram_product_tags, { list: 'hash' }
         api.has_param :ios_bundle_id, 'string'
         api.has_param :is_explicit_location, 'bool'
         api.has_param :is_explicit_place, 'bool'
@@ -1167,6 +1167,7 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
+        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
@@ -1399,6 +1400,7 @@ module FacebookAds
         api.has_param :container_type, { enum: -> { AdVideo::CONTAINER_TYPE }}
         api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
         api.has_param :content_tags, { list: 'string' }
+        api.has_param :creative_tools, 'string'
         api.has_param :crossposted_video_id, 'string'
         api.has_param :custom_labels, { list: 'string' }
         api.has_param :description, 'string'
@@ -1471,6 +1473,7 @@ module FacebookAds
         api.has_param :upload_setting_properties, 'string'
         api.has_param :video_asset_id, 'string'
         api.has_param :video_file_chunk, 'string'
+        api.has_param :video_id_original, 'string'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'
       end

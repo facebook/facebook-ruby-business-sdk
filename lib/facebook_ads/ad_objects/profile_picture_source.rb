@@ -32,6 +32,10 @@ module FacebookAds
       "thumbnail",
     ]
 
+    BREAKING_CHANGE = [
+      "PROFILE_PICTURE",
+    ]
+
 
     field :bottom, 'int'
     field :cache_key, 'string'

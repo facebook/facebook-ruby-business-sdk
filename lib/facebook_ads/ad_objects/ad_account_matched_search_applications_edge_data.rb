@@ -36,6 +36,7 @@ module FacebookAds
       "INSTANT_GAME",
       "ITUNES",
       "ITUNES_IPAD",
+      "OCULUS_APP_STORE",
       "ROKU_STORE",
       "WINDOWS_10_STORE",
       "WINDOWS_STORE",

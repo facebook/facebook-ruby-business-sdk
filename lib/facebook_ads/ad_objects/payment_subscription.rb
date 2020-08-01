@@ -25,13 +25,32 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class UserInfluence < AdObject
+  class PaymentSubscription < AdObject
 
-    field :trust, 'string'
-    field :trust_code, 'int'
-    field :version, 'int'
-    has_no_id
-    has_no_get
+    field :amount, 'string'
+    field :app_param_data, 'string'
+    field :application, 'Profile'
+    field :billing_period, 'string'
+    field :canceled_reason, 'string'
+    field :created_time, 'datetime'
+    field :currency, 'string'
+    field :id, 'string'
+    field :last_payment, 'string'
+    field :next_bill_time, 'datetime'
+    field :next_period_amount, 'string'
+    field :next_period_currency, 'string'
+    field :next_period_product, 'string'
+    field :payment_status, 'string'
+    field :pending_cancel, 'bool'
+    field :period_start_time, 'datetime'
+    field :product, 'string'
+    field :status, 'string'
+    field :test, 'int'
+    field :trial_amount, 'string'
+    field :trial_currency, 'string'
+    field :trial_expiry_time, 'datetime'
+    field :updated_time, 'datetime'
+    field :user, 'Profile'
     has_no_post
     has_no_delete
 

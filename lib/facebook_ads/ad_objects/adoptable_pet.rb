@@ -25,55 +25,30 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessCreativeFolder < AdObject
-    PERMITTED_TASKS = [
-      "CREATE_CONTENT",
-      "MANAGE_CONTENT",
-      "MANAGE_PERMISSIONS",
-      "VIEW_CONTENT",
-      "VIEW_INSIGHTS",
-    ]
+  class AdoptablePet < AdObject
 
-    TASKS = [
-      "CREATE_CONTENT",
-      "MANAGE_CONTENT",
-      "MANAGE_PERMISSIONS",
-      "VIEW_CONTENT",
-      "VIEW_INSIGHTS",
-    ]
-
-
-    field :business, 'Business'
-    field :creation_time, 'datetime'
-    field :creative_insight_permissions, 'hash'
+    field :address, 'object'
+    field :adoptable_pet_id, 'string'
+    field :adoption_application_form_url, 'string'
+    field :age_bucket, 'string'
+    field :animal_type, 'string'
+    field :applinks, 'CatalogItemAppLinks'
+    field :availability, 'string'
+    field :breed, 'string'
+    field :currency, 'string'
     field :description, 'string'
+    field :gender, 'string'
     field :id, 'string'
-    field :media_library_url, 'string'
+    field :images, { list: 'string' }
     field :name, 'string'
-    field :parent_folder, 'BusinessCreativeFolder'
-    field :parent_folder_id, 'string'
-
-    has_edge :agencies do |edge|
-      edge.get 'Business'
-      edge.post 'BusinessCreativeFolder' do |api|
-        api.has_param :business, 'string'
-        api.has_param :permitted_tasks, { list: { enum: -> { BusinessCreativeFolder::PERMITTED_TASKS }} }
-      end
-    end
-
-    has_edge :assigned_users do |edge|
-      edge.get 'AssignedUser' do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'BusinessCreativeFolder' do |api|
-        api.has_param :tasks, { list: { enum: -> { BusinessCreativeFolder::TASKS }} }
-        api.has_param :user, 'int'
-      end
-    end
-
-    has_edge :subfolders do |edge|
-      edge.get 'BusinessCreativeFolder'
-    end
+    field :price, 'string'
+    field :sanitized_images, { list: 'string' }
+    field :shelter_name, 'string'
+    field :shelter_page_id, 'Page'
+    field :size, 'string'
+    field :url, 'string'
+    has_no_post
+    has_no_delete
 
   end
 end

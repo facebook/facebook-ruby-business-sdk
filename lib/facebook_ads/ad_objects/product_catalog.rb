@@ -27,6 +27,7 @@ module FacebookAds
 
   class ProductCatalog < AdObject
     VERTICAL = [
+      "adoptable_pets",
       "bookable",
       "commerce",
       "destinations",
@@ -295,6 +296,7 @@ module FacebookAds
       end
       edge.post 'ProductSet' do |api|
         api.has_param :filter, 'object'
+        api.has_param :metadata, 'hash'
         api.has_param :name, 'string'
       end
     end

@@ -98,6 +98,7 @@ module FacebookAds
     field :income, { list: 'IdName' }
     field :industries, { list: 'IdName' }
     field :instagram_positions, { list: 'string' }
+    field :instream_video_skippable_excluded, 'bool'
     field :interested_in, { list: 'int' }
     field :interests, { list: 'IdName' }
     field :is_whatsapp_destination_ad, 'bool'

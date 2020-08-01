@@ -32,6 +32,7 @@ module FacebookAds
     field :partner, 'Business'
     field :product, 'string'
     field :schema, { list: 'object' }
+    has_no_post
     has_no_delete
 
   end

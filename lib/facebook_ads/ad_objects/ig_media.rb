@@ -27,6 +27,7 @@ module FacebookAds
 
   class IgMedia < AdObject
 
+    field :alt_text, 'string'
     field :caption, 'string'
     field :comments_count, 'int'
     field :id, 'string'

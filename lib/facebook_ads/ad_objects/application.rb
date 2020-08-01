@@ -35,6 +35,7 @@ module FacebookAds
       "IPAD",
       "IPHONE",
       "MOBILE_WEB",
+      "OCULUS",
       "SUPPLEMENTARY_IMAGES",
       "WEB",
       "WINDOWS",
@@ -229,6 +230,9 @@ module FacebookAds
         api.has_param :consider_views, 'bool'
         api.has_param :custom_events, { list: 'object' }
         api.has_param :custom_events_file, 'file'
+        api.has_param :data_processing_options, { list: 'string' }
+        api.has_param :data_processing_options_country, 'int'
+        api.has_param :data_processing_options_state, 'int'
         api.has_param :device_token, 'string'
         api.has_param :event, { enum: %w{CUSTOM_APP_EVENTS DEFERRED_APP_LINK MOBILE_APP_INSTALL }}
         api.has_param :extinfo, 'object'

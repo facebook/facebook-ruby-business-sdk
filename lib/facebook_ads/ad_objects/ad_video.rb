@@ -77,6 +77,7 @@ module FacebookAds
       "HEURISTIC_CLUSTER_VIDEO",
       "HEURISTIC_PREVIEW",
       "HIGHLIGHT_CLIP_VIDEO",
+      "IG_STORIES_READER",
       "INSPIRATION_VIDEO",
       "INSTAGRAM_VIDEO_COPY",
       "INSTANT_APPLICATION_PREVIEW",
@@ -97,6 +98,7 @@ module FacebookAds
       "MOMENTS_VIDEO",
       "NEO_ASYNC_GAME_VIDEO",
       "NO_STORY",
+      "NO_STORY_WITH_ENTPOST",
       "OCULUS_CREATOR_PORTAL",
       "OCULUS_VENUES_BROADCAST",
       "OFFERS_VIDEO",
@@ -134,6 +136,7 @@ module FacebookAds
       "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
       "VIDEO_SUPERRES",
       "WOODHENGE",
+      "WORK_KNOWLEDGE_VIDEO",
       "YOUR_DAY",
     ]
 
@@ -165,7 +168,6 @@ module FacebookAds
 
     ORIGINAL_PROJECTION_TYPE = [
       "cubemap",
-      "equiangular_cubemap",
       "equirectangular",
       "half_equirectangular",
     ]
@@ -189,29 +191,6 @@ module FacebookAds
       "finish",
       "start",
       "transfer",
-    ]
-
-    VALIDATION_AD_PLACEMENTS = [
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO",
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
-      "AUDIENCE_NETWORK_REWARDED_VIDEO",
-      "DESKTOP_FEED_STANDARD",
-      "FACEBOOK_STORY_MOBILE",
-      "INSTAGRAM_STANDARD",
-      "INSTAGRAM_STORY",
-      "INSTANT_ARTICLE_STANDARD",
-      "INSTREAM_VIDEO_DESKTOP",
-      "INSTREAM_VIDEO_IMAGE",
-      "INSTREAM_VIDEO_MOBILE",
-      "MESSENGER_MOBILE_INBOX_MEDIA",
-      "MESSENGER_MOBILE_STORY_MEDIA",
-      "MOBILE_FEED_STANDARD",
-      "MOBILE_FULLWIDTH",
-      "MOBILE_INTERSTITIAL",
-      "MOBILE_MEDIUM_RECTANGLE",
-      "MOBILE_NATIVE",
-      "RIGHT_COLUMN_STANDARD",
-      "SUGGESTED_VIDEO_MOBILE",
     ]
 
     TYPE = [
@@ -284,6 +263,7 @@ module FacebookAds
     field :composer_source_surface, 'string'
     field :composer_type, 'string'
     field :container_type, { enum: -> { CONTAINER_TYPE }}
+    field :creative_tools, 'string'
     field :end_offset, 'int'
     field :fbuploader_video_file_chunk, 'string'
     field :file_size, 'int'
@@ -332,11 +312,9 @@ module FacebookAds
     field :upload_session_id, 'string'
     field :upload_setting_properties, 'string'
     field :video_file_chunk, 'string'
+    field :video_id_original, 'string'
     field :video_start_time_ms, 'int'
     field :waterfall_id, 'string'
-    field :ad_placements_validation_only, 'bool'
-    field :creative_folder_id, 'string'
-    field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
 
     has_edge :captions do |edge|
       edge.get

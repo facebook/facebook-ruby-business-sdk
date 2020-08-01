@@ -30,6 +30,7 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :source_type, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

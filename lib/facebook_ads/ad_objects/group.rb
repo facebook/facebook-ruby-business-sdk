@@ -84,6 +84,7 @@ module FacebookAds
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
       "WORK_RECRUITING",
+      "WORK_RESUME_REVIEW",
       "WORK_SOCIAL",
       "WORK_TEAM",
       "WORK_TEAMWORK",
@@ -136,6 +137,7 @@ module FacebookAds
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
       "WORK_RECRUITING",
+      "WORK_RESUME_REVIEW",
       "WORK_SOCIAL",
       "WORK_TEAM",
       "WORK_TEAMWORK",
@@ -450,6 +452,7 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
+        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
@@ -477,6 +480,7 @@ module FacebookAds
         api.has_param :composer_type, 'string'
         api.has_param :container_type, { enum: -> { AdVideo::CONTAINER_TYPE }}
         api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
+        api.has_param :creative_tools, 'string'
         api.has_param :description, 'string'
         api.has_param :embeddable, 'bool'
         api.has_param :end_offset, 'int'
@@ -532,6 +536,7 @@ module FacebookAds
         api.has_param :upload_session_id, 'string'
         api.has_param :upload_setting_properties, 'string'
         api.has_param :video_file_chunk, 'string'
+        api.has_param :video_id_original, 'string'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'
       end

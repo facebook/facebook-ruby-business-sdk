@@ -54,8 +54,17 @@ module FacebookAds
       "WORKSHOP",
     ]
 
+    ONLINE_EVENT_FORMAT = [
+      "fb_live",
+      "messenger_room",
+      "none",
+      "other",
+      "third_party",
+    ]
+
     TYPE = [
       "community",
+      "friends",
       "group",
       "private",
       "public",
@@ -93,6 +102,8 @@ module FacebookAds
     field :maybe_count, 'int'
     field :name, 'string'
     field :noreply_count, 'int'
+    field :online_event_format, { enum: -> { ONLINE_EVENT_FORMAT }}
+    field :online_event_third_party_url, 'string'
     field :owner, 'object'
     field :parent_group, 'Group'
     field :place, 'Place'

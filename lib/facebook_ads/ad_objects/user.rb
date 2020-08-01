@@ -359,10 +359,6 @@ module FacebookAds
       end
     end
 
-    has_edge :friendlists do |edge|
-      edge.get 'FriendList'
-    end
-
     has_edge :friends do |edge|
       edge.get 'User' do |api|
         api.has_param :uid, 'int'
@@ -494,6 +490,11 @@ module FacebookAds
       end
     end
 
+    has_edge :meeting_link do |edge|
+      edge.get 'WorkMeetingLink'
+      edge.post 'WorkMeetingLink'
+    end
+
     has_edge :music do |edge|
       edge.get 'Page' do |api|
         api.has_param :target_id, 'string'
@@ -589,6 +590,7 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
+        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
@@ -632,6 +634,7 @@ module FacebookAds
         api.has_param :composer_type, 'string'
         api.has_param :container_type, { enum: -> { AdVideo::CONTAINER_TYPE }}
         api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
+        api.has_param :creative_tools, 'string'
         api.has_param :description, 'string'
         api.has_param :direct_share_status, 'int'
         api.has_param :embeddable, 'bool'
@@ -690,6 +693,7 @@ module FacebookAds
         api.has_param :upload_session_id, 'string'
         api.has_param :upload_setting_properties, 'string'
         api.has_param :video_file_chunk, 'string'
+        api.has_param :video_id_original, 'string'
         api.has_param :video_start_time_ms, 'int'
         api.has_param :waterfall_id, 'string'
       end

@@ -82,6 +82,7 @@ module FacebookAds
       "update_ad_set_bidding",
       "update_ad_set_budget",
       "update_ad_set_duration",
+      "update_ad_set_learning_stage_status",
       "update_ad_set_min_spend_target",
       "update_ad_set_name",
       "update_ad_set_optimization_goal",
@@ -102,6 +103,7 @@ module FacebookAds
       "update_campaign_name",
       "update_campaign_run_status",
       "update_campaign_schedule",
+      "update_delivery_type_cross_level_shift",
     ]
 
     CATEGORY = [
@@ -116,6 +118,11 @@ module FacebookAds
       "DATE",
       "STATUS",
       "TARGETING",
+    ]
+
+    DATA_SOURCE = [
+      "CALYPSO",
+      "TAO",
     ]
 
 
