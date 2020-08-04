@@ -111,6 +111,12 @@ RSpec.describe 'FacebookAds::ServerSide::Util' do
             expect{FacebookAds::ServerSide::Util.normalize('12345', 'doby')}.to raise_error(ArgumentError)
             expect{FacebookAds::ServerSide::Util.normalize('', 'doby')}.to raise_error(ArgumentError)
         end
+
+        it 'normalizes delivery_category' do
+            expect(FacebookAds::ServerSide::Util.normalize(' curbside ', 'delivery_category')).to eq('curbside')
+            expect(FacebookAds::ServerSide::Util.normalize('CURBSIDE', 'delivery_category')).to eq('curbside')
+            expect{FacebookAds::ServerSide::Util.normalize('INVALID', 'delivery_category')}.to raise_error(ArgumentError)
+        end
     end
 
     context 'sha256Hash' do

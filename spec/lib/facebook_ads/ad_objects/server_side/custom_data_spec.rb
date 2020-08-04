@@ -32,6 +32,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
     status = 'status-7'
     search_string = 'search-string-8'
     item_number = 'item-number-9'
+    delivery_category = 'curbside'
     custom_properties = {'custom10' => 'property10'}
     custom_data = FacebookAds::ServerSide::CustomData.new(
       value: value,
@@ -47,6 +48,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
       status: status,
       search_string: search_string,
       item_number: item_number,
+      delivery_category: delivery_category,
       custom_properties: custom_properties,
     )
 
@@ -64,6 +66,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
       'status' => status,
       'item_number' => item_number,
       'search_string' => search_string,
+      'delivery_category' => delivery_category,
     ))
   end
 
@@ -98,6 +101,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
       search_string: 'search-string-8',
       item_number: 'item-number-9',
       custom_properties: {'custom10' => 'property10'},
+      delivery_category: 'curbside',
     )
     custom_data2 = FacebookAds::ServerSide::CustomData.new(
       value: 0.1,
@@ -114,6 +118,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
       search_string: 'search-string-8',
       item_number: 'item-number-9',
       custom_properties: {'custom10' => 'property10'},
+      delivery_category: 'curbside',
     )
     expect(custom_data1).to eq(custom_data2)
     expect(custom_data1.hash).to eq(custom_data2.hash)
@@ -135,6 +140,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
       search_string: 'search-string-8',
       item_number: 'item-number-9',
       custom_properties: {'custom10' => 'property10'},
+      delivery_category: 'curbside',
     )
     custom_data2 = FacebookAds::ServerSide::CustomData.new(
       value: 0.1,

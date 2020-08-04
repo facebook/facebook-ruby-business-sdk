@@ -70,6 +70,10 @@ module FacebookAds
       # Example: 'lettuce'.
       attr_accessor :search_string
 
+      # Type of delivery for a purchase event
+      # Example: 'home_delivery'.
+      attr_accessor :delivery_category
+
       # The item number.
       # Example: 'item1234'.
       attr_accessor :item_number
@@ -90,6 +94,7 @@ module FacebookAds
       # @param [Integer] num_items
       # @param [String] status
       # @param [String] search_string
+      # @param [String] delivery_category
       # @param [String] item_number
       # @param [String] custom_properties
       def initialize(value: nil,
@@ -104,6 +109,7 @@ module FacebookAds
                      num_items: nil,
                      status: nil,
                      search_string: nil,
+                     delivery_category: nil,
                      item_number: nil,
                      custom_properties: {})
 
@@ -142,6 +148,9 @@ module FacebookAds
         end
         unless search_string.nil?
           self.search_string = search_string
+        end
+        unless delivery_category.nil?
+          self.delivery_category = delivery_category
         end
         unless item_number.nil?
           self.item_number = item_number
@@ -212,6 +221,10 @@ module FacebookAds
           self.search_string = attributes[:'search_string']
         end
 
+        if attributes.has_key?(:'delivery_category')
+          self.delivery_category = attributes[:'delivery_category']
+        end
+
         if attributes.has_key?(:'item_number')
           self.item_number = attributes[:'item_number']
         end
@@ -237,6 +250,7 @@ module FacebookAds
             num_items == o.num_items &&
             status == o.status &&
             search_string == o.search_string &&
+            delivery_category == o.delivery_category &&
             item_number == o.item_number &&
             custom_properties == o.custom_properties
       end
@@ -262,6 +276,7 @@ module FacebookAds
             num_items,
             status,
             search_string,
+            delivery_category,
             item_number,
             custom_properties
         ].hash
@@ -306,6 +321,9 @@ module FacebookAds
         end
         unless search_string.nil?
           hash['search_string'] = search_string
+        end
+        unless delivery_category.nil?
+          hash['delivery_category'] = delivery_category
         end
         unless custom_properties.nil?
           hash['custom_properties'] = custom_properties
@@ -353,6 +371,9 @@ module FacebookAds
         end
         unless search_string.nil?
           hash['search_string'] = search_string
+        end
+        unless delivery_category.nil?
+          hash['delivery_category'] = FacebookAds::ServerSide::Util.normalize(delivery_category, 'delivery_category')
         end
         unless item_number.nil?
           hash['item_number'] = item_number

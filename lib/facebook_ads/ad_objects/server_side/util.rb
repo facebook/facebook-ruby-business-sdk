@@ -58,6 +58,8 @@ module FacebookAds
 					normalized_input = normalize_city input
 				when 'currency'
 					return normalize_currency input
+				when 'delivery_category'
+					return normalize_delivery_category input
 				when 'em'
 					normalized_input = normalize_email input
 				when 'ge'
@@ -277,6 +279,17 @@ module FacebookAds
 				end
 				doby
 			end
+
+			# Normalizes the input delivery category and returns valid value (or throw exception if invalid).
+			def self.normalize_delivery_category(delivery_category)
+
+				unless FacebookAds::ServerSide::DeliveryCategory.include?(delivery_category)
+					raise ArgumentError.new("Invalid delivery_category passed: " + delivery_category + ". Please use one of the defined values #{FacebookAds::ServerSide::DeliveryCategory.to_a.join(',')}" )
+				end
+
+				delivery_category;
+			end
+
 		end
 	end
 end
