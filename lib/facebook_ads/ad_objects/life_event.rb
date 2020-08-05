@@ -51,9 +51,5 @@ module FacebookAds
       edge.get 'Profile'
     end
 
-    has_edge :photos do |edge|
-      edge.get 'Photo'
-    end
-
   end
 end

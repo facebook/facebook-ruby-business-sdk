@@ -70,9 +70,5 @@ module FacebookAds
       edge.get 'ProductCatalog'
     end
 
-    has_edge :updated_by do |edge|
-      edge.get 'User'
-    end
-
   end
 end

@@ -51,11 +51,13 @@ module FacebookAds
     PERMITTED_TASKS = [
       "ADVERTISE",
       "MANAGE",
+      "MANAGE_AR",
     ]
 
     TASKS = [
       "ADVERTISE",
       "MANAGE",
+      "MANAGE_AR",
     ]
 
     STANDARD = [

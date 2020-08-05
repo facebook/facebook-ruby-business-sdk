@@ -38,7 +38,6 @@ module FacebookAds
     field :id, 'string'
     field :insights_section, 'object'
     field :name, 'string'
-    field :report_schedule, 'object'
     field :report_schedule_id, 'string'
     field :sort_by, 'string'
     field :sort_dir, 'string'

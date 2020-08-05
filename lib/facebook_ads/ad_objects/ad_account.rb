@@ -223,6 +223,7 @@ module FacebookAds
     has_edge :ad_place_page_sets do |edge|
       edge.get 'AdPlacePageSet'
       edge.post 'AdPlacePageSet' do |api|
+        api.has_param :category, { enum: -> { AdPlacePageSet::CATEGORY }}
         api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
         api.has_param :name, 'string'
         api.has_param :parent_page, 'string'
@@ -232,19 +233,11 @@ module FacebookAds
 
     has_edge :ad_place_page_sets_async do |edge|
       edge.post 'AdPlacePageSet' do |api|
+        api.has_param :category, { enum: -> { AdPlacePageSet::CATEGORY }}
         api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
         api.has_param :name, 'string'
         api.has_param :parent_page, 'string'
         api.has_param :targeted_area_type, { enum: -> { AdPlacePageSet::TARGETED_AREA_TYPE }}
-      end
-    end
-
-    has_edge :ad_sets do |edge|
-      edge.delete do |api|
-        api.has_param :before_date, 'datetime'
-        api.has_param :delete_offset, 'int'
-        api.has_param :delete_strategy, { enum: %w{DELETE_ANY DELETE_ARCHIVED_BEFORE DELETE_OLDEST }}
-        api.has_param :object_count, 'int'
       end
     end
 
@@ -343,10 +336,6 @@ module FacebookAds
         api.has_param :source_url, 'string'
         api.has_param :source_zip, 'file'
       end
-    end
-
-    has_edge :adreportschedules do |edge|
-      edge.get
     end
 
     has_edge :adrules_history do |edge|

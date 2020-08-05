@@ -141,10 +141,6 @@ module FacebookAds
       edge.post 'LiveVideoInputStream'
     end
 
-    has_edge :likes do |edge|
-      edge.get 'Profile'
-    end
-
     has_edge :polls do |edge|
       edge.get 'VideoPoll'
       edge.post 'VideoPoll' do |api|

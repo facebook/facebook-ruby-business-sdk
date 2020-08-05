@@ -92,6 +92,12 @@ module FacebookAds
       "Vietnamese",
     ]
 
+    PICKUP_OPTIONS = [
+      "CURBSIDE",
+      "IN_STORE",
+      "OTHER",
+    ]
+
     TEMPORARY_STATUS = [
       "DIFFERENTLY_OPEN",
       "NO_DATA",
@@ -328,29 +334,6 @@ module FacebookAds
       "website",
     ]
 
-    DOMAIN_ACTION_TYPE = [
-      "ADD",
-      "REMOVE",
-    ]
-
-    PAYMENT_DEV_MODE_ACTION = [
-      "ADD",
-      "REMOVE",
-    ]
-
-    SETTING_TYPE = [
-      "ACCOUNT_LINKING",
-      "CALL_TO_ACTIONS",
-      "DOMAIN_WHITELISTING",
-      "GREETING",
-      "PAYMENT",
-    ]
-
-    THREAD_STATE = [
-      "EXISTING_THREAD",
-      "NEW_THREAD",
-    ]
-
 
     field :about, 'string'
     field :access_token, 'string'
@@ -443,7 +426,6 @@ module FacebookAds
     field :new_like_count, 'int'
     field :offer_eligible, 'bool'
     field :overall_star_rating, 'double'
-    field :page_about_story, 'PageAboutStory'
     field :page_token, 'string'
     field :parent_page, 'Page'
     field :parking, 'PageParking'
@@ -452,6 +434,7 @@ module FacebookAds
     field :personal_interests, 'string'
     field :pharma_safety_info, 'string'
     field :phone, 'string'
+    field :pickup_options, { list: 'string' }
     field :place_type, 'string'
     field :plot_outline, 'string'
     field :preferred_audience, 'Targeting'
@@ -925,7 +908,6 @@ module FacebookAds
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
-        api.has_param :save_vod, 'bool'
         api.has_param :schedule_custom_profile_image, 'file'
         api.has_param :spatial_audio_format, { enum: -> { LiveVideo::SPATIAL_AUDIO_FORMAT }}
         api.has_param :status, { enum: -> { LiveVideo::STATUS }}
@@ -955,6 +937,7 @@ module FacebookAds
         api.has_param :page_username, 'string'
         api.has_param :permanently_closed, 'bool'
         api.has_param :phone, 'string'
+        api.has_param :pickup_options, { list: { enum: -> { Page::PICKUP_OPTIONS }} }
         api.has_param :place_topics, { list: 'string' }
         api.has_param :price_range, 'string'
         api.has_param :store_code, 'string'
@@ -1058,16 +1041,6 @@ module FacebookAds
         api.has_param :nlp_enabled, 'bool'
         api.has_param :other_language_support, 'hash'
         api.has_param :verbose, 'bool'
-      end
-    end
-
-    has_edge :page_about_story do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :composed_text, { list: 'hash' }
-        api.has_param :cover_photo, 'hash'
-        api.has_param :entity_map, { list: 'hash' }
-        api.has_param :is_published, 'bool'
-        api.has_param :title, 'string'
       end
     end
 
@@ -1201,10 +1174,6 @@ module FacebookAds
       end
     end
 
-    has_edge :place_topics do |edge|
-      edge.get 'PlaceTopic'
-    end
-
     has_edge :posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :include_hidden, 'bool'
@@ -1276,9 +1245,6 @@ module FacebookAds
     end
 
     has_edge :tabs do |edge|
-      edge.delete do |api|
-        api.has_param :tab, 'string'
-      end
       edge.get 'Tab' do |api|
         api.has_param :tab, { list: 'string' }
       end
@@ -1306,26 +1272,6 @@ module FacebookAds
     has_edge :thread_owner do |edge|
       edge.get 'PageThreadOwner' do |api|
         api.has_param :recipient, 'string'
-      end
-    end
-
-    has_edge :thread_settings do |edge|
-      edge.delete do |api|
-        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
-        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
-      end
-      edge.post 'Page' do |api|
-        api.has_param :account_linking_url, 'string'
-        api.has_param :call_to_actions, { list: 'object' }
-        api.has_param :domain_action_type, { enum: -> { Page::DOMAIN_ACTION_TYPE }}
-        api.has_param :greeting, 'object'
-        api.has_param :payment_dev_mode_action, { enum: -> { Page::PAYMENT_DEV_MODE_ACTION }}
-        api.has_param :payment_privacy_url, 'string'
-        api.has_param :payment_public_key, 'string'
-        api.has_param :payment_testers, { list: 'string' }
-        api.has_param :setting_type, { enum: -> { Page::SETTING_TYPE }}
-        api.has_param :thread_state, { enum: -> { Page::THREAD_STATE }}
-        api.has_param :whitelisted_domains, { list: 'string' }
       end
     end
 

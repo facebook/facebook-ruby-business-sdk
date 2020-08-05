@@ -479,7 +479,6 @@ module FacebookAds
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
-        api.has_param :save_vod, 'bool'
         api.has_param :schedule_custom_profile_image, 'file'
         api.has_param :spatial_audio_format, { enum: -> { LiveVideo::SPATIAL_AUDIO_FORMAT }}
         api.has_param :status, { enum: -> { LiveVideo::STATUS }}
@@ -608,10 +607,6 @@ module FacebookAds
       edge.post 'User' do |api|
         api.has_param :file, 'file'
       end
-    end
-
-    has_edge :taggable_friends do |edge|
-      edge.get 'UserTaggableFriend'
     end
 
     has_edge :videos do |edge|

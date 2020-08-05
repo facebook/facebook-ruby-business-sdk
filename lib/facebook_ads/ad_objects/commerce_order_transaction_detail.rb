@@ -40,6 +40,10 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :items do |edge|
+      edge.get
+    end
+
     has_edge :tax_details do |edge|
       edge.get
     end
