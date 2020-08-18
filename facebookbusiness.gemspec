@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '~> 2.0'
 
-  s.add_dependency 'faraday', '~> 0.15'
+  s.add_dependency 'faraday', '~> 1.0'
   s.add_dependency 'json', '~> 2.2'
   s.add_dependency 'countries', '~>3.0'
   s.add_dependency 'money', '~> 6.13'
@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest', '~> 5.0'
   s.add_development_dependency 'pry', '~> 0.12'
   s.add_development_dependency 'pry-coolline', '~> 0.2'
-  s.add_development_dependency 'rake', '~> 12.3'
+  s.add_development_dependency 'rake', '~> 13.0'
   s.add_development_dependency 'rspec', '~> 3.8'
   s.add_development_dependency 'rubocop', '~> 0.71'
   s.add_development_dependency 'countries', '~>3.0'
