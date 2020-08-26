@@ -145,7 +145,7 @@ module FacebookAds
         api.has_param :dimensions, { list: { enum: %w{AD_ID AD_SET_ID CAMPAIGN_ID DEVICE_TYPE SOURCE_CHANNEL }} }
         api.has_param :granularity, { enum: %w{DAY HOUR MONTH WEEK_SUNDAY YEAR }}
         api.has_param :metric_scope, 'hash'
-        api.has_param :order_by, { list: 'string' }
+        api.has_param :order_by, { list: 'hash' }
       end
     end
 

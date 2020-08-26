@@ -391,6 +391,7 @@ module FacebookAds
     has_edge :ads_volume do |edge|
       edge.get 'AdAccountAdVolume' do |api|
         api.has_param :page_id, 'int'
+        api.has_param :recommendation_type, { enum: -> { AdAccountAdVolume::RECOMMENDATION_TYPE }}
         api.has_param :show_breakdown_by_actor, 'bool'
       end
     end
@@ -702,6 +703,14 @@ module FacebookAds
         api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
         api.has_param :start_date, 'datetime'
         api.has_param :summary, 'bool'
+      end
+    end
+
+    has_edge :create_and_apply_publisher_block_list do |edge|
+      edge.post do |api|
+        api.has_param :is_auto_blocking_on, 'bool'
+        api.has_param :name, 'string'
+        api.has_param :publisher_urls, { list: 'string' }
       end
     end
 

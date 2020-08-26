@@ -26,6 +26,14 @@ module FacebookAds
   # pull request for this class.
 
   class WhatsAppBusinessAccount < AdObject
+    TASKS = [
+      "DEVELOP",
+      "MANAGE",
+      "MANAGE_PHONE",
+      "MANAGE_TEMPLATES",
+      "VIEW_COST",
+    ]
+
     CATEGORY = [
       "ACCOUNT_UPDATE",
       "ALERT_UPDATE",
@@ -52,6 +60,16 @@ module FacebookAds
     field :timezone_id, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :assigned_users do |edge|
+      edge.delete do |api|
+        api.has_param :user, 'int'
+      end
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :tasks, { list: { enum: -> { WhatsAppBusinessAccount::TASKS }} }
+        api.has_param :user, 'int'
+      end
+    end
 
     has_edge :message_templates do |edge|
       edge.delete do |api|

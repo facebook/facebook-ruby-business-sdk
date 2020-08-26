@@ -69,6 +69,7 @@ module FacebookAds
       "PLATFORM",
       "PLATFORM_USERS",
       "SEED_LIST",
+      "SIGNAL_SOURCE",
       "SMART_AUDIENCE",
       "STORE_VISIT_EVENTS",
       "S_EXPR",

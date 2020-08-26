@@ -26,6 +26,11 @@ module FacebookAds
   # pull request for this class.
 
   class CommerceMerchantSettings < AdObject
+    CTA = [
+      "CONTACT_MERCHANT",
+      "OFFSITE_LINK",
+    ]
+
     MERCHANT_STATUS = [
       "ENABLED",
       "EXTERNALLY_DISABLED",
@@ -35,6 +40,7 @@ module FacebookAds
     field :braintree_merchant_id, 'string'
     field :checkout_message, 'string'
     field :contact_email, 'string'
+    field :cta, 'string'
     field :disable_checkout_urls, 'bool'
     field :display_name, 'string'
     field :facebook_channel, 'object'

@@ -68,6 +68,35 @@ module FacebookAds
       "VEHICLE_OFFER",
     ]
 
+    ITEM_SUB_TYPE = [
+      "APPLIANCES",
+      "BABY_FEEDING",
+      "BABY_TRANSPORT",
+      "BEAUTY",
+      "BEDDING",
+      "CAMERAS",
+      "CELL_PHONES_AND_SMART_WATCHES",
+      "CLEANING_SUPPLIES",
+      "CLOTHING",
+      "CLOTHING_ACCESSORIES",
+      "COMPUTERS_AND_TABLETS",
+      "DIAPERING_AND_POTTY_TRAINING",
+      "ELECTRONICS_ACCESSORIES",
+      "FURNITURE",
+      "HEALTH",
+      "HOME_GOODS",
+      "JEWELRY",
+      "NURSERY",
+      "PRINTERS_AND_SCANNERS",
+      "PROJECTORS",
+      "SHOES_AND_FOOTWEAR",
+      "SOFTWARE",
+      "TOYS",
+      "TVS_AND_MONITORS",
+      "VIDEO_GAME_CONSOLES_AND_VIDEO_GAMES",
+      "WATCHES",
+    ]
+
     OVERRIDE_TYPE = [
       "CATALOG_SEGMENT_CUSTOMIZE_DEFAULT",
       "COUNTRY",
@@ -85,6 +114,7 @@ module FacebookAds
     field :encoding, 'string'
     field :file_name, 'string'
     field :id, 'string'
+    field :item_sub_type, 'string'
     field :latest_upload, 'ProductFeedUpload'
     field :name, 'string'
     field :override_type, 'string'

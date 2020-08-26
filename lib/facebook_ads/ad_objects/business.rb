@@ -292,6 +292,26 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :collaborative_ads_collaboration_requests do |edge|
+      edge.get 'CpasCollaborationRequest' do |api|
+        api.has_param :status, 'string'
+      end
+      edge.post 'CpasCollaborationRequest' do |api|
+        api.has_param :brands, { list: 'string' }
+        api.has_param :contact_email, 'string'
+        api.has_param :contact_first_name, 'string'
+        api.has_param :contact_last_name, 'string'
+        api.has_param :phone_number, 'string'
+        api.has_param :receiver_business, 'string'
+        api.has_param :requester_agency_or_brand, { enum: -> { CPASCollaborationRequest::REQUESTER_AGENCY_OR_BRAND }}
+        api.has_param :sender_client_business, 'string'
+      end
+    end
+
+    has_edge :collaborative_ads_suggested_partners do |edge|
+      edge.get 'CpasAdvertiserPartnershipRecommendation'
+    end
+
     has_edge :commerce_merchant_settings do |edge|
       edge.get 'CommerceMerchantSettings'
     end
@@ -304,6 +324,14 @@ module FacebookAds
         api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
         api.has_param :start_date, 'datetime'
         api.has_param :summary, 'bool'
+      end
+    end
+
+    has_edge :create_and_apply_publisher_block_list do |edge|
+      edge.post do |api|
+        api.has_param :is_auto_blocking_on, 'bool'
+        api.has_param :name, 'string'
+        api.has_param :publisher_urls, { list: 'string' }
       end
     end
 
@@ -359,6 +387,7 @@ module FacebookAds
         api.has_param :existing_client_business_id, 'string'
       end
       edge.post 'Business' do |api|
+        api.has_param :child_business_external_id, 'string'
         api.has_param :existing_client_business_id, 'string'
         api.has_param :name, 'string'
         api.has_param :sales_rep_email, 'string'
@@ -410,6 +439,7 @@ module FacebookAds
         api.has_param :client_user_id, 'int'
       end
       edge.post 'Business' do |api|
+        api.has_param :child_business_external_id, 'string'
         api.has_param :name, 'string'
         api.has_param :page_permitted_tasks, { list: { enum: -> { Business::PAGE_PERMITTED_TASKS }} }
         api.has_param :sales_rep_email, 'string'
@@ -441,12 +471,15 @@ module FacebookAds
     has_edge :owned_product_catalogs do |edge|
       edge.get 'ProductCatalog'
       edge.post 'ProductCatalog' do |api|
+        api.has_param :catalog_segment_filter, 'object'
+        api.has_param :catalog_segment_product_set_id, 'string'
         api.has_param :commerce_merchant_settings, 'object'
         api.has_param :da_display_settings, 'object'
         api.has_param :destination_catalog_settings, 'hash'
         api.has_param :flight_catalog_settings, 'hash'
         api.has_param :name, 'string'
         api.has_param :onsite_commerce_merchant, 'object'
+        api.has_param :parent_catalog_id, 'string'
         api.has_param :store_catalog_settings, 'hash'
         api.has_param :vertical, { enum: -> { ProductCatalog::VERTICAL }}
       end

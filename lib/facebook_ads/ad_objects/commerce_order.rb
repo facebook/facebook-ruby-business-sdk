@@ -62,6 +62,7 @@ module FacebookAds
     field :estimated_payment_details, 'object'
     field :id, 'string'
     field :is_group_buy, 'bool'
+    field :is_test_order, 'bool'
     field :last_updated, 'string'
     field :merchant_order_id, 'string'
     field :order_status, 'object'
@@ -75,6 +76,7 @@ module FacebookAds
       edge.post 'CommerceOrder' do |api|
         api.has_param :idempotency_key, 'string'
         api.has_param :merchant_order_reference, 'string'
+        api.has_param :return_error_response, 'bool'
       end
     end
 

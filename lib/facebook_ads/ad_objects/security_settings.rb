@@ -27,7 +27,6 @@ module FacebookAds
 
   class SecuritySettings < AdObject
 
-    field :secure_browsing, 'object'
     has_no_id
     has_no_get
     has_no_post

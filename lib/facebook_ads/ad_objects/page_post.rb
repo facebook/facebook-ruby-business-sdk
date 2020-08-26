@@ -94,6 +94,7 @@ module FacebookAds
     field :permalink_url, 'object'
     field :picture, 'string'
     field :place, 'Place'
+    field :poll, 'object'
     field :privacy, 'Privacy'
     field :promotable_id, 'string'
     field :promotion_status, 'string'

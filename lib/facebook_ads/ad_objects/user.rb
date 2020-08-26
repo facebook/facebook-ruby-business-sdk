@@ -54,7 +54,6 @@ module FacebookAds
     field :age_range, 'AgeRange'
     field :auth_method, 'string'
     field :birthday, 'string'
-    field :can_review_measurement_request, 'bool'
     field :cover, 'UserCoverPhoto'
     field :currency, 'Currency'
     field :devices, { list: 'UserDevice' }
@@ -70,9 +69,7 @@ module FacebookAds
     field :install_type, 'string'
     field :installed, 'bool'
     field :interested_in, { list: 'string' }
-    field :is_famedeeplinkinguser, 'bool'
     field :is_guest_user, 'bool'
-    field :is_shared_login, 'bool'
     field :is_verified, 'bool'
     field :languages, { list: 'Experience' }
     field :last_name, 'string'
@@ -92,20 +89,17 @@ module FacebookAds
     field :quotes, 'string'
     field :relationship_status, 'string'
     field :religion, 'string'
-    field :security_settings, 'SecuritySettings'
     field :shared_login_upgrade_required_by, 'datetime'
     field :short_name, 'string'
     field :significant_other, 'User'
     field :sports, { list: 'Experience' }
     field :supports_donate_button_in_live_video, 'bool'
-    field :test_group, 'int'
     field :third_party_id, 'string'
     field :timezone, 'double'
     field :token_for_business, 'string'
     field :updated_time, 'datetime'
     field :verified, 'bool'
     field :video_upload_limits, 'VideoUploadLimits'
-    field :viewer_can_send_gift, 'bool'
     field :website, 'string'
     field :work, { list: 'object' }
 
@@ -211,6 +205,7 @@ module FacebookAds
       end
       edge.get 'Business'
       edge.post 'Business' do |api|
+        api.has_param :child_business_external_id, 'string'
         api.has_param :email, 'string'
         api.has_param :name, 'string'
         api.has_param :primary_page, 'string'
@@ -468,6 +463,7 @@ module FacebookAds
       edge.post 'LiveVideo' do |api|
         api.has_param :content_tags, { list: 'string' }
         api.has_param :description, 'string'
+        api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
@@ -489,11 +485,6 @@ module FacebookAds
       end
     end
 
-    has_edge :meeting_link do |edge|
-      edge.get 'WorkMeetingLink'
-      edge.post 'WorkMeetingLink'
-    end
-
     has_edge :music do |edge|
       edge.get 'Page' do |api|
         api.has_param :target_id, 'string'
@@ -511,6 +502,10 @@ module FacebookAds
         api.has_param :template, 'object'
         api.has_param :type, { enum: -> { User::TYPE }}
       end
+    end
+
+    has_edge :owned_product_catalogs do |edge|
+      edge.get 'ProductCatalog'
     end
 
     has_edge :permissions do |edge|

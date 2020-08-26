@@ -64,6 +64,35 @@ module FacebookAds
       "google",
     ]
 
+    ITEM_SUB_TYPE = [
+      "APPLIANCES",
+      "BABY_FEEDING",
+      "BABY_TRANSPORT",
+      "BEAUTY",
+      "BEDDING",
+      "CAMERAS",
+      "CELL_PHONES_AND_SMART_WATCHES",
+      "CLEANING_SUPPLIES",
+      "CLOTHING",
+      "CLOTHING_ACCESSORIES",
+      "COMPUTERS_AND_TABLETS",
+      "DIAPERING_AND_POTTY_TRAINING",
+      "ELECTRONICS_ACCESSORIES",
+      "FURNITURE",
+      "HEALTH",
+      "HOME_GOODS",
+      "JEWELRY",
+      "NURSERY",
+      "PRINTERS_AND_SCANNERS",
+      "PROJECTORS",
+      "SHOES_AND_FOOTWEAR",
+      "SOFTWARE",
+      "TOYS",
+      "TVS_AND_MONITORS",
+      "VIDEO_GAME_CONSOLES_AND_VIDEO_GAMES",
+      "WATCHES",
+    ]
+
 
     field :business, 'Business'
     field :commerce_merchant_settings, 'CommerceMerchantSettings'
@@ -77,9 +106,12 @@ module FacebookAds
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
     field :vertical, 'string'
+    field :catalog_segment_filter, 'object'
+    field :catalog_segment_product_set_id, 'string'
     field :destination_catalog_settings, 'hash'
     field :flight_catalog_settings, 'hash'
     field :onsite_commerce_merchant, 'object'
+    field :parent_catalog_id, 'string'
 
     has_edge :agencies do |edge|
       edge.delete do |api|
@@ -90,6 +122,7 @@ module FacebookAds
         api.has_param :business, 'string'
         api.has_param :permitted_roles, { list: { enum: -> { ProductCatalog::PERMITTED_ROLES }} }
         api.has_param :permitted_tasks, { list: { enum: -> { ProductCatalog::PERMITTED_TASKS }} }
+        api.has_param :utm_settings, 'hash'
       end
     end
 
@@ -235,6 +268,7 @@ module FacebookAds
     has_edge :items_batch do |edge|
       edge.post 'ProductCatalog' do |api|
         api.has_param :allow_upsert, 'bool'
+        api.has_param :item_sub_type, { enum: -> { ProductCatalog::ITEM_SUB_TYPE }}
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'
       end
@@ -270,6 +304,7 @@ module FacebookAds
         api.has_param :encoding, { enum: -> { ProductFeed::ENCODING }}
         api.has_param :feed_type, { enum: -> { ProductFeed::FEED_TYPE }}
         api.has_param :file_name, 'string'
+        api.has_param :item_sub_type, { enum: -> { ProductFeed::ITEM_SUB_TYPE }}
         api.has_param :name, 'string'
         api.has_param :override_type, { enum: -> { ProductFeed::OVERRIDE_TYPE }}
         api.has_param :override_value, 'string'
@@ -326,6 +361,7 @@ module FacebookAds
         api.has_param :availability, { enum: -> { ProductItem::AVAILABILITY }}
         api.has_param :brand, 'string'
         api.has_param :category, 'string'
+        api.has_param :category_specific_fields, 'hash'
         api.has_param :checkout_url, 'string'
         api.has_param :color, 'string'
         api.has_param :commerce_tax_category, { enum: -> { ProductItem::COMMERCE_TAX_CATEGORY }}
@@ -339,6 +375,7 @@ module FacebookAds
         api.has_param :custom_label_4, 'string'
         api.has_param :description, 'string'
         api.has_param :expiration_date, 'string'
+        api.has_param :fb_product_category, 'string'
         api.has_param :gender, { enum: -> { ProductItem::GENDER }}
         api.has_param :gtin, 'string'
         api.has_param :image_url, 'string'

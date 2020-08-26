@@ -288,6 +288,10 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :android_dialog_configs do |edge|
+      edge.get
+    end
+
     has_edge :app_event_types do |edge|
       edge.get
     end
@@ -452,6 +456,12 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :player_id, 'string'
         api.has_param :score, 'int'
+      end
+    end
+
+    has_edge :live_videos do |edge|
+      edge.get 'LiveVideo' do |api|
+        api.has_param :broadcast_status, { enum: -> { LiveVideo::BROADCAST_STATUS }}
       end
     end
 

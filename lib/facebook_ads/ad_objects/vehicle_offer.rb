@@ -35,6 +35,7 @@ module FacebookAds
     field :body_style, 'string'
     field :cashback_currency, 'string'
     field :cashback_price, 'string'
+    field :category_specific_fields, 'CatalogSubVerticalList'
     field :currency, 'string'
     field :dma_codes, { list: 'string' }
     field :downpayment_currency, 'string'

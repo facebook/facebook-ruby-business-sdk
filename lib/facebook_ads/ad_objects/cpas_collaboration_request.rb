@@ -25,33 +25,26 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Hotel < AdObject
+  class CpasCollaborationRequest < AdObject
+    REQUESTER_AGENCY_OR_BRAND = [
+      "AGENCY",
+      "BRAND",
+      "MERCHANT",
+    ]
 
-    field :address, 'string'
-    field :applinks, 'CatalogItemAppLinks'
-    field :brand, 'string'
-    field :category, 'string'
-    field :category_specific_fields, 'CatalogSubVerticalList'
-    field :currency, 'string'
-    field :description, 'string'
-    field :guest_ratings, 'string'
-    field :hotel_id, 'string'
+
+    field :brands, { list: 'string' }
+    field :contact_email, 'string'
+    field :contact_first_name, 'string'
+    field :contact_last_name, 'string'
     field :id, 'string'
-    field :images, { list: 'string' }
-    field :lowest_base_price, 'string'
-    field :loyalty_program, 'string'
-    field :margin_level, 'int'
-    field :name, 'string'
-    field :phone, 'string'
-    field :sale_price, 'string'
-    field :sanitized_images, { list: 'string' }
-    field :star_rating, 'double'
-    field :url, 'string'
-    field :base_price, 'int'
-
-    has_edge :hotel_rooms do |edge|
-      edge.get 'HotelRoom'
-    end
+    field :phone_number, 'string'
+    field :receiver_business, 'Business'
+    field :requester_agency_or_brand, 'string'
+    field :sender_client_business, 'Business'
+    field :status, 'string'
+    has_no_post
+    has_no_delete
 
   end
 end

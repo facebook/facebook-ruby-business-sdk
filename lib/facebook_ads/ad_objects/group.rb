@@ -80,6 +80,7 @@ module FacebookAds
       "WORK_EPHEMERAL",
       "WORK_FEEDBACK",
       "WORK_FOR_SALE",
+      "WORK_GARDEN",
       "WORK_LEARNING",
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
@@ -133,6 +134,7 @@ module FacebookAds
       "WORK_EPHEMERAL",
       "WORK_FEEDBACK",
       "WORK_FOR_SALE",
+      "WORK_GARDEN",
       "WORK_LEARNING",
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
@@ -353,6 +355,7 @@ module FacebookAds
       edge.post 'LiveVideo' do |api|
         api.has_param :content_tags, { list: 'string' }
         api.has_param :description, 'string'
+        api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'

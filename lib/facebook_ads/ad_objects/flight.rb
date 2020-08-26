@@ -28,6 +28,7 @@ module FacebookAds
   class Flight < AdObject
 
     field :applinks, 'CatalogItemAppLinks'
+    field :category_specific_fields, 'CatalogSubVerticalList'
     field :currency, 'string'
     field :description, 'string'
     field :destination_airport, 'string'

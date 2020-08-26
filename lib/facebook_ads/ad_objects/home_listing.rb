@@ -39,6 +39,7 @@ module FacebookAds
     field :area_size, 'int'
     field :area_unit, 'string'
     field :availability, 'string'
+    field :category_specific_fields, 'CatalogSubVerticalList'
     field :co_2_emission_rating_eu, 'object'
     field :currency, 'string'
     field :days_on_market, 'int'

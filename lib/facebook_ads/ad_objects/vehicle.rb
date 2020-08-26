@@ -108,6 +108,7 @@ module FacebookAds
     field :applinks, 'CatalogItemAppLinks'
     field :availability, 'string'
     field :body_style, 'string'
+    field :category_specific_fields, 'CatalogSubVerticalList'
     field :condition, 'string'
     field :currency, 'string'
     field :custom_label_0, 'string'

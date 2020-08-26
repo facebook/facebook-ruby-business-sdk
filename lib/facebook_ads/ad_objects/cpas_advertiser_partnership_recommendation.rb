@@ -25,10 +25,17 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class WorkMeetingLink < AdObject
+  class CpasAdvertiserPartnershipRecommendation < AdObject
 
+    field :advertiser_business_id, 'string'
+    field :brand_business_id, 'string'
+    field :brands, { list: 'string' }
+    field :countries, { list: 'string' }
     field :id, 'string'
-    field :owner, 'User'
+    field :merchant_business_id, 'string'
+    field :merchant_categories, { list: 'string' }
+    field :status, 'string'
+    field :status_reason, 'string'
     has_no_post
     has_no_delete
 

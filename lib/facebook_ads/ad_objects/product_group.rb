@@ -57,6 +57,7 @@ module FacebookAds
         api.has_param :custom_label_4, 'string'
         api.has_param :description, 'string'
         api.has_param :expiration_date, 'string'
+        api.has_param :fb_product_category, 'string'
         api.has_param :gender, { enum: -> { ProductItem::GENDER }}
         api.has_param :gtin, 'string'
         api.has_param :image_url, 'string'

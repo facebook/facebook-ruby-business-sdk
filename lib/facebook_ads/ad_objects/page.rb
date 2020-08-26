@@ -541,6 +541,13 @@ module FacebookAds
       end
     end
 
+    has_edge :business_data do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :data, { list: 'string' }
+        api.has_param :partner_agent, 'string'
+      end
+    end
+
     has_edge :call_to_actions do |edge|
       edge.get 'PageCallToAction'
     end
@@ -896,6 +903,7 @@ module FacebookAds
         api.has_param :crossposting_actions, { list: 'hash' }
         api.has_param :custom_labels, { list: 'string' }
         api.has_param :description, 'string'
+        api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'

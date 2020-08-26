@@ -29,6 +29,7 @@ module FacebookAds
 
     field :cover_image_url, 'string'
     field :description, 'string'
+    field :external_url, 'string'
     field :integrity_review_status, 'string'
     has_no_id
     has_no_get

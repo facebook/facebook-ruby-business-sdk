@@ -26,10 +26,33 @@ module FacebookAds
   # pull request for this class.
 
   class AdAccountAdVolume < AdObject
+    RECOMMENDATION_TYPE = [
+      "AGGREGATED_BID_LIMITED",
+      "AGGREGATED_BUDGET_LIMITED",
+      "AGGREGATED_COST_LIMITED",
+      "AUCTION_OVERLAP",
+      "CREATIVE_FATIGUE",
+      "FRAGMENTATION",
+      "LEARNING_LIMITED",
+      "TOP_ADSETS_WITH_ADS_UNDER_CAP",
+      "TOP_CAMPAIGNS_WITH_ADS_UNDER_CAP",
+      "UNECONOMICAL_ADS_THROTTLING",
+      "ZERO_IMPRESSION",
+    ]
+
 
     field :actor_id, 'string'
+    field :actor_name, 'string'
+    field :ad_limit_scope_business, 'Business'
+    field :ad_limit_scope_business_manager_id, 'string'
+    field :ad_limit_set_by_page_admin, 'int'
     field :ads_running_or_in_review_count, 'int'
+    field :ads_running_or_in_review_count_subject_to_limit_set_by_page, 'int'
     field :current_account_ads_running_or_in_review_count, 'int'
+    field :future_limit_activation_date, 'string'
+    field :future_limit_on_ads_running_or_in_review, 'int'
+    field :limit_on_ads_running_or_in_review, 'int'
+    field :recommendations, { list: 'object' }
     has_no_id
     has_no_get
     has_no_post
