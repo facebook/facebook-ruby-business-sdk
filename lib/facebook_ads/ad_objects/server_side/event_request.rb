@@ -137,17 +137,17 @@ module FacebookAds
         end
         normalized_events = normalize
         ads_pixel = FacebookAds::AdsPixel.get(pixel_id)
-        response = ads_pixel.events.create(
-            {
-                data: normalized_events,
-                test_event_code: test_event_code,
-                partner_agent: partner_agent,
-                namespace_id: namespace_id,
-                upload_id: upload_id,
-                upload_tag: upload_tag,
-                upload_source: upload_source,
-            }
-        )
+        params = {
+          data: normalized_events
+        }
+        params[:test_event_code] = test_event_code unless test_event_code.nil?
+        params[:partner_agent] = partner_agent unless partner_agent.nil?
+        params[:namespace_id] = namespace_id unless namespace_id.nil?
+        params[:upload_id] = upload_id unless upload_id.nil?
+        params[:upload_tag] = upload_tag unless upload_tag.nil?
+        params[:upload_source] = upload_source unless upload_source.nil?
+
+        response = ads_pixel.events.create(params)
         json_response_object = JSON.parse(JSON.generate(response), object_class: OpenStruct)
         FacebookAds::ServerSide::EventResponse.new(
             events_received: json_response_object.events_received,
