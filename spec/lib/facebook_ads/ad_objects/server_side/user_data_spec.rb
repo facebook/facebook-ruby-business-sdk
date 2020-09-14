@@ -29,6 +29,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
         state = 'state-9'
         zip_code = 'zip-code-10'
         f5first = 'f5first-11'
+        lead_id = 'lead_id-112'
         f5last = 'f5last-12'
         fi = 'fi-13'
         dobd = 'dobd-14'
@@ -48,6 +49,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             country_code: country_code,
             state: state,
             zip_code: zip_code,
+            lead_id: lead_id,
             f5first: f5first,
             f5last: f5last,
             fi: fi,
@@ -68,6 +70,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             'country' => "country_#{country_code}-normalized",
             'st' => "st_#{state}-normalized",
             'zp' => "zp_#{zip_code}-normalized",
+            'lead_id' => lead_id,
             'f5first' => "f5first_#{f5first}-normalized",
             'f5last' => "f5last_#{f5last}-normalized",
             'fi' => "fi_#{fi}-normalized",
@@ -94,6 +97,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             country_code: 'country-code-8',
             state: 'state-9',
             zip_code: 'zip-code-10',
+            lead_id: 'lead-id-100',
             f5first: 'f5first-11',
             f5last: 'f5last-12',
             fi: 'fi-13',
@@ -112,6 +116,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             country_code: 'country-code-8',
             state: 'state-9',
             zip_code: 'zip-code-10',
+            lead_id: 'lead-id-100',
             f5first: 'f5first-11',
             f5last: 'f5last-12',
             fi: 'fi-13',
@@ -140,6 +145,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             country_code: 'country-code-8',
             state: 'state-9',
             zip_code: 'zip-code-10',
+            lead_id: 'lead-id-100',
             f5first: 'f5first-11',
             f5last: 'f5last-12',
             fi: 'fi-13',
@@ -158,6 +164,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             country_code: 'country-code-8',
             state: 'state-9',
             zip_code: 'zip-code-10',
+            lead_id: 'lead-id-100',
             f5first: 'f5first-11',
             f5last: 'f5last-12',
             fi: 'fi-13',

@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 ### Added
 - Added async support to Conversions API - Create event request promises by using EventRequestAsync.
+- `lead_id` field to the Conversions API `user_data` section.
 
 ## v0.8.0.0
 ### Changed
