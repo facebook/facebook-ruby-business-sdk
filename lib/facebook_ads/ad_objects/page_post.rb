@@ -76,6 +76,7 @@ module FacebookAds
     field :id, 'string'
     field :implicit_place, 'Place'
     field :instagram_eligibility, 'string'
+    field :instream_eligibility, 'string'
     field :is_app_share, 'bool'
     field :is_eligible_for_promotion, 'bool'
     field :is_expired, 'bool'

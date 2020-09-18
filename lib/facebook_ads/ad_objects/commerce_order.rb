@@ -98,6 +98,10 @@ module FacebookAds
       edge.get
     end
 
+    has_edge :promotion_details do |edge|
+      edge.get
+    end
+
     has_edge :promotions do |edge|
       edge.get
     end

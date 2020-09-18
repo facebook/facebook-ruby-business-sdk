@@ -98,6 +98,19 @@ module FacebookAds
       edge.get 'CommerceMerchantSettingsSetupStatus'
     end
 
+    has_edge :shipping_profiles do |edge|
+      edge.get do |api|
+        api.has_param :reference_id, 'string'
+      end
+      edge.post do |api|
+        api.has_param :handling_time, 'hash'
+        api.has_param :is_default_shipping_profile, 'bool'
+        api.has_param :name, 'string'
+        api.has_param :reference_id, 'string'
+        api.has_param :shipping_destinations, { list: 'hash' }
+      end
+    end
+
     has_edge :tax_settings do |edge|
       edge.get
     end

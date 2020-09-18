@@ -103,6 +103,7 @@ module FacebookAds
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
     field :optimization_type, 'string'
+    field :posts, { list: 'object' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id

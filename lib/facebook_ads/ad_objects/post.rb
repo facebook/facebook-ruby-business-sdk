@@ -74,6 +74,7 @@ module FacebookAds
     field :id, 'string'
     field :implicit_place, 'Place'
     field :instagram_eligibility, 'string'
+    field :instream_eligibility, 'string'
     field :is_app_share, 'bool'
     field :is_eligible_for_promotion, 'bool'
     field :is_expired, 'bool'
@@ -175,7 +176,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :ad_account_id, 'string'
         api.has_param :ad_conversion_pixel_id, 'int'
-        api.has_param :audience, { enum: %w{AUTO_LOOKALIKE AUTO_PAGE_LOOKALIKE AUTO_TARGETING COUNTRY_AND_INTEREST CREATE_NEW CUSTOM_AUDIENCE DISTRICT EVENT_CUSTOM_AUDIENCES EVENT_ENGAGEMENT FANS GROUPER HEC_AUDIENCE IG_PROMOTED_POST_AUTO LOCAL LOOKALIKE MARKETPLACE_DEFAULT MULT_CUSTOM_AUDIENCES NCPP SAVED_AUDIENCE SMART_AUDIENCE }}
+        api.has_param :audience, { enum: %w{AUTO_LOOKALIKE AUTO_PAGE_LOOKALIKE AUTO_TARGETING COUNTRY_AND_INTEREST CREATE_NEW CUSTOM_AUDIENCE DISTRICT EVENT_CUSTOM_AUDIENCES EVENT_ENGAGEMENT FANS GROUPER HEC_AUDIENCE IG_PROMOTED_POST_AUTO LOCAL LOOKALIKE MARKETPLACE_DEFAULT MARKETPLACE_NATIONWIDE_AUDIENCE MARKETPLACE_SAVED_AUDIENCE MULT_CUSTOM_AUDIENCES NCPP SAVED_AUDIENCE SMART_AUDIENCE }}
         api.has_param :audience_id, 'string'
         api.has_param :bid_amount, 'int'
         api.has_param :budget, 'int'

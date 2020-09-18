@@ -78,6 +78,7 @@ module FacebookAds
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
+      "MESSAGING",
       "MODERATE",
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
@@ -85,6 +86,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_LIVE_STREAM_MODERATION",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -117,6 +119,7 @@ module FacebookAds
     has_edge :access_token do |edge|
       edge.post 'Business' do |api|
         api.has_param :app_id, 'string'
+        api.has_param :fbe_external_business_id, 'string'
         api.has_param :scope, { list: 'Permission' }
         api.has_param :system_user_name, 'string'
       end
@@ -207,6 +210,14 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :aggregate_revenue do |edge|
+      edge.post do |api|
+        api.has_param :ecpms, { list: 'string' }
+        api.has_param :query_ids, { list: 'string' }
+        api.has_param :request_id, 'string'
+      end
+    end
+
     has_edge :an_placements do |edge|
       edge.get 'AdPlacement'
     end
@@ -285,6 +296,10 @@ module FacebookAds
       edge.get 'ProductCatalog'
     end
 
+    has_edge :client_whatsapp_business_accounts do |edge|
+      edge.get 'WhatsAppBusinessAccount'
+    end
+
     has_edge :clients do |edge|
       edge.delete do |api|
         api.has_param :business, 'string'
@@ -303,7 +318,7 @@ module FacebookAds
         api.has_param :contact_last_name, 'string'
         api.has_param :phone_number, 'string'
         api.has_param :receiver_business, 'string'
-        api.has_param :requester_agency_or_brand, { enum: -> { CPASCollaborationRequest::REQUESTER_AGENCY_OR_BRAND }}
+        api.has_param :requester_agency_or_brand, { enum: -> { CpasCollaborationRequest::REQUESTER_AGENCY_OR_BRAND }}
         api.has_param :sender_client_business, 'string'
       end
     end
@@ -436,6 +451,7 @@ module FacebookAds
         api.has_param :client_id, 'string'
       end
       edge.get 'Business' do |api|
+        api.has_param :child_business_external_id, 'string'
         api.has_param :client_user_id, 'int'
       end
       edge.post 'Business' do |api|

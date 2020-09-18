@@ -135,6 +135,7 @@ module FacebookAds
       "VIDEO_COMMENT",
       "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
       "VIDEO_SUPERRES",
+      "VU_GENERATED_VIDEO",
       "WOODHENGE",
       "WORK_KNOWLEDGE_VIDEO",
       "YOUR_DAY",
@@ -377,6 +378,12 @@ module FacebookAds
         api.has_param :question, 'string'
         api.has_param :show_gradient, 'bool'
         api.has_param :show_results, 'bool'
+      end
+    end
+
+    has_edge :reactions do |edge|
+      edge.get 'Profile' do |api|
+        api.has_param :type, { enum: -> { Profile::TYPE }}
       end
     end
 

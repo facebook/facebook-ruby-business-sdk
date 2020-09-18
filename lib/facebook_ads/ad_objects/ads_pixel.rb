@@ -32,7 +32,9 @@ module FacebookAds
     ]
 
     AUTOMATIC_MATCHING_FIELDS = [
+      "country",
       "ct",
+      "db",
       "em",
       "fn",
       "ge",
@@ -90,6 +92,7 @@ module FacebookAds
     has_edge :da_checks do |edge|
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
+        api.has_param :connection_method, { enum: -> { DaCheck::CONNECTION_METHOD }}
       end
     end
 

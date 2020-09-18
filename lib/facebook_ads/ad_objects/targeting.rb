@@ -50,7 +50,7 @@ module FacebookAds
     field :catalog_based_targeting, 'CatalogBasedTargeting'
     field :cities, { list: 'IdName' }
     field :college_years, { list: 'int' }
-    field :connections, { list: 'IdName' }
+    field :connections, { list: 'ConnectionsTargeting' }
     field :contextual_targeting_categories, { list: 'IdName' }
     field :countries, { list: 'string' }
     field :country, { list: 'string' }
@@ -72,7 +72,7 @@ module FacebookAds
     field :ethnic_affinity, { list: 'IdName' }
     field :exclude_reached_since, { list: 'string' }
     field :excluded_brand_safety_content_types, { list: 'string' }
-    field :excluded_connections, { list: 'IdName' }
+    field :excluded_connections, { list: 'ConnectionsTargeting' }
     field :excluded_custom_audiences, { list: 'RawCustomAudience' }
     field :excluded_dynamic_audience_ids, { list: 'string' }
     field :excluded_engagement_specs, { list: 'TargetingDynamicRule' }
@@ -87,7 +87,7 @@ module FacebookAds
     field :family_statuses, { list: 'IdName' }
     field :fb_deal_id, 'string'
     field :flexible_spec, { list: 'FlexibleTargeting' }
-    field :friends_of_connections, { list: 'IdName' }
+    field :friends_of_connections, { list: 'ConnectionsTargeting' }
     field :genders, { list: 'int' }
     field :generation, { list: 'IdName' }
     field :geo_locations, 'TargetingGeoLocation'

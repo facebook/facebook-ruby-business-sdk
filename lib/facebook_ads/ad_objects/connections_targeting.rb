@@ -19,6 +19,19 @@
 # FB:AUTOGEN
 
 module FacebookAds
-  VERSION = '0.8.0.2'
-  API_VERSION = '8.0'
+  # This class is auto-generated.
+
+  # For any issues or feature requests related to this class, please let us know
+  # on github and we'll fix in our codegen framework. We'll not be able to accept
+  # pull request for this class.
+
+  class ConnectionsTargeting < AdObject
+
+    field :id, 'string'
+    field :name, 'string'
+    has_no_get
+    has_no_post
+    has_no_delete
+
+  end
 end

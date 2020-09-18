@@ -47,6 +47,7 @@ module FacebookAds
       "GENDER",
       "INSTANT_ARTICLE_ID",
       "INSTANT_ARTICLE_PAGE_ID",
+      "IS_DEAL_BACKFILL",
       "PLACEMENT",
       "PLACEMENT_NAME",
       "PLATFORM",

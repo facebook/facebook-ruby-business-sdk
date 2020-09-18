@@ -35,6 +35,7 @@ module FacebookAds
     field :name, 'string'
     field :product_catalog, 'ProductCatalog'
     field :product_count, 'int'
+    field :retailer_id, 'string'
     field :metadata, 'hash'
 
     has_edge :automotive_models do |edge|

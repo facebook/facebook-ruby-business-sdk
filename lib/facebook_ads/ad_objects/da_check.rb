@@ -26,6 +26,13 @@ module FacebookAds
   # pull request for this class.
 
   class DaCheck < AdObject
+    CONNECTION_METHOD = [
+      "ALL",
+      "APP",
+      "BROWSER",
+      "SERVER",
+    ]
+
 
     field :action_uri, 'string'
     field :description, 'string'

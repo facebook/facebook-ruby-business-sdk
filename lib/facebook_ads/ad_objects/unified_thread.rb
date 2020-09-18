@@ -32,6 +32,7 @@ module FacebookAds
     field :id, 'string'
     field :is_subscribed, 'bool'
     field :link, 'string'
+    field :linked_group, 'Group'
     field :message_count, 'int'
     field :name, 'string'
     field :participants, 'object'

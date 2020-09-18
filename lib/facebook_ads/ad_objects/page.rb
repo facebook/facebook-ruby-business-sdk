@@ -113,6 +113,7 @@ module FacebookAds
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
+      "MESSAGING",
       "MODERATE",
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
@@ -120,6 +121,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_LIVE_STREAM_MODERATION",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -135,6 +137,7 @@ module FacebookAds
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
+      "MESSAGING",
       "MODERATE",
       "MODERATE_COMMUNITY",
       "PAGES_MESSAGING",
@@ -142,6 +145,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_LIVE_STREAM_MODERATION",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -679,6 +683,13 @@ module FacebookAds
       end
     end
 
+    has_edge :extend_thread_control do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :duration, 'int'
+        api.has_param :recipient, 'object'
+      end
+    end
+
     has_edge :feed do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :include_hidden, 'bool'
@@ -998,7 +1009,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
       end
       edge.get 'MessengerProfile'
       edge.post 'Page' do |api|
@@ -1156,6 +1167,7 @@ module FacebookAds
       end
       edge.post 'ProfilePictureSource' do |api|
         api.has_param :android_key_hash, 'string'
+        api.has_param :burn_media_effect, 'bool'
         api.has_param :caption, 'string'
         api.has_param :composer_session_id, 'string'
         api.has_param :has_umg, 'bool'

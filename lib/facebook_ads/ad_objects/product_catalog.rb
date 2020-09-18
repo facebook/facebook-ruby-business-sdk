@@ -335,6 +335,7 @@ module FacebookAds
         api.has_param :filter, 'object'
         api.has_param :metadata, 'hash'
         api.has_param :name, 'string'
+        api.has_param :retailer_id, 'string'
       end
     end
 

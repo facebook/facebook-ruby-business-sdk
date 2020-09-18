@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 
 ## Unreleased
+
+## v0.8.0.2
+
 ### Added
 - Added async support to Conversions API - Create event request promises by using EventRequestAsync.
 - `lead_id` field to the Conversions API `user_data` section.
@@ -66,3 +69,4 @@ All notable changes to this project will be documented in this file.
 ## v0.3.3.0
 ### Changed
 - Graph API call upgrade to [v3.3](https://developers.facebook.com/docs/graph-api/changelog/version3.3)
+

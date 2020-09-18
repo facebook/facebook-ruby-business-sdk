@@ -55,6 +55,7 @@ module FacebookAds
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'
+    field :primary_funding_id, 'string'
     field :purchase_order_number, 'string'
     field :status, 'string'
     field :timezone_id, 'string'
@@ -64,6 +65,9 @@ module FacebookAds
     has_edge :assigned_users do |edge|
       edge.delete do |api|
         api.has_param :user, 'int'
+      end
+      edge.get 'AssignedUser' do |api|
+        api.has_param :business, 'string'
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :tasks, { list: { enum: -> { WhatsAppBusinessAccount::TASKS }} }

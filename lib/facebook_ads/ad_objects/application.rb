@@ -227,6 +227,7 @@ module FacebookAds
         api.has_param :bundle_id, 'string'
         api.has_param :bundle_short_version, 'string'
         api.has_param :bundle_version, 'string'
+        api.has_param :click_id, 'string'
         api.has_param :consider_views, 'bool'
         api.has_param :custom_events, { list: 'object' }
         api.has_param :custom_events_file, 'file'
@@ -239,6 +240,7 @@ module FacebookAds
         api.has_param :include_dwell_data, 'bool'
         api.has_param :include_video_data, 'bool'
         api.has_param :install_referrer, 'string'
+        api.has_param :install_timestamp, 'int'
         api.has_param :installer_package, 'string'
         api.has_param :limited_data_use, 'bool'
         api.has_param :migration_bundle, 'string'
@@ -286,6 +288,14 @@ module FacebookAds
 
     has_edge :agencies do |edge|
       edge.get 'Business'
+    end
+
+    has_edge :aggregate_revenue do |edge|
+      edge.post do |api|
+        api.has_param :ecpms, { list: 'string' }
+        api.has_param :query_ids, { list: 'string' }
+        api.has_param :request_id, 'string'
+      end
     end
 
     has_edge :android_dialog_configs do |edge|
@@ -393,6 +403,7 @@ module FacebookAds
     has_edge :da_checks do |edge|
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
+        api.has_param :connection_method, { enum: -> { DaCheck::CONNECTION_METHOD }}
       end
     end
 
@@ -488,6 +499,7 @@ module FacebookAds
       edge.get do |api|
         api.has_param :device_id, 'string'
         api.has_param :extinfo, 'object'
+        api.has_param :os_version, 'string'
         api.has_param :platform, { enum: %w{ANDROID IOS }}
         api.has_param :sdk_version, 'string'
       end
