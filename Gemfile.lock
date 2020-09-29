@@ -1,10 +1,11 @@
 PATH
   remote: .
   specs:
-    facebookbusiness (0.8.0.0)
+    facebookbusiness (0.8.0.2)
       concurrent-ruby (~> 1.1)
       countries (~> 3.0)
       faraday (~> 1.0)
+      faraday_middleware (~> 1.0)
       json (~> 2.2)
       money (~> 6.13)
 
@@ -26,6 +27,8 @@ GEM
     dotenv (2.7.6)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (1.0.0)
+      faraday (~> 1.0)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     i18n_data (0.10.0)
@@ -81,7 +84,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print (~> 1.8)
-  bundler (~> 1.17)
+  bundler (~> 2.1.4)
   byebug (~> 11.0)
   countries (~> 3.0)
   dotenv (~> 2.7)
@@ -95,4 +98,4 @@ DEPENDENCIES
   rubocop (~> 0.71)
 
 BUNDLED WITH
-   1.17.2
+   2.1.4
