@@ -26,6 +26,14 @@ module FacebookAds
   # pull request for this class.
 
   class WhatsAppBusinessAccount < AdObject
+    TASKS = [
+      "DEVELOP",
+      "MANAGE",
+      "MANAGE_PHONE",
+      "MANAGE_TEMPLATES",
+      "VIEW_COST",
+    ]
+
     CATEGORY = [
       "ACCOUNT_UPDATE",
       "ALERT_UPDATE",
@@ -47,11 +55,25 @@ module FacebookAds
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'
+    field :primary_funding_id, 'string'
     field :purchase_order_number, 'string'
     field :status, 'string'
     field :timezone_id, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :assigned_users do |edge|
+      edge.delete do |api|
+        api.has_param :user, 'int'
+      end
+      edge.get 'AssignedUser' do |api|
+        api.has_param :business, 'string'
+      end
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :tasks, { list: { enum: -> { WhatsAppBusinessAccount::TASKS }} }
+        api.has_param :user, 'int'
+      end
+    end
 
     has_edge :message_templates do |edge|
       edge.delete do |api|
@@ -63,7 +85,7 @@ module FacebookAds
         api.has_param :language, { list: 'string' }
         api.has_param :name, 'string'
         api.has_param :name_or_content, 'string'
-        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED PENDING PENDING_DELETION REJECTED }} }
+        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED IN_APPEAL PENDING PENDING_DELETION REJECTED }} }
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}
@@ -75,6 +97,10 @@ module FacebookAds
 
     has_edge :phone_numbers do |edge|
       edge.get
+    end
+
+    has_edge :subscribed_apps do |edge|
+      edge.post 'WhatsAppBusinessAccount'
     end
 
   end

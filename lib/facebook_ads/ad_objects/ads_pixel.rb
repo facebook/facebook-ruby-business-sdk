@@ -32,7 +32,9 @@ module FacebookAds
     ]
 
     AUTOMATIC_MATCHING_FIELDS = [
+      "country",
       "ct",
+      "db",
       "em",
       "fn",
       "ge",
@@ -78,9 +80,6 @@ module FacebookAds
     has_no_delete
 
     has_edge :assigned_users do |edge|
-      edge.delete do |api|
-        api.has_param :user, 'int'
-      end
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'
       end
@@ -93,15 +92,20 @@ module FacebookAds
     has_edge :da_checks do |edge|
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
+        api.has_param :connection_method, { enum: -> { DaCheck::CONNECTION_METHOD }}
       end
     end
 
     has_edge :events do |edge|
       edge.post 'AdsPixel' do |api|
         api.has_param :data, { list: 'string' }
+        api.has_param :namespace_id, 'string'
         api.has_param :partner_agent, 'string'
         api.has_param :test_event_code, 'string'
         api.has_param :trace, 'int'
+        api.has_param :upload_id, 'string'
+        api.has_param :upload_source, 'string'
+        api.has_param :upload_tag, 'string'
       end
     end
 

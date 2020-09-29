@@ -38,7 +38,6 @@ module FacebookAds
     field :id, 'string'
     field :insights_section, 'object'
     field :name, 'string'
-    field :report_schedule, 'object'
     field :report_schedule_id, 'string'
     field :sort_by, 'string'
     field :sort_dir, 'string'
@@ -46,6 +45,7 @@ module FacebookAds
     field :time_interval, 'object'
     field :time_ranges, { list: 'object' }
     has_no_post
+    has_no_delete
 
   end
 end

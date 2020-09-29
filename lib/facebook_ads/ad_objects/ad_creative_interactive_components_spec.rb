@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdCreativeInteractiveComponentsSpec < AdObject
 
+    field :child_attachments, { list: 'object' }
     field :components, { list: 'object' }
     has_no_id
     has_no_get

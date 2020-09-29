@@ -35,6 +35,7 @@ module FacebookAds
       "IPAD",
       "IPHONE",
       "MOBILE_WEB",
+      "OCULUS",
       "SUPPLEMENTARY_IMAGES",
       "WEB",
       "WINDOWS",
@@ -226,16 +227,22 @@ module FacebookAds
         api.has_param :bundle_id, 'string'
         api.has_param :bundle_short_version, 'string'
         api.has_param :bundle_version, 'string'
+        api.has_param :click_id, 'string'
         api.has_param :consider_views, 'bool'
         api.has_param :custom_events, { list: 'object' }
         api.has_param :custom_events_file, 'file'
+        api.has_param :data_processing_options, { list: 'string' }
+        api.has_param :data_processing_options_country, 'int'
+        api.has_param :data_processing_options_state, 'int'
         api.has_param :device_token, 'string'
         api.has_param :event, { enum: %w{CUSTOM_APP_EVENTS DEFERRED_APP_LINK MOBILE_APP_INSTALL }}
         api.has_param :extinfo, 'object'
         api.has_param :include_dwell_data, 'bool'
         api.has_param :include_video_data, 'bool'
         api.has_param :install_referrer, 'string'
+        api.has_param :install_timestamp, 'int'
         api.has_param :installer_package, 'string'
+        api.has_param :limited_data_use, 'bool'
         api.has_param :migration_bundle, 'string'
         api.has_param :page_id, 'int'
         api.has_param :page_scoped_user_id, 'int'
@@ -281,6 +288,18 @@ module FacebookAds
 
     has_edge :agencies do |edge|
       edge.get 'Business'
+    end
+
+    has_edge :aggregate_revenue do |edge|
+      edge.post do |api|
+        api.has_param :ecpms, { list: 'string' }
+        api.has_param :query_ids, { list: 'string' }
+        api.has_param :request_id, 'string'
+      end
+    end
+
+    has_edge :android_dialog_configs do |edge|
+      edge.get
     end
 
     has_edge :app_event_types do |edge|
@@ -384,6 +403,7 @@ module FacebookAds
     has_edge :da_checks do |edge|
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
+        api.has_param :connection_method, { enum: -> { DaCheck::CONNECTION_METHOD }}
       end
     end
 
@@ -391,16 +411,6 @@ module FacebookAds
       edge.get 'Event' do |api|
         api.has_param :include_canceled, 'bool'
         api.has_param :type, { enum: -> { Event::TYPE }}
-      end
-    end
-
-    has_edge :full_app_indexing_infos do |edge|
-      edge.get do |api|
-        api.has_param :app_version, 'string'
-      end
-      edge.post do |api|
-        api.has_param :app_version, 'string'
-        api.has_param :full_app_indexing_info_classes, { list: 'hash' }
       end
     end
 
@@ -460,6 +470,12 @@ module FacebookAds
       end
     end
 
+    has_edge :live_videos do |edge|
+      edge.get 'LiveVideo' do |api|
+        api.has_param :broadcast_status, { enum: -> { LiveVideo::BROADCAST_STATUS }}
+      end
+    end
+
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
         api.has_param :advertiser_id, 'string'
@@ -483,20 +499,9 @@ module FacebookAds
       edge.get do |api|
         api.has_param :device_id, 'string'
         api.has_param :extinfo, 'object'
+        api.has_param :os_version, 'string'
         api.has_param :platform, { enum: %w{ANDROID IOS }}
         api.has_param :sdk_version, 'string'
-      end
-    end
-
-    has_edge :monetization do |edge|
-      edge.post do |api|
-        api.has_param :breakdowns, { list: { enum: %w{COUNTRY }} }
-        api.has_param :campaign_id, 'string'
-        api.has_param :device_list, { list: 'string' }
-        api.has_param :query_id, 'string'
-        api.has_param :request_id, 'string'
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
       end
     end
 
@@ -600,6 +605,7 @@ module FacebookAds
     has_edge :user_properties do |edge|
       edge.post do |api|
         api.has_param :data, { list: 'object' }
+        api.has_param :limited_data_use, 'bool'
       end
     end
 

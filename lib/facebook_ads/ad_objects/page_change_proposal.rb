@@ -33,6 +33,8 @@ module FacebookAds
     field :id, 'string'
     field :proposed_value, 'string'
     field :upcoming_change_info, 'PageUpcomingChange'
+    has_no_get
+    has_no_post
     has_no_delete
 
   end

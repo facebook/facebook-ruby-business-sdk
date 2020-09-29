@@ -50,10 +50,6 @@ module FacebookAds
       end
     end
 
-    has_edge :instagram_comments do |edge|
-      edge.get 'InstagramComment'
-    end
-
     has_edge :likes do |edge|
       edge.get 'Profile'
     end

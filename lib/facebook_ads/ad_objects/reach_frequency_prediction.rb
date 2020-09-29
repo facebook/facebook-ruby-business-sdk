@@ -91,7 +91,6 @@ module FacebookAds
     field :external_reach, 'int'
     field :feed_ratio_0000, 'int'
     field :frequency_cap, 'int'
-    field :frequency_distribution, { list: 'double' }
     field :frequency_distribution_map, 'map<unsigned int, list<float>>'
     field :frequency_distribution_map_agg, 'map<unsigned int, list<unsigned int>>'
     field :grp_audience_size, 'double'
@@ -140,7 +139,6 @@ module FacebookAds
     field :timezone_id, 'int'
     field :timezone_name, 'string'
     field :topline_id, 'int'
-    field :tv_viewer_cluster_map, 'map<unsigned int, Object>'
     field :video_view_length_constraint, 'int'
     field :viewtag, 'string'
     field :action, { enum: -> { ACTION }}

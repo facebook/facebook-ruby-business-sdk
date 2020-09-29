@@ -69,8 +69,8 @@ module FacebookAds
     ]
 
 
-    field :ad_creative_id_new, 'string'
-    field :ad_creative_id_old, 'string'
+    field :ad_creative_id_new, 'AdCreative'
+    field :ad_creative_id_old, 'AdCreative'
     field :asset_feed_id_new, 'string'
     field :asset_feed_id_old, 'string'
     field :bid_amount_new, 'int'
@@ -105,8 +105,8 @@ module FacebookAds
     field :reason_old, 'string'
     field :run_status_new, 'string'
     field :run_status_old, 'string'
-    field :source_adgroup_id_new, 'string'
-    field :source_adgroup_id_old, 'string'
+    field :source_adgroup_id_new, 'Ad'
+    field :source_adgroup_id_old, 'Ad'
     field :start_time_new, 'datetime'
     field :start_time_old, 'datetime'
     field :stop_time_new, 'datetime'

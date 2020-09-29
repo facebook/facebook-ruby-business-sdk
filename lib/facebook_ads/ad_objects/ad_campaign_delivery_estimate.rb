@@ -45,12 +45,14 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_LEAD",
       "REACH",
       "REPLIES",
       "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
+      "VISIT_INSTAGRAM_PROFILE",
     ]
 
 

@@ -35,6 +35,7 @@ module FacebookAds
       "CONTENT_VIEW",
       "CUSTOMIZE_PRODUCT",
       "DONATE",
+      "FACEBOOK_SELECTED",
       "FIND_LOCATION",
       "INITIATED_CHECKOUT",
       "LEAD",

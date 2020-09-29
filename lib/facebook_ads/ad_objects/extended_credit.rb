@@ -68,5 +68,12 @@ module FacebookAds
       end
     end
 
+    has_edge :whatsapp_credit_sharing_and_attach do |edge|
+      edge.post do |api|
+        api.has_param :waba_currency, 'string'
+        api.has_param :waba_id, 'string'
+      end
+    end
+
   end
 end

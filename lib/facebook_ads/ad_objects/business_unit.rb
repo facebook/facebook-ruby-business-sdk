@@ -79,7 +79,7 @@ module FacebookAds
     has_edge :conversion_paths do |edge|
       edge.get do |api|
         api.has_param :click_lookback_window, 'int'
-        api.has_param :date_range, 'object'
+        api.has_param :date_range, 'hash'
         api.has_param :fb_conversion_event_id, 'int'
         api.has_param :limit, 'int'
         api.has_param :metric_context, 'hash'

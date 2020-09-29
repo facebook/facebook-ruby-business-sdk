@@ -30,10 +30,15 @@ user_data = FacebookAds::ServerSide::UserData.new(
     fbc: 'fb.1.1554763741205.AbCdEfGhIjKlMnOpQrStUvWxYz1234567890',
     fbp: 'fb.1.1558571054389.1098115397')
 
+custom_data = FacebookAds::ServerSide::CustomData.new(
+    currency: 'usd',
+    value: 123.45)
+
 event = FacebookAds::ServerSide::Event.new(
-    event_name: 'PageView',
+    event_name: 'Purchase',
     event_time: Time.now.to_i,
-    user_data: user_data)
+    user_data: user_data,
+    custom_data: custom_data)
 
 
 request = FacebookAds::ServerSide::EventRequest.new(

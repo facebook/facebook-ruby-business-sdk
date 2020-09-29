@@ -29,10 +29,8 @@ module FacebookAds
 
     field :attribution_windows, { list: 'string' }
     field :conversions, 'int'
-    field :exit_reason, 'string'
     field :last_sig_edit_ts, 'int'
     field :status, 'string'
-    field :types, { list: 'string' }
     has_no_id
     has_no_get
     has_no_post

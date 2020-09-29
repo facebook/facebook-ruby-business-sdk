@@ -33,7 +33,6 @@ module FacebookAds
     has_no_delete
 
     has_edge :photos do |edge|
-      edge.get 'Photo'
       edge.post 'NativeOfferView' do |api|
         api.has_param :ad_account, 'string'
         api.has_param :ad_image_hashes, { list: 'string' }

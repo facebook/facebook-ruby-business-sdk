@@ -31,11 +31,11 @@ module FacebookAds
     field :application, 'Application'
     field :created_time, 'datetime'
     field :data, 'string'
-    field :from, 'User'
+    field :from, 'object'
     field :id, 'string'
     field :message, 'string'
     field :object, 'object'
-    field :to, 'User'
+    field :to, 'object'
     has_no_post
 
   end

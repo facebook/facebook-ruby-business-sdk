@@ -54,8 +54,17 @@ module FacebookAds
       "WORKSHOP",
     ]
 
+    ONLINE_EVENT_FORMAT = [
+      "fb_live",
+      "messenger_room",
+      "none",
+      "other",
+      "third_party",
+    ]
+
     TYPE = [
       "community",
+      "friends",
       "group",
       "private",
       "public",
@@ -88,10 +97,13 @@ module FacebookAds
     field :interested_count, 'int'
     field :is_canceled, 'bool'
     field :is_draft, 'bool'
+    field :is_online, 'bool'
     field :is_page_owned, 'bool'
     field :maybe_count, 'int'
     field :name, 'string'
     field :noreply_count, 'int'
+    field :online_event_format, { enum: -> { ONLINE_EVENT_FORMAT }}
+    field :online_event_third_party_url, 'string'
     field :owner, 'object'
     field :parent_group, 'Group'
     field :place, 'Place'
@@ -120,6 +132,7 @@ module FacebookAds
       edge.post 'LiveVideo' do |api|
         api.has_param :content_tags, { list: 'string' }
         api.has_param :description, 'string'
+        api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
@@ -131,7 +144,6 @@ module FacebookAds
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
-        api.has_param :save_vod, 'bool'
         api.has_param :schedule_custom_profile_image, 'file'
         api.has_param :spatial_audio_format, { enum: -> { LiveVideo::SPATIAL_AUDIO_FORMAT }}
         api.has_param :status, { enum: -> { LiveVideo::STATUS }}

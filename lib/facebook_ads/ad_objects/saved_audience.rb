@@ -40,6 +40,7 @@ module FacebookAds
     field :time_created, 'datetime'
     field :time_updated, 'datetime'
     has_no_post
+    has_no_delete
 
   end
 end

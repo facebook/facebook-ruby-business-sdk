@@ -27,12 +27,14 @@ module FacebookAds
 
   class AdCampaignActivity < AdObject
     BID_STRATEGY_NEW = [
+      "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
       "TARGET_COST",
     ]
 
     BID_STRATEGY_OLD = [
+      "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
       "TARGET_COST",
@@ -81,12 +83,14 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_LEAD",
       "REACH",
       "REPLIES",
       "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
+      "VISIT_INSTAGRAM_PROFILE",
     ]
 
     OPTIMIZATION_GOAL_OLD = [
@@ -108,12 +112,14 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_LEAD",
       "REACH",
       "REPLIES",
       "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
+      "VISIT_INSTAGRAM_PROFILE",
     ]
 
 
@@ -133,8 +139,6 @@ module FacebookAds
     field :bid_type_old, 'string'
     field :billing_event_new, { enum: -> { BILLING_EVENT_NEW }}
     field :billing_event_old, { enum: -> { BILLING_EVENT_OLD }}
-    field :brande_audience_id_new, 'string'
-    field :brande_audience_id_old, 'string'
     field :budget_limit_new, 'object'
     field :budget_limit_old, 'object'
     field :created_time, 'datetime'

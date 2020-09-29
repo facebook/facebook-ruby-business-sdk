@@ -292,10 +292,12 @@ module FacebookAds
     field :additional_image_urls, { list: 'string' }
     field :additional_variant_attributes, 'hash'
     field :age_group, { enum: -> { AGE_GROUP }}
+    field :applinks, 'CatalogItemAppLinks'
     field :availability, { enum: -> { AVAILABILITY }}
     field :brand, 'string'
     field :capability_to_review_status, 'hash'
     field :category, 'string'
+    field :category_specific_fields, 'CatalogSubVerticalList'
     field :color, 'string'
     field :commerce_insights, 'ProductItemCommerceInsights'
     field :condition, { enum: -> { CONDITION }}
@@ -308,6 +310,7 @@ module FacebookAds
     field :custom_label_4, 'string'
     field :description, 'string'
     field :expiration_date, 'string'
+    field :fb_product_category, 'string'
     field :gender, { enum: -> { GENDER }}
     field :gtin, 'string'
     field :id, 'string'

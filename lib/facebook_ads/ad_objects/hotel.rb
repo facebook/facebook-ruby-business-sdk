@@ -28,8 +28,10 @@ module FacebookAds
   class Hotel < AdObject
 
     field :address, 'string'
+    field :applinks, 'CatalogItemAppLinks'
     field :brand, 'string'
     field :category, 'string'
+    field :category_specific_fields, 'CatalogSubVerticalList'
     field :currency, 'string'
     field :description, 'string'
     field :guest_ratings, 'string'
@@ -45,7 +47,6 @@ module FacebookAds
     field :sanitized_images, { list: 'string' }
     field :star_rating, 'double'
     field :url, 'string'
-    field :applinks, 'object'
     field :base_price, 'int'
 
     has_edge :hotel_rooms do |edge|

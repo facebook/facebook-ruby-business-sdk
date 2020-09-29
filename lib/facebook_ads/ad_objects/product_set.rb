@@ -30,9 +30,13 @@ module FacebookAds
     field :auto_creation_url, 'string'
     field :filter, 'string'
     field :id, 'string'
+    field :latest_metadata, 'ProductSetMetadata'
+    field :live_metadata, 'ProductSetMetadata'
     field :name, 'string'
     field :product_catalog, 'ProductCatalog'
     field :product_count, 'int'
+    field :retailer_id, 'string'
+    field :metadata, 'hash'
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|

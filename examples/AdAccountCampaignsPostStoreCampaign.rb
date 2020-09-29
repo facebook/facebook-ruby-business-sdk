@@ -30,9 +30,9 @@ end
 
 ad_account = FacebookAds::AdAccount.get(id)
 campaigns = ad_account.campaigns.create({
-    special_ad_category: 'NONE',
-    name: 'Store Visits Campaign',
+    name: 'Store Traffic Campaign',
     objective: 'STORE_VISITS',
     promoted_object: {'page_id':'<pageID>'},
     status: 'PAUSED',
+    special_ad_categories: [],
 })

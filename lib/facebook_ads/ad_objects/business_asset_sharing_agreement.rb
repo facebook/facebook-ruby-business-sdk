@@ -31,6 +31,7 @@ module FacebookAds
       "DECLINE",
       "EXPIRED",
       "IN_PROGRESS",
+      "PENDING",
     ]
 
 

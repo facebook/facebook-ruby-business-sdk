@@ -29,9 +29,19 @@ module FacebookAds
     ROLE = [
       "ADMIN",
       "ADS_RIGHTS_REVIEWER",
+      "DEVELOPER",
       "EMPLOYEE",
       "FINANCE_ANALYST",
       "FINANCE_EDITOR",
+      "FINANCE_EDIT_TASK",
+      "FINANCE_VIEW_TASK",
+      "MODERATE_TASK",
+      "OPERATE_TASK",
+      "PARTNER_CENTER_ADMIN",
+      "PARTNER_CENTER_ANALYST",
+      "PARTNER_CENTER_EDUCATION",
+      "PARTNER_CENTER_MARKETING",
+      "PARTNER_CENTER_OPERATIONS",
     ]
 
 
@@ -62,10 +72,6 @@ module FacebookAds
 
     has_edge :assigned_product_catalogs do |edge|
       edge.get 'ProductCatalog'
-    end
-
-    has_edge :updated_by do |edge|
-      edge.get 'User'
     end
 
   end

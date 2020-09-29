@@ -28,9 +28,13 @@ module FacebookAds
   class PageCallToAction < AdObject
     ANDROID_DESTINATION_TYPE = [
       "APP_DEEPLINK",
+      "BECOME_A_VOLUNTEER",
       "EMAIL",
       "FACEBOOK_APP",
+      "FOLLOW",
+      "MARKETPLACE_INVENTORY_PAGE",
       "MESSENGER",
+      "MINI_SHOP",
       "NONE",
       "PHONE_CALL",
       "SHOP_ON_FACEBOOK",
@@ -39,9 +43,13 @@ module FacebookAds
 
     IPHONE_DESTINATION_TYPE = [
       "APP_DEEPLINK",
+      "BECOME_A_VOLUNTEER",
       "EMAIL",
       "FACEBOOK_APP",
+      "FOLLOW",
+      "MARKETPLACE_INVENTORY_PAGE",
       "MESSENGER",
+      "MINI_SHOP",
       "NONE",
       "PHONE_CALL",
       "SHOP_ON_FACEBOOK",
@@ -49,6 +57,7 @@ module FacebookAds
     ]
 
     TYPE = [
+      "BECOME_A_VOLUNTEER",
       "BOOK_APPOINTMENT",
       "BOOK_NOW",
       "BUY_TICKETS",
@@ -57,6 +66,7 @@ module FacebookAds
       "CONTACT_US",
       "DONATE_NOW",
       "EMAIL",
+      "FOLLOW_PAGE",
       "GET_DIRECTIONS",
       "GET_OFFER",
       "GET_OFFER_VIEW",
@@ -66,21 +76,27 @@ module FacebookAds
       "LOCAL_DEV_PLATFORM",
       "MESSAGE",
       "OPEN_APP",
+      "ORDER_FOOD",
       "PLAY_MUSIC",
       "PLAY_NOW",
+      "PURCHASE_GIFT_CARDS",
       "REQUEST_APPOINTMENT",
       "REQUEST_QUOTE",
       "SHOP_NOW",
       "SHOP_ON_FACEBOOK",
       "SIGN_UP",
+      "VIEW_INVENTORY",
+      "VIEW_SHOP",
       "VISIT_GROUP",
       "WATCH_NOW",
       "WOODHENGE_SUPPORT",
     ]
 
     WEB_DESTINATION_TYPE = [
+      "BECOME_A_VOLUNTEER",
       "BECOME_SUPPORTER",
       "EMAIL",
+      "FOLLOW",
       "MESSENGER",
       "NONE",
       "SHOP_ON_FACEBOOK",

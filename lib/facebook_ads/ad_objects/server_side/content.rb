@@ -22,20 +22,23 @@ module FacebookAds
     # Content object contains information about the products.
     class Content
 
-      # Product Id
-      attr_accessor :product_id
-
-      # number of product
-      attr_accessor :quantity
-
-      # Item Price.
-      attr_accessor :item_price
+      attr_accessor :product_id,
+                    :quantity,
+                    :item_price,
+                    :title,
+                    :description,
+                    :brand,
+                    :category
 
       # Initializes the object
       # @param [String] product_id
       # @param [Integer] quantity
       # @param [Float] item_price
-      def initialize(product_id: nil, quantity: nil, item_price: nil)
+      # @param [String] title
+      # @param [String] description
+      # @param [String] brand
+      # @param [String] category
+      def initialize(product_id: nil, quantity: nil, item_price: nil, title: nil, description: nil, brand: nil, category: nil)
         unless product_id.nil?
           self.product_id = String(product_id)
         end
@@ -44,6 +47,18 @@ module FacebookAds
         end
         unless item_price.nil?
           self.item_price = Float(item_price)
+        end
+        unless title.nil?
+          self.title = String(title)
+        end
+        unless description.nil?
+          self.description = String(description)
+        end
+        unless brand.nil?
+          self.brand = String(brand)
+        end
+        unless category.nil?
+          self.category = String(category)
         end
       end
 
@@ -66,15 +81,34 @@ module FacebookAds
         if attributes.has_key?(:'item_price')
           self.item_price = attributes[:'item_price']
         end
+
+        if attributes.has_key?(:'title')
+          self.title = attributes[:'title']
+        end
+
+        if attributes.has_key?(:'description')
+          self.description = attributes[:'description']
+        end
+
+        if attributes.has_key?(:'brand')
+          self.brand = attributes[:'brand']
+        end
+
+        if attributes.has_key?(:'category')
+          self.category = attributes[:'category']
+        end
       end
 
       # Checks equality by comparing each attribute.
       def ==(o)
-        return true if self.equal?(o)
-        self.class == o.class &&
+        return self.class == o.class &&
             product_id == o.product_id &&
             quantity == o.quantity &&
-            item_price == o.item_price
+            item_price == o.item_price &&
+            title == o.title &&
+            description == o.description &&
+            brand == o.brand &&
+            category == o.category
       end
 
       # @see the `==` method
@@ -88,7 +122,11 @@ module FacebookAds
         [
             product_id,
             quantity,
-            item_price
+            item_price,
+            title,
+            description,
+            brand,
+            category
         ].hash
       end
 
@@ -106,6 +144,18 @@ module FacebookAds
         unless item_price.nil?
           hash['item_price'] = item_price
         end
+        unless title.nil?
+          hash['title'] = title
+        end
+        unless description.nil?
+          hash['description'] = description
+        end
+        unless brand.nil?
+          hash['brand'] = brand
+        end
+        unless category.nil?
+          hash['category'] = category
+        end
         hash.to_s
       end
 
@@ -120,6 +170,18 @@ module FacebookAds
         end
         unless item_price.nil?
           hash['item_price'] = item_price
+        end
+        unless title.nil?
+          hash['title'] = title
+        end
+        unless description.nil?
+          hash['description'] = description
+        end
+        unless brand.nil?
+          hash['brand'] = brand
+        end
+        unless category.nil?
+          hash['category'] = category
         end
         hash
       end

@@ -34,12 +34,6 @@ module FacebookAds
       "SONGTRACK",
     ]
 
-    FINGERPRINT_VALIDITY = [
-      "EXPIRED",
-      "EXPIRING",
-      "VALID",
-    ]
-
 
     field :duration_in_sec, 'double'
     field :fingerprint_content_type, 'string'
@@ -48,7 +42,6 @@ module FacebookAds
     field :metadata, 'object'
     field :title, 'string'
     field :universal_content_id, 'string'
-    has_no_post
 
   end
 end

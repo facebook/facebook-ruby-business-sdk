@@ -27,6 +27,7 @@ module FacebookAds
 
   class HotelRoom < AdObject
 
+    field :applinks, 'CatalogItemAppLinks'
     field :base_price, 'string'
     field :currency, 'string'
     field :description, 'string'

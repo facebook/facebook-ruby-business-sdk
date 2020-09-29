@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdSet < AdObject
     BID_STRATEGY = [
+      "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
       "TARGET_COST",
@@ -80,12 +81,14 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_LEAD",
       "REACH",
       "REPLIES",
       "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
       "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
+      "VISIT_INSTAGRAM_PROFILE",
     ]
 
     STATUS = [
@@ -137,6 +140,13 @@ module FacebookAds
       "NONE_EXPLORATION",
     ]
 
+    MULTI_OPTIMIZATION_GOAL_WEIGHT = [
+      "BALANCED",
+      "PREFER_EVENT",
+      "PREFER_INSTALL",
+      "UNDEFINED",
+    ]
+
     OPTIMIZATION_SUB_EVENT = [
       "NONE",
       "TRAVEL_INTENT",
@@ -154,6 +164,7 @@ module FacebookAds
       "CREDIT",
       "EMPLOYMENT",
       "HOUSING",
+      "ISSUES_ELECTIONS_POLITICS",
       "NONE",
     ]
 
@@ -198,10 +209,12 @@ module FacebookAds
     field :instagram_actor_id, 'string'
     field :is_dynamic_creative, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
+    field :learning_stage_info, 'AdCampaignLearningStageInfo'
     field :lifetime_budget, 'string'
     field :lifetime_imps, 'int'
     field :lifetime_min_spend_target, 'string'
     field :lifetime_spend_cap, 'string'
+    field :multi_optimization_goal_weight, 'string'
     field :name, 'string'
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}
     field :optimization_sub_event, 'string'
@@ -271,10 +284,8 @@ module FacebookAds
 
     has_edge :ads do |edge|
       edge.get 'Ad' do |api|
-        api.has_param :ad_draft_id, 'string'
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :include_drafts, 'bool'
         api.has_param :time_range, 'object'
         api.has_param :updated_since, 'int'
       end

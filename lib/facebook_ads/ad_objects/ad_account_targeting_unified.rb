@@ -59,6 +59,7 @@ module FacebookAds
       "CREDIT",
       "EMPLOYMENT",
       "HOUSING",
+      "ISSUES_ELECTIONS_POLITICS",
       "NONE",
     ]
 
@@ -132,7 +133,9 @@ module FacebookAds
       "id",
       "income",
       "industries",
+      "instagram_hashtags",
       "instagram_positions",
+      "instream_video_skippable_excluded",
       "instream_video_sponsorship_placements",
       "interest_defaults_source",
       "interested_in",
@@ -165,6 +168,7 @@ module FacebookAds
       "rtb_flag",
       "site_category",
       "targeting_optimization",
+      "targeting_relaxation_types",
       "timezones",
       "topic",
       "trending",
@@ -202,6 +206,7 @@ module FacebookAds
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",
       "REACH",
+      "STORE_VISITS",
       "VIDEO_VIEWS",
     ]
 

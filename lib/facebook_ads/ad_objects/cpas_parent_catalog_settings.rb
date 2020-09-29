@@ -27,6 +27,7 @@ module FacebookAds
 
   class CpasParentCatalogSettings < AdObject
     ATTRIBUTION_WINDOWS = [
+      "DDA",
       "DEFAULT",
       "X1D_CLICK",
       "X1D_VIEW",

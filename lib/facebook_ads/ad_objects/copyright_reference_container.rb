@@ -31,7 +31,6 @@ module FacebookAds
     field :copyright_creation_time, 'datetime'
     field :download_hd_url, 'string'
     field :duration_in_sec, 'double'
-    field :fingerprint_validity, 'string'
     field :id, 'string'
     field :iswc, 'string'
     field :metadata, 'object'

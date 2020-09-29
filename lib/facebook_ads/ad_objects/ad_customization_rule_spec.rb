@@ -30,11 +30,13 @@ module FacebookAds
     field :caption, 'string'
     field :customization_spec, 'object'
     field :description, 'string'
+    field :image_hash, 'string'
     field :link, 'string'
     field :message, 'string'
     field :name, 'string'
     field :priority, 'int'
     field :template_url_spec, 'AdCreativeTemplateUrlSpec'
+    field :video_id, 'int'
     has_no_id
     has_no_get
     has_no_post

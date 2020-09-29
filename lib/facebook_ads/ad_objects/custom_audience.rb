@@ -44,6 +44,8 @@ module FacebookAds
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
+      "LOCAL_SERVICE_BUSINESS",
+      "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
       "OFFLINE_PRODUCT",
       "PRODUCT",
@@ -163,10 +165,6 @@ module FacebookAds
         api.has_param :effective_status, { list: 'string' }
         api.has_param :status, { list: 'string' }
       end
-    end
-
-    has_edge :prefills do |edge|
-      edge.get 'CustomAudiencePrefillState'
     end
 
     has_edge :sessions do |edge|

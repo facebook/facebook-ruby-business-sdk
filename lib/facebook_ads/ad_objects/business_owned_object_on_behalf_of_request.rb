@@ -31,6 +31,7 @@ module FacebookAds
       "DECLINE",
       "EXPIRED",
       "IN_PROGRESS",
+      "PENDING",
     ]
 
 
@@ -40,6 +41,7 @@ module FacebookAds
     field :requesting_business, 'Business'
     field :status, 'string'
     has_no_post
+    has_no_delete
 
   end
 end

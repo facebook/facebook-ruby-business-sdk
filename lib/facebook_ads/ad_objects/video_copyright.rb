@@ -51,9 +51,9 @@ module FacebookAds
     field :reference_file, 'CopyrightReferenceContainer'
     field :reference_file_disabled, 'bool'
     field :reference_file_disabled_by_ops, 'bool'
-    field :reference_file_expired, 'bool'
     field :reference_owner_id, 'string'
     field :rule_ids, { list: 'VideoCopyrightRule' }
+    field :tags, { list: 'string' }
     field :whitelisted_ids, { list: 'string' }
     has_no_delete
 
