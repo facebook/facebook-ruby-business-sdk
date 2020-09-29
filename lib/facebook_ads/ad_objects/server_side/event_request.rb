@@ -51,6 +51,9 @@ module FacebookAds
       # The origin/source of data for the dataset to be uploaded.
       attr_accessor :upload_source
 
+      # The HttpServiceInterface client to use for executing the request.
+      attr_accessor :http_service_client
+
       # @param [String] pixel_id
       # @param [Array(FacebookAds::ServerSide::Event)] events
       # @param [String] test_event_code
@@ -59,8 +62,10 @@ module FacebookAds
       # @param [String] upload_id
       # @param [String] upload_tag
       # @param [String] upload_source
+      # @param [HttpServiceInterface] http_service_client
       def initialize(pixel_id: nil, events: nil, test_event_code: nil, partner_agent: nil,
-          namespace_id: nil, upload_id: nil, upload_tag: nil, upload_source: nil)
+          namespace_id: nil, upload_id: nil, upload_tag: nil, upload_source: nil,
+          http_service_client: nil)
         unless pixel_id.nil?
           self.pixel_id = pixel_id
         end
@@ -84,6 +89,9 @@ module FacebookAds
         end
         unless upload_source.nil?
           self.upload_source = upload_source
+        end
+        unless http_service_client.nil?
+          self.http_service_client = http_service_client
         end
       end
 
@@ -128,6 +136,10 @@ module FacebookAds
         if attributes.has_key?(:'upload_source')
           self.upload_source = attributes[:'upload_source']
         end
+
+        if attributes.has_key?(:'http_service_client')
+          self.http_service_client = attributes[:'http_service_client']
+        end
       end
 
       # Execute request
@@ -135,18 +147,13 @@ module FacebookAds
         unless valid?
           raise list_invalid_properties
         end
-        normalized_events = normalize
-        ads_pixel = FacebookAds::AdsPixel.get(pixel_id)
-        params = {
-          data: normalized_events
-        }
-        params[:test_event_code] = test_event_code unless test_event_code.nil?
-        params[:partner_agent] = partner_agent unless partner_agent.nil?
-        params[:namespace_id] = namespace_id unless namespace_id.nil?
-        params[:upload_id] = upload_id unless upload_id.nil?
-        params[:upload_tag] = upload_tag unless upload_tag.nil?
-        params[:upload_source] = upload_source unless upload_source.nil?
 
+        if http_service_client
+          return execute_with_client(http_service_client)
+        end
+        params = get_params()
+        params[:data] = normalize
+        ads_pixel = FacebookAds::AdsPixel.get(pixel_id)
         response = ads_pixel.events.create(params)
         json_response_object = JSON.parse(JSON.generate(response), object_class: OpenStruct)
         FacebookAds::ServerSide::EventResponse.new(
@@ -162,6 +169,44 @@ module FacebookAds
           normalized_events.push(JSON.generate(event.normalize))
         end
         normalized_events
+      end
+
+      def get_params
+        params = {}
+        params[:test_event_code] = test_event_code unless test_event_code.nil?
+        params[:partner_agent] = partner_agent unless partner_agent.nil?
+        params[:namespace_id] = namespace_id unless namespace_id.nil?
+        params[:upload_id] = upload_id unless upload_id.nil?
+        params[:upload_tag] = upload_tag unless upload_tag.nil?
+        params[:upload_source] = upload_source unless upload_source.nil?
+        params
+      end
+
+      def execute_with_client http_client
+        url = [
+          "https://#{FacebookAds::DEFAULT_HOST}",
+          FacebookAds::DEFAULT_API_VERSION,
+          pixel_id,
+          'events',
+        ].join('/')
+        headers = {
+          'User-Agent' => "fbbizsdk-ruby-v#{FacebookAds::API_VERSION}"
+        }
+        params = get_params
+        params[:data] = events.map(&:normalize)
+        appsecret = FacebookAds.config.app_secret
+        access_token = FacebookAds.config.access_token
+        params[:access_token] = access_token
+        if appsecret
+          params[:appsecret_proof] = FacebookAds::ServerSide::HttpUtil.appsecret_proof(appsecret, access_token)
+        end
+
+        http_client.execute(
+          url,
+          FacebookAds::ServerSide::HttpMethod::POST,
+          headers,
+          params
+        )
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -193,7 +238,8 @@ module FacebookAds
             namespace_id == o.namespace_id &&
             upload_id == o.upload_id &&
             upload_tag == o.upload_tag &&
-            upload_source == o.upload_source
+            upload_source == o.upload_source &&
+            http_service_client == o.http_service_client
       end
 
       # @see the `==` method
@@ -213,6 +259,7 @@ module FacebookAds
           upload_id,
           upload_tag,
           upload_source,
+          http_service_client,
         ].hash
       end
 
