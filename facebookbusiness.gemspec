@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'money', '~> 6.13'
 
   s.add_development_dependency 'awesome_print', '~> 1.8'
-  s.add_development_dependency 'bundler', '~> 1.17'
+  s.add_development_dependency 'bundler', '~> 2.1.4'
   s.add_development_dependency 'byebug', '~> 11.0'
   s.add_development_dependency 'dotenv', '~> 2.7'
   s.add_development_dependency 'minitest', '~> 5.0'
