@@ -50,4 +50,38 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequestAsync' do
 
         expect(response).to eq(expected_response)
     end
+
+    it 'clone_without_events clones the object without events' do
+        event = double(FacebookAds::ServerSide::Event)
+        expected_params = {
+            test_event_code: 'test_event_code-1',
+            partner_agent: 'partner_agent-2',
+            namespace_id: 'namespace_id-3',
+            upload_id: 'upload_id-4',
+            upload_tag: 'upload_tag-5',
+            upload_source: 'upload_source-6',
+        }
+        event_request_async = FacebookAds::ServerSide::EventRequestAsync.new(
+            pixel_id: expected_params[:pixel_id],
+            events: [event],
+            test_event_code: expected_params[:test_event_code],
+            partner_agent: expected_params[:partner_agent],
+            namespace_id: expected_params[:namespace_id],
+            upload_id: expected_params[:upload_id],
+            upload_tag: expected_params[:upload_tag],
+            upload_source: expected_params[:upload_source],
+        )
+        event_request_async_no_events = FacebookAds::ServerSide::EventRequestAsync.new(
+            pixel_id: expected_params[:pixel_id],
+            test_event_code: expected_params[:test_event_code],
+            partner_agent: expected_params[:partner_agent],
+            namespace_id: expected_params[:namespace_id],
+            upload_id: expected_params[:upload_id],
+            upload_tag: expected_params[:upload_tag],
+            upload_source: expected_params[:upload_source],
+        )
+        cloned = event_request_async.clone_without_events
+
+        expect(cloned).to eq(event_request_async_no_events)
+    end
 end
