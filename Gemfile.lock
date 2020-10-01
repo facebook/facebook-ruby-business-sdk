@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    facebookbusiness (0.8.0.2)
+    facebookbusiness (0.8.0.3)
       concurrent-ruby (~> 1.1)
       countries (~> 3.0)
       faraday (~> 1.0)
