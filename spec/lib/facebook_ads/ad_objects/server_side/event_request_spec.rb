@@ -186,7 +186,7 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
         )
         url = "https://#{FacebookAds::DEFAULT_HOST}/#{FacebookAds::DEFAULT_API_VERSION}/#{pixel_id}/events"
         headers = {
-            'User-Agent' => "fbbizsdk-ruby-v#{FacebookAds::API_VERSION}"
+            'User-Agent' => "fbbizsdk-ruby-v#{FacebookAds::VERSION}"
         }
         params = event_request.get_params
         params[:access_token] = access_token

@@ -190,7 +190,7 @@ module FacebookAds
           'events',
         ].join('/')
         headers = {
-          'User-Agent' => "fbbizsdk-ruby-v#{FacebookAds::API_VERSION}"
+          'User-Agent' => "fbbizsdk-ruby-v#{FacebookAds::VERSION}"
         }
         params = get_params
         params[:data] = events.map(&:normalize)
