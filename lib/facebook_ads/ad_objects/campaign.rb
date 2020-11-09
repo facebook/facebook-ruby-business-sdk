@@ -384,6 +384,7 @@ module FacebookAds
 
 
     field :account_id, 'string'
+    field :ad_strategy_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :boosted_object_id, 'string'

@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdAccountAdVolume < AdObject
     RECOMMENDATION_TYPE = [
+      "ACO_TOGGLE",
       "AGGREGATED_BID_LIMITED",
       "AGGREGATED_BUDGET_LIMITED",
       "AGGREGATED_COST_LIMITED",

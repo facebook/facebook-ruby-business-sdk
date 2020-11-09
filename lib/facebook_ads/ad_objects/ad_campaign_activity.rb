@@ -163,6 +163,8 @@ module FacebookAds
     field :optimization_goal_old, { enum: -> { OPTIMIZATION_GOAL_OLD }}
     field :pacing_type_new, 'int'
     field :pacing_type_old, 'int'
+    field :promoted_object_id_new, 'string'
+    field :promoted_object_id_old, 'string'
     field :run_status_new, 'string'
     field :run_status_old, 'string'
     field :schedule_new, { list: 'object' }

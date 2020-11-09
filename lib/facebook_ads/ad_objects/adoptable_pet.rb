@@ -36,17 +36,24 @@ module FacebookAds
     field :availability, 'string'
     field :breed, 'string'
     field :category_specific_fields, 'CatalogSubVerticalList'
+    field :coat_length, 'string'
+    field :color, 'string'
     field :currency, 'string'
     field :description, 'string'
+    field :features, { list: 'string' }
     field :gender, 'string'
     field :id, 'string'
     field :images, { list: 'string' }
     field :name, 'string'
     field :price, 'string'
     field :sanitized_images, { list: 'string' }
+    field :secondary_color, 'string'
+    field :shelter_email, 'string'
     field :shelter_name, 'string'
     field :shelter_page_id, 'Page'
+    field :shelter_phone, 'string'
     field :size, 'string'
+    field :tertiary_color, 'string'
     field :url, 'string'
     has_no_post
     has_no_delete

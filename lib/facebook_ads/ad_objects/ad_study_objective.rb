@@ -66,10 +66,6 @@ module FacebookAds
       edge.get 'OfflineConversionDataSet'
     end
 
-    has_edge :offsitepixels do |edge|
-      edge.get 'OffsitePixel'
-    end
-
     has_edge :partnerstudies do |edge|
       edge.get 'PartnerStudy'
     end

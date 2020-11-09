@@ -57,6 +57,7 @@ module FacebookAds
       "RIGHT_COLUMN_STANDARD",
       "SUGGESTED_VIDEO_DESKTOP",
       "SUGGESTED_VIDEO_MOBILE",
+      "WATCH_FEED_HOME",
       "WATCH_FEED_MOBILE",
     ]
 

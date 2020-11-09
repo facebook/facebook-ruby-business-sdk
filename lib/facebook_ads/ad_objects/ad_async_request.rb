@@ -35,6 +35,8 @@ module FacebookAds
       "INITIAL",
       "IN_PROGRESS",
       "PENDING_DEPENDENCY",
+      "PROCESS_BY_AD_ASYNC_ENGINE",
+      "PROCESS_BY_EVENT_PROCESSOR",
       "SUCCESS",
       "USER_CANCELED",
       "USER_CANCELED_DEPENDENCY",

@@ -100,6 +100,7 @@ module FacebookAds
     field :android_key_hash, { list: 'string' }
     field :android_sdk_error_categories, { list: 'object' }
     field :app_domains, { list: 'string' }
+    field :app_events_config, 'object'
     field :app_events_feature_bitmask, 'int'
     field :app_events_session_timeout, 'int'
     field :app_install_tracked, 'bool'

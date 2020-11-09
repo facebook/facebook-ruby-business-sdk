@@ -27,15 +27,19 @@ module FacebookAds
 
   class AdRuleExecutionSpec < AdObject
     EXECUTION_TYPE = [
+      "ADD_INTEREST_RELAXATION",
+      "ADD_QUESTIONNAIRE_INTERESTS",
       "CHANGE_BID",
       "CHANGE_BUDGET",
       "CHANGE_CAMPAIGN_BUDGET",
+      "INCREASE_RADIUS",
       "NOTIFICATION",
       "PAUSE",
       "PING_ENDPOINT",
       "REBALANCE_BUDGET",
       "ROTATE",
       "UNPAUSE",
+      "UPDATE_CREATIVE",
     ]
 
 

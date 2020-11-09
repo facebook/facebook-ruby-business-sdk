@@ -316,6 +316,7 @@ module FacebookAds
     field :id, 'string'
     field :image_cdn_urls, 'hash'
     field :image_url, 'string'
+    field :images, { list: 'string' }
     field :inventory, 'int'
     field :manufacturer_part_number, 'string'
     field :material, 'string'

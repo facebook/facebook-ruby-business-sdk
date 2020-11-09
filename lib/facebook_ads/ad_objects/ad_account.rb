@@ -332,6 +332,7 @@ module FacebookAds
       edge.post 'PlayableContent' do |api|
         api.has_param :app_id, 'string'
         api.has_param :name, 'string'
+        api.has_param :session_id, 'string'
         api.has_param :source, 'file'
         api.has_param :source_url, 'string'
         api.has_param :source_zip, 'file'
@@ -1056,9 +1057,12 @@ module FacebookAds
     has_edge :targetingsearch do |edge|
       edge.get 'AdAccountTargetingUnified' do |api|
         api.has_param :allow_only_fat_head_interests, 'bool'
+        api.has_param :app_store, { enum: -> { AdAccountTargetingUnified::APP_STORE }}
         api.has_param :countries, { list: 'string' }
         api.has_param :is_exclusion, 'bool'
         api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
+        api.has_param :objective, { enum: -> { AdAccountTargetingUnified::OBJECTIVE }}
+        api.has_param :promoted_object, 'object'
         api.has_param :q, 'string'
         api.has_param :regulated_categories, { list: { enum: -> { AdAccountTargetingUnified::REGULATED_CATEGORIES }} }
         api.has_param :session_id, 'int'
@@ -1078,6 +1082,7 @@ module FacebookAds
 
     has_edge :targetingsuggestions do |edge|
       edge.get 'AdAccountTargetingUnified' do |api|
+        api.has_param :app_store, { enum: -> { AdAccountTargetingUnified::APP_STORE }}
         api.has_param :countries, { list: 'string' }
         api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
         api.has_param :mode, { enum: -> { AdAccountTargetingUnified::MODE }}
@@ -1100,9 +1105,6 @@ module FacebookAds
     end
 
     has_edge :tracking do |edge|
-      edge.delete do |api|
-        api.has_param :tracking_specs, 'object'
-      end
       edge.get 'AdAccountTrackingData'
       edge.post 'AdAccount' do |api|
         api.has_param :tracking_specs, 'object'

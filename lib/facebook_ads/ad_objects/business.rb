@@ -86,7 +86,6 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
-      "PROFILE_PLUS_LIVE_STREAM_MODERATION",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -122,6 +121,12 @@ module FacebookAds
         api.has_param :fbe_external_business_id, 'string'
         api.has_param :scope, { list: 'Permission' }
         api.has_param :system_user_name, 'string'
+      end
+    end
+
+    has_edge :ad_accounts do |edge|
+      edge.delete do |api|
+        api.has_param :adaccount_id, 'string'
       end
     end
 
@@ -489,16 +494,18 @@ module FacebookAds
       edge.post 'ProductCatalog' do |api|
         api.has_param :catalog_segment_filter, 'object'
         api.has_param :catalog_segment_product_set_id, 'string'
-        api.has_param :commerce_merchant_settings, 'object'
         api.has_param :da_display_settings, 'object'
         api.has_param :destination_catalog_settings, 'hash'
         api.has_param :flight_catalog_settings, 'hash'
         api.has_param :name, 'string'
-        api.has_param :onsite_commerce_merchant, 'object'
         api.has_param :parent_catalog_id, 'string'
         api.has_param :store_catalog_settings, 'hash'
         api.has_param :vertical, { enum: -> { ProductCatalog::VERTICAL }}
       end
+    end
+
+    has_edge :owned_whatsapp_business_accounts do |edge|
+      edge.get 'WhatsAppBusinessAccount'
     end
 
     has_edge :pages do |edge|

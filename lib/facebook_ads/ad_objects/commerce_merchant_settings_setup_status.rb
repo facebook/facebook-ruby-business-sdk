@@ -31,6 +31,7 @@ module FacebookAds
     field :marketplace_approval_status, 'string'
     field :marketplace_approval_status_details, 'object'
     field :payment_setup, 'string'
+    field :review_status, 'object'
     field :shop_setup, 'string'
     has_no_id
     has_no_get

@@ -31,6 +31,7 @@ module FacebookAds
     field :name, 'string'
     field :owner, 'Profile'
     field :app_id, 'string'
+    field :session_id, 'string'
     field :source, 'file'
     field :source_url, 'string'
     field :source_zip, 'file'
