@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+- `delivery_category` field to Content for Conversions API.
+
 ## v0.8.0.3
 
 ### Added
