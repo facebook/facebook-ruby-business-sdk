@@ -304,6 +304,7 @@ module FacebookAds
     field :replace_video_id, 'string'
     field :sales_promo_id, 'int'
     field :slideshow_spec, 'hash'
+    field :source_instagram_media_id, 'string'
     field :start_offset, 'int'
     field :swap_mode, { enum: -> { SWAP_MODE }}
     field :text_format_metadata, 'string'

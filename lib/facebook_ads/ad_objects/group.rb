@@ -528,6 +528,7 @@ module FacebookAds
         api.has_param :scheduled_publish_time, 'int'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :source, 'string'
+        api.has_param :source_instagram_media_id, 'string'
         api.has_param :spherical, 'bool'
         api.has_param :start_offset, 'int'
         api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}

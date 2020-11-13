@@ -349,6 +349,7 @@ module FacebookAds
       edge.post 'ProductItem' do |api|
         api.has_param :additional_image_files, { list: 'file' }
         api.has_param :additional_image_urls, { list: 'string' }
+        api.has_param :additional_uploaded_image_ids, { list: 'string' }
         api.has_param :additional_variant_attributes, 'hash'
         api.has_param :android_app_name, 'string'
         api.has_param :android_class, 'string'

@@ -1430,6 +1430,7 @@ module FacebookAds
         api.has_param :slideshow_spec, 'hash'
         api.has_param :social_actions, 'bool'
         api.has_param :source, 'string'
+        api.has_param :source_instagram_media_id, 'string'
         api.has_param :specified_dialect, 'string'
         api.has_param :spherical, 'bool'
         api.has_param :sponsor_id, 'string'

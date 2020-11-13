@@ -258,10 +258,6 @@ module FacebookAds
 
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
-      edge.post 'BusinessUser' do |api|
-        api.has_param :email, 'string'
-        api.has_param :role, { enum: -> { BusinessUser::ROLE }}
-      end
     end
 
     has_edge :claim_custom_conversions do |edge|
@@ -400,6 +396,10 @@ module FacebookAds
         api.has_param :instagram_account, 'string'
       end
       edge.get 'InstagramUser'
+    end
+
+    has_edge :instagram_business_accounts do |edge|
+      edge.get 'IgUser'
     end
 
     has_edge :managed_businesses do |edge|
@@ -570,11 +570,6 @@ module FacebookAds
 
     has_edge :system_users do |edge|
       edge.get 'SystemUser'
-      edge.post 'SystemUser' do |api|
-        api.has_param :name, 'string'
-        api.has_param :role, { enum: -> { SystemUser::ROLE }}
-        api.has_param :system_user_id, 'int'
-      end
     end
 
     has_edge :third_party_measurement_report_dataset do |edge|

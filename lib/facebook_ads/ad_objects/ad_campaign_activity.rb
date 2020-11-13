@@ -177,6 +177,8 @@ module FacebookAds
     field :stop_time_old, 'datetime'
     field :targeting_expansion_new, 'object'
     field :targeting_expansion_old, 'object'
+    field :targeting_new, 'object'
+    field :targeting_old, 'object'
     field :updated_time_new, 'datetime'
     field :updated_time_old, 'datetime'
     has_no_post

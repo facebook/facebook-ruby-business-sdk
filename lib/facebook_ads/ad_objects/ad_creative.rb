@@ -83,6 +83,7 @@ module FacebookAds
       "SHOP_NOW",
       "SIGN_UP",
       "SOTTO_SUBSCRIBE",
+      "START_ORDER",
       "SUBSCRIBE",
       "SWIPE_UP_PRODUCT",
       "SWIPE_UP_SHOP",
@@ -182,6 +183,7 @@ module FacebookAds
     field :instagram_actor_id, 'string'
     field :instagram_permalink_url, 'string'
     field :instagram_story_id, 'string'
+    field :instagram_user_id, 'string'
     field :interactive_components_spec, 'AdCreativeInteractiveComponentsSpec'
     field :link_deep_link_url, 'string'
     field :link_destination_display_url, 'string'
@@ -201,6 +203,7 @@ module FacebookAds
     field :portrait_customizations, 'AdCreativePortraitCustomizations'
     field :product_set_id, 'string'
     field :recommender_settings, 'AdCreativeRecommenderSettings'
+    field :source_instagram_media_id, 'string'
     field :status, { enum: -> { STATUS }}
     field :template_url, 'string'
     field :template_url_spec, 'AdCreativeTemplateUrlSpec'

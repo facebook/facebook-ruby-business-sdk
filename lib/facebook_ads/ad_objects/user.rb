@@ -109,11 +109,6 @@ module FacebookAds
 
     has_edge :access_tokens do |edge|
       edge.delete
-      edge.post 'User' do |api|
-        api.has_param :business_app, 'int'
-        api.has_param :page_id, 'string'
-        api.has_param :scope, { list: 'Permission' }
-      end
     end
 
     has_edge :accounts do |edge|
@@ -680,6 +675,7 @@ module FacebookAds
         api.has_param :sales_promo_id, 'int'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :source, 'string'
+        api.has_param :source_instagram_media_id, 'string'
         api.has_param :spherical, 'bool'
         api.has_param :sponsor_id, 'string'
         api.has_param :start_offset, 'int'

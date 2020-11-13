@@ -77,6 +77,7 @@ module FacebookAds
       "SHOP_NOW",
       "SIGN_UP",
       "SOTTO_SUBSCRIBE",
+      "START_ORDER",
       "SUBSCRIBE",
       "SWIPE_UP_PRODUCT",
       "SWIPE_UP_SHOP",
