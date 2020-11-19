@@ -1,3 +1,21 @@
+# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
+#
+# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
+# copy, modify, and distribute this software in source code or binary form for use
+# in connection with the web services and APIs provided by Facebook.
+#
+# As with any software that integrates with the Facebook platform, your use of
+# this software is subject to the Facebook Platform Policy
+# [http://developers.facebook.com/policy/]. This copyright notice shall be
+# included in all copies or substantial portions of the software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 require './lib/facebook_ads/version'
 
 Gem::Specification.new do |s|
@@ -16,19 +34,24 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '~> 2.0'
 
-  s.add_dependency('faraday')
-  s.add_dependency('json')
+  s.add_dependency 'concurrent-ruby', '~> 1.1'
+  s.add_dependency 'faraday', '~> 1.0'
+  s.add_dependency 'json', '~> 2.2'
+  s.add_dependency 'countries', '~>3.0'
+  s.add_dependency 'money', '~> 6.13'
 
-  s.add_development_dependency('rake')
-  s.add_development_dependency('byebug')
-  s.add_development_dependency('minitest', '>= 5.0.0')
-  s.add_development_dependency('pry')
-  s.add_development_dependency('pry-coolline')
-  s.add_development_dependency('dotenv')
-  s.add_development_dependency('awesome_print')
-  s.add_development_dependency('rspec')
-  s.add_development_dependency('bundler')
-  s.add_development_dependency('rubocop')
+  s.add_development_dependency 'awesome_print', '~> 1.8'
+  s.add_development_dependency 'bundler', '~> 1.17'
+  s.add_development_dependency 'byebug', '~> 11.0'
+  s.add_development_dependency 'dotenv', '~> 2.7'
+  s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'pry', '~> 0.12'
+  s.add_development_dependency 'pry-coolline', '~> 0.2'
+  s.add_development_dependency 'rake', '~> 13.0'
+  s.add_development_dependency 'rspec', '~> 3.8'
+  s.add_development_dependency 'rubocop', '~> 0.71'
+  s.add_development_dependency 'countries', '~>3.0'
+  s.add_development_dependency 'money', '~> 6.13'
 
   s.files = Dir['LICENSE.txt', 'README.md', 'lib/**/*', 'bin/*']
   s.executables = s.files.grep(%r{^bin/}).map { |f| File.basename(f) }

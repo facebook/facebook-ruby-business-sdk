@@ -27,9 +27,9 @@ module FacebookAds
 
   class LeadGenDraftQuestion < AdObject
 
-    field :conditional_questions_choices, { list: 'object' }
+    field :conditional_questions_choices, { list: 'LeadGenConditionalQuestionsGroupChoices' }
     field :conditional_questions_group_id, 'string'
-    field :dependent_conditional_questions, { list: 'object' }
+    field :dependent_conditional_questions, { list: 'LeadGenConditionalQuestionsGroupQuestions' }
     field :inline_context, 'string'
     field :key, 'string'
     field :label, 'string'

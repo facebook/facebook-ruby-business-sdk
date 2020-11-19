@@ -29,6 +29,7 @@ module FacebookAds
 
     field :countries, { list: 'string' }
     field :default_creation_data, 'object'
+    field :global_io_max_campaign_duration, 'int'
     field :max_campaign_duration, 'object'
     field :max_days_to_finish, 'object'
     field :max_pause_without_prediction_rerun, 'object'

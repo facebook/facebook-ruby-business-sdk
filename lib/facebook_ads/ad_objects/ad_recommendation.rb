@@ -28,14 +28,14 @@ module FacebookAds
   class AdRecommendation < AdObject
     CONFIDENCE = [
       "HIGH",
-      "MEDIUM",
       "LOW",
+      "MEDIUM",
     ]
 
     IMPORTANCE = [
       "HIGH",
-      "MEDIUM",
       "LOW",
+      "MEDIUM",
     ]
 
 

@@ -26,21 +26,11 @@ module FacebookAds
   # pull request for this class.
 
   class ProductCatalogPricingVariablesBatch < AdObject
-    STANDARD = [
-      "google",
-    ]
-
 
     field :errors, { list: 'object' }
     field :errors_total_count, 'int'
     field :handle, 'string'
     field :status, 'string'
-    field :file, 'file'
-    field :password, 'string'
-    field :standard, { enum: -> { STANDARD }}
-    field :update_only, 'bool'
-    field :url, 'string'
-    field :username, 'string'
     has_no_id
     has_no_get
     has_no_post

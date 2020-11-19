@@ -39,8 +39,8 @@ module FacebookAds
       case method
         when :get, :post, :delete
           api_conn.send(method, path.gsub(/^\//,''), params) do |req|
-            req.headers[:user_agent] = "fbbizsdk-ruby-v#{API_VERSION}".freeze
-            req.params[:access_token] = access_token
+            req.headers[:user_agent] = "fbbizsdk-ruby-v#{VERSION}".freeze
+            req.params[:access_token] = access_token if access_token
             req.params[:appsecret_proof] = appsecret_proof if app_secret
           end
         else
@@ -75,6 +75,10 @@ module FacebookAds
     end
 
     class << self
+      def anonymous_session
+        new()
+      end
+
       def default_session
         # TODO
         @default_session ||= new( access_token: FacebookAds.config.access_token,

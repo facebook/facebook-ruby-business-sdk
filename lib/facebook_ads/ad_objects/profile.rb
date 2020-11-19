@@ -27,11 +27,24 @@ module FacebookAds
 
   class Profile < AdObject
     PROFILE_TYPE = [
-      "user",
-      "page",
+      "application",
       "event",
       "group",
-      "application",
+      "page",
+      "user",
+    ]
+
+    TYPE = [
+      "ANGRY",
+      "CARE",
+      "HAHA",
+      "LIKE",
+      "LOVE",
+      "NONE",
+      "PRIDE",
+      "SAD",
+      "THANKFUL",
+      "WOW",
     ]
 
 
@@ -51,6 +64,7 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
+        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}

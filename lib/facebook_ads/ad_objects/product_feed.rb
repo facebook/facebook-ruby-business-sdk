@@ -30,30 +30,29 @@ module FacebookAds
       "AUTODETECT",
       "BAR",
       "COMMA",
+      "SEMICOLON",
       "TAB",
       "TILDE",
-      "SEMICOLON",
     ]
 
     QUOTED_FIELDS_MODE = [
       "AUTODETECT",
-      "ON",
       "OFF",
+      "ON",
     ]
 
     ENCODING = [
       "AUTODETECT",
       "LATIN1",
-      "UTF8",
-      "UTF16LE",
       "UTF16BE",
-      "UTF32LE",
+      "UTF16LE",
       "UTF32BE",
+      "UTF32LE",
+      "UTF8",
     ]
 
     FEED_TYPE = [
       "AUTO",
-      "AUTO_OFFER",
       "DESTINATION",
       "FLIGHT",
       "HOME_LISTING",
@@ -62,9 +61,48 @@ module FacebookAds
       "LOCAL_INVENTORY",
       "MARKET",
       "MEDIA_TITLE",
+      "OFFER",
       "PRODUCTS",
-      "VEHICLE_OFFER",
+      "TRANSACTABLE_ITEMS",
       "VEHICLES",
+      "VEHICLE_OFFER",
+    ]
+
+    ITEM_SUB_TYPE = [
+      "APPLIANCES",
+      "BABY_FEEDING",
+      "BABY_TRANSPORT",
+      "BEAUTY",
+      "BEDDING",
+      "CAMERAS",
+      "CELL_PHONES_AND_SMART_WATCHES",
+      "CLEANING_SUPPLIES",
+      "CLOTHING",
+      "CLOTHING_ACCESSORIES",
+      "COMPUTERS_AND_TABLETS",
+      "DIAPERING_AND_POTTY_TRAINING",
+      "ELECTRONICS_ACCESSORIES",
+      "FURNITURE",
+      "HEALTH",
+      "HOME_GOODS",
+      "JEWELRY",
+      "NURSERY",
+      "PRINTERS_AND_SCANNERS",
+      "PROJECTORS",
+      "SHOES_AND_FOOTWEAR",
+      "SOFTWARE",
+      "TOYS",
+      "TVS_AND_MONITORS",
+      "VIDEO_GAME_CONSOLES_AND_VIDEO_GAMES",
+      "WATCHES",
+    ]
+
+    OVERRIDE_TYPE = [
+      "CATALOG_SEGMENT_CUSTOMIZE_DEFAULT",
+      "COUNTRY",
+      "LANGUAGE",
+      "LANGUAGE_AND_COUNTRY",
+      "LOCAL",
     ]
 
 
@@ -76,15 +114,54 @@ module FacebookAds
     field :encoding, 'string'
     field :file_name, 'string'
     field :id, 'string'
+    field :item_sub_type, 'string'
     field :latest_upload, 'ProductFeedUpload'
+    field :migrated_from_feed_id, 'string'
     field :name, 'string'
+    field :override_type, 'string'
     field :product_count, 'int'
-    field :qualified_product_count, 'int'
     field :quoted_fields_mode, { enum: -> { QUOTED_FIELDS_MODE }}
     field :schedule, 'ProductFeedSchedule'
     field :update_schedule, 'ProductFeedSchedule'
     field :feed_type, { enum: -> { FEED_TYPE }}
+    field :override_value, 'string'
     field :rules, { list: 'string' }
+    field :whitelisted_properties, { list: 'string' }
+
+    has_edge :automotive_models do |edge|
+      edge.get 'AutomotiveModel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :destinations do |edge|
+      edge.get 'Destination' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :flights do |edge|
+      edge.get 'Flight' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :home_listings do |edge|
+      edge.get 'HomeListing' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :hotels do |edge|
+      edge.get 'Hotel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
 
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
@@ -94,16 +171,25 @@ module FacebookAds
     end
 
     has_edge :rules do |edge|
-      edge.post do |api|
+      edge.get 'ProductFeedRule'
+      edge.post 'ProductFeedRule' do |api|
         api.has_param :attribute, 'string'
         api.has_param :params, 'hash'
-        api.has_param :rule_type, { enum: %w{mapping_rule value_mapping_rule letter_case_rule fallback_rule regex_replace_rule }}
+        api.has_param :rule_type, { enum: -> { ProductFeedRule::RULE_TYPE }}
+      end
+    end
+
+    has_edge :upload_schedules do |edge|
+      edge.get 'ProductFeedSchedule'
+      edge.post 'ProductFeed' do |api|
+        api.has_param :upload_schedule, 'string'
       end
     end
 
     has_edge :uploads do |edge|
       edge.get 'ProductFeedUpload'
       edge.post 'ProductFeedUpload' do |api|
+        api.has_param :fbe_external_business_id, 'string'
         api.has_param :file, 'file'
         api.has_param :password, 'string'
         api.has_param :update_only, 'bool'
@@ -112,8 +198,15 @@ module FacebookAds
       end
     end
 
+    has_edge :vehicle_offers do |edge|
+      edge.get 'VehicleOffer' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
     has_edge :vehicles do |edge|
-      edge.get do |api|
+      edge.get 'Vehicle' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

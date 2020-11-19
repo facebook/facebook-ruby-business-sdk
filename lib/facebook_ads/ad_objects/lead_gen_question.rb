@@ -27,15 +27,16 @@ module FacebookAds
 
   class LeadGenQuestion < AdObject
 
-    field :conditional_questions_choices, { list: 'object' }
+    field :conditional_questions_choices, { list: 'LeadGenConditionalQuestionsGroupChoices' }
     field :conditional_questions_group_id, 'string'
-    field :dependent_conditional_questions, { list: 'object' }
+    field :dependent_conditional_questions, { list: 'LeadGenConditionalQuestionsGroupQuestions' }
     field :id, 'string'
     field :inline_context, 'string'
     field :key, 'string'
     field :label, 'string'
     field :options, { list: 'LeadGenQuestionOption' }
     field :type, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

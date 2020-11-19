@@ -27,15 +27,17 @@ module FacebookAds
 
   class ProductFeedUpload < AdObject
     INPUT_METHOD = [
+      "Google Sheets Fetch",
       "Manual Upload",
-      "Server Fetch",
       "Reupload Last File",
+      "Server Fetch",
       "User initiated server fetch",
     ]
 
 
     field :end_time, 'datetime'
     field :error_count, 'int'
+    field :error_report, 'ProductFeedUploadErrorReport'
     field :filename, 'string'
     field :id, 'string'
     field :input_method, { enum: -> { INPUT_METHOD }}
@@ -48,6 +50,10 @@ module FacebookAds
     field :warning_count, 'int'
     has_no_post
     has_no_delete
+
+    has_edge :error_report do |edge|
+      edge.post 'ProductFeedUpload'
+    end
 
     has_edge :errors do |edge|
       edge.get 'ProductFeedUploadError'

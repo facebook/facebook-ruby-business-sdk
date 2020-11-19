@@ -24,14 +24,15 @@ module FacebookAds
 
   class APIError < Error
     ERROR_ATTRS = [
-      :fb_message, :type, :code,
+      :headers, :fb_message, :type, :code,
       :error_subcode, :is_transient, :error_user_title,
-      :error_user_msg, :fbtrace_id,
+      :error_user_msg, :error_data, :fbtrace_id,
     ]
 
     attr_accessor *ERROR_ATTRS
 
     def initialize(api_response)
+      send("headers=", api_response.headers)
       error_obj = api_response.result
       @api_response = api_response
 
@@ -46,6 +47,10 @@ module FacebookAds
       else
         super(error_obj)
       end
+    end
+
+    def getHeaders
+      self.headers
     end
   end
 

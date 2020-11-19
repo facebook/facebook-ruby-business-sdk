@@ -34,18 +34,9 @@ module FacebookAds
     has_no_delete
 
     has_edge :shared_accounts do |edge|
+      edge.get 'AdAccount'
       edge.post 'EventSourceGroup' do |api|
         api.has_param :accounts, { list: 'string' }
-      end
-    end
-
-    has_edge :userpermissions do |edge|
-      edge.delete do |api|
-        api.has_param :user, 'int'
-      end
-      edge.post do |api|
-        api.has_param :role, { enum: %w{ANALYST LIMITED_ANALYST }}
-        api.has_param :user, 'int'
       end
     end
 

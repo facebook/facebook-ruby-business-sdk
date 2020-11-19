@@ -1,4 +1,3 @@
-Gemfile.lock
 *.gem
 *.rbc
 /.config
@@ -14,7 +13,6 @@ Gemfile.lock
 .rvmrc
 .ruby-version
 .rspec_status
-arcanist/.phutil_module_cache
 autogen_docs_config.json
 
 .DS_Store

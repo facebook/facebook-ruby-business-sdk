@@ -27,66 +27,68 @@ module FacebookAds
 
   class Ad < AdObject
     BID_TYPE = [
+      "ABSOLUTE_OCPM",
+      "CPA",
       "CPC",
       "CPM",
       "MULTI_PREMIUM",
-      "ABSOLUTE_OCPM",
-      "CPA",
     ]
 
     CONFIGURED_STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
       "ARCHIVED",
+      "DELETED",
+      "PAUSED",
     ]
 
     EFFECTIVE_STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
-      "PENDING_REVIEW",
-      "DISAPPROVED",
-      "PREAPPROVED",
-      "PENDING_BILLING_INFO",
-      "CAMPAIGN_PAUSED",
-      "ARCHIVED",
       "ADSET_PAUSED",
+      "ARCHIVED",
+      "CAMPAIGN_PAUSED",
+      "DELETED",
+      "DISAPPROVED",
+      "IN_PROCESS",
+      "PAUSED",
+      "PENDING_BILLING_INFO",
+      "PENDING_REVIEW",
+      "PREAPPROVED",
+      "WITH_ISSUES",
     ]
 
     STATUS = [
       "ACTIVE",
-      "PAUSED",
-      "DELETED",
       "ARCHIVED",
+      "DELETED",
+      "PAUSED",
     ]
 
     DATE_PRESET = [
-      "today",
-      "yesterday",
-      "this_month",
-      "last_month",
-      "this_quarter",
-      "lifetime",
-      "last_3d",
-      "last_7d",
       "last_14d",
       "last_28d",
       "last_30d",
+      "last_3d",
+      "last_7d",
       "last_90d",
+      "last_month",
+      "last_quarter",
       "last_week_mon_sun",
       "last_week_sun_sat",
-      "last_quarter",
       "last_year",
+      "lifetime",
+      "this_month",
+      "this_quarter",
       "this_week_mon_today",
       "this_week_sun_today",
       "this_year",
+      "today",
+      "yesterday",
     ]
 
     EXECUTION_OPTIONS = [
-      "validate_only",
-      "synchronous_ad_review",
       "include_recommendations",
+      "synchronous_ad_review",
+      "validate_only",
     ]
 
     OPERATOR = [
@@ -96,8 +98,8 @@ module FacebookAds
 
     STATUS_OPTION = [
       "ACTIVE",
-      "PAUSED",
       "INHERITED_FROM_SOURCE",
+      "PAUSED",
     ]
 
 
@@ -115,33 +117,40 @@ module FacebookAds
     field :conversion_specs, { list: 'ConversionActionQuery' }
     field :created_time, 'datetime'
     field :creative, 'AdCreative'
+    field :demolink_hash, 'string'
+    field :display_sequence, 'int'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
+    field :engagement_audience, 'bool'
+    field :failed_delivery_checks, { list: 'DeliveryCheck' }
     field :id, 'string'
+    field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
     field :name, 'string'
+    field :preview_shareable_link, 'string'
+    field :priority, 'int'
     field :recommendations, { list: 'AdRecommendation' }
     field :source_ad, 'Ad'
     field :source_ad_id, 'string'
     field :status, { enum: -> { STATUS }}
+    field :targeting, 'Targeting'
+    field :tracking_and_conversion_with_defaults, 'TrackingAndConversionWithDefaults'
     field :tracking_specs, { list: 'ConversionActionQuery' }
     field :updated_time, 'datetime'
     field :adset_spec, 'AdSet'
+    field :audience_id, 'string'
     field :date_format, 'string'
-    field :display_sequence, 'int'
+    field :draft_adgroup_id, 'string'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
+    field :include_demolink_hashes, 'bool'
 
     has_edge :adcreatives do |edge|
       edge.get 'AdCreative'
     end
 
     has_edge :adlabels do |edge|
-      edge.delete do |api|
+      edge.post 'Ad' do |api|
         api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdLabel::EXECUTION_OPTIONS }} }
-      end
-      edge.post 'AdLabel' do |api|
-        api.has_param :adlabels, { list: 'object' }
-        api.has_param :execution_options, { list: { enum: -> { AdLabel::EXECUTION_OPTIONS }} }
+        api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
       end
     end
 
@@ -152,6 +161,12 @@ module FacebookAds
     end
 
     has_edge :copies do |edge|
+      edge.get 'Ad' do |api|
+        api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
+        api.has_param :effective_status, { list: 'string' }
+        api.has_param :time_range, 'object'
+        api.has_param :updated_since, 'int'
+      end
       edge.post 'Ad' do |api|
         api.has_param :adset_id, 'string'
         api.has_param :rename_options, 'object'
@@ -170,12 +185,12 @@ module FacebookAds
         api.has_param :export_columns, { list: 'string' }
         api.has_param :export_format, 'string'
         api.has_param :export_name, 'string'
-        api.has_param :fields, { list: { enum: -> { AdsInsights::SUMMARY }} }
+        api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :product_id_limit, 'int'
         api.has_param :sort, { list: 'string' }
-        api.has_param :summary, { list: { enum: -> { AdsInsights::SUMMARY }} }
+        api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
@@ -192,12 +207,12 @@ module FacebookAds
         api.has_param :export_columns, { list: 'string' }
         api.has_param :export_format, 'string'
         api.has_param :export_name, 'string'
-        api.has_param :fields, { list: { enum: -> { AdsInsights::SUMMARY }} }
+        api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :product_id_limit, 'int'
         api.has_param :sort, { list: 'string' }
-        api.has_param :summary, { list: { enum: -> { AdsInsights::SUMMARY }} }
+        api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
         api.has_param :time_range, 'object'
@@ -206,30 +221,23 @@ module FacebookAds
       end
     end
 
-    has_edge :keywordstats do |edge|
-      edge.get 'AdKeywordStats' do |api|
-        api.has_param :date, 'datetime'
-      end
-    end
-
     has_edge :leads do |edge|
       edge.get 'Lead'
-      edge.post do |api|
-        api.has_param :end_time, 'datetime'
-        api.has_param :session_id, 'string'
-        api.has_param :start_time, 'datetime'
-      end
     end
 
     has_edge :previews do |edge|
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
+        api.has_param :dynamic_asset_label, 'string'
         api.has_param :dynamic_creative_spec, 'object'
+        api.has_param :dynamic_customization, 'object'
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
+        api.has_param :locale, 'string'
         api.has_param :place_page_id, 'int'
         api.has_param :post, 'object'
         api.has_param :product_item_ids, { list: 'string' }
+        api.has_param :render_type, { enum: -> { AdPreview::RENDER_TYPE }}
         api.has_param :start_date, 'datetime'
         api.has_param :width, 'int'
       end

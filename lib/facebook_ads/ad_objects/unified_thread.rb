@@ -32,6 +32,7 @@ module FacebookAds
     field :id, 'string'
     field :is_subscribed, 'bool'
     field :link, 'string'
+    field :linked_group, 'Group'
     field :message_count, 'int'
     field :name, 'string'
     field :participants, 'object'
@@ -44,6 +45,12 @@ module FacebookAds
     field :wallpaper, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :messages do |edge|
+      edge.get do |api|
+        api.has_param :source, { enum: %w{ALL PARTICIPANTS }}
+      end
+    end
 
   end
 end

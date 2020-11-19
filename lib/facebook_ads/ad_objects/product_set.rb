@@ -30,9 +30,48 @@ module FacebookAds
     field :auto_creation_url, 'string'
     field :filter, 'string'
     field :id, 'string'
+    field :latest_metadata, 'ProductSetMetadata'
+    field :live_metadata, 'ProductSetMetadata'
     field :name, 'string'
     field :product_catalog, 'ProductCatalog'
     field :product_count, 'int'
+    field :retailer_id, 'string'
+    field :metadata, 'hash'
+
+    has_edge :automotive_models do |edge|
+      edge.get 'AutomotiveModel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :destinations do |edge|
+      edge.get 'Destination' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :flights do |edge|
+      edge.get 'Flight' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :home_listings do |edge|
+      edge.get 'HomeListing' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :hotels do |edge|
+      edge.get 'Hotel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
 
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
@@ -41,8 +80,15 @@ module FacebookAds
       end
     end
 
+    has_edge :vehicle_offers do |edge|
+      edge.get 'VehicleOffer' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
     has_edge :vehicles do |edge|
-      edge.get do |api|
+      edge.get 'Vehicle' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

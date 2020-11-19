@@ -40,12 +40,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :videos do |edge|
-      edge.delete do |api|
-        api.has_param :video_ids, { list: 'string' }
-      end
-      edge.post 'VideoList' do |api|
-        api.has_param :video_ids, { list: 'string' }
-      end
+      edge.get 'AdVideo'
     end
 
   end

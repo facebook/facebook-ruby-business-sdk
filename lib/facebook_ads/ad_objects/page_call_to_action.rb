@@ -27,60 +27,84 @@ module FacebookAds
 
   class PageCallToAction < AdObject
     ANDROID_DESTINATION_TYPE = [
-      "WEBSITE",
       "APP_DEEPLINK",
-      "FACEBOOK_APP",
-      "PHONE_CALL",
-      "MESSENGER",
+      "BECOME_A_VOLUNTEER",
       "EMAIL",
+      "FACEBOOK_APP",
+      "FOLLOW",
+      "MARKETPLACE_INVENTORY_PAGE",
+      "MESSENGER",
+      "MINI_SHOP",
       "NONE",
+      "PHONE_CALL",
+      "SHOP_ON_FACEBOOK",
+      "WEBSITE",
     ]
 
     IPHONE_DESTINATION_TYPE = [
-      "WEBSITE",
       "APP_DEEPLINK",
-      "FACEBOOK_APP",
-      "PHONE_CALL",
-      "MESSENGER",
+      "BECOME_A_VOLUNTEER",
       "EMAIL",
+      "FACEBOOK_APP",
+      "FOLLOW",
+      "MARKETPLACE_INVENTORY_PAGE",
+      "MESSENGER",
+      "MINI_SHOP",
       "NONE",
+      "PHONE_CALL",
+      "SHOP_ON_FACEBOOK",
+      "WEBSITE",
     ]
 
     TYPE = [
+      "BECOME_A_VOLUNTEER",
+      "BOOK_APPOINTMENT",
       "BOOK_NOW",
+      "BUY_TICKETS",
       "CALL_NOW",
       "CHARITY_DONATE",
       "CONTACT_US",
       "DONATE_NOW",
-      "MESSAGE",
-      "OPEN_APP",
-      "PLAY_NOW",
-      "SHOP_NOW",
-      "SIGN_UP",
-      "WATCH_NOW",
+      "EMAIL",
+      "FOLLOW_PAGE",
+      "GET_DIRECTIONS",
       "GET_OFFER",
       "GET_OFFER_VIEW",
-      "REQUEST_QUOTE",
-      "BOOK_APPOINTMENT",
-      "LISTEN",
-      "EMAIL",
+      "INTERESTED",
       "LEARN_MORE",
-      "REQUEST_APPOINTMENT",
-      "GET_DIRECTIONS",
-      "BUY_TICKETS",
+      "LISTEN",
+      "LOCAL_DEV_PLATFORM",
+      "MESSAGE",
+      "OPEN_APP",
+      "ORDER_FOOD",
       "PLAY_MUSIC",
+      "PLAY_NOW",
+      "PURCHASE_GIFT_CARDS",
+      "REQUEST_APPOINTMENT",
+      "REQUEST_QUOTE",
+      "SHOP_NOW",
+      "SHOP_ON_FACEBOOK",
+      "SIGN_UP",
+      "VIEW_INVENTORY",
+      "VIEW_SHOP",
       "VISIT_GROUP",
+      "WATCH_NOW",
+      "WOODHENGE_SUPPORT",
     ]
 
     WEB_DESTINATION_TYPE = [
+      "BECOME_A_VOLUNTEER",
+      "BECOME_SUPPORTER",
       "EMAIL",
+      "FOLLOW",
       "MESSENGER",
       "NONE",
+      "SHOP_ON_FACEBOOK",
       "WEBSITE",
     ]
 
 
-    field :android_app, 'object'
+    field :android_app, 'Application'
     field :android_deeplink, 'string'
     field :android_destination_type, 'string'
     field :android_package_name, 'string'
@@ -90,7 +114,7 @@ module FacebookAds
     field :from, 'Page'
     field :id, 'string'
     field :intl_number_with_plus, 'string'
-    field :iphone_app, 'object'
+    field :iphone_app, 'Application'
     field :iphone_deeplink, 'string'
     field :iphone_destination_type, 'string'
     field :iphone_url, 'string'

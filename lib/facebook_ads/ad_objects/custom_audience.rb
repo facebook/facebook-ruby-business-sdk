@@ -28,71 +28,53 @@ module FacebookAds
   class CustomAudience < AdObject
     include CustomAudienceHelpers
     CLAIM_OBJECTIVE = [
-      "AUTO_OFFER",
+      "AUTOMOTIVE_MODEL",
+      "COLLABORATIVE_ADS",
       "HOME_LISTING",
+      "MEDIA_TITLE",
       "PRODUCT",
       "TRAVEL",
       "VEHICLE",
+      "VEHICLE_OFFER",
     ]
 
     CONTENT_TYPE = [
+      "AUTOMOTIVE_MODEL",
       "DESTINATION",
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
+      "LOCAL_SERVICE_BUSINESS",
+      "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
+      "OFFLINE_PRODUCT",
       "PRODUCT",
       "VEHICLE",
       "VEHICLE_OFFER",
     ]
 
     CUSTOMER_FILE_SOURCE = [
-      "USER_PROVIDED_ONLY",
-      "PARTNER_PROVIDED_ONLY",
       "BOTH_USER_AND_PARTNER_PROVIDED",
+      "PARTNER_PROVIDED_ONLY",
+      "USER_PROVIDED_ONLY",
     ]
 
     SUBTYPE = [
-      "CUSTOM",
-      "WEBSITE",
       "APP",
-      "OFFLINE_CONVERSION",
-      "CLAIM",
-      "PARTNER",
-      "MANAGED",
-      "VIDEO",
-      "LOOKALIKE",
-      "ENGAGEMENT",
-      "DATA_SET",
       "BAG_OF_ACCOUNTS",
-      "STUDY_RULE_AUDIENCE",
+      "CLAIM",
+      "CUSTOM",
+      "ENGAGEMENT",
       "FOX",
-    ]
-
-    FIELDS = [
-      "account_id",
-      "approximate_count",
-      "customer_file_source",
-      "data_source",
-      "delivery_status",
-      "description",
-      "external_event_source",
-      "id",
-      "is_value_based",
-      "lookalike_audience_ids",
-      "lookalike_spec",
-      "name",
-      "operation_status",
-      "opt_out_link",
-      "permission_for_actions",
-      "pixel_id",
-      "retention_days",
-      "rule",
-      "rule_aggregation",
-      "subtype",
-      "time_content_updated",
-      "time_created",
-      "time_updated",
+      "LOOKALIKE",
+      "MANAGED",
+      "MEASUREMENT",
+      "OFFLINE_CONVERSION",
+      "PARTNER",
+      "REGULATED_CATEGORIES_AUDIENCE",
+      "STUDY_RULE_AUDIENCE",
+      "VIDEO",
+      "WEBSITE",
     ]
 
 
@@ -100,50 +82,68 @@ module FacebookAds
     field :approximate_count, 'int'
     field :customer_file_source, 'string'
     field :data_source, 'CustomAudienceDataSource'
+    field :data_source_types, 'string'
+    field :datafile_custom_audience_uploading_status, 'string'
     field :delivery_status, 'CustomAudienceStatus'
     field :description, 'string'
+    field :excluded_custom_audiences, { list: 'CustomAudience' }
     field :external_event_source, 'AdsPixel'
+    field :household_audience, 'int'
     field :id, 'string'
+    field :included_custom_audiences, { list: 'CustomAudience' }
+    field :is_household, 'bool'
+    field :is_snapshot, 'bool'
     field :is_value_based, 'bool'
     field :lookalike_audience_ids, { list: 'string' }
     field :lookalike_spec, 'LookalikeSpec'
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'
     field :opt_out_link, 'string'
-    field :permission_for_actions, 'CustomAudiencePermission'
+    field :permission_for_actions, 'AudiencePermissionForActions'
     field :pixel_id, 'string'
+    field :regulated_audience_spec, 'LookalikeSpec'
     field :retention_days, 'int'
+    field :rev_share_policy_id, 'int'
     field :rule, 'string'
     field :rule_aggregation, 'string'
+    field :rule_v2, 'string'
+    field :seed_audience, 'int'
+    field :sharing_status, 'CustomAudienceSharingStatus'
     field :subtype, 'string'
     field :time_content_updated, 'int'
     field :time_created, 'int'
     field :time_updated, 'int'
+    field :accountid, 'string'
+    field :additionalmetadata, 'string'
     field :allowed_domains, { list: 'string' }
+    field :associated_audience_id, 'int'
     field :claim_objective, { enum: -> { CLAIM_OBJECTIVE }}
     field :content_type, { enum: -> { CONTENT_TYPE }}
+    field :countries, 'string'
+    field :creation_params, 'hash'
     field :dataset_id, 'string'
+    field :details, 'string'
+    field :enable_fetch_or_create, 'bool'
     field :event_source_group, 'string'
     field :event_sources, { list: 'hash' }
+    field :exclusions, { list: 'object' }
+    field :expectedsize, 'int'
+    field :gender, 'string'
+    field :inclusions, { list: 'object' }
+    field :isprivate, 'bool'
+    field :is_household_exclusion, 'bool'
     field :list_of_accounts, { list: 'int' }
+    field :maxage, 'int'
+    field :minage, 'int'
     field :origin_audience_id, 'string'
+    field :parent_audience_id, 'int'
+    field :partnerid, 'string'
+    field :partner_reference_key, 'string'
     field :prefill, 'bool'
     field :product_set_id, 'string'
-    field :associated_audience_id, 'int'
-    field :creation_params, 'hash'
-    field :exclusions, { list: 'object' }
-    field :inclusions, { list: 'object' }
-    field :parent_audience_id, 'int'
+    field :source, 'string'
     field :tags, { list: 'string' }
-
-    has_edge :ad_accounts do |edge|
-      edge.post 'AdAccount' do |api|
-        api.has_param :adaccounts, { list: 'string' }
-        api.has_param :permissions, 'string'
-        api.has_param :relationship_type, { list: 'string' }
-        api.has_param :replace, 'bool'
-      end
-    end
+    field :video_group_ids, { list: 'string' }
 
     has_edge :adaccounts do |edge|
       edge.delete do |api|
@@ -151,6 +151,12 @@ module FacebookAds
       end
       edge.get 'AdAccount' do |api|
         api.has_param :permissions, 'string'
+      end
+      edge.post 'CustomAudience' do |api|
+        api.has_param :adaccounts, { list: 'string' }
+        api.has_param :permissions, 'string'
+        api.has_param :relationship_type, { list: 'string' }
+        api.has_param :replace, 'bool'
       end
     end
 
@@ -161,14 +167,14 @@ module FacebookAds
       end
     end
 
-    has_edge :prefills do |edge|
-      edge.get 'CustomAudiencePrefillState'
-    end
-
     has_edge :sessions do |edge|
       edge.get 'CustomAudienceSession' do |api|
         api.has_param :session_id, 'int'
       end
+    end
+
+    has_edge :shared_account_info do |edge|
+      edge.get 'CustomAudiencesharedAccountInfo'
     end
 
     has_edge :users do |edge|
@@ -177,7 +183,7 @@ module FacebookAds
         api.has_param :payload, 'object'
         api.has_param :session, 'object'
       end
-      edge.post 'User' do |api|
+      edge.post 'CustomAudience' do |api|
         api.has_param :namespace, 'string'
         api.has_param :payload, 'object'
         api.has_param :session, 'object'

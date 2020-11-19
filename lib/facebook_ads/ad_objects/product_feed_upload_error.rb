@@ -49,7 +49,11 @@ module FacebookAds
     has_no_delete
 
     has_edge :samples do |edge|
-      edge.get
+      edge.get 'ProductFeedUploadErrorSample'
+    end
+
+    has_edge :suggested_rules do |edge|
+      edge.get 'ProductFeedRuleSuggestion'
     end
 
   end

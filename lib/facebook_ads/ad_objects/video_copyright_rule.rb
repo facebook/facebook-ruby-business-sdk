@@ -33,7 +33,7 @@ module FacebookAds
     ]
 
 
-    field :condition_groups, { list: 'object' }
+    field :condition_groups, { list: 'VideoCopyrightConditionGroup' }
     field :copyrights, { list: 'string' }
     field :created_date, 'datetime'
     field :creator, 'User'
@@ -41,6 +41,7 @@ module FacebookAds
     field :is_in_migration, 'bool'
     field :name, 'string'
     has_no_post
+    has_no_delete
 
   end
 end

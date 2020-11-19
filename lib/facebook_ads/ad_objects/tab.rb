@@ -27,7 +27,7 @@ module FacebookAds
 
   class Tab < AdObject
 
-    field :application, 'object'
+    field :application, 'Application'
     field :custom_image_url, 'string'
     field :custom_name, 'string'
     field :id, 'string'

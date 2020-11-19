@@ -26,23 +26,33 @@ module FacebookAds
   # pull request for this class.
 
   class SystemUser < AdObject
-    ROLE = [
-      "FINANCE_EDITOR",
-      "FINANCE_ANALYST",
-      "ADS_RIGHTS_REVIEWER",
-      "ADMIN",
-      "EMPLOYEE",
-      "FB_EMPLOYEE_SALES_REP",
-    ]
-
 
     field :created_by, 'User'
     field :created_time, 'datetime'
+    field :finance_permission, 'string'
     field :id, 'string'
+    field :ip_permission, 'string'
     field :name, 'string'
-    field :role, { enum: -> { ROLE }}
-    field :system_user_id, 'int'
+    has_no_post
     has_no_delete
+
+    has_edge :assigned_ad_accounts do |edge|
+      edge.get 'AdAccount'
+    end
+
+    has_edge :assigned_business_asset_groups do |edge|
+      edge.get 'BusinessAssetGroup' do |api|
+        api.has_param :contained_asset_id, 'string'
+      end
+    end
+
+    has_edge :assigned_pages do |edge|
+      edge.get 'Page'
+    end
+
+    has_edge :assigned_product_catalogs do |edge|
+      edge.get 'ProductCatalog'
+    end
 
   end
 end

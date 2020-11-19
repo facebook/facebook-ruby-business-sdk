@@ -45,7 +45,7 @@ module FacebookAds
     field :modified_major, 'datetime'
     field :name, 'string'
     field :photo_count, 'int'
-    field :place, 'object'
+    field :place, 'Place'
     field :privacy, 'string'
     field :type, 'string'
     field :updated_time, 'datetime'
@@ -53,11 +53,49 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :comments do |edge|
+      edge.get 'Comment' do |api|
+        api.has_param :filter, { enum: -> { Comment::FILTER }}
+        api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
+        api.has_param :order, { enum: -> { Comment::ORDER }}
+        api.has_param :since, 'datetime'
+      end
+      edge.post 'Comment' do |api|
+        api.has_param :attachment_id, 'string'
+        api.has_param :attachment_share_url, 'string'
+        api.has_param :attachment_url, 'string'
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
+        api.has_param :facepile_mentioned_ids, { list: 'string' }
+        api.has_param :feedback_source, 'string'
+        api.has_param :is_offline, 'bool'
+        api.has_param :message, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :object_id, 'string'
+        api.has_param :parent_comment_id, 'object'
+        api.has_param :text, 'string'
+        api.has_param :tracking, 'string'
+      end
+    end
+
+    has_edge :likes do |edge|
+      edge.get 'Profile'
+      edge.post 'Album' do |api|
+        api.has_param :feedback_source, 'string'
+        api.has_param :nectar_module, 'string'
+        api.has_param :notify, 'bool'
+        api.has_param :tracking, 'string'
+      end
+    end
+
     has_edge :photos do |edge|
+      edge.get 'Photo'
       edge.post 'Photo' do |api|
         api.has_param :aid, 'string'
         api.has_param :allow_spherical_photo, 'bool'
+        api.has_param :alt_text_custom, 'string'
+        api.has_param :android_key_hash, 'string'
         api.has_param :application_id, 'string'
+        api.has_param :attempt, 'int'
         api.has_param :audience_exp, 'bool'
         api.has_param :backdated_time, 'datetime'
         api.has_param :backdated_time_granularity, { enum: -> { Photo::BACKDATED_TIME_GRANULARITY }}
@@ -65,12 +103,15 @@ module FacebookAds
         api.has_param :composer_session_id, 'string'
         api.has_param :direct_share_status, 'int'
         api.has_param :feed_targeting, 'object'
+        api.has_param :filter_type, 'int'
         api.has_param :full_res_is_coming_later, 'bool'
         api.has_param :initial_view_heading_override_degrees, 'int'
         api.has_param :initial_view_pitch_override_degrees, 'int'
         api.has_param :initial_view_vertical_fov_override_degrees, 'int'
+        api.has_param :ios_bundle_id, 'string'
         api.has_param :is_explicit_location, 'bool'
         api.has_param :is_explicit_place, 'bool'
+        api.has_param :is_visual_search, 'bool'
         api.has_param :manual_privacy, 'bool'
         api.has_param :message, 'string'
         api.has_param :name, 'string'
@@ -83,8 +124,9 @@ module FacebookAds
         api.has_param :og_set_profile_badge, 'bool'
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :place, 'object'
-        api.has_param :privacy, 'object'
+        api.has_param :privacy, 'string'
         api.has_param :profile_id, 'int'
+        api.has_param :proxied_app_id, 'string'
         api.has_param :published, 'bool'
         api.has_param :qn, 'string'
         api.has_param :scheduled_publish_time, 'int'
@@ -94,8 +136,30 @@ module FacebookAds
         api.has_param :tags, { list: 'object' }
         api.has_param :target_id, 'int'
         api.has_param :targeting, 'object'
+        api.has_param :time_since_original_post, 'int'
+        api.has_param :uid, 'int'
+        api.has_param :unpublished_content_type, { enum: -> { Photo::UNPUBLISHED_CONTENT_TYPE }}
         api.has_param :url, 'string'
+        api.has_param :user_selected_tags, 'bool'
+        api.has_param :vault_image_id, 'string'
       end
+    end
+
+    has_edge :picture do |edge|
+      edge.get 'ProfilePictureSource' do |api|
+        api.has_param :redirect, 'bool'
+        api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
+      end
+    end
+
+    has_edge :reactions do |edge|
+      edge.get 'Profile' do |api|
+        api.has_param :type, { enum: -> { Profile::TYPE }}
+      end
+    end
+
+    has_edge :sharedposts do |edge|
+      edge.get 'Post'
     end
 
   end

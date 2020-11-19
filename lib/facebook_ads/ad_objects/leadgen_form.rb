@@ -26,40 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class LeadgenForm < AdObject
-    LOCALE = [
-      "EN_US",
-      "IT_IT",
-      "FR_FR",
-      "ES_ES",
-      "ES_LA",
-      "DE_DE",
-      "EN_GB",
-      "PT_BR",
-      "ZH_TW",
-      "ZH_HK",
-      "TR_TR",
-      "AR_AR",
-      "CS_CZ",
-      "DA_DK",
-      "FI_FI",
-      "HE_IL",
-      "HI_IN",
-      "HU_HU",
-      "ID_ID",
-      "JA_JP",
-      "KO_KR",
-      "NB_NO",
-      "NL_NL",
-      "PL_PL",
-      "PT_PT",
-      "RO_RO",
-      "RU_RU",
-      "SV_SE",
-      "TH_TH",
-      "VI_VN",
-      "ZH_CN",
-    ]
-
     STATUS = [
       "ACTIVE",
       "ARCHIVED",
@@ -67,49 +33,72 @@ module FacebookAds
       "DRAFT",
     ]
 
+    LOCALE = [
+      "AR_AR",
+      "CS_CZ",
+      "DA_DK",
+      "DE_DE",
+      "EN_GB",
+      "EN_US",
+      "ES_ES",
+      "ES_LA",
+      "FI_FI",
+      "FR_FR",
+      "HE_IL",
+      "HI_IN",
+      "HU_HU",
+      "ID_ID",
+      "IT_IT",
+      "JA_JP",
+      "KO_KR",
+      "NB_NO",
+      "NL_NL",
+      "PL_PL",
+      "PT_BR",
+      "PT_PT",
+      "RO_RO",
+      "RU_RU",
+      "SV_SE",
+      "TH_TH",
+      "TR_TR",
+      "VI_VN",
+      "ZH_CN",
+      "ZH_HK",
+      "ZH_TW",
+    ]
+
 
     field :allow_organic_lead, 'bool'
     field :block_display_for_non_targeted_viewer, 'bool'
     field :context_card, 'object'
     field :created_time, 'datetime'
-    field :creator, 'User'
-    field :creator_id, 'int'
-    field :cusomized_tcpa_content, 'string'
     field :expired_leads_count, 'int'
-    field :extra_details, { list: 'string' }
     field :follow_up_action_text, 'string'
     field :follow_up_action_url, 'string'
     field :id, 'string'
     field :is_optimized_for_quality, 'bool'
-    field :leadgen_export_csv_url, 'string'
     field :leads_count, 'int'
-    field :legal_content, 'LeadGenLegalContent'
+    field :legal_content, 'object'
     field :locale, 'string'
-    field :messenger_welcome_message, 'string'
     field :name, 'string'
     field :organic_leads_count, 'int'
     field :page, 'Page'
     field :page_id, 'string'
     field :privacy_policy_url, 'string'
-    field :qualifiers, { list: 'LeadGenQualifier' }
     field :question_page_custom_headline, 'string'
     field :questions, { list: 'LeadGenQuestion' }
     field :status, 'string'
-    field :tcpa_compliance, 'bool'
     field :thank_you_page, 'object'
-    field :tracking_parameters, { list: 'object' }
+    field :tracking_parameters, 'hash'
+    has_no_delete
 
     has_edge :leads do |edge|
       edge.get 'Lead'
-      edge.post 'LeadgenForm' do |api|
-        api.has_param :end_time, 'datetime'
-        api.has_param :session_id, 'string'
-        api.has_param :start_time, 'datetime'
-      end
     end
 
     has_edge :test_leads do |edge|
-      edge.post 'LeadgenForm' do |api|
+      edge.get 'Lead'
+      edge.post 'Lead' do |api|
         api.has_param :custom_disclaimer_responses, { list: 'object' }
         api.has_param :field_data, { list: 'object' }
       end

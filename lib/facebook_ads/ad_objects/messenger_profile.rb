@@ -26,22 +26,11 @@ module FacebookAds
   # pull request for this class.
 
   class MessengerProfile < AdObject
-    FIELDS = [
-      "GET_STARTED",
-      "PERSISTENT_MENU",
-      "TARGET_AUDIENCE",
-      "WHITELISTED_DOMAINS",
-      "GREETING",
-      "ACCOUNT_LINKING_URL",
-      "PAYMENT_SETTINGS",
-      "HOME_URL",
-    ]
-
 
     field :account_linking_url, 'string'
     field :get_started, 'object'
     field :greeting, { list: 'object' }
-    field :home_url, 'object'
+    field :ice_breakers, { list: 'object' }
     field :payment_settings, 'object'
     field :persistent_menu, { list: 'object' }
     field :target_audience, 'object'

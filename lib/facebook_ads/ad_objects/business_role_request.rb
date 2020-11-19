@@ -27,19 +27,21 @@ module FacebookAds
 
   class BusinessRoleRequest < AdObject
     ROLE = [
-      "FINANCE_EDITOR",
-      "FINANCE_ANALYST",
-      "ADS_RIGHTS_REVIEWER",
       "ADMIN",
+      "ADS_RIGHTS_REVIEWER",
+      "DEFAULT",
+      "DEVELOPER",
       "EMPLOYEE",
-      "FB_EMPLOYEE_SALES_REP",
-    ]
-
-    STATUS = [
-      "PENDING",
-      "ACCEPTED",
-      "DECLINED",
-      "EXPIRED",
+      "FINANCE_ANALYST",
+      "FINANCE_EDIT",
+      "FINANCE_EDITOR",
+      "FINANCE_VIEW",
+      "MANAGE",
+      "PARTNER_CENTER_ADMIN",
+      "PARTNER_CENTER_ANALYST",
+      "PARTNER_CENTER_EDUCATION",
+      "PARTNER_CENTER_MARKETING",
+      "PARTNER_CENTER_OPERATIONS",
     ]
 
 
@@ -47,6 +49,7 @@ module FacebookAds
     field :created_time, 'datetime'
     field :email, 'string'
     field :expiration_time, 'datetime'
+    field :expiry_time, 'datetime'
     field :finance_role, 'string'
     field :id, 'string'
     field :invite_link, 'string'

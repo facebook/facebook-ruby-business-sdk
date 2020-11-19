@@ -34,17 +34,17 @@ module FacebookAds
       "FACEBOOK_INSTAGRAM",
       "FACEBOOK_NEWS_FEED",
       "FACEBOOK_NEWS_FEED_IN_STREAM_VIDEO",
-      "IN_STREAM_VIDEO",
+      "HIGH_FREQUENCY",
       "INSTAGRAM",
+      "IN_STREAM_VIDEO",
+      "LOW_FREQUENCY",
+      "MEDIUM_FREQUENCY",
       "MOBILE_OPTIMIZED_VIDEO",
       "PAGE_POST_ENGAGEMENT",
       "REACH",
       "TV_COMMERCIAL",
       "TV_FACEBOOK",
       "VIDEO_VIEW_OPTIMIZATION",
-      "LOW_FREQUENCY",
-      "MEDIUM_FREQUENCY",
-      "HIGH_FREQUENCY",
     ]
 
 
@@ -53,7 +53,18 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :treatment_percentage, 'double'
-    has_no_delete
+
+    has_edge :adaccounts do |edge|
+      edge.get 'AdAccount'
+    end
+
+    has_edge :adsets do |edge|
+      edge.get 'AdSet'
+    end
+
+    has_edge :campaigns do |edge|
+      edge.get 'Campaign'
+    end
 
   end
 end

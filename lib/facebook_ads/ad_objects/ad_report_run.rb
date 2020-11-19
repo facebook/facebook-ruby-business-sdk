@@ -49,12 +49,12 @@ module FacebookAds
     field :export_columns, { list: 'string' }
     field :export_format, 'string'
     field :export_name, 'string'
-    field :fields, { list: 'adreportrun_graph_fields_param' }
+    field :fields, { list: 'string' }
     field :filtering, { list: 'object' }
     field :level, 'adaccountinsights_level_enum_param'
     field :product_id_limit, 'int'
     field :sort, { list: 'string' }
-    field :summary, { list: 'adreportrun_graph_fields_param' }
+    field :summary, { list: 'string' }
     field :summary_action_breakdowns, { list: 'adaccountinsights_summary_action_breakdowns_enum_param' }
     field :time_increment, 'string'
     field :time_range, 'object'

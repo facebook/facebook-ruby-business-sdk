@@ -27,9 +27,9 @@ module FacebookAds
 
   class AdRule < AdObject
     STATUS = [
-      "ENABLED",
-      "DISABLED",
       "DELETED",
+      "DISABLED",
+      "ENABLED",
     ]
 
 
@@ -44,12 +44,20 @@ module FacebookAds
     field :status, 'string'
     field :updated_time, 'datetime'
 
+    has_edge :execute do |edge|
+      edge.post
+    end
+
     has_edge :history do |edge|
       edge.get 'AdRuleHistory' do |api|
         api.has_param :action, { enum: -> { AdRuleHistory::ACTION }}
         api.has_param :hide_no_changes, 'bool'
         api.has_param :object_id, 'string'
       end
+    end
+
+    has_edge :preview do |edge|
+      edge.post 'AdRule'
     end
 
   end

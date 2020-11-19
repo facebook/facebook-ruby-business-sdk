@@ -26,18 +26,24 @@ module FacebookAds
   # pull request for this class.
 
   class OfflineConversionDataSet < AdObject
-    DATA_ORIGIN = [
-      "DIRECTLY_FROM_PEOPLE",
-      "PEOPLE_AND_PARTNERS",
-      "DIRECTLY_FROM_PARTNERS",
-      "NONE",
+    PERMITTED_ROLES = [
+      "ADMIN",
+      "ADVERTISER",
+      "UPLOADER",
+    ]
+
+    RELATIONSHIP_TYPE = [
+      "AD_MANAGER",
+      "AGENCY",
+      "AGGREGATOR",
+      "AUDIENCE_MANAGER",
+      "OTHER",
     ]
 
 
     field :business, 'Business'
     field :config, 'string'
     field :creation_time, 'datetime'
-    field :data_origin, 'string'
     field :description, 'string'
     field :duplicate_entries, 'int'
     field :enable_auto_assign_to_accounts, 'bool'
@@ -45,8 +51,11 @@ module FacebookAds
     field :event_time_max, 'int'
     field :event_time_min, 'int'
     field :id, 'string'
+    field :is_mta_use, 'bool'
     field :is_restricted_use, 'bool'
+    field :is_unavailable, 'bool'
     field :last_upload_app, 'string'
+    field :last_upload_app_changed_time, 'int'
     field :match_rate_approx, 'int'
     field :matched_entries, 'int'
     field :name, 'string'
@@ -54,24 +63,11 @@ module FacebookAds
     field :valid_entries, 'int'
     field :auto_assign_to_new_accounts_only, 'bool'
 
-    has_edge :activities do |edge|
-      edge.get do |api|
-        api.has_param :business_id, 'string'
-        api.has_param :end_time, 'datetime'
-        api.has_param :event_type, { enum: %w{dataset_assign_to_adacct dataset_autotrack_on_adacct dataset_disable_autotrack_on_adacct dataset_unassign_from_adacct add_dataset_to_business add_user_to_dataset remove_user_from_dataset update_user_role_on_dataset create_custom_conversion update_custom_conversion create_custom_audience share_custom_audience unshare_custom_audience }}
-        api.has_param :start_time, 'datetime'
-      end
-    end
-
     has_edge :adaccounts do |edge|
-      edge.delete do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :business, 'string'
-      end
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'
       end
-      edge.post do |api|
+      edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :account_id, 'string'
         api.has_param :auto_track_for_ads, 'bool'
         api.has_param :business, 'string'
@@ -79,12 +75,24 @@ module FacebookAds
     end
 
     has_edge :agencies do |edge|
-      edge.delete do |api|
+      edge.get 'Business'
+      edge.post 'OfflineConversionDataSet' do |api|
         api.has_param :business, 'string'
+        api.has_param :other_relationship, 'string'
+        api.has_param :permitted_roles, { list: { enum: -> { OfflineConversionDataSet::PERMITTED_ROLES }} }
+        api.has_param :relationship_type, { list: { enum: -> { OfflineConversionDataSet::RELATIONSHIP_TYPE }} }
       end
-      edge.post 'Business' do |api|
-        api.has_param :business, 'string'
-        api.has_param :permitted_roles, { list: { enum: -> { Business::PERMITTED_ROLES }} }
+    end
+
+    has_edge :audiences do |edge|
+      edge.get 'CustomAudience' do |api|
+        api.has_param :ad_account, 'string'
+      end
+    end
+
+    has_edge :customconversions do |edge|
+      edge.get 'CustomConversion' do |api|
+        api.has_param :ad_account, 'string'
       end
     end
 
@@ -94,15 +102,16 @@ module FacebookAds
         api.has_param :namespace_id, 'string'
         api.has_param :progress, 'object'
         api.has_param :upload_id, 'string'
+        api.has_param :upload_source, 'string'
         api.has_param :upload_tag, 'string'
       end
     end
 
     has_edge :stats do |edge|
       edge.get do |api|
-        api.has_param :aggr_time, { enum: %w{upload_time event_time }}
+        api.has_param :aggr_time, { enum: %w{event_time upload_time }}
         api.has_param :end, 'int'
-        api.has_param :granularity, { enum: %w{daily hourly }}
+        api.has_param :granularity, { enum: %w{daily hourly six_hourly }}
         api.has_param :skip_empty_values, 'bool'
         api.has_param :start, 'int'
         api.has_param :user_timezone_id, 'int'
@@ -111,27 +120,14 @@ module FacebookAds
 
     has_edge :uploads do |edge|
       edge.get do |api|
-        api.has_param :end_time, 'object'
+        api.has_param :end_time, 'datetime'
         api.has_param :order, { enum: %w{ASCENDING DESCENDING }}
-        api.has_param :sort_by, { enum: %w{CREATION_TIME FIRST_UPLOAD_TIME LAST_UPLOAD_TIME API_CALLS EVENT_TIME_MIN EVENT_TIME_MAX IS_EXCLUDED_FOR_LIFT }}
-        api.has_param :start_time, 'object'
+        api.has_param :sort_by, { enum: %w{API_CALLS CREATION_TIME EVENT_TIME_MAX EVENT_TIME_MIN FIRST_UPLOAD_TIME IS_EXCLUDED_FOR_LIFT LAST_UPLOAD_TIME }}
+        api.has_param :start_time, 'datetime'
         api.has_param :upload_tag, 'string'
       end
       edge.post do |api|
         api.has_param :upload_tag, 'string'
-      end
-    end
-
-    has_edge :userpermissions do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'object'
-        api.has_param :email, 'string'
-        api.has_param :user, 'int'
-      end
-      edge.post do |api|
-        api.has_param :business, 'object'
-        api.has_param :role, { enum: %w{ADMIN UPLOADER ADVERTISER }}
-        api.has_param :user, 'int'
       end
     end
 

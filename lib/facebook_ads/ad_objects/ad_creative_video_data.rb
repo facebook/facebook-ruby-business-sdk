@@ -30,9 +30,9 @@ module FacebookAds
     field :additional_image_index, 'int'
     field :branded_content_shared_to_sponsor_status, 'string'
     field :branded_content_sponsor_page_id, 'string'
-    field :branded_content_sponsor_relationship, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
     field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
+    field :customization_rules_spec, { list: 'AdCustomizationRuleSpec' }
     field :image_hash, 'string'
     field :image_url, 'string'
     field :link_description, 'string'

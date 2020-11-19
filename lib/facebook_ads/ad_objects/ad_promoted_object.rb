@@ -27,38 +27,55 @@ module FacebookAds
 
   class AdPromotedObject < AdObject
     CUSTOM_EVENT_TYPE = [
-      "RATE",
-      "TUTORIAL_COMPLETION",
+      "ACHIEVEMENT_UNLOCKED",
+      "ADD_PAYMENT_INFO",
       "ADD_TO_CART",
       "ADD_TO_WISHLIST",
-      "INITIATED_CHECKOUT",
-      "ADD_PAYMENT_INFO",
-      "PURCHASE",
-      "LEAD",
       "COMPLETE_REGISTRATION",
+      "CONTACT",
       "CONTENT_VIEW",
+      "CUSTOMIZE_PRODUCT",
+      "D2_RETENTION",
+      "D7_RETENTION",
+      "DONATE",
+      "FIND_LOCATION",
+      "INITIATED_CHECKOUT",
+      "LEAD",
+      "LEVEL_ACHIEVED",
+      "LISTING_INTERACTION",
+      "MESSAGING_CONVERSATION_STARTED_7D",
+      "OTHER",
+      "PURCHASE",
+      "RATE",
+      "SCHEDULE",
       "SEARCH",
       "SERVICE_BOOKING_REQUEST",
-      "MESSAGING_CONVERSATION_STARTED_7D",
-      "LEVEL_ACHIEVED",
-      "ACHIEVEMENT_UNLOCKED",
       "SPENT_CREDITS",
-      "OTHER",
+      "START_TRIAL",
+      "SUBMIT_APPLICATION",
+      "SUBSCRIBE",
+      "TUTORIAL_COMPLETION",
     ]
 
 
     field :application_id, 'string'
     field :custom_conversion_id, 'string'
+    field :custom_event_str, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :event_id, 'string'
+    field :fundraiser_campaign_id, 'string'
     field :object_store_url, 'string'
     field :offer_id, 'string'
     field :offline_conversion_data_set_id, 'string'
     field :page_id, 'string'
+    field :pixel_aggregation_rule, 'string'
     field :pixel_id, 'string'
+    field :pixel_rule, 'string'
     field :place_page_set_id, 'string'
     field :product_catalog_id, 'string'
+    field :product_item_id, 'string'
     field :product_set_id, 'string'
+    field :retention_days, 'string'
     has_no_id
     has_no_get
     has_no_post

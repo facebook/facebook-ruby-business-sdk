@@ -27,16 +27,15 @@ module FacebookAds
 
   class MediaFingerprint < AdObject
     FINGERPRINT_CONTENT_TYPE = [
-      "SONGTRACK",
-      "EPISODE",
-      "OTHER",
-      "MOVIE",
       "AM_SONGTRACK",
+      "EPISODE",
+      "MOVIE",
+      "OTHER",
+      "SONGTRACK",
     ]
 
 
     field :duration_in_sec, 'double'
-    field :expiration_time, 'datetime'
     field :fingerprint_content_type, 'string'
     field :fingerprint_type, 'string'
     field :id, 'string'

@@ -27,9 +27,9 @@ module FacebookAds
 
   class AdRuleHistoryResult < AdObject
     OBJECT_TYPE = [
-      "CAMPAIGN",
-      "ADSET",
       "AD",
+      "ADSET",
+      "CAMPAIGN",
     ]
 
 

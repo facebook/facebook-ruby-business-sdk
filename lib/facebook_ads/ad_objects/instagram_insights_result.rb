@@ -27,29 +27,28 @@ module FacebookAds
 
   class InstagramInsightsResult < AdObject
     METRIC = [
-      "impressions",
-      "reach",
+      "carousel_album_engagement",
       "carousel_album_impressions",
       "carousel_album_reach",
-      "carousel_album_engagement",
       "carousel_album_saved",
       "carousel_album_video_views",
-      "taps_forward",
-      "taps_back",
-      "exits",
-      "replies",
       "engagement",
+      "exits",
+      "impressions",
+      "reach",
+      "replies",
       "saved",
+      "taps_back",
+      "taps_forward",
       "video_views",
     ]
 
     PERIOD = [
       "day",
-      "week",
       "days_28",
-      "month",
       "lifetime",
-      "total_over_range",
+      "month",
+      "week",
     ]
 
 

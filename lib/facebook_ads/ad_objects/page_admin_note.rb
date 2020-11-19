@@ -30,8 +30,10 @@ module FacebookAds
     field :body, 'string'
     field :from, 'Page'
     field :id, 'string'
+    field :note_label, 'string'
     field :user, 'User'
     has_no_post
+    has_no_delete
 
   end
 end

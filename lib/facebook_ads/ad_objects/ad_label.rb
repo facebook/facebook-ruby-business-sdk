@@ -26,10 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class AdLabel < AdObject
-    EXECUTION_OPTIONS = [
-      "validate_only",
-    ]
-
 
     field :account, 'AdAccount'
     field :created_time, 'datetime'

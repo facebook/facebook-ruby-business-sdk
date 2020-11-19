@@ -27,19 +27,19 @@ module FacebookAds
 
   class AdRuleFilters < AdObject
     OPERATOR = [
-      "GREATER_THAN",
-      "LESS_THAN",
-      "EQUAL",
-      "NOT_EQUAL",
-      "IN_RANGE",
-      "NOT_IN_RANGE",
-      "IN",
-      "NOT_IN",
-      "CONTAIN",
-      "NOT_CONTAIN",
-      "ANY",
       "ALL",
+      "ANY",
+      "CONTAIN",
+      "EQUAL",
+      "GREATER_THAN",
+      "IN",
+      "IN_RANGE",
+      "LESS_THAN",
       "NONE",
+      "NOT_CONTAIN",
+      "NOT_EQUAL",
+      "NOT_IN",
+      "NOT_IN_RANGE",
     ]
 
 

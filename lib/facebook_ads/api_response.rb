@@ -38,6 +38,10 @@ module FacebookAds
       @body
     end
 
+    def headers
+      @headers
+    end
+
     private
     def is_json_response?
       headers[:content_type] =~ /application\/json/ ||

@@ -31,26 +31,28 @@ module FacebookAds
       "ADD_TO_CART",
       "ADD_TO_WISHLIST",
       "COMPLETE_REGISTRATION",
-      "CONTENT_VIEW",
-      "INITIATED_CHECKOUT",
-      "LEAD",
-      "PURCHASE",
-      "SEARCH",
       "CONTACT",
+      "CONTENT_VIEW",
       "CUSTOMIZE_PRODUCT",
       "DONATE",
+      "FACEBOOK_SELECTED",
       "FIND_LOCATION",
+      "INITIATED_CHECKOUT",
+      "LEAD",
+      "LISTING_INTERACTION",
+      "OTHER",
+      "PURCHASE",
       "SCHEDULE",
+      "SEARCH",
       "START_TRIAL",
       "SUBMIT_APPLICATION",
       "SUBSCRIBE",
-      "TAKE_SURVEY",
-      "OTHER",
     ]
 
 
     field :account_id, 'string'
     field :aggregation_rule, 'string'
+    field :business, 'Business'
     field :creation_time, 'datetime'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :data_sources, { list: 'ExternalEventSource' }
@@ -60,6 +62,7 @@ module FacebookAds
     field :first_fired_time, 'datetime'
     field :id, 'string'
     field :is_archived, 'bool'
+    field :is_unavailable, 'bool'
     field :last_fired_time, 'datetime'
     field :name, 'string'
     field :offline_conversion_data_set, 'OfflineConversionDataSet'
@@ -68,34 +71,7 @@ module FacebookAds
     field :rule, 'string'
     field :advanced_rule, 'string'
     field :event_source_id, 'string'
-
-    has_edge :activities do |edge|
-      edge.get do |api|
-        api.has_param :end_time, 'object'
-        api.has_param :event_type, { enum: %w{conversion_create conversion_delete conversion_update }}
-        api.has_param :start_time, 'object'
-      end
-    end
-
-    has_edge :adaccounts do |edge|
-      edge.delete do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :business, 'string'
-      end
-      edge.post 'CustomConversion' do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :business, 'string'
-      end
-    end
-
-    has_edge :shared_agencies do |edge|
-      edge.delete do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'CustomConversion' do |api|
-        api.has_param :business, 'string'
-      end
-    end
+    field :custom_conversion_id, 'string'
 
     has_edge :stats do |edge|
       edge.get 'CustomConversionStatsResult' do |api|

@@ -27,7 +27,6 @@ module FacebookAds
 
   class LifeEvent < AdObject
 
-    field :created_time, 'datetime'
     field :description, 'string'
     field :end_time, 'datetime'
     field :from, 'Page'
@@ -40,14 +39,16 @@ module FacebookAds
     has_no_delete
 
     has_edge :comments do |edge|
-      edge.post do |api|
-        api.has_param :attachment_id, 'string'
-        api.has_param :attachment_share_url, 'string'
-        api.has_param :attachment_url, 'string'
-        api.has_param :is_offline, 'bool'
-        api.has_param :message, 'string'
-        api.has_param :text, 'string'
+      edge.get 'Comment' do |api|
+        api.has_param :filter, { enum: -> { Comment::FILTER }}
+        api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
+        api.has_param :order, { enum: -> { Comment::ORDER }}
+        api.has_param :since, 'datetime'
       end
+    end
+
+    has_edge :likes do |edge|
+      edge.get 'Profile'
     end
 
   end

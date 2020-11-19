@@ -26,17 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class SavedMessageResponse < AdObject
-    CATEGORY = [
-      "STANDARD",
-      "INSTANT_REPLY",
-      "AWAY_MESSAGE",
-      "WELCOME_MESSAGE",
-      "FOLLOW_UP",
-      "MESSENGER_CODE",
-      "REFERRAL",
-      "APPOINTMENT_REMINDER",
-    ]
-
 
     field :category, 'string'
     field :id, 'string'
@@ -44,6 +33,8 @@ module FacebookAds
     field :is_enabled, 'bool'
     field :message, 'string'
     field :title, 'string'
+    has_no_post
+    has_no_delete
 
   end
 end

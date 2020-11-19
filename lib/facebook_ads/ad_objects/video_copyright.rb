@@ -33,27 +33,29 @@ module FacebookAds
     ]
 
     MONITORING_TYPE = [
+      "AUDIO_ONLY",
       "VIDEO_AND_AUDIO",
       "VIDEO_ONLY",
-      "AUDIO_ONLY",
     ]
 
 
     field :content_category, 'string'
     field :copyright_content_id, 'string'
     field :creator, 'User'
+    field :excluded_ownership_segments, { list: 'VideoCopyrightSegment' }
     field :id, 'string'
     field :in_conflict, 'bool'
     field :monitoring_status, 'string'
     field :monitoring_type, 'string'
-    field :ownership_countries, 'object'
-    field :reference_file, 'object'
+    field :ownership_countries, 'VideoCopyrightGeoGate'
+    field :reference_file, 'CopyrightReferenceContainer'
     field :reference_file_disabled, 'bool'
     field :reference_file_disabled_by_ops, 'bool'
-    field :reference_file_expired, 'bool'
     field :reference_owner_id, 'string'
     field :rule_ids, { list: 'VideoCopyrightRule' }
+    field :tags, { list: 'string' }
     field :whitelisted_ids, { list: 'string' }
+    has_no_delete
 
   end
 end

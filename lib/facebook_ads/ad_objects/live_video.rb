@@ -26,60 +26,63 @@ module FacebookAds
   # pull request for this class.
 
   class LiveVideo < AdObject
-    LIVE_COMMENT_MODERATION_SETTING = [
-      "FOLLOWER",
-      "SLOW",
-      "DISCUSSION",
-      "RESTRICTED",
-    ]
-
-    STATUS = [
-      "UNPUBLISHED",
-      "LIVE_NOW",
-      "SCHEDULED_UNPUBLISHED",
-      "SCHEDULED_LIVE",
-      "SCHEDULED_CANCELED",
-    ]
-
-    STREAM_TYPE = [
-      "REGULAR",
-      "AMBIENT",
-    ]
-
     BROADCAST_STATUS = [
-      "UNPUBLISHED",
-      "LIVE",
-      "LIVE_STOPPED",
-      "PROCESSING",
-      "VOD",
-      "SCHEDULED_UNPUBLISHED",
-      "SCHEDULED_LIVE",
-      "SCHEDULED_EXPIRED",
-      "SCHEDULED_CANCELED",
+      "live",
+      "live_stopped",
+      "processing",
+      "scheduled_canceled",
+      "scheduled_expired",
+      "scheduled_live",
+      "scheduled_unpublished",
+      "unpublished",
+      "vod",
     ]
 
     PROJECTION = [
-      "EQUIRECTANGULAR",
       "CUBEMAP",
-    ]
-
-    SOURCE = [
-      "target",
-      "owner",
+      "EQUIRECTANGULAR",
+      "HALF_EQUIRECTANGULAR",
     ]
 
     SPATIAL_AUDIO_FORMAT = [
       "ambiX_4",
     ]
 
+    STATUS = [
+      "LIVE_NOW",
+      "SCHEDULED_CANCELED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_UNPUBLISHED",
+      "UNPUBLISHED",
+    ]
+
     STEREOSCOPIC_MODE = [
-      "MONO",
       "LEFT_RIGHT",
+      "MONO",
       "TOP_BOTTOM",
     ]
 
+    STREAM_TYPE = [
+      "AMBIENT",
+      "REGULAR",
+    ]
 
-    field :ad_break_config, 'object'
+    SOURCE = [
+      "owner",
+      "target",
+    ]
+
+    LIVE_COMMENT_MODERATION_SETTING = [
+      "DISCUSSION",
+      "FOLLOWER",
+      "PROTECTED_MODE",
+      "RESTRICTED",
+      "SLOW",
+      "SUPPORTER",
+    ]
+
+
+    field :ad_break_config, 'LiveVideoAdBreakConfig'
     field :ad_break_failure_reason, 'string'
     field :broadcast_start_time, 'datetime'
     field :copyright, 'VideoCopyright'
@@ -90,18 +93,72 @@ module FacebookAds
     field :embed_html, 'string'
     field :from, 'object'
     field :id, 'string'
+    field :ingest_streams, { list: 'LiveVideoInputStream' }
     field :is_manual_mode, 'bool'
     field :is_reference_only, 'bool'
-    field :live_encoders, { list: 'object' }
+    field :live_encoders, { list: 'LiveEncoder' }
     field :live_views, 'int'
+    field :overlay_url, 'string'
     field :permalink_url, 'string'
     field :planned_start_time, 'datetime'
     field :seconds_left, 'int'
     field :secure_stream_url, 'string'
     field :status, 'string'
     field :stream_url, 'string'
+    field :targeting, 'LiveVideoTargeting'
     field :title, 'string'
-    field :video, 'object'
+    field :total_views, 'string'
+    field :video, 'AdVideo'
+
+    has_edge :blocked_users do |edge|
+      edge.get 'User' do |api|
+        api.has_param :uid, 'object'
+      end
+    end
+
+    has_edge :comments do |edge|
+      edge.get 'Comment' do |api|
+        api.has_param :filter, { enum: -> { Comment::FILTER }}
+        api.has_param :live_filter, { enum: -> { Comment::LIVE_FILTER }}
+        api.has_param :order, { enum: -> { Comment::ORDER }}
+        api.has_param :since, 'datetime'
+      end
+    end
+
+    has_edge :crosspost_shared_pages do |edge|
+      edge.get 'Page'
+    end
+
+    has_edge :crossposted_broadcasts do |edge|
+      edge.get 'LiveVideo'
+    end
+
+    has_edge :errors do |edge|
+      edge.get 'LiveVideoError'
+    end
+
+    has_edge :input_streams do |edge|
+      edge.post 'LiveVideoInputStream'
+    end
+
+    has_edge :polls do |edge|
+      edge.get 'VideoPoll'
+      edge.post 'VideoPoll' do |api|
+        api.has_param :close_after_voting, 'bool'
+        api.has_param :correct_option, 'int'
+        api.has_param :default_open, 'bool'
+        api.has_param :options, { list: 'string' }
+        api.has_param :question, 'string'
+        api.has_param :show_gradient, 'bool'
+        api.has_param :show_results, 'bool'
+      end
+    end
+
+    has_edge :reactions do |edge|
+      edge.get 'Profile' do |api|
+        api.has_param :type, { enum: -> { Profile::TYPE }}
+      end
+    end
 
   end
 end

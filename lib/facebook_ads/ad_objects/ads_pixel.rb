@@ -26,22 +26,87 @@ module FacebookAds
   # pull request for this class.
 
   class AdsPixel < AdObject
+    SORT_BY = [
+      "LAST_FIRED_TIME",
+      "NAME",
+    ]
 
+    AUTOMATIC_MATCHING_FIELDS = [
+      "country",
+      "ct",
+      "db",
+      "em",
+      "external_id",
+      "fn",
+      "ge",
+      "ln",
+      "ph",
+      "st",
+      "zp",
+    ]
+
+    DATA_USE_SETTING = [
+      "ADVERTISING_AND_ANALYTICS",
+      "ANALYTICS_ONLY",
+      "EMPTY",
+    ]
+
+    FIRST_PARTY_COOKIE_STATUS = [
+      "EMPTY",
+      "FIRST_PARTY_COOKIE_DISABLED",
+      "FIRST_PARTY_COOKIE_ENABLED",
+    ]
+
+    TASKS = [
+      "ANALYZE",
+      "EDIT",
+    ]
+
+
+    field :automatic_matching_fields, { list: 'string' }
     field :can_proxy, 'bool'
     field :code, 'string'
     field :creation_time, 'datetime'
     field :creator, 'User'
+    field :data_use_setting, 'string'
+    field :enable_automatic_matching, 'bool'
+    field :first_party_cookie_status, 'string'
     field :id, 'string'
     field :is_created_by_business, 'bool'
+    field :is_unavailable, 'bool'
     field :last_fired_time, 'datetime'
     field :name, 'string'
     field :owner_ad_account, 'AdAccount'
     field :owner_business, 'Business'
     has_no_delete
 
-    has_edge :audiences do |edge|
-      edge.get 'CustomAudience' do |api|
-        api.has_param :ad_account, 'string'
+    has_edge :assigned_users do |edge|
+      edge.get 'AssignedUser' do |api|
+        api.has_param :business, 'string'
+      end
+      edge.post 'AdsPixel' do |api|
+        api.has_param :tasks, { list: { enum: -> { AdsPixel::TASKS }} }
+        api.has_param :user, 'int'
+      end
+    end
+
+    has_edge :da_checks do |edge|
+      edge.get 'DaCheck' do |api|
+        api.has_param :checks, { list: 'string' }
+        api.has_param :connection_method, { enum: -> { DaCheck::CONNECTION_METHOD }}
+      end
+    end
+
+    has_edge :events do |edge|
+      edge.post 'AdsPixel' do |api|
+        api.has_param :data, { list: 'string' }
+        api.has_param :namespace_id, 'string'
+        api.has_param :partner_agent, 'string'
+        api.has_param :test_event_code, 'string'
+        api.has_param :trace, 'int'
+        api.has_param :upload_id, 'string'
+        api.has_param :upload_source, 'string'
+        api.has_param :upload_tag, 'string'
       end
     end
 
@@ -53,7 +118,7 @@ module FacebookAds
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'
       end
-      edge.post do |api|
+      edge.post 'AdsPixel' do |api|
         api.has_param :account_id, 'string'
         api.has_param :business, 'string'
       end
@@ -74,9 +139,10 @@ module FacebookAds
     has_edge :stats do |edge|
       edge.get 'AdsPixelStatsResult' do |api|
         api.has_param :aggregation, { enum: -> { AdsPixelStatsResult::AGGREGATION }}
-        api.has_param :end_time, 'object'
+        api.has_param :end_time, 'datetime'
         api.has_param :event, 'string'
-        api.has_param :start_time, 'object'
+        api.has_param :event_source, 'string'
+        api.has_param :start_time, 'datetime'
       end
     end
 

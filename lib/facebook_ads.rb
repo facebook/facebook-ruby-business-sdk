@@ -18,6 +18,7 @@
 
 require 'facebook_ads/version'
 require 'facebook_ads/helpers/shortcuts'
+require 'facebook_ads/crash_logger'
 
 module FacebookAds
   DEFAULT_API_VERSION = 'v' + API_VERSION
@@ -36,6 +37,7 @@ module FacebookAds
   def configure
     @config ||= Config.new
     yield @config if block_given?
+    CrashLogger.enable if @config.crash_logging_enabled
     @config
   end
 
@@ -58,7 +60,7 @@ module FacebookAds
   require 'facebook_ads/batch_api/batch'
   require 'facebook_ads/batch_api/batch_proxy'
 
-  # Autoload Ab Objects Helpers
+  # Autoload Ad Objects Helpers
   Dir.glob(File.expand_path(File.join(__FILE__, '..', 'facebook_ads', 'ad_objects', 'helpers', '*.rb'))).each do |file|
     class_name = File.basename(file, '.rb').split('_').map(&:capitalize).join.to_sym
     autoload class_name, file
@@ -68,5 +70,13 @@ module FacebookAds
   Dir.glob(File.expand_path(File.join(__FILE__, '..', 'facebook_ads', 'ad_objects', '*.rb'))).each do |file|
     class_name = File.basename(file, '.rb').split('_').map(&:capitalize).join.to_sym
     autoload class_name, file
+  end
+
+  module ServerSide
+    # Autoload Server-Side API
+    Dir.glob(File.expand_path(File.join(__FILE__, '..', 'facebook_ads', 'ad_objects', 'server_side', '*.rb'))).each do |file|
+      class_name = File.basename(file, '.rb').split('_').map(&:capitalize).join.to_sym
+      autoload class_name, file
+    end
   end
 end

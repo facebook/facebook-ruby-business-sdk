@@ -27,8 +27,8 @@ module FacebookAds
 
   class AdCreativeLinkData < AdObject
     ATTACHMENT_STYLE = [
-      "link",
       "default",
+      "link",
     ]
 
     FORMAT_OPTION = [
@@ -44,19 +44,18 @@ module FacebookAds
     field :attachment_style, { enum: -> { ATTACHMENT_STYLE }}
     field :branded_content_shared_to_sponsor_status, 'string'
     field :branded_content_sponsor_page_id, 'string'
-    field :branded_content_sponsor_relationship, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
     field :caption, 'string'
     field :child_attachments, { list: 'AdCreativeLinkDataChildAttachment' }
     field :collection_thumbnails, { list: 'AdCreativeCollectionThumbnailInfo' }
-    field :custom_overlay_spec, 'AdCreativeLinkDataCustomOverlaySpec'
-    field :customization_rules_spec, { list: 'object' }
+    field :customization_rules_spec, { list: 'AdCustomizationRuleSpec' }
     field :description, 'string'
     field :event_id, 'string'
     field :force_single_link, 'bool'
     field :format_option, { enum: -> { FORMAT_OPTION }}
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
+    field :image_layer_specs, { list: 'AdCreativeLinkDataImageLayerSpec' }
     field :image_overlay_spec, 'AdCreativeLinkDataImageOverlaySpec'
     field :link, 'string'
     field :message, 'string'
@@ -70,7 +69,8 @@ module FacebookAds
     field :preferred_image_tags, { list: 'string' }
     field :retailer_item_ids, { list: 'string' }
     field :show_multiple_images, 'bool'
-    field :static_fallback_spec, 'object'
+    field :static_fallback_spec, 'AdCreativeStaticFallbackSpec'
+    field :use_flexible_image_aspect_ratio, 'bool'
     has_no_id
     has_no_get
     has_no_post

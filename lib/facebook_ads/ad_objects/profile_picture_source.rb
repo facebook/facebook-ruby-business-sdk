@@ -27,11 +27,13 @@ module FacebookAds
 
   class ProfilePictureSource < AdObject
     TYPE = [
-      "small",
-      "normal",
       "album",
-      "large",
-      "square",
+      "small",
+      "thumbnail",
+    ]
+
+    BREAKING_CHANGE = [
+      "PROFILE_PICTURE",
     ]
 
 

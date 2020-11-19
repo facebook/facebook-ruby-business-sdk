@@ -28,24 +28,24 @@ module FacebookAds
   class ExtendedCreditAllocationConfig < AdObject
     LIABILITY_TYPE = [
       "",
+      "MSA",
       "Normal",
       "Sequential",
-      "MSA",
     ]
 
     PARTITION_TYPE = [
-      "FIXED",
       "AUTH",
+      "FIXED",
     ]
 
     SEND_BILL_TO = [
       "",
-      "Agency",
       "Advertiser",
+      "Agency",
     ]
 
 
-    field :currency_amount, 'object'
+    field :currency_amount, 'CurrencyAmount'
     field :id, 'string'
     field :liability_type, 'string'
     field :owning_business, 'Business'
@@ -55,7 +55,6 @@ module FacebookAds
     field :receiving_credential, 'ExtendedCredit'
     field :request_status, 'string'
     field :send_bill_to, 'string'
-    has_no_post
 
   end
 end
