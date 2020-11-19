@@ -55,6 +55,11 @@ module FacebookAds
       self.has_next_page = true
     end
 
+    def summary
+      fetch_next_page if @summary.nil?
+      @summary ||= {}
+    end
+
     private
     def fetch_next_page
       fetch_options = {limit: DEFAULT_PAGE_SIZE}.merge(serialized_options)
@@ -70,6 +75,7 @@ module FacebookAds
 
         self.next_page_cursor = response.dig('paging', 'cursors', 'after')
         self.has_next_page = !(response['data'].length < fetch_options[:limit])
+        @summary = response['summary'] || {}
       end
     end
 
@@ -95,7 +101,7 @@ module FacebookAds
       node.post_edge(name, graph_params.merge(params)) do |response|
         # TODO params check
         # TODO Add new object to collection?
-        
+
         field_type = self.class.return_types[:post]
 
         obj = field_type.deserialize(response, node.session)
