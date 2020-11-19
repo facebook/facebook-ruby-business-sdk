@@ -351,6 +351,15 @@ module FacebookAds
       end
     end
 
+    has_edge :creative_folders do |edge|
+      edge.get 'BusinessCreativeFolder'
+      edge.post 'BusinessCreativeFolder' do |api|
+        api.has_param :name, 'string'
+        api.has_param :description, 'string'
+        api.has_param :parent_folder_id, 'string'
+      end
+    end
+
     has_edge :customconversions do |edge|
       edge.post 'CustomConversion' do |api|
         api.has_param :advanced_rule, 'string'
