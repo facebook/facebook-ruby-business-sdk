@@ -20,7 +20,7 @@ require './lib/facebook_ads/version'
 
 Gem::Specification.new do |s|
   s.name        = 'facebookbusiness-shakr'
-  s.version     = FacebookAds::VERSION
+  s.version     = 
   s.summary     = 'Facebook Business API SDK for Ruby (Shakr Fork)'
   s.description = <<-DESC
   The unofficial Facebook Business API SDK for Ruby.
@@ -31,6 +31,12 @@ Gem::Specification.new do |s|
   s.homepage    =
     'https://github.com/shakrmedia/facebook-ruby-ads-sdk'
   s.license = 'Nonstandard'
+
+  s.version = if ENV["PRERELEASE"]
+                [FacebookAds::VERSION, ENV["GITHUB_RUN_NUMBER"]].join("-")
+              else
+                FacebookAds::VERSION
+              end
 
   s.required_ruby_version = '~> 2.0'
 
