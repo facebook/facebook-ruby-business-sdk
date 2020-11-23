@@ -69,7 +69,7 @@ module FacebookAds
         end
 
         self.next_page_cursor = response.dig('paging', 'cursors', 'after')
-        self.has_next_page = !(response['data'].length < fetch_options[:limit])
+        self.has_next_page = next_page_cursor.present?
       end
     end
 
