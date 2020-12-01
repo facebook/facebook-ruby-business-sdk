@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        version: '2.4'
+        version: [2.4]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -19,15 +19,11 @@ jobs:
 
       - name: Before install
         run: gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true && gem install bundler -v '< 2'
-        with:
-          ruby-version: ${{ matrix.version }}
 
       - name: Bundle install and build
         run: bundle install && gem build facebookbusiness.gemspec
-        with:
-          ruby-version: ${{ matrix.version }}
 
       - name: Deploy onto rubygems
-        uses: facebook/facebook-ruby-business-sdk@master
-        with:
-          api_key: "a0LEmoM6WagYxCadbQw4j6JRKfj2NoNMd7izWTJFF1V2pF66MciEo2QwSsCNXbfmmy7lhNcVYSc1xUglvfqJJZorfkrPkHDzydDHYo50Hz+qvmABCUjg83E69cK3LSsAyQ6oX7OiJMkZxIL6buqyKQ5qd9m64hoSS84HVwRywuE="
+        run: gem push facebookbusiness.gem
+        env:
+          GEM_HOST_API_KEY: "a0LEmoM6WagYxCadbQw4j6JRKfj2NoNMd7izWTJFF1V2pF66MciEo2QwSsCNXbfmmy7lhNcVYSc1xUglvfqJJZorfkrPkHDzydDHYo50Hz+qvmABCUjg83E69cK3LSsAyQ6oX7OiJMkZxIL6buqyKQ5qd9m64hoSS84HVwRywuE="
