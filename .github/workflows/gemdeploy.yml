@@ -17,8 +17,8 @@ jobs:
         with:
           ruby-version: ${{ matrix.version }}
 
-      - name: Before install
-        run: gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true && gem install bundler -v '< 2'
+      # - name: Before install
+      #   run: gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true && gem install bundler -v '< 2'
 
       - name: Bundle install and build
         run: bundle install && gem build facebookbusiness.gemspec
