@@ -1,5 +1,8 @@
 name: Ruby Build and Deploy
-on: [push, pull_request]
+on:
+  release:
+    tags:
+    - 'v*'
 
 jobs:
   build:
@@ -12,26 +15,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.version }}
-
-      - name: Before install
-        run: |
-          gem uninstall bundler -v ">= 2.0"
-          gem install bundler -v "< 2.0"
-
-      - name: Bundle install
-        run: bundle install
-
-      - name: Gem build and deploy onto rubygems
+      - name: Gem deploy
         run: |
           mkdir -p $HOME/.gem
           touch $HOME/.gem/credentials
           chmod 0600 $HOME/.gem/credentials
-          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-          gem build *.gemspec
+          printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
+          run: gem build *.gemspec
           gem push *.gem
         env:
-          GEM_HOST_API_KEY: a0LEmoM6WagYxCadbQw4j6JRKfj2NoNMd7izWTJFF1V2pF66MciEo2QwSsCNXbfmmy7lhNcVYSc1xUglvfqJJZorfkrPkHDzydDHYo50Hz+qvmABCUjg83E69cK3LSsAyQ6oX7OiJMkZxIL6buqyKQ5qd9m64hoSS84HVwRywuE=
+          RUBYGEMS_API_KEY: a0LEmoM6WagYxCadbQw4j6JRKfj2NoNMd7izWTJFF1V2pF66MciEo2QwSsCNXbfmmy7lhNcVYSc1xUglvfqJJZorfkrPkHDzydDHYo50Hz+qvmABCUjg83E69cK3LSsAyQ6oX7OiJMkZxIL6buqyKQ5qd9m64hoSS84HVwRywuE=
