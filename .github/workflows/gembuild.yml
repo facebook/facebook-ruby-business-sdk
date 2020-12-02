@@ -1,0 +1,29 @@
+name: Ruby Build and Deploy
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+        version: ['2.4']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.version }}
+
+      - name: Before install
+        run: |
+          gem uninstall bundler -v ">= 2.0"
+          gem install bundler -v "< 2.0"
+
+      - name: Bundle install
+        run: bundle install
+
+      - name: Gem build
+        run: gem build *.gemspec
