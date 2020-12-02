@@ -1,4 +1,4 @@
-name: Ruby Build and Deploy
+name: Ruby Build
 on: [push, pull_request]
 
 jobs:

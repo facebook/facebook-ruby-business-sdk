@@ -1,4 +1,4 @@
-name: Ruby Build and Deploy
+name: Ruby Deploy
 on:
   release:
     tags:
