@@ -24,4 +24,4 @@ jobs:
           run: gem build *.gemspec
           gem push *.gem
         env:
-          RUBYGEMS_API_KEY: a0LEmoM6WagYxCadbQw4j6JRKfj2NoNMd7izWTJFF1V2pF66MciEo2QwSsCNXbfmmy7lhNcVYSc1xUglvfqJJZorfkrPkHDzydDHYo50Hz+qvmABCUjg83E69cK3LSsAyQ6oX7OiJMkZxIL6buqyKQ5qd9m64hoSS84HVwRywuE=
+          RUBYGEMS_API_KEY: {{ secrets.RUBYGEMS_API_KEY }}
