@@ -52,6 +52,8 @@ module FacebookAds
 				normalized_input = input;
 
 				case field_type
+				when 'action_source'
+					return normalize_action_source input
 				when 'country'
 					normalized_input = normalize_country input
 				when 'ct'
@@ -287,9 +289,20 @@ module FacebookAds
 					raise ArgumentError.new("Invalid delivery_category passed: " + delivery_category + ". Please use one of the defined values #{FacebookAds::ServerSide::DeliveryCategory.to_a.join(',')}" )
 				end
 
-				delivery_category;
+				delivery_category
 			end
 
+			# Normalizes the input action_source and returns valid value (or throw exception if invalid).
+			def self.normalize_action_source(action_source)
+				unless FacebookAds::ServerSide::ActionSource.include?(action_source)
+					values = FacebookAds::ServerSide::ActionSource.to_a.join(',')
+					raise ArgumentError.new(
+						"Invalid action_source passed: #{action_source}. Please use one of the defined values: #{values}"
+					)
+				end
+
+				action_source
+			end
 		end
 	end
 end
