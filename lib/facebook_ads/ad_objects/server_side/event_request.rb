@@ -54,9 +54,6 @@ module FacebookAds
       # The HttpServiceInterface client to use for executing the request.
       attr_accessor :http_service_client
 
-      # Where the conversion occurred.
-      attr_accessor :action_source
-
       # @param [String] pixel_id
       # @param [Array(FacebookAds::ServerSide::Event)] events
       # @param [String] test_event_code
@@ -68,7 +65,7 @@ module FacebookAds
       # @param [HttpServiceInterface] http_service_client
       def initialize(pixel_id: nil, events: nil, test_event_code: nil, partner_agent: nil,
           namespace_id: nil, upload_id: nil, upload_tag: nil, upload_source: nil,
-          http_service_client: nil, action_source: nil)
+          http_service_client: nil)
         unless pixel_id.nil?
           self.pixel_id = pixel_id
         end
@@ -95,9 +92,6 @@ module FacebookAds
         end
         unless http_service_client.nil?
           self.http_service_client = http_service_client
-        end
-        unless action_source.nil?
-          self.action_source = action_source
         end
       end
 
@@ -146,10 +140,6 @@ module FacebookAds
         if attributes.has_key?(:'http_service_client')
           self.http_service_client = attributes[:'http_service_client']
         end
-
-        if attributes.has_key?(:'action_source')
-          self.action_source = attributes[:'action_source']
-        end
       end
 
       # Execute request
@@ -189,9 +179,6 @@ module FacebookAds
         params[:upload_id] = upload_id unless upload_id.nil?
         params[:upload_tag] = upload_tag unless upload_tag.nil?
         params[:upload_source] = upload_source unless upload_source.nil?
-        unless action_source.nil?
-          params[:action_source] = FacebookAds::ServerSide::Util.normalize(action_source, 'action_source')
-        end
         params
       end
 
@@ -252,8 +239,7 @@ module FacebookAds
             upload_id == o.upload_id &&
             upload_tag == o.upload_tag &&
             upload_source == o.upload_source &&
-            http_service_client == o.http_service_client &&
-            action_source == o.action_source
+            http_service_client == o.http_service_client
       end
 
       # @see the `==` method
@@ -274,7 +260,6 @@ module FacebookAds
           upload_tag,
           upload_source,
           http_service_client,
-          action_source,
         ].hash
       end
 
@@ -303,9 +288,6 @@ module FacebookAds
         end
         unless upload_source.nil?
           hash['upload_source'] = upload_source
-        end
-        unless action_source.nil?
-          hash['action_source'] = action_source
         end
         hash.to_s
       end

@@ -28,7 +28,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
         upload_id = 'upload_id-4'
         upload_tag = 'upload_tag-5'
         upload_source = 'upload_source-6'
-        action_source = 'app'
         event_request = FacebookAds::ServerSide::EventRequest.new(
             pixel_id: pixel_id,
             events: events,
@@ -38,7 +37,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             upload_id: upload_id,
             upload_tag: upload_tag,
             upload_source: upload_source,
-            action_source: action_source,
         )
 
         expect(event_request.pixel_id).to eq(pixel_id)
@@ -49,7 +47,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
         expect(event_request.upload_id).to eq(upload_id)
         expect(event_request.upload_tag).to eq(upload_tag)
         expect(event_request.upload_source).to eq(upload_source)
-        expect(event_request.action_source).to eq(action_source)
     end
 
     it 'equals works' do
@@ -67,7 +64,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             upload_id: 'upload_id-4',
             upload_tag: 'upload_tag-5',
             upload_source: 'upload_source-6',
-            action_source: 'app',
         )
         event_request2 = FacebookAds::ServerSide::EventRequest.new(
             pixel_id: 'pixel_id-0',
@@ -78,7 +74,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             upload_id: 'upload_id-4',
             upload_tag: 'upload_tag-5',
             upload_source: 'upload_source-6',
-            action_source: 'app',
         )
         expect(event_request1).to eq(event_request2)
         expect(event_request1.hash).to eq(event_request2.hash)
@@ -99,7 +94,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             upload_id: 'upload_id-4',
             upload_tag: 'upload_tag-5',
             upload_source: 'upload_source-6',
-            action_source: 'app',
         )
         event_request2 = FacebookAds::ServerSide::EventRequest.new(
             pixel_id: 'pixel_id-0',
@@ -110,7 +104,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             upload_id: 'upload_id-4',
             upload_tag: 'upload_tag-5',
             # no upload_source
-            action_source: 'app',
         )
         expect(event_request1).to_not eq(event_request2)
         expect(event_request1.hash).to_not eq(event_request2.hash)
@@ -126,7 +119,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             upload_id: 'upload_id-4',
             upload_tag: 'upload_tag-5',
             upload_source: 'upload_id-6',
-            action_source: 'app',
         }
         event_request = FacebookAds::ServerSide::EventRequest.new(
             pixel_id: expected_params[:pixel_id],
@@ -137,7 +129,6 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             upload_id: expected_params[:upload_id],
             upload_tag: expected_params[:upload_tag],
             upload_source: expected_params[:upload_source],
-            action_source: expected_params[:action_source],
         )
         mock_ads_pixel = double('mock-ads-pixel')
         response = {
@@ -210,14 +201,5 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
         )
 
         event_request.execute
-    end
-
-    it 'normalize validates the action_source' do
-        action_source = 'unsupported action source'
-        expect{
-            FacebookAds::ServerSide::EventRequest.new(
-                action_source: action_source
-            ).get_params
-        }.to raise_error(ArgumentError)
     end
 end
