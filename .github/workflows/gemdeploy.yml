@@ -25,4 +25,4 @@ jobs:
           gem build *.gemspec
           gem push *.gem
         env:
-          RUBYGEMS_API_KEY: {{ secrets.RUBYGEMS_API_KEY }}
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
