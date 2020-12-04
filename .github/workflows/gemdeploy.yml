@@ -1,8 +1,9 @@
 name: Ruby Deploy
 on:
-  release:
-    tags:
-    - 'v*'
+  [push]
+  # release:
+  #   tags:
+  #   - 'v*'
 
 jobs:
   build:
@@ -21,7 +22,7 @@ jobs:
           touch $HOME/.gem/credentials
           chmod 0600 $HOME/.gem/credentials
           printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > $HOME/.gem/credentials
-          run: gem build *.gemspec
+          gem build *.gemspec
           gem push *.gem
         env:
           RUBYGEMS_API_KEY: {{ secrets.RUBYGEMS_API_KEY }}
