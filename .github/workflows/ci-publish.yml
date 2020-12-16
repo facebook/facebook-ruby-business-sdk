@@ -1,8 +1,9 @@
 name: Ruby Deploy
+
 on:
-  release:
+  push:
     tags:
-    - 'v*'
+      - v*
 
 jobs:
   build:
