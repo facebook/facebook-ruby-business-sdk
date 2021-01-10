@@ -109,7 +109,7 @@ module FacebookAds
       # The date of birth month.
       attr_accessor :dobm
 
-      # THe date of birth year.
+      # The date of birth year.
       attr_accessor :doby
 
       #UserData is a set of identifiers Facebook can use for targeted attribution
