@@ -190,5 +190,13 @@ module FacebookAds
       end
     end
 
+    has_edge :usersreplace do |edge|
+      edge.post 'CustomAudience' do |api|
+        api.has_param :namespace, 'string'
+        api.has_param :payload, 'object'
+        api.has_param :session, 'object'
+      end
+    end
+
   end
 end

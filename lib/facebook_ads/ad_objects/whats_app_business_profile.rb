@@ -25,12 +25,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class OfflineTermsOfService < AdObject
+  class WhatsAppBusinessProfile < AdObject
 
-    field :accept_time, 'int'
     field :id, 'string'
-    field :signed_by_user, 'User'
-    has_no_post
+    field :name_verification, 'object'
     has_no_delete
 
   end

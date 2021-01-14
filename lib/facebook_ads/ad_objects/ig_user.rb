@@ -33,7 +33,6 @@ module FacebookAds
     field :follows_count, 'int'
     field :id, 'string'
     field :ig_id, 'int'
-    field :is_ig_shopping_seller_policy_enabled, 'bool'
     field :media_count, 'int'
     field :mentioned_comment, 'IgComment'
     field :mentioned_media, 'IgMedia'

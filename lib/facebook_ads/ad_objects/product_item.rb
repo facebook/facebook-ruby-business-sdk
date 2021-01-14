@@ -323,6 +323,7 @@ module FacebookAds
     field :mobile_link, 'string'
     field :name, 'string'
     field :ordering_index, 'int'
+    field :parent_product_id, 'string'
     field :pattern, 'string'
     field :price, 'string'
     field :product_catalog, 'ProductCatalog'
@@ -368,6 +369,18 @@ module FacebookAds
     field :windows_phone_app_id, 'string'
     field :windows_phone_app_name, 'string'
     field :windows_phone_url, 'string'
+
+    has_edge :ar_data do |edge|
+      edge.post do |api|
+        api.has_param :container_effect, { enum: %w{MAKEUP }}
+        api.has_param :effect_parameters, 'hash'
+        api.has_param :picker_icon, 'file'
+      end
+    end
+
+    has_edge :channels_to_integrity_status do |edge|
+      edge.get 'CatalogItemChannelsToIntegrityStatus'
+    end
 
     has_edge :product_sets do |edge|
       edge.get 'ProductSet'

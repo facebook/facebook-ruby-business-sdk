@@ -191,6 +191,7 @@ module FacebookAds
       "fb_android_store",
       "fb_canvas",
       "fb_gameroom",
+      "galaxy_store",
       "google_play",
       "instant_game",
       "itunes",

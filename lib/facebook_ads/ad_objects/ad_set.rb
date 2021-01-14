@@ -30,7 +30,6 @@ module FacebookAds
       "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
-      "TARGET_COST",
     ]
 
     BILLING_EVENT = [
@@ -81,6 +80,7 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
       "REPLIES",
@@ -355,6 +355,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
         api.has_param :use_account_attribution_setting, 'bool'
+        api.has_param :use_unified_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
@@ -377,6 +378,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
         api.has_param :use_account_attribution_setting, 'bool'
+        api.has_param :use_unified_attribution_setting, 'bool'
       end
     end
 

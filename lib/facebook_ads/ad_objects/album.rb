@@ -152,15 +152,5 @@ module FacebookAds
       end
     end
 
-    has_edge :reactions do |edge|
-      edge.get 'Profile' do |api|
-        api.has_param :type, { enum: -> { Profile::TYPE }}
-      end
-    end
-
-    has_edge :sharedposts do |edge|
-      edge.get 'Post'
-    end
-
   end
 end

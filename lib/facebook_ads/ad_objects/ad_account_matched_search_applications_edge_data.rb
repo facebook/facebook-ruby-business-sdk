@@ -32,6 +32,7 @@ module FacebookAds
       "FB_ANDROID_STORE",
       "FB_CANVAS",
       "FB_GAMEROOM",
+      "GALAXY_STORE",
       "GOOGLE_PLAY",
       "INSTANT_GAME",
       "ITUNES",

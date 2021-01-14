@@ -36,6 +36,7 @@ module FacebookAds
       "IPHONE",
       "MOBILE_WEB",
       "OCULUS",
+      "SAMSUNG",
       "SUPPLEMENTARY_IMAGES",
       "WEB",
       "WINDOWS",
@@ -471,12 +472,6 @@ module FacebookAds
       end
     end
 
-    has_edge :live_videos do |edge|
-      edge.get 'LiveVideo' do |api|
-        api.has_param :broadcast_status, { enum: -> { LiveVideo::BROADCAST_STATUS }}
-      end
-    end
-
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
         api.has_param :advertiser_id, 'string'
@@ -511,10 +506,6 @@ module FacebookAds
         api.has_param :flash, 'bool'
         api.has_param :unity, 'bool'
       end
-    end
-
-    has_edge :ozone_release do |edge|
-      edge.get
     end
 
     has_edge :page_activities do |edge|

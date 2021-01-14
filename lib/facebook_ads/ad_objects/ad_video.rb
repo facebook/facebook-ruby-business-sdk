@@ -64,6 +64,7 @@ module FacebookAds
       "EVENT_TOUR",
       "FACECAST_DVR",
       "FB_SHORTS",
+      "FB_SHORTS_POST",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
       "GAMING_UPDATE_VIDEO",
@@ -383,16 +384,6 @@ module FacebookAds
         api.has_param :show_gradient, 'bool'
         api.has_param :show_results, 'bool'
       end
-    end
-
-    has_edge :reactions do |edge|
-      edge.get 'Profile' do |api|
-        api.has_param :type, { enum: -> { Profile::TYPE }}
-      end
-    end
-
-    has_edge :sharedposts do |edge|
-      edge.get 'Post'
     end
 
     has_edge :sponsor_tags do |edge|

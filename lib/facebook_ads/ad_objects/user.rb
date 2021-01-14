@@ -49,14 +49,10 @@ module FacebookAds
 
 
     field :about, 'string'
-    field :address, 'Location'
-    field :admin_notes, { list: 'PageAdminNote' }
     field :age_range, 'AgeRange'
-    field :auth_method, 'string'
     field :birthday, 'string'
     field :cover, 'UserCoverPhoto'
     field :currency, 'Currency'
-    field :devices, { list: 'UserDevice' }
     field :education, { list: 'object' }
     field :email, 'string'
     field :favorite_athletes, { list: 'Experience' }
@@ -79,15 +75,12 @@ module FacebookAds
     field :locale, 'string'
     field :location, 'Page'
     field :meeting_for, { list: 'string' }
-    field :messenger_join_notifications_enabled, 'bool'
     field :middle_name, 'string'
     field :name, 'string'
     field :name_format, 'string'
     field :payment_pricepoints, 'PaymentPricepoints'
     field :political, 'string'
     field :profile_pic, 'string'
-    field :public_key, 'string'
-    field :published_timeline, 'bool'
     field :quotes, 'string'
     field :relationship_status, 'string'
     field :religion, 'string'
@@ -100,12 +93,9 @@ module FacebookAds
     field :timezone, 'double'
     field :token_for_business, 'string'
     field :updated_time, 'datetime'
-    field :user_storage_key, 'string'
-    field :username, 'string'
     field :verified, 'bool'
     field :video_upload_limits, 'VideoUploadLimits'
     field :website, 'string'
-    field :work, { list: 'object' }
 
     has_edge :access_tokens do |edge|
       edge.delete
@@ -223,10 +213,6 @@ module FacebookAds
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
-    end
-
-    has_edge :custom_labels do |edge|
-      edge.get 'PageUserMessageThreadLabel'
     end
 
     has_edge :events do |edge|
@@ -511,8 +497,8 @@ module FacebookAds
       end
     end
 
-    has_edge :owned_product_catalogs do |edge|
-      edge.get 'ProductCatalog'
+    has_edge :payment_transactions do |edge|
+      edge.get 'PaymentEnginePayment'
     end
 
     has_edge :permissions do |edge|
@@ -596,6 +582,17 @@ module FacebookAds
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
+      end
+    end
+
+    has_edge :posts do |edge|
+      edge.get 'Post' do |api|
+        api.has_param :include_hidden, 'bool'
+        api.has_param :q, 'string'
+        api.has_param :show_expired, 'bool'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+        api.has_param :with, 'string'
       end
     end
 

@@ -60,6 +60,7 @@ module FacebookAds
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "DRAFT",
       "MANAGE",
     ]
 

@@ -589,9 +589,6 @@ module FacebookAds
     end
 
     has_edge :claimed_urls do |edge|
-      edge.delete do |api|
-        api.has_param :url, 'string'
-      end
       edge.get 'Url'
     end
 
@@ -950,7 +947,6 @@ module FacebookAds
         api.has_param :location, 'object'
         api.has_param :location_page_id, 'string'
         api.has_param :old_store_number, 'int'
-        api.has_param :page_username, 'string'
         api.has_param :permanently_closed, 'bool'
         api.has_param :phone, 'string'
         api.has_param :pickup_options, { list: { enum: -> { Page::PICKUP_OPTIONS }} }
@@ -1002,7 +998,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
       end
       edge.get 'MessengerProfile'
       edge.post 'Page' do |api|
@@ -1311,7 +1307,7 @@ module FacebookAds
     end
 
     has_edge :tours do |edge|
-      edge.get 'EventTour'
+      edge.get
     end
 
     has_edge :unlink_accounts do |edge|

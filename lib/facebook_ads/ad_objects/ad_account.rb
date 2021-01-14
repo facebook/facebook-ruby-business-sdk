@@ -87,12 +87,14 @@ module FacebookAds
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "DRAFT",
       "MANAGE",
     ]
 
     TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "DRAFT",
       "MANAGE",
     ]
 
@@ -143,7 +145,6 @@ module FacebookAds
 
     field :account_id, 'string'
     field :account_status, 'int'
-    field :ad_account_creation_request, 'AdAccountCreationRequest'
     field :ad_account_promotable_objects, 'AdAccountPromotableObjects'
     field :age, 'double'
     field :agency_client_declaration, 'AgencyClientDeclaration'
@@ -375,6 +376,7 @@ module FacebookAds
         api.has_param :adset_spec, 'AdSet'
         api.has_param :audience_id, 'string'
         api.has_param :bid_amount, 'int'
+        api.has_param :conversion_domain, 'string'
         api.has_param :creative, 'AdCreative'
         api.has_param :date_format, 'string'
         api.has_param :display_sequence, 'int'
@@ -676,6 +678,7 @@ module FacebookAds
         api.has_param :buying_type, 'string'
         api.has_param :daily_budget, 'int'
         api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
+        api.has_param :is_skadnetwork_attribution, 'bool'
         api.has_param :iterative_split_test_configs, { list: 'object' }
         api.has_param :lifetime_budget, 'int'
         api.has_param :name, 'string'
@@ -861,6 +864,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
         api.has_param :use_account_attribution_setting, 'bool'
+        api.has_param :use_unified_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
@@ -883,6 +887,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
         api.has_param :use_account_attribution_setting, 'bool'
+        api.has_param :use_unified_attribution_setting, 'bool'
       end
     end
 
@@ -896,6 +901,8 @@ module FacebookAds
         api.has_param :app_store, { enum: -> { AdAccountMatchedSearchApplicationsEdgeData::APP_STORE }}
         api.has_param :app_store_country, 'string'
         api.has_param :business_id, 'string'
+        api.has_param :is_skadnetwork_search, 'bool'
+        api.has_param :only_apps_with_permission, 'bool'
         api.has_param :query_term, 'string'
       end
     end
@@ -1029,15 +1036,6 @@ module FacebookAds
         api.has_param :business_id, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
-      end
-    end
-
-    has_edge :sponsored_message_ads do |edge|
-      edge.post do |api|
-        api.has_param :bid_amount, 'int'
-        api.has_param :daily_budget, 'int'
-        api.has_param :message_creative_id, 'string'
-        api.has_param :targeting, 'Targeting'
       end
     end
 

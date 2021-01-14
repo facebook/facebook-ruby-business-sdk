@@ -29,6 +29,7 @@ module FacebookAds
     ADACCOUNT_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "DRAFT",
       "MANAGE",
     ]
 
