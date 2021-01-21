@@ -34,7 +34,6 @@ module FacebookAds
     field :id, 'string'
     field :is_access_revoked, 'bool'
     field :is_automated_experience, 'bool'
-    field :last_payment_time, 'datetime'
     field :legal_entity_name, 'string'
     field :liable_biz_name, 'string'
     field :max_balance, 'CurrencyAmount'

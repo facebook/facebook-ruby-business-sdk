@@ -121,7 +121,6 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
-      "PROFILE_PLUS_LIVE_STREAM_MODERATION",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -145,7 +144,6 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
-      "PROFILE_PLUS_LIVE_STREAM_MODERATION",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -286,6 +284,7 @@ module FacebookAds
       "leadgen",
       "leadgen_fat",
       "live_videos",
+      "local_delivery",
       "location",
       "mcom_invoice_change",
       "members",
@@ -362,6 +361,7 @@ module FacebookAds
     field :checkins, 'int'
     field :company_overview, 'string'
     field :connected_instagram_account, 'IgUser'
+    field :connected_page_backed_instagram_account, 'IgUser'
     field :contact_address, 'MailingAddress'
     field :copyright_whitelisted_ig_partners, { list: 'string' }
     field :country_page_likes, 'int'
@@ -589,13 +589,7 @@ module FacebookAds
     end
 
     has_edge :claimed_urls do |edge|
-      edge.delete do |api|
-        api.has_param :url, 'string'
-      end
       edge.get 'Url'
-      edge.post 'Page' do |api|
-        api.has_param :url, 'string'
-      end
     end
 
     has_edge :commerce_merchant_settings do |edge|
@@ -953,7 +947,6 @@ module FacebookAds
         api.has_param :location, 'object'
         api.has_param :location_page_id, 'string'
         api.has_param :old_store_number, 'int'
-        api.has_param :page_username, 'string'
         api.has_param :permanently_closed, 'bool'
         api.has_param :phone, 'string'
         api.has_param :pickup_options, { list: { enum: -> { Page::PICKUP_OPTIONS }} }
@@ -1003,13 +996,9 @@ module FacebookAds
       edge.get 'MessagingFeatureReview'
     end
 
-    has_edge :messenger_ads_page_welcome_messages do |edge|
-      edge.get 'MessengerDestinationPageWelcomeMessage'
-    end
-
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
       end
       edge.get 'MessengerProfile'
       edge.post 'Page' do |api|
@@ -1076,6 +1065,14 @@ module FacebookAds
     end
 
     has_edge :pass_thread_control do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :metadata, 'string'
+        api.has_param :recipient, 'object'
+        api.has_param :target_app_id, 'int'
+      end
+    end
+
+    has_edge :pass_thread_metadata do |edge|
       edge.post 'Page' do |api|
         api.has_param :metadata, 'string'
         api.has_param :recipient, 'object'
@@ -1219,6 +1216,12 @@ module FacebookAds
       edge.get 'Recommendation'
     end
 
+    has_edge :release_thread_control do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :recipient, 'object'
+      end
+    end
+
     has_edge :request_thread_control do |edge|
       edge.post 'Page' do |api|
         api.has_param :metadata, 'string'
@@ -1304,7 +1307,7 @@ module FacebookAds
     end
 
     has_edge :tours do |edge|
-      edge.get 'EventTour'
+      edge.get
     end
 
     has_edge :unlink_accounts do |edge|
@@ -1317,6 +1320,10 @@ module FacebookAds
       edge.get 'VideoCopyrightRule' do |api|
         api.has_param :selected_rule_id, 'string'
         api.has_param :source, { enum: -> { VideoCopyrightRule::SOURCE }}
+      end
+      edge.post 'VideoCopyrightRule' do |api|
+        api.has_param :condition_groups, { list: 'object' }
+        api.has_param :name, 'string'
       end
     end
 
@@ -1419,6 +1426,7 @@ module FacebookAds
         api.has_param :slideshow_spec, 'hash'
         api.has_param :social_actions, 'bool'
         api.has_param :source, 'string'
+        api.has_param :source_instagram_media_id, 'string'
         api.has_param :specified_dialect, 'string'
         api.has_param :spherical, 'bool'
         api.has_param :sponsor_id, 'string'

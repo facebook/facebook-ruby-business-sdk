@@ -16,21 +16,16 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'facebook_ads'
-
-access_token = '<ACCESS_TOKEN>'
-app_secret = '<APP_SECRET>'
-app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
-
-FacebookAds.configure do |config|
-  config.access_token = access_token
-  config.app_secret = app_secret
+module FacebookAds
+	module ServerSide
+        class HttpUtil
+            def self.appsecret_proof(app_secret, access_token)
+                OpenSSL::HMAC.hexdigest(
+                    OpenSSL::Digest.new('sha256'),
+                    app_secret,
+                    access_token
+                )
+            end
+        end
+    end
 end
-
-ad_account = FacebookAds::AdAccount.get(id)
-campaigns = ad_account.campaigns.create({
-    name: 'My campaign',
-    objective: 'LINK_CLICKS',
-    status: 'PAUSED',
-})

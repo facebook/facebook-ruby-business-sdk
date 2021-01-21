@@ -53,6 +53,7 @@ module FacebookAds
     ACTION_REPORT_TIME = [
       "conversion",
       "impression",
+      "mixed",
     ]
 
     BREAKDOWNS = [

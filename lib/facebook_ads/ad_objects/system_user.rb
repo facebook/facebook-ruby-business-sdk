@@ -26,24 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class SystemUser < AdObject
-    ROLE = [
-      "ADMIN",
-      "ADS_RIGHTS_REVIEWER",
-      "DEVELOPER",
-      "EMPLOYEE",
-      "FINANCE_ANALYST",
-      "FINANCE_EDITOR",
-      "FINANCE_EDIT_TASK",
-      "FINANCE_VIEW_TASK",
-      "MODERATE_TASK",
-      "OPERATE_TASK",
-      "PARTNER_CENTER_ADMIN",
-      "PARTNER_CENTER_ANALYST",
-      "PARTNER_CENTER_EDUCATION",
-      "PARTNER_CENTER_MARKETING",
-      "PARTNER_CENTER_OPERATIONS",
-    ]
-
 
     field :created_by, 'User'
     field :created_time, 'datetime'
@@ -51,8 +33,6 @@ module FacebookAds
     field :id, 'string'
     field :ip_permission, 'string'
     field :name, 'string'
-    field :role, { enum: -> { ROLE }}
-    field :system_user_id, 'int'
     has_no_post
     has_no_delete
 

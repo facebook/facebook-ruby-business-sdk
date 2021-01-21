@@ -21,11 +21,14 @@ require 'facebook_ads'
 access_token = '<ACCESS_TOKEN>'
 app_secret = '<APP_SECRET>'
 app_id = '<APP_ID>'
-id = '<ADS_PIXEL_ID>'
+id = '<PAGE_POST_ID>'
 
 FacebookAds.configure do |config|
   config.access_token = access_token
   config.app_secret = app_secret
 end
 
-ads_pixel = FacebookAds::AdsPixel.get(id ,'code')
+page_post = FacebookAds::PagePost.get(id)
+commentss = page_post.comments({
+    fields: {  },
+})

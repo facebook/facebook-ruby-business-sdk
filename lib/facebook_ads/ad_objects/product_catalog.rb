@@ -35,6 +35,7 @@ module FacebookAds
       "home_listings",
       "hotels",
       "jobs",
+      "local_delivery_shipping_profiles",
       "local_service_businesses",
       "offer_items",
       "offline_commerce",
@@ -110,7 +111,6 @@ module FacebookAds
     field :catalog_segment_product_set_id, 'string'
     field :destination_catalog_settings, 'hash'
     field :flight_catalog_settings, 'hash'
-    field :onsite_commerce_merchant, 'object'
     field :parent_catalog_id, 'string'
 
     has_edge :agencies do |edge|
@@ -274,12 +274,6 @@ module FacebookAds
       end
     end
 
-    has_edge :onsite_commerce_merchant do |edge|
-      edge.post 'ProductCatalog' do |api|
-        api.has_param :onsite_commerce_merchant, 'object'
-      end
-    end
-
     has_edge :pricing_variables_batch do |edge|
       edge.get 'ProductCatalogPricingVariablesBatch' do |api|
         api.has_param :handle, 'string'
@@ -305,6 +299,7 @@ module FacebookAds
         api.has_param :feed_type, { enum: -> { ProductFeed::FEED_TYPE }}
         api.has_param :file_name, 'string'
         api.has_param :item_sub_type, { enum: -> { ProductFeed::ITEM_SUB_TYPE }}
+        api.has_param :migrated_from_feed_id, 'string'
         api.has_param :name, 'string'
         api.has_param :override_type, { enum: -> { ProductFeed::OVERRIDE_TYPE }}
         api.has_param :override_value, 'string'
@@ -354,6 +349,7 @@ module FacebookAds
       edge.post 'ProductItem' do |api|
         api.has_param :additional_image_files, { list: 'file' }
         api.has_param :additional_image_urls, { list: 'string' }
+        api.has_param :additional_uploaded_image_ids, { list: 'string' }
         api.has_param :additional_variant_attributes, 'hash'
         api.has_param :android_app_name, 'string'
         api.has_param :android_class, 'string'

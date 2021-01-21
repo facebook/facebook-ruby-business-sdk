@@ -36,6 +36,7 @@ module FacebookAds
       "IPHONE",
       "MOBILE_WEB",
       "OCULUS",
+      "SAMSUNG",
       "SUPPLEMENTARY_IMAGES",
       "WEB",
       "WINDOWS",
@@ -100,6 +101,7 @@ module FacebookAds
     field :android_key_hash, { list: 'string' }
     field :android_sdk_error_categories, { list: 'object' }
     field :app_domains, { list: 'string' }
+    field :app_events_config, 'object'
     field :app_events_feature_bitmask, 'int'
     field :app_events_session_timeout, 'int'
     field :app_install_tracked, 'bool'
@@ -470,12 +472,6 @@ module FacebookAds
       end
     end
 
-    has_edge :live_videos do |edge|
-      edge.get 'LiveVideo' do |api|
-        api.has_param :broadcast_status, { enum: -> { LiveVideo::BROADCAST_STATUS }}
-      end
-    end
-
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
         api.has_param :advertiser_id, 'string'
@@ -510,10 +506,6 @@ module FacebookAds
         api.has_param :flash, 'bool'
         api.has_param :unity, 'bool'
       end
-    end
-
-    has_edge :ozone_release do |edge|
-      edge.get
     end
 
     has_edge :page_activities do |edge|

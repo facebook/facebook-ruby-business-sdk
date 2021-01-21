@@ -166,4 +166,40 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
 
         expect(response).to eq(expected_response)
     end
+
+    it 'execute can use a custom http_service_client' do
+        appsecret = 'appsecret-proof-012'
+        mock_http_service_client = double(FacebookAds::ServerSide::HttpServiceInterface)
+        access_token = 'access_token-0'
+        pixel_id = 'pixel_id-1'
+        test_event_code = 'test_event_code-2'
+        FacebookAds.configure do |config|
+            config.access_token = access_token
+            config.app_secret = appsecret
+        end
+        events = [FacebookAds::ServerSide::Event.new(event_name: 'event-1')]
+        event_request = FacebookAds::ServerSide::EventRequest.new(
+            pixel_id: pixel_id,
+            events: events,
+            test_event_code: test_event_code,
+            http_service_client: mock_http_service_client,
+        )
+        url = "https://#{FacebookAds::DEFAULT_HOST}/#{FacebookAds::DEFAULT_API_VERSION}/#{pixel_id}/events"
+        headers = {
+            'User-Agent' => "fbbizsdk-ruby-v#{FacebookAds::VERSION}"
+        }
+        params = event_request.get_params
+        params[:access_token] = access_token
+        params[:appsecret_proof] = FacebookAds::ServerSide::HttpUtil.appsecret_proof(appsecret, access_token)
+        params[:data] = events.map(&:normalize)
+
+        expect(mock_http_service_client).to receive(:execute).with(
+            url,
+            FacebookAds::ServerSide::HttpMethod::POST,
+            headers,
+            params
+        )
+
+        event_request.execute
+    end
 end

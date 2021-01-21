@@ -16,25 +16,18 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-# FB:AUTOGEN
 
 module FacebookAds
-  # This class is auto-generated.
+  module ServerSide
+    class HttpServiceInterface
 
-  # For any issues or feature requests related to this class, please let us know
-  # on github and we'll fix in our codegen framework. We'll not be able to accept
-  # pull request for this class.
-
-  class UserPaymentModulesOptions < AdObject
-
-    field :account_id, 'string'
-    field :available_payment_options, { list: 'object' }
-    field :country, 'string'
-    field :currency, 'string'
-    has_no_id
-    has_no_get
-    has_no_post
-    has_no_delete
-
+      # String url            | The graph API endpoint that will be requested
+      # String request_method | The HTTP request method
+      # Hash headers          | Contains HTTP request headers including User-Agent and Accept-Encoding
+      # Hash params           | Contains request parameters including access_token, data, test_event_code, etc.
+      def execute(url, request_method, headers, params)
+        raise Exception.new("Method 'execute' not implemented")
+      end
+    end
   end
 end

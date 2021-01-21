@@ -26,6 +26,18 @@ module FacebookAds
           super
         end
       end
+
+      def clone_without_events
+        FacebookAds::ServerSide::EventRequestAsync.new(
+          pixel_id: pixel_id,
+          test_event_code: test_event_code,
+          partner_agent: partner_agent,
+          namespace_id: namespace_id,
+          upload_id: upload_id,
+          upload_tag: upload_tag,
+          upload_source: upload_source,
+        )
+      end
     end
   end
 end

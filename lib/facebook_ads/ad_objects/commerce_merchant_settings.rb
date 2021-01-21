@@ -26,16 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class CommerceMerchantSettings < AdObject
-    CTA = [
-      "CONTACT_MERCHANT",
-      "OFFSITE_LINK",
-    ]
-
-    MERCHANT_STATUS = [
-      "ENABLED",
-      "EXTERNALLY_DISABLED",
-    ]
-
 
     field :braintree_merchant_id, 'string'
     field :checkout_message, 'string'
@@ -43,6 +33,7 @@ module FacebookAds
     field :cta, 'string'
     field :disable_checkout_urls, 'bool'
     field :display_name, 'string'
+    field :external_merchant_id, 'string'
     field :facebook_channel, 'object'
     field :has_discount_code, 'bool'
     field :id, 'string'
@@ -60,21 +51,8 @@ module FacebookAds
     field :terms, 'string'
     field :terms_url_by_locale, 'hash'
     field :whatsapp_channel, 'object'
+    has_no_post
     has_no_delete
-
-    has_edge :facebook_channel do |edge|
-      edge.post 'CommerceMerchantSettings' do |api|
-        api.has_param :pages, { list: 'string' }
-      end
-    end
-
-    has_edge :instagram_channel do |edge|
-      edge.delete
-      edge.post 'CommerceMerchantSettings' do |api|
-        api.has_param :instagram_business_accounts, { list: 'string' }
-        api.has_param :instagram_users, { list: 'string' }
-      end
-    end
 
     has_edge :order_management_apps do |edge|
       edge.get 'Application'

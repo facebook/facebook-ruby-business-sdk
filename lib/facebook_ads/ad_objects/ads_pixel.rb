@@ -36,6 +36,7 @@ module FacebookAds
       "ct",
       "db",
       "em",
+      "external_id",
       "fn",
       "ge",
       "ln",
