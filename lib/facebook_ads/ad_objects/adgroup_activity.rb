@@ -113,6 +113,8 @@ module FacebookAds
     field :stop_time_old, 'datetime'
     field :target_spec_id_new, 'string'
     field :target_spec_id_old, 'string'
+    field :targets_spec_new, 'object'
+    field :targets_spec_old, 'object'
     field :tracking_pixel_ids_new, { list: 'string' }
     field :tracking_pixel_ids_old, { list: 'string' }
     field :tracking_specs_new, { list: 'object' }

@@ -62,21 +62,16 @@ module FacebookAds
     field :comments_mirroring_domain, 'string'
     field :coordinates, 'object'
     field :created_time, 'datetime'
-    field :delivery_growth_optimizations, { list: 'string' }
-    field :entities, 'object'
     field :event, 'Event'
     field :expanded_height, 'int'
     field :expanded_width, 'int'
     field :feed_targeting, 'object'
-    field :formatting, 'string'
     field :from, 'object'
     field :full_picture, 'string'
     field :height, 'int'
     field :icon, 'string'
     field :id, 'string'
-    field :implicit_place, 'Place'
     field :instagram_eligibility, 'string'
-    field :instream_eligibility, 'string'
     field :is_app_share, 'bool'
     field :is_eligible_for_promotion, 'bool'
     field :is_expired, 'bool'
@@ -86,7 +81,6 @@ module FacebookAds
     field :is_popular, 'bool'
     field :is_published, 'bool'
     field :is_spherical, 'bool'
-    field :live_video_eligibility, { list: 'string' }
     field :message, 'string'
     field :message_tags, { list: 'string' }
     field :multi_share_end_card, 'bool'
@@ -95,12 +89,10 @@ module FacebookAds
     field :permalink_url, 'object'
     field :picture, 'string'
     field :place, 'Place'
-    field :poll, 'object'
     field :privacy, 'Privacy'
     field :promotable_id, 'string'
     field :promotion_status, 'string'
     field :properties, { list: 'string' }
-    field :publishing_stats, 'int'
     field :scheduled_publish_time, 'double'
     field :shares, 'object'
     field :status_type, 'string'
@@ -110,12 +102,10 @@ module FacebookAds
     field :target, 'Profile'
     field :targeting, 'object'
     field :timeline_visibility, 'string'
-    field :translations, 'hash'
     field :updated_time, 'datetime'
     field :via, 'object'
     field :video_buying_eligibility, { list: 'string' }
     field :width, 'int'
-    field :will_be_autocropped_when_deliver_to_instagram, 'bool'
 
     has_edge :attachments do |edge|
       edge.get

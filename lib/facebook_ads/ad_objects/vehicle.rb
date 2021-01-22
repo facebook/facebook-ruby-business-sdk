@@ -29,6 +29,7 @@ module FacebookAds
     AVAILABILITY = [
       "AVAILABLE",
       "NOT_AVAILABLE",
+      "PENDING",
     ]
 
     BODY_STYLE = [

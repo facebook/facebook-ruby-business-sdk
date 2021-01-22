@@ -16,19 +16,13 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'facebook_ads'
-
-access_token = '<ACCESS_TOKEN>'
-app_secret = '<APP_SECRET>'
-app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
-
-FacebookAds.configure do |config|
-  config.access_token = access_token
-  config.app_secret = app_secret
+module FacebookAds
+  module ServerSide
+    class HttpMethod
+      POST = 'POST'
+      PUT = 'PUT'
+      GET = 'GET'
+      DELETE = 'DELETE'
+    end
+  end
 end
-
-ad_account = FacebookAds::AdAccount.get(id)
-adcreatives = ad_account.adcreatives.create({
-    object_story_spec: {'page_id':'<pageID>','video_data':{'link_description':'try it out','image_url':'<imageURL>','video_id':'<videoID>','call_to_action':{'type':'SIGN_UP','value':{'link':'http:\/\/fb.me\/','lead_gen_form_id':'<formID>'}}}},
-})

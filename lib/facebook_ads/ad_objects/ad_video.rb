@@ -43,6 +43,7 @@ module FacebookAds
       "CANDIDATE_VIDEOS",
       "CANVAS",
       "CFC_VIDEO",
+      "CMS_MEDIA_MANAGER",
       "CONTAINED_POST_ATTACHMENT",
       "CONTAINED_POST_AUDIO_BROADCAST",
       "CONTAINED_POST_BROADCAST",
@@ -63,6 +64,7 @@ module FacebookAds
       "EVENT_TOUR",
       "FACECAST_DVR",
       "FB_SHORTS",
+      "FB_SHORTS_POST",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
       "GAMING_UPDATE_VIDEO",
@@ -77,6 +79,7 @@ module FacebookAds
       "HEURISTIC_CLUSTER_VIDEO",
       "HEURISTIC_PREVIEW",
       "HIGHLIGHT_CLIP_VIDEO",
+      "IG_REELS_XPV",
       "IG_STORIES_READER",
       "INSPIRATION_VIDEO",
       "INSTAGRAM_VIDEO_COPY",
@@ -129,6 +132,7 @@ module FacebookAds
       "STORYLINE_WITH_EXTERNAL_MUSIC",
       "STORY_ARCHIVE_VIDEO",
       "STORY_CARD_TEMPLATE",
+      "STREAM_HIGHLIGHTS_VIDEO",
       "TAROT_DIGEST",
       "TEMP_MULTIMEDIA_POST",
       "UNLISTED",
@@ -301,6 +305,7 @@ module FacebookAds
     field :replace_video_id, 'string'
     field :sales_promo_id, 'int'
     field :slideshow_spec, 'hash'
+    field :source_instagram_media_id, 'string'
     field :start_offset, 'int'
     field :swap_mode, { enum: -> { SWAP_MODE }}
     field :text_format_metadata, 'string'
@@ -379,16 +384,6 @@ module FacebookAds
         api.has_param :show_gradient, 'bool'
         api.has_param :show_results, 'bool'
       end
-    end
-
-    has_edge :reactions do |edge|
-      edge.get 'Profile' do |api|
-        api.has_param :type, { enum: -> { Profile::TYPE }}
-      end
-    end
-
-    has_edge :sharedposts do |edge|
-      edge.get 'Post'
     end
 
     has_edge :sponsor_tags do |edge|

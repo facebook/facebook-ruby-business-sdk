@@ -112,7 +112,6 @@ module FacebookAds
     has_edge :reports do |edge|
       edge.get do |api|
         api.has_param :filter_by, 'string'
-        api.has_param :metric_scope, 'hash'
         api.has_param :order_by, 'string'
       end
     end

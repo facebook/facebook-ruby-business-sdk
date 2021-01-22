@@ -64,9 +64,5 @@ module FacebookAds
       edge.get 'Profile'
     end
 
-    has_edge :sharedposts do |edge|
-      edge.get 'Post'
-    end
-
   end
 end

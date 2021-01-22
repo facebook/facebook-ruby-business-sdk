@@ -29,13 +29,13 @@ module FacebookAds
 
     field :amount, 'string'
     field :app_param_data, 'string'
-    field :application, 'Profile'
+    field :application, 'Application'
     field :billing_period, 'string'
     field :canceled_reason, 'string'
     field :created_time, 'datetime'
     field :currency, 'string'
     field :id, 'string'
-    field :last_payment, 'string'
+    field :last_payment, 'PaymentEnginePayment'
     field :next_bill_time, 'datetime'
     field :next_period_amount, 'string'
     field :next_period_currency, 'string'
@@ -50,7 +50,7 @@ module FacebookAds
     field :trial_currency, 'string'
     field :trial_expiry_time, 'datetime'
     field :updated_time, 'datetime'
-    field :user, 'Profile'
+    field :user, 'User'
     has_no_post
     has_no_delete
 

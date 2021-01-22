@@ -34,10 +34,12 @@ module FacebookAds
     field :namespace, 'string'
     field :need_promo_code, 'bool'
     field :offer_origin, 'string'
+    field :privacy_policy_link, 'string'
     field :promotion_text, 'string'
     field :receiver_benefits_text, 'string'
     field :referral_link_uri, 'string'
     field :sender_benefits_text, 'string'
+    field :terms_and_condition_link, 'string'
 
   end
 end

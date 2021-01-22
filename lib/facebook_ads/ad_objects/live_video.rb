@@ -26,18 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class LiveVideo < AdObject
-    BROADCAST_STATUS = [
-      "live",
-      "live_stopped",
-      "processing",
-      "scheduled_canceled",
-      "scheduled_expired",
-      "scheduled_live",
-      "scheduled_unpublished",
-      "unpublished",
-      "vod",
-    ]
-
     PROJECTION = [
       "CUBEMAP",
       "EQUIRECTANGULAR",
@@ -65,6 +53,18 @@ module FacebookAds
     STREAM_TYPE = [
       "AMBIENT",
       "REGULAR",
+    ]
+
+    BROADCAST_STATUS = [
+      "LIVE",
+      "LIVE_STOPPED",
+      "PROCESSING",
+      "SCHEDULED_CANCELED",
+      "SCHEDULED_EXPIRED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_UNPUBLISHED",
+      "UNPUBLISHED",
+      "VOD",
     ]
 
     SOURCE = [

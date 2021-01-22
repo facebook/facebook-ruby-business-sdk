@@ -28,7 +28,8 @@ module FacebookAds
                     :title,
                     :description,
                     :brand,
-                    :category
+                    :category,
+                    :delivery_category
 
       # Initializes the object
       # @param [String] product_id
@@ -38,7 +39,8 @@ module FacebookAds
       # @param [String] description
       # @param [String] brand
       # @param [String] category
-      def initialize(product_id: nil, quantity: nil, item_price: nil, title: nil, description: nil, brand: nil, category: nil)
+      # @param [String] delivery_category
+      def initialize(product_id: nil, quantity: nil, item_price: nil, title: nil, description: nil, brand: nil, category: nil, delivery_category: nil)
         unless product_id.nil?
           self.product_id = String(product_id)
         end
@@ -59,6 +61,9 @@ module FacebookAds
         end
         unless category.nil?
           self.category = String(category)
+        end
+        unless delivery_category.nil?
+          self.delivery_category = String(delivery_category)
         end
       end
 
@@ -97,6 +102,10 @@ module FacebookAds
         if attributes.has_key?(:'category')
           self.category = attributes[:'category']
         end
+
+        if attributes.has_key?(:'delivery_category')
+          self.delivery_category = attributes[:'delivery_category']
+        end
       end
 
       # Checks equality by comparing each attribute.
@@ -108,7 +117,8 @@ module FacebookAds
             title == o.title &&
             description == o.description &&
             brand == o.brand &&
-            category == o.category
+            category == o.category &&
+            delivery_category == o.delivery_category
       end
 
       # @see the `==` method
@@ -126,7 +136,8 @@ module FacebookAds
             title,
             description,
             brand,
-            category
+            category,
+            delivery_category
         ].hash
       end
 
@@ -156,6 +167,9 @@ module FacebookAds
         unless category.nil?
           hash['category'] = category
         end
+        unless delivery_category.nil?
+          hash['delivery_category'] = delivery_category
+        end
         hash.to_s
       end
 
@@ -182,6 +196,11 @@ module FacebookAds
         end
         unless category.nil?
           hash['category'] = category
+        end
+        unless delivery_category.nil?
+          hash['delivery_category'] = FacebookAds::ServerSide::Util.normalize_delivery_category(
+            delivery_category
+          )
         end
         hash
       end

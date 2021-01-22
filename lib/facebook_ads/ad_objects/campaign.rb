@@ -30,7 +30,6 @@ module FacebookAds
       "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
-      "TARGET_COST",
     ]
 
     CONFIGURED_STATUS = [
@@ -93,12 +92,18 @@ module FacebookAds
       "LOCAL_AWARENESS",
       "MESSAGES",
       "OFFER_CLAIMS",
+      "OUTCOME_LEADS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",
       "REACH",
       "STORE_VISITS",
       "VIDEO_VIEWS",
+    ]
+
+    SMART_PROMOTION_TYPE = [
+      "GUIDED_CREATION",
+      "SMART_APP_PROMOTION",
     ]
 
     SPECIAL_AD_CATEGORIES = [
@@ -384,6 +389,7 @@ module FacebookAds
 
 
     field :account_id, 'string'
+    field :ad_strategy_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :boosted_object_id, 'string'
@@ -398,6 +404,7 @@ module FacebookAds
     field :daily_budget, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :id, 'string'
+    field :is_skadnetwork_attribution, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :last_budget_toggling_time, 'datetime'
     field :lifetime_budget, 'string'
@@ -406,6 +413,7 @@ module FacebookAds
     field :pacing_type, { list: 'string' }
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
+    field :smart_promotion_type, 'string'
     field :source_campaign, 'Campaign'
     field :source_campaign_id, 'string'
     field :special_ad_categories, { list: 'string' }
@@ -506,6 +514,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
         api.has_param :use_account_attribution_setting, 'bool'
+        api.has_param :use_unified_attribution_setting, 'bool'
       end
       edge.post 'AdReportRun' do |api|
         api.has_param :action_attribution_windows, { list: { enum: -> { AdsInsights::ACTION_ATTRIBUTION_WINDOWS }} }
@@ -528,6 +537,7 @@ module FacebookAds
         api.has_param :time_range, 'object'
         api.has_param :time_ranges, { list: 'object' }
         api.has_param :use_account_attribution_setting, 'bool'
+        api.has_param :use_unified_attribution_setting, 'bool'
       end
     end
 

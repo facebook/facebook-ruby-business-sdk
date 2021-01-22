@@ -45,6 +45,7 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
       "REPLIES",

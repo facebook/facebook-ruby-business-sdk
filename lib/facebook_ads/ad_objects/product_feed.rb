@@ -116,6 +116,7 @@ module FacebookAds
     field :id, 'string'
     field :item_sub_type, 'string'
     field :latest_upload, 'ProductFeedUpload'
+    field :migrated_from_feed_id, 'string'
     field :name, 'string'
     field :override_type, 'string'
     field :product_count, 'int'

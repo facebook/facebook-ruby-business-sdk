@@ -23,13 +23,15 @@ RSpec.describe 'FacebookAds::ServerSide::Content' do
       product_id: 'A123',
       title: '',
       quantity: 0,
-      brand: nil
+      brand: nil,
+      delivery_category: 'curbside'
     )
 
     expect(content.normalize).to eq(
       'id' => 'A123',
       'title' => '',
-      'quantity' => 0
+      'quantity' => 0,
+      'delivery_category' => 'curbside'
     )
   end
 
@@ -86,5 +88,13 @@ RSpec.describe 'FacebookAds::ServerSide::Content' do
     )
 
     expect(content1 == content2).to eq(false)
+  end
+
+  it 'normalize raises an error when the delivery_category is not valid' do
+    content = FacebookAds::ServerSide::Content.new(
+      delivery_category: 'unsupported-category'
+    )
+
+    expect{content.normalize}.to raise_error(ArgumentError)
   end
 end

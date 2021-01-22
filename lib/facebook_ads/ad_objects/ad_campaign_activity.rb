@@ -30,14 +30,12 @@ module FacebookAds
       "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
-      "TARGET_COST",
     ]
 
     BID_STRATEGY_OLD = [
       "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
-      "TARGET_COST",
     ]
 
     BILLING_EVENT_NEW = [
@@ -83,6 +81,7 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
       "REPLIES",
@@ -112,6 +111,7 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
       "REPLIES",
@@ -163,6 +163,8 @@ module FacebookAds
     field :optimization_goal_old, { enum: -> { OPTIMIZATION_GOAL_OLD }}
     field :pacing_type_new, 'int'
     field :pacing_type_old, 'int'
+    field :promoted_object_id_new, 'string'
+    field :promoted_object_id_old, 'string'
     field :run_status_new, 'string'
     field :run_status_old, 'string'
     field :schedule_new, { list: 'object' }
@@ -175,6 +177,8 @@ module FacebookAds
     field :stop_time_old, 'datetime'
     field :targeting_expansion_new, 'object'
     field :targeting_expansion_old, 'object'
+    field :targeting_new, 'object'
+    field :targeting_old, 'object'
     field :updated_time_new, 'datetime'
     field :updated_time_old, 'datetime'
     has_no_post

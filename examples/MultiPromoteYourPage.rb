@@ -66,6 +66,7 @@ adcampaign = ad_account.campaigns.create({
     name: 'My campaign',
     objective: 'LINK_CLICKS',
     status: 'PAUSED',
+    special_ad_categories: [],
 })
 adcampaign_id = adcampaign.id
 print 'adcampaign_id:', adcampaign_id
@@ -78,7 +79,7 @@ adset = ad_account.adsets.create({
     bid_amount: '2',
     daily_budget: '1000',
     campaign_id: adcampaign_id,
-    targeting: {'geo_locations':{'countries':['US']}},
+    targeting: {'geo_locations':{'countries':['US']},'facebook_positions':['feed']},
     status: 'PAUSED',
     promoted_object: {'page_id':page_id},
 })

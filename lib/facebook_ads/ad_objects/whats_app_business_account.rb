@@ -55,6 +55,7 @@ module FacebookAds
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'
+    field :owner_business_info, 'object'
     field :primary_funding_id, 'string'
     field :purchase_order_number, 'string'
     field :status, 'string'
@@ -100,6 +101,8 @@ module FacebookAds
     end
 
     has_edge :subscribed_apps do |edge|
+      edge.delete
+      edge.get
       edge.post 'WhatsAppBusinessAccount'
     end
 
