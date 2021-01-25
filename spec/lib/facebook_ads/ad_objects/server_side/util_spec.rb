@@ -32,6 +32,8 @@ RSpec.describe 'FacebookAds::ServerSide::Util' do
 
         it 'normalizes email' do
             expect(FacebookAds::ServerSide::Util.normalize('foo@test.COM', 'em')).to eq(FacebookAds::ServerSide::Util.sha256Hash('foo@test.com'))
+
+            expect{FacebookAds::ServerSide::Util.normalize('test', 'em')}.to raise_error(ArgumentError)
         end
 
         it 'normalizes gender' do
