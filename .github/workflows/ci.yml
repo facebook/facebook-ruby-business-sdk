@@ -11,7 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+            
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.version }}
 
       - name: Before install
         run: |
