@@ -7,20 +7,18 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        version: ['2.4']
+        version: [2.5, 2.6, 2.7]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+            
       - name: Set up Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.version }}
-
+      
       - name: Before install
-        run: |
-          gem uninstall bundler -v ">= 2.0"
-          gem install bundler -v "< 2.0"
+        run: gem install bundler -v "< 2.0"
 
       - name: Bundle install
         run: bundle install
