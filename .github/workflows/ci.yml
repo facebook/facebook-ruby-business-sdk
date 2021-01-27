@@ -21,7 +21,7 @@ jobs:
         run: gem install bundler
 
       - name: Bundle install
-        run: bundle install
+        run: bundle install -v "< 2.0"
 
       - name: Gem build
         run: gem build *.gemspec
