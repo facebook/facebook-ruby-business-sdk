@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '~> 1.17'
   s.add_development_dependency 'byebug', '~> 11.0'
   s.add_development_dependency 'dotenv', '~> 2.7'
-  s.add_development_dependency 'minitest', '~> 5.14'
+  s.add_development_dependency 'minitest', '~> 5.14.2'
   s.add_development_dependency 'pry', '~> 0.12'
   s.add_development_dependency 'pry-coolline', '~> 0.2'
   s.add_development_dependency 'rake', '~> 13.0'
