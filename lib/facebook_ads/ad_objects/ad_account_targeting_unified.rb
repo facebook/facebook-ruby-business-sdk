@@ -212,7 +212,6 @@ module FacebookAds
       "LOCAL_AWARENESS",
       "MESSAGES",
       "OFFER_CLAIMS",
-      "OUTCOME_LEADS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",

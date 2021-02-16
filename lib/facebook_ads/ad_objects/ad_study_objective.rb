@@ -45,6 +45,7 @@ module FacebookAds
     field :name, 'string'
     field :results, { list: 'string' }
     field :type, 'string'
+    has_no_delete
 
     has_edge :ad_place_page_sets do |edge|
       edge.get 'AdPlacePageSet'

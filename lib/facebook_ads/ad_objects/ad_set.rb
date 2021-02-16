@@ -37,10 +37,12 @@ module FacebookAds
       "CLICKS",
       "IMPRESSIONS",
       "LINK_CLICKS",
+      "LISTING_INTERACTION",
       "NONE",
       "OFFER_CLAIMS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PURCHASE",
       "THRUPLAY",
     ]
 

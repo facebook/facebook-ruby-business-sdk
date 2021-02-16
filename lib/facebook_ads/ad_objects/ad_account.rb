@@ -282,6 +282,7 @@ module FacebookAds
         api.has_param :object_story_spec, 'AdCreativeObjectStorySpec'
         api.has_param :object_type, 'string'
         api.has_param :object_url, 'string'
+        api.has_param :place_page_set_id, 'string'
         api.has_param :platform_customizations, 'object'
         api.has_param :playable_asset_id, 'string'
         api.has_param :portrait_customizations, 'hash'
@@ -508,7 +509,6 @@ module FacebookAds
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
-        api.has_param :attribution_app_id, 'string'
         api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :chunk_session_id, 'string'
         api.has_param :composer_entry_picker, 'string'
@@ -1019,15 +1019,6 @@ module FacebookAds
         api.has_param :target_cpm, 'int'
         api.has_param :target_spec, 'Targeting'
         api.has_param :video_view_length_constraint, 'int'
-      end
-    end
-
-    has_edge :roas do |edge|
-      edge.get 'AdAccountRoas' do |api|
-        api.has_param :fields, { list: 'string' }
-        api.has_param :filtering, { list: 'object' }
-        api.has_param :time_increment, 'string'
-        api.has_param :time_range, 'object'
       end
     end
 

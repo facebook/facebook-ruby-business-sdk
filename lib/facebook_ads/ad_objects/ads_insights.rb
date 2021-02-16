@@ -146,6 +146,7 @@ module FacebookAds
     field :adset_name, 'string'
     field :adset_start, 'string'
     field :age_targeting, 'string'
+    field :attribution_setting, 'string'
     field :auction_bid, 'string'
     field :auction_competitiveness, 'string'
     field :auction_max_competitor_bid, 'string'

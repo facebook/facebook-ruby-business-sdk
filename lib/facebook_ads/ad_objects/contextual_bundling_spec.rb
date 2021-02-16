@@ -16,28 +16,22 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'facebook_ads'
+# FB:AUTOGEN
 
-access_token = '<ACCESS_TOKEN>'
-app_secret = '<APP_SECRET>'
-app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
+module FacebookAds
+  # This class is auto-generated.
 
-FacebookAds.configure do |config|
-  config.access_token = access_token
-  config.app_secret = app_secret
+  # For any issues or feature requests related to this class, please let us know
+  # on github and we'll fix in our codegen framework. We'll not be able to accept
+  # pull request for this class.
+
+  class ContextualBundlingSpec < AdObject
+
+    field :status, 'string'
+    has_no_id
+    has_no_get
+    has_no_post
+    has_no_delete
+
+  end
 end
-
-ad_account = FacebookAds::AdAccount.get(id)
-adsets = ad_account.adsets.create({
-    name: 'My First Adset',
-    lifetime_budget: '20000',
-    start_time: '2021-01-19T14:03:11-0800',
-    end_time: '2021-01-29T14:03:11-0800',
-    campaign_id: '<adCampaignLinkClicksID>',
-    bid_amount: '500',
-    billing_event: 'IMPRESSIONS',
-    optimization_goal: 'POST_ENGAGEMENT',
-    targeting: {'facebook_positions':['feed'],'geo_locations':{'countries':['US'],'regions':[{'key':'4081'}],'cities':[{'key':777934,'radius':10,'distance_unit':'mile'}]},'genders':[1],'age_max':24,'age_min':20,'behaviors':[{'id':6002714895372,'name':'All travelers'}],'life_events':[{'id':6002714398172,'name':'Newlywed (1 year)'}],'publisher_platforms':['facebook'],'device_platforms':['desktop']},
-    status: 'PAUSED',
-})

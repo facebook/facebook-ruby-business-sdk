@@ -36,6 +36,7 @@ module FacebookAds
     field :external_merchant_id, 'string'
     field :facebook_channel, 'object'
     field :has_discount_code, 'bool'
+    field :has_onsite_intent, 'bool'
     field :id, 'string'
     field :instagram_channel, 'object'
     field :merchant_alert_email, 'string'

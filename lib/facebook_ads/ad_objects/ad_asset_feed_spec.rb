@@ -107,6 +107,7 @@ module FacebookAds
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
+    field :onsite_destinations, { list: 'object' }
     field :optimization_type, 'string'
     field :posts, { list: 'object' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }

@@ -99,6 +99,11 @@ module FacebookAds
 
     has_edge :access_tokens do |edge|
       edge.delete
+      edge.post 'User' do |api|
+        api.has_param :business_app, 'int'
+        api.has_param :page_id, 'string'
+        api.has_param :scope, { list: 'Permission' }
+      end
     end
 
     has_edge :accounts do |edge|
@@ -213,6 +218,10 @@ module FacebookAds
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
+    end
+
+    has_edge :custom_labels do |edge|
+      edge.get 'PageUserMessageThreadLabel'
     end
 
     has_edge :events do |edge|
@@ -617,7 +626,6 @@ module FacebookAds
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
-        api.has_param :attribution_app_id, 'string'
         api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :composer_entry_picker, 'string'
         api.has_param :composer_entry_point, 'string'
