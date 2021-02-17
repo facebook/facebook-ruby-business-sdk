@@ -55,7 +55,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir['LICENSE.txt', 'README.md', 'lib/**/*', 'bin/*']
   s.executables = s.files.grep(%r{^bin/}).map { |f| File.basename(f) }
- 
+
   if s.respond_to?(:metadata)
     s.metadata["allowed_push_host"] = 'https://09d897eb:4b9b2232@gemserver.nexoos.com.br'
   else
