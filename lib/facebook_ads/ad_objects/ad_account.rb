@@ -734,8 +734,6 @@ module FacebookAds
         api.has_param :pixel_id, 'string'
       end
       edge.post 'CustomAudience' do |api|
-        api.has_param :accountid, 'string'
-        api.has_param :additionalmetadata, 'string'
         api.has_param :allowed_domains, { list: 'string' }
         api.has_param :associated_audience_id, 'int'
         api.has_param :claim_objective, { enum: -> { CustomAudience::CLAIM_OBJECTIVE }}
@@ -745,28 +743,21 @@ module FacebookAds
         api.has_param :customer_file_source, { enum: -> { CustomAudience::CUSTOMER_FILE_SOURCE }}
         api.has_param :dataset_id, 'string'
         api.has_param :description, 'string'
-        api.has_param :details, 'string'
         api.has_param :enable_fetch_or_create, 'bool'
         api.has_param :event_source_group, 'string'
         api.has_param :event_sources, { list: 'hash' }
         api.has_param :exclusions, { list: 'object' }
-        api.has_param :expectedsize, 'int'
-        api.has_param :gender, 'string'
         api.has_param :inclusions, { list: 'object' }
-        api.has_param :isprivate, 'bool'
         api.has_param :is_household, 'bool'
         api.has_param :is_household_exclusion, 'bool'
         api.has_param :is_snapshot, 'bool'
         api.has_param :is_value_based, 'bool'
         api.has_param :list_of_accounts, { list: 'int' }
         api.has_param :lookalike_spec, 'string'
-        api.has_param :maxage, 'int'
-        api.has_param :minage, 'int'
         api.has_param :name, 'string'
         api.has_param :opt_out_link, 'string'
         api.has_param :origin_audience_id, 'string'
         api.has_param :parent_audience_id, 'int'
-        api.has_param :partnerid, 'string'
         api.has_param :partner_reference_key, 'string'
         api.has_param :pixel_id, 'string'
         api.has_param :prefill, 'bool'
@@ -777,7 +768,6 @@ module FacebookAds
         api.has_param :rule, 'string'
         api.has_param :rule_aggregation, 'string'
         api.has_param :seed_audience, 'int'
-        api.has_param :source, 'string'
         api.has_param :subtype, { enum: -> { CustomAudience::SUBTYPE }}
         api.has_param :tags, { list: 'string' }
         api.has_param :video_group_ids, { list: 'string' }

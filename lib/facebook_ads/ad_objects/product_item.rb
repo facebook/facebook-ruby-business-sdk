@@ -92,6 +92,7 @@ module FacebookAds
       "FB_APRL_CLOTHING",
       "FB_APRL_COSTUME",
       "FB_APRL_CSTM",
+      "FB_APRL_FORMAL",
       "FB_APRL_HANDBAG",
       "FB_APRL_JEWELRY",
       "FB_APRL_SHOE",

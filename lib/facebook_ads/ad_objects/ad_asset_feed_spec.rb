@@ -73,6 +73,7 @@ module FacebookAds
       "SEE_MORE",
       "SELL_NOW",
       "SEND_A_GIFT",
+      "SEND_GIFT_MONEY",
       "SHARE",
       "SHOP_NOW",
       "SIGN_UP",

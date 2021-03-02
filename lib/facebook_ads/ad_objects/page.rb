@@ -547,6 +547,13 @@ module FacebookAds
     end
 
     has_edge :business_data do |edge|
+      edge.delete do |api|
+        api.has_param :email, 'string'
+        api.has_param :external_id, 'string'
+        api.has_param :object_name, { enum: %w{contact order order_item }}
+        api.has_param :order_id, 'string'
+        api.has_param :order_item_id, 'string'
+      end
       edge.post 'Page' do |api|
         api.has_param :data, { list: 'string' }
         api.has_param :partner_agent, 'string'
@@ -1289,6 +1296,9 @@ module FacebookAds
     end
 
     has_edge :tabs do |edge|
+      edge.delete do |api|
+        api.has_param :tab, 'string'
+      end
       edge.get 'Tab' do |api|
         api.has_param :tab, { list: 'string' }
       end

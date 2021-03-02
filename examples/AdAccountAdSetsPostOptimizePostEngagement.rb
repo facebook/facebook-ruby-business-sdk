@@ -32,8 +32,8 @@ ad_account = FacebookAds::AdAccount.get(id)
 adsets = ad_account.adsets.create({
     name: 'My First Adset',
     lifetime_budget: '20000',
-    start_time: '2021-01-19T14:03:11-0800',
-    end_time: '2021-01-29T14:03:11-0800',
+    start_time: '2021-02-24T11:40:10-0800',
+    end_time: '2021-03-06T11:40:10-0800',
     campaign_id: '<adCampaignLinkClicksID>',
     bid_amount: '500',
     billing_event: 'IMPRESSIONS',
