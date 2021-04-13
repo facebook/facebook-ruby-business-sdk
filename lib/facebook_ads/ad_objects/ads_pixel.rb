@@ -110,6 +110,10 @@ module FacebookAds
       end
     end
 
+    has_edge :shadowtraffichelper do |edge|
+      edge.post
+    end
+
     has_edge :shared_accounts do |edge|
       edge.delete do |api|
         api.has_param :account_id, 'string'

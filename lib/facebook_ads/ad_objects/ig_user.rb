@@ -44,6 +44,12 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :content_publishing_limit do |edge|
+      edge.get do |api|
+        api.has_param :since, 'datetime'
+      end
+    end
+
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
         api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }

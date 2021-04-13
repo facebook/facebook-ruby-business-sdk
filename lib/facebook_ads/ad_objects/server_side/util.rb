@@ -154,7 +154,7 @@ module FacebookAds
 			def self.normalize_email(email)
 
 				if EMAIL_REGEX.match(email) == nil
-					return ArgumentError, "Invalid email format for the passed email:' + email + '.Please check the passed email format."
+					raise ArgumentError, "Invalid email format for the passed email: '#{email}'. Please check the passed email format."
 				end
 
 				return email

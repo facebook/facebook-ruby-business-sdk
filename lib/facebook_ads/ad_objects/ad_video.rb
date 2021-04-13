@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdVideo < AdObject
     CONTAINER_TYPE = [
+      "ACO_AUTOEXTRACTED_VIDEO",
       "ACO_VIDEO_VARIATION",
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
@@ -64,10 +65,10 @@ module FacebookAds
       "EVENT_TOUR",
       "FACECAST_DVR",
       "FB_SHORTS",
+      "FB_SHORTS_GROUP_POST",
       "FB_SHORTS_POST",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
-      "GAMING_UPDATE_VIDEO",
       "GEMSTONE",
       "GOODWILL_ANNIVERSARY_DEPRECATED",
       "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
@@ -257,7 +258,6 @@ module FacebookAds
     field :animated_effect_id, 'int'
     field :application_id, 'string'
     field :asked_fun_fact_prompt_id, 'int'
-    field :attribution_app_id, 'string'
     field :audio_story_wave_animation_handle, 'string'
     field :chunk_session_id, 'string'
     field :composer_entry_picker, 'string'

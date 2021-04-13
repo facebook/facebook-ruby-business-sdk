@@ -37,10 +37,12 @@ module FacebookAds
       "CLICKS",
       "IMPRESSIONS",
       "LINK_CLICKS",
+      "LISTING_INTERACTION",
       "NONE",
       "OFFER_CLAIMS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PURCHASE",
       "THRUPLAY",
     ]
 
@@ -110,7 +112,7 @@ module FacebookAds
       "last_week_mon_sun",
       "last_week_sun_sat",
       "last_year",
-      "lifetime",
+      "maximum",
       "this_month",
       "this_quarter",
       "this_week_mon_today",

@@ -25,51 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdStudyObjective < AdObject
-    TYPE = [
-      "BRAND",
-      "BRANDLIFT",
-      "FTL",
-      "MAE",
-      "MAI",
-      "NONSALES",
-      "PARTNER",
-      "SALES",
-      "TELCO",
-    ]
+  class ContextualBundlingSpec < AdObject
 
-
-    field :id, 'string'
-    field :is_primary, 'bool'
-    field :last_updated_results, 'string'
-    field :name, 'string'
-    field :results, { list: 'string' }
-    field :type, 'string'
+    field :status, 'string'
+    has_no_id
+    has_no_get
+    has_no_post
     has_no_delete
-
-    has_edge :ad_place_page_sets do |edge|
-      edge.get 'AdPlacePageSet'
-    end
-
-    has_edge :adspixels do |edge|
-      edge.get 'AdsPixel'
-    end
-
-    has_edge :applications do |edge|
-      edge.get 'Application'
-    end
-
-    has_edge :customconversions do |edge|
-      edge.get 'CustomConversion'
-    end
-
-    has_edge :offline_conversion_data_sets do |edge|
-      edge.get 'OfflineConversionDataSet'
-    end
-
-    has_edge :partnerstudies do |edge|
-      edge.get 'PartnerStudy'
-    end
 
   end
 end

@@ -48,7 +48,6 @@ module FacebookAds
       "DEALS",
       "EPHEMERAL",
       "EVENT_PLANNING",
-      "FAITH",
       "FAMILY",
       "FITNESS",
       "FOR_SALE",
@@ -105,7 +104,6 @@ module FacebookAds
       "DEALS",
       "EPHEMERAL",
       "EVENT_PLANNING",
-      "FAITH",
       "FAMILY",
       "FITNESS",
       "FOR_SALE",
@@ -150,15 +148,6 @@ module FacebookAds
       "WORK_TEAM",
       "WORK_TEAMWORK",
       "WORK_VC_CALL",
-    ]
-
-    SUGGESTION_CATEGORY = [
-      "EVENT",
-      "MESSENGER",
-      "WORK",
-      "WORKPLACE",
-      "WORKPLACE_1_1",
-      "WORKPLACE_MANAGER",
     ]
 
 
@@ -359,8 +348,6 @@ module FacebookAds
         api.has_param :post_requires_admin_approval, 'bool'
         api.has_param :privacy, 'string'
         api.has_param :ref, 'string'
-        api.has_param :suggestion_category, { enum: -> { Group::SUGGESTION_CATEGORY }}
-        api.has_param :suggestion_identifier, 'string'
       end
     end
 
@@ -488,7 +475,6 @@ module FacebookAds
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
-        api.has_param :attribution_app_id, 'string'
         api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :composer_entry_picker, 'string'
         api.has_param :composer_entry_point, 'string'

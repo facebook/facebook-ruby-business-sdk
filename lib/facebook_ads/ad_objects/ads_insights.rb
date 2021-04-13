@@ -93,7 +93,7 @@ module FacebookAds
       "last_week_mon_sun",
       "last_week_sun_sat",
       "last_year",
-      "lifetime",
+      "maximum",
       "this_month",
       "this_quarter",
       "this_week_mon_today",
@@ -146,6 +146,7 @@ module FacebookAds
     field :adset_name, 'string'
     field :adset_start, 'string'
     field :age_targeting, 'string'
+    field :attribution_setting, 'string'
     field :auction_bid, 'string'
     field :auction_competitiveness, 'string'
     field :auction_max_competitor_bid, 'string'

@@ -380,6 +380,7 @@ module FacebookAds
     field :fan_count, 'int'
     field :featured_video, 'AdVideo'
     field :features, 'string'
+    field :followers_count, 'int'
     field :food_styles, { list: 'string' }
     field :founded, 'string'
     field :general_info, 'string'
@@ -546,6 +547,13 @@ module FacebookAds
     end
 
     has_edge :business_data do |edge|
+      edge.delete do |api|
+        api.has_param :email, 'string'
+        api.has_param :external_id, 'string'
+        api.has_param :object_name, { enum: %w{contact order order_item }}
+        api.has_param :order_id, 'string'
+        api.has_param :order_item_id, 'string'
+      end
       edge.post 'Page' do |api|
         api.has_param :data, { list: 'string' }
         api.has_param :partner_agent, 'string'
@@ -590,6 +598,10 @@ module FacebookAds
 
     has_edge :claimed_urls do |edge|
       edge.get 'Url'
+    end
+
+    has_edge :commerce_eligibility do |edge|
+      edge.get 'PageCommerceEligibility'
     end
 
     has_edge :commerce_merchant_settings do |edge|
@@ -812,6 +824,21 @@ module FacebookAds
       edge.get 'Page'
     end
 
+    has_edge :image_copyrights do |edge|
+      edge.get 'ImageCopyright'
+      edge.post 'ImageCopyright' do |api|
+        api.has_param :artist, 'string'
+        api.has_param :creator, 'string'
+        api.has_param :custom_id, 'string'
+        api.has_param :description, 'string'
+        api.has_param :filename, 'string'
+        api.has_param :geo_ownership, { list: { enum: -> { ImageCopyright::GEO_OWNERSHIP }} }
+        api.has_param :original_content_creation_date, 'int'
+        api.has_param :reference_photo, 'string'
+        api.has_param :title, 'string'
+      end
+    end
+
     has_edge :indexed_videos do |edge|
       edge.get 'AdVideo'
     end
@@ -947,6 +974,7 @@ module FacebookAds
         api.has_param :location, 'object'
         api.has_param :location_page_id, 'string'
         api.has_param :old_store_number, 'int'
+        api.has_param :page_username, 'string'
         api.has_param :permanently_closed, 'bool'
         api.has_param :phone, 'string'
         api.has_param :pickup_options, { list: { enum: -> { Page::PICKUP_OPTIONS }} }
@@ -1268,6 +1296,9 @@ module FacebookAds
     end
 
     has_edge :tabs do |edge|
+      edge.delete do |api|
+        api.has_param :tab, 'string'
+      end
       edge.get 'Tab' do |api|
         api.has_param :tab, { list: 'string' }
       end
@@ -1359,7 +1390,6 @@ module FacebookAds
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
-        api.has_param :attribution_app_id, 'string'
         api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :backdated_post, { list: 'string' }
         api.has_param :call_to_action, 'object'

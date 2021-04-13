@@ -144,6 +144,19 @@ module FacebookAds
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
+      edge.post 'AutomotiveModel' do |api|
+        api.has_param :automotive_model_id, 'string'
+        api.has_param :body_style, { enum: -> { AutomotiveModel::BODY_STYLE }}
+        api.has_param :currency, 'string'
+        api.has_param :description, 'string'
+        api.has_param :images, { list: 'object' }
+        api.has_param :make, 'string'
+        api.has_param :model, 'string'
+        api.has_param :price, 'int'
+        api.has_param :title, 'string'
+        api.has_param :url, 'string'
+        api.has_param :year, 'int'
+      end
     end
 
     has_edge :batch do |edge|
@@ -306,8 +319,8 @@ module FacebookAds
         api.has_param :quoted_fields_mode, { enum: -> { ProductFeed::QUOTED_FIELDS_MODE }}
         api.has_param :rules, { list: 'string' }
         api.has_param :schedule, 'string'
+        api.has_param :selected_override_fields, { list: 'string' }
         api.has_param :update_schedule, 'string'
-        api.has_param :whitelisted_properties, { list: 'string' }
       end
     end
 
@@ -347,7 +360,6 @@ module FacebookAds
         api.has_param :return_only_approved_products, 'bool'
       end
       edge.post 'ProductItem' do |api|
-        api.has_param :additional_image_files, { list: 'file' }
         api.has_param :additional_image_urls, { list: 'string' }
         api.has_param :additional_uploaded_image_ids, { list: 'string' }
         api.has_param :additional_variant_attributes, 'hash'

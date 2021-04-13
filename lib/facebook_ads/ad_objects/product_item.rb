@@ -92,6 +92,7 @@ module FacebookAds
       "FB_APRL_CLOTHING",
       "FB_APRL_COSTUME",
       "FB_APRL_CSTM",
+      "FB_APRL_FORMAL",
       "FB_APRL_HANDBAG",
       "FB_APRL_JEWELRY",
       "FB_APRL_SHOE",
@@ -293,6 +294,7 @@ module FacebookAds
     field :additional_variant_attributes, 'hash'
     field :age_group, { enum: -> { AGE_GROUP }}
     field :applinks, 'CatalogItemAppLinks'
+    field :ar_data, 'ProductItemArData'
     field :availability, { enum: -> { AVAILABILITY }}
     field :brand, 'string'
     field :capability_to_review_status, 'hash'
@@ -344,7 +346,6 @@ module FacebookAds
     field :start_date, 'string'
     field :url, 'string'
     field :visibility, { enum: -> { VISIBILITY }}
-    field :additional_image_files, { list: 'file' }
     field :additional_uploaded_image_ids, { list: 'string' }
     field :android_app_name, 'string'
     field :android_class, 'string'
@@ -369,14 +370,6 @@ module FacebookAds
     field :windows_phone_app_id, 'string'
     field :windows_phone_app_name, 'string'
     field :windows_phone_url, 'string'
-
-    has_edge :ar_data do |edge|
-      edge.post do |api|
-        api.has_param :container_effect, { enum: %w{MAKEUP }}
-        api.has_param :effect_parameters, 'hash'
-        api.has_param :picker_icon, 'file'
-      end
-    end
 
     has_edge :channels_to_integrity_status do |edge|
       edge.get 'CatalogItemChannelsToIntegrityStatus'

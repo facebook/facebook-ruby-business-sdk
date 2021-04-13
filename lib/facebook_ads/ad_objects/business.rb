@@ -259,6 +259,10 @@ module FacebookAds
 
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
+      edge.post 'BusinessUser' do |api|
+        api.has_param :email, 'string'
+        api.has_param :role, { enum: -> { BusinessUser::ROLE }}
+      end
     end
 
     has_edge :claim_custom_conversions do |edge|
@@ -375,6 +379,20 @@ module FacebookAds
     has_edge :extendedcredits do |edge|
       edge.get 'ExtendedCredit' do |api|
         api.has_param :order_by_is_owned_credential, 'bool'
+      end
+    end
+
+    has_edge :franchise_programs do |edge|
+      edge.post do |api|
+        api.has_param :business_asset_group, 'string'
+        api.has_param :creative_folder, 'string'
+        api.has_param :creative_spec_template_data, 'hash'
+        api.has_param :description, 'string'
+        api.has_param :end_date, 'datetime'
+        api.has_param :name, 'string'
+        api.has_param :program_approval_type, { enum: %w{APPROVAL PUBLIC }}
+        api.has_param :shared_custom_audience, 'string'
+        api.has_param :start_date, 'datetime'
       end
     end
 
@@ -571,6 +589,11 @@ module FacebookAds
 
     has_edge :system_users do |edge|
       edge.get 'SystemUser'
+      edge.post 'SystemUser' do |api|
+        api.has_param :name, 'string'
+        api.has_param :role, { enum: -> { SystemUser::ROLE }}
+        api.has_param :system_user_id, 'int'
+      end
     end
 
     has_edge :third_party_measurement_report_dataset do |edge|

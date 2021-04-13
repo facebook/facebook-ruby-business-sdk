@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
     'https://github.com/facebook/facebook-ruby-business-sdk'
   s.license = 'Nonstandard'
 
-  s.required_ruby_version = '~> 2.0'
+  s.required_ruby_version = '> 2.4'
 
   s.add_dependency 'faraday_middleware', '~> 1.0'
   s.add_dependency 'concurrent-ruby', '~> 1.1'
@@ -45,7 +45,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '~> 2.1.4'
   s.add_development_dependency 'byebug', '~> 11.0'
   s.add_development_dependency 'dotenv', '~> 2.7'
-  s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'minitest', '~> 5.14.2'
   s.add_development_dependency 'pry', '~> 0.12'
   s.add_development_dependency 'pry-coolline', '~> 0.2'
   s.add_development_dependency 'rake', '~> 13.0'

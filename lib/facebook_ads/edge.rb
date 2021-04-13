@@ -53,6 +53,7 @@ module FacebookAds
     def reload!
       @collection = Array.new
       self.has_next_page = true
+      self.next_page_cursor = nil
     end
 
     private
@@ -95,7 +96,7 @@ module FacebookAds
       node.post_edge(name, graph_params.merge(params)) do |response|
         # TODO params check
         # TODO Add new object to collection?
-        
+
         field_type = self.class.return_types[:post]
 
         obj = field_type.deserialize(response, node.session)

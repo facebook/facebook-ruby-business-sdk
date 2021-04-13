@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## v0.10.0.0
+
+
+### Changed
+- Graph API call upgrade to [v10.0](https://developers.facebook.com/docs/graph-api/changelog/version10.0)
+- Support Ruby 3.0.0
+
 ## v0.9.0.1
 
 
@@ -12,7 +19,8 @@ All notable changes to this project will be documented in this file.
 - `action_source` field to Event for Conversions API.
 
 ## v0.9.0.0
-
+### Changed
+- Graph API call upgrade to [v9.0](https://developers.facebook.com/docs/graph-api/changelog/version9.0)
 
 ### Added
 - `delivery_category` field to Content for Conversions API.

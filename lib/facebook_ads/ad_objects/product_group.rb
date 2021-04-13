@@ -32,14 +32,6 @@ module FacebookAds
     field :retailer_id, 'string'
     field :variants, { list: 'ProductVariant' }
 
-    has_edge :ar_data do |edge|
-      edge.post do |api|
-        api.has_param :effect_icon, 'file'
-        api.has_param :state, { enum: %w{DISABLED ENABLED TEST }}
-        api.has_param :surfaces, { list: { enum: %w{SHOPS TEST_CAPABILITY UNIVERSAL_CHECKOUT US_MARKETPLACE }} }
-      end
-    end
-
     has_edge :products do |edge|
       edge.get 'ProductItem'
       edge.post 'ProductItem' do |api|
