@@ -175,4 +175,73 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
         expect(user_data1).to_not eq(user_data2)
         expect(user_data1.hash).to_not eq(user_data2.hash)
     end
+
+    it 'equals works with value arrays' do
+        attrs = {
+            emails: ['email-1', 'email-10'],
+            phones: ['phone-2', 'phone-20'],
+            genders: ['gender-3', 'gender-30'],
+            dates_of_birth: ['dob-4', 'dob-40'],
+            last_names: ['first-name-5', 'first-name-50'],
+            first_names: ['last-name-6', 'last-name-60'],
+            cities: ['city-7', 'city-70'],
+            country_codes: ['country-code-8', 'country-code-80'],
+            states: ['state-9', 'state-90'],
+            zip_codes: ['zip-code-10', 'zip-code-100'],
+            external_ids: ['external-id-11', 'external-id-110'],
+        }
+        user_data1 = FacebookAds::ServerSide::UserData.new()
+        user_data2 = FacebookAds::ServerSide::UserData.new()
+        expect(user_data1).to eq(user_data2)
+        expect(user_data1.hash).to eq(user_data2.hash)
+
+        user_data1 = FacebookAds::ServerSide::UserData.new(attrs)
+        user_data2 = FacebookAds::ServerSide::UserData.new(attrs)
+        expect(user_data1).to eq(user_data2)
+        expect(user_data1.hash).to eq(user_data2.hash)
+    end
+
+    it 'setters and getters work' do
+        user_data = FacebookAds::ServerSide::UserData.new()
+        user_data.email = 'test@example.com'
+        expect(user_data.email).to eq('test@example.com')
+
+        user_data.zip_codes = ['10001', '20002']
+        expect(user_data.zip_codes).to eq(['10001', '20002'])
+    end
+
+    it 'build from attributes works' do
+        user_data = FacebookAds::ServerSide::UserData.new()
+        attrs = {
+            state: 'ca',
+            dates_of_birth: ['19950101', '19970203'],
+        }
+        user_data.build(attrs)
+
+        expect(user_data.state).to eq(attrs[:state])
+        expect(user_data.dates_of_birth).to eq(attrs[:dates_of_birth])
+    end
+
+    it 'build from attributes arrays take assignment precedence' do
+        user_data = FacebookAds::ServerSide::UserData.new()
+        attrs = {
+            city: 'seattle',
+            cities: ['menlopark', 'paloalto'],
+        }
+        user_data.build(attrs)
+
+        expect(user_data.city).to eq(attrs[:cities][0])
+        expect(user_data.cities).to eq(attrs[:cities])
+    end
+
+    it 'constructor attributes arrays take assignment precedence' do
+        attrs = {
+            city: 'seattle',
+            cities: ['menlopark', 'paloalto'],
+        }
+        user_data = FacebookAds::ServerSide::UserData.new(attrs)
+
+        expect(user_data.city).to eq(attrs[:cities][0])
+        expect(user_data.cities).to eq(attrs[:cities])
+    end
 end
