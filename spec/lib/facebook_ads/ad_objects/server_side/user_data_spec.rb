@@ -272,14 +272,44 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
         expect(user_data.cities).to eq(attrs[:cities])
     end
 
-    it 'constructor attributes arrays take assignment precedence' do
-        attrs = {
-            city: 'seattle',
-            cities: ['menlopark', 'paloalto'],
-        }
-        user_data = FacebookAds::ServerSide::UserData.new(attrs)
+    it 'constructor fails validation if both single and multi-values are specified' do
+        pairs = [
+            [:email, :emails],
+            [:phone, :phones],
+            [:gender, :genders],
+            [:date_of_birth, :dates_of_birth],
+            [:first_name, :first_names],
+            [:last_name, :last_names],
+            [:city, :cities],
+            [:country_code, :country_codes],
+            [:state, :states],
+            [:zip_code, :zip_codes],
+            [:external_id, :external_ids],
+        ]
 
-        expect(user_data.city).to eq(attrs[:cities][0])
-        expect(user_data.cities).to eq(attrs[:cities])
+        pairs.each do |singular, plural|
+            expect{
+                FacebookAds::ServerSide::UserData.new(
+                    singular => 'test1',
+                    plural => ['test2'],
+                )
+            }.to raise_error(ArgumentError, /.*#{plural}.*#{singular}.*/)
+        end
+    end
+
+    it 'constructor works when a single value is used' do
+        user_data = FacebookAds::ServerSide::UserData.new(
+            email: 'email-1'
+        )
+
+        expect(user_data.emails).to eq(['email-1'])
+    end
+
+    it 'constructor works when a multi-value is used' do
+        user_data = FacebookAds::ServerSide::UserData.new(
+            phones: ['phone-2']
+        )
+
+        expect(user_data.phones).to eq(['phone-2'])
     end
 end

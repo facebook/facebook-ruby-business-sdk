@@ -258,6 +258,18 @@ module FacebookAds
                      external_id: nil, external_ids: nil, client_ip_address: nil,
                      client_user_agent: nil, fbc: nil, fbp: nil, subscription_id: nil, lead_id: nil,
                      f5first: nil, f5last: nil, fi: nil, dobd: nil, dobm: nil, doby: nil)
+        validate_constructor_values(emails, email, 'emails', 'email')
+        validate_constructor_values(phones, phone, 'phones', 'phone')
+        validate_constructor_values(genders, gender, 'genders', 'gender')
+        validate_constructor_values(dates_of_birth, date_of_birth, 'dates_of_birth', 'date_of_birth')
+        validate_constructor_values(first_names, first_name, 'first_names', 'first_name')
+        validate_constructor_values(last_names, last_name, 'last_names', 'last_name')
+        validate_constructor_values(cities, city, 'cities', 'city')
+        validate_constructor_values(country_codes, country_code, 'country_codes', 'country_code')
+        validate_constructor_values(states, state, 'states', 'state')
+        validate_constructor_values(zip_codes, zip_code, 'zip_codes', 'zip_code')
+        validate_constructor_values(external_ids, external_id, 'external_ids', 'external_id')
+
         unless email.nil?
           self.email = email
         end
@@ -696,6 +708,16 @@ module FacebookAds
           hash['doby'] = FacebookAds::ServerSide::Util.normalize(doby, 'doby')
         end
         hash.select{|k, v| !v.nil?}
+      end
+
+      def validate_constructor_values(multi_value, single_value, multi_string, single_string)
+        if !multi_value.nil? && !single_value.nil?
+          raise ArgumentError.new(
+            'Cannot set both %s and %s parameters via constructor. ' % [
+              multi_string, single_string
+            ] + 'Please set either the multi or single parameter, not both.'
+          )
+        end
       end
     end
   end
