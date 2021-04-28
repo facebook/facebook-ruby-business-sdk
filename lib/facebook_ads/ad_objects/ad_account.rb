@@ -640,13 +640,6 @@ module FacebookAds
       end
     end
 
-    has_edge :audiencereplace do |edge|
-      edge.post do |api|
-        api.has_param :payload, 'object'
-        api.has_param :session, 'object'
-      end
-    end
-
     has_edge :block_list_drafts do |edge|
       edge.post 'AdAccount' do |api|
         api.has_param :publisher_urls_file, 'file'
@@ -690,7 +683,9 @@ module FacebookAds
         api.has_param :special_ad_categories, { list: { enum: -> { Campaign::SPECIAL_AD_CATEGORIES }} }
         api.has_param :special_ad_category_country, { list: { enum: -> { Campaign::SPECIAL_AD_CATEGORY_COUNTRY }} }
         api.has_param :spend_cap, 'int'
+        api.has_param :start_time, 'datetime'
         api.has_param :status, { enum: -> { Campaign::STATUS }}
+        api.has_param :stop_time, 'datetime'
         api.has_param :topline_id, 'string'
         api.has_param :upstream_events, 'hash'
       end
@@ -748,8 +743,6 @@ module FacebookAds
         api.has_param :event_sources, { list: 'hash' }
         api.has_param :exclusions, { list: 'object' }
         api.has_param :inclusions, { list: 'object' }
-        api.has_param :is_household, 'bool'
-        api.has_param :is_household_exclusion, 'bool'
         api.has_param :is_snapshot, 'bool'
         api.has_param :is_value_based, 'bool'
         api.has_param :list_of_accounts, { list: 'int' }
@@ -767,9 +760,7 @@ module FacebookAds
         api.has_param :rev_share_policy_id, 'int'
         api.has_param :rule, 'string'
         api.has_param :rule_aggregation, 'string'
-        api.has_param :seed_audience, 'int'
         api.has_param :subtype, { enum: -> { CustomAudience::SUBTYPE }}
-        api.has_param :tags, { list: 'string' }
         api.has_param :video_group_ids, { list: 'string' }
       end
     end
@@ -930,8 +921,6 @@ module FacebookAds
         api.has_param :event_sources, { list: 'hash' }
         api.has_param :exclusions, { list: 'object' }
         api.has_param :inclusions, { list: 'object' }
-        api.has_param :is_household, 'bool'
-        api.has_param :is_household_exclusion, 'bool'
         api.has_param :is_snapshot, 'bool'
         api.has_param :is_value_based, 'bool'
         api.has_param :name, 'string'
@@ -939,9 +928,7 @@ module FacebookAds
         api.has_param :parent_audience_id, 'int'
         api.has_param :product_set_id, 'string'
         api.has_param :rev_share_policy_id, 'int'
-        api.has_param :seed_audience, 'int'
         api.has_param :subtype, { enum: -> { AdAccount::SUBTYPE }}
-        api.has_param :tags, { list: 'string' }
       end
     end
 

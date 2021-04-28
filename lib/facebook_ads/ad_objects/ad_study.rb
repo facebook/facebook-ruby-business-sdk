@@ -40,6 +40,7 @@ module FacebookAds
     field :cooldown_start_time, 'datetime'
     field :created_by, 'User'
     field :created_time, 'datetime'
+    field :datasets_information, { list: 'string' }
     field :description, 'string'
     field :end_time, 'datetime'
     field :id, 'string'
@@ -58,6 +59,13 @@ module FacebookAds
 
     has_edge :cells do |edge|
       edge.get 'AdStudyCell'
+    end
+
+    has_edge :instances do |edge|
+      edge.get 'PrivateLiftStudyInstance'
+      edge.post 'PrivateLiftStudyInstance' do |api|
+        api.has_param :breakdown_key, 'hash'
+      end
     end
 
     has_edge :objectives do |edge|

@@ -62,6 +62,15 @@ module FacebookAds
       "unisex",
     ]
 
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
     REVIEW_STATUS = [
       "",
       "approved",
@@ -317,6 +326,7 @@ module FacebookAds
     field :gtin, 'string'
     field :id, 'string'
     field :image_cdn_urls, 'hash'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :image_url, 'string'
     field :images, { list: 'string' }
     field :inventory, 'int'

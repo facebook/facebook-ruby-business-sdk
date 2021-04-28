@@ -87,6 +87,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -205,6 +206,7 @@ module FacebookAds
         api.has_param :sort_by, { enum: -> { AdsPixel::SORT_BY }}
       end
       edge.post 'AdsPixel' do |api|
+        api.has_param :is_crm, 'bool'
         api.has_param :name, 'string'
       end
     end
@@ -221,6 +223,7 @@ module FacebookAds
         api.has_param :ecpms, { list: 'string' }
         api.has_param :query_ids, { list: 'string' }
         api.has_param :request_id, 'string'
+        api.has_param :sync_api, 'bool'
       end
     end
 
@@ -239,14 +242,14 @@ module FacebookAds
     end
 
     has_edge :business_invoices do |edge|
-      edge.get 'OracleTransaction' do |api|
+      edge.get 'OmegaCustomerTrx' do |api|
         api.has_param :end_date, 'string'
-        api.has_param :invoice_id, 'int'
+        api.has_param :invoice_id, 'string'
         api.has_param :issue_end_date, 'string'
         api.has_param :issue_start_date, 'string'
         api.has_param :root_id, 'int'
         api.has_param :start_date, 'string'
-        api.has_param :type, { enum: -> { OracleTransaction::TYPE }}
+        api.has_param :type, { enum: -> { OmegaCustomerTrx::TYPE }}
       end
     end
 
@@ -373,6 +376,12 @@ module FacebookAds
       edge.post 'EventSourceGroup' do |api|
         api.has_param :event_sources, { list: 'string' }
         api.has_param :name, 'string'
+      end
+    end
+
+    has_edge :extendedcreditapplications do |edge|
+      edge.get do |api|
+        api.has_param :only_show_pending, 'bool'
       end
     end
 
@@ -585,6 +594,10 @@ module FacebookAds
         api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
         api.has_param :requesting_business_id, 'string'
       end
+    end
+
+    has_edge :spaco_dataset_collections do |edge|
+      edge.get
     end
 
     has_edge :system_users do |edge|

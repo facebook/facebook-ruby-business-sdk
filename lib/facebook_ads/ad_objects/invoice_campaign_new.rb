@@ -25,42 +25,20 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Destination < AdObject
-    IMAGE_FETCH_STATUS = [
-      "DIRECT_UPLOAD",
-      "FETCHED",
-      "FETCH_FAILED",
-      "NO_STATUS",
-      "OUTDATED",
-      "PARTIAL_FETCH",
-    ]
+  class InvoiceCampaignNew < AdObject
 
-
-    field :address, 'string'
-    field :applinks, 'CatalogItemAppLinks'
-    field :category_specific_fields, 'CatalogSubVerticalList'
-    field :currency, 'string'
-    field :description, 'string'
-    field :destination_id, 'string'
-    field :id, 'string'
-    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
-    field :images, { list: 'string' }
-    field :name, 'string'
-    field :price, 'string'
-    field :price_change, 'string'
-    field :sanitized_images, { list: 'string' }
-    field :types, { list: 'string' }
-    field :url, 'string'
+    field :ad_account_id, 'string'
+    field :billed_amount_details, 'BilledAmountDetails'
+    field :campaign_id, 'string'
+    field :campaign_name, 'string'
+    field :clicks, 'int'
+    field :conversions, 'int'
+    field :impressions, 'int'
+    field :tags, { list: 'string' }
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :augmented_realities_metadata do |edge|
-      edge.get
-    end
-
-    has_edge :videos_metadata do |edge|
-      edge.get
-    end
 
   end
 end

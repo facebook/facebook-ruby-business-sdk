@@ -25,41 +25,39 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Destination < AdObject
-    IMAGE_FETCH_STATUS = [
-      "DIRECT_UPLOAD",
-      "FETCHED",
-      "FETCH_FAILED",
-      "NO_STATUS",
-      "OUTDATED",
-      "PARTIAL_FETCH",
+  class OmegaCustomerTrx < AdObject
+    TYPE = [
+      "CM",
+      "DM",
+      "INV",
+      "PRO_FORMA",
     ]
 
 
-    field :address, 'string'
-    field :applinks, 'CatalogItemAppLinks'
-    field :category_specific_fields, 'CatalogSubVerticalList'
+    field :ad_account_ids, { list: 'string' }
+    field :amount, 'string'
+    field :amount_due, 'CurrencyAmount'
+    field :billed_amount_details, 'BilledAmountDetails'
+    field :billing_period, 'string'
+    field :campaign, 'AtlasCampaign'
+    field :cdn_download_uri, 'string'
     field :currency, 'string'
-    field :description, 'string'
-    field :destination_id, 'string'
+    field :download_uri, 'string'
+    field :due_date, 'datetime'
+    field :entity, 'string'
     field :id, 'string'
-    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
-    field :images, { list: 'string' }
-    field :name, 'string'
-    field :price, 'string'
-    field :price_change, 'string'
-    field :sanitized_images, { list: 'string' }
-    field :types, { list: 'string' }
-    field :url, 'string'
+    field :invoice_date, 'datetime'
+    field :invoice_id, 'string'
+    field :invoice_type, 'string'
+    field :liability_type, 'string'
+    field :payment_status, 'string'
+    field :payment_term, 'string'
+    field :type, 'string'
     has_no_post
     has_no_delete
 
-    has_edge :augmented_realities_metadata do |edge|
-      edge.get
-    end
-
-    has_edge :videos_metadata do |edge|
-      edge.get
+    has_edge :campaigns do |edge|
+      edge.get 'InvoiceCampaignNew'
     end
 
   end

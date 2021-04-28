@@ -139,6 +139,10 @@ module FacebookAds
       end
     end
 
+    has_edge :auto_markets do |edge|
+      edge.get
+    end
+
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
         api.has_param :bulk_pagination, 'bool'
@@ -157,6 +161,10 @@ module FacebookAds
         api.has_param :url, 'string'
         api.has_param :year, 'int'
       end
+    end
+
+    has_edge :autos do |edge|
+      edge.get
     end
 
     has_edge :batch do |edge|
@@ -284,6 +292,13 @@ module FacebookAds
         api.has_param :item_sub_type, { enum: -> { ProductCatalog::ITEM_SUB_TYPE }}
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'
+      end
+    end
+
+    has_edge :media_titles do |edge|
+      edge.get do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
       end
     end
 

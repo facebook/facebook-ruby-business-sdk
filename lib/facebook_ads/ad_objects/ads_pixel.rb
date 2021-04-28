@@ -73,6 +73,7 @@ module FacebookAds
     field :first_party_cookie_status, 'string'
     field :id, 'string'
     field :is_created_by_business, 'bool'
+    field :is_crm, 'bool'
     field :is_unavailable, 'bool'
     field :last_fired_time, 'datetime'
     field :name, 'string'

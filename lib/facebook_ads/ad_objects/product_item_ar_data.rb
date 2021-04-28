@@ -39,6 +39,7 @@ module FacebookAds
       "OFFLINE_CONVERSIONS",
       "SHOPS",
       "UNIVERSAL_CHECKOUT",
+      "WHATSAPP",
     ]
 
 

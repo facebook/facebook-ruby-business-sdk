@@ -31,6 +31,7 @@ module FacebookAds
       "MANAGE",
       "MANAGE_PHONE",
       "MANAGE_TEMPLATES",
+      "MESSAGING",
       "VIEW_COST",
     ]
 

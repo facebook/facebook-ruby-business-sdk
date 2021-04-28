@@ -34,7 +34,14 @@ user_data = FacebookAds::ServerSide::UserData.new(
     fbp: 'fb.1.1558571054389.1098115397'
 )
 
+content = FacebookAds::ServerSide::Content.new(
+    product_id: 'product123',
+    quantity: 1,
+    delivery_category: 'home_delivery'
+)
+
 custom_data = FacebookAds::ServerSide::CustomData.new(
+    contents: [content],
     currency: 'usd',
     value: 123.45
 )

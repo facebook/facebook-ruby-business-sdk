@@ -121,6 +121,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -144,6 +145,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -389,6 +391,7 @@ module FacebookAds
     field :global_brand_page_name, 'string'
     field :global_brand_root_id, 'string'
     field :has_added_app, 'bool'
+    field :has_transitioned_to_new_page_experience, 'bool'
     field :has_whatsapp_business_number, 'bool'
     field :has_whatsapp_number, 'bool'
     field :hometown, 'string'
@@ -488,6 +491,10 @@ module FacebookAds
         api.has_param :idempotency_key, 'string'
         api.has_param :orders, { list: 'hash' }
       end
+    end
+
+    has_edge :admin_notes do |edge|
+      edge.get 'PageAdminNote'
     end
 
     has_edge :ads_posts do |edge|
@@ -1116,6 +1123,13 @@ module FacebookAds
       end
     end
 
+    has_edge :phone_data do |edge|
+      edge.post do |api|
+        api.has_param :call_ads_phone_data_use_case, { enum: %w{CALL_DESTINATION_AD CALL_EXTENSION_AD }}
+        api.has_param :phone_number, 'string'
+      end
+    end
+
     has_edge :photos do |edge|
       edge.get 'Photo' do |api|
         api.has_param :biz_tag_id, 'int'
@@ -1235,8 +1249,10 @@ module FacebookAds
 
     has_edge :published_posts do |edge|
       edge.get 'PagePost' do |api|
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
+        api.has_param :include_hidden, 'bool'
+        api.has_param :limit, 'int'
+        api.has_param :show_expired, 'bool'
+        api.has_param :with, { enum: -> { PagePost::WITH }}
       end
     end
 
@@ -1335,10 +1351,6 @@ module FacebookAds
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
-    end
-
-    has_edge :tours do |edge|
-      edge.get
     end
 
     has_edge :unlink_accounts do |edge|

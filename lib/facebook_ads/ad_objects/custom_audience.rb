@@ -125,14 +125,12 @@ module FacebookAds
     field :event_sources, { list: 'hash' }
     field :exclusions, { list: 'object' }
     field :inclusions, { list: 'object' }
-    field :is_household_exclusion, 'bool'
     field :list_of_accounts, { list: 'int' }
     field :origin_audience_id, 'string'
     field :parent_audience_id, 'int'
     field :partner_reference_key, 'string'
     field :prefill, 'bool'
     field :product_set_id, 'string'
-    field :tags, { list: 'string' }
     field :video_group_ids, { list: 'string' }
 
     has_edge :adaccounts do |edge|

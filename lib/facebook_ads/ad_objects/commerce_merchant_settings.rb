@@ -35,6 +35,7 @@ module FacebookAds
     field :display_name, 'string'
     field :external_merchant_id, 'string'
     field :facebook_channel, 'object'
+    field :feature_eligibility, 'object'
     field :has_discount_code, 'bool'
     field :has_onsite_intent, 'bool'
     field :id, 'string'

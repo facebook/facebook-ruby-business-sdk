@@ -27,6 +27,7 @@ module FacebookAds
 
   class Comment < AdObject
     COMMENT_PRIVACY_VALUE = [
+      "DECLINED_BY_ADMIN_ASSISTANT",
       "DEFAULT_PRIVACY",
       "FRIENDS_AND_POST_OWNER",
       "FRIENDS_ONLY",
@@ -73,7 +74,7 @@ module FacebookAds
     field :message_tags, { list: 'EntityAtTextRange' }
     field :object, 'object'
     field :parent, 'Comment'
-    field :permalink_url, 'string'
+    field :permalink_url, 'object'
     field :private_reply_conversation, 'object'
     field :user_likes, 'bool'
 

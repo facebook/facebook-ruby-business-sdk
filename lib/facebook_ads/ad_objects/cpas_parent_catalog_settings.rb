@@ -40,6 +40,7 @@ module FacebookAds
 
     field :attribution_windows, { list: 'string' }
     field :default_currency, 'string'
+    field :disable_use_as_parent_catalog, 'bool'
     field :id, 'string'
     has_no_delete
 
