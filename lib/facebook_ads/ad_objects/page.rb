@@ -121,6 +121,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -144,6 +145,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -380,6 +382,7 @@ module FacebookAds
     field :fan_count, 'int'
     field :featured_video, 'AdVideo'
     field :features, 'string'
+    field :followers_count, 'int'
     field :food_styles, { list: 'string' }
     field :founded, 'string'
     field :general_info, 'string'
@@ -388,6 +391,7 @@ module FacebookAds
     field :global_brand_page_name, 'string'
     field :global_brand_root_id, 'string'
     field :has_added_app, 'bool'
+    field :has_transitioned_to_new_page_experience, 'bool'
     field :has_whatsapp_business_number, 'bool'
     field :has_whatsapp_number, 'bool'
     field :hometown, 'string'
@@ -489,6 +493,10 @@ module FacebookAds
       end
     end
 
+    has_edge :admin_notes do |edge|
+      edge.get 'PageAdminNote'
+    end
+
     has_edge :ads_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :exclude_dynamic_ads, 'bool'
@@ -546,6 +554,13 @@ module FacebookAds
     end
 
     has_edge :business_data do |edge|
+      edge.delete do |api|
+        api.has_param :email, 'string'
+        api.has_param :external_id, 'string'
+        api.has_param :object_name, { enum: %w{contact order order_item }}
+        api.has_param :order_id, 'string'
+        api.has_param :order_item_id, 'string'
+      end
       edge.post 'Page' do |api|
         api.has_param :data, { list: 'string' }
         api.has_param :partner_agent, 'string'
@@ -589,10 +604,11 @@ module FacebookAds
     end
 
     has_edge :claimed_urls do |edge|
-      edge.delete do |api|
-        api.has_param :url, 'string'
-      end
       edge.get 'Url'
+    end
+
+    has_edge :commerce_eligibility do |edge|
+      edge.get 'PageCommerceEligibility'
     end
 
     has_edge :commerce_merchant_settings do |edge|
@@ -815,6 +831,21 @@ module FacebookAds
       edge.get 'Page'
     end
 
+    has_edge :image_copyrights do |edge|
+      edge.get 'ImageCopyright'
+      edge.post 'ImageCopyright' do |api|
+        api.has_param :artist, 'string'
+        api.has_param :creator, 'string'
+        api.has_param :custom_id, 'string'
+        api.has_param :description, 'string'
+        api.has_param :filename, 'string'
+        api.has_param :geo_ownership, { list: { enum: -> { ImageCopyright::GEO_OWNERSHIP }} }
+        api.has_param :original_content_creation_date, 'int'
+        api.has_param :reference_photo, 'string'
+        api.has_param :title, 'string'
+      end
+    end
+
     has_edge :indexed_videos do |edge|
       edge.get 'AdVideo'
     end
@@ -1002,7 +1033,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
       end
       edge.get 'MessengerProfile'
       edge.post 'Page' do |api|
@@ -1089,6 +1120,13 @@ module FacebookAds
       edge.post 'Persona' do |api|
         api.has_param :name, 'string'
         api.has_param :profile_picture_url, 'string'
+      end
+    end
+
+    has_edge :phone_data do |edge|
+      edge.post do |api|
+        api.has_param :call_ads_phone_data_use_case, { enum: %w{CALL_DESTINATION_AD CALL_EXTENSION_AD }}
+        api.has_param :phone_number, 'string'
       end
     end
 
@@ -1211,8 +1249,10 @@ module FacebookAds
 
     has_edge :published_posts do |edge|
       edge.get 'PagePost' do |api|
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
+        api.has_param :include_hidden, 'bool'
+        api.has_param :limit, 'int'
+        api.has_param :show_expired, 'bool'
+        api.has_param :with, { enum: -> { PagePost::WITH }}
       end
     end
 
@@ -1276,6 +1316,9 @@ module FacebookAds
     end
 
     has_edge :tabs do |edge|
+      edge.delete do |api|
+        api.has_param :tab, 'string'
+      end
       edge.get 'Tab' do |api|
         api.has_param :tab, { list: 'string' }
       end
@@ -1312,10 +1355,6 @@ module FacebookAds
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
-    end
-
-    has_edge :tours do |edge|
-      edge.get 'EventTour'
     end
 
     has_edge :unlink_accounts do |edge|
@@ -1367,7 +1406,6 @@ module FacebookAds
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
-        api.has_param :attribution_app_id, 'string'
         api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :backdated_post, { list: 'string' }
         api.has_param :call_to_action, 'object'

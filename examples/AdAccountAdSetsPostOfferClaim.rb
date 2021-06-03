@@ -32,8 +32,8 @@ ad_account = FacebookAds::AdAccount.get(id)
 adsets = ad_account.adsets.create({
     name: 'My Offer Claim AdSet',
     lifetime_budget: '56000',
-    start_time: '2020-10-22T22:16:51-0700',
-    end_time: '2020-10-29T22:16:51-0700',
+    start_time: '2021-04-18T09:43:15-0700',
+    end_time: '2021-04-25T09:43:15-0700',
     campaign_id: '<adCampaignLinkClicksID>',
     billing_event: 'LINK_CLICKS',
     optimization_goal: 'LINK_CLICKS',

@@ -26,6 +26,15 @@ module FacebookAds
   # pull request for this class.
 
   class Hotel < AdObject
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
 
     field :address, 'string'
     field :applinks, 'CatalogItemAppLinks'
@@ -37,6 +46,7 @@ module FacebookAds
     field :guest_ratings, 'string'
     field :hotel_id, 'string'
     field :id, 'string'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
     field :lowest_base_price, 'string'
     field :loyalty_program, 'string'
@@ -49,8 +59,16 @@ module FacebookAds
     field :url, 'string'
     field :base_price, 'int'
 
+    has_edge :augmented_realities_metadata do |edge|
+      edge.get
+    end
+
     has_edge :hotel_rooms do |edge|
       edge.get 'HotelRoom'
+    end
+
+    has_edge :videos_metadata do |edge|
+      edge.get
     end
 
   end

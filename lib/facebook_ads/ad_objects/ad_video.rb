@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdVideo < AdObject
     CONTAINER_TYPE = [
+      "ACO_AUTOEXTRACTED_VIDEO",
       "ACO_VIDEO_VARIATION",
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
@@ -37,8 +38,6 @@ module FacebookAds
       "APP_REVIEW_SCREENCAST",
       "ATLAS_VIDEO",
       "AUDIO_BROADCAST",
-      "BELL_POLL",
-      "BRAND_EQUITY_POLL_VIDEO",
       "BROADCAST",
       "CANDIDATE_VIDEOS",
       "CANVAS",
@@ -47,6 +46,7 @@ module FacebookAds
       "CONTAINED_POST_ATTACHMENT",
       "CONTAINED_POST_AUDIO_BROADCAST",
       "CONTAINED_POST_BROADCAST",
+      "CONTAINED_POST_COPYRIGHT_REFERENCE_BROADCAST",
       "COPYRIGHT_REFERENCE_BROADCAST",
       "COPYRIGHT_REFERENCE_VIDEO",
       "CULTURAL_MOMENT_DEPRECATED",
@@ -64,9 +64,10 @@ module FacebookAds
       "EVENT_TOUR",
       "FACECAST_DVR",
       "FB_SHORTS",
+      "FB_SHORTS_GROUP_POST",
+      "FB_SHORTS_POST",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
-      "GAMING_UPDATE_VIDEO",
       "GEMSTONE",
       "GOODWILL_ANNIVERSARY_DEPRECATED",
       "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
@@ -75,9 +76,11 @@ module FacebookAds
       "GOODWILL_VIDEO_SHARE",
       "GOODWILL_VIDEO_TOKEN_REQUIRED",
       "GROUP_POST",
+      "HACK_TV",
       "HEURISTIC_CLUSTER_VIDEO",
       "HEURISTIC_PREVIEW",
       "HIGHLIGHT_CLIP_VIDEO",
+      "HUDDLE_BROADCAST",
       "IG_REELS_XPV",
       "IG_STORIES_READER",
       "INSPIRATION_VIDEO",
@@ -86,6 +89,7 @@ module FacebookAds
       "INSTANT_ARTICLE",
       "INSTANT_GAME_CLIP",
       "ISSUE_MODULE",
+      "JOBS_VISUAL_INTRO_ENTRY",
       "JOB_APPLICATION_VIDEO",
       "JOB_OPENING_VIDEO",
       "KOTOTORO",
@@ -97,7 +101,6 @@ module FacebookAds
       "LOOK_NOW_DEPRECATED",
       "MARKETPLACE_LISTING_VIDEO",
       "MARKETPLACE_PRE_RECORDED_VIDEO",
-      "MOMENTS_VIDEO",
       "NEO_ASYNC_GAME_VIDEO",
       "NO_STORY",
       "NO_STORY_WITH_ENTPOST",
@@ -107,13 +110,17 @@ module FacebookAds
       "PAGES_COVER_VIDEO",
       "PAGE_REVIEW_SCREENCAST",
       "PAGE_SLIDESHOW_VIDEO",
+      "PARTNER_DIRECTORY_BRAND_MEDIA",
       "PIXELCLOUD",
+      "PODCAST_RSS",
+      "PODCAST_VOICES",
       "PREMIERE_SOURCE",
+      "PREMIUM_MUSIC_VIDEO_NO_NEWSFEED_STORY",
+      "PREMIUM_MUSIC_VIDEO_WITH_NEWSFEED_STORY",
       "PRIVATE_GALLERY_VIDEO",
       "PRODUCT_VIDEO",
       "PROFILE_COVER_VIDEO",
       "PROFILE_INTRO_CARD",
-      "PROFILE_TO_PAGE_UPLOADED_VIDEO",
       "PROFILE_VIDEO",
       "PROTON",
       "QUICK_PROMOTION",
@@ -125,7 +132,9 @@ module FacebookAds
       "SLIDESHOW_SHAKR",
       "SLIDESHOW_VARIATION_VIDEO",
       "SOTTO_CONTENT",
+      "SOUNDBITES_VIDEO",
       "SOUND_PLATFORM_STREAM",
+      "SRT_ATTACHMENT",
       "STORIES_VIDEO",
       "STORYLINE",
       "STORYLINE_WITH_EXTERNAL_MUSIC",
@@ -135,7 +144,10 @@ module FacebookAds
       "TAROT_DIGEST",
       "TEMP_MULTIMEDIA_POST",
       "UNLISTED",
+      "UNLISTED_HACK_TV",
+      "UNLISTED_OCULUS",
       "VIDEO_COMMENT",
+      "VIDEO_COMPOSITION_VARIATION",
       "VIDEO_CREATIVE_EDITOR_AUTOGEN_AD_VIDEO",
       "VIDEO_SUPERRES",
       "VU_GENERATED_VIDEO",
@@ -239,7 +251,7 @@ module FacebookAds
     field :live_audience_count, 'int'
     field :live_status, 'string'
     field :music_video_copyright, 'MusicVideoCopyright'
-    field :permalink_url, 'string'
+    field :permalink_url, 'object'
     field :picture, 'string'
     field :place, 'Place'
     field :premiere_living_room_status, 'string'
@@ -256,7 +268,6 @@ module FacebookAds
     field :animated_effect_id, 'int'
     field :application_id, 'string'
     field :asked_fun_fact_prompt_id, 'int'
-    field :attribution_app_id, 'string'
     field :audio_story_wave_animation_handle, 'string'
     field :chunk_session_id, 'string'
     field :composer_entry_picker, 'string'
@@ -383,16 +394,6 @@ module FacebookAds
         api.has_param :show_gradient, 'bool'
         api.has_param :show_results, 'bool'
       end
-    end
-
-    has_edge :reactions do |edge|
-      edge.get 'Profile' do |api|
-        api.has_param :type, { enum: -> { Profile::TYPE }}
-      end
-    end
-
-    has_edge :sharedposts do |edge|
-      edge.get 'Post'
     end
 
     has_edge :sponsor_tags do |edge|

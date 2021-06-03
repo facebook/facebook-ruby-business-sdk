@@ -64,6 +64,9 @@ module FacebookAds
       # For more details see https://developers.facebook.com/docs/marketing-apis/data-processing-options
       attr_accessor :data_processing_options_state
 
+      # Where the conversion occurred.
+      attr_accessor :action_source
+
       # @param [String] event_name
       # @param [int] event_time
       # @param [String] event_source_url
@@ -74,6 +77,7 @@ module FacebookAds
       # @param [Array<String>] data_processing_options
       # @param [int] data_processing_options_country
       # @param [int] data_processing_options_state
+      # @param String action_source
       def initialize(event_name: nil,
                      event_time: nil,
                      event_source_url: nil,
@@ -83,7 +87,8 @@ module FacebookAds
                      custom_data: nil,
                      data_processing_options: nil,
                      data_processing_options_country: nil,
-                     data_processing_options_state: nil)
+                     data_processing_options_state: nil,
+                     action_source: nil)
 
         unless event_name.nil?
           self.event_name = event_name
@@ -114,6 +119,9 @@ module FacebookAds
         end
         unless data_processing_options_state.nil?
           self.data_processing_options_state = data_processing_options_state
+        end
+        unless action_source.nil?
+          self.action_source = action_source
         end
       end
 
@@ -154,15 +162,19 @@ module FacebookAds
         end
 
         if attributes.has_key?(:'data_processing_options')
-          self.custom_data = attributes[:'data_processing_options']
+          self.data_processing_options = attributes[:'data_processing_options']
         end
 
         if attributes.has_key?(:'data_processing_options_country')
-          self.custom_data = attributes[:'data_processing_options_country']
+          self.data_processing_options_country = attributes[:'data_processing_options_country']
         end
 
         if attributes.has_key?(:'data_processing_options_state')
-          self.custom_data = attributes[:'data_processing_options_state']
+          self.data_processing_options_state = attributes[:'data_processing_options_state']
+        end
+
+        if attributes.has_key?(:'action_source')
+          self.action_source = attributes[:'action_source']
         end
       end
 
@@ -207,7 +219,8 @@ module FacebookAds
             custom_data == o.custom_data &&
             data_processing_options == o.data_processing_options &&
             data_processing_options_country == o.data_processing_options_country &&
-            data_processing_options_state == o.data_processing_options_state
+            data_processing_options_state == o.data_processing_options_state &&
+            action_source == o.action_source
       end
 
       # @see the `==` method
@@ -218,7 +231,11 @@ module FacebookAds
       # Calculates hash code according to all attributes.
       # @return [Fixnum] Hash code
       def hash
-        [event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, data_processing_options, data_processing_options_country, data_processing_options_state].hash
+        [
+          event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data,
+          data_processing_options, data_processing_options_country, data_processing_options_state,
+          action_source,
+        ].hash
       end
 
       def to_s
@@ -252,6 +269,9 @@ module FacebookAds
         end
         unless data_processing_options_state.nil?
           hash['data_processing_options_state'] = data_processing_options_state.to_s
+        end
+        unless action_source.nil?
+          hash['action_source'] = action_source
         end
         hash.to_s
       end
@@ -289,6 +309,12 @@ module FacebookAds
         end
         unless data_processing_options_state.nil?
           hash['data_processing_options_state'] = data_processing_options_state
+        end
+        unless action_source.nil?
+          hash['action_source'] = FacebookAds::ServerSide::Util.normalize(
+            action_source,
+            'action_source'
+          )
         end
         hash
       end

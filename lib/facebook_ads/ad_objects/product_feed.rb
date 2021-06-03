@@ -53,6 +53,7 @@ module FacebookAds
 
     FEED_TYPE = [
       "AUTO",
+      "AUTOMOTIVE_MODEL",
       "DESTINATION",
       "FLIGHT",
       "HOME_LISTING",
@@ -126,13 +127,21 @@ module FacebookAds
     field :feed_type, { enum: -> { FEED_TYPE }}
     field :override_value, 'string'
     field :rules, { list: 'string' }
-    field :whitelisted_properties, { list: 'string' }
+    field :selected_override_fields, { list: 'string' }
+
+    has_edge :auto_markets do |edge|
+      edge.get
+    end
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
+    end
+
+    has_edge :autos do |edge|
+      edge.get
     end
 
     has_edge :destinations do |edge|
@@ -158,6 +167,13 @@ module FacebookAds
 
     has_edge :hotels do |edge|
       edge.get 'Hotel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :media_titles do |edge|
+      edge.get do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

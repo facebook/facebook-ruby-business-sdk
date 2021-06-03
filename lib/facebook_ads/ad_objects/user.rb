@@ -49,14 +49,10 @@ module FacebookAds
 
 
     field :about, 'string'
-    field :address, 'Location'
-    field :admin_notes, { list: 'PageAdminNote' }
     field :age_range, 'AgeRange'
-    field :auth_method, 'string'
     field :birthday, 'string'
     field :cover, 'UserCoverPhoto'
     field :currency, 'Currency'
-    field :devices, { list: 'UserDevice' }
     field :education, { list: 'object' }
     field :email, 'string'
     field :favorite_athletes, { list: 'Experience' }
@@ -79,15 +75,12 @@ module FacebookAds
     field :locale, 'string'
     field :location, 'Page'
     field :meeting_for, { list: 'string' }
-    field :messenger_join_notifications_enabled, 'bool'
     field :middle_name, 'string'
     field :name, 'string'
     field :name_format, 'string'
     field :payment_pricepoints, 'PaymentPricepoints'
     field :political, 'string'
     field :profile_pic, 'string'
-    field :public_key, 'string'
-    field :published_timeline, 'bool'
     field :quotes, 'string'
     field :relationship_status, 'string'
     field :religion, 'string'
@@ -100,15 +93,17 @@ module FacebookAds
     field :timezone, 'double'
     field :token_for_business, 'string'
     field :updated_time, 'datetime'
-    field :user_storage_key, 'string'
-    field :username, 'string'
     field :verified, 'bool'
     field :video_upload_limits, 'VideoUploadLimits'
     field :website, 'string'
-    field :work, { list: 'object' }
 
     has_edge :access_tokens do |edge|
       edge.delete
+      edge.post 'User' do |api|
+        api.has_param :business_app, 'int'
+        api.has_param :page_id, 'string'
+        api.has_param :scope, { list: 'Permission' }
+      end
     end
 
     has_edge :accounts do |edge|
@@ -511,8 +506,8 @@ module FacebookAds
       end
     end
 
-    has_edge :owned_product_catalogs do |edge|
-      edge.get 'ProductCatalog'
+    has_edge :payment_transactions do |edge|
+      edge.get 'PaymentEnginePayment'
     end
 
     has_edge :permissions do |edge|
@@ -599,6 +594,17 @@ module FacebookAds
       end
     end
 
+    has_edge :posts do |edge|
+      edge.get 'Post' do |api|
+        api.has_param :include_hidden, 'bool'
+        api.has_param :q, 'string'
+        api.has_param :show_expired, 'bool'
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+        api.has_param :with, 'string'
+      end
+    end
+
     has_edge :rich_media_documents do |edge|
       edge.get 'Canvas' do |api|
         api.has_param :query, 'string'
@@ -620,7 +626,6 @@ module FacebookAds
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
-        api.has_param :attribution_app_id, 'string'
         api.has_param :audio_story_wave_animation_handle, 'string'
         api.has_param :composer_entry_picker, 'string'
         api.has_param :composer_entry_point, 'string'

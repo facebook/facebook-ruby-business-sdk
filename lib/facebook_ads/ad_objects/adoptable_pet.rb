@@ -26,6 +26,15 @@ module FacebookAds
   # pull request for this class.
 
   class AdoptablePet < AdObject
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
 
     field :address, 'object'
     field :adoptable_pet_id, 'string'
@@ -43,6 +52,7 @@ module FacebookAds
     field :features, { list: 'string' }
     field :gender, 'string'
     field :id, 'string'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
     field :name, 'string'
     field :price, 'string'
@@ -57,6 +67,14 @@ module FacebookAds
     field :url, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :augmented_realities_metadata do |edge|
+      edge.get
+    end
+
+    has_edge :videos_metadata do |edge|
+      edge.get
+    end
 
   end
 end

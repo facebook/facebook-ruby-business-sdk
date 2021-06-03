@@ -60,6 +60,7 @@ module FacebookAds
     PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
+      "DRAFT",
       "MANAGE",
     ]
 
@@ -86,6 +87,7 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -204,6 +206,7 @@ module FacebookAds
         api.has_param :sort_by, { enum: -> { AdsPixel::SORT_BY }}
       end
       edge.post 'AdsPixel' do |api|
+        api.has_param :is_crm, 'bool'
         api.has_param :name, 'string'
       end
     end
@@ -220,6 +223,7 @@ module FacebookAds
         api.has_param :ecpms, { list: 'string' }
         api.has_param :query_ids, { list: 'string' }
         api.has_param :request_id, 'string'
+        api.has_param :sync_api, 'bool'
       end
     end
 
@@ -238,14 +242,14 @@ module FacebookAds
     end
 
     has_edge :business_invoices do |edge|
-      edge.get 'OracleTransaction' do |api|
+      edge.get 'OmegaCustomerTrx' do |api|
         api.has_param :end_date, 'string'
-        api.has_param :invoice_id, 'int'
+        api.has_param :invoice_id, 'string'
         api.has_param :issue_end_date, 'string'
         api.has_param :issue_start_date, 'string'
         api.has_param :root_id, 'int'
         api.has_param :start_date, 'string'
-        api.has_param :type, { enum: -> { OracleTransaction::TYPE }}
+        api.has_param :type, { enum: -> { OmegaCustomerTrx::TYPE }}
       end
     end
 
@@ -258,6 +262,10 @@ module FacebookAds
 
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
+      edge.post 'BusinessUser' do |api|
+        api.has_param :email, 'string'
+        api.has_param :role, { enum: -> { BusinessUser::ROLE }}
+      end
     end
 
     has_edge :claim_custom_conversions do |edge|
@@ -380,9 +388,29 @@ module FacebookAds
       end
     end
 
+    has_edge :extendedcreditapplications do |edge|
+      edge.get do |api|
+        api.has_param :only_show_pending, 'bool'
+      end
+    end
+
     has_edge :extendedcredits do |edge|
       edge.get 'ExtendedCredit' do |api|
         api.has_param :order_by_is_owned_credential, 'bool'
+      end
+    end
+
+    has_edge :franchise_programs do |edge|
+      edge.post do |api|
+        api.has_param :business_asset_group, 'string'
+        api.has_param :creative_folder, 'string'
+        api.has_param :creative_spec_template_data, 'hash'
+        api.has_param :description, 'string'
+        api.has_param :end_date, 'datetime'
+        api.has_param :name, 'string'
+        api.has_param :program_approval_type, { enum: %w{APPROVAL PUBLIC }}
+        api.has_param :shared_custom_audience, 'string'
+        api.has_param :start_date, 'datetime'
       end
     end
 
@@ -577,8 +605,17 @@ module FacebookAds
       end
     end
 
+    has_edge :spaco_dataset_collections do |edge|
+      edge.get
+    end
+
     has_edge :system_users do |edge|
       edge.get 'SystemUser'
+      edge.post 'SystemUser' do |api|
+        api.has_param :name, 'string'
+        api.has_param :role, { enum: -> { SystemUser::ROLE }}
+        api.has_param :system_user_id, 'int'
+      end
     end
 
     has_edge :third_party_measurement_report_dataset do |edge|

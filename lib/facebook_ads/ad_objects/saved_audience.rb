@@ -29,6 +29,7 @@ module FacebookAds
 
     field :account, 'AdAccount'
     field :approximate_count, 'int'
+    field :approximate_count_64bit, 'int'
     field :description, 'string'
     field :extra_info, 'string'
     field :id, 'string'

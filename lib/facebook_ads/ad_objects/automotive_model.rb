@@ -26,6 +26,40 @@ module FacebookAds
   # pull request for this class.
 
   class AutomotiveModel < AdObject
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
+    BODY_STYLE = [
+      "CONVERTIBLE",
+      "COUPE",
+      "CROSSOVER",
+      "ESTATE",
+      "GRANDTOURER",
+      "HATCHBACK",
+      "MINIBUS",
+      "MINIVAN",
+      "MPV",
+      "NONE",
+      "OTHER",
+      "PICKUP",
+      "ROADSTER",
+      "SALOON",
+      "SEDAN",
+      "SPORTSCAR",
+      "SUPERCAR",
+      "SUPERMINI",
+      "SUV",
+      "TRUCK",
+      "VAN",
+      "WAGON",
+    ]
+
 
     field :applinks, 'CatalogItemAppLinks'
     field :automotive_model_id, 'string'
@@ -42,6 +76,7 @@ module FacebookAds
     field :fuel_type, 'string'
     field :generation, 'string'
     field :id, 'string'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
     field :interior_color, 'string'
     field :interior_upholstery, 'string'
@@ -56,6 +91,14 @@ module FacebookAds
     field :year, 'int'
     has_no_post
     has_no_delete
+
+    has_edge :augmented_realities_metadata do |edge|
+      edge.get
+    end
+
+    has_edge :videos_metadata do |edge|
+      edge.get
+    end
 
   end
 end

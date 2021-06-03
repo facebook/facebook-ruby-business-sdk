@@ -35,17 +35,6 @@ module FacebookAds
       "year",
     ]
 
-    FEED_STORY_VISIBILITY = [
-      "hidden",
-      "visible",
-    ]
-
-    TIMELINE_VISIBILITY = [
-      "forced_allow",
-      "hidden",
-      "normal",
-    ]
-
     CHECKIN_ENTRY_POINT = [
       "BRANDING_CHECKIN",
       "BRANDING_OTHER",
@@ -91,6 +80,17 @@ module FacebookAds
       "SCHEDULED_RECURRING",
     ]
 
+    FEED_STORY_VISIBILITY = [
+      "hidden",
+      "visible",
+    ]
+
+    TIMELINE_VISIBILITY = [
+      "forced_allow",
+      "hidden",
+      "normal",
+    ]
+
 
     field :actions, { list: 'string' }
     field :admin_creator, 'object'
@@ -104,22 +104,17 @@ module FacebookAds
     field :comments_mirroring_domain, 'string'
     field :coordinates, 'object'
     field :created_time, 'datetime'
-    field :delivery_growth_optimizations, { list: 'string' }
     field :description, 'string'
-    field :entities, 'object'
     field :event, 'Event'
     field :expanded_height, 'int'
     field :expanded_width, 'int'
     field :feed_targeting, 'object'
-    field :formatting, 'string'
     field :from, 'object'
     field :full_picture, 'string'
     field :height, 'int'
     field :icon, 'string'
     field :id, 'string'
-    field :implicit_place, 'Place'
     field :instagram_eligibility, 'string'
-    field :instream_eligibility, 'string'
     field :is_app_share, 'bool'
     field :is_eligible_for_promotion, 'bool'
     field :is_expired, 'bool'
@@ -129,8 +124,7 @@ module FacebookAds
     field :is_popular, 'bool'
     field :is_published, 'bool'
     field :is_spherical, 'bool'
-    field :link, 'string'
-    field :live_video_eligibility, { list: 'string' }
+    field :link, 'object'
     field :message, 'string'
     field :message_tags, { list: 'string' }
     field :multi_share_end_card, 'bool'
@@ -141,12 +135,10 @@ module FacebookAds
     field :permalink_url, 'object'
     field :picture, 'string'
     field :place, 'Place'
-    field :poll, 'object'
     field :privacy, 'Privacy'
     field :promotable_id, 'string'
     field :promotion_status, 'string'
     field :properties, { list: 'string' }
-    field :publishing_stats, 'int'
     field :scheduled_publish_time, 'double'
     field :shares, 'object'
     field :source, 'string'
@@ -157,13 +149,11 @@ module FacebookAds
     field :target, 'Profile'
     field :targeting, 'object'
     field :timeline_visibility, 'string'
-    field :translations, 'hash'
     field :type, 'string'
     field :updated_time, 'datetime'
     field :via, 'object'
     field :video_buying_eligibility, { list: 'string' }
     field :width, 'int'
-    field :will_be_autocropped_when_deliver_to_instagram, 'bool'
 
     has_edge :attachments do |edge|
       edge.get
@@ -214,24 +204,6 @@ module FacebookAds
         api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :tracking, 'string'
-      end
-    end
-
-    has_edge :promotions do |edge|
-      edge.post do |api|
-        api.has_param :ad_account_id, 'string'
-        api.has_param :ad_conversion_pixel_id, 'int'
-        api.has_param :audience, { enum: %w{AUTO_LOOKALIKE AUTO_PAGE_LOOKALIKE AUTO_TARGETING COUNTRY_AND_INTEREST CREATE_NEW CUSTOM_AUDIENCE DISTRICT EVENT_CUSTOM_AUDIENCES EVENT_ENGAGEMENT FANS GROUPER HEC_AUDIENCE IG_PROMOTED_POST_AUTO LOCAL LOOKALIKE MARKETPLACE_DEFAULT MARKETPLACE_NATIONWIDE_AUDIENCE MARKETPLACE_SAVED_AUDIENCE MULT_CUSTOM_AUDIENCES NCPP SAVED_AUDIENCE SMART_AUDIENCE }}
-        api.has_param :audience_id, 'string'
-        api.has_param :bid_amount, 'int'
-        api.has_param :budget, 'int'
-        api.has_param :cta_type, { enum: %w{ADD_TO_CART APPLY_NOW BOOK_TRAVEL BUY BUY_NOW BUY_TICKETS CALL CALL_ME CONTACT CONTACT_US DONATE DONATE_NOW DOWNLOAD EVENT_RSVP FIND_A_GROUP FIND_YOUR_GROUPS FOLLOW_NEWS_STORYLINE FOLLOW_PAGE FOLLOW_USER GET_DIRECTIONS GET_OFFER GET_OFFER_VIEW GET_QUOTE GET_SHOWTIMES INSTALL_APP INSTALL_MOBILE_APP LEARN_MORE LIKE_PAGE LISTEN_MUSIC LISTEN_NOW MESSAGE_PAGE MOBILE_DOWNLOAD MOMENTS NO_BUTTON OPEN_LINK ORDER_NOW PAY_TO_ACCESS PLAY_GAME PURCHASE_GIFT_CARDS RECORD_NOW REFER_FRIENDS REQUEST_TIME SAY_THANKS SEE_MORE SELL_NOW SEND_A_GIFT SHARE SHOP_NOW SIGN_UP SOTTO_SUBSCRIBE START_ORDER SUBSCRIBE SWIPE_UP_PRODUCT SWIPE_UP_SHOP UPDATE_APP USE_APP USE_MOBILE_APP VIDEO_ANNOTATION VISIT_PAGES_FEED WATCH_MORE WATCH_VIDEO WHATSAPP_MESSAGE WOODHENGE_SUPPORT }}
-        api.has_param :currency, 'string'
-        api.has_param :flow_id, 'string'
-        api.has_param :placement, 'string'
-        api.has_param :start_time, 'int'
-        api.has_param :stop_time, 'int'
-        api.has_param :targeting, 'Targeting'
       end
     end
 
