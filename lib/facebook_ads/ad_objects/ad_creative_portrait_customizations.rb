@@ -27,6 +27,7 @@ module FacebookAds
 
   class AdCreativePortraitCustomizations < AdObject
 
+    field :carousel_delivery_mode, 'string'
     field :specifications, { list: 'object' }
     has_no_id
     has_no_get

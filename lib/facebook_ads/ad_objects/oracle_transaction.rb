@@ -26,11 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class OracleTransaction < AdObject
-    TYPE = [
-      "CM",
-      "INV",
-    ]
-
 
     field :ad_account_ids, { list: 'string' }
     field :amount, 'string'
@@ -54,7 +49,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :campaigns do |edge|
-      edge.get 'InvoiceCampaign'
+      edge.get 'InvoiceCampaignNew'
     end
 
   end

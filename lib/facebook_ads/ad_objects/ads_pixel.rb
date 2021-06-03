@@ -73,6 +73,7 @@ module FacebookAds
     field :first_party_cookie_status, 'string'
     field :id, 'string'
     field :is_created_by_business, 'bool'
+    field :is_crm, 'bool'
     field :is_unavailable, 'bool'
     field :last_fired_time, 'datetime'
     field :name, 'string'
@@ -108,6 +109,10 @@ module FacebookAds
         api.has_param :upload_source, 'string'
         api.has_param :upload_tag, 'string'
       end
+    end
+
+    has_edge :shadowtraffichelper do |edge|
+      edge.post
     end
 
     has_edge :shared_accounts do |edge|

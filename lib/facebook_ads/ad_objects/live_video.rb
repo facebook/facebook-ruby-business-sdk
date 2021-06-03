@@ -26,18 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class LiveVideo < AdObject
-    BROADCAST_STATUS = [
-      "live",
-      "live_stopped",
-      "processing",
-      "scheduled_canceled",
-      "scheduled_expired",
-      "scheduled_live",
-      "scheduled_unpublished",
-      "unpublished",
-      "vod",
-    ]
-
     PROJECTION = [
       "CUBEMAP",
       "EQUIRECTANGULAR",
@@ -67,18 +55,37 @@ module FacebookAds
       "REGULAR",
     ]
 
+    BROADCAST_STATUS = [
+      "LIVE",
+      "LIVE_STOPPED",
+      "PROCESSING",
+      "SCHEDULED_CANCELED",
+      "SCHEDULED_EXPIRED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_UNPUBLISHED",
+      "UNPUBLISHED",
+      "VOD",
+    ]
+
     SOURCE = [
       "owner",
       "target",
     ]
 
     LIVE_COMMENT_MODERATION_SETTING = [
+      "DEFAULT",
       "DISCUSSION",
       "FOLLOWER",
       "PROTECTED_MODE",
       "RESTRICTED",
       "SLOW",
       "SUPPORTER",
+    ]
+
+    PERSISTENT_STREAM_KEY_STATUS = [
+      "DISABLE",
+      "ENABLE",
+      "REGENERATE",
     ]
 
 
@@ -99,7 +106,7 @@ module FacebookAds
     field :live_encoders, { list: 'LiveEncoder' }
     field :live_views, 'int'
     field :overlay_url, 'string'
-    field :permalink_url, 'string'
+    field :permalink_url, 'object'
     field :planned_start_time, 'datetime'
     field :seconds_left, 'int'
     field :secure_stream_url, 'string'

@@ -36,6 +36,7 @@ module FacebookAds
       "IPHONE",
       "MOBILE_WEB",
       "OCULUS",
+      "SAMSUNG",
       "SUPPLEMENTARY_IMAGES",
       "WEB",
       "WINDOWS",
@@ -47,6 +48,7 @@ module FacebookAds
       "INSTANT_ARTICLES",
       "IOS",
       "MOBILE_WEB",
+      "OCULUS",
       "UNKNOWN",
     ]
 
@@ -287,6 +289,18 @@ module FacebookAds
       end
     end
 
+    has_edge :aem_conversion_configs do |edge|
+      edge.get do |api|
+        api.has_param :advertiser_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :aem_conversions do |edge|
+      edge.post do |api|
+        api.has_param :aem_conversions, { list: 'hash' }
+      end
+    end
+
     has_edge :agencies do |edge|
       edge.get 'Business'
     end
@@ -296,6 +310,7 @@ module FacebookAds
         api.has_param :ecpms, { list: 'string' }
         api.has_param :query_ids, { list: 'string' }
         api.has_param :request_id, 'string'
+        api.has_param :sync_api, 'bool'
       end
     end
 
@@ -471,12 +486,6 @@ module FacebookAds
       end
     end
 
-    has_edge :live_videos do |edge|
-      edge.get 'LiveVideo' do |api|
-        api.has_param :broadcast_status, { enum: -> { LiveVideo::BROADCAST_STATUS }}
-      end
-    end
-
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
         api.has_param :advertiser_id, 'string'
@@ -511,10 +520,6 @@ module FacebookAds
         api.has_param :flash, 'bool'
         api.has_param :unity, 'bool'
       end
-    end
-
-    has_edge :ozone_release do |edge|
-      edge.get
     end
 
     has_edge :page_activities do |edge|
@@ -557,6 +562,13 @@ module FacebookAds
     has_edge :purchases do |edge|
       edge.get do |api|
         api.has_param :is_premium, 'bool'
+      end
+    end
+
+    has_edge :push_token_register do |edge|
+      edge.post do |api|
+        api.has_param :device_id, 'string'
+        api.has_param :push_token, 'string'
       end
     end
 

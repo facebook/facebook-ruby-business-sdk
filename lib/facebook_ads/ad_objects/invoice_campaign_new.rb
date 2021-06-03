@@ -16,21 +16,29 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'facebook_ads'
+# FB:AUTOGEN
 
-access_token = '<ACCESS_TOKEN>'
-app_secret = '<APP_SECRET>'
-app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
+module FacebookAds
+  # This class is auto-generated.
 
-FacebookAds.configure do |config|
-  config.access_token = access_token
-  config.app_secret = app_secret
+  # For any issues or feature requests related to this class, please let us know
+  # on github and we'll fix in our codegen framework. We'll not be able to accept
+  # pull request for this class.
+
+  class InvoiceCampaignNew < AdObject
+
+    field :ad_account_id, 'string'
+    field :billed_amount_details, 'BilledAmountDetails'
+    field :campaign_id, 'string'
+    field :campaign_name, 'string'
+    field :clicks, 'int'
+    field :conversions, 'int'
+    field :impressions, 'int'
+    field :tags, { list: 'string' }
+    has_no_id
+    has_no_get
+    has_no_post
+    has_no_delete
+
+  end
 end
-
-ad_account = FacebookAds::AdAccount.get(id)
-campaigns = ad_account.campaigns.create({
-    name: 'My campaign',
-    objective: 'LINK_CLICKS',
-    status: 'PAUSED',
-})

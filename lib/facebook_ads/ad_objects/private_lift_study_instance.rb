@@ -25,11 +25,21 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ReadOnlyAnalyticsUserPropertyConfig < AdObject
+  class PrivateLiftStudyInstance < AdObject
+    OPERATION = [
+      "AGGREGATE",
+      "COMPUTE",
+      "ID_MATCH",
+      "NONE",
+    ]
 
-    field :active_properties, { list: 'string' }
+
+    field :breakdown_key, 'string'
+    field :created_time, 'datetime'
     field :id, 'string'
-    has_no_post
+    field :latest_status_update_time, 'datetime'
+    field :server_ips, { list: 'string' }
+    field :status, 'string'
     has_no_delete
 
   end

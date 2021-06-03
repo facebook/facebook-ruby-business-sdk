@@ -27,13 +27,11 @@ module FacebookAds
 
   class Targeting < AdObject
     DEVICE_PLATFORMS = [
-      "connected_tv",
       "desktop",
       "mobile",
     ]
 
     EFFECTIVE_DEVICE_PLATFORMS = [
-      "connected_tv",
       "desktop",
       "mobile",
     ]

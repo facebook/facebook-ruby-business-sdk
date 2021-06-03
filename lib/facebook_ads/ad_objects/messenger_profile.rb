@@ -33,6 +33,7 @@ module FacebookAds
     field :ice_breakers, { list: 'object' }
     field :payment_settings, 'object'
     field :persistent_menu, { list: 'object' }
+    field :subject_to_new_eu_privacy_rules, 'bool'
     field :target_audience, 'object'
     field :whitelisted_domains, { list: 'string' }
     has_no_id

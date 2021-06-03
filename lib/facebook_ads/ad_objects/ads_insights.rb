@@ -93,7 +93,7 @@ module FacebookAds
       "last_week_mon_sun",
       "last_week_sun_sat",
       "last_year",
-      "lifetime",
+      "maximum",
       "this_month",
       "this_quarter",
       "this_week_mon_today",
@@ -146,6 +146,7 @@ module FacebookAds
     field :adset_name, 'string'
     field :adset_start, 'string'
     field :age_targeting, 'string'
+    field :attribution_setting, 'string'
     field :auction_bid, 'string'
     field :auction_competitiveness, 'string'
     field :auction_max_competitor_bid, 'string'
@@ -214,6 +215,7 @@ module FacebookAds
     field :location, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
+    field :optimization_goal, 'string'
     field :outbound_clicks, { list: 'AdsActionStats' }
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :place_page_name, 'string'

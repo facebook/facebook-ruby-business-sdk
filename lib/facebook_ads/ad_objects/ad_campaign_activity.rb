@@ -30,14 +30,12 @@ module FacebookAds
       "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
-      "TARGET_COST",
     ]
 
     BID_STRATEGY_OLD = [
       "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
-      "TARGET_COST",
     ]
 
     BILLING_EVENT_NEW = [
@@ -45,10 +43,12 @@ module FacebookAds
       "CLICKS",
       "IMPRESSIONS",
       "LINK_CLICKS",
+      "LISTING_INTERACTION",
       "NONE",
       "OFFER_CLAIMS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PURCHASE",
       "THRUPLAY",
     ]
 
@@ -57,10 +57,12 @@ module FacebookAds
       "CLICKS",
       "IMPRESSIONS",
       "LINK_CLICKS",
+      "LISTING_INTERACTION",
       "NONE",
       "OFFER_CLAIMS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PURCHASE",
       "THRUPLAY",
     ]
 
@@ -83,6 +85,7 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
       "REPLIES",
@@ -112,6 +115,7 @@ module FacebookAds
       "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
       "REPLIES",

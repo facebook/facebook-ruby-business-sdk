@@ -25,32 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class EventTour < AdObject
+  class ContextualBundlingSpec < AdObject
 
-    field :description, 'string'
-    field :dominant_color, 'string'
-    field :end_time, 'string'
-    field :id, 'string'
-    field :is_past, 'bool'
-    field :last_event_timestamp, 'int'
-    field :name, 'string'
-    field :num_events, 'int'
-    field :photo, 'Photo'
-    field :publishing_state, 'string'
-    field :scheduled_publish_timestamp, 'int'
-    field :start_time, 'string'
-    field :ticketing_uri, 'string'
-    field :video, 'AdVideo'
+    field :status, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :events do |edge|
-      edge.get 'Event'
-    end
-
-    has_edge :pages do |edge|
-      edge.get 'Page'
-    end
 
   end
 end

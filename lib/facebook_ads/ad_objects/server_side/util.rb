@@ -32,6 +32,21 @@ module FacebookAds
 			# RFC 2822 for email format
 			EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
+			# Normalizes the input array of strings given the field_type
+			# @param [Array<String>] input string array that needs to be normalized
+			# @param [String] field_type Type/Key for the value provided
+			# @return [Array<String>] Normalized values for the input and field_type.
+			def self.normalize_array(input_array, field_type)
+				return nil unless input_array.is_a?(Enumerable)
+				return nil if input_array.empty?
+				return nil unless input_array.all?{|value| value.is_a?(String)}
+
+				input_array
+					.map{|value| self.normalize(value, field_type)}
+					.to_set
+					.to_a
+			end
+
 			# Normalizes the input string given the field_type
 			# @param [String] input Input string that needs to be normalized
 			# @param [String] field_type Type/Key for the value provided
@@ -52,6 +67,8 @@ module FacebookAds
 				normalized_input = input;
 
 				case field_type
+				when 'action_source'
+					return normalize_action_source input
 				when 'country'
 					normalized_input = normalize_country input
 				when 'ct'
@@ -152,7 +169,7 @@ module FacebookAds
 			def self.normalize_email(email)
 
 				if EMAIL_REGEX.match(email) == nil
-					return ArgumentError, "Invalid email format for the passed email:' + email + '.Please check the passed email format."
+					raise ArgumentError, "Invalid email format for the passed email: '#{email}'. Please check the passed email format."
 				end
 
 				return email
@@ -290,6 +307,17 @@ module FacebookAds
 				delivery_category;
 			end
 
+			# Normalizes the input action_source and returns valid value (or throw exception if invalid).
+			def self.normalize_action_source(action_source)
+				unless FacebookAds::ServerSide::ActionSource.include?(action_source)
+					values = FacebookAds::ServerSide::ActionSource.to_a.join(',')
+					raise ArgumentError.new(
+						"Invalid action_source passed: #{action_source}. Please use one of the defined values: #{values}"
+					)
+				end
+
+				action_source
+			end
 		end
 	end
 end

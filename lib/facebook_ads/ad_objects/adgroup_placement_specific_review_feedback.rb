@@ -44,6 +44,7 @@ module FacebookAds
     field :facebook_pages_live_shopping, 'hash'
     field :instagram, 'hash'
     field :instagram_shop, 'hash'
+    field :job_search, 'hash'
     field :lead_gen_honeypot, 'hash'
     field :marketplace, 'hash'
     field :marketplace_home_rentals, 'hash'

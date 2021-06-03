@@ -32,6 +32,8 @@ RSpec.describe 'FacebookAds::ServerSide::Util' do
 
         it 'normalizes email' do
             expect(FacebookAds::ServerSide::Util.normalize('foo@test.COM', 'em')).to eq(FacebookAds::ServerSide::Util.sha256Hash('foo@test.com'))
+
+            expect{FacebookAds::ServerSide::Util.normalize('test', 'em')}.to raise_error(ArgumentError)
         end
 
         it 'normalizes gender' do
@@ -116,6 +118,29 @@ RSpec.describe 'FacebookAds::ServerSide::Util' do
             expect(FacebookAds::ServerSide::Util.normalize(' curbside ', 'delivery_category')).to eq('curbside')
             expect(FacebookAds::ServerSide::Util.normalize('CURBSIDE', 'delivery_category')).to eq('curbside')
             expect{FacebookAds::ServerSide::Util.normalize('INVALID', 'delivery_category')}.to raise_error(ArgumentError)
+        end
+
+        it 'normalize_array normalizes values' do
+            emails = ['test1@example.com', 'test2@example.com']
+
+            expect(FacebookAds::ServerSide::Util.normalize_array(emails, 'em')).to eq(emails.map{|x| FacebookAds::ServerSide::Util.sha256Hash(x)})
+        end
+
+        it 'normalize_array deduplicates arrays' do
+            cities1 = ['portland', 'bend', 'portland']
+            cities2 = [' portland', 'bend', 'portland ']
+            expected_cities = ['bend', 'portland'].map{|x| FacebookAds::ServerSide::Util.sha256Hash(x)}
+
+            expect(FacebookAds::ServerSide::Util.normalize_array(cities1, 'ct')).to match_array(expected_cities)
+            expect(FacebookAds::ServerSide::Util.normalize_array(cities2, 'ct')).to match_array(expected_cities)
+        end
+
+        it 'normalizes_array returns nil for incorrect inputs' do
+            expect(FacebookAds::ServerSide::Util.normalize_array(nil, 'em')).to be_nil
+            expect(FacebookAds::ServerSide::Util.normalize_array([], 'em')).to be_nil
+            expect(FacebookAds::ServerSide::Util.normalize_array({}, 'em')).to be_nil
+            expect(FacebookAds::ServerSide::Util.normalize_array({'a' => 'test'}, 'em')).to be_nil
+            expect(FacebookAds::ServerSide::Util.normalize_array(['a', 5], 'em')).to be_nil
         end
     end
 

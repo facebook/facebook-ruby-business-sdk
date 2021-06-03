@@ -33,7 +33,6 @@ module FacebookAds
     field :follows_count, 'int'
     field :id, 'string'
     field :ig_id, 'int'
-    field :is_ig_shopping_seller_policy_enabled, 'bool'
     field :media_count, 'int'
     field :mentioned_comment, 'IgComment'
     field :mentioned_media, 'IgMedia'
@@ -44,6 +43,12 @@ module FacebookAds
     field :website, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :content_publishing_limit do |edge|
+      edge.get do |api|
+        api.has_param :since, 'datetime'
+      end
+    end
 
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|

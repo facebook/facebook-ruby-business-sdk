@@ -73,6 +73,7 @@ module FacebookAds
       "SEE_MORE",
       "SELL_NOW",
       "SEND_A_GIFT",
+      "SEND_GIFT_MONEY",
       "SHARE",
       "SHOP_NOW",
       "SIGN_UP",
@@ -85,6 +86,7 @@ module FacebookAds
       "USE_APP",
       "USE_MOBILE_APP",
       "VIDEO_ANNOTATION",
+      "VIDEO_CALL",
       "VISIT_PAGES_FEED",
       "WATCH_MORE",
       "WATCH_VIDEO",
@@ -106,6 +108,7 @@ module FacebookAds
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
+    field :onsite_destinations, { list: 'object' }
     field :optimization_type, 'string'
     field :posts, { list: 'object' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }
