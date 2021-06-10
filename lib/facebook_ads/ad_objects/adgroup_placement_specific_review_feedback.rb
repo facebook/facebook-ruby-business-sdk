@@ -42,6 +42,7 @@ module FacebookAds
     field :dri_counterfeit, 'hash'
     field :facebook, 'hash'
     field :facebook_pages_live_shopping, 'hash'
+    field :independent_work, 'hash'
     field :instagram, 'hash'
     field :instagram_shop, 'hash'
     field :job_search, 'hash'

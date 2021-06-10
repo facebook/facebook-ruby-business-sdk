@@ -297,6 +297,12 @@ module FacebookAds
       "FB_VEHI_PART",
     ]
 
+    MARKED_FOR_PRODUCT_LAUNCH = [
+      "default",
+      "marked",
+      "not_marked",
+    ]
+
 
     field :additional_image_cdn_urls, { list: 'hash' }
     field :additional_image_urls, { list: 'string' }
@@ -331,6 +337,7 @@ module FacebookAds
     field :images, { list: 'string' }
     field :inventory, 'int'
     field :manufacturer_part_number, 'string'
+    field :marked_for_product_launch, 'string'
     field :material, 'string'
     field :mobile_link, 'string'
     field :name, 'string'
@@ -342,6 +349,7 @@ module FacebookAds
     field :product_feed, 'ProductFeed'
     field :product_group, 'ProductGroup'
     field :product_type, 'string'
+    field :quantity_to_sell_on_facebook, 'int'
     field :retailer_id, 'string'
     field :retailer_product_group_id, 'string'
     field :review_rejection_reasons, { list: 'string' }

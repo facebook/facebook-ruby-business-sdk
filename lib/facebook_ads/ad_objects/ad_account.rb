@@ -84,13 +84,6 @@ module FacebookAds
       "ZAR",
     ]
 
-    PERMITTED_TASKS = [
-      "ADVERTISE",
-      "ANALYZE",
-      "DRAFT",
-      "MANAGE",
-    ]
-
     TASKS = [
       "ADVERTISE",
       "ANALYZE",
@@ -242,8 +235,18 @@ module FacebookAds
       end
     end
 
+    has_edge :ad_saved_keywords do |edge|
+      edge.get do |api|
+        api.has_param :fields, { list: 'string' }
+      end
+    end
+
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
+    end
+
+    has_edge :adcloudplayables do |edge|
+      edge.get
     end
 
     has_edge :adcreatives do |edge|
@@ -591,10 +594,6 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'Business'
-      edge.post 'AdAccount' do |api|
-        api.has_param :business, 'string'
-        api.has_param :permitted_tasks, { list: { enum: -> { AdAccount::PERMITTED_TASKS }} }
-      end
     end
 
     has_edge :applications do |edge|
@@ -874,6 +873,12 @@ module FacebookAds
 
     has_edge :instagram_accounts do |edge|
       edge.get 'InstagramUser'
+    end
+
+    has_edge :ios_fourteen_campaign_limits do |edge|
+      edge.get 'AdAccountIosFourteenCampaignLimits' do |api|
+        api.has_param :app_id, 'string'
+      end
     end
 
     has_edge :matched_search_applications do |edge|

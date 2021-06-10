@@ -170,6 +170,10 @@ module FacebookAds
       edge.get 'Profile'
     end
 
+    has_edge :ticket_tiers do |edge|
+      edge.get
+    end
+
     has_edge :videos do |edge|
       edge.get 'NullNode'
     end

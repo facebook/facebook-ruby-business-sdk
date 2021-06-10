@@ -122,6 +122,7 @@ module FacebookAds
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
+      "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -146,6 +147,7 @@ module FacebookAds
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
+      "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
@@ -230,6 +232,11 @@ module FacebookAds
       "TYPING_OFF",
       "TYPING_ON",
       "UNREACT",
+    ]
+
+    PLATFORM = [
+      "INSTAGRAM",
+      "MESSENGER",
     ]
 
     MODEL = [
@@ -534,6 +541,10 @@ module FacebookAds
       end
     end
 
+    has_edge :audio_isrcs do |edge|
+      edge.get
+    end
+
     has_edge :blocked do |edge|
       edge.delete do |api|
         api.has_param :asid, 'string'
@@ -600,6 +611,7 @@ module FacebookAds
         api.has_param :is_hidden, 'bool'
         api.has_param :is_published, 'bool'
         api.has_param :name, 'string'
+        api.has_param :source_template_id, 'string'
       end
     end
 
@@ -642,6 +654,7 @@ module FacebookAds
     has_edge :conversations do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
+        api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
@@ -829,6 +842,13 @@ module FacebookAds
 
     has_edge :global_brand_children do |edge|
       edge.get 'Page'
+    end
+
+    has_edge :groups do |edge|
+      edge.get 'Group' do |api|
+        api.has_param :admin_only, 'bool'
+        api.has_param :parent, 'string'
+      end
     end
 
     has_edge :image_copyrights do |edge|
@@ -1020,6 +1040,7 @@ module FacebookAds
         api.has_param :message, 'object'
         api.has_param :messaging_type, { enum: -> { Page::MESSAGING_TYPE }}
         api.has_param :notification_type, { enum: -> { Page::NOTIFICATION_TYPE }}
+        api.has_param :payload, 'string'
         api.has_param :persona_id, 'string'
         api.has_param :recipient, 'object'
         api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
@@ -1034,8 +1055,11 @@ module FacebookAds
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
         api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
+        api.has_param :platform, { enum: -> { Page::PLATFORM }}
       end
-      edge.get 'MessengerProfile'
+      edge.get 'MessengerProfile' do |api|
+        api.has_param :platform, { enum: -> { Page::PLATFORM }}
+      end
       edge.post 'Page' do |api|
         api.has_param :account_linking_url, 'string'
         api.has_param :get_started, 'object'
@@ -1043,6 +1067,7 @@ module FacebookAds
         api.has_param :ice_breakers, { list: 'hash' }
         api.has_param :payment_settings, 'object'
         api.has_param :persistent_menu, { list: 'object' }
+        api.has_param :platform, { enum: -> { Page::PLATFORM }}
         api.has_param :target_audience, 'object'
         api.has_param :whitelisted_domains, { list: 'string' }
       end
@@ -1120,13 +1145,6 @@ module FacebookAds
       edge.post 'Persona' do |api|
         api.has_param :name, 'string'
         api.has_param :profile_picture_url, 'string'
-      end
-    end
-
-    has_edge :phone_data do |edge|
-      edge.post do |api|
-        api.has_param :call_ads_phone_data_use_case, { enum: %w{CALL_DESTINATION_AD CALL_EXTENSION_AD }}
-        api.has_param :phone_number, 'string'
       end
     end
 
@@ -1209,6 +1227,7 @@ module FacebookAds
         api.has_param :burn_media_effect, 'bool'
         api.has_param :caption, 'string'
         api.has_param :composer_session_id, 'string'
+        api.has_param :frame_entrypoint, 'string'
         api.has_param :has_umg, 'bool'
         api.has_param :height, 'int'
         api.has_param :ios_bundle_id, 'string'
@@ -1289,7 +1308,9 @@ module FacebookAds
     end
 
     has_edge :secondary_receivers do |edge|
-      edge.get 'Application'
+      edge.get 'Application' do |api|
+        api.has_param :platform, { enum: -> { Application::PLATFORM }}
+      end
     end
 
     has_edge :settings do |edge|
@@ -1498,6 +1519,19 @@ module FacebookAds
     has_edge :visitor_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :include_hidden, 'bool'
+      end
+    end
+
+    has_edge :workpagemessages do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :message, 'object'
+        api.has_param :messaging_type, { enum: -> { Page::MESSAGING_TYPE }}
+        api.has_param :notification_type, { enum: -> { Page::NOTIFICATION_TYPE }}
+        api.has_param :payload, 'string'
+        api.has_param :persona_id, 'string'
+        api.has_param :recipient, 'object'
+        api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
+        api.has_param :tag, 'object'
       end
     end
 

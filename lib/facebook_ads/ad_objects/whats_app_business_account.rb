@@ -50,7 +50,9 @@ module FacebookAds
     ]
 
 
+    field :account_review_status, 'string'
     field :analytics, 'object'
+    field :creation_time, 'int'
     field :currency, 'string'
     field :id, 'string'
     field :message_template_namespace, 'string'

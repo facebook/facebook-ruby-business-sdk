@@ -58,6 +58,10 @@ module FacebookAds
       edge.get
     end
 
+    has_edge :channels_to_integrity_status do |edge|
+      edge.get 'CatalogItemChannelsToIntegrityStatus'
+    end
+
     has_edge :videos_metadata do |edge|
       edge.get
     end

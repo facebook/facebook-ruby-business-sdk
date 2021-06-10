@@ -49,7 +49,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :campaigns do |edge|
-      edge.get 'InvoiceCampaignNew'
+      edge.get 'InvoiceCampaign'
     end
 
   end
