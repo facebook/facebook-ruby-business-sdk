@@ -240,6 +240,26 @@ batch = FacebookAds::Batch.with_batch do
 end
 ```
 
+## Insights API Asynchronous Jobs
+
+[Insights API Asynchronous Jobs](https://developers.facebook.com/docs/marketing-api/insights/best-practices/#asynchronous) allows you to get insights asynchronously.
+
+
+```ruby
+ad_account = FacebookAds::AdAccount.get("act_#{account_id}", session)
+
+# Generating a job to create report
+ad_report_run = ad_account.insights.create(some_params)
+
+# Waiting until the job completed
+until ad_report_run.reload! && ad_report_run.async_status == "Job Completed"
+  sleep 1
+end
+
+# Fetching the report
+ad_report_run.insights.all
+```
+
 ## Logging
 
 ```ruby
