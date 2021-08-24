@@ -26,7 +26,8 @@ FacebookAds.configure do |config|
 end
 
 user_data = FacebookAds::ServerSide::UserData.new(
-    email: 'joe@eg.com',
+    emails: ['joe@eg.com'],
+    phones: ['12345678901', '14251234567'],
     # It is recommended to send Client IP and User Agent for Conversions API Events.
     client_ip_address: request.remote_ip,
     client_user_agent: request.user_agent,

@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-## v0.10.0.1
+## v0.11.0.0
 
+
+### Changed
+- Graph API call upgrade to [v11.0]https://developers.facebook.com/docs/graph-api/changelog/version11.0
+
+## v0.10.0.1
 
 ### Added
 - Support for sending multiple values for certain UserData parameters to Conversions API.

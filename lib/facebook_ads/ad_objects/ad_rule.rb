@@ -30,6 +30,7 @@ module FacebookAds
       "DELETED",
       "DISABLED",
       "ENABLED",
+      "HAS_ISSUES",
     ]
 
 

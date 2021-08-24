@@ -26,6 +26,11 @@ module FacebookAds
   # pull request for this class.
 
   class UnifiedThread < AdObject
+    PLATFORM = [
+      "INSTAGRAM",
+      "MESSENGER",
+    ]
+
 
     field :can_reply, 'bool'
     field :former_participants, 'object'

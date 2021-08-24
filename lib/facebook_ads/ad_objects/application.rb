@@ -318,10 +318,6 @@ module FacebookAds
       edge.get
     end
 
-    has_edge :app_event_types do |edge|
-      edge.get
-    end
-
     has_edge :app_indexing do |edge|
       edge.post 'Application' do |api|
         api.has_param :app_version, 'string'
@@ -574,6 +570,13 @@ module FacebookAds
 
     has_edge :roles do |edge|
       edge.get
+    end
+
+    has_edge :send_notification do |edge|
+      edge.post do |api|
+        api.has_param :payload, 'string'
+        api.has_param :token_id, 'string'
+      end
     end
 
     has_edge :subscribed_domains do |edge|

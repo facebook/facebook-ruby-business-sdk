@@ -34,8 +34,10 @@ module FacebookAds
     field :is_hidden, 'bool'
     field :is_published, 'bool'
     field :last_editor, 'User'
+    field :linked_documents, { list: 'Canvas' }
     field :name, 'string'
     field :owner, 'Page'
+    field :source_template, 'CanvasTemplate'
     field :update_time, 'int'
 
     has_edge :duplicate_canvas do |edge|

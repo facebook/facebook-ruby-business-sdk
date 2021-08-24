@@ -25,18 +25,22 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InvoiceCampaignNew < AdObject
+  class CanvasTemplate < AdObject
 
-    field :ad_account_id, 'string'
-    field :billed_amount_details, 'BilledAmountDetails'
-    field :campaign_id, 'string'
-    field :campaign_name, 'string'
-    field :clicks, 'int'
-    field :conversions, 'int'
-    field :impressions, 'int'
-    field :tags, { list: 'string' }
-    has_no_id
-    has_no_get
+    field :channels, 'map<string, map<string, string>>'
+    field :description, 'string'
+    field :document, 'Canvas'
+    field :id, 'string'
+    field :is_multi_tab_supportable, 'bool'
+    field :is_new, 'bool'
+    field :name, 'string'
+    field :objectives, 'hash'
+    field :owner_id, 'User'
+    field :required_capabilities, { list: 'string' }
+    field :snapshot_photo, 'Photo'
+    field :status, 'string'
+    field :sub_verticals, { list: 'string' }
+    field :verticals, 'hash'
     has_no_post
     has_no_delete
 

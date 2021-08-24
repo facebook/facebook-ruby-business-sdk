@@ -351,14 +351,6 @@ module FacebookAds
       end
     end
 
-    has_edge :important_posts do |edge|
-      edge.post do |api|
-        api.has_param :button_type, { enum: %w{DISMISS DONE MARK_AS_READ }}
-        api.has_param :expiration_time, 'datetime'
-        api.has_param :post_id, 'string'
-      end
-    end
-
     has_edge :live_videos do |edge|
       edge.get 'LiveVideo' do |api|
         api.has_param :broadcast_status, { list: { enum: -> { LiveVideo::BROADCAST_STATUS }} }
@@ -471,15 +463,6 @@ module FacebookAds
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
-      end
-    end
-
-    has_edge :pinned_posts do |edge|
-      edge.delete do |api|
-        api.has_param :post_id, 'string'
-      end
-      edge.post 'Post' do |api|
-        api.has_param :post_ids, { list: 'string' }
       end
     end
 

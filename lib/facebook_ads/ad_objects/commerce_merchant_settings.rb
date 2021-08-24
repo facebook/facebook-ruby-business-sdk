@@ -56,6 +56,37 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :acknowledge_orders do |edge|
+      edge.post 'CommerceMerchantSettings' do |api|
+        api.has_param :idempotency_key, 'string'
+        api.has_param :orders, { list: 'hash' }
+      end
+    end
+
+    has_edge :commerce_orders do |edge|
+      edge.get 'CommerceOrder' do |api|
+        api.has_param :filters, { list: { enum: -> { CommerceOrder::FILTERS }} }
+        api.has_param :state, { list: { enum: -> { CommerceOrder::STATE }} }
+        api.has_param :updated_after, 'datetime'
+        api.has_param :updated_before, 'datetime'
+      end
+    end
+
+    has_edge :commerce_payouts do |edge|
+      edge.get 'CommercePayout' do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :start_time, 'datetime'
+      end
+    end
+
+    has_edge :commerce_transactions do |edge|
+      edge.get 'CommerceOrderTransactionDetail' do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :payout_reference_id, 'string'
+        api.has_param :start_time, 'datetime'
+      end
+    end
+
     has_edge :order_management_apps do |edge|
       edge.get 'Application'
       edge.post 'CommerceMerchantSettings'

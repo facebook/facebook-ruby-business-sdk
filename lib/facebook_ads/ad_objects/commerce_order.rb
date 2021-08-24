@@ -26,19 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class CommerceOrder < AdObject
-    REASON_CODE = [
-      "BUYERS_REMORSE",
-      "DAMAGED_GOODS",
-      "NOT_AS_DESCRIBED",
-      "QUALITY_ISSUE",
-      "REFUND_COMPROMISED",
-      "REFUND_FOR_RETURN",
-      "REFUND_REASON_OTHER",
-      "REFUND_SFI_FAKE",
-      "REFUND_SFI_REAL",
-      "WRONG_ITEM",
-    ]
-
     FILTERS = [
       "HAS_CANCELLATIONS",
       "HAS_FULFILLMENTS",
@@ -53,6 +40,20 @@ module FacebookAds
       "CREATED",
       "FB_PROCESSING",
       "IN_PROGRESS",
+    ]
+
+    REASON_CODE = [
+      "BUYERS_REMORSE",
+      "DAMAGED_GOODS",
+      "FACEBOOK_INITIATED",
+      "NOT_AS_DESCRIBED",
+      "QUALITY_ISSUE",
+      "REFUND_COMPROMISED",
+      "REFUND_FOR_RETURN",
+      "REFUND_REASON_OTHER",
+      "REFUND_SFI_FAKE",
+      "REFUND_SFI_REAL",
+      "WRONG_ITEM",
     ]
 
 

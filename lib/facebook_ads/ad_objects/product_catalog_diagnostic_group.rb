@@ -25,53 +25,62 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdPreview < AdObject
-    AD_FORMAT = [
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO",
-      "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
-      "AUDIENCE_NETWORK_OUTSTREAM_VIDEO",
-      "AUDIENCE_NETWORK_REWARDED_VIDEO",
-      "DESKTOP_FEED_STANDARD",
-      "FACEBOOK_STORY_MOBILE",
-      "FACEBOOK_STORY_STICKER_MOBILE",
-      "INSTAGRAM_EXPLORE_CONTEXTUAL",
-      "INSTAGRAM_EXPLORE_IMMERSIVE",
-      "INSTAGRAM_REELS",
-      "INSTAGRAM_SHOP_TAB",
-      "INSTAGRAM_STANDARD",
-      "INSTAGRAM_STORY",
-      "INSTANT_ARTICLE_RECIRCULATION_AD",
-      "INSTANT_ARTICLE_STANDARD",
-      "INSTREAM_BANNER_DESKTOP",
-      "INSTREAM_BANNER_MOBILE",
-      "INSTREAM_VIDEO_DESKTOP",
-      "INSTREAM_VIDEO_IMAGE",
-      "INSTREAM_VIDEO_MOBILE",
-      "JOB_BROWSER_DESKTOP",
-      "JOB_BROWSER_MOBILE",
-      "MARKETPLACE_MOBILE",
-      "MESSENGER_MOBILE_INBOX_MEDIA",
-      "MESSENGER_MOBILE_STORY_MEDIA",
-      "MOBILE_BANNER",
-      "MOBILE_FEED_BASIC",
-      "MOBILE_FEED_STANDARD",
-      "MOBILE_FULLWIDTH",
-      "MOBILE_INTERSTITIAL",
-      "MOBILE_MEDIUM_RECTANGLE",
-      "MOBILE_NATIVE",
-      "RIGHT_COLUMN_STANDARD",
-      "SUGGESTED_VIDEO_DESKTOP",
-      "SUGGESTED_VIDEO_MOBILE",
-      "WATCH_FEED_HOME",
-      "WATCH_FEED_MOBILE",
+  class ProductCatalogDiagnosticGroup < AdObject
+    AFFECTED_CHANNELS = [
+      "business_inbox_in_messenger",
+      "shops",
+      "test_capability",
+      "universal_checkout",
+      "us_marketplace",
     ]
 
-    RENDER_TYPE = [
-      "FALLBACK",
+    AFFECTED_FEATURES = [
+      "augmented_reality",
+      "checkout",
+    ]
+
+    SEVERITY = [
+      "MUST_FIX",
+      "OPPORTUNITY",
+    ]
+
+    TYPE = [
+      "ATTRIBUTES_INVALID",
+      "ATTRIBUTES_MISSING",
+      "CATEGORY",
+      "CHECKOUT",
+      "IMAGE_QUALITY",
+      "LOW_QUALITY_TITLE_AND_DESCRIPTION",
+      "POLICY_VIOLATION",
+      "SHOPS_VISIBILITY_ISSUES",
+    ]
+
+    SEVERITIES = [
+      "MUST_FIX",
+      "OPPORTUNITY",
+    ]
+
+    TYPES = [
+      "ATTRIBUTES_INVALID",
+      "ATTRIBUTES_MISSING",
+      "CATEGORY",
+      "CHECKOUT",
+      "IMAGE_QUALITY",
+      "LOW_QUALITY_TITLE_AND_DESCRIPTION",
+      "POLICY_VIOLATION",
+      "SHOPS_VISIBILITY_ISSUES",
     ]
 
 
-    field :body, 'string'
+    field :affected_channels, { list: { enum: -> { AFFECTED_CHANNELS }} }
+    field :affected_features, { list: { enum: -> { AFFECTED_FEATURES }} }
+    field :diagnostics, { list: 'object' }
+    field :error_code, 'int'
+    field :number_of_affected_items, 'int'
+    field :severity, { enum: -> { SEVERITY }}
+    field :subtitle, 'string'
+    field :title, 'string'
+    field :type, { enum: -> { TYPE }}
     has_no_id
     has_no_get
     has_no_post

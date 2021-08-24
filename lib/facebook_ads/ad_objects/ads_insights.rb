@@ -177,7 +177,6 @@ module FacebookAds
     field :cost_per_inline_post_engagement, 'string'
     field :cost_per_one_thousand_ad_impression, { list: 'AdsActionStats' }
     field :cost_per_outbound_click, { list: 'AdsActionStats' }
-    field :cost_per_store_visit_action, { list: 'AdsActionStats' }
     field :cost_per_thruplay, { list: 'AdsActionStats' }
     field :cost_per_unique_action_type, { list: 'AdsActionStats' }
     field :cost_per_unique_click, 'string'
@@ -192,6 +191,7 @@ module FacebookAds
     field :date_start, 'string'
     field :date_stop, 'string'
     field :dda_countby_convs, 'string'
+    field :dda_results, { list: 'object' }
     field :engagement_rate_ranking, 'string'
     field :estimated_ad_recall_rate, 'string'
     field :estimated_ad_recall_rate_lower_bound, 'string'
@@ -209,7 +209,7 @@ module FacebookAds
     field :inline_post_engagement, 'string'
     field :instant_experience_clicks_to_open, 'string'
     field :instant_experience_clicks_to_start, 'string'
-    field :instant_experience_outbound_clicks, 'string'
+    field :instant_experience_outbound_clicks, { list: 'AdsActionStats' }
     field :interactive_component_tap, { list: 'AdsActionStats' }
     field :labels, 'string'
     field :location, 'string'
@@ -228,7 +228,6 @@ module FacebookAds
     field :reach, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
-    field :store_visit_actions, { list: 'AdsActionStats' }
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
     field :unique_conversions, { list: 'AdsActionStats' }
