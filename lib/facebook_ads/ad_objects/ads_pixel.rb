@@ -58,8 +58,11 @@ module FacebookAds
     ]
 
     TASKS = [
+      "AA_ANALYZE",
+      "ADVERTISE",
       "ANALYZE",
       "EDIT",
+      "UPLOAD",
     ]
 
 

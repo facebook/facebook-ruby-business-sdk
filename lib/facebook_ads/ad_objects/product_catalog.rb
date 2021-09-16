@@ -127,6 +127,12 @@ module FacebookAds
       end
     end
 
+    has_edge :ar_effects_batch_status do |edge|
+      edge.get 'ArEffectsBatchStatus' do |api|
+        api.has_param :handle, 'string'
+      end
+    end
+
     has_edge :assigned_users do |edge|
       edge.delete do |api|
         api.has_param :user, 'int'
@@ -162,10 +168,6 @@ module FacebookAds
         api.has_param :url, 'string'
         api.has_param :year, 'int'
       end
-    end
-
-    has_edge :autos do |edge|
-      edge.get
     end
 
     has_edge :batch do |edge|
@@ -376,6 +378,7 @@ module FacebookAds
         api.has_param :filter, 'object'
         api.has_param :metadata, 'hash'
         api.has_param :name, 'string'
+        api.has_param :ordering_info, { list: 'int' }
         api.has_param :retailer_id, 'string'
       end
     end

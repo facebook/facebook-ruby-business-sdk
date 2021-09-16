@@ -27,9 +27,9 @@ module FacebookAds
 
   class AdStudyObjective < AdObject
     TYPE = [
-      "AEP_CONVERSION",
       "BRAND",
       "BRANDLIFT",
+      "CONVERSIONS",
       "FTL",
       "MAE",
       "MAI",

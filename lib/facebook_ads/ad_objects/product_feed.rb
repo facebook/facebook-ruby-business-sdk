@@ -140,10 +140,6 @@ module FacebookAds
       end
     end
 
-    has_edge :autos do |edge|
-      edge.get
-    end
-
     has_edge :destinations do |edge|
       edge.get 'Destination' do |api|
         api.has_param :bulk_pagination, 'bool'

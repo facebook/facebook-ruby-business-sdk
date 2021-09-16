@@ -138,6 +138,7 @@ module FacebookAds
         api.has_param :merchant_order_reference, 'string'
         api.has_param :shipment_origin_postal_code, 'string'
         api.has_param :shipping_tax_details, 'hash'
+        api.has_param :should_use_default_fulfillment_location, 'bool'
         api.has_param :tracking_info, 'hash'
       end
     end

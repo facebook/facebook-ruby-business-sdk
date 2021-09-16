@@ -68,6 +68,7 @@ module FacebookAds
     field :term_qualifier, 'string'
     field :title, 'string'
     field :trim, 'string'
+    field :unit_price, 'object'
     field :url, 'string'
     field :vehicle_offer_id, 'string'
     field :year, 'int'

@@ -25,28 +25,48 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdPlacePageSet < AdObject
-    LOCATION_TYPES = [
-      "home",
-      "recent",
+  class JobsJob < AdObject
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
     ]
 
-    TARGETED_AREA_TYPE = [
-      "CUSTOM_RADIUS",
-      "MARKETING_AREA",
-      "NONE",
-    ]
 
-
-    field :account_id, 'string'
+    field :address, 'object'
+    field :applinks, 'CatalogItemAppLinks'
+    field :category_specific_fields, 'CatalogSubVerticalList'
+    field :custom_label_0, 'string'
+    field :custom_label_1, 'string'
+    field :custom_label_2, 'string'
+    field :custom_label_3, 'string'
+    field :custom_label_4, 'string'
+    field :custom_label_5, 'string'
+    field :custom_label_6, 'string'
     field :id, 'string'
-    field :location_types, { list: 'string' }
-    field :name, 'string'
-    field :pages_count, 'int'
-    field :parent_page, 'Page'
-    field :targeted_area_type, 'adaccountad_place_page_sets_targeted_area_type_enum_param'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
+    field :images, { list: 'string' }
+    field :jobs_job_id, 'string'
+    field :sanitized_images, { list: 'string' }
+    field :unit_price, 'object'
+    field :url, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :augmented_realities_metadata do |edge|
+      edge.get
+    end
+
+    has_edge :channels_to_integrity_status do |edge|
+      edge.get 'CatalogItemChannelsToIntegrityStatus'
+    end
+
+    has_edge :videos_metadata do |edge|
+      edge.get
+    end
 
   end
 end

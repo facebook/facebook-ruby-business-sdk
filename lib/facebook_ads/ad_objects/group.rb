@@ -49,6 +49,7 @@ module FacebookAds
       "EPHEMERAL",
       "EVENT_PLANNING",
       "FAMILY",
+      "FANTASY_LEAGUE",
       "FITNESS",
       "FOR_SALE",
       "FOR_WORK",
@@ -105,6 +106,7 @@ module FacebookAds
       "EPHEMERAL",
       "EVENT_PLANNING",
       "FAMILY",
+      "FANTASY_LEAGUE",
       "FITNESS",
       "FOR_SALE",
       "FOR_WORK",
@@ -367,7 +369,6 @@ module FacebookAds
         api.has_param :is_spherical, 'bool'
         api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
@@ -466,6 +467,13 @@ module FacebookAds
       end
     end
 
+    has_edge :shift_settings do |edge|
+      edge.post do |api|
+        api.has_param :external_id, 'string'
+        api.has_param :shift_feature_setting, { enum: %w{ALL_FEATURES_OFF ALL_FEATURES_ON SHIFT_COVER_ONLY_ON SHIFT_VIEWER_ONLY_ON }}
+      end
+    end
+
     has_edge :videos do |edge|
       edge.get 'AdVideo' do |api|
         api.has_param :type, { enum: -> { AdVideo::TYPE }}
@@ -520,6 +528,7 @@ module FacebookAds
         api.has_param :original_fov, 'int'
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
         api.has_param :publish_event_id, 'int'
+        api.has_param :published, 'bool'
         api.has_param :react_mode_metadata, 'string'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'

@@ -25,21 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Referral < AdObject
+  class AdStudyObjectiveOffsiteDatasets < AdObject
 
+    field :event_names, { list: 'string' }
     field :id, 'string'
-    field :invite_limit, 'int'
-    field :messenger_cta, 'string'
-    field :messenger_promotion_text, 'string'
-    field :namespace, 'string'
-    field :need_promo_code, 'bool'
-    field :offer_origin, 'string'
-    field :privacy_policy_link, 'string'
-    field :promotion_text, 'string'
-    field :receiver_benefits_text, 'string'
-    field :referral_link_uri, 'string'
-    field :sender_benefits_text, 'string'
-    field :terms_and_condition_link, 'string'
+    has_no_get
+    has_no_post
+    has_no_delete
 
   end
 end

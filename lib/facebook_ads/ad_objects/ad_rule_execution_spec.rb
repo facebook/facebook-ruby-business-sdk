@@ -29,6 +29,7 @@ module FacebookAds
     EXECUTION_TYPE = [
       "ADD_INTEREST_RELAXATION",
       "ADD_QUESTIONNAIRE_INTERESTS",
+      "AUDIENCE_CONSOLIDATION",
       "CHANGE_BID",
       "CHANGE_BUDGET",
       "CHANGE_CAMPAIGN_BUDGET",
@@ -40,6 +41,8 @@ module FacebookAds
       "ROTATE",
       "UNPAUSE",
       "UPDATE_CREATIVE",
+      "UPDATE_LAX_BUDGET",
+      "UPDATE_LAX_DURATION",
     ]
 
 

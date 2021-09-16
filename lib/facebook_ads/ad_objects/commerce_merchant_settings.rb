@@ -48,7 +48,6 @@ module FacebookAds
     field :privacy_url_by_locale, 'hash'
     field :review_rejection_messages, { list: 'string' }
     field :review_rejection_reasons, { list: 'string' }
-    field :review_status, 'string'
     field :supported_card_types, { list: 'string' }
     field :terms, 'string'
     field :terms_url_by_locale, 'hash'

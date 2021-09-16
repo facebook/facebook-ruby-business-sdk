@@ -87,6 +87,7 @@ module FacebookAds
     field :can_guests_invite, 'bool'
     field :category, { enum: -> { CATEGORY }}
     field :cover, 'CoverPhoto'
+    field :created_time, 'datetime'
     field :declined_count, 'int'
     field :description, 'string'
     field :discount_code_enabled, 'bool'
@@ -140,7 +141,6 @@ module FacebookAds
         api.has_param :is_spherical, 'bool'
         api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'

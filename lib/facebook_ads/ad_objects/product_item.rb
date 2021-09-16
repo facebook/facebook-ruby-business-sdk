@@ -335,6 +335,7 @@ module FacebookAds
     field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :image_url, 'string'
     field :images, { list: 'string' }
+    field :invalidation_errors, { list: 'object' }
     field :inventory, 'int'
     field :manufacturer_part_number, 'string'
     field :marked_for_product_launch, 'string'

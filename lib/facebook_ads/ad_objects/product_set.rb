@@ -33,6 +33,7 @@ module FacebookAds
     field :latest_metadata, 'ProductSetMetadata'
     field :live_metadata, 'ProductSetMetadata'
     field :name, 'string'
+    field :ordering_info, { list: 'int' }
     field :product_catalog, 'ProductCatalog'
     field :product_count, 'int'
     field :retailer_id, 'string'

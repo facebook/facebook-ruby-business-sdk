@@ -33,6 +33,7 @@ module FacebookAds
     field :campaign_name, 'string'
     field :clicks, 'int'
     field :conversions, 'int'
+    field :description, 'string'
     field :impressions, 'int'
     field :tags, { list: 'string' }
     has_no_id

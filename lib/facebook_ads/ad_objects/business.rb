@@ -78,6 +78,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -110,18 +111,20 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
 
 
     field :block_offline_analytics, 'bool'
+    field :collaborative_ads_managed_partner_business_info, 'ManagedPartnerBusiness'
+    field :collaborative_ads_managed_partner_eligibility, 'BusinessManagedPartnerEligibility'
     field :created_by, 'object'
     field :created_time, 'datetime'
     field :extended_updated_time, 'datetime'
     field :id, 'string'
     field :is_hidden, 'bool'
-    field :is_instagram_enabled_in_fb_analytics, 'bool'
     field :link, 'string'
     field :name, 'string'
     field :payment_account_id, 'string'
@@ -237,15 +240,6 @@ module FacebookAds
       edge.get 'Business'
     end
 
-    has_edge :aggregate_revenue do |edge|
-      edge.post do |api|
-        api.has_param :ecpms, { list: 'string' }
-        api.has_param :query_ids, { list: 'string' }
-        api.has_param :request_id, 'string'
-        api.has_param :sync_api, 'bool'
-      end
-    end
-
     has_edge :an_placements do |edge|
       edge.get 'AdPlacement'
     end
@@ -285,6 +279,10 @@ module FacebookAds
         api.has_param :email, 'string'
         api.has_param :role, { enum: -> { BusinessUser::ROLE }}
       end
+    end
+
+    has_edge :businessprojects do |edge|
+      edge.get
     end
 
     has_edge :claim_custom_conversions do |edge|
@@ -445,6 +443,50 @@ module FacebookAds
         api.has_param :survey_num_people, 'int'
         api.has_param :timezone_id, 'int'
         api.has_param :vertical, { enum: -> { Business::VERTICAL }}
+      end
+    end
+
+    has_edge :managed_partner_business_setup do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :active_ad_account_id, 'string'
+        api.has_param :active_page_id, 'int'
+        api.has_param :partner_facebook_page_url, 'string'
+        api.has_param :partner_registration_countries, { list: 'string' }
+        api.has_param :seller_email_address, 'string'
+        api.has_param :seller_external_website_url, 'string'
+        api.has_param :template, { list: 'hash' }
+      end
+    end
+
+    has_edge :managed_partner_businesses do |edge|
+      edge.post do |api|
+        api.has_param :ad_account_currency, 'string'
+        api.has_param :catalog_id, 'string'
+        api.has_param :child_business_external_id, 'string'
+        api.has_param :credit_limit, 'int'
+        api.has_param :line_of_credit_id, 'string'
+        api.has_param :name, 'string'
+        api.has_param :no_ad_account, 'bool'
+        api.has_param :page_name, 'string'
+        api.has_param :page_profile_image_url, 'string'
+        api.has_param :partner_facebook_page_url, 'string'
+        api.has_param :partner_registration_countries, { list: 'string' }
+        api.has_param :sales_rep_email, 'string'
+        api.has_param :seller_external_website_url, 'string'
+        api.has_param :seller_targeting_countries, { list: 'string' }
+        api.has_param :survey_business_type, { enum: %w{ADVERTISER AGENCY APP_DEVELOPER PUBLISHER }}
+        api.has_param :survey_num_assets, 'int'
+        api.has_param :survey_num_people, 'int'
+        api.has_param :timezone_id, 'int'
+        api.has_param :vertical, { enum: %w{ADVERTISING AUTOMOTIVE CONSUMER_PACKAGED_GOODS ECOMMERCE EDUCATION ENERGY_AND_UTILITIES ENTERTAINMENT_AND_MEDIA FINANCIAL_SERVICES GAMING GOVERNMENT_AND_POLITICS HEALTH LUXURY MARKETING NON_PROFIT ORGANIZATIONS_AND_ASSOCIATIONS OTHER PROFESSIONAL_SERVICES RESTAURANT RETAIL TECHNOLOGY TELECOM TRAVEL }}
+      end
+    end
+
+    has_edge :managed_partner_child_business_assets do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :child_business_id, 'string'
+        api.has_param :credit_limit, 'int'
+        api.has_param :line_of_credit_id, 'string'
       end
     end
 
@@ -613,19 +655,6 @@ module FacebookAds
 
     has_edge :third_party_measurement_report_dataset do |edge|
       edge.get 'ThirdPartyMeasurementReportDataset'
-    end
-
-    has_edge :upload_event do |edge|
-      edge.post 'MeasurementUploadEvent' do |api|
-        api.has_param :aggregation_level, { enum: -> { MeasurementUploadEvent::AGGREGATION_LEVEL }}
-        api.has_param :conversion_end_date, 'string'
-        api.has_param :conversion_start_date, 'string'
-        api.has_param :event_status, { enum: -> { MeasurementUploadEvent::EVENT_STATUS }}
-        api.has_param :lookback_window, { enum: -> { MeasurementUploadEvent::LOOKBACK_WINDOW }}
-        api.has_param :match_universe, { enum: -> { MeasurementUploadEvent::MATCH_UNIVERSE }}
-        api.has_param :timezone, { enum: -> { MeasurementUploadEvent::TIMEZONE }}
-        api.has_param :upload_tag, 'string'
-      end
     end
 
   end

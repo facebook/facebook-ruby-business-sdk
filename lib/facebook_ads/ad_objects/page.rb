@@ -126,6 +126,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -151,8 +152,44 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
+    ]
+
+    ALIGNMENT = [
+      "LEFT",
+      "RIGHT",
+    ]
+
+    ENTRY_POINT_ICON = [
+      "CHAT_ANGULAR_ICON",
+      "CHAT_ROUND_ICON",
+      "MESSENGER_ICON",
+      "NONE",
+    ]
+
+    ENTRY_POINT_LABEL = [
+      "ASK_US",
+      "CHAT",
+      "HELP",
+      "NONE",
+    ]
+
+    GREETING_DIALOG_DISPLAY = [
+      "HIDE",
+      "SHOW",
+      "WELCOME_MESSAGE",
+    ]
+
+    GUEST_CHAT_MODE = [
+      "DISABLED",
+      "ENABLED",
+    ]
+
+    MOBILE_CHAT_DISPLAY = [
+      "APP_SWITCH",
+      "CHAT_TAB",
     ]
 
     BACKDATED_TIME_GRANULARITY = [
@@ -308,6 +345,7 @@ module FacebookAds
       "messaging_account_linking",
       "messaging_appointments",
       "messaging_checkout_updates",
+      "messaging_customer_information",
       "messaging_direct_sends",
       "messaging_fblogin_account_linking",
       "messaging_feedback",
@@ -541,10 +579,6 @@ module FacebookAds
       end
     end
 
-    has_edge :audio_isrcs do |edge|
-      edge.get
-    end
-
     has_edge :blocked do |edge|
       edge.delete do |api|
         api.has_param :asid, 'string'
@@ -565,16 +599,15 @@ module FacebookAds
     end
 
     has_edge :business_data do |edge|
-      edge.delete do |api|
-        api.has_param :email, 'string'
-        api.has_param :external_id, 'string'
-        api.has_param :object_name, { enum: %w{contact order order_item }}
-        api.has_param :order_id, 'string'
-        api.has_param :order_item_id, 'string'
-      end
       edge.post 'Page' do |api|
         api.has_param :data, { list: 'string' }
         api.has_param :partner_agent, 'string'
+      end
+    end
+
+    has_edge :businessprojects do |edge|
+      edge.get do |api|
+        api.has_param :business, 'string'
       end
     end
 
@@ -612,6 +645,24 @@ module FacebookAds
         api.has_param :is_published, 'bool'
         api.has_param :name, 'string'
         api.has_param :source_template_id, 'string'
+      end
+    end
+
+    has_edge :chat_plugin do |edge|
+      edge.get 'ChatPlugin'
+      edge.post 'Page' do |api|
+        api.has_param :alignment, { enum: -> { Page::ALIGNMENT }}
+        api.has_param :desktop_bottom_spacing, 'int'
+        api.has_param :desktop_side_spacing, 'int'
+        api.has_param :entry_point_icon, { enum: -> { Page::ENTRY_POINT_ICON }}
+        api.has_param :entry_point_label, { enum: -> { Page::ENTRY_POINT_LABEL }}
+        api.has_param :greeting_dialog_display, { enum: -> { Page::GREETING_DIALOG_DISPLAY }}
+        api.has_param :guest_chat_mode, { enum: -> { Page::GUEST_CHAT_MODE }}
+        api.has_param :mobile_bottom_spacing, 'int'
+        api.has_param :mobile_chat_display, { enum: -> { Page::MOBILE_CHAT_DISPLAY }}
+        api.has_param :mobile_side_spacing, 'int'
+        api.has_param :theme_color, 'string'
+        api.has_param :welcome_screen_greeting, 'string'
       end
     end
 
@@ -683,6 +734,7 @@ module FacebookAds
       edge.get 'PageUserMessageThreadLabel'
       edge.post 'PageUserMessageThreadLabel' do |api|
         api.has_param :name, 'string'
+        api.has_param :page_label_name, 'string'
       end
     end
 
@@ -881,6 +933,13 @@ module FacebookAds
       end
     end
 
+    has_edge :insights_exports do |edge|
+      edge.get do |api|
+        api.has_param :data_level, { list: 'string' }
+        api.has_param :from_creation_date, 'datetime'
+      end
+    end
+
     has_edge :instagram_accounts do |edge|
       edge.get 'InstagramUser'
     end
@@ -971,7 +1030,6 @@ module FacebookAds
         api.has_param :is_spherical, 'bool'
         api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'

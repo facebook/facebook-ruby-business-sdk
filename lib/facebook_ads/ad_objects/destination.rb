@@ -50,6 +50,7 @@ module FacebookAds
     field :price_change, 'string'
     field :sanitized_images, { list: 'string' }
     field :types, { list: 'string' }
+    field :unit_price, 'object'
     field :url, 'string'
     has_no_post
     has_no_delete

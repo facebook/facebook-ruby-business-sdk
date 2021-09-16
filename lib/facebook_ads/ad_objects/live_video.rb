@@ -75,11 +75,14 @@ module FacebookAds
     LIVE_COMMENT_MODERATION_SETTING = [
       "DEFAULT",
       "DISCUSSION",
+      "FOLLOWED",
       "FOLLOWER",
+      "NO_HYPERLINK",
       "PROTECTED_MODE",
       "RESTRICTED",
       "SLOW",
       "SUPPORTER",
+      "TAGGED",
     ]
 
     PERSISTENT_STREAM_KEY_STATUS = [
@@ -97,7 +100,7 @@ module FacebookAds
     field :dash_ingest_url, 'string'
     field :dash_preview_url, 'string'
     field :description, 'string'
-    field :embed_html, 'string'
+    field :embed_html, 'object'
     field :from, 'object'
     field :id, 'string'
     field :ingest_streams, { list: 'LiveVideoInputStream' }

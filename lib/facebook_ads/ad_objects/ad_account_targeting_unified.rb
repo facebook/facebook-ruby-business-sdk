@@ -189,6 +189,11 @@ module FacebookAds
 
     APP_STORE = [
       "amazon_app_store",
+      "apk_mirror",
+      "apk_monk",
+      "apk_pure",
+      "aptoide_a1_store",
+      "bemobi_mobile_store",
       "does_not_exist",
       "fb_android_store",
       "fb_canvas",
@@ -199,9 +204,13 @@ module FacebookAds
       "itunes",
       "itunes_ipad",
       "oculus_app_store",
+      "oppo",
       "roku_channel_store",
+      "uptodown",
+      "vivo",
       "windows_10_store",
       "windows_store",
+      "xiaomi",
     ]
 
     OBJECTIVE = [

@@ -25,26 +25,17 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdPlacePageSet < AdObject
-    LOCATION_TYPES = [
-      "home",
-      "recent",
-    ]
+  class CloudGame < AdObject
 
-    TARGETED_AREA_TYPE = [
-      "CUSTOM_RADIUS",
-      "MARKETING_AREA",
-      "NONE",
-    ]
-
-
-    field :account_id, 'string'
     field :id, 'string'
-    field :location_types, { list: 'string' }
     field :name, 'string'
-    field :pages_count, 'int'
-    field :parent_page, 'Page'
-    field :targeted_area_type, 'adaccountad_place_page_sets_targeted_area_type_enum_param'
+    field :owner, 'Profile'
+    field :playable_ad_file_size, 'int'
+    field :playable_ad_orientation, 'string'
+    field :playable_ad_package_name, 'string'
+    field :playable_ad_reject_reason, 'string'
+    field :playable_ad_status, 'string'
+    field :playable_ad_upload_time, 'datetime'
     has_no_post
     has_no_delete
 
