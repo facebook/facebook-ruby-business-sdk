@@ -20,5 +20,5 @@
 
 module FacebookAds
   VERSION = '0.10.0.1'
-  API_VERSION = '10.0'
+  API_VERSION = '11.0'
 end
