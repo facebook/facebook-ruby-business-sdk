@@ -35,6 +35,7 @@ module FacebookAds
       "BUY_TICKETS",
       "CALL",
       "CALL_ME",
+      "CALL_NOW",
       "CONTACT",
       "CONTACT_US",
       "DONATE",
@@ -105,11 +106,14 @@ module FacebookAds
     field :captions, { list: 'AdAssetFeedSpecCaption' }
     field :carousels, { list: 'object' }
     field :descriptions, { list: 'AdAssetFeedSpecDescription' }
+    field :events, { list: 'object' }
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
+    field :offer_ids, { list: 'object' }
     field :onsite_destinations, { list: 'object' }
     field :optimization_type, 'string'
+    field :phone_data_ids, { list: 'object' }
     field :posts, { list: 'object' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }

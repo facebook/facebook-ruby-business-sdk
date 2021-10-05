@@ -33,6 +33,7 @@ module FacebookAds
     field :template_name, 'string'
     field :time_created, 'datetime'
     field :time_last_used, 'datetime'
+    has_no_get
     has_no_post
     has_no_delete
 

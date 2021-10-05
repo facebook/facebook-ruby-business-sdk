@@ -26,7 +26,8 @@ FacebookAds.configure do |config|
 end
 
 user_data = FacebookAds::ServerSide::UserData.new(
-    email: 'joe@eg.com',
+    emails: ['joe@eg.com'],
+    phones: ['12345678901', '14251234567'],
     # It is recommended to send Client IP and User Agent for Conversions API Events.
     client_ip_address: request.remote_ip,
     client_user_agent: request.user_agent,
@@ -34,7 +35,14 @@ user_data = FacebookAds::ServerSide::UserData.new(
     fbp: 'fb.1.1558571054389.1098115397'
 )
 
+content = FacebookAds::ServerSide::Content.new(
+    product_id: 'product123',
+    quantity: 1,
+    delivery_category: 'home_delivery'
+)
+
 custom_data = FacebookAds::ServerSide::CustomData.new(
+    contents: [content],
     currency: 'usd',
     value: 123.45
 )

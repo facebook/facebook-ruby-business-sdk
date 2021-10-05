@@ -25,22 +25,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CpasParentCatalogSettings < AdObject
-    ATTRIBUTION_WINDOWS = [
-      "DDA",
-      "DEFAULT",
-      "X1D_CLICK",
-      "X1D_VIEW",
-      "X28D_CLICK",
-      "X28D_VIEW",
-      "X7D_CLICK",
-      "X7D_VIEW",
-    ]
+  class AdStudyObjectiveOffsiteDatasets < AdObject
 
-
-    field :attribution_windows, { list: 'string' }
-    field :default_currency, 'string'
+    field :event_names, { list: 'string' }
     field :id, 'string'
+    has_no_get
+    has_no_post
     has_no_delete
 
   end

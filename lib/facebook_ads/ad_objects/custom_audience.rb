@@ -44,6 +44,7 @@ module FacebookAds
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
+      "JOB",
       "LOCAL_SERVICE_BUSINESS",
       "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
@@ -84,6 +85,7 @@ module FacebookAds
     field :data_source, 'CustomAudienceDataSource'
     field :data_source_types, 'string'
     field :datafile_custom_audience_uploading_status, 'string'
+    field :delete_time, 'int'
     field :delivery_status, 'CustomAudienceStatus'
     field :description, 'string'
     field :excluded_custom_audiences, { list: 'CustomAudience' }
@@ -99,6 +101,7 @@ module FacebookAds
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'
     field :opt_out_link, 'string'
+    field :page_deletion_marked_delete_time, 'int'
     field :permission_for_actions, 'AudiencePermissionForActions'
     field :pixel_id, 'string'
     field :regulated_audience_spec, 'LookalikeSpec'
@@ -125,14 +128,12 @@ module FacebookAds
     field :event_sources, { list: 'hash' }
     field :exclusions, { list: 'object' }
     field :inclusions, { list: 'object' }
-    field :is_household_exclusion, 'bool'
     field :list_of_accounts, { list: 'int' }
     field :origin_audience_id, 'string'
     field :parent_audience_id, 'int'
     field :partner_reference_key, 'string'
     field :prefill, 'bool'
     field :product_set_id, 'string'
-    field :tags, { list: 'string' }
     field :video_group_ids, { list: 'string' }
 
     has_edge :adaccounts do |edge|

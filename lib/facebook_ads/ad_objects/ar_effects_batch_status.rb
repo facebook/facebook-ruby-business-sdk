@@ -25,12 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdAccountContentFilterLevelsInheritance < AdObject
+  class ArEffectsBatchStatus < AdObject
 
-    field :an_business_ids, { list: 'string' }
-    field :an_level, 'string'
-    field :facebook_business_ids, { list: 'string' }
-    field :facebook_level, 'string'
+    field :errors, { list: 'string' }
+    field :product_groups, { list: 'object' }
+    field :status, 'string'
     has_no_id
     has_no_get
     has_no_post

@@ -25,10 +25,20 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductFeedUploadDiagnosticsReport < AdObject
+  class ChatPlugin < AdObject
 
-    field :last_updated_time, 'string'
-    field :report_url, 'string'
+    field :alignment, 'string'
+    field :desktop_bottom_spacing, 'string'
+    field :desktop_side_spacing, 'string'
+    field :entry_point_icon, 'string'
+    field :entry_point_label, 'string'
+    field :greeting_dialog_display, 'string'
+    field :guest_chat_mode, 'string'
+    field :mobile_bottom_spacing, 'string'
+    field :mobile_chat_display, 'string'
+    field :mobile_side_spacing, 'string'
+    field :theme_color, 'string'
+    field :welcome_screen_greeting, 'string'
     has_no_id
     has_no_get
     has_no_post

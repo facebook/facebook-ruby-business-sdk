@@ -57,6 +57,7 @@ module FacebookAds
     ]
 
     TEXT_TYPE = [
+      "automated_personalize",
       "custom",
       "disclaimer",
       "from_price",

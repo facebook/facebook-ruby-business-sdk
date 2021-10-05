@@ -26,6 +26,15 @@ module FacebookAds
   # pull request for this class.
 
   class HomeListing < AdObject
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
 
     field :ac_type, 'string'
     field :additional_fees_description, 'string'
@@ -50,6 +59,7 @@ module FacebookAds
     field :heating_type, 'string'
     field :home_listing_id, 'string'
     field :id, 'string'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
     field :laundry_type, 'string'
     field :listing_type, 'string'
@@ -68,8 +78,21 @@ module FacebookAds
     field :price, 'string'
     field :property_type, 'string'
     field :sanitized_images, { list: 'string' }
+    field :unit_price, 'object'
     field :url, 'string'
     field :year_built, 'int'
+
+    has_edge :augmented_realities_metadata do |edge|
+      edge.get
+    end
+
+    has_edge :channels_to_integrity_status do |edge|
+      edge.get 'CatalogItemChannelsToIntegrityStatus'
+    end
+
+    has_edge :videos_metadata do |edge|
+      edge.get
+    end
 
   end
 end

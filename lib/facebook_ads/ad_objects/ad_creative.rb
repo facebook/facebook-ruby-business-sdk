@@ -26,12 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class AdCreative < AdObject
-    APPLINK_TREATMENT = [
-      "deeplink_with_appstore_fallback",
-      "deeplink_with_web_fallback",
-      "web_only",
-    ]
-
     CALL_TO_ACTION_TYPE = [
       "ADD_TO_CART",
       "APPLY_NOW",
@@ -41,6 +35,7 @@ module FacebookAds
       "BUY_TICKETS",
       "CALL",
       "CALL_ME",
+      "CALL_NOW",
       "CONTACT",
       "CONTACT_US",
       "DONATE",
@@ -123,6 +118,13 @@ module FacebookAds
       "WITH_ISSUES",
     ]
 
+    APPLINK_TREATMENT = [
+      "automatic",
+      "deeplink_with_appstore_fallback",
+      "deeplink_with_web_fallback",
+      "web_only",
+    ]
+
     AUTHORIZATION_CATEGORY = [
       "NONE",
       "POLITICAL",
@@ -160,7 +162,7 @@ module FacebookAds
     field :account_id, 'string'
     field :actor_id, 'string'
     field :adlabels, { list: 'AdLabel' }
-    field :applink_treatment, { enum: -> { APPLINK_TREATMENT }}
+    field :applink_treatment, 'string'
     field :asset_feed_spec, 'AdAssetFeedSpec'
     field :authorization_category, 'string'
     field :auto_update, 'bool'

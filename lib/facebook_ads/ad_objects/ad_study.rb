@@ -30,7 +30,6 @@ module FacebookAds
       "CONTINUOUS_LIFT_CONFIG",
       "GEO_LIFT",
       "LIFT",
-      "PRIVATE_LIFT",
       "SPLIT_TEST",
     ]
 
@@ -58,6 +57,13 @@ module FacebookAds
 
     has_edge :cells do |edge|
       edge.get 'AdStudyCell'
+    end
+
+    has_edge :instances do |edge|
+      edge.get 'PrivateLiftStudyInstance'
+      edge.post 'PrivateLiftStudyInstance' do |api|
+        api.has_param :breakdown_key, 'hash'
+      end
     end
 
     has_edge :objectives do |edge|

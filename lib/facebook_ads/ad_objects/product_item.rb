@@ -62,6 +62,15 @@ module FacebookAds
       "unisex",
     ]
 
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
     REVIEW_STATUS = [
       "",
       "approved",
@@ -288,6 +297,12 @@ module FacebookAds
       "FB_VEHI_PART",
     ]
 
+    MARKED_FOR_PRODUCT_LAUNCH = [
+      "default",
+      "marked",
+      "not_marked",
+    ]
+
 
     field :additional_image_cdn_urls, { list: 'hash' }
     field :additional_image_urls, { list: 'string' }
@@ -317,10 +332,13 @@ module FacebookAds
     field :gtin, 'string'
     field :id, 'string'
     field :image_cdn_urls, 'hash'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :image_url, 'string'
     field :images, { list: 'string' }
+    field :invalidation_errors, { list: 'object' }
     field :inventory, 'int'
     field :manufacturer_part_number, 'string'
+    field :marked_for_product_launch, 'string'
     field :material, 'string'
     field :mobile_link, 'string'
     field :name, 'string'
@@ -332,6 +350,7 @@ module FacebookAds
     field :product_feed, 'ProductFeed'
     field :product_group, 'ProductGroup'
     field :product_type, 'string'
+    field :quantity_to_sell_on_facebook, 'int'
     field :retailer_id, 'string'
     field :retailer_product_group_id, 'string'
     field :review_rejection_reasons, { list: 'string' }

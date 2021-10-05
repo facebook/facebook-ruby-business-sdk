@@ -27,6 +27,7 @@ module FacebookAds
 
   class BusinessAssetGroup < AdObject
     ADACCOUNT_TASKS = [
+      "AA_ANALYZE",
       "ADVERTISE",
       "ANALYZE",
       "DRAFT",
@@ -34,6 +35,7 @@ module FacebookAds
     ]
 
     OFFLINE_CONVERSION_DATA_SET_TASKS = [
+      "AA_ANALYZE",
       "ADVERTISE",
       "MANAGE",
       "UPLOAD",
@@ -56,16 +58,22 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
+      "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
 
     PIXEL_TASKS = [
+      "AA_ANALYZE",
+      "ADVERTISE",
       "ANALYZE",
       "EDIT",
+      "UPLOAD",
     ]
 
 

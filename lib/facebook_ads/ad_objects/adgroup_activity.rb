@@ -115,8 +115,6 @@ module FacebookAds
     field :target_spec_id_old, 'string'
     field :targets_spec_new, 'object'
     field :targets_spec_old, 'object'
-    field :tracking_pixel_ids_new, { list: 'string' }
-    field :tracking_pixel_ids_old, { list: 'string' }
     field :tracking_specs_new, { list: 'object' }
     field :tracking_specs_old, { list: 'object' }
     field :update_time_new, 'datetime'

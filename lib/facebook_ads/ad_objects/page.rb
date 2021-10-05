@@ -121,9 +121,12 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
+      "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
     ]
@@ -144,11 +147,49 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_FACEBOOK_ACCESS",
+      "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
+    ]
+
+    ALIGNMENT = [
+      "LEFT",
+      "RIGHT",
+    ]
+
+    ENTRY_POINT_ICON = [
+      "CHAT_ANGULAR_ICON",
+      "CHAT_ROUND_ICON",
+      "MESSENGER_ICON",
+      "NONE",
+    ]
+
+    ENTRY_POINT_LABEL = [
+      "ASK_US",
+      "CHAT",
+      "HELP",
+      "NONE",
+    ]
+
+    GREETING_DIALOG_DISPLAY = [
+      "HIDE",
+      "SHOW",
+      "WELCOME_MESSAGE",
+    ]
+
+    GUEST_CHAT_MODE = [
+      "DISABLED",
+      "ENABLED",
+    ]
+
+    MOBILE_CHAT_DISPLAY = [
+      "APP_SWITCH",
+      "CHAT_TAB",
     ]
 
     BACKDATED_TIME_GRANULARITY = [
@@ -230,6 +271,11 @@ module FacebookAds
       "UNREACT",
     ]
 
+    PLATFORM = [
+      "INSTAGRAM",
+      "MESSENGER",
+    ]
+
     MODEL = [
       "ARABIC",
       "CHINESE",
@@ -299,6 +345,7 @@ module FacebookAds
       "messaging_account_linking",
       "messaging_appointments",
       "messaging_checkout_updates",
+      "messaging_customer_information",
       "messaging_direct_sends",
       "messaging_fblogin_account_linking",
       "messaging_feedback",
@@ -389,6 +436,7 @@ module FacebookAds
     field :global_brand_page_name, 'string'
     field :global_brand_root_id, 'string'
     field :has_added_app, 'bool'
+    field :has_transitioned_to_new_page_experience, 'bool'
     field :has_whatsapp_business_number, 'bool'
     field :has_whatsapp_number, 'bool'
     field :hometown, 'string'
@@ -490,6 +538,10 @@ module FacebookAds
       end
     end
 
+    has_edge :admin_notes do |edge|
+      edge.get 'PageAdminNote'
+    end
+
     has_edge :ads_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :exclude_dynamic_ads, 'bool'
@@ -547,16 +599,15 @@ module FacebookAds
     end
 
     has_edge :business_data do |edge|
-      edge.delete do |api|
-        api.has_param :email, 'string'
-        api.has_param :external_id, 'string'
-        api.has_param :object_name, { enum: %w{contact order order_item }}
-        api.has_param :order_id, 'string'
-        api.has_param :order_item_id, 'string'
-      end
       edge.post 'Page' do |api|
         api.has_param :data, { list: 'string' }
         api.has_param :partner_agent, 'string'
+      end
+    end
+
+    has_edge :businessprojects do |edge|
+      edge.get do |api|
+        api.has_param :business, 'string'
       end
     end
 
@@ -593,6 +644,25 @@ module FacebookAds
         api.has_param :is_hidden, 'bool'
         api.has_param :is_published, 'bool'
         api.has_param :name, 'string'
+        api.has_param :source_template_id, 'string'
+      end
+    end
+
+    has_edge :chat_plugin do |edge|
+      edge.get 'ChatPlugin'
+      edge.post 'Page' do |api|
+        api.has_param :alignment, { enum: -> { Page::ALIGNMENT }}
+        api.has_param :desktop_bottom_spacing, 'int'
+        api.has_param :desktop_side_spacing, 'int'
+        api.has_param :entry_point_icon, { enum: -> { Page::ENTRY_POINT_ICON }}
+        api.has_param :entry_point_label, { enum: -> { Page::ENTRY_POINT_LABEL }}
+        api.has_param :greeting_dialog_display, { enum: -> { Page::GREETING_DIALOG_DISPLAY }}
+        api.has_param :guest_chat_mode, { enum: -> { Page::GUEST_CHAT_MODE }}
+        api.has_param :mobile_bottom_spacing, 'int'
+        api.has_param :mobile_chat_display, { enum: -> { Page::MOBILE_CHAT_DISPLAY }}
+        api.has_param :mobile_side_spacing, 'int'
+        api.has_param :theme_color, 'string'
+        api.has_param :welcome_screen_greeting, 'string'
       end
     end
 
@@ -635,6 +705,7 @@ module FacebookAds
     has_edge :conversations do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
+        api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
@@ -663,6 +734,7 @@ module FacebookAds
       edge.get 'PageUserMessageThreadLabel'
       edge.post 'PageUserMessageThreadLabel' do |api|
         api.has_param :name, 'string'
+        api.has_param :page_label_name, 'string'
       end
     end
 
@@ -824,6 +896,13 @@ module FacebookAds
       edge.get 'Page'
     end
 
+    has_edge :groups do |edge|
+      edge.get 'Group' do |api|
+        api.has_param :admin_only, 'bool'
+        api.has_param :parent, 'string'
+      end
+    end
+
     has_edge :image_copyrights do |edge|
       edge.get 'ImageCopyright'
       edge.post 'ImageCopyright' do |api|
@@ -851,6 +930,13 @@ module FacebookAds
         api.has_param :show_description_from_api_doc, 'bool'
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
+      end
+    end
+
+    has_edge :insights_exports do |edge|
+      edge.get do |api|
+        api.has_param :data_level, { list: 'string' }
+        api.has_param :from_creation_date, 'datetime'
       end
     end
 
@@ -944,7 +1030,6 @@ module FacebookAds
         api.has_param :is_spherical, 'bool'
         api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
@@ -1013,6 +1098,7 @@ module FacebookAds
         api.has_param :message, 'object'
         api.has_param :messaging_type, { enum: -> { Page::MESSAGING_TYPE }}
         api.has_param :notification_type, { enum: -> { Page::NOTIFICATION_TYPE }}
+        api.has_param :payload, 'string'
         api.has_param :persona_id, 'string'
         api.has_param :recipient, 'object'
         api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
@@ -1027,8 +1113,11 @@ module FacebookAds
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
         api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
+        api.has_param :platform, { enum: -> { Page::PLATFORM }}
       end
-      edge.get 'MessengerProfile'
+      edge.get 'MessengerProfile' do |api|
+        api.has_param :platform, { enum: -> { Page::PLATFORM }}
+      end
       edge.post 'Page' do |api|
         api.has_param :account_linking_url, 'string'
         api.has_param :get_started, 'object'
@@ -1036,6 +1125,7 @@ module FacebookAds
         api.has_param :ice_breakers, { list: 'hash' }
         api.has_param :payment_settings, 'object'
         api.has_param :persistent_menu, { list: 'object' }
+        api.has_param :platform, { enum: -> { Page::PLATFORM }}
         api.has_param :target_audience, 'object'
         api.has_param :whitelisted_domains, { list: 'string' }
       end
@@ -1195,6 +1285,7 @@ module FacebookAds
         api.has_param :burn_media_effect, 'bool'
         api.has_param :caption, 'string'
         api.has_param :composer_session_id, 'string'
+        api.has_param :frame_entrypoint, 'string'
         api.has_param :has_umg, 'bool'
         api.has_param :height, 'int'
         api.has_param :ios_bundle_id, 'string'
@@ -1235,8 +1326,10 @@ module FacebookAds
 
     has_edge :published_posts do |edge|
       edge.get 'PagePost' do |api|
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
+        api.has_param :include_hidden, 'bool'
+        api.has_param :limit, 'int'
+        api.has_param :show_expired, 'bool'
+        api.has_param :with, { enum: -> { PagePost::WITH }}
       end
     end
 
@@ -1273,7 +1366,9 @@ module FacebookAds
     end
 
     has_edge :secondary_receivers do |edge|
-      edge.get 'Application'
+      edge.get 'Application' do |api|
+        api.has_param :platform, { enum: -> { Application::PLATFORM }}
+      end
     end
 
     has_edge :settings do |edge|
@@ -1335,10 +1430,6 @@ module FacebookAds
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
-    end
-
-    has_edge :tours do |edge|
-      edge.get
     end
 
     has_edge :unlink_accounts do |edge|
@@ -1486,6 +1577,19 @@ module FacebookAds
     has_edge :visitor_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :include_hidden, 'bool'
+      end
+    end
+
+    has_edge :workpagemessages do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :message, 'object'
+        api.has_param :messaging_type, { enum: -> { Page::MESSAGING_TYPE }}
+        api.has_param :notification_type, { enum: -> { Page::NOTIFICATION_TYPE }}
+        api.has_param :payload, 'string'
+        api.has_param :persona_id, 'string'
+        api.has_param :recipient, 'object'
+        api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
+        api.has_param :tag, 'object'
       end
     end
 

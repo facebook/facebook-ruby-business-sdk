@@ -39,7 +39,6 @@ module FacebookAds
     field :clo_offer, 'object'
     field :clothing, 'object'
     field :clothing_accessories, 'object'
-    field :clothing_group, 'object'
     field :computer_components, 'object'
     field :computers_and_tablets, 'object'
     field :computers_laptops_and_tablets, 'object'

@@ -95,6 +95,7 @@ module FacebookAds
       "effective_facebook_positions",
       "effective_instagram_positions",
       "effective_messenger_positions",
+      "effective_oculus_positions",
       "effective_publisher_platforms",
       "effective_whatsapp_positions",
       "engagement_specs",
@@ -153,6 +154,7 @@ module FacebookAds
       "mobile_device_model",
       "moms",
       "net_worth",
+      "oculus_positions",
       "office_type",
       "page_types",
       "place_page_set_ids",
@@ -187,6 +189,11 @@ module FacebookAds
 
     APP_STORE = [
       "amazon_app_store",
+      "apk_mirror",
+      "apk_monk",
+      "apk_pure",
+      "aptoide_a1_store",
+      "bemobi_mobile_store",
       "does_not_exist",
       "fb_android_store",
       "fb_canvas",
@@ -197,9 +204,13 @@ module FacebookAds
       "itunes",
       "itunes_ipad",
       "oculus_app_store",
+      "oppo",
       "roku_channel_store",
+      "uptodown",
+      "vivo",
       "windows_10_store",
       "windows_store",
+      "xiaomi",
     ]
 
     OBJECTIVE = [
