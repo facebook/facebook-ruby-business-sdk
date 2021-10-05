@@ -39,6 +39,7 @@ module FacebookAds
     ]
 
 
+    field :ad_context, 'string'
     field :additional_image_index, 'int'
     field :app_link_spec, 'AdCreativeLinkDataAppLinkSpec'
     field :attachment_style, { enum: -> { ATTACHMENT_STYLE }}

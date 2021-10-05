@@ -32,6 +32,21 @@ module FacebookAds
 			# RFC 2822 for email format
 			EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
 
+			# Normalizes the input array of strings given the field_type
+			# @param [Array<String>] input string array that needs to be normalized
+			# @param [String] field_type Type/Key for the value provided
+			# @return [Array<String>] Normalized values for the input and field_type.
+			def self.normalize_array(input_array, field_type)
+				return nil unless input_array.is_a?(Enumerable)
+				return nil if input_array.empty?
+				return nil unless input_array.all?{|value| value.is_a?(String)}
+
+				input_array
+					.map{|value| self.normalize(value, field_type)}
+					.to_set
+					.to_a
+			end
+
 			# Normalizes the input string given the field_type
 			# @param [String] input Input string that needs to be normalized
 			# @param [String] field_type Type/Key for the value provided

@@ -31,6 +31,7 @@ module FacebookAds
       "MANAGE",
       "MANAGE_PHONE",
       "MANAGE_TEMPLATES",
+      "MESSAGING",
       "VIEW_COST",
     ]
 
@@ -49,7 +50,9 @@ module FacebookAds
     ]
 
 
+    field :account_review_status, 'string'
     field :analytics, 'object'
+    field :creation_time, 'int'
     field :currency, 'string'
     field :id, 'string'
     field :message_template_namespace, 'string'
@@ -98,6 +101,21 @@ module FacebookAds
 
     has_edge :phone_numbers do |edge|
       edge.get
+      edge.post do |api|
+        api.has_param :cc, 'string'
+        api.has_param :migrate_phone_number, 'bool'
+        api.has_param :phone_number, 'string'
+      end
+    end
+
+    has_edge :product_catalogs do |edge|
+      edge.delete do |api|
+        api.has_param :catalog_id, 'string'
+      end
+      edge.get 'ProductCatalog'
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :catalog_id, 'string'
+      end
     end
 
     has_edge :subscribed_apps do |edge|

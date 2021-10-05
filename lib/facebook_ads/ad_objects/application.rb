@@ -48,7 +48,9 @@ module FacebookAds
       "INSTANT_ARTICLES",
       "IOS",
       "MOBILE_WEB",
+      "OCULUS",
       "UNKNOWN",
+      "XIAOMI",
     ]
 
     PLATFORM = [
@@ -257,6 +259,12 @@ module FacebookAds
       end
     end
 
+    has_edge :adnetwork_placements do |edge|
+      edge.get 'AdPlacement' do |api|
+        api.has_param :request_id, 'string'
+      end
+    end
+
     has_edge :adnetworkanalytics do |edge|
       edge.get 'AdNetworkAnalyticsSyncQueryResult' do |api|
         api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
@@ -288,6 +296,18 @@ module FacebookAds
       end
     end
 
+    has_edge :aem_conversion_configs do |edge|
+      edge.get do |api|
+        api.has_param :advertiser_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :aem_conversions do |edge|
+      edge.post do |api|
+        api.has_param :aem_conversions, { list: 'hash' }
+      end
+    end
+
     has_edge :agencies do |edge|
       edge.get 'Business'
     end
@@ -297,14 +317,11 @@ module FacebookAds
         api.has_param :ecpms, { list: 'string' }
         api.has_param :query_ids, { list: 'string' }
         api.has_param :request_id, 'string'
+        api.has_param :sync_api, 'bool'
       end
     end
 
     has_edge :android_dialog_configs do |edge|
-      edge.get
-    end
-
-    has_edge :app_event_types do |edge|
       edge.get
     end
 
@@ -323,20 +340,6 @@ module FacebookAds
       edge.post 'Application' do |api|
         api.has_param :device_session_id, 'string'
         api.has_param :extinfo, 'string'
-      end
-    end
-
-    has_edge :app_insights do |edge|
-      edge.get do |api|
-        api.has_param :aggregateby, { enum: %w{AVERAGE_JOURNEY_LENGTH CONVERTED_JOURNEY_PERCENT COUNT COUNT_IDENTIFIED_USERS COUNT_PER_USER DAU EVENT_LATEST_FIRE_TIME EVENT_SOURCE_IDS JOURNEY_CHANNEL_INCLUSION JOURNEY_INCLUSION MAU MEDIAN_JOURNEY_LENGTH MEDIAN_VALUE MEDIAN_VALUE_PER_USER OVERLAP PERCENTILES_COUNT PERCENTILES_USD_VALUE PERCENTILES_VALUE SCORE SESSIONS_PER_JOURNEY SESSION_BOUNCE_RATE SUM SUM_IDENTIFIED_USERS SUM_PER_EVENT TOPK UNKNOWN_USERS USD_SUM USD_SUM_IDENTIFIED_USERS USD_SUM_PER_EVENT USD_SUM_PER_USER USD_VALUE_PER_USER USERS USER_PROPERTY_USER_COUNT VALUE_PER_USER WAU }}
-        api.has_param :breakdowns, { list: 'string' }
-        api.has_param :ecosystem, { enum: %w{GAME NON_GAME }}
-        api.has_param :event_name, 'string'
-        api.has_param :intervals_to_aggregate, 'int'
-        api.has_param :metric_key, 'string'
-        api.has_param :period, { enum: %w{daily days_28 days_60 days_90 hourly lifetime mins_15 monthly range weekly }}
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
       end
     end
 
@@ -381,15 +384,6 @@ module FacebookAds
     has_edge :button_auto_detection_device_selection do |edge|
       edge.get do |api|
         api.has_param :device_id, 'string'
-      end
-    end
-
-    has_edge :button_indexing do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :app_version, 'string'
-        api.has_param :device_id, 'string'
-        api.has_param :extinfo, 'string'
-        api.has_param :indexed_button_list, { list: 'hash' }
       end
     end
 
@@ -460,15 +454,6 @@ module FacebookAds
       edge.post 'Application' do |api|
         api.has_param :name, 'string'
         api.has_param :reset_time, 'datetime'
-      end
-    end
-
-    has_edge :leaderboards_set_score do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :extra_data, 'string'
-        api.has_param :name, 'string'
-        api.has_param :player_id, 'string'
-        api.has_param :score, 'int'
       end
     end
 
@@ -551,8 +536,22 @@ module FacebookAds
       end
     end
 
+    has_edge :push_token_register do |edge|
+      edge.post do |api|
+        api.has_param :device_id, 'string'
+        api.has_param :push_token, 'string'
+      end
+    end
+
     has_edge :roles do |edge|
       edge.get
+    end
+
+    has_edge :send_notification do |edge|
+      edge.post do |api|
+        api.has_param :payload, 'string'
+        api.has_param :token_id, 'string'
+      end
     end
 
     has_edge :subscribed_domains do |edge|

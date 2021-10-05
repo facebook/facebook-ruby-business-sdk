@@ -26,11 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class OracleTransaction < AdObject
-    TYPE = [
-      "CM",
-      "INV",
-    ]
-
 
     field :ad_account_ids, { list: 'string' }
     field :amount, 'string'

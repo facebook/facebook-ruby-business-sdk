@@ -112,6 +112,7 @@ module FacebookAds
     field :destination_catalog_settings, 'hash'
     field :flight_catalog_settings, 'hash'
     field :parent_catalog_id, 'string'
+    field :partner_integration, 'hash'
 
     has_edge :agencies do |edge|
       edge.delete do |api|
@@ -126,6 +127,12 @@ module FacebookAds
       end
     end
 
+    has_edge :ar_effects_batch_status do |edge|
+      edge.get 'ArEffectsBatchStatus' do |api|
+        api.has_param :handle, 'string'
+      end
+    end
+
     has_edge :assigned_users do |edge|
       edge.delete do |api|
         api.has_param :user, 'int'
@@ -137,6 +144,10 @@ module FacebookAds
         api.has_param :tasks, { list: { enum: -> { ProductCatalog::TASKS }} }
         api.has_param :user, 'int'
       end
+    end
+
+    has_edge :auto_markets do |edge|
+      edge.get
     end
 
     has_edge :automotive_models do |edge|
@@ -195,6 +206,15 @@ module FacebookAds
       end
     end
 
+    has_edge :diagnostics do |edge|
+      edge.get 'ProductCatalogDiagnosticGroup' do |api|
+        api.has_param :affected_channels, { list: { enum: -> { ProductCatalogDiagnosticGroup::AFFECTED_CHANNELS }} }
+        api.has_param :affected_features, { list: { enum: -> { ProductCatalogDiagnosticGroup::AFFECTED_FEATURES }} }
+        api.has_param :severities, { list: { enum: -> { ProductCatalogDiagnosticGroup::SEVERITIES }} }
+        api.has_param :types, { list: { enum: -> { ProductCatalogDiagnosticGroup::TYPES }} }
+      end
+    end
+
     has_edge :event_stats do |edge|
       edge.get 'ProductEventStat' do |api|
         api.has_param :breakdowns, { list: { enum: -> { ProductEventStat::BREAKDOWNS }} }
@@ -203,11 +223,11 @@ module FacebookAds
 
     has_edge :external_event_sources do |edge|
       edge.delete do |api|
-        api.has_param :external_event_sources, { list: 'string' }
+        api.has_param :external_event_sources, 'object'
       end
       edge.get 'ExternalEventSource'
       edge.post 'ProductCatalog' do |api|
-        api.has_param :external_event_sources, { list: 'string' }
+        api.has_param :external_event_sources, 'object'
       end
     end
 
@@ -287,6 +307,21 @@ module FacebookAds
       end
     end
 
+    has_edge :localized_items_batch do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :allow_upsert, 'bool'
+        api.has_param :item_type, 'string'
+        api.has_param :requests, 'hash'
+      end
+    end
+
+    has_edge :media_titles do |edge|
+      edge.get do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
     has_edge :pricing_variables_batch do |edge|
       edge.get 'ProductCatalogPricingVariablesBatch' do |api|
         api.has_param :handle, 'string'
@@ -343,6 +378,7 @@ module FacebookAds
         api.has_param :filter, 'object'
         api.has_param :metadata, 'hash'
         api.has_param :name, 'string'
+        api.has_param :ordering_info, { list: 'int' }
         api.has_param :retailer_id, 'string'
       end
     end
@@ -400,6 +436,7 @@ module FacebookAds
         api.has_param :iphone_url, 'string'
         api.has_param :launch_date, 'string'
         api.has_param :manufacturer_part_number, 'string'
+        api.has_param :marked_for_product_launch, { enum: -> { ProductItem::MARKED_FOR_PRODUCT_LAUNCH }}
         api.has_param :material, 'string'
         api.has_param :mobile_link, 'string'
         api.has_param :name, 'string'
@@ -410,6 +447,7 @@ module FacebookAds
         api.has_param :pattern, 'string'
         api.has_param :price, 'int'
         api.has_param :product_type, 'string'
+        api.has_param :quantity_to_sell_on_facebook, 'int'
         api.has_param :retailer_id, 'string'
         api.has_param :retailer_product_group_id, 'string'
         api.has_param :return_policy_days, 'int'

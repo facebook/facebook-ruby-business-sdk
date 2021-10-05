@@ -33,6 +33,7 @@ module FacebookAds
     field :latest_metadata, 'ProductSetMetadata'
     field :live_metadata, 'ProductSetMetadata'
     field :name, 'string'
+    field :ordering_info, { list: 'int' }
     field :product_catalog, 'ProductCatalog'
     field :product_count, 'int'
     field :retailer_id, 'string'
@@ -68,6 +69,13 @@ module FacebookAds
 
     has_edge :hotels do |edge|
       edge.get 'Hotel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :media_titles do |edge|
+      edge.get do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

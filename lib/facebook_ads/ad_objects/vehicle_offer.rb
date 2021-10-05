@@ -26,6 +26,15 @@ module FacebookAds
   # pull request for this class.
 
   class VehicleOffer < AdObject
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
 
     field :amount_currency, 'string'
     field :amount_percentage, 'double'
@@ -44,6 +53,7 @@ module FacebookAds
     field :end_date, 'string'
     field :end_time, 'int'
     field :id, 'string'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
     field :make, 'string'
     field :model, 'string'
@@ -58,11 +68,24 @@ module FacebookAds
     field :term_qualifier, 'string'
     field :title, 'string'
     field :trim, 'string'
+    field :unit_price, 'object'
     field :url, 'string'
     field :vehicle_offer_id, 'string'
     field :year, 'int'
     has_no_post
     has_no_delete
+
+    has_edge :augmented_realities_metadata do |edge|
+      edge.get
+    end
+
+    has_edge :channels_to_integrity_status do |edge|
+      edge.get 'CatalogItemChannelsToIntegrityStatus'
+    end
+
+    has_edge :videos_metadata do |edge|
+      edge.get
+    end
 
   end
 end

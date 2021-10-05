@@ -33,6 +33,7 @@ module FacebookAds
     field :ig_id, 'string'
     field :is_comment_enabled, 'bool'
     field :like_count, 'int'
+    field :media_product_type, 'string'
     field :media_type, 'string'
     field :media_url, 'string'
     field :owner, 'IgUser'
@@ -41,6 +42,7 @@ module FacebookAds
     field :thumbnail_url, 'string'
     field :timestamp, 'datetime'
     field :username, 'string'
+    field :video_title, 'string'
     has_no_delete
 
     has_edge :children do |edge|

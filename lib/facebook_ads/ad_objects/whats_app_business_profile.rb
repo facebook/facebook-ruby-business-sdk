@@ -29,6 +29,7 @@ module FacebookAds
 
     field :id, 'string'
     field :name_verification, 'object'
+    field :whatsapp_business_api_data, 'object'
     has_no_delete
 
   end

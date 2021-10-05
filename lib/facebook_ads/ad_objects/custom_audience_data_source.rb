@@ -42,6 +42,7 @@ module FacebookAds
       "EXPANDED_AUDIENCE",
       "EXTERNAL_IDS",
       "EXTERNAL_IDS_MIX",
+      "FACEBOOK_WIFI_EVENTS",
       "FB_EVENT_SIGNALS",
       "FB_PIXEL_HITS",
       "HASHES",

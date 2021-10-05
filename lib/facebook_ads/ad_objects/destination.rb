@@ -26,6 +26,15 @@ module FacebookAds
   # pull request for this class.
 
   class Destination < AdObject
+    IMAGE_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
 
     field :address, 'string'
     field :applinks, 'CatalogItemAppLinks'
@@ -34,15 +43,29 @@ module FacebookAds
     field :description, 'string'
     field :destination_id, 'string'
     field :id, 'string'
+    field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
     field :name, 'string'
     field :price, 'string'
     field :price_change, 'string'
     field :sanitized_images, { list: 'string' }
     field :types, { list: 'string' }
+    field :unit_price, 'object'
     field :url, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :augmented_realities_metadata do |edge|
+      edge.get
+    end
+
+    has_edge :channels_to_integrity_status do |edge|
+      edge.get 'CatalogItemChannelsToIntegrityStatus'
+    end
+
+    has_edge :videos_metadata do |edge|
+      edge.get
+    end
 
   end
 end

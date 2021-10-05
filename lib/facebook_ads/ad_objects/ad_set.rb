@@ -205,6 +205,7 @@ module FacebookAds
     field :destination_type, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
+    field :existing_customer_budget_percentage, 'int'
     field :frequency_control_specs, { list: 'AdCampaignFrequencyControlSpecs' }
     field :full_funnel_exploration_mode, 'string'
     field :id, 'string'
@@ -231,6 +232,7 @@ module FacebookAds
     field :start_time, 'datetime'
     field :status, { enum: -> { STATUS }}
     field :targeting, 'Targeting'
+    field :targeting_optimization_types, 'hash'
     field :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
     field :time_based_ad_rotation_intervals, { list: 'int' }
     field :updated_time, 'datetime'

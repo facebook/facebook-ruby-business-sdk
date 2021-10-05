@@ -60,7 +60,10 @@ module FacebookAds
     end
 
     has_edge :media do |edge|
-      edge.get 'IgMedia'
+      edge.get 'IgMedia' do |api|
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+      end
       edge.post 'IgMedia' do |api|
         api.has_param :caption, 'string'
         api.has_param :image_url, 'string'
