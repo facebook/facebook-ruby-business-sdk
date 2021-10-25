@@ -81,6 +81,8 @@ module FacebookAds
 
     field :account_id, 'string'
     field :approximate_count, 'int'
+    field :approximate_count_lower_bound, 'int'
+    field :approximate_count_upper_bound, 'int'
     field :customer_file_source, 'string'
     field :data_source, 'CustomAudienceDataSource'
     field :data_source_types, 'string'

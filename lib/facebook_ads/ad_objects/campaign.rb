@@ -111,6 +111,7 @@ module FacebookAds
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
+      "ONLINE_GAMBLING_AND_GAMING",
     ]
 
     SPECIAL_AD_CATEGORY_COUNTRY = [
@@ -378,6 +379,7 @@ module FacebookAds
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
+      "ONLINE_GAMBLING_AND_GAMING",
     ]
 
     STATUS_OPTION = [

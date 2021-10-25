@@ -38,6 +38,7 @@ module FacebookAds
     field :product_count, 'int'
     field :retailer_id, 'string'
     field :metadata, 'hash'
+    field :publish_to_shops, { list: 'hash' }
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
