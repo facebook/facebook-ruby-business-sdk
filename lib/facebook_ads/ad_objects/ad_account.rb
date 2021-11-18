@@ -336,8 +336,8 @@ module FacebookAds
     end
 
     has_edge :adplayables do |edge|
-      edge.get 'PlayableContent'
-      edge.post 'PlayableContent' do |api|
+      edge.get
+      edge.post do |api|
         api.has_param :app_id, 'string'
         api.has_param :name, 'string'
         api.has_param :session_id, 'string'
@@ -365,6 +365,7 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :schedule_spec, 'object'
         api.has_param :status, { enum: -> { AdRule::STATUS }}
+        api.has_param :ui_creation_source, { enum: -> { AdRule::UI_CREATION_SOURCE }}
       end
     end
 
@@ -482,7 +483,7 @@ module FacebookAds
       edge.get 'AdsPixel' do |api|
         api.has_param :sort_by, { enum: -> { AdsPixel::SORT_BY }}
       end
-      edge.post 'AdsPixel' do |api|
+      edge.post do |api|
         api.has_param :name, 'string'
       end
     end

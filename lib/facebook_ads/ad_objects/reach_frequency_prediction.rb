@@ -64,6 +64,8 @@ module FacebookAds
     field :activity_status, 'ReachFrequencyActivity'
     field :ad_formats, { list: 'ReachFrequencyAdFormat' }
     field :auction_entry_option_index, 'int'
+    field :audience_size_lower_bound, 'int'
+    field :audience_size_upper_bound, 'int'
     field :business_id, 'int'
     field :buying_type, 'string'
     field :campaign_group_id, 'int'
