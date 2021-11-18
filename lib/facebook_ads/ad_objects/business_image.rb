@@ -25,16 +25,18 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PlayableContent < AdObject
+  class BusinessImage < AdObject
 
+    field :business, 'Business'
+    field :creation_time, 'datetime'
+    field :hash, 'string'
+    field :height, 'int'
     field :id, 'string'
+    field :media_library_url, 'string'
     field :name, 'string'
-    field :owner, 'Profile'
-    field :app_id, 'string'
-    field :session_id, 'string'
-    field :source, 'file'
-    field :source_url, 'string'
-    field :source_zip, 'file'
+    field :url, 'string'
+    field :url_128, 'string'
+    field :width, 'int'
     has_no_post
     has_no_delete
 

@@ -40,11 +40,13 @@ module FacebookAds
       "SUPPLEMENTARY_IMAGES",
       "WEB",
       "WINDOWS",
+      "XIAOMI",
     ]
 
     AN_PLATFORMS = [
       "ANDROID",
       "DESKTOP",
+      "GALAXY",
       "INSTANT_ARTICLES",
       "IOS",
       "MOBILE_WEB",
@@ -506,9 +508,6 @@ module FacebookAds
     end
 
     has_edge :payment_currencies do |edge|
-      edge.delete do |api|
-        api.has_param :currency_url, 'string'
-      end
       edge.post 'Application' do |api|
         api.has_param :currency_url, 'string'
       end

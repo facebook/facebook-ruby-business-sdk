@@ -43,6 +43,7 @@ module FacebookAds
       "BIZ_DISCO_FEED",
       "FACEBOOK_GROUPS_FEED",
       "FACEBOOK_REELS",
+      "FACEBOOK_REELS_OVERLAY",
       "FACEBOOK_STORIES",
       "FEED",
       "GROUPS",

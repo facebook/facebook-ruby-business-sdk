@@ -467,10 +467,12 @@ module FacebookAds
     field :members, 'string'
     field :merchant_id, 'string'
     field :merchant_review_status, 'string'
+    field :messaging_feature_status, 'MessagingFeatureStatus'
     field :messenger_ads_default_icebreakers, { list: 'string' }
     field :messenger_ads_default_page_welcome_message, 'MessengerDestinationPageWelcomeMessage'
     field :messenger_ads_default_quick_replies, { list: 'string' }
     field :messenger_ads_quick_replies_type, 'string'
+    field :mini_shop_storefront, 'Shop'
     field :mission, 'string'
     field :mpg, 'string'
     field :name, 'string'
@@ -599,9 +601,10 @@ module FacebookAds
     end
 
     has_edge :business_data do |edge|
-      edge.post 'Page' do |api|
+      edge.post do |api|
         api.has_param :data, { list: 'string' }
         api.has_param :partner_agent, 'string'
+        api.has_param :processing_type, 'string'
       end
     end
 
@@ -714,7 +717,7 @@ module FacebookAds
     has_edge :copyright_manual_claims do |edge|
       edge.post do |api|
         api.has_param :action, { enum: %w{BLOCK CLAIM_AD_EARNINGS MANUAL_REVIEW MONITOR REQUEST_TAKEDOWN }}
-        api.has_param :action_reason, { enum: %w{ARTIST_OBJECTION OBJECTIONABLE_CONTENT PREMIUM_MUSIC_VIDEO PRERELEASE_CONTENT PRODUCT_PARAMETERS RESTRICTED_CONTENT UNAUTHORIZED_COMMERCIAL_USE }}
+        api.has_param :action_reason, { enum: %w{ARTICLE_17_PREFLAGGING ARTIST_OBJECTION OBJECTIONABLE_CONTENT PREMIUM_MUSIC_VIDEO PRERELEASE_CONTENT PRODUCT_PARAMETERS RESTRICTED_CONTENT UNAUTHORIZED_COMMERCIAL_USE }}
         api.has_param :countries, 'object'
         api.has_param :match_content_type, { enum: %w{AUDIO_ONLY VIDEO_AND_AUDIO VIDEO_ONLY }}
         api.has_param :matched_asset_id, 'string'

@@ -384,6 +384,12 @@ module FacebookAds
       end
     end
 
+    has_edge :draft_negative_keyword_lists do |edge|
+      edge.post do |api|
+        api.has_param :negative_keyword_list_file, 'file'
+      end
+    end
+
     has_edge :event_source_groups do |edge|
       edge.get 'EventSourceGroup'
       edge.post 'EventSourceGroup' do |api|
@@ -495,6 +501,10 @@ module FacebookAds
         api.has_param :asset_id, 'string'
         api.has_param :client_id, 'string'
       end
+    end
+
+    has_edge :negative_keyword_lists do |edge|
+      edge.get
     end
 
     has_edge :offline_conversion_data_sets do |edge|

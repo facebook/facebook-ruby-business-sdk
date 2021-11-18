@@ -55,6 +55,8 @@ module FacebookAds
     field :inline, 'string'
     field :interactive_component_sticker_id, 'string'
     field :interactive_component_sticker_response, 'string'
+    field :skan_click, 'string'
+    field :skan_view, 'string'
     field :value, 'string'
     has_no_id
     has_no_get

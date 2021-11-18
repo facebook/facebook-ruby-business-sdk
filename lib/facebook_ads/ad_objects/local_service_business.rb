@@ -36,6 +36,7 @@ module FacebookAds
     ]
 
 
+    field :address, 'object'
     field :applinks, 'CatalogItemAppLinks'
     field :brand, 'string'
     field :category_specific_fields, 'CatalogSubVerticalList'
@@ -53,6 +54,7 @@ module FacebookAds
     field :price, 'string'
     field :sanitized_images, { list: 'string' }
     field :title, 'string'
+    field :unit_price, 'object'
     field :url, 'string'
     has_no_post
     has_no_delete

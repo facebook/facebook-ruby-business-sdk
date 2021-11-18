@@ -146,5 +146,9 @@ module FacebookAds
       end
     end
 
+    has_edge :telemetry do |edge|
+      edge.post
+    end
+
   end
 end
