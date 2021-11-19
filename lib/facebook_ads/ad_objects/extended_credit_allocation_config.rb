@@ -45,6 +45,23 @@ module FacebookAds
     ]
 
 
+    # The field "amount" has been added to allow updating an existing ExtendedCreditAllocationConfig.
+    #
+    # Previously, this SDK required the following steps to do an update:
+    #   1) Attempt to retrieve the ExtendedCreditAllocationConfig.
+    #   2) If present, delete it.
+    #   3) Create a new one, using the create method on the owning_credit_allocation_configs edge.
+    #
+    # As of 2021-11-16, that stopped working. (The LOC allocation would end up with the value zero.)
+    #
+    # The field "amount" can be used to update an ExtendedCreditAllocationConfig, if you follow this approach:
+    #   creditAllocationConfig.amount = "12.34"
+    #   creditAllocationConfig.save(:fields => [])
+    # "fields" must be specified because otherwise the SDK supplies values which the API objects to.
+    #
+    # Do not use "amount" for anything other than updating an ExtendedCreditAllocationConfig.
+    #
+    field :amount, 'string'
     field :currency_amount, 'CurrencyAmount'
     field :id, 'string'
     field :liability_type, 'string'
