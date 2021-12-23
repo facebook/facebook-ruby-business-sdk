@@ -26,10 +26,27 @@ module FacebookAds
   # pull request for this class.
 
   class LiveVideo < AdObject
+    BROADCAST_STATUS = [
+      "LIVE",
+      "LIVE_STOPPED",
+      "PROCESSING",
+      "SCHEDULED_CANCELED",
+      "SCHEDULED_EXPIRED",
+      "SCHEDULED_LIVE",
+      "SCHEDULED_UNPUBLISHED",
+      "UNPUBLISHED",
+      "VOD",
+    ]
+
     PROJECTION = [
       "CUBEMAP",
       "EQUIRECTANGULAR",
       "HALF_EQUIRECTANGULAR",
+    ]
+
+    SOURCE = [
+      "owner",
+      "target",
     ]
 
     SPATIAL_AUDIO_FORMAT = [
@@ -55,31 +72,17 @@ module FacebookAds
       "REGULAR",
     ]
 
-    BROADCAST_STATUS = [
-      "LIVE",
-      "LIVE_STOPPED",
-      "PROCESSING",
-      "SCHEDULED_CANCELED",
-      "SCHEDULED_EXPIRED",
-      "SCHEDULED_LIVE",
-      "SCHEDULED_UNPUBLISHED",
-      "UNPUBLISHED",
-      "VOD",
-    ]
-
-    SOURCE = [
-      "owner",
-      "target",
-    ]
-
     LIVE_COMMENT_MODERATION_SETTING = [
       "DEFAULT",
       "DISCUSSION",
+      "FOLLOWED",
       "FOLLOWER",
+      "NO_HYPERLINK",
       "PROTECTED_MODE",
       "RESTRICTED",
       "SLOW",
       "SUPPORTER",
+      "TAGGED",
     ]
 
     PERSISTENT_STREAM_KEY_STATUS = [
@@ -97,7 +100,7 @@ module FacebookAds
     field :dash_ingest_url, 'string'
     field :dash_preview_url, 'string'
     field :description, 'string'
-    field :embed_html, 'string'
+    field :embed_html, 'object'
     field :from, 'object'
     field :id, 'string'
     field :ingest_streams, { list: 'LiveVideoInputStream' }
@@ -108,6 +111,7 @@ module FacebookAds
     field :overlay_url, 'string'
     field :permalink_url, 'object'
     field :planned_start_time, 'datetime'
+    field :recommended_encoder_settings, 'LiveVideoRecommendedEncoderSettings'
     field :seconds_left, 'int'
     field :secure_stream_url, 'string'
     field :status, 'string'

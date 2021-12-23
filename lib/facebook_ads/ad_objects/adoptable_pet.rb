@@ -64,6 +64,7 @@ module FacebookAds
     field :shelter_phone, 'string'
     field :size, 'string'
     field :tertiary_color, 'string'
+    field :unit_price, 'object'
     field :url, 'string'
     has_no_post
     has_no_delete

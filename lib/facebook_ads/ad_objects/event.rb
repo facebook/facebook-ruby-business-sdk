@@ -68,6 +68,7 @@ module FacebookAds
       "group",
       "private",
       "public",
+      "work_company",
     ]
 
     EVENT_STATE_FILTER = [
@@ -87,6 +88,7 @@ module FacebookAds
     field :can_guests_invite, 'bool'
     field :category, { enum: -> { CATEGORY }}
     field :cover, 'CoverPhoto'
+    field :created_time, 'datetime'
     field :declined_count, 'int'
     field :description, 'string'
     field :discount_code_enabled, 'bool'
@@ -109,6 +111,7 @@ module FacebookAds
     field :place, 'Place'
     field :scheduled_publish_time, 'string'
     field :start_time, 'string'
+    field :ticket_setting, 'object'
     field :ticket_uri, 'string'
     field :ticket_uri_start_sales_time, 'string'
     field :ticketing_privacy_uri, 'string'
@@ -129,7 +132,10 @@ module FacebookAds
 
     has_edge :live_videos do |edge|
       edge.get 'NullNode'
-      edge.post 'LiveVideo' do |api|
+    end
+
+    has_edge :livevideos do |edge|
+      edge.post do |api|
         api.has_param :content_tags, { list: 'string' }
         api.has_param :description, 'string'
         api.has_param :enable_backup_ingest, 'bool'
@@ -140,16 +146,15 @@ module FacebookAds
         api.has_param :is_spherical, 'bool'
         api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
-        api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
+        api.has_param :projection, { enum: %w{CUBEMAP EQUIRECTANGULAR HALF_EQUIRECTANGULAR }}
         api.has_param :published, 'bool'
         api.has_param :schedule_custom_profile_image, 'file'
-        api.has_param :spatial_audio_format, { enum: -> { LiveVideo::SPATIAL_AUDIO_FORMAT }}
-        api.has_param :status, { enum: -> { LiveVideo::STATUS }}
-        api.has_param :stereoscopic_mode, { enum: -> { LiveVideo::STEREOSCOPIC_MODE }}
+        api.has_param :spatial_audio_format, { enum: %w{ambiX_4 }}
+        api.has_param :status, { enum: %w{LIVE_NOW SCHEDULED_CANCELED SCHEDULED_LIVE SCHEDULED_UNPUBLISHED UNPUBLISHED }}
+        api.has_param :stereoscopic_mode, { enum: %w{LEFT_RIGHT MONO TOP_BOTTOM }}
         api.has_param :stop_on_delete_stream, 'bool'
-        api.has_param :stream_type, { enum: -> { LiveVideo::STREAM_TYPE }}
+        api.has_param :stream_type, { enum: %w{AMBIENT REGULAR }}
         api.has_param :title, 'string'
       end
     end

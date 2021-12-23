@@ -122,6 +122,7 @@ module FacebookAds
     DATA_SOURCE = [
       "CALYPSO",
       "TAO",
+      "TAO_AD_ACCOUNT",
     ]
 
 

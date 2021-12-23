@@ -127,6 +127,12 @@ module FacebookAds
       end
     end
 
+    has_edge :ar_effects_batch_status do |edge|
+      edge.get 'ArEffectsBatchStatus' do |api|
+        api.has_param :handle, 'string'
+      end
+    end
+
     has_edge :assigned_users do |edge|
       edge.delete do |api|
         api.has_param :user, 'int'
@@ -164,15 +170,17 @@ module FacebookAds
       end
     end
 
-    has_edge :autos do |edge|
-      edge.get
-    end
-
     has_edge :batch do |edge|
       edge.post 'ProductCatalog' do |api|
         api.has_param :allow_upsert, 'bool'
         api.has_param :fbe_external_business_id, 'string'
         api.has_param :requests, { list: 'hash' }
+      end
+    end
+
+    has_edge :catalog_website_settings do |edge|
+      edge.post do |api|
+        api.has_param :is_allowed_to_crawl, 'bool'
       end
     end
 
@@ -344,11 +352,13 @@ module FacebookAds
         api.has_param :encoding, { enum: -> { ProductFeed::ENCODING }}
         api.has_param :feed_type, { enum: -> { ProductFeed::FEED_TYPE }}
         api.has_param :file_name, 'string'
+        api.has_param :ingestion_source_type, { enum: -> { ProductFeed::INGESTION_SOURCE_TYPE }}
         api.has_param :item_sub_type, { enum: -> { ProductFeed::ITEM_SUB_TYPE }}
         api.has_param :migrated_from_feed_id, 'string'
         api.has_param :name, 'string'
         api.has_param :override_type, { enum: -> { ProductFeed::OVERRIDE_TYPE }}
         api.has_param :override_value, 'string'
+        api.has_param :primary_feed_ids, { list: 'string' }
         api.has_param :quoted_fields_mode, { enum: -> { ProductFeed::QUOTED_FIELDS_MODE }}
         api.has_param :rules, { list: 'string' }
         api.has_param :schedule, 'string'
@@ -376,6 +386,8 @@ module FacebookAds
         api.has_param :filter, 'object'
         api.has_param :metadata, 'hash'
         api.has_param :name, 'string'
+        api.has_param :ordering_info, { list: 'int' }
+        api.has_param :publish_to_shops, { list: 'hash' }
         api.has_param :retailer_id, 'string'
       end
     end
@@ -421,6 +433,8 @@ module FacebookAds
         api.has_param :gender, { enum: -> { ProductItem::GENDER }}
         api.has_param :gtin, 'string'
         api.has_param :image_url, 'string'
+        api.has_param :importer_address, 'hash'
+        api.has_param :importer_name, 'string'
         api.has_param :inventory, 'int'
         api.has_param :ios_app_name, 'string'
         api.has_param :ios_app_store_id, 'int'
@@ -432,6 +446,7 @@ module FacebookAds
         api.has_param :iphone_app_store_id, 'int'
         api.has_param :iphone_url, 'string'
         api.has_param :launch_date, 'string'
+        api.has_param :manufacturer_info, 'string'
         api.has_param :manufacturer_part_number, 'string'
         api.has_param :marked_for_product_launch, { enum: -> { ProductItem::MARKED_FOR_PRODUCT_LAUNCH }}
         api.has_param :material, 'string'
@@ -441,6 +456,7 @@ module FacebookAds
         api.has_param :offer_price_end_date, 'datetime'
         api.has_param :offer_price_start_date, 'datetime'
         api.has_param :ordering_index, 'int'
+        api.has_param :origin_country, { enum: -> { ProductItem::ORIGIN_COUNTRY }}
         api.has_param :pattern, 'string'
         api.has_param :price, 'int'
         api.has_param :product_type, 'string'

@@ -35,6 +35,7 @@ module FacebookAds
       "BUY_TICKETS",
       "CALL",
       "CALL_ME",
+      "CALL_NOW",
       "CONTACT",
       "CONTACT_US",
       "DONATE",
@@ -118,6 +119,7 @@ module FacebookAds
     ]
 
     APPLINK_TREATMENT = [
+      "automatic",
       "deeplink_with_appstore_fallback",
       "deeplink_with_web_fallback",
       "web_only",

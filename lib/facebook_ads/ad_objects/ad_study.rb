@@ -30,7 +30,6 @@ module FacebookAds
       "CONTINUOUS_LIFT_CONFIG",
       "GEO_LIFT",
       "LIFT",
-      "PRIVATE_LIFT",
       "SPLIT_TEST",
     ]
 

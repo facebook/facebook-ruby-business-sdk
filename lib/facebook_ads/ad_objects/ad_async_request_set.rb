@@ -31,12 +31,6 @@ module FacebookAds
       "ON_COMPLETE",
     ]
 
-    NOTIFICATION_STATUS = [
-      "NOT_SENT",
-      "SENDING",
-      "SENT",
-    ]
-
 
     field :canceled_count, 'int'
     field :created_time, 'datetime'
@@ -48,7 +42,7 @@ module FacebookAds
     field :name, 'string'
     field :notification_mode, { enum: -> { NOTIFICATION_MODE }}
     field :notification_result, 'AdAsyncRequestSetNotificationResult'
-    field :notification_status, { enum: -> { NOTIFICATION_STATUS }}
+    field :notification_status, 'string'
     field :notification_uri, 'string'
     field :owner_id, 'string'
     field :success_count, 'int'

@@ -85,6 +85,7 @@ module FacebookAds
     ]
 
     TASKS = [
+      "AA_ANALYZE",
       "ADVERTISE",
       "ANALYZE",
       "DRAFT",
@@ -108,6 +109,7 @@ module FacebookAds
       "FLIGHT",
       "HOME_LISTING",
       "HOTEL",
+      "JOB",
       "LOCAL_SERVICE_BUSINESS",
       "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
@@ -159,11 +161,13 @@ module FacebookAds
     field :disable_reason, 'int'
     field :end_advertiser, 'string'
     field :end_advertiser_name, 'string'
+    field :existing_customers, { list: 'string' }
     field :extended_credit_invoice_group, 'ExtendedCreditInvoiceGroup'
     field :failed_delivery_checks, { list: 'DeliveryCheck' }
     field :fb_entity, 'int'
     field :funding_source, 'string'
     field :funding_source_details, 'FundingSourceDetails'
+    field :has_advertiser_opted_in_odax, 'bool'
     field :has_migrated_permissions, 'bool'
     field :has_page_authorized_adaccount, 'bool'
     field :id, 'string'
@@ -171,7 +175,6 @@ module FacebookAds
     field :is_attribution_spec_system_default, 'bool'
     field :is_direct_deals_enabled, 'bool'
     field :is_in_3ds_authorization_enabled_market, 'bool'
-    field :is_in_middle_of_local_entity_migration, 'bool'
     field :is_notifications_enabled, 'bool'
     field :is_personal, 'int'
     field :is_prepay_account, 'bool'
@@ -217,7 +220,6 @@ module FacebookAds
     has_edge :ad_place_page_sets do |edge|
       edge.get 'AdPlacePageSet'
       edge.post 'AdPlacePageSet' do |api|
-        api.has_param :category, { enum: -> { AdPlacePageSet::CATEGORY }}
         api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
         api.has_param :name, 'string'
         api.has_param :parent_page, 'string'
@@ -227,7 +229,6 @@ module FacebookAds
 
     has_edge :ad_place_page_sets_async do |edge|
       edge.post 'AdPlacePageSet' do |api|
-        api.has_param :category, { enum: -> { AdPlacePageSet::CATEGORY }}
         api.has_param :location_types, { list: { enum: -> { AdPlacePageSet::LOCATION_TYPES }} }
         api.has_param :name, 'string'
         api.has_param :parent_page, 'string'
@@ -246,7 +247,7 @@ module FacebookAds
     end
 
     has_edge :adcloudplayables do |edge|
-      edge.get
+      edge.get 'CloudGame'
     end
 
     has_edge :adcreatives do |edge|
@@ -335,8 +336,8 @@ module FacebookAds
     end
 
     has_edge :adplayables do |edge|
-      edge.get 'PlayableContent'
-      edge.post 'PlayableContent' do |api|
+      edge.get
+      edge.post do |api|
         api.has_param :app_id, 'string'
         api.has_param :name, 'string'
         api.has_param :session_id, 'string'
@@ -364,6 +365,7 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :schedule_spec, 'object'
         api.has_param :status, { enum: -> { AdRule::STATUS }}
+        api.has_param :ui_creation_source, { enum: -> { AdRule::UI_CREATION_SOURCE }}
       end
     end
 
@@ -439,6 +441,7 @@ module FacebookAds
         api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
         api.has_param :end_time, 'datetime'
         api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
+        api.has_param :existing_customer_budget_percentage, 'int'
         api.has_param :frequency_control_specs, { list: 'object' }
         api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
         api.has_param :is_dynamic_creative, 'bool'
@@ -480,7 +483,7 @@ module FacebookAds
       edge.get 'AdsPixel' do |api|
         api.has_param :sort_by, { enum: -> { AdsPixel::SORT_BY }}
       end
-      edge.post 'AdsPixel' do |api|
+      edge.post do |api|
         api.has_param :name, 'string'
       end
     end
@@ -648,6 +651,12 @@ module FacebookAds
     has_edge :broadtargetingcategories do |edge|
       edge.get 'BroadTargetingCategories' do |api|
         api.has_param :custom_categories_only, 'bool'
+      end
+    end
+
+    has_edge :businessprojects do |edge|
+      edge.get do |api|
+        api.has_param :business, 'string'
       end
     end
 
@@ -878,6 +887,22 @@ module FacebookAds
     has_edge :ios_fourteen_campaign_limits do |edge|
       edge.get 'AdAccountIosFourteenCampaignLimits' do |api|
         api.has_param :app_id, 'string'
+      end
+    end
+
+    has_edge :managed_partner_ads do |edge|
+      edge.post do |api|
+        api.has_param :campaign_group_id, 'int'
+        api.has_param :campaign_group_status, { enum: %w{ACTIVE ADSET_PAUSED ARCHIVED CAMPAIGN_PAUSED DELETED DISAPPROVED IN_PROCESS PAUSED PENDING_BILLING_INFO PENDING_REVIEW PREAPPROVED WITH_ISSUES }}
+        api.has_param :conversion_domain, 'string'
+        api.has_param :end_time, 'int'
+        api.has_param :lifetime_budget, 'int'
+        api.has_param :override_creative_text, 'string'
+        api.has_param :override_targeting_countries, { list: 'string' }
+        api.has_param :product_set_id, 'string'
+        api.has_param :start_time, 'int'
+        api.has_param :use_marketplace_template, 'bool'
+        api.has_param :use_seller_template, 'bool'
       end
     end
 

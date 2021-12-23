@@ -65,10 +65,9 @@ module FacebookAds
 
     OPTIMIZATION_GOAL = [
       "AD_RECALL_LIFT",
-      "APP_DOWNLOADS",
       "APP_INSTALLS",
-      "BRAND_AWARENESS",
-      "CLICKS",
+      "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
+      "CONVERSATIONS",
       "DERIVED_EVENTS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
@@ -77,18 +76,13 @@ module FacebookAds
       "LEAD_GENERATION",
       "LINK_CLICKS",
       "NONE",
-      "OFFER_CLAIMS",
       "OFFSITE_CONVERSIONS",
-      "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
-      "REPLIES",
-      "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
-      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
       "VISIT_INSTAGRAM_PROFILE",
     ]
@@ -168,6 +162,7 @@ module FacebookAds
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
+      "ONLINE_GAMBLING_AND_GAMING",
     ]
 
     OPERATOR = [
@@ -205,6 +200,7 @@ module FacebookAds
     field :destination_type, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
+    field :existing_customer_budget_percentage, 'int'
     field :frequency_control_specs, { list: 'AdCampaignFrequencyControlSpecs' }
     field :full_funnel_exploration_mode, 'string'
     field :id, 'string'
@@ -231,6 +227,7 @@ module FacebookAds
     field :start_time, 'datetime'
     field :status, { enum: -> { STATUS }}
     field :targeting, 'Targeting'
+    field :targeting_optimization_types, 'hash'
     field :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
     field :time_based_ad_rotation_intervals, { list: 'int' }
     field :updated_time, 'datetime'

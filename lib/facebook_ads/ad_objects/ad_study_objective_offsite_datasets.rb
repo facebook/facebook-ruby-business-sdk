@@ -25,16 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PlayableContent < AdObject
+  class AdStudyObjectiveOffsiteDatasets < AdObject
 
+    field :event_names, { list: 'string' }
     field :id, 'string'
-    field :name, 'string'
-    field :owner, 'Profile'
-    field :app_id, 'string'
-    field :session_id, 'string'
-    field :source, 'file'
-    field :source_url, 'string'
-    field :source_zip, 'file'
+    has_no_get
     has_no_post
     has_no_delete
 

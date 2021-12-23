@@ -33,10 +33,12 @@ module FacebookAds
     field :latest_metadata, 'ProductSetMetadata'
     field :live_metadata, 'ProductSetMetadata'
     field :name, 'string'
+    field :ordering_info, { list: 'int' }
     field :product_catalog, 'ProductCatalog'
     field :product_count, 'int'
     field :retailer_id, 'string'
     field :metadata, 'hash'
+    field :publish_to_shops, { list: 'hash' }
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|

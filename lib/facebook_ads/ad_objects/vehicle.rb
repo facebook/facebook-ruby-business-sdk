@@ -153,6 +153,7 @@ module FacebookAds
     field :title, 'string'
     field :transmission, 'string'
     field :trim, 'string'
+    field :unit_price, 'object'
     field :url, 'string'
     field :vehicle_id, 'string'
     field :vehicle_registration_plate, 'string'

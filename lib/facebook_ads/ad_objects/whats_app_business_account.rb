@@ -101,6 +101,21 @@ module FacebookAds
 
     has_edge :phone_numbers do |edge|
       edge.get
+      edge.post do |api|
+        api.has_param :cc, 'string'
+        api.has_param :migrate_phone_number, 'bool'
+        api.has_param :phone_number, 'string'
+      end
+    end
+
+    has_edge :product_catalogs do |edge|
+      edge.delete do |api|
+        api.has_param :catalog_id, 'string'
+      end
+      edge.get 'ProductCatalog'
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :catalog_id, 'string'
+      end
     end
 
     has_edge :subscribed_apps do |edge|

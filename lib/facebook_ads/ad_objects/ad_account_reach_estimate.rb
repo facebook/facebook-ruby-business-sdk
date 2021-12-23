@@ -29,6 +29,8 @@ module FacebookAds
 
     field :estimate_ready, 'bool'
     field :users, 'int'
+    field :users_lower_bound, 'int'
+    field :users_upper_bound, 'int'
     has_no_id
     has_no_get
     has_no_post

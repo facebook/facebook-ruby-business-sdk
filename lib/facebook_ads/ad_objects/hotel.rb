@@ -56,6 +56,7 @@ module FacebookAds
     field :sale_price, 'string'
     field :sanitized_images, { list: 'string' }
     field :star_rating, 'double'
+    field :unit_price, 'object'
     field :url, 'string'
     field :base_price, 'int'
 

@@ -48,7 +48,6 @@ module FacebookAds
     field :privacy_url_by_locale, 'hash'
     field :review_rejection_messages, { list: 'string' }
     field :review_rejection_reasons, { list: 'string' }
-    field :review_status, 'string'
     field :supported_card_types, { list: 'string' }
     field :terms, 'string'
     field :terms_url_by_locale, 'hash'
@@ -115,11 +114,16 @@ module FacebookAds
       end
       edge.post do |api|
         api.has_param :handling_time, 'hash'
+        api.has_param :is_default, 'bool'
         api.has_param :is_default_shipping_profile, 'bool'
         api.has_param :name, 'string'
         api.has_param :reference_id, 'string'
         api.has_param :shipping_destinations, { list: 'hash' }
       end
+    end
+
+    has_edge :shops do |edge|
+      edge.get 'Shop'
     end
 
     has_edge :tax_settings do |edge|

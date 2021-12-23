@@ -58,8 +58,11 @@ module FacebookAds
     ]
 
     TASKS = [
+      "AA_ANALYZE",
+      "ADVERTISE",
       "ANALYZE",
       "EDIT",
+      "UPLOAD",
     ]
 
 
@@ -149,6 +152,10 @@ module FacebookAds
         api.has_param :event_source, 'string'
         api.has_param :start_time, 'datetime'
       end
+    end
+
+    has_edge :telemetry do |edge|
+      edge.post
     end
 
   end

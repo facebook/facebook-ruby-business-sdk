@@ -35,7 +35,9 @@ module FacebookAds
       "ALBUM_MULTIMEDIA_POST",
       "ALOHA_CALL_VIDEO",
       "ALOHA_SUPERFRAME",
+      "APP_REREVIEW_SCREENCAST",
       "APP_REVIEW_SCREENCAST",
+      "ASSET_MANAGER",
       "ATLAS_VIDEO",
       "AUDIO_BROADCAST",
       "BROADCAST",
@@ -89,6 +91,7 @@ module FacebookAds
       "INSTANT_ARTICLE",
       "INSTANT_GAME_CLIP",
       "ISSUE_MODULE",
+      "JOBS_CAREERS",
       "JOBS_VISUAL_INTRO_ENTRY",
       "JOB_APPLICATION_VIDEO",
       "JOB_OPENING_VIDEO",
@@ -102,23 +105,31 @@ module FacebookAds
       "MARKETPLACE_LISTING_VIDEO",
       "MARKETPLACE_PRE_RECORDED_VIDEO",
       "MESSENGER_WATCH_TOGETHER",
+      "MOMENTS_VIDEO",
+      "MUSIC_CLIP",
+      "MUSIC_CLIP_IN_COMMENT",
+      "MUSIC_CLIP_IN_POLL_OPTION",
       "NEO_ASYNC_GAME_VIDEO",
       "NO_STORY",
       "NO_STORY_WITH_ENTPOST",
+      "NPE_COLLAB_COPYRIGHT_CHECK",
       "OCULUS_CREATOR_PORTAL",
       "OCULUS_VENUES_BROADCAST",
       "OFFERS_VIDEO",
       "PAGES_COVER_VIDEO",
       "PAGE_REVIEW_SCREENCAST",
       "PAGE_SLIDESHOW_VIDEO",
+      "PAID_CONTENT_PREVIEW",
       "PARTNER_DIRECTORY_BRAND_MEDIA",
       "PIXELCLOUD",
       "PODCAST_HIGHLIGHT",
       "PODCAST_RSS",
+      "PODCAST_RSS_EPHEMERAL",
       "PODCAST_RSS_NO_NEWSFEED_STORY",
       "PODCAST_VOICES",
       "PODCAST_VOICES_NO_NEWSFEED_STORY",
       "PREMIERE_SOURCE",
+      "PREMIUM_MUSIC_VIDEO_CLIP",
       "PREMIUM_MUSIC_VIDEO_NO_NEWSFEED_STORY",
       "PREMIUM_MUSIC_VIDEO_WITH_NEWSFEED_STORY",
       "PRIVATE_GALLERY_VIDEO",
@@ -241,7 +252,7 @@ module FacebookAds
     field :created_time, 'datetime'
     field :custom_labels, { list: 'string' }
     field :description, 'string'
-    field :embed_html, 'string'
+    field :embed_html, 'object'
     field :embeddable, 'bool'
     field :event, 'Event'
     field :expiration, 'object'
@@ -261,6 +272,7 @@ module FacebookAds
     field :permalink_url, 'object'
     field :picture, 'string'
     field :place, 'Place'
+    field :post_views, 'int'
     field :premiere_living_room_status, 'string'
     field :privacy, 'Privacy'
     field :published, 'bool'
@@ -271,6 +283,7 @@ module FacebookAds
     field :title, 'string'
     field :universal_video_id, 'string'
     field :updated_time, 'datetime'
+    field :views, 'int'
     field :adaptive_type, 'string'
     field :animated_effect_id, 'int'
     field :application_id, 'string'
@@ -374,6 +387,12 @@ module FacebookAds
 
     has_edge :crosspost_shared_pages do |edge|
       edge.get 'Page'
+    end
+
+    has_edge :gaming_clip_create do |edge|
+      edge.post 'AdVideo' do |api|
+        api.has_param :duration_seconds, 'double'
+      end
     end
 
     has_edge :likes do |edge|
