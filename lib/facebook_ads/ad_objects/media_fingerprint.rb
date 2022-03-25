@@ -42,6 +42,7 @@ module FacebookAds
     field :metadata, 'object'
     field :title, 'string'
     field :universal_content_id, 'string'
+    has_no_delete
 
   end
 end

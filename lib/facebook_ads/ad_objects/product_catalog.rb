@@ -146,10 +146,6 @@ module FacebookAds
       end
     end
 
-    has_edge :auto_markets do |edge|
-      edge.get
-    end
-
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
         api.has_param :bulk_pagination, 'bool'
@@ -201,8 +197,20 @@ module FacebookAds
       end
     end
 
+    has_edge :collaborative_ads_lsb_image_bank do |edge|
+      edge.get
+    end
+
     has_edge :collaborative_ads_share_settings do |edge|
       edge.get 'CollaborativeAdsShareSettings'
+    end
+
+    has_edge :cpas_lsb_image_bank do |edge|
+      edge.post do |api|
+        api.has_param :ad_group_id, 'int'
+        api.has_param :agency_business_id, 'int'
+        api.has_param :backup_image_urls, { list: 'string' }
+      end
     end
 
     has_edge :destinations do |edge|
@@ -322,9 +330,20 @@ module FacebookAds
     end
 
     has_edge :media_titles do |edge|
-      edge.get do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
+      edge.post do |api|
+        api.has_param :applinks, 'object'
+        api.has_param :content_category, { enum: %w{MOVIE MUSIC TV_SHOW }}
+        api.has_param :currency, 'string'
+        api.has_param :description, 'string'
+        api.has_param :fb_page_id, 'string'
+        api.has_param :genres, { list: 'string' }
+        api.has_param :images, { list: 'object' }
+        api.has_param :kg_fb_id, 'string'
+        api.has_param :media_title_id, 'string'
+        api.has_param :price, 'int'
+        api.has_param :title, 'string'
+        api.has_param :title_display_name, 'string'
+        api.has_param :url, 'string'
       end
     end
 
@@ -427,6 +446,11 @@ module FacebookAds
         api.has_param :custom_label_2, 'string'
         api.has_param :custom_label_3, 'string'
         api.has_param :custom_label_4, 'string'
+        api.has_param :custom_number_0, 'int'
+        api.has_param :custom_number_1, 'int'
+        api.has_param :custom_number_2, 'int'
+        api.has_param :custom_number_3, 'int'
+        api.has_param :custom_number_4, 'int'
         api.has_param :description, 'string'
         api.has_param :expiration_date, 'string'
         api.has_param :fb_product_category, 'string'
@@ -472,6 +496,7 @@ module FacebookAds
         api.has_param :start_date, 'string'
         api.has_param :url, 'string'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
+        api.has_param :wa_compliance_category, { enum: -> { ProductItem::WA_COMPLIANCE_CATEGORY }}
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'

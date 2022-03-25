@@ -144,8 +144,8 @@ module FacebookAds
         api.has_param :front_z_rotation, 'double'
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
-        api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
+        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: %w{CUBEMAP EQUIRECTANGULAR HALF_EQUIRECTANGULAR }}
         api.has_param :published, 'bool'

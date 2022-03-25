@@ -188,7 +188,9 @@ module FacebookAds
       "FB_ELEC_PART",
       "FB_ELEC_PRINT",
       "FB_ELEC_RADAR",
+      "FB_ELEC_SFTWR",
       "FB_ELEC_SPEED_RDR",
+      "FB_ELEC_TELEVISION",
       "FB_ELEC_TOLL",
       "FB_ELEC_VIDEO",
       "FB_ELEC_VID_GM_ACC",
@@ -557,6 +559,11 @@ module FacebookAds
       "ZW",
     ]
 
+    WA_COMPLIANCE_CATEGORY = [
+      "COUNTRY_ORIGIN_EXEMPT",
+      "DEFAULT",
+    ]
+
 
     field :additional_image_cdn_urls, { list: 'hash' }
     field :additional_image_urls, { list: 'string' }
@@ -579,6 +586,11 @@ module FacebookAds
     field :custom_label_2, 'string'
     field :custom_label_3, 'string'
     field :custom_label_4, 'string'
+    field :custom_number_0, 'string'
+    field :custom_number_1, 'string'
+    field :custom_number_2, 'string'
+    field :custom_number_3, 'string'
+    field :custom_number_4, 'string'
     field :description, 'string'
     field :expiration_date, 'string'
     field :fb_product_category, 'string'
@@ -623,6 +635,7 @@ module FacebookAds
     field :start_date, 'string'
     field :url, 'string'
     field :visibility, { enum: -> { VISIBILITY }}
+    field :wa_compliance_category, 'string'
     field :additional_uploaded_image_ids, { list: 'string' }
     field :android_app_name, 'string'
     field :android_class, 'string'

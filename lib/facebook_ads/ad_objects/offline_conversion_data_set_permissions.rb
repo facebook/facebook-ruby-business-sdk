@@ -25,18 +25,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BusinessAgreement < AdObject
-    REQUEST_STATUS = [
-      "APPROVE",
-      "DECLINE",
-      "EXPIRED",
-      "IN_PROGRESS",
-      "PENDING",
-    ]
+  class OfflineConversionDataSetPermissions < AdObject
 
-
-    field :id, 'string'
-    field :request_status, 'string'
+    field :can_edit, 'bool'
+    field :can_edit_or_upload, 'bool'
+    field :can_upload, 'bool'
+    field :should_block_vanilla_business_employee_access, 'bool'
+    has_no_id
+    has_no_get
+    has_no_post
     has_no_delete
 
   end

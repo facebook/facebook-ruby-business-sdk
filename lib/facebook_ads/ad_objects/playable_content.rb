@@ -25,47 +25,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InsightsResult < AdObject
-    DATE_PRESET = [
-      "data_maximum",
-      "last_14d",
-      "last_28d",
-      "last_30d",
-      "last_3d",
-      "last_7d",
-      "last_90d",
-      "last_month",
-      "last_quarter",
-      "last_week_mon_sun",
-      "last_week_sun_sat",
-      "last_year",
-      "maximum",
-      "this_month",
-      "this_quarter",
-      "this_week_mon_today",
-      "this_week_sun_today",
-      "this_year",
-      "today",
-      "yesterday",
-    ]
+  class PlayableContent < AdObject
 
-    PERIOD = [
-      "day",
-      "days_28",
-      "lifetime",
-      "month",
-      "week",
-    ]
-
-
-    field :description, 'string'
-    field :description_from_api_doc, 'string'
     field :id, 'string'
     field :name, 'string'
-    field :period, 'string'
-    field :title, 'string'
-    field :values, { list: 'object' }
-    has_no_get
+    field :owner, 'Profile'
+    field :app_id, 'string'
+    field :session_id, 'string'
+    field :source, 'file'
+    field :source_url, 'string'
+    field :source_zip, 'file'
     has_no_post
     has_no_delete
 

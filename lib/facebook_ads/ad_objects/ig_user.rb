@@ -59,6 +59,13 @@ module FacebookAds
       end
     end
 
+    has_edge :live_media do |edge|
+      edge.get 'IgMedia' do |api|
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+      end
+    end
+
     has_edge :media do |edge|
       edge.get 'IgMedia' do |api|
         api.has_param :since, 'datetime'
@@ -66,7 +73,9 @@ module FacebookAds
       end
       edge.post 'IgMedia' do |api|
         api.has_param :caption, 'string'
+        api.has_param :children, { list: 'string' }
         api.has_param :image_url, 'string'
+        api.has_param :is_carousel_item, 'bool'
         api.has_param :location_id, 'string'
         api.has_param :media_type, 'string'
         api.has_param :thumb_offset, 'string'
