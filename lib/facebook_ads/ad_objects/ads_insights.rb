@@ -35,6 +35,8 @@ module FacebookAds
       "7d_view",
       "dda",
       "default",
+      "skan_click",
+      "skan_view",
     ]
 
     ACTION_BREAKDOWNS = [
@@ -84,6 +86,7 @@ module FacebookAds
     ]
 
     DATE_PRESET = [
+      "data_maximum",
       "last_14d",
       "last_28d",
       "last_30d",

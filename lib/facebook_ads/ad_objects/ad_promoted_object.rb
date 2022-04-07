@@ -64,6 +64,7 @@ module FacebookAds
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :event_id, 'string'
     field :fundraiser_campaign_id, 'string'
+    field :mcme_conversion_id, 'string'
     field :object_store_url, 'string'
     field :offer_id, 'string'
     field :offline_conversion_data_set_id, 'string'

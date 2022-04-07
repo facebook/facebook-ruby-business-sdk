@@ -25,11 +25,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Domain < AdObject
+  class ProductImage < AdObject
 
     field :id, 'string'
-    field :name, 'string'
-    field :url, 'string'
+    field :image_url, 'string'
     has_no_post
     has_no_delete
 

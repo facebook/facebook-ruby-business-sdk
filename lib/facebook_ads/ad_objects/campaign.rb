@@ -56,6 +56,7 @@ module FacebookAds
     ]
 
     DATE_PRESET = [
+      "data_maximum",
       "last_14d",
       "last_28d",
       "last_30d",
@@ -390,6 +391,7 @@ module FacebookAds
 
 
     field :account_id, 'string'
+    field :ad_strategy_group_id, 'string'
     field :ad_strategy_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :bid_strategy, { enum: -> { BID_STRATEGY }}

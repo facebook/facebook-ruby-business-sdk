@@ -35,6 +35,7 @@ module FacebookAds
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",
+      "IN_APP_VALUE",
       "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
@@ -53,7 +54,6 @@ module FacebookAds
 
     field :daily_outcomes_curve, { list: 'OutcomePredictionPoint' }
     field :estimate_dau, 'int'
-    field :estimate_mau, 'int'
     field :estimate_mau_lower_bound, 'int'
     field :estimate_mau_upper_bound, 'int'
     field :estimate_ready, 'bool'

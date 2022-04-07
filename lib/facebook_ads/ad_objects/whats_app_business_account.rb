@@ -41,6 +41,7 @@ module FacebookAds
       "APPOINTMENT_UPDATE",
       "AUTO_REPLY",
       "ISSUE_RESOLUTION",
+      "OTP",
       "PAYMENT_UPDATE",
       "PERSONAL_FINANCE_UPDATE",
       "RESERVATION_UPDATE",
@@ -76,6 +77,20 @@ module FacebookAds
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :tasks, { list: { enum: -> { WhatsAppBusinessAccount::TASKS }} }
         api.has_param :user, 'int'
+      end
+    end
+
+    has_edge :conversation_analytics do |edge|
+      edge.get do |api|
+        api.has_param :conversation_directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
+        api.has_param :conversation_types, { list: { enum: %w{FREE_ENTRY_POINT FREE_TIER REGULAR UNKNOWN }} }
+        api.has_param :country_codes, { list: 'string' }
+        api.has_param :dimensions, { list: { enum: %w{CONVERSATION_DIRECTION CONVERSATION_TYPE COUNTRY PHONE UNKNOWN }} }
+        api.has_param :end, 'int'
+        api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
+        api.has_param :metric_types, { list: { enum: %w{CONVERSATION COST UNKNOWN }} }
+        api.has_param :phone_numbers, { list: 'string' }
+        api.has_param :start, 'int'
       end
     end
 
