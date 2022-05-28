@@ -31,5 +31,5 @@ end
 ad = FacebookAds::Ad.get(id)
 leadss = ad.leads({
     fields: {  },
-    filtering: [{'field':'time_created','operator':'GREATER_THAN','value':1626979823}],
+    filtering: [{'field':'time_created','operator':'GREATER_THAN','value':1638283275}],
 })

@@ -28,8 +28,8 @@ module FacebookAds
   class SavedAudience < AdObject
 
     field :account, 'AdAccount'
-    field :approximate_count, 'int'
-    field :approximate_count_64bit, 'int'
+    field :approximate_count_lower_bound, 'int'
+    field :approximate_count_upper_bound, 'int'
     field :delete_time, 'int'
     field :description, 'string'
     field :extra_info, 'string'

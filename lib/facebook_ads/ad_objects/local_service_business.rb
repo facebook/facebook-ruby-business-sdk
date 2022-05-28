@@ -26,6 +26,26 @@ module FacebookAds
   # pull request for this class.
 
   class LocalServiceBusiness < AdObject
+    AVAILABILITY = [
+      "AVAILABLE_FOR_ORDER",
+      "DISCONTINUED",
+      "IN_STOCK",
+      "OUT_OF_STOCK",
+      "PENDING",
+      "PREORDER",
+    ]
+
+    CONDITION = [
+      "PC_CPO",
+      "PC_NEW",
+      "PC_OPEN_BOX_NEW",
+      "PC_REFURBISHED",
+      "PC_USED",
+      "PC_USED_FAIR",
+      "PC_USED_GOOD",
+      "PC_USED_LIKE_NEW",
+    ]
+
     IMAGE_FETCH_STATUS = [
       "DIRECT_UPLOAD",
       "FETCHED",
@@ -36,9 +56,14 @@ module FacebookAds
     ]
 
 
+    field :address, 'object'
     field :applinks, 'CatalogItemAppLinks'
+    field :availability, { enum: -> { AVAILABILITY }}
     field :brand, 'string'
+    field :category, 'string'
     field :category_specific_fields, 'CatalogSubVerticalList'
+    field :condition, { enum: -> { CONDITION }}
+    field :cuisine_type, 'string'
     field :currency, 'string'
     field :custom_label_0, 'string'
     field :custom_label_1, 'string'
@@ -46,14 +71,22 @@ module FacebookAds
     field :custom_label_3, 'string'
     field :custom_label_4, 'string'
     field :description, 'string'
+    field :expiration_date, 'string'
+    field :gtin, 'string'
     field :id, 'string'
     field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
     field :local_service_business_id, 'string'
+    field :phone, 'string'
     field :price, 'string'
+    field :price_range, 'string'
+    field :retailer_category, 'string'
     field :sanitized_images, { list: 'string' }
+    field :size, 'string'
     field :title, 'string'
+    field :unit_price, 'object'
     field :url, 'string'
+    field :vendor_id, 'string'
     has_no_post
     has_no_delete
 

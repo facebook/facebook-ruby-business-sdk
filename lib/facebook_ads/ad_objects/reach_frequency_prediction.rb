@@ -64,6 +64,8 @@ module FacebookAds
     field :activity_status, 'ReachFrequencyActivity'
     field :ad_formats, { list: 'ReachFrequencyAdFormat' }
     field :auction_entry_option_index, 'int'
+    field :audience_size_lower_bound, 'int'
+    field :audience_size_upper_bound, 'int'
     field :business_id, 'int'
     field :buying_type, 'string'
     field :campaign_group_id, 'int'
@@ -131,7 +133,6 @@ module FacebookAds
     field :start_time, 'datetime'
     field :status, 'int'
     field :story_event_type, 'int'
-    field :target_audience_size, 'int'
     field :target_cpm, 'int'
     field :target_spec, 'Targeting'
     field :time_created, 'datetime'

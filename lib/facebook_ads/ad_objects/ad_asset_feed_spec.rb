@@ -66,6 +66,7 @@ module FacebookAds
       "ORDER_NOW",
       "PAY_TO_ACCESS",
       "PLAY_GAME",
+      "PLAY_GAME_ON_FACEBOOK",
       "PURCHASE_GIFT_CARDS",
       "RECORD_NOW",
       "REFER_FRIENDS",
@@ -110,10 +111,7 @@ module FacebookAds
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
-    field :offer_ids, { list: 'object' }
-    field :onsite_destinations, { list: 'object' }
     field :optimization_type, 'string'
-    field :phone_data_ids, { list: 'object' }
     field :posts, { list: 'object' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }

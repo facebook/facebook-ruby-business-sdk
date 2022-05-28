@@ -91,6 +91,13 @@ module FacebookAds
       end
     end
 
+    has_edge :fulfill_order do |edge|
+      edge.post 'CommerceOrder' do |api|
+        api.has_param :idempotency_key, 'string'
+        api.has_param :items, { list: 'hash' }
+      end
+    end
+
     has_edge :items do |edge|
       edge.get
     end

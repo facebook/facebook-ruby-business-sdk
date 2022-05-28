@@ -25,52 +25,48 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Profile < AdObject
-    PROFILE_TYPE = [
-      "application",
-      "event",
-      "group",
-      "page",
-      "user",
-    ]
-
-    TYPE = [
-      "ANGRY",
-      "CARE",
-      "FIRE",
-      "HAHA",
-      "HUNDRED",
-      "LIKE",
-      "LOVE",
-      "NONE",
-      "PRIDE",
-      "SAD",
-      "THANKFUL",
-      "WOW",
+  class FundraiserPersonToCharity < AdObject
+    FUNDRAISER_TYPE = [
+      "person_for_charity",
     ]
 
 
-    field :can_post, 'bool'
+    field :amount_raised, 'int'
+    field :charity_id, 'string'
+    field :currency, 'string'
+    field :description, 'string'
+    field :donations_count, 'int'
+    field :donors_count, 'int'
+    field :end_time, 'datetime'
+    field :external_amount_raised, 'int'
+    field :external_donations_count, 'int'
+    field :external_donors_count, 'int'
+    field :external_event_name, 'string'
+    field :external_event_start_time, 'datetime'
+    field :external_event_uri, 'string'
+    field :external_fundraiser_uri, 'string'
+    field :external_id, 'string'
+    field :goal_amount, 'int'
     field :id, 'string'
-    field :link, 'string'
+    field :internal_amount_raised, 'int'
+    field :internal_donations_count, 'int'
+    field :internal_donors_count, 'int'
     field :name, 'string'
-    field :pic, 'string'
-    field :pic_crop, 'ProfilePictureSource'
-    field :pic_large, 'string'
-    field :pic_small, 'string'
-    field :pic_square, 'string'
-    field :profile_type, { enum: -> { PROFILE_TYPE }}
-    field :username, 'string'
-    has_no_post
+    field :uri, 'string'
     has_no_delete
 
-    has_edge :picture do |edge|
-      edge.get 'ProfilePictureSource' do |api|
-        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
-        api.has_param :height, 'int'
-        api.has_param :redirect, 'bool'
-        api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
-        api.has_param :width, 'int'
+    has_edge :end_fundraiser do |edge|
+      edge.post
+    end
+
+    has_edge :external_donations do |edge|
+      edge.get
+      edge.post do |api|
+        api.has_param :amount_received, 'int'
+        api.has_param :currency, 'string'
+        api.has_param :donation_id_hash, 'string'
+        api.has_param :donation_time, 'int'
+        api.has_param :donor_id_hash, 'string'
       end
     end
 

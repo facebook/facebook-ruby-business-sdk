@@ -25,25 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdReportSpec < AdObject
+  class LiveVideoRecommendedEncoderSettings < AdObject
 
-    field :account_id, 'string'
-    field :actions_group_by, { list: 'string' }
-    field :creation_source, 'string'
-    field :data_columns, { list: 'string' }
-    field :date_preset, 'string'
-    field :export_columns, { list: 'string' }
-    field :filters, { list: 'object' }
-    field :format_version, 'int'
-    field :id, 'string'
-    field :insights_section, 'object'
-    field :name, 'string'
-    field :report_schedule_id, 'string'
-    field :sort_by, 'string'
-    field :sort_dir, 'string'
-    field :time_increment, 'string'
-    field :time_interval, 'object'
-    field :time_ranges, { list: 'object' }
+    field :audio_codec_settings, 'object'
+    field :streaming_protocol, 'string'
+    field :video_codec_settings, 'object'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

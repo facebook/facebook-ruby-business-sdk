@@ -61,6 +61,7 @@ module FacebookAds
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
+      "ONLINE_GAMBLING_AND_GAMING",
     ]
 
     WHITELISTED_TYPES = [
@@ -239,7 +240,8 @@ module FacebookAds
     ]
 
 
-    field :audience_size, 'int'
+    field :audience_size_lower_bound, 'int'
+    field :audience_size_upper_bound, 'int'
     field :conversion_lift, 'double'
     field :description, 'string'
     field :id, 'string'

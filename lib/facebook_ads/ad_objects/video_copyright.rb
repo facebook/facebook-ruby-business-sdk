@@ -57,9 +57,5 @@ module FacebookAds
     field :whitelisted_ids, { list: 'string' }
     has_no_delete
 
-    has_edge :update_records do |edge|
-      edge.get
-    end
-
   end
 end

@@ -66,6 +66,7 @@ module FacebookAds
       "ORDER_NOW",
       "PAY_TO_ACCESS",
       "PLAY_GAME",
+      "PLAY_GAME_ON_FACEBOOK",
       "PURCHASE_GIFT_CARDS",
       "RECORD_NOW",
       "REFER_FRIENDS",

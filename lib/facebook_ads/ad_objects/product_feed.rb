@@ -69,6 +69,11 @@ module FacebookAds
       "VEHICLE_OFFER",
     ]
 
+    INGESTION_SOURCE_TYPE = [
+      "PRIMARY_FEED",
+      "SUPPLEMENTARY_FEED",
+    ]
+
     ITEM_SUB_TYPE = [
       "APPLIANCES",
       "BABY_FEEDING",
@@ -115,23 +120,23 @@ module FacebookAds
     field :encoding, 'string'
     field :file_name, 'string'
     field :id, 'string'
+    field :ingestion_source_type, 'string'
     field :item_sub_type, 'string'
     field :latest_upload, 'ProductFeedUpload'
     field :migrated_from_feed_id, 'string'
     field :name, 'string'
     field :override_type, 'string'
+    field :primary_feeds, { list: 'string' }
     field :product_count, 'int'
     field :quoted_fields_mode, { enum: -> { QUOTED_FIELDS_MODE }}
     field :schedule, 'ProductFeedSchedule'
+    field :supplementary_feeds, { list: 'string' }
     field :update_schedule, 'ProductFeedSchedule'
     field :feed_type, { enum: -> { FEED_TYPE }}
     field :override_value, 'string'
+    field :primary_feed_ids, { list: 'string' }
     field :rules, { list: 'string' }
     field :selected_override_fields, { list: 'string' }
-
-    has_edge :auto_markets do |edge|
-      edge.get
-    end
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
@@ -168,13 +173,6 @@ module FacebookAds
       end
     end
 
-    has_edge :media_titles do |edge|
-      edge.get do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
-      end
-    end
-
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
@@ -184,10 +182,16 @@ module FacebookAds
 
     has_edge :rules do |edge|
       edge.get 'ProductFeedRule'
-      edge.post 'ProductFeedRule' do |api|
+      edge.post do |api|
         api.has_param :attribute, 'string'
         api.has_param :params, 'hash'
-        api.has_param :rule_type, { enum: -> { ProductFeedRule::RULE_TYPE }}
+        api.has_param :rule_type, { enum: %w{fallback_rule letter_case_rule mapping_rule regex_replace_rule value_mapping_rule }}
+      end
+    end
+
+    has_edge :supplementary_feed_assocs do |edge|
+      edge.post do |api|
+        api.has_param :assoc_data, { list: 'hash' }
       end
     end
 

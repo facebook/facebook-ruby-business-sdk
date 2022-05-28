@@ -38,6 +38,7 @@ module FacebookAds
     field :product_count, 'int'
     field :retailer_id, 'string'
     field :metadata, 'hash'
+    field :publish_to_shops, { list: 'hash' }
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
@@ -69,13 +70,6 @@ module FacebookAds
 
     has_edge :hotels do |edge|
       edge.get 'Hotel' do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
-      end
-    end
-
-    has_edge :media_titles do |edge|
-      edge.get do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

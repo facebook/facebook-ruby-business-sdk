@@ -25,16 +25,19 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdgroupRelevanceScore < AdObject
+  class CpasBusinessSetupConfig < AdObject
 
-    field :negative_feedback, 'string'
-    field :positive_feedback, 'string'
-    field :score, 'string'
-    field :status, 'string'
-    has_no_id
-    has_no_get
-    has_no_post
+    field :accepted_collab_ads_tos, 'bool'
+    field :business, 'Business'
+    field :business_capabilities_status, 'hash'
+    field :capabilities_compliance_status, 'hash'
+    field :id, 'string'
+    field :ad_accounts, { list: 'string' }
     has_no_delete
+
+    has_edge :ad_accounts do |edge|
+      edge.get 'AdAccount'
+    end
 
   end
 end
