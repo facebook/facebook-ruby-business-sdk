@@ -32,6 +32,9 @@ Gem::Specification.new do |s|
     'https://github.com/facebook/facebook-ruby-business-sdk'
   s.license = 'Nonstandard'
 
+
+
+http://fb.me/MikelArtzGamingStudio.Live
   s.required_ruby_version = '> 2.4'
 
   s.add_dependency 'concurrent-ruby', '~> 1.1'
