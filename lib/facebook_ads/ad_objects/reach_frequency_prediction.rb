@@ -133,7 +133,6 @@ module FacebookAds
     field :start_time, 'datetime'
     field :status, 'int'
     field :story_event_type, 'int'
-    field :target_audience_size, 'int'
     field :target_cpm, 'int'
     field :target_spec, 'Targeting'
     field :time_created, 'datetime'

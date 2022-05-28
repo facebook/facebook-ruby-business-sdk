@@ -51,6 +51,7 @@ module FacebookAds
       "ROADSTER",
       "SALOON",
       "SEDAN",
+      "SMALL_CAR",
       "SPORTSCAR",
       "SUPERCAR",
       "SUPERMINI",

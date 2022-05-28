@@ -42,7 +42,6 @@ module FacebookAds
     field :thumbnail_url, 'string'
     field :timestamp, 'datetime'
     field :username, 'string'
-    field :video_title, 'string'
     has_no_delete
 
     has_edge :children do |edge|

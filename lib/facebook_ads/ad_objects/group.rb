@@ -39,6 +39,7 @@ module FacebookAds
     ]
 
     PURPOSE = [
+      "BOOKS",
       "CASUAL",
       "CLOSE_FRIENDS",
       "CLUB",
@@ -49,6 +50,7 @@ module FacebookAds
       "EPHEMERAL",
       "EVENT_PLANNING",
       "FAMILY",
+      "FANDOM_RADAR",
       "FANTASY_LEAGUE",
       "FITNESS",
       "FOR_SALE",
@@ -60,6 +62,7 @@ module FacebookAds
       "JOBS",
       "LEARNING",
       "MENTORSHIP",
+      "MUSIC_CASA_BUNDLE",
       "NEIGHBORS",
       "NONE",
       "OCULUS",
@@ -71,11 +74,13 @@ module FacebookAds
       "SCHOOL_CLASS",
       "SORORITY",
       "SPORTS",
+      "SPORTS_ACTIVITY",
       "STREAMER",
       "STUDY_GROUP",
       "SUPPORT",
       "TEAMMATES",
       "THEME",
+      "TOGETHER_VR",
       "TRAVEL_PLANNING",
       "WORK_ANNOUNCEMENT",
       "WORK_DEMO_GROUP",
@@ -84,18 +89,21 @@ module FacebookAds
       "WORK_FEEDBACK",
       "WORK_FOR_SALE",
       "WORK_GARDEN",
+      "WORK_GUEST_GROUP",
       "WORK_LEARNING",
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
       "WORK_RECRUITING",
       "WORK_RESUME_REVIEW",
       "WORK_SOCIAL",
+      "WORK_STAGES",
       "WORK_TEAM",
       "WORK_TEAMWORK",
       "WORK_VC_CALL",
     ]
 
     GROUP_TYPE = [
+      "BOOKS",
       "CASUAL",
       "CLOSE_FRIENDS",
       "CLUB",
@@ -106,6 +114,7 @@ module FacebookAds
       "EPHEMERAL",
       "EVENT_PLANNING",
       "FAMILY",
+      "FANDOM_RADAR",
       "FANTASY_LEAGUE",
       "FITNESS",
       "FOR_SALE",
@@ -117,6 +126,7 @@ module FacebookAds
       "JOBS",
       "LEARNING",
       "MENTORSHIP",
+      "MUSIC_CASA_BUNDLE",
       "NEIGHBORS",
       "NONE",
       "OCULUS",
@@ -128,11 +138,13 @@ module FacebookAds
       "SCHOOL_CLASS",
       "SORORITY",
       "SPORTS",
+      "SPORTS_ACTIVITY",
       "STREAMER",
       "STUDY_GROUP",
       "SUPPORT",
       "TEAMMATES",
       "THEME",
+      "TOGETHER_VR",
       "TRAVEL_PLANNING",
       "WORK_ANNOUNCEMENT",
       "WORK_DEMO_GROUP",
@@ -141,12 +153,14 @@ module FacebookAds
       "WORK_FEEDBACK",
       "WORK_FOR_SALE",
       "WORK_GARDEN",
+      "WORK_GUEST_GROUP",
       "WORK_LEARNING",
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
       "WORK_RECRUITING",
       "WORK_RESUME_REVIEW",
       "WORK_SOCIAL",
+      "WORK_STAGES",
       "WORK_TEAM",
       "WORK_TEAMWORK",
       "WORK_VC_CALL",
@@ -307,7 +321,6 @@ module FacebookAds
         api.has_param :ref, { list: 'string' }
         api.has_param :referenceable_image_ids, { list: 'string' }
         api.has_param :referral_id, 'string'
-        api.has_param :sales_promo_id, 'int'
         api.has_param :scheduled_publish_time, 'datetime'
         api.has_param :source, 'string'
         api.has_param :sponsor_id, 'string'
@@ -367,8 +380,8 @@ module FacebookAds
         api.has_param :front_z_rotation, 'double'
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
-        api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
+        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
@@ -423,7 +436,6 @@ module FacebookAds
         api.has_param :ios_bundle_id, 'string'
         api.has_param :is_explicit_location, 'bool'
         api.has_param :is_explicit_place, 'bool'
-        api.has_param :is_visual_search, 'bool'
         api.has_param :manual_privacy, 'bool'
         api.has_param :message, 'string'
         api.has_param :name, 'string'
@@ -532,7 +544,6 @@ module FacebookAds
         api.has_param :react_mode_metadata, 'string'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
-        api.has_param :sales_promo_id, 'int'
         api.has_param :scheduled_publish_time, 'int'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :source, 'string'

@@ -123,6 +123,7 @@ module FacebookAds
       "CALYPSO",
       "TAO",
       "TAO_AD_ACCOUNT",
+      "TAO_AD_STATUS",
     ]
 
 

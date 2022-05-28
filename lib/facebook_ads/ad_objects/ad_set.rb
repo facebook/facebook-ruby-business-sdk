@@ -72,6 +72,7 @@ module FacebookAds
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",
+      "IN_APP_VALUE",
       "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
@@ -95,6 +96,7 @@ module FacebookAds
     ]
 
     DATE_PRESET = [
+      "data_maximum",
       "last_14d",
       "last_28d",
       "last_30d",
@@ -114,6 +116,11 @@ module FacebookAds
       "this_year",
       "today",
       "yesterday",
+    ]
+
+    OPERATOR = [
+      "ALL",
+      "ANY",
     ]
 
     DESTINATION_TYPE = [
@@ -163,11 +170,6 @@ module FacebookAds
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
       "ONLINE_GAMBLING_AND_GAMING",
-    ]
-
-    OPERATOR = [
-      "ALL",
-      "ANY",
     ]
 
     STATUS_OPTION = [
@@ -232,17 +234,6 @@ module FacebookAds
     field :time_based_ad_rotation_intervals, { list: 'int' }
     field :updated_time, 'datetime'
     field :use_new_app_click, 'bool'
-    field :campaign_spec, 'object'
-    field :daily_imps, 'int'
-    field :date_format, 'string'
-    field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
-    field :line_number, 'int'
-    field :rb_prediction_id, 'string'
-    field :time_start, 'datetime'
-    field :time_stop, 'datetime'
-    field :topline_id, 'string'
-    field :tune_for_category, { enum: -> { TUNE_FOR_CATEGORY }}
-    field :upstream_events, 'hash'
 
     has_edge :activities do |edge|
       edge.get 'AdActivity' do |api|

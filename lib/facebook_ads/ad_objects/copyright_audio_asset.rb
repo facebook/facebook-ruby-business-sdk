@@ -25,14 +25,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BilledAmountDetails < AdObject
+  class CopyrightAudioAsset < AdObject
 
-    field :currency, 'string'
-    field :net_amount, 'string'
-    field :tax_amount, 'string'
-    field :total_amount, 'string'
-    has_no_id
-    has_no_get
+    field :creation_time, 'datetime'
+    field :id, 'string'
+    field :title, 'string'
+    field :update_time, 'datetime'
     has_no_post
     has_no_delete
 

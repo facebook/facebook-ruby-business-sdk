@@ -75,13 +75,6 @@ module FacebookAds
       end
     end
 
-    has_edge :media_titles do |edge|
-      edge.get do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
-      end
-    end
-
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'

@@ -26,14 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class ProductFeedRule < AdObject
-    RULE_TYPE = [
-      "fallback_rule",
-      "letter_case_rule",
-      "mapping_rule",
-      "regex_replace_rule",
-      "value_mapping_rule",
-    ]
-
 
     field :attribute, 'string'
     field :id, 'string'

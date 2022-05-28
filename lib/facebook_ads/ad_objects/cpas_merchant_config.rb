@@ -25,19 +25,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InvoiceCampaign < AdObject
+  class CpasMerchantConfig < AdObject
 
-    field :ad_account_id, 'string'
-    field :billed_amount_details, 'BilledAmountDetails'
-    field :campaign_id, 'string'
-    field :campaign_name, 'string'
-    field :clicks, 'int'
-    field :conversions, 'int'
-    field :description, 'string'
-    field :impressions, 'int'
-    field :tags, { list: 'string' }
-    has_no_id
-    has_no_get
+    field :accepted_tos, 'bool'
+    field :beta_features, { list: 'string' }
+    field :business_outcomes_status, 'hash'
+    field :id, 'string'
+    field :is_test_merchant, 'bool'
+    field :outcomes_compliance_status, 'hash'
+    field :qualified_to_onboard, 'bool'
     has_no_post
     has_no_delete
 

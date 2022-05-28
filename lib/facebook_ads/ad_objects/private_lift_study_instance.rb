@@ -30,6 +30,7 @@ module FacebookAds
       "AGGREGATE",
       "COMPUTE",
       "ID_MATCH",
+      "NEXT",
       "NONE",
     ]
 
@@ -40,6 +41,7 @@ module FacebookAds
     field :latest_status_update_time, 'datetime'
     field :server_ips, { list: 'string' }
     field :status, 'string'
+    field :tier, 'string'
     has_no_delete
 
   end

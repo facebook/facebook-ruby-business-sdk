@@ -138,10 +138,6 @@ module FacebookAds
     field :rules, { list: 'string' }
     field :selected_override_fields, { list: 'string' }
 
-    has_edge :auto_markets do |edge|
-      edge.get
-    end
-
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
         api.has_param :bulk_pagination, 'bool'
@@ -177,13 +173,6 @@ module FacebookAds
       end
     end
 
-    has_edge :media_titles do |edge|
-      edge.get do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
-      end
-    end
-
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
@@ -193,10 +182,10 @@ module FacebookAds
 
     has_edge :rules do |edge|
       edge.get 'ProductFeedRule'
-      edge.post 'ProductFeedRule' do |api|
+      edge.post do |api|
         api.has_param :attribute, 'string'
         api.has_param :params, 'hash'
-        api.has_param :rule_type, { enum: -> { ProductFeedRule::RULE_TYPE }}
+        api.has_param :rule_type, { enum: %w{fallback_rule letter_case_rule mapping_rule regex_replace_rule value_mapping_rule }}
       end
     end
 

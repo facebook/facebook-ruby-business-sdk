@@ -25,32 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class OracleTransaction < AdObject
+  class OfflineConversionDataSetUsage < AdObject
 
-    field :ad_account_ids, { list: 'string' }
-    field :amount, 'string'
-    field :amount_due, 'CurrencyAmount'
-    field :billed_amount_details, 'BilledAmountDetails'
-    field :billing_period, 'string'
-    field :cdn_download_uri, 'string'
-    field :currency, 'string'
-    field :download_uri, 'string'
-    field :due_date, 'datetime'
-    field :entity, 'string'
-    field :id, 'string'
-    field :invoice_date, 'datetime'
-    field :invoice_id, 'string'
-    field :invoice_type, 'string'
-    field :liability_type, 'string'
-    field :payment_status, 'string'
-    field :payment_term, 'string'
-    field :type, 'string'
+    field :num_lift_studies, 'int'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :campaigns do |edge|
-      edge.get 'InvoiceCampaign'
-    end
 
   end
 end

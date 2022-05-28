@@ -29,6 +29,7 @@ module FacebookAds
 
     field :braintree_merchant_id, 'string'
     field :checkout_message, 'string'
+    field :commerce_store, 'object'
     field :contact_email, 'string'
     field :cta, 'string'
     field :disable_checkout_urls, 'bool'
