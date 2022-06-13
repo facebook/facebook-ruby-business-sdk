@@ -197,9 +197,6 @@ module FacebookAds
         appsecret = FacebookAds.config.app_secret
         access_token = FacebookAds.config.access_token
         params[:access_token] = access_token
-        if appsecret
-          params[:appsecret_proof] = FacebookAds::ServerSide::HttpUtil.appsecret_proof(appsecret, access_token)
-        end
 
         http_client.execute(
           url,
