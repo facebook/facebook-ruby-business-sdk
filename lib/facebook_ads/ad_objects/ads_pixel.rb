@@ -106,6 +106,7 @@ module FacebookAds
         api.has_param :data, { list: 'string' }
         api.has_param :namespace_id, 'string'
         api.has_param :partner_agent, 'string'
+        api.has_param :platforms, { list: 'hash' }
         api.has_param :test_event_code, 'string'
         api.has_param :trace, 'int'
         api.has_param :upload_id, 'string'

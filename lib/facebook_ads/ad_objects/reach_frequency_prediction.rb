@@ -121,6 +121,10 @@ module FacebookAds
     field :name, 'string'
     field :objective, 'int'
     field :objective_name, 'string'
+    field :odax_objective, 'int'
+    field :odax_objective_name, 'string'
+    field :optimization_goal, 'int'
+    field :optimization_goal_name, 'string'
     field :pause_periods, { list: 'object' }
     field :placement_breakdown, 'ReachFrequencyEstimatesPlacementBreakdown'
     field :placement_breakdown_map, 'map<unsigned int, ReachFrequencyEstimatesPlacementBreakdown>'

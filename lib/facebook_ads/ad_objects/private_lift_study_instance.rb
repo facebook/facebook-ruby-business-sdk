@@ -37,6 +37,7 @@ module FacebookAds
 
     field :breakdown_key, 'string'
     field :created_time, 'datetime'
+    field :feature_list, { list: 'string' }
     field :id, 'string'
     field :latest_status_update_time, 'datetime'
     field :server_ips, { list: 'string' }

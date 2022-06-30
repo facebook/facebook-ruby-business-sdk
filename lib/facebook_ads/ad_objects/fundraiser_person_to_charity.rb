@@ -55,6 +55,10 @@ module FacebookAds
     field :uri, 'string'
     has_no_delete
 
+    has_edge :donations do |edge|
+      edge.get
+    end
+
     has_edge :end_fundraiser do |edge|
       edge.post
     end

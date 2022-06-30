@@ -34,6 +34,12 @@ module FacebookAds
       "us_marketplace",
     ]
 
+    AFFECTED_ENTITY = [
+      "product_catalog",
+      "product_item",
+      "product_set",
+    ]
+
     AFFECTED_FEATURES = [
       "augmented_reality",
       "checkout",
@@ -45,6 +51,7 @@ module FacebookAds
     ]
 
     TYPE = [
+      "AR_VISIBILITY_ISSUES",
       "ATTRIBUTES_INVALID",
       "ATTRIBUTES_MISSING",
       "CATEGORY",
@@ -55,12 +62,19 @@ module FacebookAds
       "SHOPS_VISIBILITY_ISSUES",
     ]
 
+    AFFECTED_ENTITIES = [
+      "product_catalog",
+      "product_item",
+      "product_set",
+    ]
+
     SEVERITIES = [
       "MUST_FIX",
       "OPPORTUNITY",
     ]
 
     TYPES = [
+      "AR_VISIBILITY_ISSUES",
       "ATTRIBUTES_INVALID",
       "ATTRIBUTES_MISSING",
       "CATEGORY",
@@ -73,9 +87,11 @@ module FacebookAds
 
 
     field :affected_channels, { list: { enum: -> { AFFECTED_CHANNELS }} }
+    field :affected_entity, { enum: -> { AFFECTED_ENTITY }}
     field :affected_features, { list: { enum: -> { AFFECTED_FEATURES }} }
     field :diagnostics, { list: 'object' }
     field :error_code, 'int'
+    field :number_of_affected_entities, 'int'
     field :number_of_affected_items, 'int'
     field :severity, { enum: -> { SEVERITY }}
     field :subtitle, 'string'

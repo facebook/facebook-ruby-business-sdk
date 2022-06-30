@@ -25,16 +25,29 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class NativeOfferDiscount < AdObject
+  class CreditCard < AdObject
 
-    field :currency, 'string'
-    field :override, 'string'
-    field :text, 'string'
+    field :billing_address, 'object'
+    field :card_cobadging, 'string'
+    field :card_holder_name, 'string'
+    field :card_type, 'string'
+    field :credential_id, 'int'
+    field :default_receiving_method_products, { list: 'string' }
+    field :expiry_month, 'string'
+    field :expiry_year, 'string'
+    field :id, 'string'
+    field :is_cvv_tricky_bin, 'bool'
+    field :is_enabled, 'bool'
+    field :is_last_used, 'bool'
+    field :is_network_tokenized_in_india, 'bool'
+    field :is_soft_disabled, 'bool'
+    field :is_user_verified, 'bool'
+    field :is_zip_verified, 'bool'
+    field :last4, 'string'
+    field :readable_card_type, 'string'
+    field :time_created, 'datetime'
+    field :time_created_ts, 'int'
     field :type, 'string'
-    field :value1, 'double'
-    field :value2, 'double'
-    has_no_id
-    has_no_get
     has_no_post
     has_no_delete
 

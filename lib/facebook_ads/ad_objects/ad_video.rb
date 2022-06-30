@@ -29,6 +29,7 @@ module FacebookAds
     CONTAINER_TYPE = [
       "ACO_AUTOEXTRACTED_VIDEO",
       "ACO_VIDEO_VARIATION",
+      "ADS_AI_GENERATED",
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
       "AGE_UP",
@@ -39,6 +40,7 @@ module FacebookAds
       "APP_REVIEW_SCREENCAST",
       "ASSET_MANAGER",
       "ATLAS_VIDEO",
+      "AUDIO_BRIEF",
       "AUDIO_BROADCAST",
       "AUDIO_COMMENT",
       "BROADCAST",
@@ -52,7 +54,6 @@ module FacebookAds
       "COPYRIGHT_REFERENCE_BROADCAST",
       "COPYRIGHT_REFERENCE_VIDEO",
       "CREATION_ML_PRECREATION",
-      "CULTURAL_MOMENT_DEPRECATED",
       "DCO_AD_ASSET_FEED",
       "DCO_AUTOGEN_VIDEO",
       "DCO_TRIMMED_VIDEO",
@@ -66,7 +67,10 @@ module FacebookAds
       "EVENT_COVER_VIDEO",
       "EVENT_TOUR",
       "FACECAST_DVR",
+      "FB_COLLECTIBLE_VIDEO",
       "FB_SHORTS",
+      "FB_SHORTS_CONTENT_REMIXABLE",
+      "FB_SHORTS_CROSS_META_POST",
       "FB_SHORTS_GROUP_POST",
       "FB_SHORTS_PMV_POST",
       "FB_SHORTS_POST",
@@ -74,6 +78,7 @@ module FacebookAds
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
       "GEMSTONE",
+      "GIF_TO_VIDEO",
       "GOODWILL_ANNIVERSARY_DEPRECATED",
       "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
       "GOODWILL_VIDEO_CONTAINED_SHARE",
@@ -88,6 +93,7 @@ module FacebookAds
       "HUDDLE_BROADCAST",
       "IG_REELS_XPV",
       "IG_STORIES_READER",
+      "INJECTABLE",
       "INSPIRATION_VIDEO",
       "INSTAGRAM_VIDEO_COPY",
       "INSTANT_APPLICATION_PREVIEW",
@@ -102,6 +108,7 @@ module FacebookAds
       "LEARN",
       "LEGACY",
       "LEGACY_CONTAINED_POST_BROADCAST",
+      "LIVE_AUDIO_ROOM_BROADCAST",
       "LIVE_CLIP_PREVIEW",
       "LIVE_CREATIVE_KIT_VIDEO",
       "LIVE_PHOTO",
@@ -111,6 +118,7 @@ module FacebookAds
       "MESSENGER_WATCH_TOGETHER",
       "MOMENTS_VIDEO",
       "MUSIC_CLIP",
+      "MUSIC_CLIP_IN_AUDIO_DIGEST",
       "MUSIC_CLIP_IN_COMMENT",
       "MUSIC_CLIP_IN_LIGHTWEIGHT_STATUS",
       "MUSIC_CLIP_IN_POLL_OPTION",
@@ -129,7 +137,6 @@ module FacebookAds
       "PAID_CONTENT_PREVIEW",
       "PAID_CONTENT_VIDEO",
       "PAID_CONTENT_VIDEO__POST",
-      "PARTNER_DIRECTORY_BRAND_MEDIA",
       "PIXELCLOUD",
       "PODCAST_HIGHLIGHT",
       "PODCAST_ML_PREVIEW",
@@ -164,6 +171,7 @@ module FacebookAds
       "SRT_ATTACHMENT",
       "STAGES_BROADCAST",
       "STORIES_VIDEO",
+      "STORIES_WEARABLE",
       "STORYLINE",
       "STORYLINE_WITH_EXTERNAL_MUSIC",
       "STORY_ARCHIVE_VIDEO",
@@ -174,6 +182,7 @@ module FacebookAds
       "TEMP_MULTIMEDIA_POST",
       "UNLISTED",
       "UNLISTED_HACK_TV",
+      "UNLISTED_HORIZON",
       "UNLISTED_OCULUS",
       "VIDEO_COMMENT",
       "VIDEO_COMPOSITION_VARIATION",
@@ -255,6 +264,7 @@ module FacebookAds
 
 
     field :ad_breaks, { list: 'int' }
+    field :audio_isrc, 'object'
     field :backdated_time, 'datetime'
     field :backdated_time_granularity, 'string'
     field :content_category, 'string'

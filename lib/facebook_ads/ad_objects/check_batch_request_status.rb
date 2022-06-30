@@ -26,6 +26,12 @@ module FacebookAds
   # pull request for this class.
 
   class CheckBatchRequestStatus < AdObject
+    ERROR_PRIORITY = [
+      "HIGH",
+      "LOW",
+      "MEDIUM",
+    ]
+
 
     field :errors, { list: 'object' }
     field :errors_total_count, 'int'

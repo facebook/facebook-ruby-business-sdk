@@ -103,6 +103,7 @@ module FacebookAds
     field :feed_count, 'int'
     field :id, 'string'
     field :is_catalog_segment, 'bool'
+    field :latest_feed_upload_session, 'ProductFeedUpload'
     field :name, 'string'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
@@ -151,19 +152,6 @@ module FacebookAds
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
-      edge.post 'AutomotiveModel' do |api|
-        api.has_param :automotive_model_id, 'string'
-        api.has_param :body_style, { enum: -> { AutomotiveModel::BODY_STYLE }}
-        api.has_param :currency, 'string'
-        api.has_param :description, 'string'
-        api.has_param :images, { list: 'object' }
-        api.has_param :make, 'string'
-        api.has_param :model, 'string'
-        api.has_param :price, 'int'
-        api.has_param :title, 'string'
-        api.has_param :url, 'string'
-        api.has_param :year, 'int'
-      end
     end
 
     has_edge :batch do |edge|
@@ -192,6 +180,7 @@ module FacebookAds
 
     has_edge :check_batch_request_status do |edge|
       edge.get 'CheckBatchRequestStatus' do |api|
+        api.has_param :error_priority, { enum: -> { CheckBatchRequestStatus::ERROR_PRIORITY }}
         api.has_param :handle, 'string'
         api.has_param :load_ids_of_invalid_requests, 'bool'
       end
@@ -213,6 +202,12 @@ module FacebookAds
       end
     end
 
+    has_edge :data_sources do |edge|
+      edge.get 'ProductCatalogDataSource' do |api|
+        api.has_param :ingestion_source_type, { enum: -> { ProductCatalogDataSource::INGESTION_SOURCE_TYPE }}
+      end
+    end
+
     has_edge :destinations do |edge|
       edge.get 'Destination' do |api|
         api.has_param :bulk_pagination, 'bool'
@@ -223,6 +218,7 @@ module FacebookAds
     has_edge :diagnostics do |edge|
       edge.get 'ProductCatalogDiagnosticGroup' do |api|
         api.has_param :affected_channels, { list: { enum: -> { ProductCatalogDiagnosticGroup::AFFECTED_CHANNELS }} }
+        api.has_param :affected_entities, { list: { enum: -> { ProductCatalogDiagnosticGroup::AFFECTED_ENTITIES }} }
         api.has_param :affected_features, { list: { enum: -> { ProductCatalogDiagnosticGroup::AFFECTED_FEATURES }} }
         api.has_param :severities, { list: { enum: -> { ProductCatalogDiagnosticGroup::SEVERITIES }} }
         api.has_param :types, { list: { enum: -> { ProductCatalogDiagnosticGroup::TYPES }} }
@@ -420,6 +416,8 @@ module FacebookAds
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
+        api.has_param :error_priority, { enum: -> { ProductItem::ERROR_PRIORITY }}
+        api.has_param :error_type, { enum: -> { ProductItem::ERROR_TYPE }}
         api.has_param :filter, 'object'
         api.has_param :return_only_approved_products, 'bool'
       end

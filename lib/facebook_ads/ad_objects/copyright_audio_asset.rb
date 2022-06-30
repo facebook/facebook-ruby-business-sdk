@@ -27,6 +27,7 @@ module FacebookAds
 
   class CopyrightAudioAsset < AdObject
 
+    field :copyright, 'AudioCopyright'
     field :creation_time, 'datetime'
     field :id, 'string'
     field :title, 'string'

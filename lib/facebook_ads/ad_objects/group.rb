@@ -71,6 +71,7 @@ module FacebookAds
       "PROJECT",
       "REAL_WORLD",
       "REAL_WORLD_AT_WORK",
+      "RESTYLE",
       "SCHOOL_CLASS",
       "SORORITY",
       "SPORTS",
@@ -90,6 +91,7 @@ module FacebookAds
       "WORK_FOR_SALE",
       "WORK_GARDEN",
       "WORK_GUEST_GROUP",
+      "WORK_INTEGRITY",
       "WORK_LEARNING",
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
@@ -135,6 +137,7 @@ module FacebookAds
       "PROJECT",
       "REAL_WORLD",
       "REAL_WORLD_AT_WORK",
+      "RESTYLE",
       "SCHOOL_CLASS",
       "SORORITY",
       "SPORTS",
@@ -154,6 +157,7 @@ module FacebookAds
       "WORK_FOR_SALE",
       "WORK_GARDEN",
       "WORK_GUEST_GROUP",
+      "WORK_INTEGRITY",
       "WORK_LEARNING",
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
@@ -174,6 +178,7 @@ module FacebookAds
     field :email, 'string'
     field :icon, 'string'
     field :id, 'string'
+    field :install, 'object'
     field :link, 'string'
     field :member_count, 'int'
     field :member_request_count, 'int'
@@ -213,12 +218,28 @@ module FacebookAds
       end
     end
 
+    has_edge :attachment_surfaces do |edge|
+      edge.get
+      edge.post do |api|
+        api.has_param :title, 'hash'
+      end
+    end
+
     has_edge :docs do |edge|
       edge.get
     end
 
     has_edge :events do |edge|
       edge.get 'Event'
+    end
+
+    has_edge :featured_cards do |edge|
+      edge.get
+      edge.post do |api|
+        api.has_param :body, 'hash'
+        api.has_param :description, 'hash'
+        api.has_param :title, 'hash'
+      end
     end
 
     has_edge :feed do |edge|
@@ -376,6 +397,7 @@ module FacebookAds
         api.has_param :description, 'string'
         api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
+        api.has_param :event_params, 'object'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
         api.has_param :is_audio_only, 'bool'
