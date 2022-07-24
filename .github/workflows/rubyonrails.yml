@@ -1,0 +1,143 @@
+# This workflow uses actions that are not certified by GitHub.  They are
+# provided by a third-party and are governed by separate terms of service,
+# privacy policy, and support documentation.
+#
+# This workflow will install a prebuilt Ruby version, install dependencies, and
+# run tests and linters.
+name: "Ruby on Rails CI"
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: rails_test
+          POSTGRES_USER: rails
+          POSTGRES_PASSWORD: password
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Add or replace dependency steps here
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@8f312efe1262fb463d906e9bf040319394c18d3e # v1.92
+        with:
+          bundler-cache: true
+      # Add or replace database setup steps here
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+      # Add or replace test runners here
+      - name: Run tests
+        run: bin/rake
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@8f312efe1262fb463d906e9bf040319394c18d3e # v1.92
+        with:
+          bundler-cache: true
+      # Add or replace any other lints here
+      - name: Security audit dependencies
+        run: bin/bundler-audit --update
+      - name: Security audit application code
+        run: bin/brakeman -q -w2
+      - name: Lint Ruby files
+        run: bin/rubocop --parallel
+https://github.com/MikeC1990-Live/demo-repository-ghsa-cfhx-c723-5248.git
+
+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
+Access Token MikelArtz
+
+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
+
+https://github.com/Mikec90/studious-octo-succotash/settings/keys
+
+CircleCI SSH KEY
+ SHA256:Bbd1cZRdG8j2Un3ymuuWCfEC8kJsHaZhE5OzPVjcGoU
+
+Demo/Repo
+https://github.com/MikeC1990-Live/demo-repository-ghsa-cfhx-c723-5248.git
+
+SSH
+git@github.com:MikeC1990-Live/demo-repository-ghsa-cfhx-c723-5248.git
+CLI
+gh repo clone MikeC1990-Live/demo-repository-ghsa-cfhx-c723-5248
+
+Stream url/ Address rtmp://us-central-restream-ingest.streamlabs.com/ingest
+Stream key FB-131162972723347-0-Abz8N0QWd8TnXLXL
+Back stream key FB-131162972723347-1-AbzUZW1kTr6MPq9h
+Ingest Server url rtmp://us-central-restream-ingest.streamlabs.com/ingest
+Stream key: sl_live_rs_82bceae09120452eb83271ce01f938cc?source=web
+
+https://m.facebook.comMikelArtzGamingStudio.Live/?ref=bookmarks MikelArtzGamingStudio.Live/
+
+name: Proof HTML https://github.com/MikeC1990-Live/demo-repository-ghsa-cfhx-c723-5248.git
+on:
+  push:
+  workflow_dispatch: 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: anishathalye/proof-html@v1.1.0
+        with:
+          directory: ./
+
+0bbf9-45fa7
+3ee89-2b576
+73110-50aab
+811ad-bfd8b
+8fddb-21e85
+be82f-9d115
+8a230-9e25a
+0b72a-38931
+bcfa6-12de3
+67c46-f9b76
+00b9e-5580a
+f96d3-3d6d3
+58614-968f6
+c6f6b-66065
+69365-0904c
+7ca6b-285ce
+
+mikelartzcreativedesignsgaming.live
+Socket Access Token API
+
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjBGNTg3RTMzRDg1MzJGRUJFRTc0IiwicmVhZF9vbmx5Ijp0cnVlLCJwcmV2ZW50X21hc3RlciI6dHJ1ZSwidHdpdGNoX2lkIjoiNzQwMDIzMjE2IiwiZmFjZWJvb2tfaWQiOiIyNTMyMDUzOTM1MzcxMjcifQ.1Lfkqul5V9e4mRSabMbTXvz3fxfVxoM1xZE6o_fc3cA
+
+Access Token API
+0F587E33D8532FEBEE74
+
+https://streamlabs.com/widgets/wheel?token=0F587E33D8532FEBEE74
+
+cs-2756fd73-8493-48b0-8875-fafd7cf4788ar
+
+https://streamlabs.com/widgets/end-credits?token=0F587E33D8532FEBEE74
+
+Date,Property Name,Property ID,OS,Bundle Name,SDK Version,Revenue,Ad Requests,Bid Requests
+---
+ OAuth.22 | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 OAuth.22
+
+diff --git a/OAuth.22 b/OAuth.22
+new file mode 100644
+index 0000000..46cca30
+--- /dev/null
++++ b/OAuth.22
+@@ -0,0 +1,2 @@
++# demo-repository-ghsa-cfhx-c723-5248
++b8e4844dd8e78b6cfddd50e6638961e46f408d8c

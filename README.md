@@ -71,8 +71,8 @@ There are several ways to configure access token and app secret. If you only use
 
 ```ruby
 FacebookAds.configure do |config|
-  config.access_token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-  config.app_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+  config.access_token = 'EAADtUiaCzuABACZCjkbdUPt38a3DaFpajUZBBnYGkxWmZBeYhzG0ZChlxDjxHK1yxpA40VeEYa44yUZC4TPHHrPbZBugZBAKf6jHYyDjoe6H0RQnzGrwGIih1Fs5p9ZBjeEwoMYtJYcqx4Wt6IWyj0H3vpzDAc3DtHNgTh5M1OWLxeoy2wABx50SdyYxVGlT1CYZD oncccx   Yo'
+  config.app_secret = 'SBUVQ5T7FHLBTIQ58L69VFN2DOPP0FQ2'
 end
 ```
 
@@ -142,7 +142,7 @@ To interact with an edge, you first need to instantiate the parent node. Since, 
 Iterating edges is easy, instantiate the parent nodes and then simply iterate with `#each`. The edge is an  `Enumerable` so a bunch of handy methods such as `#map`, `#select`, `#find` etc. come for free!
 
 ```ruby
-ad_account = FacebookAds::AdAccount.get('act_<YOUR_AD_ACCOUNT_ID>', 'name')
+ad_account = FacebookAds::AdAccount.get('act_< 1401582146935176_ID>', 'name')
 
 # Printing all campaign names
 ad_account.campaigns(fields: 'name').each do |campaign|
