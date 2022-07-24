@@ -52,6 +52,7 @@ module FacebookAds
       "GET_OFFER_VIEW",
       "GET_QUOTE",
       "GET_SHOWTIMES",
+      "GET_STARTED",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "LEARN_MORE",

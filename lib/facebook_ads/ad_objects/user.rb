@@ -359,6 +359,7 @@ module FacebookAds
     end
 
     has_edge :fundraisers do |edge|
+      edge.get 'FundraiserPersonToCharity'
       edge.post 'FundraiserPersonToCharity' do |api|
         api.has_param :charity_id, 'string'
         api.has_param :cover_photo, 'file'
@@ -378,8 +379,8 @@ module FacebookAds
     end
 
     has_edge :game_items do |edge|
-      edge.post do |api|
-        api.has_param :action, { enum: %w{CONSUME DROP MARK }}
+      edge.post 'GameItem' do |api|
+        api.has_param :action, { enum: -> { GameItem::ACTION }}
         api.has_param :app_id, 'string'
         api.has_param :drop_table_id, 'string'
         api.has_param :ext_id, 'string'
@@ -435,6 +436,7 @@ module FacebookAds
         api.has_param :description, 'string'
         api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
+        api.has_param :event_params, 'object'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
         api.has_param :is_audio_only, 'bool'
@@ -557,6 +559,13 @@ module FacebookAds
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
+      end
+    end
+
+    has_edge :pioneer_data do |edge|
+      edge.get
+      edge.post do |api|
+        api.has_param :json_data, 'string'
       end
     end
 

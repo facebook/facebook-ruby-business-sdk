@@ -32,6 +32,7 @@ module FacebookAds
       "EXPIRED",
       "IN_PROGRESS",
       "PENDING",
+      "PENDING_INTEGRITY_REVIEW",
     ]
 
 

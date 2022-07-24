@@ -166,12 +166,12 @@ module FacebookAds
         api.has_param :order, { enum: -> { Comment::ORDER }}
         api.has_param :since, 'datetime'
       end
-      edge.post do |api|
+      edge.post 'Comment' do |api|
         api.has_param :attachment_id, 'string'
         api.has_param :attachment_share_url, 'string'
         api.has_param :attachment_url, 'string'
         api.has_param :comment, 'string'
-        api.has_param :comment_privacy_value, { enum: %w{DECLINED_BY_ADMIN_ASSISTANT DEFAULT_PRIVACY FRIENDS_AND_POST_OWNER FRIENDS_ONLY GRAPHQL_MULTIPLE_VALUE_HACK_DO_NOT_USE OWNER_OR_COMMENTER PENDING_APPROVAL REMOVED_BY_ADMIN_ASSISTANT SIDE_CONVERSATION SIDE_CONVERSATION_AND_POST_OWNER SPOTLIGHT_TAB }}
+        api.has_param :comment_privacy_value, { enum: -> { Comment::COMMENT_PRIVACY_VALUE }}
         api.has_param :feedback_source, 'string'
         api.has_param :message, 'string'
         api.has_param :nectar_module, 'string'

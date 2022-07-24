@@ -56,6 +56,7 @@ module FacebookAds
       "JPY",
       "KES",
       "KRW",
+      "LKR",
       "MOP",
       "MXN",
       "MYR",
@@ -232,6 +233,12 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :parent_page, 'string'
         api.has_param :targeted_area_type, { enum: -> { AdPlacePageSet::TARGETED_AREA_TYPE }}
+      end
+    end
+
+    has_edge :ad_saved_keywords do |edge|
+      edge.get do |api|
+        api.has_param :fields, { list: 'string' }
       end
     end
 
@@ -415,15 +422,15 @@ module FacebookAds
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
       end
-      edge.post do |api|
+      edge.post 'AdSet' do |api|
         api.has_param :adlabels, { list: 'object' }
         api.has_param :adset_schedule, { list: 'object' }
         api.has_param :attribution_spec, { list: 'hash' }
         api.has_param :bid_adjustments, 'object'
         api.has_param :bid_amount, 'int'
         api.has_param :bid_constraints, 'hash'
-        api.has_param :bid_strategy, { enum: %w{COST_CAP LOWEST_COST_WITHOUT_CAP LOWEST_COST_WITH_BID_CAP }}
-        api.has_param :billing_event, { enum: %w{APP_INSTALLS CLICKS IMPRESSIONS LINK_CLICKS LISTING_INTERACTION NONE OFFER_CLAIMS PAGE_LIKES POST_ENGAGEMENT PURCHASE THRUPLAY }}
+        api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
+        api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
         api.has_param :campaign_id, 'string'
         api.has_param :campaign_spec, 'object'
         api.has_param :creative_sequence, { list: 'string' }
@@ -432,36 +439,36 @@ module FacebookAds
         api.has_param :daily_min_spend_target, 'int'
         api.has_param :daily_spend_cap, 'int'
         api.has_param :date_format, 'string'
-        api.has_param :destination_type, { enum: %w{APP APPLINKS_AUTOMATIC FACEBOOK MESSENGER UNDEFINED WEBSITE }}
+        api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
         api.has_param :end_time, 'datetime'
-        api.has_param :execution_options, { list: { enum: %w{include_recommendations validate_only }} }
+        api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
         api.has_param :existing_customer_budget_percentage, 'int'
         api.has_param :frequency_control_specs, { list: 'object' }
-        api.has_param :full_funnel_exploration_mode, { enum: %w{EXTENDED_EXPLORATION LIMITED_EXPLORATION NONE_EXPLORATION }}
+        api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
         api.has_param :is_dynamic_creative, 'bool'
         api.has_param :lifetime_budget, 'int'
         api.has_param :lifetime_imps, 'int'
         api.has_param :lifetime_min_spend_target, 'int'
         api.has_param :lifetime_spend_cap, 'int'
         api.has_param :line_number, 'int'
-        api.has_param :multi_optimization_goal_weight, { enum: %w{BALANCED PREFER_EVENT PREFER_INSTALL UNDEFINED }}
+        api.has_param :multi_optimization_goal_weight, { enum: -> { AdSet::MULTI_OPTIMIZATION_GOAL_WEIGHT }}
         api.has_param :name, 'string'
-        api.has_param :optimization_goal, { enum: %w{AD_RECALL_LIFT APP_INSTALLS APP_INSTALLS_AND_OFFSITE_CONVERSIONS CONVERSATIONS DERIVED_EVENTS ENGAGED_USERS EVENT_RESPONSES IMPRESSIONS IN_APP_VALUE LANDING_PAGE_VIEWS LEAD_GENERATION LINK_CLICKS NONE OFFSITE_CONVERSIONS PAGE_LIKES POST_ENGAGEMENT QUALITY_CALL QUALITY_LEAD REACH THRUPLAY VALUE VISIT_INSTAGRAM_PROFILE }}
-        api.has_param :optimization_sub_event, { enum: %w{NONE TRAVEL_INTENT TRAVEL_INTENT_BUCKET_01 TRAVEL_INTENT_BUCKET_02 TRAVEL_INTENT_BUCKET_03 TRAVEL_INTENT_BUCKET_04 TRAVEL_INTENT_BUCKET_05 TRAVEL_INTENT_NO_DESTINATION_INTENT TRIP_CONSIDERATION VIDEO_SOUND_ON }}
+        api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
+        api.has_param :optimization_sub_event, { enum: -> { AdSet::OPTIMIZATION_SUB_EVENT }}
         api.has_param :pacing_type, { list: 'string' }
         api.has_param :promoted_object, 'object'
         api.has_param :rb_prediction_id, 'string'
         api.has_param :rf_prediction_id, 'string'
         api.has_param :source_adset_id, 'string'
         api.has_param :start_time, 'datetime'
-        api.has_param :status, { enum: %w{ACTIVE ARCHIVED DELETED PAUSED }}
+        api.has_param :status, { enum: -> { AdSet::STATUS }}
         api.has_param :targeting, 'Targeting'
         api.has_param :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
         api.has_param :time_based_ad_rotation_intervals, { list: 'int' }
         api.has_param :time_start, 'datetime'
         api.has_param :time_stop, 'datetime'
         api.has_param :topline_id, 'string'
-        api.has_param :tune_for_category, { enum: %w{CREDIT EMPLOYMENT HOUSING ISSUES_ELECTIONS_POLITICS NONE ONLINE_GAMBLING_AND_GAMING }}
+        api.has_param :tune_for_category, { enum: -> { AdSet::TUNE_FOR_CATEGORY }}
         api.has_param :upstream_events, 'hash'
       end
     end
@@ -477,7 +484,7 @@ module FacebookAds
       edge.get 'AdsPixel' do |api|
         api.has_param :sort_by, { enum: -> { AdsPixel::SORT_BY }}
       end
-      edge.post do |api|
+      edge.post 'AdsPixel' do |api|
         api.has_param :name, 'string'
       end
     end
@@ -1002,6 +1009,7 @@ module FacebookAds
         api.has_param :is_reserved_buying, 'bool'
         api.has_param :num_curve_points, 'int'
         api.has_param :objective, 'string'
+        api.has_param :optimization_goal, 'string'
         api.has_param :prediction_mode, 'int'
         api.has_param :reach, 'int'
         api.has_param :rf_prediction_id, 'string'

@@ -61,6 +61,7 @@ module FacebookAds
     field :seller, 'hash'
     field :shops, 'hash'
     field :traffic_quality, 'hash'
+    field :unified_commerce_content, 'hash'
     field :whatsapp, 'hash'
     has_no_id
     has_no_get

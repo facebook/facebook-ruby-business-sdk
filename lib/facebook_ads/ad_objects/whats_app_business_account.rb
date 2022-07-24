@@ -36,18 +36,9 @@ module FacebookAds
     ]
 
     CATEGORY = [
-      "ACCOUNT_UPDATE",
-      "ALERT_UPDATE",
-      "APPOINTMENT_UPDATE",
-      "AUTO_REPLY",
-      "ISSUE_RESOLUTION",
+      "MARKETING",
       "OTP",
-      "PAYMENT_UPDATE",
-      "PERSONAL_FINANCE_UPDATE",
-      "RESERVATION_UPDATE",
-      "SHIPPING_UPDATE",
-      "TICKET_UPDATE",
-      "TRANSPORTATION_UPDATE",
+      "TRANSACTIONAL",
     ]
 
 
@@ -104,7 +95,8 @@ module FacebookAds
         api.has_param :language, { list: 'string' }
         api.has_param :name, 'string'
         api.has_param :name_or_content, 'string'
-        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED IN_APPEAL PENDING PENDING_DELETION REJECTED }} }
+        api.has_param :quality_score, { list: { enum: %w{GREEN RED UNKNOWN YELLOW }} }
+        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED IN_APPEAL LOCKED PENDING PENDING_DELETION REJECTED }} }
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}

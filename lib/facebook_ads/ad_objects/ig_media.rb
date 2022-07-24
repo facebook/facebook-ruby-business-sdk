@@ -32,6 +32,7 @@ module FacebookAds
     field :id, 'string'
     field :ig_id, 'string'
     field :is_comment_enabled, 'bool'
+    field :is_shared_to_feed, 'bool'
     field :like_count, 'int'
     field :media_product_type, 'string'
     field :media_type, 'string'
@@ -59,6 +60,18 @@ module FacebookAds
       edge.get 'InstagramInsightsResult' do |api|
         api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
         api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
+      end
+    end
+
+    has_edge :product_tags do |edge|
+      edge.delete do |api|
+        api.has_param :child_index, 'int'
+        api.has_param :deleted_tags, { list: 'hash' }
+      end
+      edge.get 'ShadowIgMediaProductTags'
+      edge.post 'ShadowIgMediaProductTags' do |api|
+        api.has_param :child_index, 'int'
+        api.has_param :updated_tags, { list: 'hash' }
       end
     end
 

@@ -33,6 +33,7 @@ module FacebookAds
     field :google_display_format, 'string'
     field :id, 'string'
     field :name, 'string'
+    field :placement_group, 'object'
     field :platform, 'string'
     field :status, 'string'
     has_no_post

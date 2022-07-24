@@ -38,6 +38,7 @@ module FacebookAds
 
     field :ac_type, 'string'
     field :additional_fees_description, 'string'
+    field :address, 'object'
     field :agent_company, 'string'
     field :agent_email, 'string'
     field :agent_fb_page_id, 'Page'
@@ -48,9 +49,11 @@ module FacebookAds
     field :area_unit, 'string'
     field :availability, 'string'
     field :category_specific_fields, 'CatalogSubVerticalList'
+    field :co_2_emission_rating_eu, 'object'
     field :currency, 'string'
     field :days_on_market, 'int'
     field :description, 'string'
+    field :energy_rating_eu, 'object'
     field :furnish_type, 'string'
     field :group_id, 'string'
     field :heating_type, 'string'
@@ -75,9 +78,9 @@ module FacebookAds
     field :price, 'string'
     field :property_type, 'string'
     field :sanitized_images, { list: 'string' }
+    field :unit_price, 'object'
     field :url, 'string'
     field :year_built, 'int'
-    field :address, 'object'
 
     has_edge :augmented_realities_metadata do |edge|
       edge.get

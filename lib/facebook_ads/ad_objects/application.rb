@@ -261,6 +261,10 @@ module FacebookAds
       end
     end
 
+    has_edge :ad_placement_groups do |edge|
+      edge.get
+    end
+
     has_edge :adnetwork_placements do |edge|
       edge.get 'AdPlacement' do |api|
         api.has_param :request_id, 'string'
@@ -472,13 +476,6 @@ module FacebookAds
       edge.post 'Application' do |api|
         api.has_param :name, 'string'
         api.has_param :player_id, 'string'
-      end
-    end
-
-    has_edge :leaderboards_reset do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :name, 'string'
-        api.has_param :reset_time, 'datetime'
       end
     end
 

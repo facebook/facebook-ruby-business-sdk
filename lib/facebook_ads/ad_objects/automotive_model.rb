@@ -35,32 +35,6 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
-    BODY_STYLE = [
-      "CONVERTIBLE",
-      "COUPE",
-      "CROSSOVER",
-      "ESTATE",
-      "GRANDTOURER",
-      "HATCHBACK",
-      "MINIBUS",
-      "MINIVAN",
-      "MPV",
-      "NONE",
-      "OTHER",
-      "PICKUP",
-      "ROADSTER",
-      "SALOON",
-      "SEDAN",
-      "SMALL_CAR",
-      "SPORTSCAR",
-      "SUPERCAR",
-      "SUPERMINI",
-      "SUV",
-      "TRUCK",
-      "VAN",
-      "WAGON",
-    ]
-
 
     field :applinks, 'CatalogItemAppLinks'
     field :automotive_model_id, 'string'

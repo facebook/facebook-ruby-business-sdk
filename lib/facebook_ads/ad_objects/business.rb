@@ -78,6 +78,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -111,6 +112,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -120,7 +122,6 @@ module FacebookAds
     field :block_offline_analytics, 'bool'
     field :collaborative_ads_managed_partner_business_info, 'ManagedPartnerBusiness'
     field :collaborative_ads_managed_partner_eligibility, 'BusinessManagedPartnerEligibility'
-    field :cpas_business_setup_config, 'CpasBusinessSetupConfig'
     field :created_by, 'object'
     field :created_time, 'datetime'
     field :extended_updated_time, 'datetime'
@@ -365,6 +366,7 @@ module FacebookAds
     end
 
     has_edge :cpas_business_setup_config do |edge|
+      edge.get 'CpasBusinessSetupConfig'
       edge.post 'CpasBusinessSetupConfig' do |api|
         api.has_param :accepted_collab_ads_tos, 'bool'
         api.has_param :ad_accounts, { list: 'string' }
@@ -383,6 +385,10 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :publisher_urls, { list: 'string' }
       end
+    end
+
+    has_edge :creditcards do |edge|
+      edge.get 'CreditCard'
     end
 
     has_edge :customconversions do |edge|
@@ -639,7 +645,7 @@ module FacebookAds
       end
     end
 
-    has_edge :pixeltos do |edge|
+    has_edge :pixel_tos do |edge|
       edge.post
     end
 

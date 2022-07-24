@@ -16,25 +16,32 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'facebook_ads'
+# FB:AUTOGEN
 
-access_token = '<ACCESS_TOKEN>'
-app_secret = '<APP_SECRET>'
-app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
+module FacebookAds
+  # This class is auto-generated.
 
-FacebookAds.configure do |config|
-  config.access_token = access_token
-  config.app_secret = app_secret
+  # For any issues or feature requests related to this class, please let us know
+  # on github and we'll fix in our codegen framework. We'll not be able to accept
+  # pull request for this class.
+
+  class PagePostExperiment < AdObject
+
+    field :auto_resolve_settings, 'object'
+    field :creation_time, 'datetime'
+    field :creator, 'User'
+    field :declared_winning_time, 'datetime'
+    field :description, 'string'
+    field :id, 'string'
+    field :insight_snapshots, 'map<datetime, map<int, Object>>'
+    field :name, 'string'
+    field :optimization_goal, 'string'
+    field :publish_status, 'string'
+    field :publish_time, 'datetime'
+    field :scheduled_experiment_timestamp, 'datetime'
+    field :updated_time, 'datetime'
+    has_no_post
+    has_no_delete
+
+  end
 end
-
-ad_account = FacebookAds::AdAccount.get(id)
-adsets = ad_account.adsets.create({
-    name: 'My Ad Set',
-    optimization_goal: 'LINK_CLICKS',
-    billing_event: 'LINK_CLICKS',
-    bid_amount: '2',
-    daily_budget: '1000',
-    campaign_id: '<adCampaignLinkClicksID>',
-    targeting: {'device_platforms':['mobile'],'geo_locations':{'countries':['US']},'publisher_platforms':['facebook','audience_network'],'facebook_positions':['feed']},
-})
