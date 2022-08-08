@@ -35,6 +35,11 @@ module FacebookAds
       "TILDE",
     ]
 
+    INGESTION_SOURCE_TYPE = [
+      "primary_feed",
+      "supplementary_feed",
+    ]
+
     QUOTED_FIELDS_MODE = [
       "AUTODETECT",
       "OFF",
@@ -67,11 +72,6 @@ module FacebookAds
       "TRANSACTABLE_ITEMS",
       "VEHICLES",
       "VEHICLE_OFFER",
-    ]
-
-    INGESTION_SOURCE_TYPE = [
-      "PRIMARY_FEED",
-      "SUPPLEMENTARY_FEED",
     ]
 
     ITEM_SUB_TYPE = [
@@ -120,7 +120,7 @@ module FacebookAds
     field :encoding, 'string'
     field :file_name, 'string'
     field :id, 'string'
-    field :ingestion_source_type, 'string'
+    field :ingestion_source_type, { enum: -> { INGESTION_SOURCE_TYPE }}
     field :item_sub_type, 'string'
     field :latest_upload, 'ProductFeedUpload'
     field :migrated_from_feed_id, 'string'
@@ -137,10 +137,6 @@ module FacebookAds
     field :primary_feed_ids, { list: 'string' }
     field :rules, { list: 'string' }
     field :selected_override_fields, { list: 'string' }
-
-    has_edge :auto_markets do |edge|
-      edge.get
-    end
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
@@ -177,16 +173,11 @@ module FacebookAds
       end
     end
 
-    has_edge :media_titles do |edge|
-      edge.get do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
-      end
-    end
-
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
+        api.has_param :error_priority, { enum: -> { ProductItem::ERROR_PRIORITY }}
+        api.has_param :error_type, { enum: -> { ProductItem::ERROR_TYPE }}
         api.has_param :filter, 'object'
       end
     end

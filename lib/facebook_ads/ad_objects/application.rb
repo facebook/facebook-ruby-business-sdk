@@ -261,6 +261,10 @@ module FacebookAds
       end
     end
 
+    has_edge :ad_placement_groups do |edge|
+      edge.get
+    end
+
     has_edge :adnetwork_placements do |edge|
       edge.get 'AdPlacement' do |api|
         api.has_param :request_id, 'string'
@@ -304,9 +308,24 @@ module FacebookAds
       end
     end
 
+    has_edge :aem_conversion_filter do |edge|
+      edge.get do |api|
+        api.has_param :catalog_id, 'string'
+        api.has_param :fb_content_ids, 'string'
+      end
+    end
+
     has_edge :aem_conversions do |edge|
       edge.post do |api|
         api.has_param :aem_conversions, { list: 'hash' }
+      end
+    end
+
+    has_edge :aem_skan_readiness do |edge|
+      edge.post do |api|
+        api.has_param :app_id, 'int'
+        api.has_param :is_aem_ready, 'bool'
+        api.has_param :is_skan_ready, 'bool'
       end
     end
 
@@ -324,6 +343,10 @@ module FacebookAds
     end
 
     has_edge :android_dialog_configs do |edge|
+      edge.get
+    end
+
+    has_edge :app_event_types do |edge|
       edge.get
     end
 
@@ -389,6 +412,10 @@ module FacebookAds
       end
     end
 
+    has_edge :cloudbridge_settings do |edge|
+      edge.get
+    end
+
     has_edge :codeless_event_mappings do |edge|
       edge.post 'Application' do |api|
         api.has_param :mappings, { list: 'hash' }
@@ -452,13 +479,6 @@ module FacebookAds
       end
     end
 
-    has_edge :leaderboards_reset do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :name, 'string'
-        api.has_param :reset_time, 'datetime'
-      end
-    end
-
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
         api.has_param :advertiser_id, 'string'
@@ -485,6 +505,13 @@ module FacebookAds
         api.has_param :os_version, 'string'
         api.has_param :platform, { enum: %w{ANDROID IOS }}
         api.has_param :sdk_version, 'string'
+      end
+    end
+
+    has_edge :monetized_digital_store_objects do |edge|
+      edge.post do |api|
+        api.has_param :content_id, 'string'
+        api.has_param :store, 'string'
       end
     end
 
@@ -530,27 +557,11 @@ module FacebookAds
     end
 
     has_edge :purchases do |edge|
-      edge.get do |api|
-        api.has_param :is_premium, 'bool'
-      end
-    end
-
-    has_edge :push_token_register do |edge|
-      edge.post do |api|
-        api.has_param :device_id, 'string'
-        api.has_param :push_token, 'string'
-      end
+      edge.get
     end
 
     has_edge :roles do |edge|
       edge.get
-    end
-
-    has_edge :send_notification do |edge|
-      edge.post do |api|
-        api.has_param :payload, 'string'
-        api.has_param :token_id, 'string'
-      end
     end
 
     has_edge :subscribed_domains do |edge|

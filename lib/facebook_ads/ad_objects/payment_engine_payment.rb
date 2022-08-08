@@ -46,6 +46,7 @@ module FacebookAds
     field :items, { list: 'object' }
     field :payout_foreign_exchange_rate, 'double'
     field :phone_support_eligible, 'bool'
+    field :platform, 'string'
     field :refundable_amount, 'CurrencyAmount'
     field :request_id, 'string'
     field :tax, 'string'

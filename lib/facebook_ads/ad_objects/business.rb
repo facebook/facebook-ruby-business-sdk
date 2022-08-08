@@ -78,6 +78,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -111,6 +112,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -190,6 +192,12 @@ module FacebookAds
       end
     end
 
+    has_edge :adnetwork_applications do |edge|
+      edge.post 'Application' do |api|
+        api.has_param :name, 'string'
+      end
+    end
+
     has_edge :adnetworkanalytics do |edge|
       edge.get 'AdNetworkAnalyticsSyncQueryResult' do |api|
         api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
@@ -266,23 +274,12 @@ module FacebookAds
       end
     end
 
-    has_edge :business_units do |edge|
-      edge.get 'BusinessUnit'
-      edge.post 'BusinessUnit' do |api|
-        api.has_param :business_units, { list: 'object' }
-      end
-    end
-
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
       edge.post 'BusinessUser' do |api|
         api.has_param :email, 'string'
         api.has_param :role, { enum: -> { BusinessUser::ROLE }}
       end
-    end
-
-    has_edge :businessprojects do |edge|
-      edge.get
     end
 
     has_edge :claim_custom_conversions do |edge|
@@ -300,6 +297,10 @@ module FacebookAds
       edge.post 'Business' do |api|
         api.has_param :app_id, 'object'
       end
+    end
+
+    has_edge :client_offsite_signal_container_business_objects do |edge|
+      edge.get
     end
 
     has_edge :client_pages do |edge|
@@ -364,12 +365,30 @@ module FacebookAds
       end
     end
 
+    has_edge :cpas_business_setup_config do |edge|
+      edge.get 'CpasBusinessSetupConfig'
+      edge.post 'CpasBusinessSetupConfig' do |api|
+        api.has_param :accepted_collab_ads_tos, 'bool'
+        api.has_param :ad_accounts, { list: 'string' }
+        api.has_param :business_capabilities_status, 'hash'
+        api.has_param :capabilities_compliance_status, 'hash'
+      end
+    end
+
+    has_edge :cpas_merchant_config do |edge|
+      edge.get 'CpasMerchantConfig'
+    end
+
     has_edge :create_and_apply_publisher_block_list do |edge|
       edge.post do |api|
         api.has_param :is_auto_blocking_on, 'bool'
         api.has_param :name, 'string'
         api.has_param :publisher_urls, { list: 'string' }
       end
+    end
+
+    has_edge :creditcards do |edge|
+      edge.get 'CreditCard'
     end
 
     has_edge :customconversions do |edge|
@@ -414,13 +433,6 @@ module FacebookAds
       edge.get 'BusinessAssetSharingAgreement' do |api|
         api.has_param :recipient_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
-      end
-    end
-
-    has_edge :initiated_sharing_agreements do |edge|
-      edge.get 'BusinessAgreement' do |api|
-        api.has_param :receiving_business_id, 'string'
-        api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
       end
     end
 
@@ -496,13 +508,6 @@ module FacebookAds
       end
     end
 
-    has_edge :move_asset do |edge|
-      edge.post 'Business' do |api|
-        api.has_param :asset_id, 'string'
-        api.has_param :client_id, 'string'
-      end
-    end
-
     has_edge :negative_keyword_lists do |edge|
       edge.get
     end
@@ -556,6 +561,10 @@ module FacebookAds
 
     has_edge :owned_instagram_accounts do |edge|
       edge.get 'InstagramUser'
+    end
+
+    has_edge :owned_offsite_signal_container_business_objects do |edge|
+      edge.get
     end
 
     has_edge :owned_pages do |edge|
@@ -616,6 +625,10 @@ module FacebookAds
       edge.get 'BusinessPageRequest'
     end
 
+    has_edge :pending_shared_offsite_signal_container_business_objects do |edge|
+      edge.get
+    end
+
     has_edge :pending_users do |edge|
       edge.get 'BusinessRoleRequest' do |api|
         api.has_param :email, 'string'
@@ -641,17 +654,6 @@ module FacebookAds
         api.has_param :initiator_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
       end
-    end
-
-    has_edge :received_sharing_agreements do |edge|
-      edge.get 'BusinessAgreement' do |api|
-        api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
-        api.has_param :requesting_business_id, 'string'
-      end
-    end
-
-    has_edge :spaco_dataset_collections do |edge|
-      edge.get
     end
 
     has_edge :system_users do |edge|

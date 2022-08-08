@@ -126,6 +126,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -152,6 +153,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -274,6 +276,7 @@ module FacebookAds
     PLATFORM = [
       "INSTAGRAM",
       "MESSENGER",
+      "WHATSAPP",
     ]
 
     MODEL = [
@@ -302,13 +305,17 @@ module FacebookAds
       "VIETNAMESE",
     ]
 
+    DEVELOPER_ACTION = [
+      "ENABLE_FOLLOWUP_MESSAGE",
+      "SEND_RE_OPTIN",
+    ]
+
     SUBSCRIBED_FIELDS = [
       "affiliation",
       "attire",
       "awards",
       "bio",
       "birthday",
-      "branded_camera",
       "category",
       "checkins",
       "company_overview",
@@ -353,7 +360,6 @@ module FacebookAds
       "messaging_handovers",
       "messaging_optins",
       "messaging_optouts",
-      "messaging_page_feedback",
       "messaging_payments",
       "messaging_policy_enforcement",
       "messaging_postbacks",
@@ -540,10 +546,6 @@ module FacebookAds
       end
     end
 
-    has_edge :admin_notes do |edge|
-      edge.get 'PageAdminNote'
-    end
-
     has_edge :ads_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :exclude_dynamic_ads, 'bool'
@@ -605,12 +607,6 @@ module FacebookAds
         api.has_param :data, { list: 'string' }
         api.has_param :partner_agent, 'string'
         api.has_param :processing_type, 'string'
-      end
-    end
-
-    has_edge :businessprojects do |edge|
-      edge.get do |api|
-        api.has_param :business, 'string'
       end
     end
 
@@ -870,7 +866,6 @@ module FacebookAds
         api.has_param :ref, { list: 'string' }
         api.has_param :referenceable_image_ids, { list: 'string' }
         api.has_param :referral_id, 'string'
-        api.has_param :sales_promo_id, 'int'
         api.has_param :scheduled_publish_time, 'datetime'
         api.has_param :source, 'string'
         api.has_param :sponsor_id, 'string'
@@ -936,13 +931,6 @@ module FacebookAds
       end
     end
 
-    has_edge :insights_exports do |edge|
-      edge.get do |api|
-        api.has_param :data_level, { list: 'string' }
-        api.has_param :from_creation_date, 'datetime'
-      end
-    end
-
     has_edge :instagram_accounts do |edge|
       edge.get 'InstagramUser'
     end
@@ -976,6 +964,19 @@ module FacebookAds
       end
     end
 
+    has_edge :instant_articles_stats do |edge|
+      edge.get 'InstantArticlesStats' do |api|
+        api.has_param :metrics_list, { list: 'hash' }
+        api.has_param :page_list, { list: 'string' }
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+      end
+    end
+
+    has_edge :invoice_access_bank_account do |edge|
+      edge.get
+    end
+
     has_edge :leadgen_forms do |edge|
       edge.get 'LeadgenForm'
       edge.post 'LeadgenForm' do |api|
@@ -1003,17 +1004,6 @@ module FacebookAds
       end
     end
 
-    has_edge :live_encoders do |edge|
-      edge.get 'LiveEncoder'
-      edge.post 'LiveEncoder' do |api|
-        api.has_param :brand, 'string'
-        api.has_param :device_id, 'string'
-        api.has_param :model, 'string'
-        api.has_param :name, 'string'
-        api.has_param :version, 'string'
-      end
-    end
-
     has_edge :live_videos do |edge|
       edge.get 'LiveVideo' do |api|
         api.has_param :broadcast_status, { list: { enum: -> { LiveVideo::BROADCAST_STATUS }} }
@@ -1026,13 +1016,14 @@ module FacebookAds
         api.has_param :description, 'string'
         api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
+        api.has_param :event_params, 'object'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
         api.has_param :game_show, 'hash'
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
-        api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
+        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
@@ -1134,33 +1125,6 @@ module FacebookAds
       end
     end
 
-    has_edge :nativeoffers do |edge|
-      edge.get 'NativeOffer'
-      edge.post 'NativeOffer' do |api|
-        api.has_param :barcode_photo, 'int'
-        api.has_param :barcode_type, { enum: -> { NativeOffer::BARCODE_TYPE }}
-        api.has_param :barcode_value, 'string'
-        api.has_param :block_reshares, 'bool'
-        api.has_param :commerce_product_item, 'string'
-        api.has_param :commerce_store, 'string'
-        api.has_param :commerce_store_collection, 'string'
-        api.has_param :details, 'string'
-        api.has_param :disable_location, 'bool'
-        api.has_param :discounts, { list: 'object' }
-        api.has_param :expiration_time, 'datetime'
-        api.has_param :instore_code, 'string'
-        api.has_param :location_type, { enum: -> { NativeOffer::LOCATION_TYPE }}
-        api.has_param :max_save_count, 'int'
-        api.has_param :online_code, 'string'
-        api.has_param :page_set_id, 'string'
-        api.has_param :redemption_code, 'string'
-        api.has_param :redemption_link, 'string'
-        api.has_param :terms, 'string'
-        api.has_param :unique_barcodes, 'int'
-        api.has_param :unique_codes, 'int'
-      end
-    end
-
     has_edge :nlp_configs do |edge|
       edge.post 'Page' do |api|
         api.has_param :api_version, 'object'
@@ -1170,6 +1134,13 @@ module FacebookAds
         api.has_param :nlp_enabled, 'bool'
         api.has_param :other_language_support, 'hash'
         api.has_param :verbose, 'bool'
+      end
+    end
+
+    has_edge :notification_messages_dev_support do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :developer_action, { enum: -> { Page::DEVELOPER_ACTION }}
+        api.has_param :recipient, 'object'
       end
     end
 
@@ -1237,7 +1208,6 @@ module FacebookAds
         api.has_param :ios_bundle_id, 'string'
         api.has_param :is_explicit_location, 'bool'
         api.has_param :is_explicit_place, 'bool'
-        api.has_param :is_visual_search, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :manual_privacy, 'bool'
         api.has_param :message, 'string'
@@ -1544,7 +1514,6 @@ module FacebookAds
         api.has_param :reference_only, 'bool'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
-        api.has_param :sales_promo_id, 'int'
         api.has_param :scheduled_publish_time, 'int'
         api.has_param :secret, 'bool'
         api.has_param :slideshow_spec, 'hash'
@@ -1580,19 +1549,9 @@ module FacebookAds
     has_edge :visitor_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :include_hidden, 'bool'
-      end
-    end
-
-    has_edge :workpagemessages do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :message, 'object'
-        api.has_param :messaging_type, { enum: -> { Page::MESSAGING_TYPE }}
-        api.has_param :notification_type, { enum: -> { Page::NOTIFICATION_TYPE }}
-        api.has_param :payload, 'string'
-        api.has_param :persona_id, 'string'
-        api.has_param :recipient, 'object'
-        api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
-        api.has_param :tag, 'object'
+        api.has_param :limit, 'int'
+        api.has_param :show_expired, 'bool'
+        api.has_param :with, { enum: -> { PagePost::WITH }}
       end
     end
 

@@ -38,11 +38,23 @@ module FacebookAds
     field :mentioned_media, 'IgMedia'
     field :name, 'string'
     field :profile_picture_url, 'string'
+    field :shopping_product_tag_eligibility, 'bool'
     field :shopping_review_status, 'string'
     field :username, 'string'
     field :website, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :available_catalogs do |edge|
+      edge.get
+    end
+
+    has_edge :catalog_product_search do |edge|
+      edge.get do |api|
+        api.has_param :catalog_id, 'string'
+        api.has_param :q, 'string'
+      end
+    end
 
     has_edge :content_publishing_limit do |edge|
       edge.get do |api|
@@ -59,6 +71,13 @@ module FacebookAds
       end
     end
 
+    has_edge :live_media do |edge|
+      edge.get 'IgMedia' do |api|
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+      end
+    end
+
     has_edge :media do |edge|
       edge.get 'IgMedia' do |api|
         api.has_param :since, 'datetime'
@@ -66,9 +85,13 @@ module FacebookAds
       end
       edge.post 'IgMedia' do |api|
         api.has_param :caption, 'string'
+        api.has_param :children, { list: 'string' }
         api.has_param :image_url, 'string'
+        api.has_param :is_carousel_item, 'bool'
         api.has_param :location_id, 'string'
         api.has_param :media_type, 'string'
+        api.has_param :product_tags, { list: 'hash' }
+        api.has_param :share_to_feed, 'bool'
         api.has_param :thumb_offset, 'string'
         api.has_param :user_tags, { list: 'hash' }
         api.has_param :video_url, 'string'
@@ -86,6 +109,16 @@ module FacebookAds
         api.has_param :comment_id, 'string'
         api.has_param :media_id, 'string'
         api.has_param :message, 'string'
+      end
+    end
+
+    has_edge :product_appeal do |edge|
+      edge.get do |api|
+        api.has_param :product_id, 'string'
+      end
+      edge.post do |api|
+        api.has_param :appeal_reason, 'string'
+        api.has_param :product_id, 'string'
       end
     end
 

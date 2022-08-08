@@ -28,7 +28,6 @@ module FacebookAds
   class AdAccountReachEstimate < AdObject
 
     field :estimate_ready, 'bool'
-    field :users, 'int'
     field :users_lower_bound, 'int'
     field :users_upper_bound, 'int'
     has_no_id

@@ -29,6 +29,7 @@ module FacebookAds
     STATUS = [
       "ACTIVE",
       "DELETED",
+      "INTERNAL",
     ]
 
 

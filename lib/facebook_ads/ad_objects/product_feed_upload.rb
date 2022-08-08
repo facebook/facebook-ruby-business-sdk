@@ -56,7 +56,9 @@ module FacebookAds
     end
 
     has_edge :errors do |edge|
-      edge.get 'ProductFeedUploadError'
+      edge.get 'ProductFeedUploadError' do |api|
+        api.has_param :error_priority, { enum: -> { ProductFeedUploadError::ERROR_PRIORITY }}
+      end
     end
 
   end

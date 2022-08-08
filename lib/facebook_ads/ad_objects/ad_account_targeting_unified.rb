@@ -240,7 +240,6 @@ module FacebookAds
     ]
 
 
-    field :audience_size, 'int'
     field :audience_size_lower_bound, 'int'
     field :audience_size_upper_bound, 'int'
     field :conversion_lift, 'double'

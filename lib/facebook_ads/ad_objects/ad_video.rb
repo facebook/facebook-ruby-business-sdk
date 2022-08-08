@@ -29,6 +29,7 @@ module FacebookAds
     CONTAINER_TYPE = [
       "ACO_AUTOEXTRACTED_VIDEO",
       "ACO_VIDEO_VARIATION",
+      "ADS_AI_GENERATED",
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
       "AGE_UP",
@@ -39,18 +40,20 @@ module FacebookAds
       "APP_REVIEW_SCREENCAST",
       "ASSET_MANAGER",
       "ATLAS_VIDEO",
+      "AUDIO_BRIEF",
       "AUDIO_BROADCAST",
+      "AUDIO_COMMENT",
       "BROADCAST",
+      "BULLETIN_ARTICLE_AUDIO",
       "CANVAS",
       "CFC_VIDEO",
       "CMS_MEDIA_MANAGER",
       "CONTAINED_POST_ATTACHMENT",
       "CONTAINED_POST_AUDIO_BROADCAST",
-      "CONTAINED_POST_BROADCAST",
       "CONTAINED_POST_COPYRIGHT_REFERENCE_BROADCAST",
       "COPYRIGHT_REFERENCE_BROADCAST",
       "COPYRIGHT_REFERENCE_VIDEO",
-      "CULTURAL_MOMENT_DEPRECATED",
+      "CREATION_ML_PRECREATION",
       "DCO_AD_ASSET_FEED",
       "DCO_AUTOGEN_VIDEO",
       "DCO_TRIMMED_VIDEO",
@@ -64,13 +67,18 @@ module FacebookAds
       "EVENT_COVER_VIDEO",
       "EVENT_TOUR",
       "FACECAST_DVR",
+      "FB_COLLECTIBLE_VIDEO",
       "FB_SHORTS",
+      "FB_SHORTS_CONTENT_REMIXABLE",
+      "FB_SHORTS_CROSS_META_POST",
       "FB_SHORTS_GROUP_POST",
+      "FB_SHORTS_PMV_POST",
       "FB_SHORTS_POST",
       "FB_SHORTS_REMIX_POST",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
       "GEMSTONE",
+      "GIF_TO_VIDEO",
       "GOODWILL_ANNIVERSARY_DEPRECATED",
       "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
       "GOODWILL_VIDEO_CONTAINED_SHARE",
@@ -85,6 +93,7 @@ module FacebookAds
       "HUDDLE_BROADCAST",
       "IG_REELS_XPV",
       "IG_STORIES_READER",
+      "INJECTABLE",
       "INSPIRATION_VIDEO",
       "INSTAGRAM_VIDEO_COPY",
       "INSTANT_APPLICATION_PREVIEW",
@@ -98,8 +107,10 @@ module FacebookAds
       "KOTOTORO",
       "LEARN",
       "LEGACY",
+      "LEGACY_CONTAINED_POST_BROADCAST",
+      "LIVE_AUDIO_ROOM_BROADCAST",
+      "LIVE_CLIP_PREVIEW",
       "LIVE_CREATIVE_KIT_VIDEO",
-      "LIVE_LINEAR_VIDEO_CHANNEL_INTERNAL_BROADCAST",
       "LIVE_PHOTO",
       "LOOK_NOW_DEPRECATED",
       "MARKETPLACE_LISTING_VIDEO",
@@ -107,9 +118,13 @@ module FacebookAds
       "MESSENGER_WATCH_TOGETHER",
       "MOMENTS_VIDEO",
       "MUSIC_CLIP",
+      "MUSIC_CLIP_IN_AUDIO_DIGEST",
       "MUSIC_CLIP_IN_COMMENT",
+      "MUSIC_CLIP_IN_LIGHTWEIGHT_STATUS",
       "MUSIC_CLIP_IN_POLL_OPTION",
+      "MUSIC_CLIP_ON_DATING_PROFILE",
       "NEO_ASYNC_GAME_VIDEO",
+      "NEW_CONTAINED_POST_BROADCAST",
       "NO_STORY",
       "NO_STORY_WITH_ENTPOST",
       "NPE_COLLAB_COPYRIGHT_CHECK",
@@ -120,9 +135,12 @@ module FacebookAds
       "PAGE_REVIEW_SCREENCAST",
       "PAGE_SLIDESHOW_VIDEO",
       "PAID_CONTENT_PREVIEW",
-      "PARTNER_DIRECTORY_BRAND_MEDIA",
+      "PAID_CONTENT_VIDEO",
+      "PAID_CONTENT_VIDEO__POST",
       "PIXELCLOUD",
       "PODCAST_HIGHLIGHT",
+      "PODCAST_ML_PREVIEW",
+      "PODCAST_ML_PREVIEW_NO_NEWSFEED_STORY",
       "PODCAST_RSS",
       "PODCAST_RSS_EPHEMERAL",
       "PODCAST_RSS_NO_NEWSFEED_STORY",
@@ -130,6 +148,7 @@ module FacebookAds
       "PODCAST_VOICES_NO_NEWSFEED_STORY",
       "PREMIERE_SOURCE",
       "PREMIUM_MUSIC_VIDEO_CLIP",
+      "PREMIUM_MUSIC_VIDEO_CROPPED_CLIP",
       "PREMIUM_MUSIC_VIDEO_NO_NEWSFEED_STORY",
       "PREMIUM_MUSIC_VIDEO_WITH_NEWSFEED_STORY",
       "PRIVATE_GALLERY_VIDEO",
@@ -152,6 +171,7 @@ module FacebookAds
       "SRT_ATTACHMENT",
       "STAGES_BROADCAST",
       "STORIES_VIDEO",
+      "STORIES_WEARABLE",
       "STORYLINE",
       "STORYLINE_WITH_EXTERNAL_MUSIC",
       "STORY_ARCHIVE_VIDEO",
@@ -162,6 +182,7 @@ module FacebookAds
       "TEMP_MULTIMEDIA_POST",
       "UNLISTED",
       "UNLISTED_HACK_TV",
+      "UNLISTED_HORIZON",
       "UNLISTED_OCULUS",
       "VIDEO_COMMENT",
       "VIDEO_COMPOSITION_VARIATION",
@@ -243,6 +264,7 @@ module FacebookAds
 
 
     field :ad_breaks, { list: 'int' }
+    field :audio_isrc, 'object'
     field :backdated_time, 'datetime'
     field :backdated_time_granularity, 'string'
     field :content_category, 'string'
@@ -333,7 +355,6 @@ module FacebookAds
     field :react_mode_metadata, 'string'
     field :referenced_sticker_id, 'string'
     field :replace_video_id, 'string'
-    field :sales_promo_id, 'int'
     field :slideshow_spec, 'hash'
     field :source_instagram_media_id, 'string'
     field :start_offset, 'int'

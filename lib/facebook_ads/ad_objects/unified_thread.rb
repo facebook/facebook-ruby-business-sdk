@@ -29,6 +29,7 @@ module FacebookAds
     PLATFORM = [
       "INSTAGRAM",
       "MESSENGER",
+      "WHATSAPP",
     ]
 
 

@@ -36,17 +36,9 @@ module FacebookAds
     ]
 
     CATEGORY = [
-      "ACCOUNT_UPDATE",
-      "ALERT_UPDATE",
-      "APPOINTMENT_UPDATE",
-      "AUTO_REPLY",
-      "ISSUE_RESOLUTION",
-      "PAYMENT_UPDATE",
-      "PERSONAL_FINANCE_UPDATE",
-      "RESERVATION_UPDATE",
-      "SHIPPING_UPDATE",
-      "TICKET_UPDATE",
-      "TRANSPORTATION_UPDATE",
+      "MARKETING",
+      "OTP",
+      "TRANSACTIONAL",
     ]
 
 
@@ -79,6 +71,20 @@ module FacebookAds
       end
     end
 
+    has_edge :conversation_analytics do |edge|
+      edge.get do |api|
+        api.has_param :conversation_directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
+        api.has_param :conversation_types, { list: { enum: %w{FREE_ENTRY_POINT FREE_TIER REGULAR UNKNOWN }} }
+        api.has_param :country_codes, { list: 'string' }
+        api.has_param :dimensions, { list: { enum: %w{CONVERSATION_DIRECTION CONVERSATION_TYPE COUNTRY PHONE UNKNOWN }} }
+        api.has_param :end, 'int'
+        api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
+        api.has_param :metric_types, { list: { enum: %w{CONVERSATION COST UNKNOWN }} }
+        api.has_param :phone_numbers, { list: 'string' }
+        api.has_param :start, 'int'
+      end
+    end
+
     has_edge :message_templates do |edge|
       edge.delete do |api|
         api.has_param :name, 'string'
@@ -89,7 +95,8 @@ module FacebookAds
         api.has_param :language, { list: 'string' }
         api.has_param :name, 'string'
         api.has_param :name_or_content, 'string'
-        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED IN_APPEAL PENDING PENDING_DELETION REJECTED }} }
+        api.has_param :quality_score, { list: { enum: %w{GREEN RED UNKNOWN YELLOW }} }
+        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED IN_APPEAL LOCKED PENDING PENDING_DELETION REJECTED }} }
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}
