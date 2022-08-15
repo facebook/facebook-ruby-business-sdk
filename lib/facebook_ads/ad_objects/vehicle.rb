@@ -45,12 +45,22 @@ module FacebookAds
       "CONVERTIBLE",
       "COUPE",
       "CROSSOVER",
+      "ESTATE",
+      "GRANDTOURER",
       "HATCHBACK",
+      "MINIBUS",
       "MINIVAN",
+      "MPV",
       "NONE",
       "OTHER",
+      "PICKUP",
+      "ROADSTER",
+      "SALOON",
       "SEDAN",
       "SMALL_CAR",
+      "SPORTSCAR",
+      "SUPERCAR",
+      "SUPERMINI",
       "SUV",
       "TRUCK",
       "VAN",
@@ -153,6 +163,7 @@ module FacebookAds
     field :title, 'string'
     field :transmission, 'string'
     field :trim, 'string'
+    field :unit_price, 'object'
     field :url, 'string'
     field :vehicle_id, 'string'
     field :vehicle_registration_plate, 'string'

@@ -28,6 +28,7 @@ module FacebookAds
   class AdCreativeLinkDataImageOverlaySpec < AdObject
     CUSTOM_TEXT_TYPE = [
       "free_shipping",
+      "popular",
     ]
 
     OVERLAY_TEMPLATE = [
@@ -57,6 +58,7 @@ module FacebookAds
     ]
 
     TEXT_TYPE = [
+      "automated_personalize",
       "custom",
       "disclaimer",
       "from_price",

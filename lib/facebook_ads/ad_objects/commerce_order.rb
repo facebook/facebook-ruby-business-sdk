@@ -91,6 +91,13 @@ module FacebookAds
       end
     end
 
+    has_edge :fulfill_order do |edge|
+      edge.post 'CommerceOrder' do |api|
+        api.has_param :idempotency_key, 'string'
+        api.has_param :items, { list: 'hash' }
+      end
+    end
+
     has_edge :items do |edge|
       edge.get
     end
@@ -125,6 +132,12 @@ module FacebookAds
         api.has_param :merchant_return_id, 'string'
         api.has_param :statuses, { list: { enum: %w{APPROVED DISAPPROVED MERCHANT_MARKED_COMPLETED REFUNDED REQUESTED }} }
       end
+      edge.post 'CommerceOrder' do |api|
+        api.has_param :items, { list: 'hash' }
+        api.has_param :merchant_return_id, 'string'
+        api.has_param :return_message, 'string'
+        api.has_param :update, 'hash'
+      end
     end
 
     has_edge :shipments do |edge|
@@ -138,14 +151,17 @@ module FacebookAds
         api.has_param :merchant_order_reference, 'string'
         api.has_param :shipment_origin_postal_code, 'string'
         api.has_param :shipping_tax_details, 'hash'
+        api.has_param :should_use_default_fulfillment_location, 'bool'
         api.has_param :tracking_info, 'hash'
       end
     end
 
     has_edge :update_shipment do |edge|
       edge.post 'CommerceOrder' do |api|
+        api.has_param :external_shipment_id, 'string'
         api.has_param :fulfillment_id, 'string'
         api.has_param :idempotency_key, 'string'
+        api.has_param :shipment_id, 'string'
         api.has_param :tracking_info, 'hash'
       end
     end

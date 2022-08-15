@@ -61,6 +61,7 @@ module FacebookAds
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
+      "ONLINE_GAMBLING_AND_GAMING",
     ]
 
     WHITELISTED_TYPES = [
@@ -189,6 +190,11 @@ module FacebookAds
 
     APP_STORE = [
       "amazon_app_store",
+      "apk_mirror",
+      "apk_monk",
+      "apk_pure",
+      "aptoide_a1_store",
+      "bemobi_mobile_store",
       "does_not_exist",
       "fb_android_store",
       "fb_canvas",
@@ -199,9 +205,13 @@ module FacebookAds
       "itunes",
       "itunes_ipad",
       "oculus_app_store",
+      "oppo",
       "roku_channel_store",
+      "uptodown",
+      "vivo",
       "windows_10_store",
       "windows_store",
+      "xiaomi",
     ]
 
     OBJECTIVE = [
@@ -230,7 +240,8 @@ module FacebookAds
     ]
 
 
-    field :audience_size, 'int'
+    field :audience_size_lower_bound, 'int'
+    field :audience_size_upper_bound, 'int'
     field :conversion_lift, 'double'
     field :description, 'string'
     field :id, 'string'

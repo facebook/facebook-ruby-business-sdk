@@ -35,6 +35,7 @@ module FacebookAds
       "BUY_TICKETS",
       "CALL",
       "CALL_ME",
+      "CALL_NOW",
       "CONTACT",
       "CONTACT_US",
       "DONATE",
@@ -51,6 +52,7 @@ module FacebookAds
       "GET_OFFER_VIEW",
       "GET_QUOTE",
       "GET_SHOWTIMES",
+      "GET_STARTED",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "LEARN_MORE",
@@ -65,6 +67,7 @@ module FacebookAds
       "ORDER_NOW",
       "PAY_TO_ACCESS",
       "PLAY_GAME",
+      "PLAY_GAME_ON_FACEBOOK",
       "PURCHASE_GIFT_CARDS",
       "RECORD_NOW",
       "REFER_FRIENDS",
@@ -105,10 +108,10 @@ module FacebookAds
     field :captions, { list: 'AdAssetFeedSpecCaption' }
     field :carousels, { list: 'object' }
     field :descriptions, { list: 'AdAssetFeedSpecDescription' }
+    field :events, { list: 'object' }
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
-    field :onsite_destinations, { list: 'object' }
     field :optimization_type, 'string'
     field :posts, { list: 'object' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }

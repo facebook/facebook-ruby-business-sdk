@@ -32,7 +32,8 @@ module FacebookAds
     field :name, 'string'
     field :parent_category, 'string'
     field :path, { list: 'string' }
-    field :size, 'int'
+    field :size_lower_bound, 'int'
+    field :size_upper_bound, 'int'
     field :source, 'string'
     field :type, 'int'
     field :type_name, 'string'

@@ -35,6 +35,8 @@ module FacebookAds
       "7d_view",
       "dda",
       "default",
+      "skan_click",
+      "skan_view",
     ]
 
     ACTION_BREAKDOWNS = [
@@ -59,6 +61,7 @@ module FacebookAds
     BREAKDOWNS = [
       "ad_format_asset",
       "age",
+      "app_id",
       "body_asset",
       "call_to_action_asset",
       "country",
@@ -77,11 +80,13 @@ module FacebookAds
       "product_id",
       "publisher_platform",
       "region",
+      "skan_conversion_id",
       "title_asset",
       "video_asset",
     ]
 
     DATE_PRESET = [
+      "data_maximum",
       "last_14d",
       "last_28d",
       "last_30d",
@@ -129,18 +134,12 @@ module FacebookAds
     field :account_name, 'string'
     field :action_values, { list: 'AdsActionStats' }
     field :actions, { list: 'AdsActionStats' }
-    field :ad_bid_type, 'string'
     field :ad_bid_value, 'string'
     field :ad_click_actions, { list: 'AdsActionStats' }
-    field :ad_delivery, 'string'
     field :ad_id, 'string'
     field :ad_impression_actions, { list: 'AdsActionStats' }
     field :ad_name, 'string'
-    field :adset_bid_type, 'string'
     field :adset_bid_value, 'string'
-    field :adset_budget_type, 'string'
-    field :adset_budget_value, 'string'
-    field :adset_delivery, 'string'
     field :adset_end, 'string'
     field :adset_id, 'string'
     field :adset_name, 'string'
@@ -228,6 +227,7 @@ module FacebookAds
     field :reach, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
+    field :total_postbacks, 'string'
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
     field :unique_conversions, { list: 'AdsActionStats' }

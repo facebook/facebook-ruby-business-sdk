@@ -37,6 +37,12 @@ module FacebookAds
       "warning",
     ]
 
+    ERROR_PRIORITY = [
+      "HIGH",
+      "LOW",
+      "MEDIUM",
+    ]
+
 
     field :affected_surfaces, { list: { enum: -> { AFFECTED_SURFACES }} }
     field :description, 'string'

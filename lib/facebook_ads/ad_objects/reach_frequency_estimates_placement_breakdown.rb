@@ -33,6 +33,7 @@ module FacebookAds
     field :ig_android, { list: 'double' }
     field :ig_ios, { list: 'double' }
     field :ig_other, { list: 'double' }
+    field :ig_reels, { list: 'double' }
     field :ig_story, { list: 'double' }
     field :instant_articles, { list: 'double' }
     field :instream_videos, { list: 'double' }

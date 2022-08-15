@@ -28,7 +28,7 @@ module FacebookAds
   class PageUserMessageThreadLabel < AdObject
 
     field :id, 'string'
-    field :name, 'string'
+    field :page_label_name, 'string'
     has_no_post
 
     has_edge :label do |edge|

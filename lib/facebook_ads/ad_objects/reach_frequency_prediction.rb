@@ -64,6 +64,8 @@ module FacebookAds
     field :activity_status, 'ReachFrequencyActivity'
     field :ad_formats, { list: 'ReachFrequencyAdFormat' }
     field :auction_entry_option_index, 'int'
+    field :audience_size_lower_bound, 'int'
+    field :audience_size_upper_bound, 'int'
     field :business_id, 'int'
     field :buying_type, 'string'
     field :campaign_group_id, 'int'
@@ -119,6 +121,10 @@ module FacebookAds
     field :name, 'string'
     field :objective, 'int'
     field :objective_name, 'string'
+    field :odax_objective, 'int'
+    field :odax_objective_name, 'string'
+    field :optimization_goal, 'int'
+    field :optimization_goal_name, 'string'
     field :pause_periods, { list: 'object' }
     field :placement_breakdown, 'ReachFrequencyEstimatesPlacementBreakdown'
     field :placement_breakdown_map, 'map<unsigned int, ReachFrequencyEstimatesPlacementBreakdown>'
@@ -131,7 +137,6 @@ module FacebookAds
     field :start_time, 'datetime'
     field :status, 'int'
     field :story_event_type, 'int'
-    field :target_audience_size, 'int'
     field :target_cpm, 'int'
     field :target_spec, 'Targeting'
     field :time_created, 'datetime'

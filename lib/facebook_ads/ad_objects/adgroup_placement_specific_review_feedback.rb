@@ -53,6 +53,7 @@ module FacebookAds
     field :marketplace_motors, 'hash'
     field :marketplace_shops, 'hash'
     field :max_review_placements, 'hash'
+    field :neighborhoods, 'hash'
     field :page_admin, 'hash'
     field :product, 'hash'
     field :product_service, 'hash'
@@ -60,6 +61,7 @@ module FacebookAds
     field :seller, 'hash'
     field :shops, 'hash'
     field :traffic_quality, 'hash'
+    field :unified_commerce_content, 'hash'
     field :whatsapp, 'hash'
     has_no_id
     has_no_get

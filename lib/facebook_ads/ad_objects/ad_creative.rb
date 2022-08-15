@@ -35,6 +35,7 @@ module FacebookAds
       "BUY_TICKETS",
       "CALL",
       "CALL_ME",
+      "CALL_NOW",
       "CONTACT",
       "CONTACT_US",
       "DONATE",
@@ -51,6 +52,7 @@ module FacebookAds
       "GET_OFFER_VIEW",
       "GET_QUOTE",
       "GET_SHOWTIMES",
+      "GET_STARTED",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "LEARN_MORE",
@@ -65,6 +67,7 @@ module FacebookAds
       "ORDER_NOW",
       "PAY_TO_ACCESS",
       "PLAY_GAME",
+      "PLAY_GAME_ON_FACEBOOK",
       "PURCHASE_GIFT_CARDS",
       "RECORD_NOW",
       "REFER_FRIENDS",
@@ -118,6 +121,7 @@ module FacebookAds
     ]
 
     APPLINK_TREATMENT = [
+      "automatic",
       "deeplink_with_appstore_fallback",
       "deeplink_with_web_fallback",
       "web_only",
@@ -170,6 +174,7 @@ module FacebookAds
     field :call_to_action_type, { enum: -> { CALL_TO_ACTION_TYPE }}
     field :categorization_criteria, 'string'
     field :category_media_source, 'string'
+    field :collaborative_ads_lsb_image_bank_id, 'string'
     field :destination_set_id, 'string'
     field :dynamic_ad_voice, 'string'
     field :effective_authorization_category, 'string'
@@ -199,6 +204,7 @@ module FacebookAds
     field :object_story_spec, 'AdCreativeObjectStorySpec'
     field :object_type, { enum: -> { OBJECT_TYPE }}
     field :object_url, 'string'
+    field :omnichannel_link_spec, 'AdCreativeOmnichannelLinkSpec'
     field :place_page_set_id, 'string'
     field :platform_customizations, 'AdCreativePlatformCustomization'
     field :playable_asset_id, 'string'
@@ -209,6 +215,7 @@ module FacebookAds
     field :status, { enum: -> { STATUS }}
     field :template_url, 'string'
     field :template_url_spec, 'AdCreativeTemplateUrlSpec'
+    field :thumbnail_id, 'string'
     field :thumbnail_url, 'string'
     field :title, 'string'
     field :url_tags, 'string'

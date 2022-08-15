@@ -103,6 +103,7 @@ module FacebookAds
     field :feed_count, 'int'
     field :id, 'string'
     field :is_catalog_segment, 'bool'
+    field :latest_feed_upload_session, 'ProductFeedUpload'
     field :name, 'string'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
@@ -127,6 +128,12 @@ module FacebookAds
       end
     end
 
+    has_edge :ar_effects_batch_status do |edge|
+      edge.get 'ArEffectsBatchStatus' do |api|
+        api.has_param :handle, 'string'
+      end
+    end
+
     has_edge :assigned_users do |edge|
       edge.delete do |api|
         api.has_param :user, 'int'
@@ -140,32 +147,11 @@ module FacebookAds
       end
     end
 
-    has_edge :auto_markets do |edge|
-      edge.get
-    end
-
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
-      edge.post 'AutomotiveModel' do |api|
-        api.has_param :automotive_model_id, 'string'
-        api.has_param :body_style, { enum: -> { AutomotiveModel::BODY_STYLE }}
-        api.has_param :currency, 'string'
-        api.has_param :description, 'string'
-        api.has_param :images, { list: 'object' }
-        api.has_param :make, 'string'
-        api.has_param :model, 'string'
-        api.has_param :price, 'int'
-        api.has_param :title, 'string'
-        api.has_param :url, 'string'
-        api.has_param :year, 'int'
-      end
-    end
-
-    has_edge :autos do |edge|
-      edge.get
     end
 
     has_edge :batch do |edge|
@@ -173,6 +159,12 @@ module FacebookAds
         api.has_param :allow_upsert, 'bool'
         api.has_param :fbe_external_business_id, 'string'
         api.has_param :requests, { list: 'hash' }
+      end
+    end
+
+    has_edge :catalog_website_settings do |edge|
+      edge.post do |api|
+        api.has_param :is_allowed_to_crawl, 'bool'
       end
     end
 
@@ -188,13 +180,32 @@ module FacebookAds
 
     has_edge :check_batch_request_status do |edge|
       edge.get 'CheckBatchRequestStatus' do |api|
+        api.has_param :error_priority, { enum: -> { CheckBatchRequestStatus::ERROR_PRIORITY }}
         api.has_param :handle, 'string'
         api.has_param :load_ids_of_invalid_requests, 'bool'
       end
     end
 
+    has_edge :collaborative_ads_lsb_image_bank do |edge|
+      edge.get
+    end
+
     has_edge :collaborative_ads_share_settings do |edge|
       edge.get 'CollaborativeAdsShareSettings'
+    end
+
+    has_edge :cpas_lsb_image_bank do |edge|
+      edge.post do |api|
+        api.has_param :ad_group_id, 'int'
+        api.has_param :agency_business_id, 'int'
+        api.has_param :backup_image_urls, { list: 'string' }
+      end
+    end
+
+    has_edge :data_sources do |edge|
+      edge.get 'ProductCatalogDataSource' do |api|
+        api.has_param :ingestion_source_type, { enum: -> { ProductCatalogDataSource::INGESTION_SOURCE_TYPE }}
+      end
     end
 
     has_edge :destinations do |edge|
@@ -207,6 +218,7 @@ module FacebookAds
     has_edge :diagnostics do |edge|
       edge.get 'ProductCatalogDiagnosticGroup' do |api|
         api.has_param :affected_channels, { list: { enum: -> { ProductCatalogDiagnosticGroup::AFFECTED_CHANNELS }} }
+        api.has_param :affected_entities, { list: { enum: -> { ProductCatalogDiagnosticGroup::AFFECTED_ENTITIES }} }
         api.has_param :affected_features, { list: { enum: -> { ProductCatalogDiagnosticGroup::AFFECTED_FEATURES }} }
         api.has_param :severities, { list: { enum: -> { ProductCatalogDiagnosticGroup::SEVERITIES }} }
         api.has_param :types, { list: { enum: -> { ProductCatalogDiagnosticGroup::TYPES }} }
@@ -314,9 +326,20 @@ module FacebookAds
     end
 
     has_edge :media_titles do |edge|
-      edge.get do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
+      edge.post do |api|
+        api.has_param :applinks, 'object'
+        api.has_param :content_category, { enum: %w{MOVIE MUSIC TV_SHOW }}
+        api.has_param :currency, 'string'
+        api.has_param :description, 'string'
+        api.has_param :fb_page_id, 'string'
+        api.has_param :genres, { list: 'string' }
+        api.has_param :images, { list: 'object' }
+        api.has_param :kg_fb_id, 'string'
+        api.has_param :media_title_id, 'string'
+        api.has_param :price, 'int'
+        api.has_param :title, 'string'
+        api.has_param :title_display_name, 'string'
+        api.has_param :url, 'string'
       end
     end
 
@@ -344,11 +367,13 @@ module FacebookAds
         api.has_param :encoding, { enum: -> { ProductFeed::ENCODING }}
         api.has_param :feed_type, { enum: -> { ProductFeed::FEED_TYPE }}
         api.has_param :file_name, 'string'
+        api.has_param :ingestion_source_type, { enum: -> { ProductFeed::INGESTION_SOURCE_TYPE }}
         api.has_param :item_sub_type, { enum: -> { ProductFeed::ITEM_SUB_TYPE }}
         api.has_param :migrated_from_feed_id, 'string'
         api.has_param :name, 'string'
         api.has_param :override_type, { enum: -> { ProductFeed::OVERRIDE_TYPE }}
         api.has_param :override_value, 'string'
+        api.has_param :primary_feed_ids, { list: 'string' }
         api.has_param :quoted_fields_mode, { enum: -> { ProductFeed::QUOTED_FIELDS_MODE }}
         api.has_param :rules, { list: 'string' }
         api.has_param :schedule, 'string'
@@ -376,6 +401,8 @@ module FacebookAds
         api.has_param :filter, 'object'
         api.has_param :metadata, 'hash'
         api.has_param :name, 'string'
+        api.has_param :ordering_info, { list: 'int' }
+        api.has_param :publish_to_shops, { list: 'hash' }
         api.has_param :retailer_id, 'string'
       end
     end
@@ -389,6 +416,8 @@ module FacebookAds
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
+        api.has_param :error_priority, { enum: -> { ProductItem::ERROR_PRIORITY }}
+        api.has_param :error_type, { enum: -> { ProductItem::ERROR_TYPE }}
         api.has_param :filter, 'object'
         api.has_param :return_only_approved_products, 'bool'
       end
@@ -415,12 +444,19 @@ module FacebookAds
         api.has_param :custom_label_2, 'string'
         api.has_param :custom_label_3, 'string'
         api.has_param :custom_label_4, 'string'
+        api.has_param :custom_number_0, 'int'
+        api.has_param :custom_number_1, 'int'
+        api.has_param :custom_number_2, 'int'
+        api.has_param :custom_number_3, 'int'
+        api.has_param :custom_number_4, 'int'
         api.has_param :description, 'string'
         api.has_param :expiration_date, 'string'
         api.has_param :fb_product_category, 'string'
         api.has_param :gender, { enum: -> { ProductItem::GENDER }}
         api.has_param :gtin, 'string'
         api.has_param :image_url, 'string'
+        api.has_param :importer_address, 'hash'
+        api.has_param :importer_name, 'string'
         api.has_param :inventory, 'int'
         api.has_param :ios_app_name, 'string'
         api.has_param :ios_app_store_id, 'int'
@@ -432,6 +468,7 @@ module FacebookAds
         api.has_param :iphone_app_store_id, 'int'
         api.has_param :iphone_url, 'string'
         api.has_param :launch_date, 'string'
+        api.has_param :manufacturer_info, 'string'
         api.has_param :manufacturer_part_number, 'string'
         api.has_param :marked_for_product_launch, { enum: -> { ProductItem::MARKED_FOR_PRODUCT_LAUNCH }}
         api.has_param :material, 'string'
@@ -441,6 +478,7 @@ module FacebookAds
         api.has_param :offer_price_end_date, 'datetime'
         api.has_param :offer_price_start_date, 'datetime'
         api.has_param :ordering_index, 'int'
+        api.has_param :origin_country, { enum: -> { ProductItem::ORIGIN_COUNTRY }}
         api.has_param :pattern, 'string'
         api.has_param :price, 'int'
         api.has_param :product_type, 'string'
@@ -456,6 +494,7 @@ module FacebookAds
         api.has_param :start_date, 'string'
         api.has_param :url, 'string'
         api.has_param :visibility, { enum: -> { ProductItem::VISIBILITY }}
+        api.has_param :wa_compliance_category, { enum: -> { ProductItem::WA_COMPLIANCE_CATEGORY }}
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'

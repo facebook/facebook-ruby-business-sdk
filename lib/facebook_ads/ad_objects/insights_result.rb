@@ -27,6 +27,7 @@ module FacebookAds
 
   class InsightsResult < AdObject
     DATE_PRESET = [
+      "data_maximum",
       "last_14d",
       "last_28d",
       "last_30d",
