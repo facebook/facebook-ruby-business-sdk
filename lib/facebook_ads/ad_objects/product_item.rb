@@ -317,6 +317,12 @@ module FacebookAds
       "DUPLICATE_TITLE_AND_DESCRIPTION",
       "GENERIC_INVALID_FIELD",
       "HIDDEN_UNTIL_PRODUCT_LAUNCH",
+      "IMAGE_FETCH_FAILED",
+      "IMAGE_FETCH_FAILED_BAD_GATEWAY",
+      "IMAGE_FETCH_FAILED_FILE_SIZE_EXCEEDED",
+      "IMAGE_FETCH_FAILED_FORBIDDEN",
+      "IMAGE_FETCH_FAILED_LINK_BROKEN",
+      "IMAGE_FETCH_FAILED_TIMED_OUT",
       "IMAGE_RESOLUTION_LOW",
       "INACTIVE_SHOPIFY_PRODUCT",
       "INVALID_COMMERCE_TAX_CATEGORY",
@@ -342,9 +348,12 @@ module FacebookAds
       "MISSING_SHIPPING_PROFILE",
       "MISSING_SIZE",
       "MISSING_TAX_CATEGORY",
+      "NEGATIVE_COMMUNITY_FEEDBACK",
       "NOT_ENOUGH_IMAGES",
       "PART_OF_PRODUCT_LAUNCH",
       "PRODUCT_EXPIRED",
+      "PRODUCT_ITEM_HIDDEN_FROM_ALL_SHOPS",
+      "PRODUCT_ITEM_NOT_INCLUDED_IN_ANY_SHOP",
       "PRODUCT_ITEM_NOT_VISIBLE",
       "PRODUCT_NOT_APPROVED",
       "PRODUCT_NOT_DOMINANT_CURRENCY",
@@ -690,6 +699,7 @@ module FacebookAds
     field :origin_country, 'string'
     field :parent_product_id, 'string'
     field :pattern, 'string'
+    field :post_conversion_signal_based_enforcement_appeal_eligibility, 'bool'
     field :price, 'string'
     field :product_catalog, 'ProductCatalog'
     field :product_feed, 'ProductFeed'

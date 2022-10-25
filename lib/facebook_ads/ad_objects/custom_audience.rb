@@ -107,6 +107,7 @@ module FacebookAds
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'
     field :opt_out_link, 'string'
+    field :owner_business, 'Business'
     field :page_deletion_marked_delete_time, 'int'
     field :permission_for_actions, 'AudiencePermissionForActions'
     field :pixel_id, 'string'

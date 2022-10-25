@@ -132,6 +132,7 @@ module FacebookAds
     field :condition, 'string'
     field :currency, 'string'
     field :custom_label_0, 'string'
+    field :custom_number_0, 'int'
     field :date_first_on_lot, 'string'
     field :dealer_communication_channel, 'string'
     field :dealer_email, 'string'

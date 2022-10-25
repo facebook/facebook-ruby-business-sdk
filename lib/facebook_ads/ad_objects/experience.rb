@@ -28,7 +28,7 @@ module FacebookAds
   class Experience < AdObject
 
     field :description, 'string'
-    field :from, 'User'
+    field :from, 'object'
     field :id, 'string'
     field :name, 'string'
     field :with, { list: 'User' }

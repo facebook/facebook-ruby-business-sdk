@@ -487,6 +487,7 @@ module FacebookAds
     field :new_like_count, 'int'
     field :offer_eligible, 'bool'
     field :overall_star_rating, 'double'
+    field :owner_business, 'Business'
     field :page_token, 'string'
     field :parent_page, 'Page'
     field :parking, 'PageParking'
@@ -568,6 +569,10 @@ module FacebookAds
 
     has_edge :albums do |edge|
       edge.get 'Album'
+    end
+
+    has_edge :ar_experience do |edge|
+      edge.get
     end
 
     has_edge :assigned_users do |edge|
@@ -765,6 +770,10 @@ module FacebookAds
         api.has_param :duration, 'int'
         api.has_param :recipient, 'object'
       end
+    end
+
+    has_edge :fantasy_games do |edge|
+      edge.get
     end
 
     has_edge :feed do |edge|
@@ -977,6 +986,17 @@ module FacebookAds
       edge.get
     end
 
+    has_edge :invoice_access_invoice_edit do |edge|
+      edge.post do |api|
+        api.has_param :additional_amounts, { list: 'hash' }
+        api.has_param :invoice_id, 'string'
+        api.has_param :notes, 'string'
+        api.has_param :paid_amount, 'hash'
+        api.has_param :product_items, { list: 'hash' }
+        api.has_param :shipping_address, 'hash'
+      end
+    end
+
     has_edge :leadgen_forms do |edge|
       edge.get 'LeadgenForm'
       edge.post 'LeadgenForm' do |api|
@@ -1023,7 +1043,6 @@ module FacebookAds
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
@@ -1097,6 +1116,7 @@ module FacebookAds
         api.has_param :recipient, 'object'
         api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
         api.has_param :tag, 'object'
+        api.has_param :thread_control, 'object'
       end
     end
 
@@ -1135,6 +1155,10 @@ module FacebookAds
         api.has_param :other_language_support, 'hash'
         api.has_param :verbose, 'bool'
       end
+    end
+
+    has_edge :notification_message_tokens do |edge|
+      edge.get 'UserPageOneTimeOptInTokenSettings'
     end
 
     has_edge :notification_messages_dev_support do |edge|
@@ -1364,19 +1388,8 @@ module FacebookAds
     end
 
     has_edge :tabs do |edge|
-      edge.delete do |api|
-        api.has_param :tab, 'string'
-      end
       edge.get 'Tab' do |api|
         api.has_param :tab, { list: 'string' }
-      end
-      edge.post 'Page' do |api|
-        api.has_param :app_id, 'int'
-        api.has_param :custom_image_url, 'string'
-        api.has_param :custom_name, 'string'
-        api.has_param :is_non_connection_landing_tab, 'bool'
-        api.has_param :position, 'int'
-        api.has_param :tab, 'string'
       end
     end
 
@@ -1442,6 +1455,20 @@ module FacebookAds
 
     has_edge :video_lists do |edge|
       edge.get 'VideoList'
+    end
+
+    has_edge :video_reels do |edge|
+      edge.get 'AdVideo'
+      edge.post 'AdVideo' do |api|
+        api.has_param :description, 'string'
+        api.has_param :feed_targeting, 'object'
+        api.has_param :scheduled_publish_time, 'datetime'
+        api.has_param :targeting, 'object'
+        api.has_param :title, 'string'
+        api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
+        api.has_param :video_id, 'object'
+        api.has_param :video_state, { enum: -> { AdVideo::VIDEO_STATE }}
+      end
     end
 
     has_edge :videos do |edge|

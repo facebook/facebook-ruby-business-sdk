@@ -170,6 +170,7 @@ module FacebookAds
       "relationship_statuses",
       "rtb_flag",
       "site_category",
+      "targeting_automation",
       "targeting_optimization",
       "targeting_relaxation_types",
       "timezones",

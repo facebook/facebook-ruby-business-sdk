@@ -46,6 +46,7 @@ module FacebookAds
 
 
     field :business, 'Business'
+    field :business_role_request, 'BusinessRoleRequest'
     field :email, 'string'
     field :finance_permission, 'string'
     field :first_name, 'string'

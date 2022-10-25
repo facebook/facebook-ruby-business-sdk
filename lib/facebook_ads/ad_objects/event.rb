@@ -27,31 +27,28 @@ module FacebookAds
 
   class Event < AdObject
     CATEGORY = [
-      "ART_EVENT",
-      "BOOK_EVENT",
-      "CLASS_EVENT",
-      "COMEDY_EVENT",
-      "CONFERENCE_EVENT",
-      "DANCE_EVENT",
-      "DINING_EVENT",
-      "FAMILY_EVENT",
-      "FESTIVAL_EVENT",
-      "FITNESS",
-      "FOOD_TASTING",
-      "FUNDRAISER",
-      "LECTURE",
-      "MEETUP",
-      "MOVIE_EVENT",
-      "MUSIC_EVENT",
-      "NEIGHBORHOOD",
-      "NIGHTLIFE",
-      "OTHER",
-      "RELIGIOUS_EVENT",
-      "SHOPPING",
-      "SPORTS_EVENT",
-      "THEATER_EVENT",
-      "VOLUNTEERING",
-      "WORKSHOP",
+      "CLASSIC_LITERATURE",
+      "COMEDY",
+      "CRAFTS",
+      "DANCE",
+      "DRINKS",
+      "FITNESS_AND_WORKOUTS",
+      "FOODS",
+      "GAMES",
+      "GARDENING",
+      "HEALTHY_LIVING_AND_SELF_CARE",
+      "HEALTH_AND_MEDICAL",
+      "HOME_AND_GARDEN",
+      "MUSIC_AND_AUDIO",
+      "PARTIES",
+      "PROFESSIONAL_NETWORKING",
+      "RELIGIONS",
+      "SHOPPING_EVENT",
+      "SOCIAL_ISSUES",
+      "SPORTS",
+      "THEATER",
+      "TV_AND_MOVIES",
+      "VISUAL_ARTS",
     ]
 
     ONLINE_EVENT_FORMAT = [
@@ -143,7 +140,6 @@ module FacebookAds
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'

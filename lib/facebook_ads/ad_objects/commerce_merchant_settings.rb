@@ -87,6 +87,13 @@ module FacebookAds
       end
     end
 
+    has_edge :onsite_conversion_events do |edge|
+      edge.get do |api|
+        api.has_param :created_after, 'datetime'
+        api.has_param :created_before, 'datetime'
+      end
+    end
+
     has_edge :order_management_apps do |edge|
       edge.get 'Application'
       edge.post 'CommerceMerchantSettings'
@@ -103,6 +110,10 @@ module FacebookAds
         api.has_param :start_time_created, 'datetime'
         api.has_param :statuses, { list: { enum: %w{APPROVED DISAPPROVED MERCHANT_MARKED_COMPLETED REFUNDED REQUESTED }} }
       end
+    end
+
+    has_edge :seller_issues do |edge|
+      edge.get
     end
 
     has_edge :setup_status do |edge|

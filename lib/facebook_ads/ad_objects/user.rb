@@ -81,7 +81,7 @@ module FacebookAds
     field :profile_pic, 'string'
     field :quotes, 'string'
     field :relationship_status, 'string'
-    field :shared_login_upgrade_required_by, 'datetime'
+    field :shared_login_upgrade_required_by, 'object'
     field :short_name, 'string'
     field :significant_other, 'User'
     field :sports, { list: 'Experience' }
@@ -184,6 +184,10 @@ module FacebookAds
 
     has_edge :assigned_product_catalogs do |edge|
       edge.get 'ProductCatalog'
+    end
+
+    has_edge :avatars do |edge|
+      edge.get
     end
 
     has_edge :business_users do |edge|
@@ -442,7 +446,6 @@ module FacebookAds
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
@@ -466,9 +469,13 @@ module FacebookAds
       edge.post 'User' do |api|
         api.has_param :filtering, { list: { enum: -> { User::FILTERING }} }
         api.has_param :href, 'object'
+        api.has_param :label, 'string'
+        api.has_param :message, 'hash'
         api.has_param :notif_ids, { list: 'string' }
+        api.has_param :payload, 'string'
         api.has_param :read, 'bool'
         api.has_param :ref, 'string'
+        api.has_param :scheduleinterval, 'int'
         api.has_param :seen, 'bool'
         api.has_param :template, 'object'
         api.has_param :type, { enum: -> { User::TYPE }}
@@ -559,13 +566,6 @@ module FacebookAds
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
-      end
-    end
-
-    has_edge :pioneer_data do |edge|
-      edge.get
-      edge.post do |api|
-        api.has_param :json_data, 'string'
       end
     end
 

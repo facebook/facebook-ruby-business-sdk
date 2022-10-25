@@ -57,7 +57,6 @@ module FacebookAds
     ]
 
     FEED_TYPE = [
-      "AUTO",
       "AUTOMOTIVE_MODEL",
       "DESTINATION",
       "FLIGHT",
@@ -65,7 +64,6 @@ module FacebookAds
       "HOTEL",
       "HOTEL_ROOM",
       "LOCAL_INVENTORY",
-      "MARKET",
       "MEDIA_TITLE",
       "OFFER",
       "PRODUCTS",
@@ -104,6 +102,7 @@ module FacebookAds
     ]
 
     OVERRIDE_TYPE = [
+      "BATCH_API_LANGUAGE_OR_COUNTRY",
       "CATALOG_SEGMENT_CUSTOMIZE_DEFAULT",
       "COUNTRY",
       "LANGUAGE",
@@ -168,6 +167,13 @@ module FacebookAds
 
     has_edge :hotels do |edge|
       edge.get 'Hotel' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :media_titles do |edge|
+      edge.get 'MediaTitle' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

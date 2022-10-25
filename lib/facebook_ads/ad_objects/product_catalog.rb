@@ -96,15 +96,17 @@ module FacebookAds
 
 
     field :business, 'Business'
+    field :catalog_store, 'StoreCatalogSettings'
     field :commerce_merchant_settings, 'CommerceMerchantSettings'
+    field :creator_user, 'User'
     field :da_display_settings, 'ProductCatalogImageSettings'
     field :default_image_url, 'string'
     field :fallback_image_url, { list: 'string' }
     field :feed_count, 'int'
     field :id, 'string'
     field :is_catalog_segment, 'bool'
-    field :latest_feed_upload_session, 'ProductFeedUpload'
     field :name, 'string'
+    field :owner_business, 'Business'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
     field :vertical, 'string'
@@ -326,9 +328,13 @@ module FacebookAds
     end
 
     has_edge :media_titles do |edge|
-      edge.post do |api|
+      edge.get 'MediaTitle' do |api|
+        api.has_param :bulk_pagination, 'bool'
+        api.has_param :filter, 'object'
+      end
+      edge.post 'MediaTitle' do |api|
         api.has_param :applinks, 'object'
-        api.has_param :content_category, { enum: %w{MOVIE MUSIC TV_SHOW }}
+        api.has_param :content_category, { enum: -> { MediaTitle::CONTENT_CATEGORY }}
         api.has_param :currency, 'string'
         api.has_param :description, 'string'
         api.has_param :fb_page_id, 'string'

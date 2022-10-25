@@ -72,6 +72,7 @@ module FacebookAds
     field :block_display_for_non_targeted_viewer, 'bool'
     field :context_card, 'object'
     field :created_time, 'datetime'
+    field :creator, 'User'
     field :expired_leads_count, 'int'
     field :follow_up_action_text, 'string'
     field :follow_up_action_url, 'string'

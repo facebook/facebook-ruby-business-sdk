@@ -124,6 +124,7 @@ module FacebookAds
     field :auto_event_mapping_android, { list: 'object' }
     field :auto_event_mapping_ios, { list: 'object' }
     field :auto_event_setup_enabled, 'bool'
+    field :business, 'Business'
     field :canvas_fluid_height, 'bool'
     field :canvas_fluid_width, 'int'
     field :canvas_url, 'string'
@@ -169,6 +170,7 @@ module FacebookAds
     field :name, 'string'
     field :namespace, 'string'
     field :object_store_urls, 'object'
+    field :owner_business, 'Business'
     field :page_tab_default_name, 'string'
     field :page_tab_url, 'string'
     field :photo_url, 'string'
@@ -233,6 +235,7 @@ module FacebookAds
         api.has_param :bundle_id, 'string'
         api.has_param :bundle_short_version, 'string'
         api.has_param :bundle_version, 'string'
+        api.has_param :campaign_ids, 'string'
         api.has_param :click_id, 'string'
         api.has_param :consider_views, 'bool'
         api.has_param :custom_events, { list: 'object' }
@@ -325,6 +328,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :app_id, 'int'
         api.has_param :is_aem_ready, 'bool'
+        api.has_param :is_aem_v2_ready, 'bool'
         api.has_param :is_skan_ready, 'bool'
       end
     end
@@ -494,6 +498,7 @@ module FacebookAds
         api.has_param :fb_click_time, 'int'
         api.has_param :fb_view_time, 'int'
         api.has_param :is_fb, 'bool'
+        api.has_param :used_install_referrer, 'bool'
         api.has_param :view_attr_window, 'int'
       end
     end
@@ -509,10 +514,15 @@ module FacebookAds
     end
 
     has_edge :monetized_digital_store_objects do |edge|
+      edge.get
       edge.post do |api|
         api.has_param :content_id, 'string'
         api.has_param :store, 'string'
       end
+    end
+
+    has_edge :object_types do |edge|
+      edge.get 'NullNode'
     end
 
     has_edge :occludespopups do |edge|

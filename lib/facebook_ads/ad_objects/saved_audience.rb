@@ -36,6 +36,7 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'
+    field :owner_business, 'Business'
     field :page_deletion_marked_delete_time, 'int'
     field :permission_for_actions, 'AudiencePermissionForActions'
     field :run_status, 'string'

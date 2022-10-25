@@ -37,6 +37,7 @@ module FacebookAds
     field :mentioned_comment, 'IgComment'
     field :mentioned_media, 'IgMedia'
     field :name, 'string'
+    field :owner_business, 'Business'
     field :profile_picture_url, 'string'
     field :shopping_product_tag_eligibility, 'bool'
     field :shopping_review_status, 'string'

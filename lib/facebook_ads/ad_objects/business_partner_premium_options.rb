@@ -25,65 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ContentDeliveryReport < AdObject
-    PLATFORM = [
-      "AUDIENCE_NETWORK",
-      "FACEBOOK",
-      "HIDDEN_AAA",
-      "INSTAGRAM",
-      "MESSENGER",
-      "OCULUS",
-      "UNKNOWN",
-      "WHATSAPP",
-    ]
+  class BusinessPartnerPremiumOptions < AdObject
 
-    POSITION = [
-      "ALL_PLACEMENTS",
-      "AN_CLASSIC",
-      "BIZ_DISCO_FEED",
-      "FACEBOOK_GROUPS_FEED",
-      "FACEBOOK_REELS",
-      "FACEBOOK_REELS_OVERLAY",
-      "FACEBOOK_STORIES",
-      "FEED",
-      "GROUPS",
-      "HIDDEN_AAA",
-      "INSTAGRAM_EXPLORE",
-      "INSTAGRAM_IGTV",
-      "INSTAGRAM_REELS",
-      "INSTAGRAM_REELS_OVERLAY",
-      "INSTAGRAM_SHOP",
-      "INSTAGRAM_STORIES",
-      "INSTANT_ARTICLE",
-      "INSTREAM_VIDEO",
-      "JOBS_BROWSER",
-      "MARKETPLACE",
-      "MESSENGER_INBOX",
-      "MESSENGER_STORIES",
-      "OCULUS_REWARDED_VIDEO",
-      "OCULUS_TWILIGHT_DEVELOPER_UPDATE",
-      "OCULUS_TWILIGHT_FEED",
-      "OCULUS_TWILIGHT_FEED_SPOTLIGHT",
-      "OCULUS_TWILIGHT_SEARCH",
-      "OCULUS_TWILIGHT_SEARCH_NULL_STATE",
-      "OCULUS_VR_APPS",
-      "OTHERS",
-      "REWARDED_VIDEO",
-      "RIGHT_HAND_COLUMN",
-      "SEARCH",
-      "STATUS",
-      "STICKERS",
-      "SUGGESTED_VIDEO",
-      "UNKNOWN",
-      "VIDEO_FEEDS",
-    ]
-
-
-    field :content_name, 'string'
-    field :content_url, 'string'
-    field :creator_name, 'string'
-    field :creator_url, 'string'
-    field :estimated_impressions, 'int'
+    field :enable_basket_insight, 'bool'
+    field :enable_extended_audience_retargeting, 'bool'
+    field :retailer_custom_audience_config, 'object'
     has_no_id
     has_no_get
     has_no_post

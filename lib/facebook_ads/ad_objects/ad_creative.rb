@@ -63,12 +63,14 @@ module FacebookAds
       "MOBILE_DOWNLOAD",
       "MOMENTS",
       "NO_BUTTON",
+      "OPEN_INSTANT_APP",
       "OPEN_LINK",
       "ORDER_NOW",
       "PAY_TO_ACCESS",
       "PLAY_GAME",
       "PLAY_GAME_ON_FACEBOOK",
       "PURCHASE_GIFT_CARDS",
+      "RAISE_MONEY",
       "RECORD_NOW",
       "REFER_FRIENDS",
       "REQUEST_TIME",
@@ -150,11 +152,6 @@ module FacebookAds
       "STORY_OWNER",
     ]
 
-    INSTANT_CHECKOUT_SETTING = [
-      "off",
-      "on",
-    ]
-
     OPERATOR = [
       "ALL",
       "ANY",
@@ -223,7 +220,6 @@ module FacebookAds
     field :video_id, 'string'
     field :call_to_action, 'object'
     field :image_file, 'string'
-    field :instant_checkout_setting, { enum: -> { INSTANT_CHECKOUT_SETTING }}
     field :is_dco_internal, 'bool'
 
     has_edge :adlabels do |edge|
