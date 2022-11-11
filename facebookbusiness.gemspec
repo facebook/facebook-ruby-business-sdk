@@ -35,7 +35,8 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '> 2.7'
 
   s.add_dependency 'concurrent-ruby', '~> 1.1'
-  s.add_dependency 'faraday', '~> 1.0'
+  s.add_dependency 'faraday', '~> 2.6.0'
+  s.add_dependency 'faraday-multipart', '~> 1.0.4'
   s.add_dependency 'json', '~> 2.2'
   s.add_dependency 'countries', '~>3.0'
   s.add_dependency 'money', '~> 6.13'

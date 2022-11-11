@@ -17,6 +17,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'faraday'
+require 'faraday/multipart'
 require 'openssl'
 require 'logger'
 require 'facebook_ads/videos/video_request'
