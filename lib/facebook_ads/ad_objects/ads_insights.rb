@@ -35,6 +35,8 @@ module FacebookAds
       "7d_view",
       "dda",
       "default",
+      "skan_click",
+      "skan_view",
     ]
 
     ACTION_BREAKDOWNS = [
@@ -72,18 +74,22 @@ module FacebookAds
       "hourly_stats_aggregated_by_audience_time_zone",
       "image_asset",
       "impression_device",
+      "is_conversion_id_modeled",
       "link_url_asset",
+      "mmm",
       "place_page_id",
       "platform_position",
       "product_id",
       "publisher_platform",
       "region",
+      "skan_campaign_id",
       "skan_conversion_id",
       "title_asset",
       "video_asset",
     ]
 
     DATE_PRESET = [
+      "data_maximum",
       "last_14d",
       "last_28d",
       "last_30d",
@@ -225,6 +231,7 @@ module FacebookAds
     field :social_spend, 'string'
     field :spend, 'string'
     field :total_postbacks, 'string'
+    field :total_postbacks_detailed, { list: 'AdsActionStats' }
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
     field :unique_conversions, { list: 'AdsActionStats' }

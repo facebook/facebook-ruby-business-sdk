@@ -40,11 +40,13 @@ module FacebookAds
       "SUPPLEMENTARY_IMAGES",
       "WEB",
       "WINDOWS",
+      "XIAOMI",
     ]
 
     AN_PLATFORMS = [
       "ANDROID",
       "DESKTOP",
+      "GALAXY",
       "INSTANT_ARTICLES",
       "IOS",
       "MOBILE_WEB",
@@ -122,6 +124,7 @@ module FacebookAds
     field :auto_event_mapping_android, { list: 'object' }
     field :auto_event_mapping_ios, { list: 'object' }
     field :auto_event_setup_enabled, 'bool'
+    field :business, 'Business'
     field :canvas_fluid_height, 'bool'
     field :canvas_fluid_width, 'int'
     field :canvas_url, 'string'
@@ -167,6 +170,7 @@ module FacebookAds
     field :name, 'string'
     field :namespace, 'string'
     field :object_store_urls, 'object'
+    field :owner_business, 'Business'
     field :page_tab_default_name, 'string'
     field :page_tab_url, 'string'
     field :photo_url, 'string'
@@ -231,6 +235,7 @@ module FacebookAds
         api.has_param :bundle_id, 'string'
         api.has_param :bundle_short_version, 'string'
         api.has_param :bundle_version, 'string'
+        api.has_param :campaign_ids, 'string'
         api.has_param :click_id, 'string'
         api.has_param :consider_views, 'bool'
         api.has_param :custom_events, { list: 'object' }
@@ -257,6 +262,10 @@ module FacebookAds
         api.has_param :user_id_type, { enum: %w{INSTANT_GAMES_PLAYER_ID }}
         api.has_param :windows_attribution_id, 'string'
       end
+    end
+
+    has_edge :ad_placement_groups do |edge|
+      edge.get
     end
 
     has_edge :adnetwork_placements do |edge|
@@ -302,9 +311,25 @@ module FacebookAds
       end
     end
 
+    has_edge :aem_conversion_filter do |edge|
+      edge.get do |api|
+        api.has_param :catalog_id, 'string'
+        api.has_param :fb_content_ids, 'string'
+      end
+    end
+
     has_edge :aem_conversions do |edge|
       edge.post do |api|
         api.has_param :aem_conversions, { list: 'hash' }
+      end
+    end
+
+    has_edge :aem_skan_readiness do |edge|
+      edge.post do |api|
+        api.has_param :app_id, 'int'
+        api.has_param :is_aem_ready, 'bool'
+        api.has_param :is_aem_v2_ready, 'bool'
+        api.has_param :is_skan_ready, 'bool'
       end
     end
 
@@ -322,6 +347,10 @@ module FacebookAds
     end
 
     has_edge :android_dialog_configs do |edge|
+      edge.get
+    end
+
+    has_edge :app_event_types do |edge|
       edge.get
     end
 
@@ -387,6 +416,10 @@ module FacebookAds
       end
     end
 
+    has_edge :cloudbridge_settings do |edge|
+      edge.get
+    end
+
     has_edge :codeless_event_mappings do |edge|
       edge.post 'Application' do |api|
         api.has_param :mappings, { list: 'hash' }
@@ -450,13 +483,6 @@ module FacebookAds
       end
     end
 
-    has_edge :leaderboards_reset do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :name, 'string'
-        api.has_param :reset_time, 'datetime'
-      end
-    end
-
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
         api.has_param :advertiser_id, 'string'
@@ -472,6 +498,7 @@ module FacebookAds
         api.has_param :fb_click_time, 'int'
         api.has_param :fb_view_time, 'int'
         api.has_param :is_fb, 'bool'
+        api.has_param :used_install_referrer, 'bool'
         api.has_param :view_attr_window, 'int'
       end
     end
@@ -484,6 +511,18 @@ module FacebookAds
         api.has_param :platform, { enum: %w{ANDROID IOS }}
         api.has_param :sdk_version, 'string'
       end
+    end
+
+    has_edge :monetized_digital_store_objects do |edge|
+      edge.get
+      edge.post do |api|
+        api.has_param :content_id, 'string'
+        api.has_param :store, 'string'
+      end
+    end
+
+    has_edge :object_types do |edge|
+      edge.get 'NullNode'
     end
 
     has_edge :occludespopups do |edge|
@@ -506,9 +545,6 @@ module FacebookAds
     end
 
     has_edge :payment_currencies do |edge|
-      edge.delete do |api|
-        api.has_param :currency_url, 'string'
-      end
       edge.post 'Application' do |api|
         api.has_param :currency_url, 'string'
       end
@@ -531,27 +567,11 @@ module FacebookAds
     end
 
     has_edge :purchases do |edge|
-      edge.get do |api|
-        api.has_param :is_premium, 'bool'
-      end
-    end
-
-    has_edge :push_token_register do |edge|
-      edge.post do |api|
-        api.has_param :device_id, 'string'
-        api.has_param :push_token, 'string'
-      end
+      edge.get
     end
 
     has_edge :roles do |edge|
       edge.get
-    end
-
-    has_edge :send_notification do |edge|
-      edge.post do |api|
-        api.has_param :payload, 'string'
-        api.has_param :token_id, 'string'
-      end
     end
 
     has_edge :subscribed_domains do |edge|

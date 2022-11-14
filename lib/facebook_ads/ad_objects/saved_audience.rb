@@ -28,14 +28,15 @@ module FacebookAds
   class SavedAudience < AdObject
 
     field :account, 'AdAccount'
-    field :approximate_count, 'int'
-    field :approximate_count_64bit, 'int'
+    field :approximate_count_lower_bound, 'int'
+    field :approximate_count_upper_bound, 'int'
     field :delete_time, 'int'
     field :description, 'string'
     field :extra_info, 'string'
     field :id, 'string'
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'
+    field :owner_business, 'Business'
     field :page_deletion_marked_delete_time, 'int'
     field :permission_for_actions, 'AudiencePermissionForActions'
     field :run_status, 'string'

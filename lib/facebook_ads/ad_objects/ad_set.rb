@@ -65,30 +65,26 @@ module FacebookAds
 
     OPTIMIZATION_GOAL = [
       "AD_RECALL_LIFT",
-      "APP_DOWNLOADS",
       "APP_INSTALLS",
-      "BRAND_AWARENESS",
-      "CLICKS",
+      "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
+      "CONVERSATIONS",
       "DERIVED_EVENTS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",
+      "IN_APP_VALUE",
       "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
+      "MESSAGING_PURCHASE_CONVERSION",
       "NONE",
-      "OFFER_CLAIMS",
       "OFFSITE_CONVERSIONS",
-      "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
-      "REPLIES",
-      "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
-      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
       "VISIT_INSTAGRAM_PROFILE",
     ]
@@ -101,6 +97,7 @@ module FacebookAds
     ]
 
     DATE_PRESET = [
+      "data_maximum",
       "last_14d",
       "last_28d",
       "last_30d",
@@ -168,6 +165,7 @@ module FacebookAds
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
+      "ONLINE_GAMBLING_AND_GAMING",
     ]
 
     OPERATOR = [
@@ -298,16 +296,6 @@ module FacebookAds
     has_edge :asyncadrequests do |edge|
       edge.get 'AdAsyncRequest' do |api|
         api.has_param :statuses, { list: { enum: -> { AdAsyncRequest::STATUSES }} }
-      end
-    end
-
-    has_edge :content_delivery_report do |edge|
-      edge.get 'ContentDeliveryReport' do |api|
-        api.has_param :end_date, 'datetime'
-        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
-        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
-        api.has_param :start_date, 'datetime'
-        api.has_param :summary, 'bool'
       end
     end
 

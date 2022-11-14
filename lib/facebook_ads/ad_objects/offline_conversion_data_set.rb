@@ -44,6 +44,7 @@ module FacebookAds
     field :business, 'Business'
     field :config, 'string'
     field :creation_time, 'datetime'
+    field :creator, 'User'
     field :description, 'string'
     field :duplicate_entries, 'int'
     field :enable_auto_assign_to_accounts, 'bool'
@@ -59,7 +60,8 @@ module FacebookAds
     field :match_rate_approx, 'int'
     field :matched_entries, 'int'
     field :name, 'string'
-    field :usage, 'object'
+    field :owner_business, 'Business'
+    field :usage, 'OfflineConversionDataSetUsage'
     field :valid_entries, 'int'
     field :auto_assign_to_new_accounts_only, 'bool'
 
@@ -86,6 +88,7 @@ module FacebookAds
 
     has_edge :audiences do |edge|
       edge.get 'CustomAudience' do |api|
+        api.has_param :action_source, { enum: -> { CustomAudience::ACTION_SOURCE }}
         api.has_param :ad_account, 'string'
       end
     end
@@ -119,14 +122,14 @@ module FacebookAds
     end
 
     has_edge :uploads do |edge|
-      edge.get do |api|
+      edge.get 'OfflineConversionDataSetUpload' do |api|
         api.has_param :end_time, 'datetime'
-        api.has_param :order, { enum: %w{ASCENDING DESCENDING }}
-        api.has_param :sort_by, { enum: %w{API_CALLS CREATION_TIME EVENT_TIME_MAX EVENT_TIME_MIN FIRST_UPLOAD_TIME IS_EXCLUDED_FOR_LIFT LAST_UPLOAD_TIME }}
+        api.has_param :order, { enum: -> { OfflineConversionDataSetUpload::ORDER }}
+        api.has_param :sort_by, { enum: -> { OfflineConversionDataSetUpload::SORT_BY }}
         api.has_param :start_time, 'datetime'
         api.has_param :upload_tag, 'string'
       end
-      edge.post do |api|
+      edge.post 'OfflineConversionDataSetUpload' do |api|
         api.has_param :upload_tag, 'string'
       end
     end

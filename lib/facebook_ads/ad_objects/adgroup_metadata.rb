@@ -25,14 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class NativeOfferDiscount < AdObject
+  class AdgroupMetadata < AdObject
 
-    field :currency, 'string'
-    field :override, 'string'
-    field :text, 'string'
-    field :type, 'string'
-    field :value1, 'double'
-    field :value2, 'double'
+    field :ad_standard_enhancements_edit_source, 'int'
+    field :adgroup_creation_source, 'string'
+    field :adgroup_edit_source, 'string'
+    field :carousel_style, 'string'
+    field :carousel_with_static_card_style, 'string'
     has_no_id
     has_no_get
     has_no_post

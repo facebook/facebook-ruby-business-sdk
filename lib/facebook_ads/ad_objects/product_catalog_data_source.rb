@@ -25,13 +25,20 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PageAdminNote < AdObject
+  class ProductCatalogDataSource < AdObject
+    INGESTION_SOURCE_TYPE = [
+      "ALL",
+      "PRIMARY",
+      "SUPPLEMENTARY",
+    ]
 
-    field :body, 'string'
-    field :from, 'Page'
+
+    field :app_id, 'string'
     field :id, 'string'
-    field :note_label, 'string'
-    field :user, 'User'
+    field :ingestion_source_type, 'string'
+    field :name, 'string'
+    field :upload_type, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

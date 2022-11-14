@@ -29,6 +29,7 @@ module FacebookAds
 
     field :braintree_merchant_id, 'string'
     field :checkout_message, 'string'
+    field :commerce_store, 'object'
     field :contact_email, 'string'
     field :cta, 'string'
     field :disable_checkout_urls, 'bool'
@@ -86,6 +87,13 @@ module FacebookAds
       end
     end
 
+    has_edge :onsite_conversion_events do |edge|
+      edge.get do |api|
+        api.has_param :created_after, 'datetime'
+        api.has_param :created_before, 'datetime'
+      end
+    end
+
     has_edge :order_management_apps do |edge|
       edge.get 'Application'
       edge.post 'CommerceMerchantSettings'
@@ -104,6 +112,10 @@ module FacebookAds
       end
     end
 
+    has_edge :seller_issues do |edge|
+      edge.get
+    end
+
     has_edge :setup_status do |edge|
       edge.get 'CommerceMerchantSettingsSetupStatus'
     end
@@ -114,11 +126,16 @@ module FacebookAds
       end
       edge.post do |api|
         api.has_param :handling_time, 'hash'
+        api.has_param :is_default, 'bool'
         api.has_param :is_default_shipping_profile, 'bool'
         api.has_param :name, 'string'
         api.has_param :reference_id, 'string'
         api.has_param :shipping_destinations, { list: 'hash' }
       end
+    end
+
+    has_edge :shops do |edge|
+      edge.get 'Shop'
     end
 
     has_edge :tax_settings do |edge|

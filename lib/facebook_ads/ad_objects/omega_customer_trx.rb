@@ -38,9 +38,8 @@ module FacebookAds
     field :advertiser_name, 'string'
     field :amount, 'string'
     field :amount_due, 'CurrencyAmount'
-    field :billed_amount_details, 'BilledAmountDetails'
+    field :billed_amount_details, 'object'
     field :billing_period, 'string'
-    field :campaign, 'AtlasCampaign'
     field :cdn_download_uri, 'string'
     field :currency, 'string'
     field :download_uri, 'string'
@@ -58,7 +57,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :campaigns do |edge|
-      edge.get 'InvoiceCampaign'
+      edge.get
     end
 
   end

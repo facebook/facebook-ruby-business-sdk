@@ -25,37 +25,18 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdAccountActivity < AdObject
+  class BusinessImage < AdObject
 
-    field :created_by, 'Profile'
-    field :created_time, 'datetime'
-    field :credit_new, 'object'
-    field :credit_old, 'object'
-    field :currency_new, 'string'
-    field :currency_old, 'string'
-    field :daily_spend_limit_new, 'object'
-    field :daily_spend_limit_old, 'object'
-    field :event_time, 'datetime'
-    field :event_type, 'string'
-    field :funding_id_new, 'string'
-    field :funding_id_old, 'string'
-    field :grace_period_time_new, 'int'
-    field :grace_period_time_old, 'int'
+    field :business, 'Business'
+    field :creation_time, 'datetime'
+    field :hash, 'string'
+    field :height, 'int'
     field :id, 'string'
-    field :manager_id_new, 'Profile'
-    field :manager_id_old, 'Profile'
-    field :name_new, 'string'
-    field :name_old, 'string'
-    field :spend_cap_new, 'object'
-    field :spend_cap_old, 'object'
-    field :status_new, 'string'
-    field :status_old, 'string'
-    field :terms_new, 'int'
-    field :terms_old, 'int'
-    field :tier_new, 'string'
-    field :tier_old, 'string'
-    field :time_updated_new, 'datetime'
-    field :time_updated_old, 'datetime'
+    field :media_library_url, 'string'
+    field :name, 'string'
+    field :url, 'string'
+    field :url_128, 'string'
+    field :width, 'int'
     has_no_post
     has_no_delete
 

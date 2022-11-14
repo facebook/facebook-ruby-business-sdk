@@ -28,18 +28,23 @@ module FacebookAds
   class PrivateLiftStudyInstance < AdObject
     OPERATION = [
       "AGGREGATE",
+      "CANCEL",
       "COMPUTE",
       "ID_MATCH",
+      "NEXT",
       "NONE",
     ]
 
 
     field :breakdown_key, 'string'
     field :created_time, 'datetime'
+    field :feature_list, { list: 'string' }
     field :id, 'string'
     field :latest_status_update_time, 'datetime'
+    field :run_id, 'string'
     field :server_ips, { list: 'string' }
     field :status, 'string'
+    field :tier, 'string'
     has_no_delete
 
   end

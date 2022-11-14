@@ -38,6 +38,7 @@ module FacebookAds
     field :product_count, 'int'
     field :retailer_id, 'string'
     field :metadata, 'hash'
+    field :publish_to_shops, { list: 'hash' }
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|
@@ -75,7 +76,7 @@ module FacebookAds
     end
 
     has_edge :media_titles do |edge|
-      edge.get do |api|
+      edge.get 'MediaTitle' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end
@@ -84,6 +85,8 @@ module FacebookAds
     has_edge :products do |edge|
       edge.get 'ProductItem' do |api|
         api.has_param :bulk_pagination, 'bool'
+        api.has_param :error_priority, { enum: -> { ProductItem::ERROR_PRIORITY }}
+        api.has_param :error_type, { enum: -> { ProductItem::ERROR_TYPE }}
         api.has_param :filter, 'object'
       end
     end

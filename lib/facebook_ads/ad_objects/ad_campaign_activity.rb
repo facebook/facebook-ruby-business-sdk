@@ -68,60 +68,52 @@ module FacebookAds
 
     OPTIMIZATION_GOAL_NEW = [
       "AD_RECALL_LIFT",
-      "APP_DOWNLOADS",
       "APP_INSTALLS",
-      "BRAND_AWARENESS",
-      "CLICKS",
+      "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
+      "CONVERSATIONS",
       "DERIVED_EVENTS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",
+      "IN_APP_VALUE",
       "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
+      "MESSAGING_PURCHASE_CONVERSION",
       "NONE",
-      "OFFER_CLAIMS",
       "OFFSITE_CONVERSIONS",
-      "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
-      "REPLIES",
-      "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
-      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
       "VISIT_INSTAGRAM_PROFILE",
     ]
 
     OPTIMIZATION_GOAL_OLD = [
       "AD_RECALL_LIFT",
-      "APP_DOWNLOADS",
       "APP_INSTALLS",
-      "BRAND_AWARENESS",
-      "CLICKS",
+      "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
+      "CONVERSATIONS",
       "DERIVED_EVENTS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",
+      "IN_APP_VALUE",
       "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
+      "MESSAGING_PURCHASE_CONVERSION",
       "NONE",
-      "OFFER_CLAIMS",
       "OFFSITE_CONVERSIONS",
-      "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
-      "REPLIES",
-      "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
-      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
       "VISIT_INSTAGRAM_PROFILE",
     ]
@@ -185,6 +177,7 @@ module FacebookAds
     field :targeting_old, 'object'
     field :updated_time_new, 'datetime'
     field :updated_time_old, 'datetime'
+    field :user, 'User'
     has_no_post
     has_no_delete
 

@@ -25,7 +25,7 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdoptablePet < AdObject
+  class MediaTitle < AdObject
     IMAGE_FETCH_STATUS = [
       "DIRECT_UPLOAD",
       "FETCHED",
@@ -35,39 +35,33 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    CONTENT_CATEGORY = [
+      "MOVIE",
+      "MUSIC",
+      "TV_SHOW",
+    ]
 
-    field :address, 'object'
-    field :adoptable_pet_id, 'string'
-    field :adoption_application_form_url, 'string'
-    field :age_bucket, 'string'
-    field :animal_type, 'string'
+
     field :applinks, 'CatalogItemAppLinks'
-    field :availability, 'string'
-    field :breed, 'string'
     field :category_specific_fields, 'CatalogSubVerticalList'
-    field :coat_length, 'string'
-    field :color, 'string'
+    field :content_category, 'string'
     field :currency, 'string'
     field :description, 'string'
-    field :features, { list: 'string' }
-    field :gender, 'string'
+    field :fb_page_alias, 'string'
+    field :fb_page_id, 'Page'
+    field :genres, { list: 'string' }
     field :id, 'string'
     field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
-    field :name, 'string'
+    field :kg_fb_id, 'string'
+    field :media_title_id, 'string'
     field :price, 'string'
     field :sanitized_images, { list: 'string' }
-    field :secondary_color, 'string'
-    field :shelter_email, 'string'
-    field :shelter_name, 'string'
-    field :shelter_page_id, 'Page'
-    field :shelter_phone, 'string'
-    field :size, 'string'
-    field :tertiary_color, 'string'
+    field :title, 'string'
+    field :title_display_name, 'string'
     field :unit_price, 'object'
     field :url, 'string'
-    has_no_post
-    has_no_delete
+    field :wiki_data_item, 'string'
 
     has_edge :augmented_realities_metadata do |edge|
       edge.get

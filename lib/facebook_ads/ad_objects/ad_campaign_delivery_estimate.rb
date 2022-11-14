@@ -28,30 +28,26 @@ module FacebookAds
   class AdCampaignDeliveryEstimate < AdObject
     OPTIMIZATION_GOAL = [
       "AD_RECALL_LIFT",
-      "APP_DOWNLOADS",
       "APP_INSTALLS",
-      "BRAND_AWARENESS",
-      "CLICKS",
+      "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
+      "CONVERSATIONS",
       "DERIVED_EVENTS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",
+      "IN_APP_VALUE",
       "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
+      "MESSAGING_PURCHASE_CONVERSION",
       "NONE",
-      "OFFER_CLAIMS",
       "OFFSITE_CONVERSIONS",
-      "PAGE_ENGAGEMENT",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
-      "REPLIES",
-      "SOCIAL_IMPRESSIONS",
       "THRUPLAY",
-      "TWO_SECOND_CONTINUOUS_VIDEO_VIEWS",
       "VALUE",
       "VISIT_INSTAGRAM_PROFILE",
     ]
@@ -59,7 +55,8 @@ module FacebookAds
 
     field :daily_outcomes_curve, { list: 'OutcomePredictionPoint' }
     field :estimate_dau, 'int'
-    field :estimate_mau, 'int'
+    field :estimate_mau_lower_bound, 'int'
+    field :estimate_mau_upper_bound, 'int'
     field :estimate_ready, 'bool'
     field :targeting_optimization_types, 'hash'
     has_no_id

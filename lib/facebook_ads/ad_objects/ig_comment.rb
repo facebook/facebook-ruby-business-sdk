@@ -27,10 +27,12 @@ module FacebookAds
 
   class IgComment < AdObject
 
+    field :from, 'object'
     field :hidden, 'bool'
     field :id, 'string'
     field :like_count, 'int'
     field :media, 'IgMedia'
+    field :parent_id, 'string'
     field :text, 'string'
     field :timestamp, 'datetime'
     field :user, 'IgUser'

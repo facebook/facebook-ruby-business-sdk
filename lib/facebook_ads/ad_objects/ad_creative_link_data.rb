@@ -32,6 +32,7 @@ module FacebookAds
     ]
 
     FORMAT_OPTION = [
+      "carousel_ar_effects",
       "carousel_images_multi_items",
       "carousel_images_single_item",
       "carousel_slideshows",

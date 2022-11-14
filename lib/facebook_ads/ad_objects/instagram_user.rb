@@ -34,6 +34,8 @@ module FacebookAds
     field :is_private, 'bool'
     field :is_published, 'bool'
     field :media_count, 'int'
+    field :mini_shop_storefront, 'Shop'
+    field :owner_business, 'Business'
     field :profile_pic, 'string'
     field :username, 'string'
     has_no_post

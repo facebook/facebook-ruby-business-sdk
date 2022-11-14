@@ -28,11 +28,14 @@ module FacebookAds
   class ExtendedCreditInvoiceGroup < AdObject
 
     field :auto_enroll, 'bool'
+    field :bill_to_address, 'CrmAddress'
     field :customer_po_number, 'string'
     field :email, 'object'
     field :emails, { list: 'string' }
     field :id, 'string'
+    field :liable_address, 'CrmAddress'
     field :name, 'string'
+    field :sold_to_address, 'CrmAddress'
 
     has_edge :ad_accounts do |edge|
       edge.delete do |api|

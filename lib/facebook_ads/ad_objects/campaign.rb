@@ -56,6 +56,7 @@ module FacebookAds
     ]
 
     DATE_PRESET = [
+      "data_maximum",
       "last_14d",
       "last_28d",
       "last_30d",
@@ -111,6 +112,7 @@ module FacebookAds
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
+      "ONLINE_GAMBLING_AND_GAMING",
     ]
 
     SPECIAL_AD_CATEGORY_COUNTRY = [
@@ -378,6 +380,7 @@ module FacebookAds
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
+      "ONLINE_GAMBLING_AND_GAMING",
     ]
 
     STATUS_OPTION = [
@@ -388,8 +391,10 @@ module FacebookAds
 
 
     field :account_id, 'string'
+    field :ad_strategy_group_id, 'string'
     field :ad_strategy_id, 'string'
     field :adlabels, { list: 'AdLabel' }
+    field :benchmark_report_count, 'int'
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :boosted_object_id, 'string'
     field :brand_lift_studies, { list: 'AdStudy' }
@@ -402,6 +407,7 @@ module FacebookAds
     field :created_time, 'datetime'
     field :daily_budget, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
+    field :has_secondary_skadnetwork_reporting, 'bool'
     field :id, 'string'
     field :is_skadnetwork_attribution, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
@@ -410,6 +416,7 @@ module FacebookAds
     field :name, 'string'
     field :objective, 'string'
     field :pacing_type, { list: 'string' }
+    field :primary_attribution, 'string'
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
     field :smart_promotion_type, 'string'
@@ -461,17 +468,6 @@ module FacebookAds
         api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
         api.has_param :is_completed, 'bool'
         api.has_param :time_range, 'object'
-      end
-    end
-
-    has_edge :content_delivery_report do |edge|
-      edge.get 'ContentDeliveryReport' do |api|
-        api.has_param :end_date, 'datetime'
-        api.has_param :page_id, 'int'
-        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
-        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
-        api.has_param :start_date, 'datetime'
-        api.has_param :summary, 'bool'
       end
     end
 

@@ -25,14 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdgroupRelevanceScore < AdObject
+  class CanvasDynamicSetting < AdObject
 
-    field :negative_feedback, 'string'
-    field :positive_feedback, 'string'
-    field :score, 'string'
-    field :status, 'string'
-    has_no_id
-    has_no_get
+    field :child_documents, { list: 'Canvas' }
+    field :product_set_id, 'string'
+    field :id, 'string'
     has_no_post
     has_no_delete
 

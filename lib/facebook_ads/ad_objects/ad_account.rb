@@ -56,6 +56,7 @@ module FacebookAds
       "JPY",
       "KES",
       "KRW",
+      "LKR",
       "MOP",
       "MXN",
       "MYR",
@@ -70,7 +71,6 @@ module FacebookAds
       "PYG",
       "QAR",
       "RON",
-      "RUB",
       "SAR",
       "SEK",
       "SGD",
@@ -158,6 +158,7 @@ module FacebookAds
     field :capabilities, { list: 'string' }
     field :created_time, 'datetime'
     field :currency, 'string'
+    field :custom_audience_info, 'AdAccountCustomAudience'
     field :disable_reason, 'int'
     field :end_advertiser, 'string'
     field :end_advertiser_name, 'string'
@@ -179,6 +180,7 @@ module FacebookAds
     field :is_personal, 'int'
     field :is_prepay_account, 'bool'
     field :is_tax_id_required, 'bool'
+    field :liable_address, 'CrmAddress'
     field :line_numbers, { list: 'int' }
     field :media_agency, 'string'
     field :min_campaign_group_spend_cap, 'string'
@@ -186,9 +188,12 @@ module FacebookAds
     field :name, 'string'
     field :offsite_pixels_tos_accepted, 'bool'
     field :owner, 'string'
+    field :owner_business, 'Business'
     field :partner, 'string'
     field :rf_spec, 'ReachFrequencySpec'
+    field :send_bill_to_address, 'CrmAddress'
     field :show_checkout_experience, 'bool'
+    field :sold_to_address, 'CrmAddress'
     field :spend_cap, 'string'
     field :tax_id, 'string'
     field :tax_id_status, 'int'
@@ -199,6 +204,7 @@ module FacebookAds
     field :tos_accepted, 'hash'
     field :user_tasks, { list: 'string' }
     field :user_tos_accepted, 'hash'
+    field :viewable_business, 'Business'
     has_no_delete
 
     has_edge :activities do |edge|
@@ -274,7 +280,6 @@ module FacebookAds
         api.has_param :instagram_actor_id, 'string'
         api.has_param :instagram_permalink_url, 'string'
         api.has_param :instagram_user_id, 'string'
-        api.has_param :instant_checkout_setting, { enum: -> { AdCreative::INSTANT_CHECKOUT_SETTING }}
         api.has_param :interactive_components_spec, 'hash'
         api.has_param :is_dco_internal, 'bool'
         api.has_param :link_og_id, 'string'
@@ -286,6 +291,7 @@ module FacebookAds
         api.has_param :object_story_spec, 'AdCreativeObjectStorySpec'
         api.has_param :object_type, 'string'
         api.has_param :object_url, 'string'
+        api.has_param :omnichannel_link_spec, 'hash'
         api.has_param :place_page_set_id, 'string'
         api.has_param :platform_customizations, 'object'
         api.has_param :playable_asset_id, 'string'
@@ -320,6 +326,7 @@ module FacebookAds
         api.has_param :minheight, 'int'
         api.has_param :minwidth, 'int'
         api.has_param :name, 'string'
+        api.has_param :selected_hashes, { list: 'string' }
       end
       edge.post list: 'AdImage' do |api|
         api.has_param :bytes, 'object'
@@ -365,6 +372,7 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :schedule_spec, 'object'
         api.has_param :status, { enum: -> { AdRule::STATUS }}
+        api.has_param :ui_creation_source, { enum: -> { AdRule::UI_CREATION_SOURCE }}
       end
     end
 
@@ -395,6 +403,12 @@ module FacebookAds
         api.has_param :status, { enum: -> { Ad::STATUS }}
         api.has_param :tracking_specs, 'object'
         api.accepts_files!
+      end
+    end
+
+    has_edge :ads_reporting_mmm_reports do |edge|
+      edge.get do |api|
+        api.has_param :filtering, { list: 'hash' }
       end
     end
 
@@ -562,7 +576,6 @@ module FacebookAds
         api.has_param :react_mode_metadata, 'string'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
-        api.has_param :sales_promo_id, 'int'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :source, 'file'
         api.has_param :source_instagram_media_id, 'string'
@@ -653,12 +666,6 @@ module FacebookAds
       end
     end
 
-    has_edge :businessprojects do |edge|
-      edge.get do |api|
-        api.has_param :business, 'string'
-      end
-    end
-
     has_edge :campaigns do |edge|
       edge.delete do |api|
         api.has_param :before_date, 'datetime'
@@ -707,25 +714,6 @@ module FacebookAds
 
     has_edge :connected_instagram_accounts do |edge|
       edge.get 'IgUser'
-    end
-
-    has_edge :content_delivery_report do |edge|
-      edge.get 'ContentDeliveryReport' do |api|
-        api.has_param :end_date, 'datetime'
-        api.has_param :page_id, 'int'
-        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
-        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
-        api.has_param :start_date, 'datetime'
-        api.has_param :summary, 'bool'
-      end
-    end
-
-    has_edge :create_and_apply_publisher_block_list do |edge|
-      edge.post do |api|
-        api.has_param :is_auto_blocking_on, 'bool'
-        api.has_param :name, 'string'
-        api.has_param :publisher_urls, { list: 'string' }
-      end
     end
 
     has_edge :customaudiences do |edge|
@@ -894,6 +882,7 @@ module FacebookAds
         api.has_param :campaign_group_id, 'int'
         api.has_param :campaign_group_status, { enum: %w{ACTIVE ADSET_PAUSED ARCHIVED CAMPAIGN_PAUSED DELETED DISAPPROVED IN_PROCESS PAUSED PENDING_BILLING_INFO PENDING_REVIEW PREAPPROVED WITH_ISSUES }}
         api.has_param :conversion_domain, 'string'
+        api.has_param :custom_event_type, { enum: %w{ADD_TO_CART CONTENT_VIEW PURCHASE }}
         api.has_param :end_time, 'int'
         api.has_param :lifetime_budget, 'int'
         api.has_param :override_creative_text, 'string'
@@ -1014,6 +1003,7 @@ module FacebookAds
         api.has_param :is_reserved_buying, 'bool'
         api.has_param :num_curve_points, 'int'
         api.has_param :objective, 'string'
+        api.has_param :optimization_goal, 'string'
         api.has_param :prediction_mode, 'int'
         api.has_param :reach, 'int'
         api.has_param :rf_prediction_id, 'string'

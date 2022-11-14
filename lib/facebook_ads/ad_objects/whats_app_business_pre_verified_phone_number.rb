@@ -25,14 +25,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BilledAmountDetails < AdObject
+  class WhatsAppBusinessPreVerifiedPhoneNumber < AdObject
 
-    field :currency, 'string'
-    field :net_amount, 'string'
-    field :tax_amount, 'string'
-    field :total_amount, 'string'
-    has_no_id
-    has_no_get
+    field :code_verification_status, 'string'
+    field :id, 'string'
+    field :phone_number, 'string'
     has_no_post
     has_no_delete
 

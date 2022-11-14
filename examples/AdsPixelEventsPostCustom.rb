@@ -56,7 +56,6 @@ event = FacebookAds::ServerSide::Event.new(
     action_source: 'website'
 )
 
-
 request = FacebookAds::ServerSide::EventRequest.new(
     pixel_id: pixel_id,
     events: [event]

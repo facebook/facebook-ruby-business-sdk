@@ -33,6 +33,32 @@ module FacebookAds
       "HAS_ISSUES",
     ]
 
+    UI_CREATION_SOURCE = [
+      "AM_ACCOUNT_OVERVIEW_RECOMMENDATIONS",
+      "AM_ACTIVITY_HISTORY_TABLE",
+      "AM_AD_OBJECT_NAME_CARD",
+      "AM_AMFE_L3_RECOMMENDATION",
+      "AM_AUTO_APPLY_WIDGET",
+      "AM_EDITOR_CARD",
+      "AM_INFO_CARD",
+      "AM_NAME_CELL_DROPDOWN",
+      "AM_PERFORMANCE_SUMMARY",
+      "AM_RULE_LANDING_PAGE_BANNER",
+      "AM_TOOLBAR_CREATE_RULE_DROPDOWN",
+      "PE_CAMPAIGN_STRUCTURE_MENU",
+      "PE_EDITOR_CARD",
+      "PE_INFO_CARD",
+      "PE_TOOLBAR_CREATE_RULE_DROPDOWN",
+      "RULES_MANAGEMENT_PAGE_ACTION_DROPDOWN",
+      "RULES_MANAGEMENT_PAGE_RULE_GROUP",
+      "RULES_MANAGEMENT_PAGE_RULE_NAME",
+      "RULES_MANAGEMENT_PAGE_TOP_NAV",
+      "RULES_VIEW_ACTIVE_RULES_DIALOG",
+      "RULE_CREATION_SUCCESS_DIALOG",
+      "RULE_SYD_REDIRECT",
+      "RULE_TEMPLATES_DIALOG",
+    ]
+
 
     field :account_id, 'string'
     field :created_by, 'User'
@@ -44,6 +70,7 @@ module FacebookAds
     field :schedule_spec, 'AdRuleScheduleSpec'
     field :status, 'string'
     field :updated_time, 'datetime'
+    field :ui_creation_source, { enum: -> { UI_CREATION_SOURCE }}
 
     has_edge :execute do |edge|
       edge.post

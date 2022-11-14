@@ -52,6 +52,7 @@ module FacebookAds
       "GET_OFFER_VIEW",
       "GET_QUOTE",
       "GET_SHOWTIMES",
+      "GET_STARTED",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "LEARN_MORE",
@@ -62,11 +63,14 @@ module FacebookAds
       "MOBILE_DOWNLOAD",
       "MOMENTS",
       "NO_BUTTON",
+      "OPEN_INSTANT_APP",
       "OPEN_LINK",
       "ORDER_NOW",
       "PAY_TO_ACCESS",
       "PLAY_GAME",
+      "PLAY_GAME_ON_FACEBOOK",
       "PURCHASE_GIFT_CARDS",
+      "RAISE_MONEY",
       "RECORD_NOW",
       "REFER_FRIENDS",
       "REQUEST_TIME",
@@ -148,11 +152,6 @@ module FacebookAds
       "STORY_OWNER",
     ]
 
-    INSTANT_CHECKOUT_SETTING = [
-      "off",
-      "on",
-    ]
-
     OPERATOR = [
       "ALL",
       "ANY",
@@ -172,6 +171,7 @@ module FacebookAds
     field :call_to_action_type, { enum: -> { CALL_TO_ACTION_TYPE }}
     field :categorization_criteria, 'string'
     field :category_media_source, 'string'
+    field :collaborative_ads_lsb_image_bank_id, 'string'
     field :destination_set_id, 'string'
     field :dynamic_ad_voice, 'string'
     field :effective_authorization_category, 'string'
@@ -201,6 +201,7 @@ module FacebookAds
     field :object_story_spec, 'AdCreativeObjectStorySpec'
     field :object_type, { enum: -> { OBJECT_TYPE }}
     field :object_url, 'string'
+    field :omnichannel_link_spec, 'AdCreativeOmnichannelLinkSpec'
     field :place_page_set_id, 'string'
     field :platform_customizations, 'AdCreativePlatformCustomization'
     field :playable_asset_id, 'string'
@@ -211,6 +212,7 @@ module FacebookAds
     field :status, { enum: -> { STATUS }}
     field :template_url, 'string'
     field :template_url_spec, 'AdCreativeTemplateUrlSpec'
+    field :thumbnail_id, 'string'
     field :thumbnail_url, 'string'
     field :title, 'string'
     field :url_tags, 'string'
@@ -218,7 +220,6 @@ module FacebookAds
     field :video_id, 'string'
     field :call_to_action, 'object'
     field :image_file, 'string'
-    field :instant_checkout_setting, { enum: -> { INSTANT_CHECKOUT_SETTING }}
     field :is_dco_internal, 'bool'
 
     has_edge :adlabels do |edge|

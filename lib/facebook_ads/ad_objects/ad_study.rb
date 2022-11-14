@@ -36,21 +36,23 @@ module FacebookAds
 
     field :business, 'Business'
     field :canceled_time, 'datetime'
+    field :client_business, 'Business'
     field :cooldown_start_time, 'datetime'
     field :created_by, 'User'
     field :created_time, 'datetime'
     field :description, 'string'
     field :end_time, 'datetime'
     field :id, 'string'
+    field :measurement_contact, 'User'
     field :name, 'string'
     field :observation_end_time, 'datetime'
     field :results_first_available_date, 'string'
+    field :sales_contact, 'User'
     field :start_time, 'datetime'
     field :type, 'string'
     field :updated_by, 'User'
     field :updated_time, 'datetime'
     field :cells, { list: 'object' }
-    field :client_business, 'string'
     field :confidence_level, 'double'
     field :objectives, { list: 'object' }
     field :viewers, { list: 'int' }
@@ -59,10 +61,21 @@ module FacebookAds
       edge.get 'AdStudyCell'
     end
 
+    has_edge :checkpoint do |edge|
+      edge.post 'AdStudy' do |api|
+        api.has_param :checkpoint_data, 'string'
+        api.has_param :checkpoint_name, 'string'
+        api.has_param :component, 'string'
+        api.has_param :instance_id, 'string'
+        api.has_param :run_id, 'string'
+      end
+    end
+
     has_edge :instances do |edge|
       edge.get 'PrivateLiftStudyInstance'
       edge.post 'PrivateLiftStudyInstance' do |api|
         api.has_param :breakdown_key, 'hash'
+        api.has_param :run_id, 'string'
       end
     end
 

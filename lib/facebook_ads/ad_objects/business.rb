@@ -78,6 +78,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -111,6 +112,7 @@ module FacebookAds
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
+      "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
@@ -120,6 +122,7 @@ module FacebookAds
     field :block_offline_analytics, 'bool'
     field :collaborative_ads_managed_partner_business_info, 'ManagedPartnerBusiness'
     field :collaborative_ads_managed_partner_eligibility, 'BusinessManagedPartnerEligibility'
+    field :collaborative_ads_partner_premium_options, 'BusinessPartnerPremiumOptions'
     field :created_by, 'object'
     field :created_time, 'datetime'
     field :extended_updated_time, 'datetime'
@@ -190,6 +193,12 @@ module FacebookAds
       end
     end
 
+    has_edge :adnetwork_applications do |edge|
+      edge.post 'Application' do |api|
+        api.has_param :name, 'string'
+      end
+    end
+
     has_edge :adnetworkanalytics do |edge|
       edge.get 'AdNetworkAnalyticsSyncQueryResult' do |api|
         api.has_param :aggregation_period, { enum: -> { AdNetworkAnalyticsSyncQueryResult::AGGREGATION_PERIOD }}
@@ -218,6 +227,12 @@ module FacebookAds
     has_edge :adnetworkanalytics_results do |edge|
       edge.get 'AdNetworkAnalyticsAsyncQueryResult' do |api|
         api.has_param :query_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :ads_reporting_mmm_reports do |edge|
+      edge.get do |api|
+        api.has_param :filtering, { list: 'hash' }
       end
     end
 
@@ -266,23 +281,12 @@ module FacebookAds
       end
     end
 
-    has_edge :business_units do |edge|
-      edge.get 'BusinessUnit'
-      edge.post 'BusinessUnit' do |api|
-        api.has_param :business_units, { list: 'object' }
-      end
-    end
-
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
       edge.post 'BusinessUser' do |api|
         api.has_param :email, 'string'
         api.has_param :role, { enum: -> { BusinessUser::ROLE }}
       end
-    end
-
-    has_edge :businessprojects do |edge|
-      edge.get
     end
 
     has_edge :claim_custom_conversions do |edge|
@@ -292,7 +296,9 @@ module FacebookAds
     end
 
     has_edge :client_ad_accounts do |edge|
-      edge.get 'AdAccount'
+      edge.get 'AdAccount' do |api|
+        api.has_param :search_query, 'string'
+      end
     end
 
     has_edge :client_apps do |edge|
@@ -300,6 +306,10 @@ module FacebookAds
       edge.post 'Business' do |api|
         api.has_param :app_id, 'object'
       end
+    end
+
+    has_edge :client_offsite_signal_container_business_objects do |edge|
+      edge.get
     end
 
     has_edge :client_pages do |edge|
@@ -353,23 +363,22 @@ module FacebookAds
       edge.get 'CommerceMerchantSettings'
     end
 
-    has_edge :content_delivery_report do |edge|
-      edge.get 'ContentDeliveryReport' do |api|
-        api.has_param :end_date, 'datetime'
-        api.has_param :page_id, 'int'
-        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
-        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
-        api.has_param :start_date, 'datetime'
-        api.has_param :summary, 'bool'
+    has_edge :cpas_business_setup_config do |edge|
+      edge.get 'CpasBusinessSetupConfig'
+      edge.post 'CpasBusinessSetupConfig' do |api|
+        api.has_param :accepted_collab_ads_tos, 'bool'
+        api.has_param :ad_accounts, { list: 'string' }
+        api.has_param :business_capabilities_status, 'hash'
+        api.has_param :capabilities_compliance_status, 'hash'
       end
     end
 
-    has_edge :create_and_apply_publisher_block_list do |edge|
-      edge.post do |api|
-        api.has_param :is_auto_blocking_on, 'bool'
-        api.has_param :name, 'string'
-        api.has_param :publisher_urls, { list: 'string' }
-      end
+    has_edge :cpas_merchant_config do |edge|
+      edge.get 'CpasMerchantConfig'
+    end
+
+    has_edge :creditcards do |edge|
+      edge.get 'CreditCard'
     end
 
     has_edge :customconversions do |edge|
@@ -381,6 +390,12 @@ module FacebookAds
         api.has_param :event_source_id, 'string'
         api.has_param :name, 'string'
         api.has_param :rule, 'string'
+      end
+    end
+
+    has_edge :draft_negative_keyword_lists do |edge|
+      edge.post do |api|
+        api.has_param :negative_keyword_list_file, 'file'
       end
     end
 
@@ -408,13 +423,6 @@ module FacebookAds
       edge.get 'BusinessAssetSharingAgreement' do |api|
         api.has_param :recipient_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
-      end
-    end
-
-    has_edge :initiated_sharing_agreements do |edge|
-      edge.get 'BusinessAgreement' do |api|
-        api.has_param :receiving_business_id, 'string'
-        api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
       end
     end
 
@@ -459,6 +467,10 @@ module FacebookAds
     end
 
     has_edge :managed_partner_businesses do |edge|
+      edge.delete do |api|
+        api.has_param :child_business_external_id, 'string'
+        api.has_param :child_business_id, 'string'
+      end
       edge.post do |api|
         api.has_param :ad_account_currency, 'string'
         api.has_param :catalog_id, 'string'
@@ -490,11 +502,8 @@ module FacebookAds
       end
     end
 
-    has_edge :move_asset do |edge|
-      edge.post 'Business' do |api|
-        api.has_param :asset_id, 'string'
-        api.has_param :client_id, 'string'
-      end
+    has_edge :negative_keyword_lists do |edge|
+      edge.get
     end
 
     has_edge :offline_conversion_data_sets do |edge|
@@ -509,7 +518,9 @@ module FacebookAds
     end
 
     has_edge :owned_ad_accounts do |edge|
-      edge.get 'AdAccount'
+      edge.get 'AdAccount' do |api|
+        api.has_param :search_query, 'string'
+      end
       edge.post 'Business' do |api|
         api.has_param :adaccount_id, 'string'
       end
@@ -546,6 +557,10 @@ module FacebookAds
 
     has_edge :owned_instagram_accounts do |edge|
       edge.get 'InstagramUser'
+    end
+
+    has_edge :owned_offsite_signal_container_business_objects do |edge|
+      edge.get
     end
 
     has_edge :owned_pages do |edge|
@@ -586,6 +601,16 @@ module FacebookAds
       end
     end
 
+    has_edge :partner_premium_options do |edge|
+      edge.post do |api|
+        api.has_param :catalog_segment_id, 'string'
+        api.has_param :enable_basket_insight, 'bool'
+        api.has_param :enable_extended_audience_retargeting, 'bool'
+        api.has_param :retailer_custom_audience_config, 'hash'
+        api.has_param :vendor_id, 'string'
+      end
+    end
+
     has_edge :pending_client_ad_accounts do |edge|
       edge.get 'BusinessAdAccountRequest'
     end
@@ -604,6 +629,10 @@ module FacebookAds
 
     has_edge :pending_owned_pages do |edge|
       edge.get 'BusinessPageRequest'
+    end
+
+    has_edge :pending_shared_offsite_signal_container_business_objects do |edge|
+      edge.get
     end
 
     has_edge :pending_users do |edge|
@@ -633,17 +662,6 @@ module FacebookAds
       end
     end
 
-    has_edge :received_sharing_agreements do |edge|
-      edge.get 'BusinessAgreement' do |api|
-        api.has_param :request_status, { enum: -> { BusinessAgreement::REQUEST_STATUS }}
-        api.has_param :requesting_business_id, 'string'
-      end
-    end
-
-    has_edge :spaco_dataset_collections do |edge|
-      edge.get
-    end
-
     has_edge :system_users do |edge|
       edge.get 'SystemUser'
       edge.post 'SystemUser' do |api|
@@ -651,10 +669,6 @@ module FacebookAds
         api.has_param :role, { enum: -> { SystemUser::ROLE }}
         api.has_param :system_user_id, 'int'
       end
-    end
-
-    has_edge :third_party_measurement_report_dataset do |edge|
-      edge.get 'ThirdPartyMeasurementReportDataset'
     end
 
   end

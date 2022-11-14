@@ -27,31 +27,28 @@ module FacebookAds
 
   class Event < AdObject
     CATEGORY = [
-      "ART_EVENT",
-      "BOOK_EVENT",
-      "CLASS_EVENT",
-      "COMEDY_EVENT",
-      "CONFERENCE_EVENT",
-      "DANCE_EVENT",
-      "DINING_EVENT",
-      "FAMILY_EVENT",
-      "FESTIVAL_EVENT",
-      "FITNESS",
-      "FOOD_TASTING",
-      "FUNDRAISER",
-      "LECTURE",
-      "MEETUP",
-      "MOVIE_EVENT",
-      "MUSIC_EVENT",
-      "NEIGHBORHOOD",
-      "NIGHTLIFE",
-      "OTHER",
-      "RELIGIOUS_EVENT",
-      "SHOPPING",
-      "SPORTS_EVENT",
-      "THEATER_EVENT",
-      "VOLUNTEERING",
-      "WORKSHOP",
+      "CLASSIC_LITERATURE",
+      "COMEDY",
+      "CRAFTS",
+      "DANCE",
+      "DRINKS",
+      "FITNESS_AND_WORKOUTS",
+      "FOODS",
+      "GAMES",
+      "GARDENING",
+      "HEALTHY_LIVING_AND_SELF_CARE",
+      "HEALTH_AND_MEDICAL",
+      "HOME_AND_GARDEN",
+      "MUSIC_AND_AUDIO",
+      "PARTIES",
+      "PROFESSIONAL_NETWORKING",
+      "RELIGIONS",
+      "SHOPPING_EVENT",
+      "SOCIAL_ISSUES",
+      "SPORTS",
+      "THEATER",
+      "TV_AND_MOVIES",
+      "VISUAL_ARTS",
     ]
 
     ONLINE_EVENT_FORMAT = [
@@ -68,6 +65,7 @@ module FacebookAds
       "group",
       "private",
       "public",
+      "work_company",
     ]
 
     EVENT_STATE_FILTER = [
@@ -110,6 +108,7 @@ module FacebookAds
     field :place, 'Place'
     field :scheduled_publish_time, 'string'
     field :start_time, 'string'
+    field :ticket_setting, 'object'
     field :ticket_uri, 'string'
     field :ticket_uri_start_sales_time, 'string'
     field :ticketing_privacy_uri, 'string'
@@ -135,11 +134,11 @@ module FacebookAds
         api.has_param :description, 'string'
         api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
+        api.has_param :event_params, 'object'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
-        api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}

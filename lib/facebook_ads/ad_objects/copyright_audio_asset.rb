@@ -25,22 +25,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CanvasTemplate < AdObject
+  class CopyrightAudioAsset < AdObject
 
-    field :channels, 'map<string, map<string, string>>'
-    field :description, 'string'
-    field :document, 'Canvas'
+    field :copyright, 'AudioCopyright'
+    field :creation_time, 'datetime'
     field :id, 'string'
-    field :is_multi_tab_supportable, 'bool'
-    field :is_new, 'bool'
-    field :name, 'string'
-    field :objectives, 'hash'
-    field :owner_id, 'User'
-    field :required_capabilities, { list: 'string' }
-    field :snapshot_photo, 'Photo'
-    field :status, 'string'
-    field :sub_verticals, { list: 'string' }
-    field :verticals, 'hash'
+    field :title, 'string'
+    field :update_time, 'datetime'
     has_no_post
     has_no_delete
 

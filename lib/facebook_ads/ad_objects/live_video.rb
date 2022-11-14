@@ -106,11 +106,11 @@ module FacebookAds
     field :ingest_streams, { list: 'LiveVideoInputStream' }
     field :is_manual_mode, 'bool'
     field :is_reference_only, 'bool'
-    field :live_encoders, { list: 'LiveEncoder' }
     field :live_views, 'int'
     field :overlay_url, 'string'
     field :permalink_url, 'object'
     field :planned_start_time, 'datetime'
+    field :recommended_encoder_settings, 'LiveVideoRecommendedEncoderSettings'
     field :seconds_left, 'int'
     field :secure_stream_url, 'string'
     field :status, 'string'

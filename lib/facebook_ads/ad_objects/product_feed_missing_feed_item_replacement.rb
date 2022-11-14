@@ -29,7 +29,6 @@ module FacebookAds
 
     field :home_listing, 'object'
     field :product_item, 'object'
-    field :store_product_item, 'object'
     field :vehicle, 'object'
     has_no_id
     has_no_get

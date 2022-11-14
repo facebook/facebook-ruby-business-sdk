@@ -64,9 +64,7 @@ module FacebookAds
     field :inspirational_people, { list: 'Experience' }
     field :install_type, 'string'
     field :installed, 'bool'
-    field :interested_in, { list: 'string' }
     field :is_guest_user, 'bool'
-    field :is_verified, 'bool'
     field :languages, { list: 'Experience' }
     field :last_name, 'string'
     field :link, 'string'
@@ -83,8 +81,7 @@ module FacebookAds
     field :profile_pic, 'string'
     field :quotes, 'string'
     field :relationship_status, 'string'
-    field :religion, 'string'
-    field :shared_login_upgrade_required_by, 'datetime'
+    field :shared_login_upgrade_required_by, 'object'
     field :short_name, 'string'
     field :significant_other, 'User'
     field :sports, { list: 'Experience' }
@@ -187,6 +184,10 @@ module FacebookAds
 
     has_edge :assigned_product_catalogs do |edge|
       edge.get 'ProductCatalog'
+    end
+
+    has_edge :avatars do |edge|
+      edge.get
     end
 
     has_edge :business_users do |edge|
@@ -331,7 +332,6 @@ module FacebookAds
         api.has_param :ref, { list: 'string' }
         api.has_param :referenceable_image_ids, { list: 'string' }
         api.has_param :referral_id, 'string'
-        api.has_param :sales_promo_id, 'int'
         api.has_param :scheduled_publish_time, 'datetime'
         api.has_param :source, 'string'
         api.has_param :sponsor_id, 'string'
@@ -362,9 +362,29 @@ module FacebookAds
       end
     end
 
+    has_edge :fundraisers do |edge|
+      edge.get 'FundraiserPersonToCharity'
+      edge.post 'FundraiserPersonToCharity' do |api|
+        api.has_param :charity_id, 'string'
+        api.has_param :cover_photo, 'file'
+        api.has_param :currency, 'string'
+        api.has_param :description, 'string'
+        api.has_param :end_time, 'int'
+        api.has_param :external_event_name, 'string'
+        api.has_param :external_event_start_time, 'int'
+        api.has_param :external_event_uri, 'string'
+        api.has_param :external_fundraiser_uri, 'string'
+        api.has_param :external_id, 'string'
+        api.has_param :fundraiser_type, { enum: -> { FundraiserPersonToCharity::FUNDRAISER_TYPE }}
+        api.has_param :goal_amount, 'int'
+        api.has_param :name, 'string'
+        api.has_param :page_id, 'string'
+      end
+    end
+
     has_edge :game_items do |edge|
-      edge.post do |api|
-        api.has_param :action, { enum: %w{CONSUME DROP MARK }}
+      edge.post 'GameItem' do |api|
+        api.has_param :action, { enum: -> { GameItem::ACTION }}
         api.has_param :app_id, 'string'
         api.has_param :drop_table_id, 'string'
         api.has_param :ext_id, 'string'
@@ -410,17 +430,6 @@ module FacebookAds
       end
     end
 
-    has_edge :live_encoders do |edge|
-      edge.get 'LiveEncoder'
-      edge.post 'LiveEncoder' do |api|
-        api.has_param :brand, 'string'
-        api.has_param :device_id, 'string'
-        api.has_param :model, 'string'
-        api.has_param :name, 'string'
-        api.has_param :version, 'string'
-      end
-    end
-
     has_edge :live_videos do |edge|
       edge.get 'LiveVideo' do |api|
         api.has_param :broadcast_status, { list: { enum: -> { LiveVideo::BROADCAST_STATUS }} }
@@ -431,11 +440,11 @@ module FacebookAds
         api.has_param :description, 'string'
         api.has_param :enable_backup_ingest, 'bool'
         api.has_param :encoding_settings, 'string'
+        api.has_param :event_params, 'object'
         api.has_param :fisheye_video_cropped, 'bool'
         api.has_param :front_z_rotation, 'double'
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
-        api.has_param :live_encoders, { list: 'string' }
         api.has_param :original_fov, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
@@ -460,9 +469,13 @@ module FacebookAds
       edge.post 'User' do |api|
         api.has_param :filtering, { list: { enum: -> { User::FILTERING }} }
         api.has_param :href, 'object'
+        api.has_param :label, 'string'
+        api.has_param :message, 'hash'
         api.has_param :notif_ids, { list: 'string' }
+        api.has_param :payload, 'string'
         api.has_param :read, 'bool'
         api.has_param :ref, 'string'
+        api.has_param :scheduleinterval, 'int'
         api.has_param :seen, 'bool'
         api.has_param :template, 'object'
         api.has_param :type, { enum: -> { User::TYPE }}
@@ -513,7 +526,6 @@ module FacebookAds
         api.has_param :ios_bundle_id, 'string'
         api.has_param :is_explicit_location, 'bool'
         api.has_param :is_explicit_place, 'bool'
-        api.has_param :is_visual_search, 'bool'
         api.has_param :manual_privacy, 'bool'
         api.has_param :message, 'string'
         api.has_param :name, 'string'
@@ -640,7 +652,6 @@ module FacebookAds
         api.has_param :react_mode_metadata, 'string'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
-        api.has_param :sales_promo_id, 'int'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :source, 'string'
         api.has_param :source_instagram_media_id, 'string'
