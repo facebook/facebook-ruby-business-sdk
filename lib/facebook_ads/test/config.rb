@@ -41,7 +41,7 @@ module FacebookAds
 
       def override_from!(filename = nil)
         filename ||= File.expand_path("../../../../tests/test_config.json", __FILE__)
-        if File.exists?(filename)
+        if File.exist?(filename)
           settings = JSON.parse(File.read(filename))
 
           settings.each do |k,v|
