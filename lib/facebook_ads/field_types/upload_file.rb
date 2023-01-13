@@ -114,7 +114,7 @@ module FacebookAds
           return true if value.is_a?(type)
         end
 
-        value.is_a?(String) ? File.exists?(value) : false
+        value.is_a?(String) ? File.exist?(value) : false
       end
     end
   end
