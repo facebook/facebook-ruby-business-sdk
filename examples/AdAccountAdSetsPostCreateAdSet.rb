@@ -1,4 +1,5 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
 #
 # You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
 # copy, modify, and distribute this software in source code or binary form for use
@@ -32,8 +33,8 @@ ad_account = FacebookAds::AdAccount.get(id)
 adsets = ad_account.adsets.create({
     name: 'My First AdSet',
     lifetime_budget: '20000',
-    start_time: '2022-09-26T21:37:50-0700',
-    end_time: '2022-10-03T21:37:50-0700',
+    start_time: '2023-01-16T15:00:58-0800',
+    end_time: '2023-01-23T15:00:58-0800',
     campaign_id: '<adCampaignLinkClicksID>',
     bid_amount: '500',
     billing_event: 'IMPRESSIONS',
