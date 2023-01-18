@@ -35,6 +35,11 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
 
     field :amount_currency, 'string'
     field :amount_percentage, 'double'
@@ -71,6 +76,7 @@ module FacebookAds
     field :unit_price, 'object'
     field :url, 'string'
     field :vehicle_offer_id, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     field :year, 'int'
     has_no_post
     has_no_delete

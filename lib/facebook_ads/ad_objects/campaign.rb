@@ -93,6 +93,12 @@ module FacebookAds
       "LOCAL_AWARENESS",
       "MESSAGES",
       "OFFER_CLAIMS",
+      "OUTCOME_APP_PROMOTION",
+      "OUTCOME_AWARENESS",
+      "OUTCOME_ENGAGEMENT",
+      "OUTCOME_LEADS",
+      "OUTCOME_SALES",
+      "OUTCOME_TRAFFIC",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",
@@ -394,7 +400,6 @@ module FacebookAds
     field :ad_strategy_group_id, 'string'
     field :ad_strategy_id, 'string'
     field :adlabels, { list: 'AdLabel' }
-    field :benchmark_report_count, 'int'
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :boosted_object_id, 'string'
     field :brand_lift_studies, { list: 'AdStudy' }

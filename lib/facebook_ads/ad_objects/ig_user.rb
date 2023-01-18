@@ -65,9 +65,12 @@ module FacebookAds
 
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
+        api.has_param :breakdown, { list: { enum: -> { InstagramInsightsResult::BREAKDOWN }} }
         api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
+        api.has_param :metric_type, { enum: -> { InstagramInsightsResult::METRIC_TYPE }}
         api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
         api.has_param :since, 'datetime'
+        api.has_param :timeframe, { enum: -> { InstagramInsightsResult::TIMEFRAME }}
         api.has_param :until, 'datetime'
       end
     end
@@ -87,6 +90,7 @@ module FacebookAds
       edge.post 'IgMedia' do |api|
         api.has_param :caption, 'string'
         api.has_param :children, { list: 'string' }
+        api.has_param :cover_url, 'string'
         api.has_param :image_url, 'string'
         api.has_param :is_carousel_item, 'bool'
         api.has_param :location_id, 'string'

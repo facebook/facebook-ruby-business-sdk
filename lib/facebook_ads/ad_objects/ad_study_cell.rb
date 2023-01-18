@@ -53,6 +53,7 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :treatment_percentage, 'double'
+    has_no_delete
 
     has_edge :adaccounts do |edge|
       edge.get 'AdAccount'

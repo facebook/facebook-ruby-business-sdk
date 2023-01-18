@@ -33,6 +33,7 @@ module FacebookAds
     field :utm_campaign, 'string'
     field :utm_medium, 'string'
     field :utm_source, 'string'
+    has_no_post
     has_no_delete
 
   end

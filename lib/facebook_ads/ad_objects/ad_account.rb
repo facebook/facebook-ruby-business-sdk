@@ -270,6 +270,7 @@ module FacebookAds
         api.has_param :call_to_action, 'object'
         api.has_param :categorization_criteria, { enum: -> { AdCreative::CATEGORIZATION_CRITERIA }}
         api.has_param :category_media_source, { enum: -> { AdCreative::CATEGORY_MEDIA_SOURCE }}
+        api.has_param :degrees_of_freedom_spec, 'hash'
         api.has_param :destination_set_id, 'string'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
         api.has_param :enable_launch_instant_app, 'bool'
@@ -410,6 +411,10 @@ module FacebookAds
       edge.get do |api|
         api.has_param :filtering, { list: 'hash' }
       end
+    end
+
+    has_edge :ads_reporting_mmm_schedulers do |edge|
+      edge.get
     end
 
     has_edge :ads_volume do |edge|

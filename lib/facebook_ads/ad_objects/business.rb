@@ -76,6 +76,7 @@ module FacebookAds
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
       "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
@@ -110,6 +111,7 @@ module FacebookAds
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
       "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
@@ -234,6 +236,10 @@ module FacebookAds
       edge.get do |api|
         api.has_param :filtering, { list: 'hash' }
       end
+    end
+
+    has_edge :ads_reporting_mmm_schedulers do |edge|
+      edge.get
     end
 
     has_edge :adspixels do |edge|
@@ -494,14 +500,6 @@ module FacebookAds
       end
     end
 
-    has_edge :managed_partner_child_business_assets do |edge|
-      edge.post 'Business' do |api|
-        api.has_param :child_business_id, 'string'
-        api.has_param :credit_limit, 'int'
-        api.has_param :line_of_credit_id, 'string'
-      end
-    end
-
     has_edge :negative_keyword_lists do |edge|
       edge.get
     end
@@ -606,6 +604,7 @@ module FacebookAds
         api.has_param :catalog_segment_id, 'string'
         api.has_param :enable_basket_insight, 'bool'
         api.has_param :enable_extended_audience_retargeting, 'bool'
+        api.has_param :partner_business_id, 'string'
         api.has_param :retailer_custom_audience_config, 'hash'
         api.has_param :vendor_id, 'string'
       end
@@ -669,6 +668,10 @@ module FacebookAds
         api.has_param :role, { enum: -> { SystemUser::ROLE }}
         api.has_param :system_user_id, 'int'
       end
+    end
+
+    has_edge :third_party_measurement_report_dataset do |edge|
+      edge.get
     end
 
   end

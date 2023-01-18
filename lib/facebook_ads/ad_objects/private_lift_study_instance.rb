@@ -40,8 +40,10 @@ module FacebookAds
     field :created_time, 'datetime'
     field :feature_list, { list: 'string' }
     field :id, 'string'
+    field :issuer_certificate, 'string'
     field :latest_status_update_time, 'datetime'
     field :run_id, 'string'
+    field :server_hostnames, { list: 'string' }
     field :server_ips, { list: 'string' }
     field :status, 'string'
     field :tier, 'string'

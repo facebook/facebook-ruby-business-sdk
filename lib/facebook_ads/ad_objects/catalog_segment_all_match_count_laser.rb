@@ -25,11 +25,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class WhatsAppBusinessPreVerifiedPhoneNumber < AdObject
+  class CatalogSegmentAllMatchCountLaser < AdObject
 
-    field :code_verification_status, 'string'
-    field :id, 'string'
-    field :phone_number, 'string'
+    field :date_start, 'string'
+    field :date_stop, 'string'
+    field :event, 'string'
+    field :source, 'ExternalEventSource'
+    field :total_matched_content_ids, 'int'
+    field :unique_matched_content_ids, 'int'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

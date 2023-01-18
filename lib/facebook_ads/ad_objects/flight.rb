@@ -35,6 +35,11 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
 
     field :applinks, 'CatalogItemAppLinks'
     field :category_specific_fields, 'CatalogSubVerticalList'
@@ -54,6 +59,7 @@ module FacebookAds
     field :sanitized_images, { list: 'string' }
     field :unit_price, 'object'
     field :url, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     has_no_delete
 
     has_edge :augmented_realities_metadata do |edge|

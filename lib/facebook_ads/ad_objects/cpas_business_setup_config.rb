@@ -33,6 +33,7 @@ module FacebookAds
     field :capabilities_compliance_status, 'hash'
     field :id, 'string'
     field :ad_accounts, { list: 'string' }
+    has_no_post
     has_no_delete
 
     has_edge :ad_accounts do |edge|

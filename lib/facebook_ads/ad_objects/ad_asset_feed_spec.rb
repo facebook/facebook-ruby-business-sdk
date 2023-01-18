@@ -29,6 +29,7 @@ module FacebookAds
     CALL_TO_ACTION_TYPES = [
       "ADD_TO_CART",
       "APPLY_NOW",
+      "AUDIO_CALL",
       "BOOK_TRAVEL",
       "BUY",
       "BUY_NOW",
@@ -79,6 +80,7 @@ module FacebookAds
       "SELL_NOW",
       "SEND_A_GIFT",
       "SEND_GIFT_MONEY",
+      "SEND_UPDATES",
       "SHARE",
       "SHOP_NOW",
       "SIGN_UP",
@@ -115,7 +117,6 @@ module FacebookAds
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
     field :optimization_type, 'string'
-    field :posts, { list: 'object' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id

@@ -36,6 +36,7 @@ module FacebookAds
       "MARKETPLACE",
       "MARKETPLACE_ADS_DEPRECATED",
       "MARKETPLACE_SHOPS",
+      "MINI_SHOPS",
       "OFFLINE_CONVERSIONS",
       "SHOPS",
       "UNIVERSAL_CHECKOUT",

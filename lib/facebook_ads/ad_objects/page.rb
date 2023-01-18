@@ -124,6 +124,7 @@ module FacebookAds
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
       "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
@@ -151,6 +152,7 @@ module FacebookAds
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
       "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
@@ -276,7 +278,6 @@ module FacebookAds
     PLATFORM = [
       "INSTAGRAM",
       "MESSENGER",
-      "WHATSAPP",
     ]
 
     MODEL = [
@@ -333,6 +334,7 @@ module FacebookAds
       "hours",
       "inbox_labels",
       "invoice_access_invoice_change",
+      "invoice_access_invoice_draft_change",
       "invoice_access_onboarding_status_active",
       "leadgen",
       "leadgen_fat",
@@ -726,10 +728,6 @@ module FacebookAds
       end
     end
 
-    has_edge :copyright_whitelisted_partners do |edge|
-      edge.get 'Profile'
-    end
-
     has_edge :crosspost_whitelisted_pages do |edge|
       edge.get 'Page'
     end
@@ -931,6 +929,7 @@ module FacebookAds
 
     has_edge :insights do |edge|
       edge.get 'InsightsResult' do |api|
+        api.has_param :breakdown, { list: 'object' }
         api.has_param :date_preset, { enum: -> { InsightsResult::DATE_PRESET }}
         api.has_param :metric, { list: 'object' }
         api.has_param :period, { enum: -> { InsightsResult::PERIOD }}
@@ -984,17 +983,6 @@ module FacebookAds
 
     has_edge :invoice_access_bank_account do |edge|
       edge.get
-    end
-
-    has_edge :invoice_access_invoice_edit do |edge|
-      edge.post do |api|
-        api.has_param :additional_amounts, { list: 'hash' }
-        api.has_param :invoice_id, 'string'
-        api.has_param :notes, 'string'
-        api.has_param :paid_amount, 'hash'
-        api.has_param :product_items, { list: 'hash' }
-        api.has_param :shipping_address, 'hash'
-      end
     end
 
     has_edge :leadgen_forms do |edge|
@@ -1103,6 +1091,7 @@ module FacebookAds
     has_edge :message_attachments do |edge|
       edge.post do |api|
         api.has_param :message, 'object'
+        api.has_param :platform, { enum: %w{INSTAGRAM MESSENGER }}
       end
     end
 

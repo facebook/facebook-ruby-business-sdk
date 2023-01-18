@@ -16,16 +16,21 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'facebook_ads'
+# FB:AUTOGEN
 
-access_token = '<ACCESS_TOKEN>'
-app_secret = '<APP_SECRET>'
-app_id = '<APP_ID>'
-id = '<ACTIVITY_ID>'
+module FacebookAds
+  # This class is auto-generated.
 
-FacebookAds.configure do |config|
-  config.access_token = access_token
-  config.app_secret = app_secret
+  # For any issues or feature requests related to this class, please let us know
+  # on github and we'll fix in our codegen framework. We'll not be able to accept
+  # pull request for this class.
+
+  class ShopOrder < AdObject
+
+    field :creation_time, 'datetime'
+    field :id, 'string'
+    has_no_post
+    has_no_delete
+
+  end
 end
-
-ad_set = FacebookAds::AdSet.get(id ,'created_time')

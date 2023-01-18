@@ -61,6 +61,7 @@ module FacebookAds
     field :gender, 'string'
     field :hometown, 'Page'
     field :id, 'string'
+    field :id_for_avatars, 'string'
     field :inspirational_people, { list: 'Experience' }
     field :install_type, 'string'
     field :installed, 'bool'
@@ -179,7 +180,9 @@ module FacebookAds
     end
 
     has_edge :assigned_pages do |edge|
-      edge.get 'Page'
+      edge.get 'Page' do |api|
+        api.has_param :pages, { list: 'int' }
+      end
     end
 
     has_edge :assigned_product_catalogs do |edge|
@@ -459,6 +462,10 @@ module FacebookAds
       end
     end
 
+    has_edge :messenger_desktop_performance_traces do |edge|
+      edge.post 'User'
+    end
+
     has_edge :music do |edge|
       edge.get 'Page' do |api|
         api.has_param :target_id, 'string'
@@ -475,7 +482,7 @@ module FacebookAds
         api.has_param :payload, 'string'
         api.has_param :read, 'bool'
         api.has_param :ref, 'string'
-        api.has_param :scheduleinterval, 'int'
+        api.has_param :schedule_interval, 'int'
         api.has_param :seen, 'bool'
         api.has_param :template, 'object'
         api.has_param :type, { enum: -> { User::TYPE }}

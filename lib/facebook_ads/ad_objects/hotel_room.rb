@@ -38,6 +38,7 @@ module FacebookAds
     field :room_id, 'string'
     field :sale_price, 'string'
     field :url, 'string'
+    has_no_post
     has_no_delete
 
     has_edge :pricing_variables do |edge|

@@ -54,6 +54,7 @@ module FacebookAds
       "days_28",
       "lifetime",
       "month",
+      "total_over_range",
       "week",
     ]
 

@@ -27,6 +27,7 @@ module FacebookAds
 
   class TargetingRelaxation < AdObject
 
+    field :custom_audience, 'int'
     field :lookalike, 'int'
     has_no_id
     has_no_get
