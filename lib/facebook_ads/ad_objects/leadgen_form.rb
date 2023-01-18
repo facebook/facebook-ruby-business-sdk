@@ -38,6 +38,7 @@ module FacebookAds
       "CS_CZ",
       "DA_DK",
       "DE_DE",
+      "EL_GR",
       "EN_GB",
       "EN_US",
       "ES_ES",

@@ -29,6 +29,7 @@ module FacebookAds
     CALL_TO_ACTION_TYPE = [
       "ADD_TO_CART",
       "APPLY_NOW",
+      "AUDIO_CALL",
       "BOOK_TRAVEL",
       "BUY",
       "BUY_NOW",
@@ -79,6 +80,7 @@ module FacebookAds
       "SELL_NOW",
       "SEND_A_GIFT",
       "SEND_GIFT_MONEY",
+      "SEND_UPDATES",
       "SHARE",
       "SHOP_NOW",
       "SIGN_UP",
@@ -172,6 +174,7 @@ module FacebookAds
     field :categorization_criteria, 'string'
     field :category_media_source, 'string'
     field :collaborative_ads_lsb_image_bank_id, 'string'
+    field :degrees_of_freedom_spec, 'AdCreativeDegreesOfFreedomSpec'
     field :destination_set_id, 'string'
     field :dynamic_ad_voice, 'string'
     field :effective_authorization_category, 'string'

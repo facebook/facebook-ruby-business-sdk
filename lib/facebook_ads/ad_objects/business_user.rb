@@ -71,7 +71,9 @@ module FacebookAds
     end
 
     has_edge :assigned_pages do |edge|
-      edge.get 'Page'
+      edge.get 'Page' do |api|
+        api.has_param :pages, { list: 'int' }
+      end
     end
 
     has_edge :assigned_product_catalogs do |edge|

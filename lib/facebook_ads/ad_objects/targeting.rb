@@ -118,6 +118,7 @@ module FacebookAds
     field :relationship_statuses, { list: 'int' }
     field :site_category, { list: 'string' }
     field :targeting_optimization, 'string'
+    field :targeting_relaxation_types, 'TargetingRelaxation'
     field :user_adclusters, { list: 'IdName' }
     field :user_device, { list: 'string' }
     field :user_event, { list: 'int' }

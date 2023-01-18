@@ -26,6 +26,13 @@ module FacebookAds
   # pull request for this class.
 
   class InstagramInsightsResult < AdObject
+    BREAKDOWN = [
+      "action_type",
+      "follow_type",
+      "story_navigation_action_type",
+      "surface_type",
+    ]
+
     METRIC = [
       "carousel_album_engagement",
       "carousel_album_impressions",
@@ -57,7 +64,23 @@ module FacebookAds
       "days_28",
       "lifetime",
       "month",
+      "total_over_range",
       "week",
+    ]
+
+    METRIC_TYPE = [
+      "default",
+      "time_series",
+      "total_value",
+    ]
+
+    TIMEFRAME = [
+      "last_14_days",
+      "last_30_days",
+      "last_90_days",
+      "prev_month",
+      "this_month",
+      "this_week",
     ]
 
 
@@ -66,6 +89,7 @@ module FacebookAds
     field :name, 'string'
     field :period, 'string'
     field :title, 'string'
+    field :total_value, 'object'
     field :values, { list: 'InstagramInsightsValue' }
     has_no_get
     has_no_post

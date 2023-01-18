@@ -35,6 +35,11 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
 
     field :address, 'string'
     field :applinks, 'CatalogItemAppLinks'
@@ -58,6 +63,7 @@ module FacebookAds
     field :star_rating, 'double'
     field :unit_price, 'object'
     field :url, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     field :base_price, 'int'
 
     has_edge :augmented_realities_metadata do |edge|

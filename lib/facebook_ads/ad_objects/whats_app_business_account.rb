@@ -32,6 +32,7 @@ module FacebookAds
       "MANAGE",
       "MANAGE_PHONE",
       "MANAGE_TEMPLATES",
+      "MANAGE_TEMPLATES_AND_PHONE",
       "MESSAGING",
       "VIEW_COST",
     ]
@@ -45,6 +46,8 @@ module FacebookAds
 
     field :account_review_status, 'string'
     field :analytics, 'object'
+    field :business_verification_status, 'string'
+    field :country, 'string'
     field :creation_time, 'int'
     field :currency, 'string'
     field :id, 'string'
@@ -53,6 +56,7 @@ module FacebookAds
     field :on_behalf_of_business_info, 'object'
     field :owner_business, 'Business'
     field :owner_business_info, 'object'
+    field :ownership_type, 'string'
     field :primary_funding_id, 'string'
     field :purchase_order_number, 'string'
     field :status, 'string'
@@ -79,16 +83,21 @@ module FacebookAds
 
     has_edge :conversation_analytics do |edge|
       edge.get do |api|
+        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION MARKETING SERVICE UNKNOWN UTILITY }} }
         api.has_param :conversation_directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
         api.has_param :conversation_types, { list: { enum: %w{FREE_ENTRY_POINT FREE_TIER REGULAR UNKNOWN }} }
         api.has_param :country_codes, { list: 'string' }
-        api.has_param :dimensions, { list: { enum: %w{CONVERSATION_DIRECTION CONVERSATION_TYPE COUNTRY PHONE UNKNOWN }} }
+        api.has_param :dimensions, { list: { enum: %w{CONVERSATION_CATEGORY CONVERSATION_DIRECTION CONVERSATION_TYPE COUNTRY PHONE UNKNOWN }} }
         api.has_param :end, 'int'
         api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
         api.has_param :metric_types, { list: { enum: %w{CONVERSATION COST UNKNOWN }} }
         api.has_param :phone_numbers, { list: 'string' }
         api.has_param :start, 'int'
       end
+    end
+
+    has_edge :extensions do |edge|
+      edge.get
     end
 
     has_edge :message_templates do |edge|
@@ -129,6 +138,10 @@ module FacebookAds
       edge.post 'ProductCatalog' do |api|
         api.has_param :catalog_id, 'string'
       end
+    end
+
+    has_edge :schedules do |edge|
+      edge.get
     end
 
     has_edge :subscribed_apps do |edge|

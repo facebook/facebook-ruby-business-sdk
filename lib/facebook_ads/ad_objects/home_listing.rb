@@ -35,6 +35,11 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
 
     field :ac_type, 'string'
     field :additional_fees_description, 'string'
@@ -80,6 +85,7 @@ module FacebookAds
     field :sanitized_images, { list: 'string' }
     field :unit_price, 'object'
     field :url, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     field :year_built, 'int'
 
     has_edge :augmented_realities_metadata do |edge|

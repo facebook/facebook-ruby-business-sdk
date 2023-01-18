@@ -35,6 +35,11 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
     AVAILABILITY = [
       "AVAILABLE",
       "NOT_AVAILABLE",
@@ -171,6 +176,7 @@ module FacebookAds
     field :vehicle_specifications, { list: 'object' }
     field :vehicle_type, 'string'
     field :vin, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     field :year, 'int'
     has_no_delete
 

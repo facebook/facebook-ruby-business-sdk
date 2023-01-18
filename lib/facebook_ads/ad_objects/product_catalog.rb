@@ -95,6 +95,8 @@ module FacebookAds
     ]
 
 
+    field :ad_account_to_collaborative_ads_share_settings, 'CollaborativeAdsShareSettings'
+    field :agency_collaborative_ads_share_settings, 'CollaborativeAdsShareSettings'
     field :business, 'Business'
     field :catalog_store, 'StoreCatalogSettings'
     field :commerce_merchant_settings, 'CommerceMerchantSettings'
@@ -164,9 +166,9 @@ module FacebookAds
       end
     end
 
-    has_edge :catalog_website_settings do |edge|
-      edge.post do |api|
-        api.has_param :is_allowed_to_crawl, 'bool'
+    has_edge :catalog_store do |edge|
+      edge.post 'StoreCatalogSettings' do |api|
+        api.has_param :page, 'int'
       end
     end
 
@@ -186,6 +188,10 @@ module FacebookAds
         api.has_param :handle, 'string'
         api.has_param :load_ids_of_invalid_requests, 'bool'
       end
+    end
+
+    has_edge :collaborative_ads_event_stats do |edge|
+      edge.get 'CatalogSegmentAllMatchCountLaser'
     end
 
     has_edge :collaborative_ads_lsb_image_bank do |edge|

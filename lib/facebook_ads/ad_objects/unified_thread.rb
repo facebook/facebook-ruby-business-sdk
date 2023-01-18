@@ -29,11 +29,11 @@ module FacebookAds
     PLATFORM = [
       "INSTAGRAM",
       "MESSENGER",
-      "WHATSAPP",
     ]
 
 
     field :can_reply, 'bool'
+    field :folder, 'string'
     field :former_participants, 'object'
     field :id, 'string'
     field :is_subscribed, 'bool'

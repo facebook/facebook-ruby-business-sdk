@@ -36,6 +36,7 @@ module FacebookAds
     field :liable_address, 'CrmAddress'
     field :name, 'string'
     field :sold_to_address, 'CrmAddress'
+    has_no_delete
 
     has_edge :ad_accounts do |edge|
       edge.delete do |api|

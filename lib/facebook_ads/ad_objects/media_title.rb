@@ -35,6 +35,11 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
     CONTENT_CATEGORY = [
       "MOVIE",
       "MUSIC",
@@ -61,6 +66,7 @@ module FacebookAds
     field :title_display_name, 'string'
     field :unit_price, 'object'
     field :url, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     field :wiki_data_item, 'string'
 
     has_edge :augmented_realities_metadata do |edge|

@@ -297,6 +297,7 @@ module FacebookAds
     field :tags, { list: 'string' }
     field :title, 'string'
     field :update_time, 'datetime'
+    has_no_delete
 
   end
 end

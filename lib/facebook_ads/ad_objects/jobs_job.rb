@@ -35,6 +35,11 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
 
     field :address, 'object'
     field :applinks, 'CatalogItemAppLinks'
@@ -60,6 +65,7 @@ module FacebookAds
     field :sanitized_images, { list: 'string' }
     field :unit_price, 'object'
     field :url, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     has_no_post
     has_no_delete
 

@@ -29,6 +29,7 @@ module FacebookAds
     TYPE = [
       "ADD_TO_CART",
       "APPLY_NOW",
+      "AUDIO_CALL",
       "BOOK_TRAVEL",
       "BUY",
       "BUY_NOW",
@@ -79,6 +80,7 @@ module FacebookAds
       "SELL_NOW",
       "SEND_A_GIFT",
       "SEND_GIFT_MONEY",
+      "SEND_UPDATES",
       "SHARE",
       "SHOP_NOW",
       "SIGN_UP",
