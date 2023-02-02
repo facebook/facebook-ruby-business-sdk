@@ -51,6 +51,9 @@ module FacebookAds
       # The origin/source of data for the dataset to be uploaded.
       attr_accessor :upload_source
 
+      # Access token to use for AdObject Session
+      attr_accessor :access_token
+
       # The HttpServiceInterface client to use for executing the request.
       attr_accessor :http_service_client
 
@@ -62,10 +65,11 @@ module FacebookAds
       # @param [String] upload_id
       # @param [String] upload_tag
       # @param [String] upload_source
+      # @param [String] access_token
       # @param [HttpServiceInterface] http_service_client
       def initialize(pixel_id: nil, events: nil, test_event_code: nil, partner_agent: nil,
           namespace_id: nil, upload_id: nil, upload_tag: nil, upload_source: nil,
-          http_service_client: nil)
+          access_token: nil, http_service_client: nil)
         unless pixel_id.nil?
           self.pixel_id = pixel_id
         end
@@ -89,6 +93,9 @@ module FacebookAds
         end
         unless upload_source.nil?
           self.upload_source = upload_source
+        end
+        unless access_token.nil?
+          self.access_token = access_token
         end
         unless http_service_client.nil?
           self.http_service_client = http_service_client
@@ -153,7 +160,8 @@ module FacebookAds
         end
         params = get_params()
         params[:data] = normalize
-        ads_pixel = FacebookAds::AdsPixel.get(pixel_id)
+        session = FacebookAds::Session.new(access_token: access_token) if access_token
+        ads_pixel = FacebookAds::AdsPixel.get(pixel_id, session)
         response = ads_pixel.events.create(params)
         json_response_object = JSON.parse(JSON.generate(response), object_class: OpenStruct)
         FacebookAds::ServerSide::EventResponse.new(
