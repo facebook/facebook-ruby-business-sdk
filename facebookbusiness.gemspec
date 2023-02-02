@@ -35,13 +35,14 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 3.0'
 
   s.add_dependency 'concurrent-ruby', '~> 1.1'
-  s.add_dependency 'faraday', '~> 1.0'
-  s.add_dependency 'json', '~> 2.2'
+  s.add_dependency 'faraday', '~> 2.6'
+  s.add_dependency 'faraday-multipart', '~> 1.0'
+  s.add_dependency 'json', '~> 2.6'
   s.add_dependency 'countries', '~>3.0'
   s.add_dependency 'money', '~> 6.13'
 
   s.add_development_dependency 'awesome_print', '~> 1.8'
-  s.add_development_dependency 'bundler', '~> 1.17'
+  s.add_development_dependency 'bundler', '~> 2.2'
   s.add_development_dependency 'byebug', '~> 11.0'
   s.add_development_dependency 'dotenv', '~> 2.7'
   s.add_development_dependency 'minitest', '~> 5.14.2'
