@@ -3,7 +3,7 @@ PATH
   specs:
     facebookbusiness (0.15.0.2)
       concurrent-ruby (~> 1.1)
-      countries (~> 3.0)
+      countries (>= 3, < 6)
       faraday (~> 2.6)
       faraday-multipart (~> 1.0)
       json (~> 2.6)
@@ -90,11 +90,9 @@ DEPENDENCIES
   awesome_print (~> 1.8)
   bundler (~> 2.2)
   byebug (~> 11.0)
-  countries (~> 3.0)
   dotenv (~> 2.7)
   facebookbusiness!
   minitest (~> 5.14.2)
-  money (~> 6.13)
   pry (~> 0.12)
   pry-coolline (~> 0.2)
   rake (~> 13.0)
