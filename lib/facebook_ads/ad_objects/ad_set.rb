@@ -194,6 +194,7 @@ module FacebookAds
     field :billing_event, { enum: -> { BILLING_EVENT }}
     field :budget_remaining, 'string'
     field :campaign, 'Campaign'
+    field :campaign_attribution, 'string'
     field :campaign_id, 'string'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
     field :created_time, 'datetime'

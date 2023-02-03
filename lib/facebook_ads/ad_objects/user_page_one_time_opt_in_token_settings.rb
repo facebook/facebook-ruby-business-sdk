@@ -28,6 +28,7 @@ module FacebookAds
   class UserPageOneTimeOptInTokenSettings < AdObject
 
     field :creation_timestamp, 'int'
+    field :next_eligible_time, 'int'
     field :notification_messages_frequency, 'string'
     field :notification_messages_reoptin, 'string'
     field :notification_messages_timezone, 'string'

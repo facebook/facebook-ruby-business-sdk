@@ -617,6 +617,12 @@ module FacebookAds
       end
     end
 
+    has_edge :businessprojects do |edge|
+      edge.get do |api|
+        api.has_param :business, 'string'
+      end
+    end
+
     has_edge :call_to_actions do |edge|
       edge.get 'PageCallToAction'
     end

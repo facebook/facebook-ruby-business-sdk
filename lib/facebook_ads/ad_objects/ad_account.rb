@@ -137,6 +137,11 @@ module FacebookAds
       "WEBSITE",
     ]
 
+    ACTION_SOURCE = [
+      "PHYSICAL_STORE",
+      "WEBSITE",
+    ]
+
 
     field :account_id, 'string'
     field :account_status, 'int'
@@ -668,6 +673,12 @@ module FacebookAds
     has_edge :broadtargetingcategories do |edge|
       edge.get 'BroadTargetingCategories' do |api|
         api.has_param :custom_categories_only, 'bool'
+      end
+    end
+
+    has_edge :businessprojects do |edge|
+      edge.get do |api|
+        api.has_param :business, 'string'
       end
     end
 

@@ -99,6 +99,7 @@ module FacebookAds
       edge.delete
       edge.post 'User' do |api|
         api.has_param :business_app, 'int'
+        api.has_param :is_permanent_token, 'bool'
         api.has_param :page_id, 'string'
         api.has_param :scope, { list: 'Permission' }
       end
@@ -474,6 +475,7 @@ module FacebookAds
 
     has_edge :notifications do |edge|
       edge.post 'User' do |api|
+        api.has_param :bot_message_payload_elements, 'string'
         api.has_param :filtering, { list: { enum: -> { User::FILTERING }} }
         api.has_param :href, 'object'
         api.has_param :label, 'string'

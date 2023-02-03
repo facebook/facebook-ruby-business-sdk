@@ -120,6 +120,11 @@ module FacebookAds
       "VIEW_MONETIZATION_INSIGHTS",
     ]
 
+    ACTION_SOURCE = [
+      "PHYSICAL_STORE",
+      "WEBSITE",
+    ]
+
 
     field :block_offline_analytics, 'bool'
     field :collaborative_ads_managed_partner_business_info, 'ManagedPartnerBusiness'
@@ -293,6 +298,10 @@ module FacebookAds
         api.has_param :email, 'string'
         api.has_param :role, { enum: -> { BusinessUser::ROLE }}
       end
+    end
+
+    has_edge :businessprojects do |edge|
+      edge.get
     end
 
     has_edge :claim_custom_conversions do |edge|

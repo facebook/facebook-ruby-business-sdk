@@ -163,14 +163,6 @@ module FacebookAds
       edge.get 'Event'
     end
 
-    has_edge :featured_cards do |edge|
-      edge.get
-      edge.post do |api|
-        api.has_param :description, 'hash'
-        api.has_param :title, 'hash'
-      end
-    end
-
     has_edge :feed do |edge|
       edge.get 'Post' do |api|
         api.has_param :include_hidden, 'bool'

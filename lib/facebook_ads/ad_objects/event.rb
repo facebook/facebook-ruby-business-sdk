@@ -106,6 +106,7 @@ module FacebookAds
     field :owner, 'object'
     field :parent_group, 'Group'
     field :place, 'Place'
+    field :registration_setting, 'object'
     field :scheduled_publish_time, 'string'
     field :start_time, 'string'
     field :ticket_setting, 'object'

@@ -30,17 +30,17 @@ module FacebookAds
       "DEVELOP",
       "FULL_CONTROL",
       "MANAGE",
+      "MANAGE_EXTENSIONS",
       "MANAGE_PHONE",
       "MANAGE_TEMPLATES",
-      "MANAGE_TEMPLATES_AND_PHONE",
       "MESSAGING",
       "VIEW_COST",
     ]
 
     CATEGORY = [
+      "AUTHENTICATION",
       "MARKETING",
-      "OTP",
-      "TRANSACTIONAL",
+      "UTILITY",
     ]
 
 

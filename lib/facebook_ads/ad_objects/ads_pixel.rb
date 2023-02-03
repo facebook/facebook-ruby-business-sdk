@@ -69,20 +69,46 @@ module FacebookAds
     field :automatic_matching_fields, { list: 'string' }
     field :can_proxy, 'bool'
     field :code, 'string'
+    field :config, 'string'
     field :creation_time, 'datetime'
     field :creator, 'User'
     field :data_use_setting, 'string'
+    field :description, 'string'
+    field :duplicate_entries, 'int'
+    field :enable_auto_assign_to_accounts, 'bool'
     field :enable_automatic_matching, 'bool'
+    field :event_stats, 'string'
+    field :event_time_max, 'int'
+    field :event_time_min, 'int'
     field :first_party_cookie_status, 'string'
     field :id, 'string'
+    field :is_consolidated_container, 'bool'
     field :is_created_by_business, 'bool'
     field :is_crm, 'bool'
+    field :is_mta_use, 'bool'
+    field :is_restricted_use, 'bool'
     field :is_unavailable, 'bool'
     field :last_fired_time, 'datetime'
+    field :last_upload_app, 'string'
+    field :last_upload_app_changed_time, 'int'
+    field :match_rate_approx, 'int'
+    field :matched_entries, 'int'
     field :name, 'string'
     field :owner_ad_account, 'AdAccount'
     field :owner_business, 'Business'
+    field :usage, 'OfflineConversionDataSetUsage'
+    field :valid_entries, 'int'
     has_no_delete
+
+    has_edge :adaccounts do |edge|
+      edge.get 'AdAccount' do |api|
+        api.has_param :business, 'string'
+      end
+    end
+
+    has_edge :agencies do |edge|
+      edge.get 'Business'
+    end
 
     has_edge :assigned_users do |edge|
       edge.get 'AssignedUser' do |api|
@@ -117,6 +143,16 @@ module FacebookAds
 
     has_edge :meapitocapiconsolidationhelper do |edge|
       edge.post
+    end
+
+    has_edge :offline_event_uploads do |edge|
+      edge.get 'OfflineConversionDataSetUpload' do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :order, { enum: -> { OfflineConversionDataSetUpload::ORDER }}
+        api.has_param :sort_by, { enum: -> { OfflineConversionDataSetUpload::SORT_BY }}
+        api.has_param :start_time, 'datetime'
+        api.has_param :upload_tag, 'string'
+      end
     end
 
     has_edge :shadowtraffichelper do |edge|

@@ -117,6 +117,10 @@ module FacebookAds
       end
     end
 
+    has_edge :notification_message_tokens do |edge|
+      edge.get 'UserPageOneTimeOptInTokenSettings'
+    end
+
     has_edge :product_appeal do |edge|
       edge.get do |api|
         api.has_param :product_id, 'string'
