@@ -1060,6 +1060,7 @@ module FacebookAds
         api.has_param :countries, { list: 'string' }
         api.has_param :is_exclusion, 'bool'
         api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
+        api.has_param :locale, 'string'
         api.has_param :objective, { enum: -> { AdAccountTargetingUnified::OBJECTIVE }}
         api.has_param :promoted_object, 'object'
         api.has_param :q, 'string'
