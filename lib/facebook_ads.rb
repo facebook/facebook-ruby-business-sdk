@@ -19,6 +19,8 @@
 require 'facebook_ads/version'
 require 'facebook_ads/helpers/shortcuts'
 require 'facebook_ads/crash_logger'
+require 'faraday'
+require 'faraday/multipart'
 
 module FacebookAds
   DEFAULT_API_VERSION = 'v' + API_VERSION
