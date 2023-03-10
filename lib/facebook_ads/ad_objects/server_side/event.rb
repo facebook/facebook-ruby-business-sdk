@@ -18,6 +18,7 @@
 
 require_relative './user_data'
 require_relative './custom_data'
+require_relative './app_data'
 
 module FacebookAds
   module ServerSide
@@ -52,6 +53,9 @@ module FacebookAds
       # An Object that includes additional business data about the event.
       attr_accessor :custom_data
 
+      # An Object that contains app data.
+      attr_accessor :app_data
+
       # Processing options you would like to enable for a specific event.
       # For more details see https://developers.facebook.com/docs/marketing-apis/data-processing-options
       attr_accessor :data_processing_options
@@ -74,6 +78,7 @@ module FacebookAds
       # @param [String] event_id
       # @param [FacebookAds::ServerSide::UserData] user_data
       # @param [FacebookAds::ServerSide::CustomData] custom_data
+      # @param [FacebookAds::ServerSide::AppData] app_data
       # @param [Array<String>] data_processing_options
       # @param [int] data_processing_options_country
       # @param [int] data_processing_options_state
@@ -85,6 +90,7 @@ module FacebookAds
                      event_id: nil,
                      user_data: nil,
                      custom_data: nil,
+                     app_data: nil,
                      data_processing_options: nil,
                      data_processing_options_country: nil,
                      data_processing_options_state: nil,
@@ -110,6 +116,9 @@ module FacebookAds
         end
         unless custom_data.nil?
           self.custom_data = custom_data
+        end
+        unless app_data.nil?
+          self.app_data = app_data
         end
         unless data_processing_options.nil?
           self.data_processing_options = data_processing_options
@@ -159,6 +168,10 @@ module FacebookAds
 
         if attributes.has_key?(:'custom_data')
           self.custom_data = attributes[:'custom_data']
+        end
+
+        if attributes.has_key?(:'app_data')
+          self.app_data = attributes[:'app_data']
         end
 
         if attributes.has_key?(:'data_processing_options')
@@ -217,6 +230,7 @@ module FacebookAds
             event_id == o.event_id &&
             user_data == o.user_data &&
             custom_data == o.custom_data &&
+            app_data == o.app_data &&
             data_processing_options == o.data_processing_options &&
             data_processing_options_country == o.data_processing_options_country &&
             data_processing_options_state == o.data_processing_options_state &&
@@ -232,7 +246,7 @@ module FacebookAds
       # @return [Fixnum] Hash code
       def hash
         [
-          event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data,
+          event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, app_data,
           data_processing_options, data_processing_options_country, data_processing_options_state,
           action_source,
         ].hash
@@ -260,6 +274,9 @@ module FacebookAds
         end
         unless custom_data.nil?
           hash['custom_data'] = custom_data.to_s
+        end
+        unless app_data.nil?
+          hash['app_data'] = app_data.to_s
         end
         unless data_processing_options.nil?
           hash['data_processing_options'] = data_processing_options.to_s
@@ -300,6 +317,9 @@ module FacebookAds
         end
         unless custom_data.nil?
           hash['custom_data'] = custom_data.normalize
+        end
+        unless app_data.nil?
+          hash['app_data'] = app_data.normalize
         end
         unless data_processing_options.nil?
           hash['data_processing_options'] = data_processing_options

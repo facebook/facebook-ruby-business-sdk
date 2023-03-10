@@ -216,6 +216,27 @@ module FacebookAds
       # The date of birth year.
       attr_accessor :doby
 
+      # Your Install ID. This field represents unique application installation instances.
+      attr_accessor :anon_ids
+
+      def anon_id
+        @anon_ids ? @anon_ids[0] : nil
+      end
+      def anon_id=(anon_id)
+        @anon_ids = [anon_id]
+      end
+
+      # Your mobile advertiser ID, the advertising ID from an Android device or the Advertising Identifier (IDFA) from an Apple device.
+      attr_accessor :madids
+
+      def madid
+        @madids ? @madids[0] : nil
+      end
+      def madid=(madid)
+        @madids = [madid]
+      end
+
+
       #UserData is a set of identifiers Facebook can use for targeted attribution
       # @param [String] email
       # @param [Array<String>] emails
@@ -251,13 +272,17 @@ module FacebookAds
       # @param [String] dobd
       # @param [String] dobm
       # @param [String] doby
+      # @param [String] anon_id
+      # @param [Array<String>] anon_ids
+      # @param [String] madid
+      # @param [Array<String>] madids
       def initialize(email: nil, emails: nil, phone: nil, phones: nil, gender: nil, genders: nil,
                      date_of_birth: nil, dates_of_birth: nil, last_name: nil, last_names: nil,
                      first_name: nil, first_names: nil, city: nil, cities: nil, state: nil, states: nil,
                      country_code: nil, country_codes: nil, zip_code: nil, zip_codes: nil,
                      external_id: nil, external_ids: nil, client_ip_address: nil,
                      client_user_agent: nil, fbc: nil, fbp: nil, subscription_id: nil, lead_id: nil,
-                     f5first: nil, f5last: nil, fi: nil, dobd: nil, dobm: nil, doby: nil)
+                     f5first: nil, f5last: nil, fi: nil, dobd: nil, dobm: nil, doby: nil, anon_id: nil, anon_ids: nil, madid:nil, madids: nil)
         validate_constructor_values(emails, email, 'emails', 'email')
         validate_constructor_values(phones, phone, 'phones', 'phone')
         validate_constructor_values(genders, gender, 'genders', 'gender')
@@ -371,6 +396,18 @@ module FacebookAds
         end
         unless doby.nil?
           self.doby = doby
+        end
+        unless anon_id.nil?
+          self.anon_id = anon_id
+        end
+        unless anon_ids.nil?
+          self.anon_ids = anon_ids
+        end
+        unless madid.nil?
+          self.madid = madid
+        end
+        unless madids.nil?
+          self.madids = madids
         end
       end
 
@@ -491,6 +528,18 @@ module FacebookAds
         if attributes.has_key?(:'doby')
           self.doby = attributes[:'doby']
         end
+
+        if attributes.has_key?(:'anon_ids')
+          self.anon_ids = attributes[:'anon_ids']
+        elsif attributes.has_key?(:'anon_id')
+          self.anon_ids = [attributes[:'anon_id']]
+        end
+
+        if attributes.has_key?(:'madids')
+          self.madids = attributes[:'madids']
+        elsif attributes.has_key?(:'madid')
+          self.madids = [attributes[:'madid']]
+        end
       end
 
       # Checks equality by comparing each attribute.
@@ -519,7 +568,9 @@ module FacebookAds
             fi == o.fi &&
             dobd == o.dobd &&
             dobm == o.dobm &&
-            doby == o.doby
+            doby == o.doby &&
+            anon_ids == o.anon_ids &&
+            madids == o.madids
       end
 
       # @see the `==` method
@@ -554,6 +605,8 @@ module FacebookAds
             dobd,
             dobm,
             doby,
+            anon_ids,
+            madids
         ].hash
 
       end
@@ -631,6 +684,12 @@ module FacebookAds
         unless doby.nil?
           hash['doby'] = doby
         end
+        unless anon_ids.nil?
+          hash['anon_ids'] = anon_ids
+        end
+        unless madids.nil?
+          hash['madids'] = madids
+        end
         hash.to_s
       end
 
@@ -706,6 +765,12 @@ module FacebookAds
         end
         unless doby.nil?
           hash['doby'] = FacebookAds::ServerSide::Util.normalize(doby, 'doby')
+        end
+        unless anon_id.nil?
+          hash['anon_id'] = anon_ids
+        end
+        unless madid.nil?
+          hash['madid'] = madids
         end
         hash.select{|k, v| !v.nil?}
       end
