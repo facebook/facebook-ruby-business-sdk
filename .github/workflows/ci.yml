@@ -12,10 +12,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Ruby
+      - name: Set up Ruby 3.1.2
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.version }}
+          ruby-version: 3.1.2
 
       - name: Before install
         run: gem install bundler -v "~> 2.1.4"
