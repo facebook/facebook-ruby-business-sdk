@@ -71,6 +71,10 @@ module FacebookAds
       # Where the conversion occurred.
       attr_accessor :action_source
 
+      # Name of Advanced Measurement table.
+      # Only used for the Advanced Measurement API in the Advanced Analytics product
+      attr_accessor :advanced_measurement_table
+
       # @param [String] event_name
       # @param [int] event_time
       # @param [String] event_source_url
@@ -83,6 +87,7 @@ module FacebookAds
       # @param [int] data_processing_options_country
       # @param [int] data_processing_options_state
       # @param String action_source
+      # @param [String] advanced_measurement_table
       def initialize(event_name: nil,
                      event_time: nil,
                      event_source_url: nil,
@@ -94,7 +99,8 @@ module FacebookAds
                      data_processing_options: nil,
                      data_processing_options_country: nil,
                      data_processing_options_state: nil,
-                     action_source: nil)
+                     action_source: nil,
+                     advanced_measurement_table: nil)
 
         unless event_name.nil?
           self.event_name = event_name
@@ -131,6 +137,9 @@ module FacebookAds
         end
         unless action_source.nil?
           self.action_source = action_source
+        end
+        unless advanced_measurement_table.nil?
+          self.advanced_measurement_table = advanced_measurement_table
         end
       end
 
@@ -189,6 +198,10 @@ module FacebookAds
         if attributes.has_key?(:'action_source')
           self.action_source = attributes[:'action_source']
         end
+
+        if attributes.has_key?(:'advanced_measurement_table')
+          self.advanced_measurement_table = attributes[:'advanced_measurement_table']
+        end
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -234,7 +247,8 @@ module FacebookAds
             data_processing_options == o.data_processing_options &&
             data_processing_options_country == o.data_processing_options_country &&
             data_processing_options_state == o.data_processing_options_state &&
-            action_source == o.action_source
+            action_source == o.action_source &&
+            advanced_measurement_table == o.advanced_measurement_table
       end
 
       # @see the `==` method
@@ -248,7 +262,7 @@ module FacebookAds
         [
           event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, app_data,
           data_processing_options, data_processing_options_country, data_processing_options_state,
-          action_source,
+          action_source, advanced_measurement_table,
         ].hash
       end
 
@@ -289,6 +303,9 @@ module FacebookAds
         end
         unless action_source.nil?
           hash['action_source'] = action_source
+        end
+        unless advanced_measurement_table.nil?
+          hash['advanced_measurement_table'] = advanced_measurement_table
         end
         hash.to_s
       end
@@ -335,6 +352,9 @@ module FacebookAds
             action_source,
             'action_source'
           )
+        end
+        unless advanced_measurement_table.nil?
+          hash['advanced_measurement_table'] = advanced_measurement_table
         end
         hash
       end
