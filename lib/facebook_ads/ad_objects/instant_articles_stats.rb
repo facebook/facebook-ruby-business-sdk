@@ -28,10 +28,10 @@ module FacebookAds
   class InstantArticlesStats < AdObject
 
     field :error, 'string'
-    field :metadata, 'hash'
+    field :metadata, { list: 'hash' }
     field :metric, 'object'
-    field :totals, 'hash'
-    field :x_axis_breakdown, { list: 'hash' }
+    field :totals, { list: 'hash' }
+    field :x_axis_breakdown, { list: { list: 'hash' } }
     has_no_id
     has_no_get
     has_no_post

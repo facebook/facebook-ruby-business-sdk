@@ -421,13 +421,6 @@ module FacebookAds
       end
     end
 
-    has_edge :shift_settings do |edge|
-      edge.post do |api|
-        api.has_param :external_id, 'string'
-        api.has_param :shift_feature_setting, { enum: %w{ALL_FEATURES_OFF ALL_FEATURES_ON SHIFT_COVER_ONLY_ON SHIFT_VIEWER_ONLY_ON }}
-      end
-    end
-
     has_edge :videos do |edge|
       edge.get 'AdVideo' do |api|
         api.has_param :type, { enum: -> { AdVideo::TYPE }}

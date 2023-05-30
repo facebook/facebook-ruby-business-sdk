@@ -400,6 +400,12 @@ module FacebookAds
       end
     end
 
+    has_edge :add_phone_numbers do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :phone_number, 'string'
+      end
+    end
+
     has_edge :adnetwork_applications do |edge|
       edge.post 'Application' do |api|
         api.has_param :name, 'string'
@@ -724,6 +730,18 @@ module FacebookAds
       end
     end
 
+    has_edge :openbridge_configurations do |edge|
+      edge.get 'OpenBridgeConfiguration'
+      edge.post 'OpenBridgeConfiguration' do |api|
+        api.has_param :access_key, 'string'
+        api.has_param :active, 'bool'
+        api.has_param :endpoint, 'string'
+        api.has_param :host_business_id, 'int'
+        api.has_param :host_external_id, 'string'
+        api.has_param :pixel_id, 'int'
+      end
+    end
+
     has_edge :owned_ad_accounts do |edge|
       edge.get 'AdAccount' do |api|
         api.has_param :search_query, 'string'
@@ -861,6 +879,13 @@ module FacebookAds
 
     has_edge :pixel_tos do |edge|
       edge.post
+    end
+
+    has_edge :preverified_numbers do |edge|
+      edge.get 'WhatsAppBusinessPreVerifiedPhoneNumber' do |api|
+        api.has_param :code_verification_status, { enum: -> { WhatsAppBusinessPreVerifiedPhoneNumber::CODE_VERIFICATION_STATUS }}
+        api.has_param :phone_number, 'string'
+      end
     end
 
     has_edge :received_audience_sharing_requests do |edge|

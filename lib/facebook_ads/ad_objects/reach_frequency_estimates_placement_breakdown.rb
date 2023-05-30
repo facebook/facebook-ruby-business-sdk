@@ -30,6 +30,9 @@ module FacebookAds
     field :android, { list: 'double' }
     field :audience_network, { list: 'double' }
     field :desktop, { list: 'double' }
+    field :facebook_search, { list: 'double' }
+    field :fb_reels, { list: 'double' }
+    field :fb_reels_overlay, { list: 'double' }
     field :ig_android, { list: 'double' }
     field :ig_ios, { list: 'double' }
     field :ig_other, { list: 'double' }

@@ -70,6 +70,7 @@ module FacebookAds
       "EVENT_COVER_VIDEO",
       "EVENT_TOUR",
       "FACECAST_DVR",
+      "FB_AVATAR_ANIMATED_SATP",
       "FB_COLLECTIBLE_VIDEO",
       "FB_SHORTS",
       "FB_SHORTS_CONTENT_REMIXABLE",
@@ -393,6 +394,13 @@ module FacebookAds
         api.has_param :captions_file, 'file'
         api.has_param :default_locale, 'string'
         api.has_param :locales_to_delete, { list: 'string' }
+      end
+    end
+
+    has_edge :collaborators do |edge|
+      edge.get
+      edge.post 'AdVideo' do |api|
+        api.has_param :target_id, 'string'
       end
     end
 

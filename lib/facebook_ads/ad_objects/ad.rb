@@ -92,6 +92,11 @@ module FacebookAds
       "validate_only",
     ]
 
+    META_REWARD_ADGROUP_STATUS = [
+      "ACTIVE",
+      "INACTIVE",
+    ]
+
     OPERATOR = [
       "ALL",
       "ANY",
@@ -127,6 +132,7 @@ module FacebookAds
     field :id, 'string'
     field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
+    field :meta_reward_adgroup_status, 'string'
     field :name, 'string'
     field :preview_shareable_link, 'string'
     field :priority, 'int'
@@ -232,6 +238,7 @@ module FacebookAds
     has_edge :previews do |edge|
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
+        api.has_param :creative_feature, { enum: -> { AdPreview::CREATIVE_FEATURE }}
         api.has_param :dynamic_asset_label, 'string'
         api.has_param :dynamic_creative_spec, 'object'
         api.has_param :dynamic_customization, 'object'

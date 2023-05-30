@@ -46,12 +46,12 @@ module FacebookAds
     field :merchant_status, 'string'
     field :onsite_commerce_merchant, 'object'
     field :payment_provider, 'string'
-    field :privacy_url_by_locale, 'hash'
+    field :privacy_url_by_locale, { list: 'hash' }
     field :review_rejection_messages, { list: 'string' }
     field :review_rejection_reasons, { list: 'string' }
     field :supported_card_types, { list: 'string' }
     field :terms, 'string'
-    field :terms_url_by_locale, 'hash'
+    field :terms_url_by_locale, { list: 'hash' }
     field :whatsapp_channel, 'object'
     has_no_post
     has_no_delete

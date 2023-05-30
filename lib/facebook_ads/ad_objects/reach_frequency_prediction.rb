@@ -77,7 +77,7 @@ module FacebookAds
     field :curve_reach, { list: 'int' }
     field :daily_grp_curve, { list: 'double' }
     field :daily_impression_curve, { list: 'double' }
-    field :daily_impression_curve_map, 'map<unsigned int, list<float>>'
+    field :daily_impression_curve_map, { list: 'map<unsigned int, list<float>>' }
     field :day_parting_schedule, { list: 'ReachFrequencyDayPart' }
     field :destination_id, 'string'
     field :end_time, 'datetime'
@@ -93,8 +93,8 @@ module FacebookAds
     field :external_reach, 'int'
     field :feed_ratio_0000, 'int'
     field :frequency_cap, 'int'
-    field :frequency_distribution_map, 'map<unsigned int, list<float>>'
-    field :frequency_distribution_map_agg, 'map<unsigned int, list<unsigned int>>'
+    field :frequency_distribution_map, { list: 'map<unsigned int, list<float>>' }
+    field :frequency_distribution_map_agg, { list: 'map<unsigned int, list<unsigned int>>' }
     field :grp_audience_size, 'double'
     field :grp_avg_probability_map, 'string'
     field :grp_country_audience_size, 'double'
@@ -127,7 +127,7 @@ module FacebookAds
     field :optimization_goal_name, 'string'
     field :pause_periods, { list: 'object' }
     field :placement_breakdown, 'ReachFrequencyEstimatesPlacementBreakdown'
-    field :placement_breakdown_map, 'map<unsigned int, ReachFrequencyEstimatesPlacementBreakdown>'
+    field :placement_breakdown_map, { list: 'map<unsigned int, ReachFrequencyEstimatesPlacementBreakdown>' }
     field :plan_name, 'string'
     field :plan_type, 'string'
     field :prediction_mode, 'int'

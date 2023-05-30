@@ -32,7 +32,6 @@ module FacebookAds
     field :approximate_count_upper_bound, 'int'
     field :delete_time, 'int'
     field :description, 'string'
-    field :extra_info, 'string'
     field :id, 'string'
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'

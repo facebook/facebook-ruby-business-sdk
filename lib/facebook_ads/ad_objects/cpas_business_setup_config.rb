@@ -29,8 +29,8 @@ module FacebookAds
 
     field :accepted_collab_ads_tos, 'bool'
     field :business, 'Business'
-    field :business_capabilities_status, 'hash'
-    field :capabilities_compliance_status, 'hash'
+    field :business_capabilities_status, { list: 'hash' }
+    field :capabilities_compliance_status, { list: 'hash' }
     field :id, 'string'
     field :ad_accounts, { list: 'string' }
     has_no_post

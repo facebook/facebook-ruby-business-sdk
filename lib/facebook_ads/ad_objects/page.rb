@@ -250,11 +250,6 @@ module FacebookAds
       "SCHEDULED_RECURRING",
     ]
 
-    PUBLISH_STATUS = [
-      "DRAFT",
-      "LIVE",
-    ]
-
     MESSAGING_TYPE = [
       "MESSAGE_TAG",
       "RESPONSE",
@@ -273,6 +268,12 @@ module FacebookAds
       "TYPING_OFF",
       "TYPING_ON",
       "UNREACT",
+    ]
+
+    SUGGESTION_ACTION = [
+      "ACCEPT",
+      "DISMISS",
+      "IMPRESSION",
     ]
 
     PLATFORM = [
@@ -330,9 +331,12 @@ module FacebookAds
       "founded",
       "general_info",
       "general_manager",
+      "group_feed",
       "hometown",
       "hours",
+      "in_thread_lead_form_submit",
       "inbox_labels",
+      "invoice_access_bank_slip_events",
       "invoice_access_invoice_change",
       "invoice_access_invoice_draft_change",
       "invoice_access_onboarding_status_active",
@@ -345,6 +349,7 @@ module FacebookAds
       "members",
       "mention",
       "merchant_review",
+      "message_context",
       "message_deliveries",
       "message_echoes",
       "message_mention",
@@ -385,6 +390,7 @@ module FacebookAds
       "publisher_subscriptions",
       "ratings",
       "registration",
+      "send_cart",
       "standby",
       "user_action",
       "video_text_question_responses",
@@ -426,7 +432,7 @@ module FacebookAds
     field :delivery_and_pickup_option_info, { list: 'string' }
     field :description, 'string'
     field :description_html, 'string'
-    field :differently_open_offerings, 'hash'
+    field :differently_open_offerings, { list: 'hash' }
     field :directed_by, 'string'
     field :display_subtext, 'string'
     field :displayed_message_response_time, 'string'
@@ -453,7 +459,6 @@ module FacebookAds
     field :impressum, 'string'
     field :influences, 'string'
     field :instagram_business_account, 'IgUser'
-    field :instant_articles_review_status, 'string'
     field :is_always_open, 'bool'
     field :is_chain, 'bool'
     field :is_community_page, 'bool'
@@ -527,7 +532,6 @@ module FacebookAds
     field :store_number, 'int'
     field :studio, 'string'
     field :supports_donate_button_in_live_video, 'bool'
-    field :supports_instant_articles, 'bool'
     field :talking_about_count, 'int'
     field :temporary_status, 'string'
     field :unread_message_count, 'int'
@@ -639,6 +643,7 @@ module FacebookAds
         api.has_param :canvas_product_list, 'object'
         api.has_param :canvas_product_set, 'object'
         api.has_param :canvas_store_locator, 'object'
+        api.has_param :canvas_template_video, 'object'
         api.has_param :canvas_text, 'object'
         api.has_param :canvas_video, 'object'
       end
@@ -676,10 +681,6 @@ module FacebookAds
         api.has_param :theme_color, 'string'
         api.has_param :welcome_screen_greeting, 'string'
       end
-    end
-
-    has_edge :claimed_urls do |edge|
-      edge.get 'Url'
     end
 
     has_edge :commerce_eligibility do |edge|
@@ -949,35 +950,6 @@ module FacebookAds
       edge.get 'InstagramUser'
     end
 
-    has_edge :instant_articles do |edge|
-      edge.get 'InstantArticle' do |api|
-        api.has_param :development_mode, 'bool'
-      end
-      edge.post 'InstantArticle' do |api|
-        api.has_param :development_mode, 'bool'
-        api.has_param :html_source, 'string'
-        api.has_param :published, 'bool'
-        api.has_param :take_live, 'bool'
-      end
-    end
-
-    has_edge :instant_articles_insights do |edge|
-      edge.get 'InstantArticleInsightsQueryResult' do |api|
-        api.has_param :breakdown, { enum: -> { InstantArticleInsightsQueryResult::BREAKDOWN }}
-        api.has_param :metric, { list: 'object' }
-        api.has_param :period, { enum: -> { InstantArticleInsightsQueryResult::PERIOD }}
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
-      end
-    end
-
-    has_edge :instant_articles_publish do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :canonical_url, 'string'
-        api.has_param :publish_status, { enum: -> { Page::PUBLISH_STATUS }}
-      end
-    end
-
     has_edge :instant_articles_stats do |edge|
       edge.get 'InstantArticlesStats' do |api|
         api.has_param :metrics_list, { list: 'hash' }
@@ -1110,6 +1082,7 @@ module FacebookAds
         api.has_param :persona_id, 'string'
         api.has_param :recipient, 'object'
         api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
+        api.has_param :suggestion_action, { enum: -> { Page::SUGGESTION_ACTION }}
         api.has_param :tag, 'object'
         api.has_param :thread_control, 'object'
       end
@@ -1453,7 +1426,10 @@ module FacebookAds
     end
 
     has_edge :video_reels do |edge|
-      edge.get 'AdVideo'
+      edge.get 'AdVideo' do |api|
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+      end
       edge.post 'AdVideo' do |api|
         api.has_param :description, 'string'
         api.has_param :feed_targeting, 'object'
@@ -1574,6 +1550,12 @@ module FacebookAds
         api.has_param :limit, 'int'
         api.has_param :show_expired, 'bool'
         api.has_param :with, { enum: -> { PagePost::WITH }}
+      end
+    end
+
+    has_edge :welcome_message_flows do |edge|
+      edge.get do |api|
+        api.has_param :flow_id, 'string'
       end
     end
 

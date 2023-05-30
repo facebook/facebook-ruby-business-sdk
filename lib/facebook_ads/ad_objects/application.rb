@@ -78,6 +78,7 @@ module FacebookAds
     ]
 
     LOGGING_SOURCE = [
+      "DETECTION",
       "MESSENGER_BOT",
     ]
 
@@ -323,8 +324,9 @@ module FacebookAds
       edge.post do |api|
         api.has_param :app_id, 'int'
         api.has_param :is_aem_ready, 'bool'
-        api.has_param :is_aem_v2_ready, 'bool'
+        api.has_param :is_app_aem_ready, 'bool'
         api.has_param :is_skan_ready, 'bool'
+        api.has_param :message, 'string'
       end
     end
 
@@ -441,6 +443,10 @@ module FacebookAds
     end
 
     has_edge :ios_dialog_configs do |edge|
+      edge.get
+    end
+
+    has_edge :linked_dataset do |edge|
       edge.get
     end
 

@@ -29,10 +29,10 @@ module FacebookAds
 
     field :accepted_tos, 'bool'
     field :beta_features, { list: 'string' }
-    field :business_outcomes_status, 'hash'
+    field :business_outcomes_status, { list: 'hash' }
     field :id, 'string'
     field :is_test_merchant, 'bool'
-    field :outcomes_compliance_status, 'hash'
+    field :outcomes_compliance_status, { list: 'hash' }
     field :qualified_to_onboard, 'bool'
     has_no_post
     has_no_delete

@@ -163,6 +163,7 @@ module FacebookAds
         api.has_param :allow_upsert, 'bool'
         api.has_param :fbe_external_business_id, 'string'
         api.has_param :requests, { list: 'hash' }
+        api.has_param :version, 'int'
       end
     end
 
@@ -322,6 +323,7 @@ module FacebookAds
         api.has_param :item_sub_type, { enum: -> { ProductCatalog::ITEM_SUB_TYPE }}
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'
+        api.has_param :version, 'int'
       end
     end
 
@@ -330,28 +332,7 @@ module FacebookAds
         api.has_param :allow_upsert, 'bool'
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'
-      end
-    end
-
-    has_edge :media_titles do |edge|
-      edge.get 'MediaTitle' do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
-      end
-      edge.post 'MediaTitle' do |api|
-        api.has_param :applinks, 'object'
-        api.has_param :content_category, { enum: -> { MediaTitle::CONTENT_CATEGORY }}
-        api.has_param :currency, 'string'
-        api.has_param :description, 'string'
-        api.has_param :fb_page_id, 'string'
-        api.has_param :genres, { list: 'string' }
-        api.has_param :images, { list: 'object' }
-        api.has_param :kg_fb_id, 'string'
-        api.has_param :media_title_id, 'string'
-        api.has_param :price, 'int'
-        api.has_param :title, 'string'
-        api.has_param :title_display_name, 'string'
-        api.has_param :url, 'string'
+        api.has_param :version, 'int'
       end
     end
 

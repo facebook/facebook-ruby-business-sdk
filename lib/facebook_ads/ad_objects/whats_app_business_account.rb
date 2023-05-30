@@ -32,9 +32,12 @@ module FacebookAds
       "MANAGE",
       "MANAGE_EXTENSIONS",
       "MANAGE_PHONE",
+      "MANAGE_PHONE_ASSETS",
       "MANAGE_TEMPLATES",
       "MESSAGING",
       "VIEW_COST",
+      "VIEW_PHONE_ASSETS",
+      "VIEW_TEMPLATES",
     ]
 
     CATEGORY = [
@@ -100,8 +103,13 @@ module FacebookAds
       edge.get
     end
 
+    has_edge :message_campaigns do |edge|
+      edge.get
+    end
+
     has_edge :message_templates do |edge|
       edge.delete do |api|
+        api.has_param :hsm_id, 'string'
         api.has_param :name, 'string'
       end
       edge.get do |api|
@@ -114,8 +122,10 @@ module FacebookAds
         api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED IN_APPEAL LIMIT_EXCEEDED PAUSED PENDING PENDING_DELETION REJECTED }} }
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :allow_category_change, 'bool'
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}
         api.has_param :components, { list: 'hash' }
+        api.has_param :cta_url_link_tracking_opted_out, 'bool'
         api.has_param :language, 'string'
         api.has_param :name, 'string'
       end
@@ -127,6 +137,7 @@ module FacebookAds
         api.has_param :cc, 'string'
         api.has_param :migrate_phone_number, 'bool'
         api.has_param :phone_number, 'string'
+        api.has_param :verified_name, 'string'
       end
     end
 
@@ -150,6 +161,13 @@ module FacebookAds
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :override_callback_uri, 'string'
         api.has_param :verify_token, 'string'
+      end
+    end
+
+    has_edge :template_performance_metrics do |edge|
+      edge.get do |api|
+        api.has_param :name, 'string'
+        api.has_param :template_id, 'string'
       end
     end
 

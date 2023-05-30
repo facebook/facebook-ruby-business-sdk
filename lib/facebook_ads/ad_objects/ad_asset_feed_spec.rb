@@ -51,9 +51,11 @@ module FacebookAds
       "GET_DIRECTIONS",
       "GET_OFFER",
       "GET_OFFER_VIEW",
+      "GET_PROMOTIONS",
       "GET_QUOTE",
       "GET_SHOWTIMES",
       "GET_STARTED",
+      "INQUIRE_NOW",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "LEARN_MORE",
@@ -104,6 +106,7 @@ module FacebookAds
 
     field :ad_formats, { list: 'string' }
     field :additional_data, 'object'
+    field :app_product_page_id, 'string'
     field :asset_customization_rules, { list: 'object' }
     field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }

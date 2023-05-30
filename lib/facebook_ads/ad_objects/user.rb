@@ -51,6 +51,7 @@ module FacebookAds
     field :about, 'string'
     field :age_range, 'AgeRange'
     field :birthday, 'string'
+    field :community, 'Group'
     field :cover, 'UserCoverPhoto'
     field :currency, 'Currency'
     field :education, { list: 'object' }
@@ -99,9 +100,9 @@ module FacebookAds
       edge.delete
       edge.post 'User' do |api|
         api.has_param :business_app, 'int'
-        api.has_param :is_permanent_token, 'bool'
         api.has_param :page_id, 'string'
         api.has_param :scope, { list: 'Permission' }
+        api.has_param :set_token_expires_in_60_days, 'bool'
       end
     end
 
@@ -110,7 +111,7 @@ module FacebookAds
         api.has_param :is_place, 'bool'
         api.has_param :is_promotable, 'bool'
       end
-      edge.post 'Page' do |api|
+      edge.post do |api|
         api.has_param :about, 'string'
         api.has_param :address, 'string'
         api.has_param :category, 'int'

@@ -397,8 +397,6 @@ module FacebookAds
 
 
     field :account_id, 'string'
-    field :ad_strategy_group_id, 'string'
-    field :ad_strategy_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :boosted_object_id, 'string'
@@ -439,7 +437,6 @@ module FacebookAds
     field :adbatch, { list: 'object' }
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
     field :iterative_split_test_configs, { list: 'object' }
-    field :upstream_events, 'hash'
 
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'

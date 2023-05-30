@@ -91,7 +91,7 @@ module FacebookAds
     field :questions, { list: 'LeadGenQuestion' }
     field :status, 'string'
     field :thank_you_page, 'object'
-    field :tracking_parameters, 'hash'
+    field :tracking_parameters, { list: 'hash' }
     has_no_delete
 
     has_edge :leads do |edge|

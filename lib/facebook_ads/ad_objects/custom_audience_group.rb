@@ -1,5 +1,4 @@
-# Copyright (c) Meta Platforms, Inc. and affiliates.
-# All rights reserved.
+# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
 #
 # You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
 # copy, modify, and distribute this software in source code or binary form for use
@@ -17,21 +16,24 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-require 'facebook_ads'
+# FB:AUTOGEN
 
-access_token = '<ACCESS_TOKEN>'
-app_secret = '<APP_SECRET>'
-app_id = '<APP_ID>'
-id = '<AD_ACCOUNT_ID>'
+module FacebookAds
+  # This class is auto-generated.
 
-FacebookAds.configure do |config|
-  config.access_token = access_token
-  config.app_secret = app_secret
+  # For any issues or feature requests related to this class, please let us know
+  # on github and we'll fix in our codegen framework. We'll not be able to accept
+  # pull request for this class.
+
+  class CustomAudienceGroup < AdObject
+
+    field :audience_type_param_name, 'string'
+    field :existing_customer_tag, 'string'
+    field :new_customer_tag, 'string'
+    has_no_id
+    has_no_get
+    has_no_post
+    has_no_delete
+
+  end
 end
-
-ad_account = FacebookAds::AdAccount.get(id)
-adcreatives = ad_account.adcreatives.create({
-    name: 'Dynamic Ad Creative with Asset Feed Spec Sample',
-    object_story_spec: {'page_id':'<pageID>'},
-    asset_feed_spec: {'images':[{'hash':'<imageHash>'}],'bodies':[{'text':'Begin Your Adventure'},{'text':'Once a Trainer, always a Trainer.'}],'titles':[{'text':'Level Up'},{'text':'Swipe to evolve'}],'descriptions':[{'text':'First Dynamic Ad Creative Sample'}],'ad_formats':['SINGLE_IMAGE'],'call_to_action_types':['SHOP_NOW'],'link_urls':[{'website_url':'https://www.example.com/'}],'videos':[]},
-})

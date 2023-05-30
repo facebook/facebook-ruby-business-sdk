@@ -25,26 +25,31 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstantArticle < AdObject
+  class WhatsAppBusinessPreVerifiedPhoneNumber < AdObject
+    CODE_VERIFICATION_STATUS = [
+      "EXPIRED",
+      "NOT_VERIFIED",
+      "VERIFIED",
+    ]
 
-    field :canonical_url, 'string'
-    field :development_mode, 'bool'
-    field :html_source, 'string'
+
+    field :code_verification_status, 'string'
+    field :code_verification_time, 'datetime'
     field :id, 'string'
-    field :most_recent_import_status, 'object'
-    field :photos, { list: 'object' }
-    field :publish_status, 'string'
-    field :published, 'bool'
-    field :videos, { list: 'object' }
+    field :phone_number, 'string'
+    field :verification_expiry_time, 'datetime'
     has_no_post
 
-    has_edge :insights do |edge|
-      edge.get 'InstantArticleInsightsQueryResult' do |api|
-        api.has_param :breakdown, { enum: -> { InstantArticleInsightsQueryResult::BREAKDOWN }}
-        api.has_param :metric, { list: 'object' }
-        api.has_param :period, { enum: -> { InstantArticleInsightsQueryResult::PERIOD }}
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
+    has_edge :request_code do |edge|
+      edge.post do |api|
+        api.has_param :code_method, { enum: %w{SMS VOICE }}
+        api.has_param :language, 'object'
+      end
+    end
+
+    has_edge :verify_code do |edge|
+      edge.post do |api|
+        api.has_param :code, 'string'
       end
     end
 

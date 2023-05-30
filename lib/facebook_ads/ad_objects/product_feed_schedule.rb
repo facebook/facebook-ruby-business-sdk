@@ -26,16 +26,6 @@ module FacebookAds
   # pull request for this class.
 
   class ProductFeedSchedule < AdObject
-    DAY_OF_WEEK = [
-      "FRIDAY",
-      "MONDAY",
-      "SATURDAY",
-      "SUNDAY",
-      "THURSDAY",
-      "TUESDAY",
-      "WEDNESDAY",
-    ]
-
     INTERVAL = [
       "DAILY",
       "HOURLY",
@@ -45,7 +35,7 @@ module FacebookAds
 
 
     field :day_of_month, 'int'
-    field :day_of_week, { enum: -> { DAY_OF_WEEK }}
+    field :day_of_week, 'string'
     field :hour, 'int'
     field :id, 'string'
     field :interval, { enum: -> { INTERVAL }}

@@ -28,7 +28,7 @@ module FacebookAds
   class AdCreativeLinkDataTemplateVideoSpec < AdObject
 
     field :categorization_criteria, 'string'
-    field :customization, 'hash'
+    field :customization, { list: 'hash' }
     field :template_id, 'string'
     has_no_id
     has_no_get

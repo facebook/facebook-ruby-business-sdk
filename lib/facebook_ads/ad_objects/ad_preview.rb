@@ -50,9 +50,9 @@ module FacebookAds
       "INSTAGRAM_REELS_OVERLAY",
       "INSTAGRAM_SEARCH_CHAIN",
       "INSTAGRAM_SEARCH_GRID",
-      "INSTAGRAM_SHOP",
       "INSTAGRAM_STANDARD",
       "INSTAGRAM_STORY",
+      "INSTAGRAM_STORY_CAMERA_TRAY",
       "INSTAGRAM_STORY_WEB",
       "INSTAGRAM_STORY_WEB_M_SITE",
       "INSTANT_ARTICLE_RECIRCULATION_AD",
@@ -81,12 +81,17 @@ module FacebookAds
       "WATCH_FEED_MOBILE",
     ]
 
+    CREATIVE_FEATURE = [
+      "profile_card",
+    ]
+
     RENDER_TYPE = [
       "FALLBACK",
     ]
 
 
     field :body, 'string'
+    field :transformation_spec, 'object'
     has_no_id
     has_no_get
     has_no_post

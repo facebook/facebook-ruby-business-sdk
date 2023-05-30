@@ -109,17 +109,6 @@ module FacebookAds
       end
     end
 
-    has_edge :events do |edge|
-      edge.post do |api|
-        api.has_param :data, { list: 'string' }
-        api.has_param :namespace_id, 'string'
-        api.has_param :progress, 'object'
-        api.has_param :upload_id, 'string'
-        api.has_param :upload_source, 'string'
-        api.has_param :upload_tag, 'string'
-      end
-    end
-
     has_edge :server_events_permitted_business do |edge|
       edge.get 'Business'
     end

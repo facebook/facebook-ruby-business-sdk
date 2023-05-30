@@ -39,7 +39,7 @@ module FacebookAds
     field :image_url, 'string'
     field :name, 'string'
     field :num_items, 'int'
-    field :tokens, 'hash'
+    field :tokens, { list: 'hash' }
     field :data, { list: 'hash' }
     has_no_id
     has_no_get

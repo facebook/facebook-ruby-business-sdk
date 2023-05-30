@@ -155,6 +155,10 @@ module FacebookAds
       end
     end
 
+    has_edge :openbridge_configurations do |edge|
+      edge.get 'OpenBridgeConfiguration'
+    end
+
     has_edge :shadowtraffichelper do |edge|
       edge.post
     end

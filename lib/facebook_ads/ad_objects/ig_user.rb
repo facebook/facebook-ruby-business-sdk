@@ -88,6 +88,7 @@ module FacebookAds
         api.has_param :until, 'datetime'
       end
       edge.post 'IgMedia' do |api|
+        api.has_param :audio_name, 'string'
         api.has_param :caption, 'string'
         api.has_param :children, { list: 'string' }
         api.has_param :cover_url, 'string'

@@ -63,6 +63,7 @@ module FacebookAds
     SUBTYPE = [
       "APP",
       "BAG_OF_ACCOUNTS",
+      "BIDDING",
       "CLAIM",
       "CUSTOM",
       "ENGAGEMENT",
@@ -72,6 +73,7 @@ module FacebookAds
       "MEASUREMENT",
       "OFFLINE_CONVERSION",
       "PARTNER",
+      "PRIMARY",
       "REGULATED_CATEGORIES_AUDIENCE",
       "STUDY_RULE_AUDIENCE",
       "VIDEO",
@@ -141,6 +143,7 @@ module FacebookAds
     field :partner_reference_key, 'string'
     field :prefill, 'bool'
     field :product_set_id, 'string'
+    field :use_in_campaigns, 'bool'
     field :video_group_ids, { list: 'string' }
 
     has_edge :adaccounts do |edge|

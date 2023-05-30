@@ -51,9 +51,11 @@ module FacebookAds
       "GET_DIRECTIONS",
       "GET_OFFER",
       "GET_OFFER_VIEW",
+      "GET_PROMOTIONS",
       "GET_QUOTE",
       "GET_SHOWTIMES",
       "GET_STARTED",
+      "INQUIRE_NOW",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "LEARN_MORE",
@@ -168,6 +170,7 @@ module FacebookAds
     field :authorization_category, 'string'
     field :auto_update, 'bool'
     field :body, 'string'
+    field :branded_content, 'AdCreativeBrandedContentAds'
     field :branded_content_sponsor_page_id, 'string'
     field :bundle_folder_id, 'string'
     field :call_to_action_type, { enum: -> { CALL_TO_ACTION_TYPE }}
@@ -183,11 +186,13 @@ module FacebookAds
     field :effective_object_story_id, 'string'
     field :enable_direct_install, 'bool'
     field :enable_launch_instant_app, 'bool'
+    field :facebook_branded_content, 'AdCreativeFacebookBrandedContent'
     field :id, 'string'
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
     field :image_url, 'string'
     field :instagram_actor_id, 'string'
+    field :instagram_branded_content, 'AdCreativeInstagramBrandedContent'
     field :instagram_permalink_url, 'string'
     field :instagram_story_id, 'string'
     field :instagram_user_id, 'string'
@@ -238,6 +243,7 @@ module FacebookAds
     has_edge :previews do |edge|
       edge.get 'AdPreview' do |api|
         api.has_param :ad_format, { enum: -> { AdPreview::AD_FORMAT }}
+        api.has_param :creative_feature, { enum: -> { AdPreview::CREATIVE_FEATURE }}
         api.has_param :dynamic_asset_label, 'string'
         api.has_param :dynamic_creative_spec, 'object'
         api.has_param :dynamic_customization, 'object'
