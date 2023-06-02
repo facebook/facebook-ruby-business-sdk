@@ -201,6 +201,8 @@ module FacebookAds
     field :daily_min_spend_target, 'string'
     field :daily_spend_cap, 'string'
     field :destination_type, 'string'
+    field :dsa_beneficiary, 'string'
+    field :dsa_payor, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :end_time, 'datetime'
     field :existing_customer_budget_percentage, 'int'

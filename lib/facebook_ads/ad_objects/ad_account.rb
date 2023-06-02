@@ -440,6 +440,8 @@ module FacebookAds
         api.has_param :daily_spend_cap, 'int'
         api.has_param :date_format, 'string'
         api.has_param :destination_type, { enum: -> { AdSet::DESTINATION_TYPE }}
+        api.has_param :dsa_beneficiary, 'string'
+        api.has_param :dsa_payor, 'string'
         api.has_param :end_time, 'datetime'
         api.has_param :execution_options, { list: { enum: -> { AdSet::EXECUTION_OPTIONS }} }
         api.has_param :existing_customer_budget_percentage, 'int'
