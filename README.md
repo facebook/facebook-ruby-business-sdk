@@ -15,7 +15,7 @@ Business SDK <a href="https://developers.facebook.com/docs/business-sdk/getting-
 ## Pre-requisites
 
 ### Ruby Version
-We developed this SDK using Ruby 2.0, and supports Ruby 2.0+, however, the SDK is not thread-safe at the moment.
+The minimum version supported is Ruby 3.0.
 
 ### Register An App
 
