@@ -51,11 +51,11 @@ module FacebookAds
     }
 
     def add_user(data, schema, options = {})
-      self.users.create(prepare_params(data, schema, options))
+      self.users.create(prepare_params(data, schema, **options))
     end
 
     def remove_user(data, schema, options = {})
-      self.users.destroy(prepare_params(data, schema, options))
+      self.users.destroy(prepare_params(data, schema, **options))
     end
 
     def prepare_params(data,
