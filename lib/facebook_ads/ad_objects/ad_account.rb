@@ -166,6 +166,8 @@ module FacebookAds
     field :created_time, 'datetime'
     field :currency, 'string'
     field :custom_audience_info, 'CustomAudienceGroup'
+    field :default_dsa_beneficiary, 'string'
+    field :default_dsa_payor, 'string'
     field :disable_reason, 'int'
     field :end_advertiser, 'string'
     field :end_advertiser_name, 'string'
