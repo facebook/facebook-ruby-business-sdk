@@ -29,6 +29,8 @@ module FacebookAds
     SUB_TYPE = [
       "ANYTHING",
       "APP_USERS",
+      "AR_EFFECTS_EVENTS",
+      "AR_EXPERIENCE_EVENTS",
       "CAMPAIGN_CONVERSIONS",
       "COMBINATION_CUSTOM_AUDIENCE_USERS",
       "CONSTANT_CONTACTS_EMAIL_HASHES",
@@ -74,6 +76,7 @@ module FacebookAds
       "SIGNAL_SOURCE",
       "SMART_AUDIENCE",
       "STORE_VISIT_EVENTS",
+      "SUBSCRIBER_LIST",
       "S_EXPR",
       "TOKENS",
       "USER_IDS",

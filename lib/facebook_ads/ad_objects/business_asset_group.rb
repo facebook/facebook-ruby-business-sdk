@@ -61,6 +61,7 @@ module FacebookAds
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
       "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
@@ -80,6 +81,7 @@ module FacebookAds
 
     field :id, 'string'
     field :name, 'string'
+    field :owner_business, 'Business'
     has_no_delete
 
     has_edge :assigned_users do |edge|

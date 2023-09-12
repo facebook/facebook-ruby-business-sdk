@@ -59,6 +59,7 @@ module FacebookAds
 
 
     field :application_id, 'string'
+    field :conversion_goal_id, 'string'
     field :custom_conversion_id, 'string'
     field :custom_event_str, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
@@ -73,6 +74,7 @@ module FacebookAds
     field :pixel_aggregation_rule, 'string'
     field :pixel_id, 'string'
     field :pixel_rule, 'string'
+    field :place_page_set, 'AdPlacePageSet'
     field :place_page_set_id, 'string'
     field :product_catalog_id, 'string'
     field :product_item_id, 'string'

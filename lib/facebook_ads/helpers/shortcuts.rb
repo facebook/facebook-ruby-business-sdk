@@ -23,7 +23,7 @@ module FacebookAds
     end
 
     def ad_account(act_id)
-      act_id = 'act_' + act_id unless id =~ /^act_/
+      act_id = 'act_' + act_id.to_s unless act_id.is_a?(String) && act_id =~ /^act_/
       AdAccount.get(act_id)
     end
 

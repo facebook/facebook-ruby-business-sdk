@@ -27,7 +27,7 @@ module FacebookAds
 
   class AdCampaignDeliveryStatsUnsupportedReasons < AdObject
 
-    field :reason_data, 'hash'
+    field :reason_data, { list: 'hash' }
     field :reason_type, 'string'
     has_no_id
     has_no_get

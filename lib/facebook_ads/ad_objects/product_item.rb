@@ -315,8 +315,15 @@ module FacebookAds
       "DIGITAL_GOODS_NOT_AVAILABLE_FOR_CHECKOUT",
       "DUPLICATE_IMAGES",
       "DUPLICATE_TITLE_AND_DESCRIPTION",
+      "EMPTY_DESCRIPTION",
       "GENERIC_INVALID_FIELD",
       "HIDDEN_UNTIL_PRODUCT_LAUNCH",
+      "IMAGE_FETCH_FAILED",
+      "IMAGE_FETCH_FAILED_BAD_GATEWAY",
+      "IMAGE_FETCH_FAILED_FILE_SIZE_EXCEEDED",
+      "IMAGE_FETCH_FAILED_FORBIDDEN",
+      "IMAGE_FETCH_FAILED_LINK_BROKEN",
+      "IMAGE_FETCH_FAILED_TIMED_OUT",
       "IMAGE_RESOLUTION_LOW",
       "INACTIVE_SHOPIFY_PRODUCT",
       "INVALID_COMMERCE_TAX_CATEGORY",
@@ -342,9 +349,12 @@ module FacebookAds
       "MISSING_SHIPPING_PROFILE",
       "MISSING_SIZE",
       "MISSING_TAX_CATEGORY",
+      "NEGATIVE_COMMUNITY_FEEDBACK",
       "NOT_ENOUGH_IMAGES",
       "PART_OF_PRODUCT_LAUNCH",
       "PRODUCT_EXPIRED",
+      "PRODUCT_ITEM_HIDDEN_FROM_ALL_SHOPS",
+      "PRODUCT_ITEM_NOT_INCLUDED_IN_ANY_SHOP",
       "PRODUCT_ITEM_NOT_VISIBLE",
       "PRODUCT_NOT_APPROVED",
       "PRODUCT_NOT_DOMINANT_CURRENCY",
@@ -639,22 +649,22 @@ module FacebookAds
     ]
 
 
-    field :additional_image_cdn_urls, { list: 'hash' }
+    field :additional_image_cdn_urls, { list: { list: 'hash' } }
     field :additional_image_urls, { list: 'string' }
-    field :additional_variant_attributes, 'hash'
+    field :additional_variant_attributes, { list: 'hash' }
     field :age_group, { enum: -> { AGE_GROUP }}
     field :applinks, 'CatalogItemAppLinks'
     field :ar_data, 'ProductItemArData'
     field :availability, { enum: -> { AVAILABILITY }}
     field :brand, 'string'
-    field :capability_to_review_status, 'hash'
+    field :capability_to_review_status, { list: 'hash' }
     field :category, 'string'
     field :category_specific_fields, 'CatalogSubVerticalList'
     field :color, 'string'
     field :commerce_insights, 'ProductItemCommerceInsights'
     field :condition, { enum: -> { CONDITION }}
     field :currency, 'string'
-    field :custom_data, 'hash'
+    field :custom_data, { list: 'hash' }
     field :custom_label_0, 'string'
     field :custom_label_1, 'string'
     field :custom_label_2, 'string'
@@ -672,7 +682,7 @@ module FacebookAds
     field :gender, { enum: -> { GENDER }}
     field :gtin, 'string'
     field :id, 'string'
-    field :image_cdn_urls, 'hash'
+    field :image_cdn_urls, { list: 'hash' }
     field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :image_url, 'string'
     field :images, { list: 'string' }
@@ -690,6 +700,7 @@ module FacebookAds
     field :origin_country, 'string'
     field :parent_product_id, 'string'
     field :pattern, 'string'
+    field :post_conversion_signal_based_enforcement_appeal_eligibility, 'bool'
     field :price, 'string'
     field :product_catalog, 'ProductCatalog'
     field :product_feed, 'ProductFeed'
@@ -742,6 +753,10 @@ module FacebookAds
 
     has_edge :product_sets do |edge|
       edge.get 'ProductSet'
+    end
+
+    has_edge :videos_metadata do |edge|
+      edge.get
     end
 
   end

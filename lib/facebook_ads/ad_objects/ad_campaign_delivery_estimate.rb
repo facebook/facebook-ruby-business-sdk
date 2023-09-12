@@ -39,6 +39,7 @@ module FacebookAds
       "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
+      "MESSAGING_APPOINTMENT_CONVERSION",
       "MESSAGING_PURCHASE_CONVERSION",
       "NONE",
       "OFFSITE_CONVERSIONS",
@@ -47,6 +48,7 @@ module FacebookAds
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
+      "SUBSCRIBERS",
       "THRUPLAY",
       "VALUE",
       "VISIT_INSTAGRAM_PROFILE",
@@ -58,7 +60,7 @@ module FacebookAds
     field :estimate_mau_lower_bound, 'int'
     field :estimate_mau_upper_bound, 'int'
     field :estimate_ready, 'bool'
-    field :targeting_optimization_types, 'hash'
+    field :targeting_optimization_types, { list: 'hash' }
     has_no_id
     has_no_get
     has_no_post

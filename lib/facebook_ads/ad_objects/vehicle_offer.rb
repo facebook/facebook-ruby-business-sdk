@@ -35,12 +35,18 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
 
     field :amount_currency, 'string'
     field :amount_percentage, 'double'
     field :amount_price, 'string'
     field :amount_qualifier, 'string'
     field :applinks, 'CatalogItemAppLinks'
+    field :availability, 'string'
     field :body_style, 'string'
     field :cashback_currency, 'string'
     field :cashback_price, 'string'
@@ -50,11 +56,17 @@ module FacebookAds
     field :downpayment_currency, 'string'
     field :downpayment_price, 'string'
     field :downpayment_qualifier, 'string'
+    field :drivetrain, 'string'
     field :end_date, 'string'
     field :end_time, 'int'
+    field :exterior_color, 'string'
+    field :fuel_type, 'string'
+    field :generation, 'string'
     field :id, 'string'
     field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
+    field :interior_color, 'string'
+    field :interior_upholstery, 'string'
     field :make, 'string'
     field :model, 'string'
     field :offer_description, 'string'
@@ -67,10 +79,12 @@ module FacebookAds
     field :term_length, 'int'
     field :term_qualifier, 'string'
     field :title, 'string'
+    field :transmission, 'string'
     field :trim, 'string'
     field :unit_price, 'object'
     field :url, 'string'
     field :vehicle_offer_id, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     field :year, 'int'
     has_no_post
     has_no_delete

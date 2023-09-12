@@ -41,24 +41,36 @@ module FacebookAds
     ]
 
 
+    field :automatic_matching_fields, { list: 'string' }
     field :business, 'Business'
+    field :can_proxy, 'bool'
     field :config, 'string'
     field :creation_time, 'datetime'
+    field :creator, 'User'
+    field :data_use_setting, 'string'
     field :description, 'string'
     field :duplicate_entries, 'int'
     field :enable_auto_assign_to_accounts, 'bool'
+    field :enable_automatic_matching, 'bool'
     field :event_stats, 'string'
     field :event_time_max, 'int'
     field :event_time_min, 'int'
+    field :first_party_cookie_status, 'string'
     field :id, 'string'
+    field :is_consolidated_container, 'bool'
+    field :is_created_by_business, 'bool'
+    field :is_crm, 'bool'
     field :is_mta_use, 'bool'
     field :is_restricted_use, 'bool'
     field :is_unavailable, 'bool'
+    field :last_fired_time, 'datetime'
     field :last_upload_app, 'string'
     field :last_upload_app_changed_time, 'int'
     field :match_rate_approx, 'int'
     field :matched_entries, 'int'
     field :name, 'string'
+    field :owner_ad_account, 'AdAccount'
+    field :owner_business, 'Business'
     field :usage, 'OfflineConversionDataSetUsage'
     field :valid_entries, 'int'
     field :auto_assign_to_new_accounts_only, 'bool'
@@ -97,14 +109,20 @@ module FacebookAds
       end
     end
 
-    has_edge :events do |edge|
-      edge.post do |api|
-        api.has_param :data, { list: 'string' }
-        api.has_param :namespace_id, 'string'
-        api.has_param :progress, 'object'
-        api.has_param :upload_id, 'string'
-        api.has_param :upload_source, 'string'
-        api.has_param :upload_tag, 'string'
+    has_edge :server_events_permitted_business do |edge|
+      edge.get 'Business'
+    end
+
+    has_edge :shared_accounts do |edge|
+      edge.get 'AdAccount' do |api|
+        api.has_param :action_source, { enum: -> { AdAccount::ACTION_SOURCE }}
+        api.has_param :business, 'string'
+      end
+    end
+
+    has_edge :shared_agencies do |edge|
+      edge.get 'Business' do |api|
+        api.has_param :action_source, { enum: -> { Business::ACTION_SOURCE }}
       end
     end
 

@@ -38,6 +38,7 @@ module FacebookAds
       "CS_CZ",
       "DA_DK",
       "DE_DE",
+      "EL_GR",
       "EN_GB",
       "EN_US",
       "ES_ES",
@@ -72,6 +73,7 @@ module FacebookAds
     field :block_display_for_non_targeted_viewer, 'bool'
     field :context_card, 'object'
     field :created_time, 'datetime'
+    field :creator, 'User'
     field :expired_leads_count, 'int'
     field :follow_up_action_text, 'string'
     field :follow_up_action_url, 'string'
@@ -89,7 +91,7 @@ module FacebookAds
     field :questions, { list: 'LeadGenQuestion' }
     field :status, 'string'
     field :thank_you_page, 'object'
-    field :tracking_parameters, 'hash'
+    field :tracking_parameters, { list: 'hash' }
     has_no_delete
 
     has_edge :leads do |edge|

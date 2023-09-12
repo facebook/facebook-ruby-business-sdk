@@ -95,16 +95,20 @@ module FacebookAds
     ]
 
 
+    field :ad_account_to_collaborative_ads_share_settings, 'CollaborativeAdsShareSettings'
+    field :agency_collaborative_ads_share_settings, 'CollaborativeAdsShareSettings'
     field :business, 'Business'
+    field :catalog_store, 'StoreCatalogSettings'
     field :commerce_merchant_settings, 'CommerceMerchantSettings'
+    field :creator_user, 'User'
     field :da_display_settings, 'ProductCatalogImageSettings'
     field :default_image_url, 'string'
     field :fallback_image_url, { list: 'string' }
     field :feed_count, 'int'
     field :id, 'string'
     field :is_catalog_segment, 'bool'
-    field :latest_feed_upload_session, 'ProductFeedUpload'
     field :name, 'string'
+    field :owner_business, 'Business'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
     field :vertical, 'string'
@@ -159,12 +163,13 @@ module FacebookAds
         api.has_param :allow_upsert, 'bool'
         api.has_param :fbe_external_business_id, 'string'
         api.has_param :requests, { list: 'hash' }
+        api.has_param :version, 'int'
       end
     end
 
-    has_edge :catalog_website_settings do |edge|
-      edge.post do |api|
-        api.has_param :is_allowed_to_crawl, 'bool'
+    has_edge :catalog_store do |edge|
+      edge.post 'StoreCatalogSettings' do |api|
+        api.has_param :page, 'int'
       end
     end
 
@@ -184,6 +189,10 @@ module FacebookAds
         api.has_param :handle, 'string'
         api.has_param :load_ids_of_invalid_requests, 'bool'
       end
+    end
+
+    has_edge :collaborative_ads_event_stats do |edge|
+      edge.get 'CatalogSegmentAllMatchCountLaser'
     end
 
     has_edge :collaborative_ads_lsb_image_bank do |edge|
@@ -314,6 +323,7 @@ module FacebookAds
         api.has_param :item_sub_type, { enum: -> { ProductCatalog::ITEM_SUB_TYPE }}
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'
+        api.has_param :version, 'int'
       end
     end
 
@@ -322,24 +332,7 @@ module FacebookAds
         api.has_param :allow_upsert, 'bool'
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'
-      end
-    end
-
-    has_edge :media_titles do |edge|
-      edge.post do |api|
-        api.has_param :applinks, 'object'
-        api.has_param :content_category, { enum: %w{MOVIE MUSIC TV_SHOW }}
-        api.has_param :currency, 'string'
-        api.has_param :description, 'string'
-        api.has_param :fb_page_id, 'string'
-        api.has_param :genres, { list: 'string' }
-        api.has_param :images, { list: 'object' }
-        api.has_param :kg_fb_id, 'string'
-        api.has_param :media_title_id, 'string'
-        api.has_param :price, 'int'
-        api.has_param :title, 'string'
-        api.has_param :title_display_name, 'string'
-        api.has_param :url, 'string'
+        api.has_param :version, 'int'
       end
     end
 

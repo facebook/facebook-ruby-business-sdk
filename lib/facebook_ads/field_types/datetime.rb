@@ -37,7 +37,7 @@ module FacebookAds
           when ::DateTime, ::Time
             value.to_time.to_i
           when ::String
-            DateTime.parse(value).to_time.to_i
+            ::DateTime.parse(value).to_time.to_i
           else
             value
         end

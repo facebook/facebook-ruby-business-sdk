@@ -28,6 +28,7 @@ module FacebookAds
   class TargetingGeoLocationElectoralDistrict < AdObject
 
     field :country, 'string'
+    field :deprecation_code, 'string'
     field :electoral_district, 'string'
     field :key, 'string'
     field :name, 'string'

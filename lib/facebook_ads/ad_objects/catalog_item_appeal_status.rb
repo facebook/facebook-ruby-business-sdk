@@ -26,10 +26,18 @@ module FacebookAds
   # pull request for this class.
 
   class CatalogItemAppealStatus < AdObject
+    STATUS = [
+      "This item cannot be appealed as it is either approved or already has an appeal",
+      "This item is not rejected for any of channels",
+      "Weve encountered unexpected error while processing this request. Please try again later !",
+      "Youve reached the maximum number of item requests you can make this week. Youll be able to request item reviews again within the next 7 days.",
+      "Your request was received. See information below to learn more.",
+    ]
+
 
     field :handle, 'string'
     field :item_id, 'int'
-    field :status, 'string'
+    field :status, { enum: -> { STATUS }}
     field :use_cases, { list: 'object' }
     has_no_id
     has_no_get

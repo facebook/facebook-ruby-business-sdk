@@ -76,6 +76,7 @@ module FacebookAds
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
       "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
@@ -110,6 +111,7 @@ module FacebookAds
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_MANAGE",
+      "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
       "PROFILE_PLUS_MODERATE",
       "PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY",
@@ -118,10 +120,216 @@ module FacebookAds
       "VIEW_MONETIZATION_INSIGHTS",
     ]
 
+    SUBVERTICAL_V2 = [
+      "ACCOUNTING_AND_TAX",
+      "ACTIVITIES_AND_LEISURE",
+      "AIR",
+      "APPAREL_AND_ACCESSORIES",
+      "ARTS_AND_HERITAGE_AND_EDUCATION",
+      "AR_OR_VR_GAMING",
+      "AUDIO_STREAMING",
+      "AUTO",
+      "AUTO_INSURANCE",
+      "AUTO_RENTAL",
+      "BABY",
+      "BALLOT_INITIATIVE_OR_REFERENDUM",
+      "BEAUTY",
+      "BEAUTY_AND_FASHION",
+      "BEER_AND_WINE_AND_LIQUOR_AND_MALT_BEVERAGES",
+      "BOOKSTORES",
+      "BROADCAST_TELEVISION",
+      "BUSINESS_CONSULTANTS",
+      "BUYING_AGENCY",
+      "CABLE_AND_SATELLITE",
+      "CABLE_TELEVISION",
+      "CALL_CENTER_AND_MESSAGING_SERVICES",
+      "CANDIDATE_OR_POLITICIAN",
+      "CAREER",
+      "CAREER_AND_TECH",
+      "CASUAL_DINING",
+      "CHRONIC_CONDITIONS_AND_MEDICAL_CAUSES",
+      "CIVIC_INFLUENCERS",
+      "CLINICAL_TRIALS",
+      "COFFEE",
+      "COMPUTER_AND_SOFTWARE_AND_HARDWARE",
+      "CONSOLE_AND_CROSS_PLATFORM_GAMING",
+      "CONSULTING",
+      "CONSUMER_ELECTRONICS",
+      "COUNSELING_AND_PSYCHOTHERAPY",
+      "CREATIVE_AGENCY",
+      "CREDIT_AND_FINANCING_AND_MORTAGES",
+      "CRUISES_AND_MARINE",
+      "CULTURE_AND_LIFESTYLE",
+      "DATA_ANALYTICS_AND_DATA_MANAGEMENT",
+      "DATING_AND_TECHNOLOGY_APPS",
+      "DEPARTMENT_STORE",
+      "DESKTOP_SOFTWARE",
+      "DIETING_AND_FITNESS_PROGRAMS",
+      "DIGITAL_NATIVE_EDUCATION_OR_TRAINING",
+      "DRINKING_PLACES",
+      "EDUCATION_RESOURCES",
+      "ED_TECH",
+      "ELEARNING_AND_MASSIVE_ONLINE_OPEN_COURSES",
+      "ELECTION_COMMISSION",
+      "ELECTRONICS_AND_APPLIANCES",
+      "ENGINEERING_AND_DESIGN",
+      "ENVIRONMENT_AND_ANIMAL_WELFARE",
+      "ESPORTS",
+      "EVENTS",
+      "FARMING_AND_RANCHING",
+      "FILE_STORAGE_AND_CLOUD_AND_DATA_SERVICES",
+      "FINANCE",
+      "FIN_TECH",
+      "FISHING_AND_HUNTING_AND_FORESTRY_AND_LOGGING",
+      "FITNESS",
+      "FOOD",
+      "FOOTWEAR",
+      "FOR_PROFIT_COLLEGES_AND_UNIVERSITIES",
+      "FULL_SERVICE_AGENCY",
+      "GOVERNMENT_CONTROLLED_ENTITY",
+      "GOVERNMENT_DEPARTMENT_OR_AGENCY",
+      "GOVERNMENT_OFFICIAL",
+      "GOVERNMENT_OWNED_MEDIA",
+      "GROCERY_AND_DRUG_AND_CONVENIENCE",
+      "HEAD_OF_STATE",
+      "HEALTH_INSURANCE",
+      "HEALTH_SYSTEMS_AND_PRACTITIONERS",
+      "HEALTH_TECH",
+      "HOME_AND_FURNITURE_AND_OFFICE",
+      "HOME_IMPROVEMENT",
+      "HOME_INSURANCE",
+      "HOME_TECH",
+      "HOTEL_AND_ACCOMODATION",
+      "HOUSEHOLD_GOODS_DURABLE",
+      "HOUSEHOLD_GOODS_NON_DURABLE",
+      "HR_AND_FINANCIAL_MANAGEMENT",
+      "HUMANITARIAN_OR_DISASTER_RELIEF",
+      "INDEPENDENT_EXPENDITURE_GROUP",
+      "INSURANCE_TECH",
+      "INTERNATIONAL_ORGANIZATON",
+      "INVESTMENT_BANK_AND_BROKERAGE",
+      "ISSUE_ADVOCACY",
+      "LEGAL",
+      "LIFE_INSURANCE",
+      "LOGISTICS_AND_TRANSPORTATION_AND_FLEET_MANAGEMENT",
+      "MANUFACTURING",
+      "MEDICAL_DEVICES_AND_SUPPLIES_AND_EQUIPMENT",
+      "MEDSPA_AND_ELECTIVE_SURGERIES_AND_ALTERNATIVE_MEDICINE",
+      "MINING_AND_QUARRYING",
+      "MOBILE_GAMING",
+      "MOVIES",
+      "MUSEUMS_AND_PARKS_AND_LIBRARIES",
+      "MUSIC",
+      "NETWORK_SECURITY_PRODUCTS",
+      "NEWS_AND_CURRENT_EVENTS",
+      "NON_PRESCRIPTION",
+      "NOT_FOR_PROFIT_COLLEGES_AND_UNIVERSITIES",
+      "OFFICE",
+      "OFFICE_OR_BUSINESS_SUPPLIES",
+      "OIL_AND_GAS_AND_CONSUMABLE_FUEL",
+      "ONLINE_ONLY_PUBLICATIONS",
+      "PACKAGE_OR_FREIGHT_DELIVERY",
+      "PARTY_INDEPENDENT_EXPENDITURE_GROUP_US",
+      "PAYMENT_PROCESSING_AND_GATEWAY_SOLUTIONS",
+      "PC_GAMING",
+      "PEOPLE",
+      "PERSONAL_CARE",
+      "PET",
+      "PHOTOGRAPHY_AND_FILMING_SERVICES",
+      "PIZZA",
+      "PLANNING_AGENCY",
+      "POLITICAL_PARTY_OR_COMMITTEE",
+      "PRESCRIPTION",
+      "PROFESSIONAL_ASSOCIATIONS",
+      "PROPERTY_AND_CASUALTY",
+      "QUICK_SERVICE",
+      "RADIO",
+      "RAILROADS",
+      "REAL_ESTATE",
+      "REAL_MONEY_GAMING",
+      "RECREATIONAL",
+      "RELIGIOUS",
+      "RESELLER",
+      "RESIDENTIAL_AND_LONG_TERM_CARE_FACILITIES_AND_OUTPATIENT_CARE_CENTERS",
+      "RETAIL_AND_CREDIT_UNION_AND_COMMERCIAL_BANK",
+      "RIDE_SHARING_OR_TAXI_SERVICES",
+      "SAFETY_SERVICES",
+      "SCHOLARLY",
+      "SCHOOL_AND_EARLY_CHILDREN_EDCATION",
+      "SOCIAL_MEDIA",
+      "SOFTWARE_AS_A_SERVICE",
+      "SPORTING",
+      "SPORTING_AND_OUTDOOR",
+      "SPORTS",
+      "SUPERSTORES",
+      "T1_AUTOMOTIVE_MANUFACTURER",
+      "T1_MOTORCYCLE",
+      "T2_DEALER_ASSOCIATIONS",
+      "T3_AUTO_AGENCY",
+      "T3_AUTO_RESELLERS",
+      "T3_DEALER_GROUPS",
+      "T3_FRANCHISE_DEALER",
+      "T3_INDEPENDENT_DEALER",
+      "T3_PARTS_AND_SERVICES",
+      "T3_PORTALS",
+      "TELECOMMUNICATIONS_EQUIPMENT_AND_ACCESSORIES",
+      "TELEPHONE_SERVICE_PROVIDERS_AND_CARRIERS",
+      "TICKETING",
+      "TOBACCO",
+      "TOURISM_AND_TRAVEL_SERVICES",
+      "TOURISM_BOARD",
+      "TOY_AND_HOBBY",
+      "TRADE_SCHOOL",
+      "TRAVEL_AGENCIES_AND_GUIDES_AND_OTAS",
+      "UTILITIES_AND_ENERGY_EQUIPMENT_AND_SERVICES",
+      "VETERINARY_CLINICS_AND_SERVICES",
+      "VIDEO_STREAMING",
+      "VIRTUAL_SERVICES",
+      "VITAMINS_OR_WELLNESS",
+      "WAREHOUSING_AND_STORAGE",
+      "WATER_AND_SOFT_DRINK_AND_BAVERAGE",
+      "WEBSITE_DESIGNERS_OR_GRAPHIC_DESIGNERS",
+      "WHOLESALE",
+      "WIRELESS_SERVICES",
+    ]
+
+    VERTICAL_V2 = [
+      "ADVERTISING_AND_MARKETING",
+      "AGRICULTURE",
+      "AUTOMOTIVE",
+      "BANKING_AND_CREDIT_CARDS",
+      "BUSINESS_TO_BUSINESS",
+      "CONSUMER_PACKAGED_GOODS",
+      "ECOMMERCE",
+      "EDUCATION",
+      "ENERGY_AND_NATURAL_RESOURCES_AND_UTILITIES",
+      "ENTERTAINMENT_AND_MEDIA",
+      "GAMING",
+      "GOVERNMENT",
+      "HEALTHCARE_AND_PHARMACEUTICALS_AND_BIOTECH",
+      "INSURANCE",
+      "NON_PROFIT",
+      "ORGANIZATIONS_AND_ASSOCIATIONS",
+      "POLITICS",
+      "PROFESSIONAL_SERVICES",
+      "PUBLISHING",
+      "RESTAURANTS",
+      "RETAIL",
+      "TECHNOLOGY",
+      "TELECOM",
+      "TRAVEL",
+    ]
+
+    ACTION_SOURCE = [
+      "PHYSICAL_STORE",
+      "WEBSITE",
+    ]
+
 
     field :block_offline_analytics, 'bool'
     field :collaborative_ads_managed_partner_business_info, 'ManagedPartnerBusiness'
     field :collaborative_ads_managed_partner_eligibility, 'BusinessManagedPartnerEligibility'
+    field :collaborative_ads_partner_premium_options, 'BusinessPartnerPremiumOptions'
     field :created_by, 'object'
     field :created_time, 'datetime'
     field :extended_updated_time, 'datetime'
@@ -192,6 +400,12 @@ module FacebookAds
       end
     end
 
+    has_edge :add_phone_numbers do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :phone_number, 'string'
+      end
+    end
+
     has_edge :adnetwork_applications do |edge|
       edge.post 'Application' do |api|
         api.has_param :name, 'string'
@@ -227,6 +441,16 @@ module FacebookAds
       edge.get 'AdNetworkAnalyticsAsyncQueryResult' do |api|
         api.has_param :query_ids, { list: 'string' }
       end
+    end
+
+    has_edge :ads_reporting_mmm_reports do |edge|
+      edge.get do |api|
+        api.has_param :filtering, { list: 'hash' }
+      end
+    end
+
+    has_edge :ads_reporting_mmm_schedulers do |edge|
+      edge.get
     end
 
     has_edge :adspixels do |edge|
@@ -282,6 +506,10 @@ module FacebookAds
       end
     end
 
+    has_edge :businessprojects do |edge|
+      edge.get
+    end
+
     has_edge :claim_custom_conversions do |edge|
       edge.post 'CustomConversion' do |api|
         api.has_param :custom_conversion_id, 'string'
@@ -289,7 +517,9 @@ module FacebookAds
     end
 
     has_edge :client_ad_accounts do |edge|
-      edge.get 'AdAccount'
+      edge.get 'AdAccount' do |api|
+        api.has_param :search_query, 'string'
+      end
     end
 
     has_edge :client_apps do |edge|
@@ -354,17 +584,6 @@ module FacebookAds
       edge.get 'CommerceMerchantSettings'
     end
 
-    has_edge :content_delivery_report do |edge|
-      edge.get 'ContentDeliveryReport' do |api|
-        api.has_param :end_date, 'datetime'
-        api.has_param :page_id, 'int'
-        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
-        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
-        api.has_param :start_date, 'datetime'
-        api.has_param :summary, 'bool'
-      end
-    end
-
     has_edge :cpas_business_setup_config do |edge|
       edge.get 'CpasBusinessSetupConfig'
       edge.post 'CpasBusinessSetupConfig' do |api|
@@ -377,14 +596,6 @@ module FacebookAds
 
     has_edge :cpas_merchant_config do |edge|
       edge.get 'CpasMerchantConfig'
-    end
-
-    has_edge :create_and_apply_publisher_block_list do |edge|
-      edge.post do |api|
-        api.has_param :is_auto_blocking_on, 'bool'
-        api.has_param :name, 'string'
-        api.has_param :publisher_urls, { list: 'string' }
-      end
     end
 
     has_edge :creditcards do |edge|
@@ -477,6 +688,10 @@ module FacebookAds
     end
 
     has_edge :managed_partner_businesses do |edge|
+      edge.delete do |api|
+        api.has_param :child_business_external_id, 'string'
+        api.has_param :child_business_id, 'string'
+      end
       edge.post do |api|
         api.has_param :ad_account_currency, 'string'
         api.has_param :catalog_id, 'string'
@@ -500,14 +715,6 @@ module FacebookAds
       end
     end
 
-    has_edge :managed_partner_child_business_assets do |edge|
-      edge.post 'Business' do |api|
-        api.has_param :child_business_id, 'string'
-        api.has_param :credit_limit, 'int'
-        api.has_param :line_of_credit_id, 'string'
-      end
-    end
-
     has_edge :negative_keyword_lists do |edge|
       edge.get
     end
@@ -523,8 +730,22 @@ module FacebookAds
       end
     end
 
+    has_edge :openbridge_configurations do |edge|
+      edge.get 'OpenBridgeConfiguration'
+      edge.post 'OpenBridgeConfiguration' do |api|
+        api.has_param :access_key, 'string'
+        api.has_param :active, 'bool'
+        api.has_param :endpoint, 'string'
+        api.has_param :host_business_id, 'int'
+        api.has_param :host_external_id, 'string'
+        api.has_param :pixel_id, 'int'
+      end
+    end
+
     has_edge :owned_ad_accounts do |edge|
-      edge.get 'AdAccount'
+      edge.get 'AdAccount' do |api|
+        api.has_param :search_query, 'string'
+      end
       edge.post 'Business' do |api|
         api.has_param :adaccount_id, 'string'
       end
@@ -605,6 +826,17 @@ module FacebookAds
       end
     end
 
+    has_edge :partner_premium_options do |edge|
+      edge.post do |api|
+        api.has_param :catalog_segment_id, 'string'
+        api.has_param :enable_basket_insight, 'bool'
+        api.has_param :enable_extended_audience_retargeting, 'bool'
+        api.has_param :partner_business_id, 'string'
+        api.has_param :retailer_custom_audience_config, 'hash'
+        api.has_param :vendor_id, 'string'
+      end
+    end
+
     has_edge :pending_client_ad_accounts do |edge|
       edge.get 'BusinessAdAccountRequest'
     end
@@ -649,10 +881,27 @@ module FacebookAds
       edge.post
     end
 
+    has_edge :preverified_numbers do |edge|
+      edge.get 'WhatsAppBusinessPreVerifiedPhoneNumber' do |api|
+        api.has_param :code_verification_status, { enum: -> { WhatsAppBusinessPreVerifiedPhoneNumber::CODE_VERIFICATION_STATUS }}
+        api.has_param :phone_number, 'string'
+      end
+    end
+
     has_edge :received_audience_sharing_requests do |edge|
       edge.get 'BusinessAssetSharingAgreement' do |api|
         api.has_param :initiator_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
+      end
+    end
+
+    has_edge :setup_managed_partner_adaccounts do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :credit_line_id, 'string'
+        api.has_param :marketplace_business_id, 'string'
+        api.has_param :subvertical_v2, { enum: -> { Business::SUBVERTICAL_V2 }}
+        api.has_param :vendor_id, 'string'
+        api.has_param :vertical_v2, { enum: -> { Business::VERTICAL_V2 }}
       end
     end
 
@@ -666,7 +915,7 @@ module FacebookAds
     end
 
     has_edge :third_party_measurement_report_dataset do |edge|
-      edge.get 'ThirdPartyMeasurementReportDataset'
+      edge.get
     end
 
   end

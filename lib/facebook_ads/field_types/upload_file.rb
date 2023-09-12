@@ -77,7 +77,7 @@ module FacebookAds
         case value
           when String, File, Tempfile
             if value.is_a?(String)
-              raise InvalidParameterError, "No such file: #{value}" unless File.exists?(value)
+              raise InvalidParameterError, "No such file: #{value}" unless File.exist?(value)
               value = File.new(value)
             end
 
@@ -114,7 +114,7 @@ module FacebookAds
           return true if value.is_a?(type)
         end
 
-        value.is_a?(String) ? File.exists?(value) : false
+        value.is_a?(String) ? File.exist?(value) : false
       end
     end
   end

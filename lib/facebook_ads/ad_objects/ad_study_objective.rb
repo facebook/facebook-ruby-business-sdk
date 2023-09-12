@@ -57,12 +57,20 @@ module FacebookAds
       edge.get 'Application'
     end
 
+    has_edge :brand_requests do |edge|
+      edge.get 'BrandRequest'
+    end
+
     has_edge :customconversions do |edge|
       edge.get 'CustomConversion'
     end
 
     has_edge :offline_conversion_data_sets do |edge|
       edge.get 'OfflineConversionDataSet'
+    end
+
+    has_edge :partner_private_studies do |edge|
+      edge.get 'Business'
     end
 
     has_edge :partnerstudies do |edge|

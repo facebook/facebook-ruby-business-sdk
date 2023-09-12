@@ -42,6 +42,8 @@ module FacebookAds
       "INSTANT_GAME",
       "ITUNES",
       "ITUNES_IPAD",
+      "NEON_ANDROID_STORE",
+      "NONE",
       "OCULUS_APP_STORE",
       "OPPO",
       "ROKU_STORE",

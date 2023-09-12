@@ -29,6 +29,7 @@ module FacebookAds
     CALL_TO_ACTION_TYPES = [
       "ADD_TO_CART",
       "APPLY_NOW",
+      "AUDIO_CALL",
       "BOOK_TRAVEL",
       "BUY",
       "BUY_NOW",
@@ -50,9 +51,11 @@ module FacebookAds
       "GET_DIRECTIONS",
       "GET_OFFER",
       "GET_OFFER_VIEW",
+      "GET_PROMOTIONS",
       "GET_QUOTE",
       "GET_SHOWTIMES",
       "GET_STARTED",
+      "INQUIRE_NOW",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "LEARN_MORE",
@@ -63,12 +66,14 @@ module FacebookAds
       "MOBILE_DOWNLOAD",
       "MOMENTS",
       "NO_BUTTON",
+      "OPEN_INSTANT_APP",
       "OPEN_LINK",
       "ORDER_NOW",
       "PAY_TO_ACCESS",
       "PLAY_GAME",
       "PLAY_GAME_ON_FACEBOOK",
       "PURCHASE_GIFT_CARDS",
+      "RAISE_MONEY",
       "RECORD_NOW",
       "REFER_FRIENDS",
       "REQUEST_TIME",
@@ -77,6 +82,7 @@ module FacebookAds
       "SELL_NOW",
       "SEND_A_GIFT",
       "SEND_GIFT_MONEY",
+      "SEND_UPDATES",
       "SHARE",
       "SHOP_NOW",
       "SIGN_UP",
@@ -100,6 +106,7 @@ module FacebookAds
 
     field :ad_formats, { list: 'string' }
     field :additional_data, 'object'
+    field :app_product_page_id, 'string'
     field :asset_customization_rules, { list: 'object' }
     field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }
@@ -113,7 +120,6 @@ module FacebookAds
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
     field :optimization_type, 'string'
-    field :posts, { list: 'object' }
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id

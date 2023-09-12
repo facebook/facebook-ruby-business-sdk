@@ -33,6 +33,7 @@ module FacebookAds
     field :page, 'Page'
     field :proposal, 'PageChangeProposal'
     field :timer_status, 'string'
+    has_no_post
     has_no_delete
 
   end

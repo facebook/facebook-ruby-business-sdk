@@ -32,6 +32,7 @@ module FacebookAds
       "ADS_AI_GENERATED",
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
+      "AD_LIBRARY_WATERMARK",
       "AGE_UP",
       "ALBUM_MULTIMEDIA_POST",
       "ALOHA_CALL_VIDEO",
@@ -45,6 +46,7 @@ module FacebookAds
       "AUDIO_COMMENT",
       "BROADCAST",
       "BULLETIN_ARTICLE_AUDIO",
+      "CANDIDATE_VIDEOS_DELETED",
       "CANVAS",
       "CFC_VIDEO",
       "CMS_MEDIA_MANAGER",
@@ -61,18 +63,21 @@ module FacebookAds
       "DIRECTED_POST_ATTACHMENT",
       "DIRECT_INBOX",
       "DIRECT_INBOX_REACTION",
+      "DROPS_SHOPPING_EVENT_PAGE",
       "DYNAMIC_ITEM_DISPLAY_BUNDLE",
       "DYNAMIC_ITEM_VIDEO",
       "DYNAMIC_TEMPLATE_VIDEO",
       "EVENT_COVER_VIDEO",
       "EVENT_TOUR",
       "FACECAST_DVR",
+      "FB_AVATAR_ANIMATED_SATP",
       "FB_COLLECTIBLE_VIDEO",
       "FB_SHORTS",
       "FB_SHORTS_CONTENT_REMIXABLE",
       "FB_SHORTS_CROSS_META_POST",
       "FB_SHORTS_GROUP_POST",
       "FB_SHORTS_PMV_POST",
+      "FB_SHORTS_PMV_POST_NO_NEWSFEED_NOR_TIMELINE",
       "FB_SHORTS_POST",
       "FB_SHORTS_REMIX_POST",
       "FUNDRAISER_COVER_VIDEO",
@@ -110,6 +115,7 @@ module FacebookAds
       "LEGACY_CONTAINED_POST_BROADCAST",
       "LIVE_AUDIO_ROOM_BROADCAST",
       "LIVE_CLIP_PREVIEW",
+      "LIVE_CLIP_WORKCHAT",
       "LIVE_CREATIVE_KIT_VIDEO",
       "LIVE_PHOTO",
       "LOOK_NOW_DEPRECATED",
@@ -137,6 +143,8 @@ module FacebookAds
       "PAID_CONTENT_PREVIEW",
       "PAID_CONTENT_VIDEO",
       "PAID_CONTENT_VIDEO__POST",
+      "PAPER_DOCUMENT_AUDIO",
+      "PAPER_DOCUMENT_VIDEO",
       "PIXELCLOUD",
       "PODCAST_HIGHLIGHT",
       "PODCAST_ML_PREVIEW",
@@ -253,6 +261,12 @@ module FacebookAds
       "uploaded",
     ]
 
+    VIDEO_STATE = [
+      "DRAFT",
+      "PUBLISHED",
+      "SCHEDULED",
+    ]
+
     BACKDATED_TIME_GRANULARITY = [
       "day",
       "hour",
@@ -264,6 +278,7 @@ module FacebookAds
 
 
     field :ad_breaks, { list: 'int' }
+    field :admin_creator, 'User'
     field :audio_isrc, 'object'
     field :backdated_time, 'datetime'
     field :backdated_time_granularity, 'string'
@@ -379,6 +394,13 @@ module FacebookAds
         api.has_param :captions_file, 'file'
         api.has_param :default_locale, 'string'
         api.has_param :locales_to_delete, { list: 'string' }
+      end
+    end
+
+    has_edge :collaborators do |edge|
+      edge.get
+      edge.post 'AdVideo' do |api|
+        api.has_param :target_id, 'string'
       end
     end
 

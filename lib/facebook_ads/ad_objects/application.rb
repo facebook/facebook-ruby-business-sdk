@@ -77,18 +77,8 @@ module FacebookAds
       "EYMT",
     ]
 
-    SCORE_TYPE = [
-      "CUSTOM",
-      "NUMERIC",
-      "TIME",
-    ]
-
-    SORT_ORDER = [
-      "HIGHER_IS_BETTER",
-      "LOWER_IS_BETTER",
-    ]
-
     LOGGING_SOURCE = [
+      "DETECTION",
       "MESSENGER_BOT",
     ]
 
@@ -124,6 +114,7 @@ module FacebookAds
     field :auto_event_mapping_android, { list: 'object' }
     field :auto_event_mapping_ios, { list: 'object' }
     field :auto_event_setup_enabled, 'bool'
+    field :business, 'Business'
     field :canvas_fluid_height, 'bool'
     field :canvas_fluid_width, 'int'
     field :canvas_url, 'string'
@@ -159,7 +150,6 @@ module FacebookAds
     field :latest_sdk_version, 'object'
     field :link, 'string'
     field :logging_token, 'string'
-    field :login_secret, 'string'
     field :logo_url, 'string'
     field :migrations, 'hash'
     field :mobile_profile_section_url, 'string'
@@ -169,6 +159,7 @@ module FacebookAds
     field :name, 'string'
     field :namespace, 'string'
     field :object_store_urls, 'object'
+    field :owner_business, 'Business'
     field :page_tab_default_name, 'string'
     field :page_tab_url, 'string'
     field :photo_url, 'string'
@@ -233,6 +224,7 @@ module FacebookAds
         api.has_param :bundle_id, 'string'
         api.has_param :bundle_short_version, 'string'
         api.has_param :bundle_version, 'string'
+        api.has_param :campaign_ids, 'string'
         api.has_param :click_id, 'string'
         api.has_param :consider_views, 'bool'
         api.has_param :custom_events, { list: 'object' }
@@ -302,6 +294,13 @@ module FacebookAds
       end
     end
 
+    has_edge :aem_attribution do |edge|
+      edge.get do |api|
+        api.has_param :advertiser_ids, { list: 'string' }
+        api.has_param :fb_content_data, 'string'
+      end
+    end
+
     has_edge :aem_conversion_configs do |edge|
       edge.get do |api|
         api.has_param :advertiser_ids, { list: 'string' }
@@ -325,7 +324,9 @@ module FacebookAds
       edge.post do |api|
         api.has_param :app_id, 'int'
         api.has_param :is_aem_ready, 'bool'
+        api.has_param :is_app_aem_ready, 'bool'
         api.has_param :is_skan_ready, 'bool'
+        api.has_param :message, 'string'
       end
     end
 
@@ -343,6 +344,10 @@ module FacebookAds
     end
 
     has_edge :android_dialog_configs do |edge|
+      edge.get
+    end
+
+    has_edge :app_capi_settings do |edge|
       edge.get
     end
 
@@ -400,12 +405,6 @@ module FacebookAds
       end
     end
 
-    has_edge :banned do |edge|
-      edge.delete do |api|
-        api.has_param :uids, { list: 'int' }
-      end
-    end
-
     has_edge :button_auto_detection_device_selection do |edge|
       edge.get do |api|
         api.has_param :device_id, 'string'
@@ -441,42 +440,14 @@ module FacebookAds
 
     has_edge :insights_push_schedule do |edge|
       edge.get
-      edge.post do |api|
-        api.has_param :ad_account_ids, { list: 'string' }
-        api.has_param :breakdowns, { list: 'string' }
-        api.has_param :date_preset, 'string'
-        api.has_param :level, { enum: %w{ACCOUNT AD ADSET CAMPAIGN }}
-        api.has_param :metrics, { list: 'string' }
-        api.has_param :object_id, 'string'
-        api.has_param :owner_id, 'int'
-        api.has_param :schedule, { enum: %w{DAILY FINE_15_MIN FINE_5_MIN MONTHLY WEEKLY }}
-        api.has_param :status, { enum: %w{ACTIVE DISABLED ERROR }}
-        api.has_param :time_increment, 'int'
-        api.has_param :time_start, 'datetime'
-        api.has_param :time_stop, 'datetime'
-      end
     end
 
     has_edge :ios_dialog_configs do |edge|
       edge.get
     end
 
-    has_edge :leaderboards_create do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :context_id, 'string'
-        api.has_param :decimal_offset, 'int'
-        api.has_param :name, 'string'
-        api.has_param :score_type, { enum: -> { Application::SCORE_TYPE }}
-        api.has_param :sort_order, { enum: -> { Application::SORT_ORDER }}
-        api.has_param :unit, 'string'
-      end
-    end
-
-    has_edge :leaderboards_delete_entry do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :name, 'string'
-        api.has_param :player_id, 'string'
-      end
+    has_edge :linked_dataset do |edge|
+      edge.get
     end
 
     has_edge :mmp_auditing do |edge|
@@ -494,6 +465,7 @@ module FacebookAds
         api.has_param :fb_click_time, 'int'
         api.has_param :fb_view_time, 'int'
         api.has_param :is_fb, 'bool'
+        api.has_param :used_install_referrer, 'bool'
         api.has_param :view_attr_window, 'int'
       end
     end
@@ -509,10 +481,15 @@ module FacebookAds
     end
 
     has_edge :monetized_digital_store_objects do |edge|
+      edge.get
       edge.post do |api|
         api.has_param :content_id, 'string'
         api.has_param :store, 'string'
       end
+    end
+
+    has_edge :object_types do |edge|
+      edge.get 'NullNode'
     end
 
     has_edge :occludespopups do |edge|
@@ -600,13 +577,6 @@ module FacebookAds
         api.has_param :file_name, 'object'
         api.has_param :file_type, 'object'
         api.has_param :session_type, { enum: %w{attachment }}
-      end
-    end
-
-    has_edge :user_properties do |edge|
-      edge.post do |api|
-        api.has_param :data, { list: 'object' }
-        api.has_param :limited_data_use, 'bool'
       end
     end
 

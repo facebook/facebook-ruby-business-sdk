@@ -32,10 +32,8 @@ module FacebookAds
     ]
 
 
-    field :development_instant_article, 'InstantArticle'
     field :engagement, 'object'
     field :id, 'string'
-    field :instant_article, 'InstantArticle'
     field :og_object, 'object'
     field :ownership_permissions, 'object'
     field :scopes, 'object'

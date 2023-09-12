@@ -33,7 +33,7 @@ module FacebookAds
     field :declared_winning_time, 'datetime'
     field :description, 'string'
     field :id, 'string'
-    field :insight_snapshots, 'map<datetime, map<int, Object>>'
+    field :insight_snapshots, { list: 'map<datetime, list<map<int, Object>>>' }
     field :name, 'string'
     field :optimization_goal, 'string'
     field :publish_status, 'string'

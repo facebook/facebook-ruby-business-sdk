@@ -64,22 +64,30 @@ module FacebookAds
       "app_id",
       "body_asset",
       "call_to_action_asset",
+      "coarse_conversion_value",
       "country",
       "description_asset",
       "device_platform",
       "dma",
+      "fidelity_type",
       "frequency_value",
       "gender",
       "hourly_stats_aggregated_by_advertiser_time_zone",
       "hourly_stats_aggregated_by_audience_time_zone",
+      "hsid",
       "image_asset",
       "impression_device",
+      "is_conversion_id_modeled",
       "link_url_asset",
+      "mmm",
       "place_page_id",
       "platform_position",
+      "postback_sequence_index",
       "product_id",
       "publisher_platform",
+      "redownload",
       "region",
+      "skan_campaign_id",
       "skan_conversion_id",
       "title_asset",
       "video_asset",
@@ -134,12 +142,10 @@ module FacebookAds
     field :account_name, 'string'
     field :action_values, { list: 'AdsActionStats' }
     field :actions, { list: 'AdsActionStats' }
-    field :ad_bid_value, 'string'
     field :ad_click_actions, { list: 'AdsActionStats' }
     field :ad_id, 'string'
     field :ad_impression_actions, { list: 'AdsActionStats' }
     field :ad_name, 'string'
-    field :adset_bid_value, 'string'
     field :adset_end, 'string'
     field :adset_id, 'string'
     field :adset_name, 'string'
@@ -186,6 +192,7 @@ module FacebookAds
     field :cpm, 'string'
     field :cpp, 'string'
     field :created_time, 'string'
+    field :creative_media_type, 'string'
     field :ctr, 'string'
     field :date_start, 'string'
     field :date_stop, 'string'
@@ -206,6 +213,7 @@ module FacebookAds
     field :inline_link_click_ctr, 'string'
     field :inline_link_clicks, 'string'
     field :inline_post_engagement, 'string'
+    field :instagram_upcoming_event_reminders_set, 'string'
     field :instant_experience_clicks_to_open, 'string'
     field :instant_experience_clicks_to_start, 'string'
     field :instant_experience_outbound_clicks, { list: 'AdsActionStats' }
@@ -228,6 +236,8 @@ module FacebookAds
     field :social_spend, 'string'
     field :spend, 'string'
     field :total_postbacks, 'string'
+    field :total_postbacks_detailed, { list: 'AdsActionStats' }
+    field :total_postbacks_detailed_v4, 'string'
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
     field :unique_conversions, { list: 'AdsActionStats' }

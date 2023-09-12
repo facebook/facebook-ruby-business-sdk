@@ -35,6 +35,11 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
 
     field :applinks, 'CatalogItemAppLinks'
     field :automotive_model_id, 'string'
@@ -64,6 +69,7 @@ module FacebookAds
     field :trim, 'string'
     field :unit_price, 'object'
     field :url, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     field :year, 'int'
     has_no_post
     has_no_delete

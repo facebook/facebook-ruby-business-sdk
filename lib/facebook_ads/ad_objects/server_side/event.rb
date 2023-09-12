@@ -18,6 +18,7 @@
 
 require_relative './user_data'
 require_relative './custom_data'
+require_relative './app_data'
 
 module FacebookAds
   module ServerSide
@@ -52,6 +53,9 @@ module FacebookAds
       # An Object that includes additional business data about the event.
       attr_accessor :custom_data
 
+      # An Object that contains app data.
+      attr_accessor :app_data
+
       # Processing options you would like to enable for a specific event.
       # For more details see https://developers.facebook.com/docs/marketing-apis/data-processing-options
       attr_accessor :data_processing_options
@@ -67,6 +71,10 @@ module FacebookAds
       # Where the conversion occurred.
       attr_accessor :action_source
 
+      # Name of Advanced Measurement table.
+      # Only used for the Advanced Measurement API in the Advanced Analytics product
+      attr_accessor :advanced_measurement_table
+
       # @param [String] event_name
       # @param [int] event_time
       # @param [String] event_source_url
@@ -74,10 +82,12 @@ module FacebookAds
       # @param [String] event_id
       # @param [FacebookAds::ServerSide::UserData] user_data
       # @param [FacebookAds::ServerSide::CustomData] custom_data
+      # @param [FacebookAds::ServerSide::AppData] app_data
       # @param [Array<String>] data_processing_options
       # @param [int] data_processing_options_country
       # @param [int] data_processing_options_state
       # @param String action_source
+      # @param [String] advanced_measurement_table
       def initialize(event_name: nil,
                      event_time: nil,
                      event_source_url: nil,
@@ -85,10 +95,12 @@ module FacebookAds
                      event_id: nil,
                      user_data: nil,
                      custom_data: nil,
+                     app_data: nil,
                      data_processing_options: nil,
                      data_processing_options_country: nil,
                      data_processing_options_state: nil,
-                     action_source: nil)
+                     action_source: nil,
+                     advanced_measurement_table: nil)
 
         unless event_name.nil?
           self.event_name = event_name
@@ -111,6 +123,9 @@ module FacebookAds
         unless custom_data.nil?
           self.custom_data = custom_data
         end
+        unless app_data.nil?
+          self.app_data = app_data
+        end
         unless data_processing_options.nil?
           self.data_processing_options = data_processing_options
         end
@@ -122,6 +137,9 @@ module FacebookAds
         end
         unless action_source.nil?
           self.action_source = action_source
+        end
+        unless advanced_measurement_table.nil?
+          self.advanced_measurement_table = advanced_measurement_table
         end
       end
 
@@ -161,6 +179,10 @@ module FacebookAds
           self.custom_data = attributes[:'custom_data']
         end
 
+        if attributes.has_key?(:'app_data')
+          self.app_data = attributes[:'app_data']
+        end
+
         if attributes.has_key?(:'data_processing_options')
           self.data_processing_options = attributes[:'data_processing_options']
         end
@@ -175,6 +197,10 @@ module FacebookAds
 
         if attributes.has_key?(:'action_source')
           self.action_source = attributes[:'action_source']
+        end
+
+        if attributes.has_key?(:'advanced_measurement_table')
+          self.advanced_measurement_table = attributes[:'advanced_measurement_table']
         end
       end
 
@@ -217,10 +243,12 @@ module FacebookAds
             event_id == o.event_id &&
             user_data == o.user_data &&
             custom_data == o.custom_data &&
+            app_data == o.app_data &&
             data_processing_options == o.data_processing_options &&
             data_processing_options_country == o.data_processing_options_country &&
             data_processing_options_state == o.data_processing_options_state &&
-            action_source == o.action_source
+            action_source == o.action_source &&
+            advanced_measurement_table == o.advanced_measurement_table
       end
 
       # @see the `==` method
@@ -232,9 +260,9 @@ module FacebookAds
       # @return [Fixnum] Hash code
       def hash
         [
-          event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data,
+          event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, app_data,
           data_processing_options, data_processing_options_country, data_processing_options_state,
-          action_source,
+          action_source, advanced_measurement_table,
         ].hash
       end
 
@@ -261,6 +289,9 @@ module FacebookAds
         unless custom_data.nil?
           hash['custom_data'] = custom_data.to_s
         end
+        unless app_data.nil?
+          hash['app_data'] = app_data.to_s
+        end
         unless data_processing_options.nil?
           hash['data_processing_options'] = data_processing_options.to_s
         end
@@ -272,6 +303,9 @@ module FacebookAds
         end
         unless action_source.nil?
           hash['action_source'] = action_source
+        end
+        unless advanced_measurement_table.nil?
+          hash['advanced_measurement_table'] = advanced_measurement_table
         end
         hash.to_s
       end
@@ -301,6 +335,9 @@ module FacebookAds
         unless custom_data.nil?
           hash['custom_data'] = custom_data.normalize
         end
+        unless app_data.nil?
+          hash['app_data'] = app_data.normalize
+        end
         unless data_processing_options.nil?
           hash['data_processing_options'] = data_processing_options
         end
@@ -315,6 +352,9 @@ module FacebookAds
             action_source,
             'action_source'
           )
+        end
+        unless advanced_measurement_table.nil?
+          hash['advanced_measurement_table'] = advanced_measurement_table
         end
         hash
       end
