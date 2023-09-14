@@ -59,7 +59,7 @@ module FacebookAds
 
     field :allow_organic_lead, 'bool'
     field :block_display_for_non_targeted_viewer, 'bool'
-    field :context_card, 'object'
+    field :context_card, 'LeadGenContextCard'
     field :created_time, 'datetime'
     field :creator, 'User'
     field :expired_leads_count, 'int'
@@ -68,7 +68,7 @@ module FacebookAds
     field :id, 'string'
     field :is_optimized_for_quality, 'bool'
     field :leads_count, 'int'
-    field :legal_content, 'object'
+    field :legal_content, 'LeadGenLegalContent'
     field :locale, 'string'
     field :name, 'string'
     field :organic_leads_count, 'int'
@@ -78,7 +78,7 @@ module FacebookAds
     field :question_page_custom_headline, 'string'
     field :questions, { list: 'LeadGenQuestion' }
     field :status, 'string'
-    field :thank_you_page, 'object'
+    field :thank_you_page, 'LeadGenThankYouPage'
     field :tracking_parameters, { list: 'hash' }
     has_no_delete
 

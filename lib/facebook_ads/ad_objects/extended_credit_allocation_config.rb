@@ -24,6 +24,7 @@ module FacebookAds
     PARTITION_TYPE = [
       "AUTH",
       "FIXED",
+      "FIXED_WITHOUT_PARTITION",
     ]
 
     SEND_BILL_TO = [

@@ -18,6 +18,7 @@ module FacebookAds
       "AVAILABLE_FOR_ORDER",
       "DISCONTINUED",
       "IN_STOCK",
+      "MARK_AS_SOLD",
       "OUT_OF_STOCK",
       "PENDING",
       "PREORDER",
@@ -74,7 +75,9 @@ module FacebookAds
     field :id, 'string'
     field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
+    field :local_info, 'ProductItemLocalInfo'
     field :local_service_business_id, 'string'
+    field :main_local_info, 'ProductItemLocalInfo'
     field :phone, 'string'
     field :price, 'string'
     field :price_range, 'string'

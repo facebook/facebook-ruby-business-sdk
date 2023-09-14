@@ -16,6 +16,7 @@ module FacebookAds
   class AdsActionStats < AdObject
 
     field :_1d_click, 'string'
+    field :_1d_ev, 'string'
     field :_1d_view, 'string'
     field :_28d_click, 'string'
     field :_28d_view, 'string'

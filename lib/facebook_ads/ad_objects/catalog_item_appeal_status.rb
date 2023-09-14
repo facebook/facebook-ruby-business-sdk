@@ -17,8 +17,8 @@ module FacebookAds
     STATUS = [
       "This item cannot be appealed as it is either approved or already has an appeal",
       "This item is not rejected for any of channels",
-      "Weve encountered unexpected error while processing this request. Please try again later !",
-      "Youve reached the maximum number of item requests you can make this week. Youll be able to request item reviews again within the next 7 days.",
+      "We&#39;ve encountered unexpected error while processing this request. Please try again later !",
+      "You&#39;ve reached the maximum number of item requests you can make this week. You&#39;ll be able to request item reviews again within the next 7 days.",
       "Your request was received. See information below to learn more.",
     ]
 

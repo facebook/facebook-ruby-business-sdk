@@ -57,6 +57,7 @@ module FacebookAds
     field :object_store_url, 'string'
     field :offer_id, 'string'
     field :offline_conversion_data_set_id, 'string'
+    field :offsite_conversion_event_id, 'string'
     field :omnichannel_object, 'object'
     field :page_id, 'string'
     field :pixel_aggregation_rule, 'string'

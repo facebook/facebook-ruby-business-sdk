@@ -85,6 +85,7 @@ module FacebookAds
     field :owner_ad_account, 'AdAccount'
     field :owner_business, 'Business'
     field :usage, 'OfflineConversionDataSetUsage'
+    field :user_access_expire_time, 'datetime'
     field :valid_entries, 'int'
     has_no_delete
 

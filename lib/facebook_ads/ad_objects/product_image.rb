@@ -15,8 +15,10 @@ module FacebookAds
 
   class ProductImage < AdObject
 
+    field :height, 'int'
     field :id, 'string'
     field :image_url, 'string'
+    field :width, 'int'
     has_no_post
     has_no_delete
 

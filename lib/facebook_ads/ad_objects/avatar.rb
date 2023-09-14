@@ -13,12 +13,22 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ShopOrder < AdObject
+  class Avatar < AdObject
 
-    field :creation_time, 'datetime'
     field :id, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :models do |edge|
+      edge.get do |api|
+        api.has_param :client_name, 'string'
+        api.has_param :client_version, 'string'
+        api.has_param :force_generate, 'bool'
+        api.has_param :platform, 'string'
+        api.has_param :profile, 'string'
+        api.has_param :sdk_version, 'string'
+      end
+    end
 
   end
 end

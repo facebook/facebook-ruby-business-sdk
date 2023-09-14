@@ -31,6 +31,8 @@ module FacebookAds
       "engagement",
       "exits",
       "follows",
+      "ig_reels_avg_watch_time",
+      "ig_reels_video_view_total_time",
       "impressions",
       "likes",
       "navigation",

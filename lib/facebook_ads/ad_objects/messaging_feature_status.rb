@@ -16,6 +16,8 @@ module FacebookAds
   class MessagingFeatureStatus < AdObject
 
     field :hop_v2, 'bool'
+    field :ig_multi_app, 'bool'
+    field :msgr_multi_app, 'bool'
     has_no_id
     has_no_get
     has_no_post

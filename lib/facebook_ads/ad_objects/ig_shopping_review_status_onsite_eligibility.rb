@@ -13,11 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ArEffectsBatchStatus < AdObject
+  class IgShoppingReviewStatusOnsiteEligibility < AdObject
 
-    field :errors, { list: 'string' }
-    field :product_groups, { list: 'object' }
-    field :status, 'string'
+    field :is_eligible, 'bool'
+    field :reasons, { list: 'IgShoppingReviewStatusReasonWithHelpMessage' }
     has_no_id
     has_no_get
     has_no_post

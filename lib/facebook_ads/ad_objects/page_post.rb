@@ -74,7 +74,7 @@ module FacebookAds
     field :multi_share_end_card, 'bool'
     field :multi_share_optimized, 'bool'
     field :parent_id, 'string'
-    field :permalink_url, 'object'
+    field :permalink_url, 'string'
     field :picture, 'string'
     field :place, 'Place'
     field :privacy, 'Privacy'

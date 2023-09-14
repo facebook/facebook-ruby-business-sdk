@@ -55,6 +55,7 @@ module FacebookAds
       "price",
       "star_rating",
       "strikethrough_price",
+      "sustainable",
     ]
 
     THEME_COLOR = [

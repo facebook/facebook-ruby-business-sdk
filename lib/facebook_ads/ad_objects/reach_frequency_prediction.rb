@@ -142,6 +142,7 @@ module FacebookAds
     field :existing_campaign_id, 'string'
     field :grp_buying, 'bool'
     field :impression, 'int'
+    field :is_balanced_frequency, 'bool'
     field :is_full_view, 'bool'
     field :is_reach_and_frequency_io_buying, 'bool'
     field :num_curve_points, 'int'
@@ -150,6 +151,8 @@ module FacebookAds
     field :rf_prediction_id_to_release, 'string'
     field :rf_prediction_id_to_share, 'string'
     field :stop_time, 'int'
+    field :target_frequency, 'int'
+    field :target_frequency_reset_period, 'int'
     has_no_post
     has_no_delete
 

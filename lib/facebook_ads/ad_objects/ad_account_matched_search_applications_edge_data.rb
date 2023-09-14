@@ -21,6 +21,7 @@ module FacebookAds
       "APK_PURE",
       "APTOIDE_A1_STORE",
       "BEMOBI_MOBILE_STORE",
+      "DIGITAL_TURBINE_STORE",
       "DOES_NOT_EXIST",
       "FB_ANDROID_STORE",
       "FB_CANVAS",

@@ -38,6 +38,7 @@ module FacebookAds
 
     field :about, 'string'
     field :age_range, 'AgeRange'
+    field :avatar_2d_profile_picture, 'AvatarProfilePicture'
     field :birthday, 'string'
     field :community, 'Group'
     field :cover, 'UserCoverPhoto'
@@ -55,6 +56,7 @@ module FacebookAds
     field :install_type, 'string'
     field :installed, 'bool'
     field :is_guest_user, 'bool'
+    field :is_work_account, 'bool'
     field :languages, { list: 'Experience' }
     field :last_name, 'string'
     field :link, 'string'
@@ -71,7 +73,7 @@ module FacebookAds
     field :profile_pic, 'string'
     field :quotes, 'string'
     field :relationship_status, 'string'
-    field :shared_login_upgrade_required_by, 'object'
+    field :shared_login_upgrade_required_by, 'datetime'
     field :short_name, 'string'
     field :significant_other, 'User'
     field :sports, { list: 'Experience' }
@@ -180,7 +182,7 @@ module FacebookAds
     end
 
     has_edge :avatars do |edge|
-      edge.get
+      edge.get 'Avatar'
     end
 
     has_edge :business_users do |edge|
@@ -209,6 +211,7 @@ module FacebookAds
     has_edge :conversations do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
+        api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
@@ -251,7 +254,6 @@ module FacebookAds
         api.has_param :backdated_time_granularity, { enum: -> { Post::BACKDATED_TIME_GRANULARITY }}
         api.has_param :call_to_action, 'object'
         api.has_param :caption, 'string'
-        api.has_param :checkin_entry_point, { enum: -> { Post::CHECKIN_ENTRY_POINT }}
         api.has_param :child_attachments, { list: 'object' }
         api.has_param :client_mutation_id, 'string'
         api.has_param :composer_entry_picker, 'string'

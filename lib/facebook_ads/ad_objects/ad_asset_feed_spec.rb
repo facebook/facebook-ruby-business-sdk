@@ -18,6 +18,7 @@ module FacebookAds
       "ADD_TO_CART",
       "APPLY_NOW",
       "AUDIO_CALL",
+      "BOOK_NOW",
       "BOOK_TRAVEL",
       "BUY",
       "BUY_NOW",
@@ -95,7 +96,7 @@ module FacebookAds
     field :ad_formats, { list: 'string' }
     field :additional_data, 'object'
     field :app_product_page_id, 'string'
-    field :asset_customization_rules, { list: 'object' }
+    field :asset_customization_rules, { list: 'AdAssetFeedSpecAssetCustomizationRule' }
     field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }
     field :call_to_action_types, { list: { enum: -> { CALL_TO_ACTION_TYPES }} }
@@ -107,6 +108,7 @@ module FacebookAds
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
+    field :message_extensions, { list: 'AdAssetMessageExtensions' }
     field :optimization_type, 'string'
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }

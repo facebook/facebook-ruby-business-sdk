@@ -16,6 +16,7 @@ module FacebookAds
   class AdsInsights < AdObject
     ACTION_ATTRIBUTION_WINDOWS = [
       "1d_click",
+      "1d_ev",
       "1d_view",
       "28d_click",
       "28d_view",
@@ -38,6 +39,7 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "standard_event_content_type",
     ]
 
     ACTION_REPORT_TIME = [
@@ -67,6 +69,7 @@ module FacebookAds
       "impression_device",
       "is_conversion_id_modeled",
       "link_url_asset",
+      "marketing_messages_btn_name",
       "mmm",
       "place_page_id",
       "platform_position",
@@ -77,6 +80,8 @@ module FacebookAds
       "region",
       "skan_campaign_id",
       "skan_conversion_id",
+      "skan_version",
+      "standard_event_content_type",
       "title_asset",
       "video_asset",
     ]
@@ -122,6 +127,7 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "standard_event_content_type",
     ]
 
 
@@ -208,6 +214,9 @@ module FacebookAds
     field :interactive_component_tap, { list: 'AdsActionStats' }
     field :labels, 'string'
     field :location, 'string'
+    field :marketing_messages_cost_per_delivered, 'string'
+    field :marketing_messages_cost_per_link_btn_click, 'string'
+    field :marketing_messages_spend, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
     field :optimization_goal, 'string'
@@ -217,15 +226,12 @@ module FacebookAds
     field :purchase_roas, { list: 'AdsActionStats' }
     field :qualifying_question_qualify_answer_rate, 'string'
     field :quality_ranking, 'string'
-    field :quality_score_ectr, 'string'
-    field :quality_score_ecvr, 'string'
-    field :quality_score_organic, 'string'
     field :reach, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
     field :total_postbacks, 'string'
     field :total_postbacks_detailed, { list: 'AdsActionStats' }
-    field :total_postbacks_detailed_v4, 'string'
+    field :total_postbacks_detailed_v4, { list: 'AdsActionStats' }
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
     field :unique_conversions, { list: 'AdsActionStats' }
@@ -248,10 +254,10 @@ module FacebookAds
     field :video_p75_watched_actions, { list: 'AdsActionStats' }
     field :video_p95_watched_actions, { list: 'AdsActionStats' }
     field :video_play_actions, { list: 'AdsActionStats' }
-    field :video_play_curve_actions, { list: 'object' }
-    field :video_play_retention_0_to_15s_actions, { list: 'object' }
-    field :video_play_retention_20_to_60s_actions, { list: 'object' }
-    field :video_play_retention_graph_actions, { list: 'object' }
+    field :video_play_curve_actions, { list: 'AdsHistogramStats' }
+    field :video_play_retention_0_to_15s_actions, { list: 'AdsHistogramStats' }
+    field :video_play_retention_20_to_60s_actions, { list: 'AdsHistogramStats' }
+    field :video_play_retention_graph_actions, { list: 'AdsHistogramStats' }
     field :video_thruplay_watched_actions, { list: 'AdsActionStats' }
     field :video_time_watched_actions, { list: 'AdsActionStats' }
     field :website_ctr, { list: 'AdsActionStats' }

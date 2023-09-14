@@ -36,6 +36,7 @@ module FacebookAds
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
+      "REMINDERS_SET",
       "SUBSCRIBERS",
       "THRUPLAY",
       "VALUE",

@@ -34,7 +34,6 @@ module FacebookAds
       "AUDIO_COMMENT",
       "BROADCAST",
       "BULLETIN_ARTICLE_AUDIO",
-      "CANDIDATE_VIDEOS_DELETED",
       "CANVAS",
       "CFC_VIDEO",
       "CMS_MEDIA_MANAGER",
@@ -81,7 +80,6 @@ module FacebookAds
       "GROUP_POST",
       "HACK_TV",
       "HEURISTIC_CLUSTER_VIDEO",
-      "HEURISTIC_PREVIEW",
       "HIGHLIGHT_CLIP_VIDEO",
       "HUDDLE_BROADCAST",
       "IG_REELS_XPV",
@@ -97,7 +95,6 @@ module FacebookAds
       "JOBS_VISUAL_INTRO_ENTRY",
       "JOB_APPLICATION_VIDEO",
       "JOB_OPENING_VIDEO",
-      "KOTOTORO",
       "LEARN",
       "LEGACY",
       "LEGACY_CONTAINED_POST_BROADCAST",
@@ -153,6 +150,7 @@ module FacebookAds
       "PROFILE_INTRO_CARD",
       "PROFILE_VIDEO",
       "PROTON",
+      "QUICK_CLIP_WORKPLACE_POST",
       "QUICK_PROMOTION",
       "REPLACE_VIDEO",
       "SALES_CLIENT_INTERACTION",
@@ -161,7 +159,6 @@ module FacebookAds
       "SLIDESHOW_ANIMOTO",
       "SLIDESHOW_SHAKR",
       "SLIDESHOW_VARIATION_VIDEO",
-      "SOTTO_CONTENT",
       "SOUNDBITES_VIDEO",
       "SOUND_PLATFORM_STREAM",
       "SRT_ATTACHMENT",
@@ -244,6 +241,32 @@ module FacebookAds
       "transfer",
     ]
 
+    VALIDATION_AD_PLACEMENTS = [
+      "AUDIENCE_NETWORK_INSTREAM_VIDEO",
+      "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
+      "AUDIENCE_NETWORK_REWARDED_VIDEO",
+      "DESKTOP_FEED_STANDARD",
+      "FACEBOOK_STORY_MOBILE",
+      "FACEBOOK_STORY_STICKER_MOBILE",
+      "INSTAGRAM_STANDARD",
+      "INSTAGRAM_STORY",
+      "INSTANT_ARTICLE_STANDARD",
+      "INSTREAM_BANNER_DESKTOP",
+      "INSTREAM_BANNER_MOBILE",
+      "INSTREAM_VIDEO_DESKTOP",
+      "INSTREAM_VIDEO_IMAGE",
+      "INSTREAM_VIDEO_MOBILE",
+      "MESSENGER_MOBILE_INBOX_MEDIA",
+      "MESSENGER_MOBILE_STORY_MEDIA",
+      "MOBILE_FEED_STANDARD",
+      "MOBILE_FULLWIDTH",
+      "MOBILE_INTERSTITIAL",
+      "MOBILE_MEDIUM_RECTANGLE",
+      "MOBILE_NATIVE",
+      "RIGHT_COLUMN_STANDARD",
+      "SUGGESTED_VIDEO_MOBILE",
+    ]
+
     TYPE = [
       "tagged",
       "uploaded",
@@ -294,9 +317,10 @@ module FacebookAds
     field :live_audience_count, 'int'
     field :live_status, 'string'
     field :music_video_copyright, 'MusicVideoCopyright'
-    field :permalink_url, 'object'
+    field :permalink_url, 'string'
     field :picture, 'string'
     field :place, 'Place'
+    field :post_id, 'string'
     field :post_views, 'int'
     field :premiere_living_room_status, 'string'
     field :privacy, 'Privacy'
@@ -375,6 +399,9 @@ module FacebookAds
     field :video_id_original, 'string'
     field :video_start_time_ms, 'int'
     field :waterfall_id, 'string'
+    field :ad_placements_validation_only, 'bool'
+    field :creative_folder_id, 'string'
+    field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
 
     has_edge :captions do |edge|
       edge.get

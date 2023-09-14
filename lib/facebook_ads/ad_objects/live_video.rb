@@ -96,7 +96,7 @@ module FacebookAds
     field :is_reference_only, 'bool'
     field :live_views, 'int'
     field :overlay_url, 'string'
-    field :permalink_url, 'object'
+    field :permalink_url, 'string'
     field :planned_start_time, 'datetime'
     field :recommended_encoder_settings, 'LiveVideoRecommendedEncoderSettings'
     field :seconds_left, 'int'
@@ -110,7 +110,7 @@ module FacebookAds
 
     has_edge :blocked_users do |edge|
       edge.get 'User' do |api|
-        api.has_param :uid, 'object'
+        api.has_param :uid, 'string'
       end
     end
 

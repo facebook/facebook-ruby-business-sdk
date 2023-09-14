@@ -98,7 +98,10 @@ module FacebookAds
 
 
     field :account_id, 'string'
+    field :ad_active_time, 'string'
     field :ad_review_feedback, 'AdgroupReviewFeedback'
+    field :ad_schedule_end_time, 'datetime'
+    field :ad_schedule_start_time, 'datetime'
     field :adlabels, { list: 'AdLabel' }
     field :adset, 'AdSet'
     field :adset_id, 'string'
@@ -160,7 +163,7 @@ module FacebookAds
       edge.get 'Ad' do |api|
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :time_range, 'object'
+        api.has_param :time_range, 'hash'
         api.has_param :updated_since, 'int'
       end
       edge.post 'Ad' do |api|
@@ -189,8 +192,8 @@ module FacebookAds
         api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
-        api.has_param :time_range, 'object'
-        api.has_param :time_ranges, { list: 'object' }
+        api.has_param :time_range, 'hash'
+        api.has_param :time_ranges, { list: 'hash' }
         api.has_param :use_account_attribution_setting, 'bool'
         api.has_param :use_unified_attribution_setting, 'bool'
       end
@@ -212,8 +215,8 @@ module FacebookAds
         api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
-        api.has_param :time_range, 'object'
-        api.has_param :time_ranges, { list: 'object' }
+        api.has_param :time_range, 'hash'
+        api.has_param :time_ranges, { list: 'hash' }
         api.has_param :use_account_attribution_setting, 'bool'
         api.has_param :use_unified_attribution_setting, 'bool'
       end

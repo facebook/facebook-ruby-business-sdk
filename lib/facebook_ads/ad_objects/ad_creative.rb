@@ -18,6 +18,7 @@ module FacebookAds
       "ADD_TO_CART",
       "APPLY_NOW",
       "AUDIO_CALL",
+      "BOOK_NOW",
       "BOOK_TRAVEL",
       "BUY",
       "BUY_NOW",

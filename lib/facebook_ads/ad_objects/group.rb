@@ -131,6 +131,7 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :place, 'object'
         api.has_param :privacy, 'string'
+        api.has_param :session_id, 'string'
         api.has_param :tags, { list: 'int' }
         api.has_param :visible, 'string'
       end
@@ -177,7 +178,6 @@ module FacebookAds
         api.has_param :backdated_time_granularity, { enum: -> { Post::BACKDATED_TIME_GRANULARITY }}
         api.has_param :call_to_action, 'object'
         api.has_param :caption, 'string'
-        api.has_param :checkin_entry_point, { enum: -> { Post::CHECKIN_ENTRY_POINT }}
         api.has_param :child_attachments, { list: 'object' }
         api.has_param :client_mutation_id, 'string'
         api.has_param :composer_entry_picker, 'string'
@@ -284,11 +284,11 @@ module FacebookAds
       edge.post 'Group' do |api|
         api.has_param :admin, 'int'
         api.has_param :description, 'string'
-        api.has_param :group_icon_id, 'object'
+        api.has_param :group_icon_id, 'string'
         api.has_param :group_type, { enum: -> { Group::GROUP_TYPE }}
         api.has_param :join_setting, { enum: -> { Group::JOIN_SETTING }}
         api.has_param :name, 'string'
-        api.has_param :parent_id, 'object'
+        api.has_param :parent_id, 'string'
         api.has_param :post_permissions, { enum: -> { Group::POST_PERMISSIONS }}
         api.has_param :post_requires_admin_approval, 'bool'
         api.has_param :privacy, 'string'

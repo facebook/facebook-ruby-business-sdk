@@ -19,6 +19,7 @@ module FacebookAds
       "CHANGED_BID",
       "CHANGED_BUDGET",
       "EMAIL",
+      "ENABLE_ADVANTAGE_PLUS_CREATIVE",
       "ENABLE_AUTOFLOW",
       "ENDPOINT_PINGED",
       "ERROR",

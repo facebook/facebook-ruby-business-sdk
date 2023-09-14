@@ -45,8 +45,8 @@ module FacebookAds
     field :summary, { list: 'string' }
     field :summary_action_breakdowns, { list: 'adaccountinsights_summary_action_breakdowns_enum_param' }
     field :time_increment, 'string'
-    field :time_range, 'object'
-    field :time_ranges, { list: 'object' }
+    field :time_range, 'hash'
+    field :time_ranges, { list: 'hash' }
     field :use_account_attribution_setting, 'bool'
     field :use_unified_attribution_setting, 'bool'
     has_no_post

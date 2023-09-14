@@ -17,7 +17,7 @@ module FacebookAds
 
     field :advertiser_timezone_offset, 'string'
     field :appointment_durations, { list: 'string' }
-    field :appointment_slots_by_day, { list: 'object' }
+    field :appointment_slots_by_day, { list: 'LeadGenAppointmentSlotsByDay' }
     has_no_id
     has_no_get
     has_no_post

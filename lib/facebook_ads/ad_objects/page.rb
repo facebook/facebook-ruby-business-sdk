@@ -193,13 +193,6 @@ module FacebookAds
       "year",
     ]
 
-    CHECKIN_ENTRY_POINT = [
-      "BRANDING_CHECKIN",
-      "BRANDING_OTHER",
-      "BRANDING_PHOTO",
-      "BRANDING_STATUS",
-    ]
-
     FORMATTING = [
       "MARKDOWN",
       "PLAINTEXT",
@@ -297,7 +290,6 @@ module FacebookAds
 
     DEVELOPER_ACTION = [
       "ENABLE_FOLLOWUP_MESSAGE",
-      "SEND_RE_OPTIN",
     ]
 
     SUBSCRIBED_FIELDS = [
@@ -322,8 +314,8 @@ module FacebookAds
       "group_feed",
       "hometown",
       "hours",
-      "in_thread_lead_form_submit",
       "inbox_labels",
+      "invalid_topic_placeholder",
       "invoice_access_bank_slip_events",
       "invoice_access_invoice_change",
       "invoice_access_invoice_draft_change",
@@ -353,6 +345,7 @@ module FacebookAds
       "messaging_feedback",
       "messaging_game_plays",
       "messaging_handovers",
+      "messaging_in_thread_lead_form_submit",
       "messaging_optins",
       "messaging_optouts",
       "messaging_payments",
@@ -362,6 +355,7 @@ module FacebookAds
       "messaging_referrals",
       "mission",
       "name",
+      "otp_verification",
       "page_about_story",
       "page_change_proposal",
       "page_upcoming_change",
@@ -440,6 +434,7 @@ module FacebookAds
     field :has_added_app, 'bool'
     field :has_transitioned_to_new_page_experience, 'bool'
     field :has_whatsapp_business_number, 'bool'
+    field :has_whatsapp_enterprise_number_using_cloud_api, 'bool'
     field :has_whatsapp_number, 'bool'
     field :hometown, 'string'
     field :hours, 'hash'
@@ -483,6 +478,7 @@ module FacebookAds
     field :offer_eligible, 'bool'
     field :overall_star_rating, 'double'
     field :owner_business, 'Business'
+    field :page_about_story, 'PageAboutStory'
     field :page_token, 'string'
     field :parent_page, 'Page'
     field :parking, 'PageParking'
@@ -525,6 +521,7 @@ module FacebookAds
     field :unread_message_count, 'int'
     field :unread_notif_count, 'int'
     field :unseen_message_count, 'int'
+    field :user_access_expire_time, 'datetime'
     field :username, 'string'
     field :verification_status, 'string'
     field :voip_info, 'VoipInfo'
@@ -533,6 +530,10 @@ module FacebookAds
     field :whatsapp_number, 'string'
     field :written_by, 'string'
     has_no_delete
+
+    has_edge :ab_tests do |edge|
+      edge.get 'PagePostExperiment'
+    end
 
     has_edge :acknowledge_orders do |edge|
       edge.post 'Page' do |api|
@@ -720,6 +721,7 @@ module FacebookAds
         api.has_param :match_content_type, { enum: %w{AUDIO_ONLY VIDEO_AND_AUDIO VIDEO_ONLY }}
         api.has_param :matched_asset_id, 'string'
         api.has_param :reference_asset_id, 'string'
+        api.has_param :selected_segments, { list: 'hash' }
       end
     end
 
@@ -747,6 +749,10 @@ module FacebookAds
         api.has_param :persistent_menu, { list: 'object' }
         api.has_param :psid, 'string'
       end
+    end
+
+    has_edge :dataset do |edge|
+      edge.get 'Dataset'
     end
 
     has_edge :events do |edge|
@@ -793,7 +799,6 @@ module FacebookAds
         api.has_param :backdated_time_granularity, { enum: -> { Page::BACKDATED_TIME_GRANULARITY }}
         api.has_param :call_to_action, 'object'
         api.has_param :caption, 'string'
-        api.has_param :checkin_entry_point, { enum: -> { Page::CHECKIN_ENTRY_POINT }}
         api.has_param :child_attachments, { list: 'object' }
         api.has_param :client_mutation_id, 'string'
         api.has_param :composer_entry_picker, 'string'
@@ -907,6 +912,7 @@ module FacebookAds
       edge.get 'ImageCopyright'
       edge.post 'ImageCopyright' do |api|
         api.has_param :artist, 'string'
+        api.has_param :attribution_link, 'string'
         api.has_param :creator, 'string'
         api.has_param :custom_id, 'string'
         api.has_param :description, 'string'
@@ -945,10 +951,6 @@ module FacebookAds
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end
-    end
-
-    has_edge :invoice_access_bank_account do |edge|
-      edge.get
     end
 
     has_edge :leadgen_forms do |edge|
@@ -1080,6 +1082,23 @@ module FacebookAds
       edge.get 'MessagingFeatureReview'
     end
 
+    has_edge :messenger_lead_forms do |edge|
+      edge.get 'MessengerAdsPartialAutomatedStepList'
+      edge.post 'Page' do |api|
+        api.has_param :account_id, 'int'
+        api.has_param :block_send_api, 'bool'
+        api.has_param :exit_keyphrases, 'string'
+        api.has_param :handover_app_id, 'int'
+        api.has_param :handover_summary, 'bool'
+        api.has_param :privacy_url, 'string'
+        api.has_param :reminder_text, 'string'
+        api.has_param :step_list, { list: 'hash' }
+        api.has_param :stop_question_message, 'string'
+        api.has_param :template_name, 'string'
+        api.has_param :tracking_parameters, 'hash'
+      end
+    end
+
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
         api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
@@ -1157,6 +1176,12 @@ module FacebookAds
       edge.post 'Persona' do |api|
         api.has_param :name, 'string'
         api.has_param :profile_picture_url, 'string'
+      end
+    end
+
+    has_edge :photo_stories do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :photo_id, 'string'
       end
     end
 
@@ -1335,6 +1360,10 @@ module FacebookAds
       edge.get 'CommerceMerchantSettingsSetupStatus'
     end
 
+    has_edge :stories do |edge|
+      edge.get 'Stories'
+    end
+
     has_edge :subscribed_apps do |edge|
       edge.delete
       edge.get 'Application'
@@ -1369,6 +1398,7 @@ module FacebookAds
     has_edge :threads do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
+        api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
       end
@@ -1421,12 +1451,27 @@ module FacebookAds
       edge.post 'AdVideo' do |api|
         api.has_param :description, 'string'
         api.has_param :feed_targeting, 'object'
+        api.has_param :place, 'string'
         api.has_param :scheduled_publish_time, 'datetime'
         api.has_param :targeting, 'object'
         api.has_param :title, 'string'
         api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
-        api.has_param :video_id, 'object'
+        api.has_param :video_id, 'string'
         api.has_param :video_state, { enum: -> { AdVideo::VIDEO_STATE }}
+      end
+    end
+
+    has_edge :video_stories do |edge|
+      edge.post do |api|
+        api.has_param :description, 'string'
+        api.has_param :feed_targeting, 'object'
+        api.has_param :place, 'string'
+        api.has_param :scheduled_publish_time, 'datetime'
+        api.has_param :targeting, 'object'
+        api.has_param :title, 'string'
+        api.has_param :upload_phase, { enum: %w{FINISH START }}
+        api.has_param :video_id, 'string'
+        api.has_param :video_state, { enum: %w{DRAFT PUBLISHED SCHEDULED }}
       end
     end
 
@@ -1543,6 +1588,7 @@ module FacebookAds
 
     has_edge :welcome_message_flows do |edge|
       edge.get do |api|
+        api.has_param :app_id, 'string'
         api.has_param :flow_id, 'string'
       end
     end

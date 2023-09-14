@@ -38,12 +38,14 @@ module FacebookAds
     ]
 
     PERMITTED_TASKS = [
+      "AA_ANALYZE",
       "ADVERTISE",
       "MANAGE",
       "MANAGE_AR",
     ]
 
     TASKS = [
+      "AA_ANALYZE",
       "ADVERTISE",
       "MANAGE",
       "MANAGE_AR",
@@ -99,6 +101,7 @@ module FacebookAds
     field :owner_business, 'Business'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
+    field :user_access_expire_time, 'datetime'
     field :vertical, 'string'
     field :catalog_segment_filter, 'object'
     field :catalog_segment_product_set_id, 'string'
@@ -117,12 +120,6 @@ module FacebookAds
         api.has_param :permitted_roles, { list: { enum: -> { ProductCatalog::PERMITTED_ROLES }} }
         api.has_param :permitted_tasks, { list: { enum: -> { ProductCatalog::PERMITTED_TASKS }} }
         api.has_param :utm_settings, 'hash'
-      end
-    end
-
-    has_edge :ar_effects_batch_status do |edge|
-      edge.get 'ArEffectsBatchStatus' do |api|
-        api.has_param :handle, 'string'
       end
     end
 

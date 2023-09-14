@@ -33,6 +33,10 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :ar_effects do |edge|
+      edge.get
+    end
+
     has_edge :authorized_adaccounts do |edge|
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'

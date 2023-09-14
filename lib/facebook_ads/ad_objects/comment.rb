@@ -64,7 +64,7 @@ module FacebookAds
     field :message_tags, { list: 'EntityAtTextRange' }
     field :object, 'object'
     field :parent, 'Comment'
-    field :permalink_url, 'object'
+    field :permalink_url, 'string'
     field :private_reply_conversation, 'object'
     field :user_likes, 'bool'
 

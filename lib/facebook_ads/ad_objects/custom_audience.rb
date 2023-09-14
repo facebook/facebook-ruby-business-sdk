@@ -64,6 +64,7 @@ module FacebookAds
       "PRIMARY",
       "REGULATED_CATEGORIES_AUDIENCE",
       "STUDY_RULE_AUDIENCE",
+      "SUBSCRIBER_SEGMENT",
       "VIDEO",
       "WEBSITE",
     ]

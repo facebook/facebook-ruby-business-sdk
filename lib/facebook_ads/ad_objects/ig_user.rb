@@ -51,6 +51,10 @@ module FacebookAds
       end
     end
 
+    has_edge :dataset do |edge|
+      edge.get 'Dataset'
+    end
+
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
         api.has_param :breakdown, { list: { enum: -> { InstagramInsightsResult::BREAKDOWN }} }
@@ -79,6 +83,7 @@ module FacebookAds
         api.has_param :audio_name, 'string'
         api.has_param :caption, 'string'
         api.has_param :children, { list: 'string' }
+        api.has_param :collaborators, { list: 'string' }
         api.has_param :cover_url, 'string'
         api.has_param :image_url, 'string'
         api.has_param :is_carousel_item, 'bool'

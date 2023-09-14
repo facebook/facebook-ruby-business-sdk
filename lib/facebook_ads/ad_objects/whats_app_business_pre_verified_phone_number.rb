@@ -24,14 +24,19 @@ module FacebookAds
     field :code_verification_status, 'string'
     field :code_verification_time, 'datetime'
     field :id, 'string'
+    field :owner_business, 'Business'
     field :phone_number, 'string'
     field :verification_expiry_time, 'datetime'
     has_no_post
 
+    has_edge :partners do |edge|
+      edge.get 'Business'
+    end
+
     has_edge :request_code do |edge|
       edge.post do |api|
         api.has_param :code_method, { enum: %w{SMS VOICE }}
-        api.has_param :language, 'object'
+        api.has_param :language, 'string'
       end
     end
 

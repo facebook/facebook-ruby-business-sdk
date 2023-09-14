@@ -16,16 +16,10 @@ module FacebookAds
   class WhatsAppBusinessAccount < AdObject
     TASKS = [
       "DEVELOP",
-      "FULL_CONTROL",
       "MANAGE",
       "MANAGE_EXTENSIONS",
       "MANAGE_PHONE",
-      "MANAGE_PHONE_ASSETS",
-      "MANAGE_TEMPLATES",
-      "MESSAGING",
       "VIEW_COST",
-      "VIEW_PHONE_ASSETS",
-      "VIEW_TEMPLATES",
     ]
 
     CATEGORY = [
@@ -42,6 +36,7 @@ module FacebookAds
     field :creation_time, 'int'
     field :currency, 'string'
     field :id, 'string'
+    field :is_enabled_for_insights, 'bool'
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'
@@ -52,7 +47,6 @@ module FacebookAds
     field :purchase_order_number, 'string'
     field :status, 'string'
     field :timezone_id, 'string'
-    has_no_post
     has_no_delete
 
     has_edge :assigned_users do |edge|
@@ -74,7 +68,7 @@ module FacebookAds
 
     has_edge :conversation_analytics do |edge|
       edge.get do |api|
-        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION MARKETING SERVICE UNKNOWN UTILITY }} }
+        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION MARKETING MARKETING_OPTIMIZED_DELIVERY SERVICE UNKNOWN UTILITY }} }
         api.has_param :conversation_directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
         api.has_param :conversation_types, { list: { enum: %w{FREE_ENTRY_POINT FREE_TIER REGULAR UNKNOWN }} }
         api.has_param :country_codes, { list: 'string' }
@@ -91,8 +85,22 @@ module FacebookAds
       edge.get
     end
 
+    has_edge :flows do |edge|
+      edge.get
+    end
+
     has_edge :message_campaigns do |edge|
       edge.get
+    end
+
+    has_edge :message_template_previews do |edge|
+      edge.get do |api|
+        api.has_param :add_security_recommendation, 'bool'
+        api.has_param :button_types, { list: { enum: %w{OTP }} }
+        api.has_param :category, { enum: %w{AUTHENTICATION }}
+        api.has_param :code_expiration_minutes, 'int'
+        api.has_param :languages, { list: 'string' }
+      end
     end
 
     has_edge :message_templates do |edge|
@@ -115,7 +123,16 @@ module FacebookAds
         api.has_param :components, { list: 'hash' }
         api.has_param :cta_url_link_tracking_opted_out, 'bool'
         api.has_param :language, 'string'
+        api.has_param :message_send_ttl_seconds, 'int'
         api.has_param :name, 'string'
+        api.has_param :sub_category, 'object'
+      end
+    end
+
+    has_edge :migrate_message_templates do |edge|
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :page_number, 'int'
+        api.has_param :source_waba_id, 'string'
       end
     end
 
@@ -125,6 +142,7 @@ module FacebookAds
         api.has_param :cc, 'string'
         api.has_param :migrate_phone_number, 'bool'
         api.has_param :phone_number, 'string'
+        api.has_param :preverified_id, 'string'
         api.has_param :verified_name, 'string'
       end
     end
@@ -152,10 +170,30 @@ module FacebookAds
       end
     end
 
+    has_edge :template_analytics do |edge|
+      edge.get do |api|
+        api.has_param :end, 'datetime'
+        api.has_param :granularity, { enum: %w{DAILY }}
+        api.has_param :metric_types, { list: { enum: %w{CLICKED DELIVERED READ SENT }} }
+        api.has_param :start, 'datetime'
+        api.has_param :template_ids, { list: 'string' }
+      end
+    end
+
     has_edge :template_performance_metrics do |edge|
       edge.get do |api|
         api.has_param :name, 'string'
         api.has_param :template_id, 'string'
+      end
+    end
+
+    has_edge :upsert_message_templates do |edge|
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}
+        api.has_param :components, { list: 'hash' }
+        api.has_param :languages, { list: 'string' }
+        api.has_param :message_send_ttl_seconds, 'int'
+        api.has_param :name, 'string'
       end
     end
 

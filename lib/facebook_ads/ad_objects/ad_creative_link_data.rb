@@ -14,11 +14,6 @@ module FacebookAds
   # pull request for this class.
 
   class AdCreativeLinkData < AdObject
-    ATTACHMENT_STYLE = [
-      "default",
-      "link",
-    ]
-
     FORMAT_OPTION = [
       "carousel_ar_effects",
       "carousel_images_multi_items",
@@ -31,7 +26,7 @@ module FacebookAds
     field :ad_context, 'string'
     field :additional_image_index, 'int'
     field :app_link_spec, 'AdCreativeLinkDataAppLinkSpec'
-    field :attachment_style, { enum: -> { ATTACHMENT_STYLE }}
+    field :attachment_style, 'string'
     field :branded_content_shared_to_sponsor_status, 'string'
     field :branded_content_sponsor_page_id, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'

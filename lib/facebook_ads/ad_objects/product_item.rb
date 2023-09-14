@@ -28,6 +28,7 @@ module FacebookAds
       "available for order",
       "discontinued",
       "in stock",
+      "mark_as_sold",
       "out of stock",
       "pending",
       "preorder",
@@ -300,10 +301,16 @@ module FacebookAds
       "BAD_QUALITY_IMAGE",
       "CANNOT_EDIT_SUBSCRIPTION_PRODUCTS",
       "CRAWLED_AVAILABILITY_MISMATCH",
+      "DA_DISABLED_BY_USER",
+      "DA_POLICY_VIOLATION",
       "DIGITAL_GOODS_NOT_AVAILABLE_FOR_CHECKOUT",
       "DUPLICATE_IMAGES",
       "DUPLICATE_TITLE_AND_DESCRIPTION",
+      "EMPTY_AVAILABILITY",
+      "EMPTY_CONDITION",
       "EMPTY_DESCRIPTION",
+      "EMPTY_PRODUCT_URL",
+      "EMPTY_SELLER_DESCRIPTION",
       "GENERIC_INVALID_FIELD",
       "HIDDEN_UNTIL_PRODUCT_LAUNCH",
       "IMAGE_FETCH_FAILED",
@@ -326,6 +333,8 @@ module FacebookAds
       "IN_ANOTHER_PRODUCT_LAUNCH",
       "ITEM_GROUP_NOT_SPECIFIED",
       "ITEM_NOT_SHIPPABLE_FOR_SCA_SHOP",
+      "ITEM_OVERRIDE_EMPTY_AVAILABILITY",
+      "ITEM_OVERRIDE_EMPTY_PRICE",
       "ITEM_OVERRIDE_NOT_VISIBLE",
       "ITEM_STALE_OUT_OF_STOCK",
       "MINI_SHOPS_DISABLED_BY_USER",
@@ -351,6 +360,7 @@ module FacebookAds
       "PROPERTY_PRICE_CURRENCY_NOT_SUPPORTED",
       "PROPERTY_PRICE_TOO_HIGH",
       "PROPERTY_PRICE_TOO_LOW",
+      "PROPERTY_UNIT_PRICE_CURRENCY_MISMATCH_ITEM_PRICE_CURRENCY",
       "PROPERTY_VALUE_CONTAINS_HTML_TAGS",
       "PROPERTY_VALUE_DESCRIPTION_CONTAINS_OFF_PLATFORM_LINK",
       "PROPERTY_VALUE_FORMAT",
@@ -359,16 +369,25 @@ module FacebookAds
       "PROPERTY_VALUE_NON_POSITIVE",
       "PROPERTY_VALUE_STRING_EXCEEDS_LENGTH",
       "PROPERTY_VALUE_STRING_TOO_SHORT",
+      "PROPERTY_VALUE_UPPERCASE",
       "PROPERTY_VALUE_UPPERCASE_WARNING",
       "QUALITY_DUPLICATED_DESCRIPTION",
       "QUALITY_ITEM_LINK_BROKEN",
       "QUALITY_ITEM_LINK_REDIRECTING",
       "RETAILER_ID_NOT_PROVIDED",
       "SHOPIFY_ITEM_MISSING_SHIPPING_PROFILE",
+      "SHOPS_POLICY_VIOLATION",
       "SUBSCRIPTION_INFO_NOT_ENABLED_FOR_FEED",
       "TAX_CATEGORY_NOT_SUPPORTED_IN_UK",
       "UNSUPPORTED_PRODUCT_CATEGORY",
       "VARIANT_ATTRIBUTE_ISSUE",
+      "VIDEO_FETCH_FAILED",
+      "VIDEO_FETCH_FAILED_BAD_GATEWAY",
+      "VIDEO_FETCH_FAILED_FILE_SIZE_EXCEEDED",
+      "VIDEO_FETCH_FAILED_FORBIDDEN",
+      "VIDEO_FETCH_FAILED_LINK_BROKEN",
+      "VIDEO_FETCH_FAILED_TIMED_OUT",
+      "VIDEO_NOT_DOWNLOADABLE",
     ]
 
     MARKED_FOR_PRODUCT_LAUNCH = [
@@ -642,7 +661,6 @@ module FacebookAds
     field :additional_variant_attributes, { list: 'hash' }
     field :age_group, { enum: -> { AGE_GROUP }}
     field :applinks, 'CatalogItemAppLinks'
-    field :ar_data, 'ProductItemArData'
     field :availability, { enum: -> { AVAILABILITY }}
     field :brand, 'string'
     field :capability_to_review_status, { list: 'hash' }
@@ -693,6 +711,7 @@ module FacebookAds
     field :product_catalog, 'ProductCatalog'
     field :product_feed, 'ProductFeed'
     field :product_group, 'ProductGroup'
+    field :product_local_info, 'ProductItemLocalInfo'
     field :product_type, 'string'
     field :quantity_to_sell_on_facebook, 'int'
     field :retailer_id, 'string'

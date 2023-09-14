@@ -154,6 +154,7 @@ module FacebookAds
     field :privacy_policy_url, 'string'
     field :profile_section_url, 'string'
     field :property_id, 'string'
+    field :protected_mode_rules, 'object'
     field :real_time_mode_devices, { list: 'string' }
     field :restrictions, 'object'
     field :restrictive_data_filter_params, 'string'
@@ -237,6 +238,7 @@ module FacebookAds
         api.has_param :url_schemes, { list: 'string' }
         api.has_param :user_id, 'string'
         api.has_param :user_id_type, { enum: %w{INSTANT_GAMES_PLAYER_ID }}
+        api.has_param :vendor_id, 'string'
         api.has_param :windows_attribution_id, 'string'
       end
     end
@@ -312,6 +314,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :app_id, 'int'
         api.has_param :is_aem_ready, 'bool'
+        api.has_param :is_app_aem_install_ready, 'bool'
         api.has_param :is_app_aem_ready, 'bool'
         api.has_param :is_skan_ready, 'bool'
         api.has_param :message, 'string'
@@ -390,6 +393,12 @@ module FacebookAds
     has_edge :authorized_adaccounts do |edge|
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'
+      end
+    end
+
+    has_edge :banned do |edge|
+      edge.get 'User' do |api|
+        api.has_param :uid, 'int'
       end
     end
 
@@ -526,6 +535,10 @@ module FacebookAds
     end
 
     has_edge :roles do |edge|
+      edge.get
+    end
+
+    has_edge :server_domain_infos do |edge|
       edge.get
     end
 

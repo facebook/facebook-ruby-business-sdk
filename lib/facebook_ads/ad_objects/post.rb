@@ -23,13 +23,6 @@ module FacebookAds
       "year",
     ]
 
-    CHECKIN_ENTRY_POINT = [
-      "BRANDING_CHECKIN",
-      "BRANDING_OTHER",
-      "BRANDING_PHOTO",
-      "BRANDING_STATUS",
-    ]
-
     FORMATTING = [
       "MARKDOWN",
       "PLAINTEXT",
@@ -112,7 +105,7 @@ module FacebookAds
     field :is_popular, 'bool'
     field :is_published, 'bool'
     field :is_spherical, 'bool'
-    field :link, 'object'
+    field :link, 'string'
     field :message, 'string'
     field :message_tags, { list: 'string' }
     field :multi_share_end_card, 'bool'
@@ -120,7 +113,7 @@ module FacebookAds
     field :name, 'string'
     field :object_id, 'string'
     field :parent_id, 'string'
-    field :permalink_url, 'object'
+    field :permalink_url, 'string'
     field :picture, 'string'
     field :place, 'Place'
     field :privacy, 'Privacy'
