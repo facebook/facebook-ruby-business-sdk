@@ -874,7 +874,7 @@ module FacebookAds
       edge.post 'Business' do |api|
         api.has_param :app_id, 'string'
         api.has_param :fbe_external_business_id, 'string'
-        api.has_param :scope, { list: 'Permission' }
+        api.has_param :scope, 'string'
         api.has_param :system_user_name, 'string'
       end
     end
@@ -1520,7 +1520,7 @@ module FacebookAds
       edge.post 'Business' do |api|
         api.has_param :asset, { list: 'int' }
         api.has_param :fetch_only, 'bool'
-        api.has_param :scope, { list: 'Permission' }
+        api.has_param :scope, 'string'
         api.has_param :set_token_expires_in_60_days, 'bool'
         api.has_param :system_user_id, 'int'
       end
