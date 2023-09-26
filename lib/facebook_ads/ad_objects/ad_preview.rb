@@ -73,6 +73,7 @@ module FacebookAds
     ]
 
     CREATIVE_FEATURE = [
+      "product_metadata_automation",
       "profile_card",
       "standard_enhancements_catalog",
     ]

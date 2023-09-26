@@ -16,7 +16,7 @@ module FacebookAds
   class AdCreativeDegreesOfFreedomSpec < AdObject
 
     field :ad_handle_type, 'string'
-    field :creative_features_spec, 'object'
+    field :creative_features_spec, 'AdCreativeFeaturesSpec'
     field :degrees_of_freedom_type, 'string'
     field :image_transformation_types, { list: 'string' }
     field :multi_media_transformation_type, 'string'

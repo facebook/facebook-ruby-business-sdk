@@ -13,19 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Stories < AdObject
-    STATUS = [
-      "ARCHIVED",
-      "PUBLISHED",
-    ]
+  class ContentPublishingLimitResponse < AdObject
 
-
-    field :creation_time, 'string'
-    field :media_id, 'string'
-    field :media_type, 'string'
-    field :post_id, 'string'
-    field :status, 'string'
-    field :url, 'string'
+    field :config, 'object'
+    field :quota_usage, 'int'
     has_no_id
     has_no_get
     has_no_post

@@ -69,6 +69,7 @@ module FacebookAds
     field :product_item_id, 'string'
     field :product_set_id, 'string'
     field :retention_days, 'string'
+    field :whats_app_business_phone_number_id, 'object'
     has_no_id
     has_no_get
     has_no_post

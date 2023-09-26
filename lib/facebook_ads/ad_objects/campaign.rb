@@ -392,6 +392,7 @@ module FacebookAds
     field :budget_rebalance_flag, 'bool'
     field :budget_remaining, 'string'
     field :buying_type, 'string'
+    field :campaign_group_active_time, 'string'
     field :can_create_brand_lift_study, 'bool'
     field :can_use_spend_cap, 'bool'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}

@@ -1361,7 +1361,11 @@ module FacebookAds
     end
 
     has_edge :stories do |edge|
-      edge.get 'Stories'
+      edge.get 'Stories' do |api|
+        api.has_param :since, 'datetime'
+        api.has_param :status, { list: { enum: -> { Stories::STATUS }} }
+        api.has_param :until, 'datetime'
+      end
     end
 
     has_edge :subscribed_apps do |edge|

@@ -435,6 +435,12 @@ module FacebookAds
       end
     end
 
+    has_edge :iap_purchases do |edge|
+      edge.get do |api|
+        api.has_param :order_id, 'string'
+      end
+    end
+
     has_edge :insights_push_schedule do |edge|
       edge.get
     end
@@ -486,6 +492,10 @@ module FacebookAds
     end
 
     has_edge :object_types do |edge|
+      edge.get 'NullNode'
+    end
+
+    has_edge :objects do |edge|
       edge.get 'NullNode'
     end
 

@@ -28,6 +28,12 @@ module FacebookAds
       "UTILITY",
     ]
 
+    SUB_CATEGORY = [
+      "CUSTOM",
+      "ORDER_DETAILS",
+      "ORDER_STATUS",
+    ]
+
 
     field :account_review_status, 'string'
     field :analytics, 'object'
@@ -83,10 +89,22 @@ module FacebookAds
 
     has_edge :extensions do |edge|
       edge.get
+      edge.post do |api|
+        api.has_param :clone_extension_id, 'string'
+        api.has_param :clone_template, 'string'
+        api.has_param :data_channel_uri, 'string'
+        api.has_param :name, 'string'
+      end
     end
 
     has_edge :flows do |edge|
       edge.get
+      edge.post do |api|
+        api.has_param :clone_flow_id, 'string'
+        api.has_param :clone_template, 'string'
+        api.has_param :data_channel_uri, 'string'
+        api.has_param :name, 'string'
+      end
     end
 
     has_edge :message_campaigns do |edge|
@@ -125,7 +143,7 @@ module FacebookAds
         api.has_param :language, 'string'
         api.has_param :message_send_ttl_seconds, 'int'
         api.has_param :name, 'string'
-        api.has_param :sub_category, 'object'
+        api.has_param :sub_category, { enum: -> { WhatsAppBusinessAccount::SUB_CATEGORY }}
       end
     end
 

@@ -296,6 +296,7 @@ module FacebookAds
     field :content_category, 'string'
     field :content_tags, { list: 'string' }
     field :copyright, 'VideoCopyright'
+    field :copyright_check_information, 'object'
     field :copyright_monitoring_status, 'string'
     field :created_time, 'datetime'
     field :custom_labels, { list: 'string' }

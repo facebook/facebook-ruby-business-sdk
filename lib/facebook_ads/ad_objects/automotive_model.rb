@@ -71,7 +71,7 @@ module FacebookAds
     end
 
     has_edge :videos_metadata do |edge|
-      edge.get
+      edge.get 'DynamicVideoMetadata'
     end
 
   end

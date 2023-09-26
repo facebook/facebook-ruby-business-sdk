@@ -35,18 +35,18 @@ module FacebookAds
     has_no_delete
 
     has_edge :available_catalogs do |edge|
-      edge.get
+      edge.get 'UserAvailableCatalogs'
     end
 
     has_edge :catalog_product_search do |edge|
-      edge.get do |api|
+      edge.get 'ShadowIgUserCatalogProductSearch' do |api|
         api.has_param :catalog_id, 'string'
         api.has_param :q, 'string'
       end
     end
 
     has_edge :content_publishing_limit do |edge|
-      edge.get do |api|
+      edge.get 'ContentPublishingLimitResponse' do |api|
         api.has_param :since, 'datetime'
       end
     end
@@ -116,17 +116,17 @@ module FacebookAds
     end
 
     has_edge :product_appeal do |edge|
-      edge.get do |api|
+      edge.get 'IgShoppingProductAppeal' do |api|
         api.has_param :product_id, 'string'
       end
-      edge.post do |api|
+      edge.post 'IgShoppingProductAppeal' do |api|
         api.has_param :appeal_reason, 'string'
         api.has_param :product_id, 'string'
       end
     end
 
     has_edge :recently_searched_hashtags do |edge|
-      edge.get
+      edge.get 'ShadowIgHashtag'
     end
 
     has_edge :stories do |edge|

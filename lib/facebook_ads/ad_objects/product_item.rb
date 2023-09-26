@@ -75,6 +75,15 @@ module FacebookAds
       "oz",
     ]
 
+    VIDEO_FETCH_STATUS = [
+      "DIRECT_UPLOAD",
+      "FETCHED",
+      "FETCH_FAILED",
+      "NO_STATUS",
+      "OUTDATED",
+      "PARTIAL_FETCH",
+    ]
+
     VISIBILITY = [
       "published",
       "staging",
@@ -727,6 +736,7 @@ module FacebookAds
     field :size, 'string'
     field :start_date, 'string'
     field :url, 'string'
+    field :video_fetch_status, { enum: -> { VIDEO_FETCH_STATUS }}
     field :visibility, { enum: -> { VISIBILITY }}
     field :wa_compliance_category, 'string'
     field :additional_uploaded_image_ids, { list: 'string' }
@@ -763,7 +773,7 @@ module FacebookAds
     end
 
     has_edge :videos_metadata do |edge|
-      edge.get
+      edge.get 'DynamicVideoMetadata'
     end
 
   end

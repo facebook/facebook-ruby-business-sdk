@@ -166,6 +166,7 @@ module FacebookAds
     field :categorization_criteria, 'string'
     field :category_media_source, 'string'
     field :collaborative_ads_lsb_image_bank_id, 'string'
+    field :creative_sourcing_spec, 'AdCreativeSourcingSpec'
     field :degrees_of_freedom_spec, 'AdCreativeDegreesOfFreedomSpec'
     field :destination_set_id, 'string'
     field :dynamic_ad_voice, 'string'
