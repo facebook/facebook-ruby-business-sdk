@@ -70,6 +70,7 @@ module FacebookAds
       "is_conversion_id_modeled",
       "link_url_asset",
       "marketing_messages_btn_name",
+      "mdsa_landing_destination",
       "media_asset_url",
       "media_creator",
       "media_destination_url",

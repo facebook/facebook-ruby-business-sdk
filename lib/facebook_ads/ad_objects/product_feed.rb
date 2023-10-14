@@ -96,6 +96,7 @@ module FacebookAds
       "LANGUAGE",
       "LANGUAGE_AND_COUNTRY",
       "LOCAL",
+      "SMART_PIXEL_LANGUAGE_OR_COUNTRY",
     ]
 
 

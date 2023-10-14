@@ -13,17 +13,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class OpenBridgeConfiguration < AdObject
+  class IgVideoCopyrightCheckStatus < AdObject
 
-    field :access_key, 'string'
-    field :active, 'bool'
-    field :endpoint, 'string'
-    field :fallback_domain, 'string'
-    field :fallback_domain_enabled, 'bool'
-    field :host_business_id, 'string'
-    field :host_external_id, 'string'
-    field :id, 'string'
-    field :pixel_id, 'string'
+    field :matches_found, 'bool'
+    field :status, 'string'
+    has_no_id
+    has_no_get
+    has_no_post
+    has_no_delete
 
   end
 end

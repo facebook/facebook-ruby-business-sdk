@@ -744,6 +744,8 @@ module FacebookAds
         api.has_param :access_key, 'string'
         api.has_param :active, 'bool'
         api.has_param :endpoint, 'string'
+        api.has_param :fallback_domain, 'string'
+        api.has_param :fallback_domain_enabled, 'bool'
         api.has_param :host_business_id, 'int'
         api.has_param :host_external_id, 'string'
         api.has_param :pixel_id, 'int'
@@ -800,6 +802,7 @@ module FacebookAds
       edge.get 'Page'
       edge.post 'Business' do |api|
         api.has_param :code, 'string'
+        api.has_param :entry_point, 'string'
         api.has_param :page_id, 'int'
       end
     end

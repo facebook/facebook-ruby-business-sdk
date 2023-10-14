@@ -15,6 +15,7 @@ module FacebookAds
 
   class ShadowIgMediaBuilder < AdObject
 
+    field :copyright_check_status, 'IgVideoCopyrightCheckStatus'
     field :id, 'string'
     field :status, 'string'
     field :status_code, 'string'

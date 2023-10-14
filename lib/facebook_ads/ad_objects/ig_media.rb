@@ -17,6 +17,7 @@ module FacebookAds
 
     field :caption, 'string'
     field :comments_count, 'int'
+    field :copyright_check_information, 'IgVideoCopyrightCheckMatchesInformation'
     field :id, 'string'
     field :ig_id, 'string'
     field :is_comment_enabled, 'bool'
@@ -35,6 +36,10 @@ module FacebookAds
 
     has_edge :children do |edge|
       edge.get 'IgMedia'
+    end
+
+    has_edge :collaborators do |edge|
+      edge.get 'ShadowIgMediaCollaborators'
     end
 
     has_edge :comments do |edge|

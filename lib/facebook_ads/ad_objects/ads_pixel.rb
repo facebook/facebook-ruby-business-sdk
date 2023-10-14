@@ -99,6 +99,12 @@ module FacebookAds
       edge.get 'Business'
     end
 
+    has_edge :ahp_configs do |edge|
+      edge.post do |api|
+        api.has_param :applink_autosetup, 'bool'
+      end
+    end
+
     has_edge :assigned_users do |edge|
       edge.get 'AssignedUser' do |api|
         api.has_param :business, 'string'

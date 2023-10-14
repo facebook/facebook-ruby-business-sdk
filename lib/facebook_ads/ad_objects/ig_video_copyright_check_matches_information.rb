@@ -13,14 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class MessengerDestinationPageWelcomeMessage < AdObject
+  class IgVideoCopyrightCheckMatchesInformation < AdObject
 
-    field :id, 'string'
-    field :page_welcome_message_body, 'string'
-    field :page_welcome_message_type, 'string'
-    field :template_name, 'string'
-    field :time_created, 'datetime'
-    field :time_last_used, 'datetime'
+    field :copyright_matches, { list: 'object' }
+    field :status, 'IgVideoCopyrightCheckStatus'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

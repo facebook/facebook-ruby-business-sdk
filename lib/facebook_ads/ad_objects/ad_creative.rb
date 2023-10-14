@@ -26,6 +26,7 @@ module FacebookAds
       "CALL",
       "CALL_ME",
       "CALL_NOW",
+      "CONFIRM",
       "CONTACT",
       "CONTACT_US",
       "DONATE",

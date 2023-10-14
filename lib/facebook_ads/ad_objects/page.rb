@@ -418,6 +418,7 @@ module FacebookAds
     field :directed_by, 'string'
     field :display_subtext, 'string'
     field :displayed_message_response_time, 'string'
+    field :does_viewer_have_page_permission_link_ig, 'bool'
     field :emails, { list: 'string' }
     field :engagement, 'Engagement'
     field :fan_count, 'int'
@@ -446,6 +447,7 @@ module FacebookAds
     field :is_chain, 'bool'
     field :is_community_page, 'bool'
     field :is_eligible_for_branded_content, 'bool'
+    field :is_eligible_for_disable_connect_ig_btn_for_non_page_admin_am_web, 'bool'
     field :is_messenger_bot_get_started_enabled, 'bool'
     field :is_messenger_platform_bot, 'bool'
     field :is_owned, 'bool'
@@ -465,7 +467,6 @@ module FacebookAds
     field :merchant_review_status, 'string'
     field :messaging_feature_status, 'MessagingFeatureStatus'
     field :messenger_ads_default_icebreakers, { list: 'string' }
-    field :messenger_ads_default_page_welcome_message, 'MessengerDestinationPageWelcomeMessage'
     field :messenger_ads_default_quick_replies, { list: 'string' }
     field :messenger_ads_quick_replies_type, 'string'
     field :mini_shop_storefront, 'Shop'
@@ -1015,8 +1016,8 @@ module FacebookAds
 
     has_edge :locations do |edge|
       edge.delete do |api|
-        api.has_param :location_page_id, 'string'
-        api.has_param :store_number, 'int'
+        api.has_param :location_page_ids, { list: 'string' }
+        api.has_param :store_numbers, { list: 'int' }
       end
       edge.get 'Page'
       edge.post 'Page' do |api|

@@ -13,24 +13,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstagramComment < AdObject
+  class ShadowIgMediaCollaborators < AdObject
 
-    field :comment_type, 'string'
-    field :created_at, 'datetime'
     field :id, 'string'
-    field :instagram_comment_id, 'string'
-    field :instagram_user, 'InstagramUser'
-    field :mentioned_instagram_users, { list: 'InstagramUser' }
-    field :message, 'string'
+    field :invite_status, 'string'
     field :username, 'string'
-
-    has_edge :replies do |edge|
-      edge.get 'InstagramComment'
-      edge.post 'InstagramComment' do |api|
-        api.has_param :ad_id, 'string'
-        api.has_param :message, 'string'
-      end
-    end
+    has_no_get
+    has_no_post
+    has_no_delete
 
   end
 end

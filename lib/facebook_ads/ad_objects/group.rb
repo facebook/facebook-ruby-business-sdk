@@ -137,13 +137,6 @@ module FacebookAds
       end
     end
 
-    has_edge :attachment_surfaces do |edge|
-      edge.get
-      edge.post do |api|
-        api.has_param :title, 'hash'
-      end
-    end
-
     has_edge :docs do |edge|
       edge.get
     end

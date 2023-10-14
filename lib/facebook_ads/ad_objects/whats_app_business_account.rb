@@ -19,7 +19,11 @@ module FacebookAds
       "MANAGE",
       "MANAGE_EXTENSIONS",
       "MANAGE_PHONE",
+      "MANAGE_PHONE_ASSETS",
+      "MANAGE_TEMPLATES",
       "VIEW_COST",
+      "VIEW_PHONE_ASSETS",
+      "VIEW_TEMPLATES",
     ]
 
     CATEGORY = [
@@ -90,6 +94,7 @@ module FacebookAds
     has_edge :extensions do |edge|
       edge.get
       edge.post do |api|
+        api.has_param :categories, { list: { enum: %w{APPOINTMENT_BOOKING CONTACT_US CUSTOMER_SUPPORT LEAD_GENERATION OTHER SIGN_IN SIGN_UP SURVEY }} }
         api.has_param :clone_extension_id, 'string'
         api.has_param :clone_template, 'string'
         api.has_param :data_channel_uri, 'string'
@@ -100,6 +105,7 @@ module FacebookAds
     has_edge :flows do |edge|
       edge.get
       edge.post do |api|
+        api.has_param :categories, { list: { enum: %w{APPOINTMENT_BOOKING CONTACT_US CUSTOMER_SUPPORT LEAD_GENERATION OTHER SIGN_IN SIGN_UP SURVEY }} }
         api.has_param :clone_flow_id, 'string'
         api.has_param :clone_template, 'string'
         api.has_param :data_channel_uri, 'string'
