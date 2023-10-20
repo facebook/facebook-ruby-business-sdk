@@ -7,7 +7,7 @@
 require 'faraday/multipart'
 
 module FacebookAds
-  class VideoIO < ::UploadIO
+  class VideoIO < Faraday::UploadIO
     def is_video?
       true
     end

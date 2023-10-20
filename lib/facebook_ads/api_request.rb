@@ -97,14 +97,14 @@ module FacebookAds
     # For Batch API
     def params_without_files
       params.reject do |_,v|
-        v.is_a?(UploadIO)
+        v.is_a?(Faraday::UploadIO)
       end
     end
 
     # For Batch API
     def files
       params.select do |_,v|
-        v.is_a?(UploadIO)
+        v.is_a?(Faraday::UploadIO)
       end
     end
   end
