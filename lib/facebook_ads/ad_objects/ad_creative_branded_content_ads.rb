@@ -18,6 +18,7 @@ module FacebookAds
     field :ad_format, 'int'
     field :creator_ad_permission_type, 'string'
     field :instagram_boost_post_access_token, 'string'
+    field :is_mca_internal, 'bool'
     field :partners, { list: 'object' }
     field :ui_version, 'int'
     has_no_id

@@ -14,6 +14,20 @@ module FacebookAds
   # pull request for this class.
 
   class PagePostExperiment < AdObject
+    OPTIMIZATION_GOAL = [
+      "AUTO_RESOLVE_TO_CONTROL",
+      "AVG_TIME_WATCHED",
+      "COMMENTS",
+      "IMPRESSIONS",
+      "IMPRESSIONS_UNIQUE",
+      "LINK_CLICKS",
+      "OTHER",
+      "REACTIONS",
+      "REELS_PLAYS",
+      "SHARES",
+      "VIDEO_VIEWS_60S",
+    ]
+
 
     field :auto_resolve_settings, 'object'
     field :control_video_id, 'string'
@@ -33,7 +47,6 @@ module FacebookAds
     field :scheduled_experiment_timestamp, 'datetime'
     field :updated_time, 'datetime'
     has_no_post
-    has_no_delete
 
     has_edge :video_insights do |edge|
       edge.get

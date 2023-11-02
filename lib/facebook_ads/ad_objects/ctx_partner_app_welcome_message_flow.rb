@@ -13,17 +13,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ManagedPartnerBusiness < AdObject
+  class CtxPartnerAppWelcomeMessageFlow < AdObject
 
-    field :ad_account, 'AdAccount'
-    field :catalog_segment, 'ProductCatalog'
-    field :extended_credit, 'ManagedPartnerExtendedCredit'
-    field :page, 'Page'
-    field :seller_business_info, 'object'
-    field :seller_business_status, 'string'
-    field :template, { list: 'object' }
-    has_no_id
-    has_no_get
+    field :compatible_platforms, { list: 'string' }
+    field :eligible_platforms, { list: 'string' }
+    field :id, 'string'
+    field :is_used_in_ad, 'bool'
+    field :last_update_time, 'datetime'
+    field :name, 'string'
+    field :welcome_message_flow, 'string'
     has_no_post
     has_no_delete
 

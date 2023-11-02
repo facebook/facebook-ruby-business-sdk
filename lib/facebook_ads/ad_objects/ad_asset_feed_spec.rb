@@ -54,7 +54,6 @@ module FacebookAds
       "LISTEN_NOW",
       "MESSAGE_PAGE",
       "MOBILE_DOWNLOAD",
-      "MOMENTS",
       "NO_BUTTON",
       "OPEN_INSTANT_APP",
       "OPEN_LINK",
@@ -110,7 +109,10 @@ module FacebookAds
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
     field :message_extensions, { list: 'AdAssetMessageExtensions' }
+    field :onsite_destinations, { list: 'object' }
     field :optimization_type, 'string'
+    field :reasons_to_shop, 'bool'
+    field :shops_bundle, 'bool'
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id

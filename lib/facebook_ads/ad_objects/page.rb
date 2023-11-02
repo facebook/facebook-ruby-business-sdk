@@ -433,6 +433,7 @@ module FacebookAds
     field :global_brand_page_name, 'string'
     field :global_brand_root_id, 'string'
     field :has_added_app, 'bool'
+    field :has_lead_access, 'HasLeadAccess'
     field :has_transitioned_to_new_page_experience, 'bool'
     field :has_whatsapp_business_number, 'bool'
     field :has_whatsapp_enterprise_number_using_cloud_api, 'bool'
@@ -534,6 +535,15 @@ module FacebookAds
 
     has_edge :ab_tests do |edge|
       edge.get 'PagePostExperiment'
+      edge.post 'PagePostExperiment' do |api|
+        api.has_param :control_video_id, 'string'
+        api.has_param :description, 'string'
+        api.has_param :duration, 'int'
+        api.has_param :experiment_video_ids, { list: 'string' }
+        api.has_param :name, 'string'
+        api.has_param :optimization_goal, { enum: -> { PagePostExperiment::OPTIMIZATION_GOAL }}
+        api.has_param :scheduled_experiment_timestamp, 'int'
+      end
     end
 
     has_edge :acknowledge_orders do |edge|
@@ -1102,7 +1112,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE TITLE WHITELISTED_DOMAINS }} }
         api.has_param :platform, { enum: -> { Page::PLATFORM }}
       end
       edge.get 'MessengerProfile' do |api|
@@ -1110,6 +1120,8 @@ module FacebookAds
       end
       edge.post 'Page' do |api|
         api.has_param :account_linking_url, 'string'
+        api.has_param :commands, { list: 'object' }
+        api.has_param :description, { list: 'object' }
         api.has_param :get_started, 'object'
         api.has_param :greeting, { list: 'object' }
         api.has_param :ice_breakers, { list: 'hash' }
@@ -1117,6 +1129,7 @@ module FacebookAds
         api.has_param :persistent_menu, { list: 'object' }
         api.has_param :platform, { enum: -> { Page::PLATFORM }}
         api.has_param :target_audience, 'object'
+        api.has_param :title, { list: 'object' }
         api.has_param :whitelisted_domains, { list: 'string' }
       end
     end
@@ -1592,9 +1605,18 @@ module FacebookAds
     end
 
     has_edge :welcome_message_flows do |edge|
-      edge.get do |api|
+      edge.delete do |api|
+        api.has_param :flow_id, 'string'
+      end
+      edge.get 'CtxPartnerAppWelcomeMessageFlow' do |api|
         api.has_param :app_id, 'string'
         api.has_param :flow_id, 'string'
+      end
+      edge.post do |api|
+        api.has_param :eligible_platforms, { list: { enum: %w{INSTAGRAM MESSENGER }} }
+        api.has_param :flow_id, 'string'
+        api.has_param :name, 'string'
+        api.has_param :welcome_message_flow, { list: 'object' }
       end
     end
 

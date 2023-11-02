@@ -54,7 +54,6 @@ module FacebookAds
       "LISTEN_NOW",
       "MESSAGE_PAGE",
       "MOBILE_DOWNLOAD",
-      "MOMENTS",
       "NO_BUTTON",
       "OPEN_INSTANT_APP",
       "OPEN_LINK",
@@ -201,6 +200,7 @@ module FacebookAds
     field :object_type, { enum: -> { OBJECT_TYPE }}
     field :object_url, 'string'
     field :omnichannel_link_spec, 'AdCreativeOmnichannelLinkSpec'
+    field :photo_album_source_object_story_id, 'string'
     field :place_page_set_id, 'string'
     field :platform_customizations, 'AdCreativePlatformCustomization'
     field :playable_asset_id, 'string'

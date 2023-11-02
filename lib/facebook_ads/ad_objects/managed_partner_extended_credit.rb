@@ -13,16 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ManagedPartnerBusiness < AdObject
+  class ManagedPartnerExtendedCredit < AdObject
 
-    field :ad_account, 'AdAccount'
-    field :catalog_segment, 'ProductCatalog'
-    field :extended_credit, 'ManagedPartnerExtendedCredit'
-    field :page, 'Page'
-    field :seller_business_info, 'object'
-    field :seller_business_status, 'string'
-    field :template, { list: 'object' }
-    has_no_id
+    field :id, 'string'
+    field :max_balance, 'CurrencyAmount'
+    field :receiving_credit_allocation_config, 'ExtendedCreditAllocationConfig'
     has_no_get
     has_no_post
     has_no_delete

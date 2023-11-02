@@ -159,6 +159,8 @@ module FacebookAds
     field :restrictions, 'object'
     field :restrictive_data_filter_params, 'string'
     field :restrictive_data_filter_rules, 'string'
+    field :sdk_auto_logging_default_value, 'bool'
+    field :sdk_auto_logging_override_value, 'bool'
     field :sdk_update_message, 'string'
     field :seamless_login, 'int'
     field :secure_canvas_url, 'string'
