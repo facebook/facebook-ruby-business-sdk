@@ -309,6 +309,7 @@ module FacebookAds
       "AVAILABLE",
       "BAD_QUALITY_IMAGE",
       "CANNOT_EDIT_SUBSCRIPTION_PRODUCTS",
+      "CHECKOUT_DISABLED_BY_USER",
       "COMMERCE_ACCOUNT_NOT_LEGALLY_COMPLIANT",
       "CRAWLED_AVAILABILITY_MISMATCH",
       "DA_DISABLED_BY_USER",
@@ -348,6 +349,7 @@ module FacebookAds
       "ITEM_OVERRIDE_EMPTY_PRICE",
       "ITEM_OVERRIDE_NOT_VISIBLE",
       "ITEM_STALE_OUT_OF_STOCK",
+      "MARKETPLACE_DISABLED_BY_USER",
       "MINI_SHOPS_DISABLED_BY_USER",
       "MISSING_CHECKOUT",
       "MISSING_CHECKOUT_CURRENCY",
@@ -740,6 +742,7 @@ module FacebookAds
     field :short_description, 'string'
     field :size, 'string'
     field :start_date, 'string'
+    field :tags, { list: 'string' }
     field :url, 'string'
     field :video_fetch_status, { enum: -> { VIDEO_FETCH_STATUS }}
     field :visibility, { enum: -> { VISIBILITY }}

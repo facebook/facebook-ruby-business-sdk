@@ -41,7 +41,6 @@ module FacebookAds
     field :insight_snapshots, { list: 'map<datetime, list<map<int, Object>>>' }
     field :name, 'string'
     field :optimization_goal, 'string'
-    field :post_variant_fields, { list: 'string' }
     field :publish_status, 'string'
     field :publish_time, 'datetime'
     field :scheduled_experiment_timestamp, 'datetime'

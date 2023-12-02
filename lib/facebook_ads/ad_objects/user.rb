@@ -228,6 +228,10 @@ module FacebookAds
       end
     end
 
+    has_edge :fbdl_runs do |edge|
+      edge.get 'WhitehatFbdlRun'
+    end
+
     has_edge :feed do |edge|
       edge.get 'Post' do |api|
         api.has_param :include_hidden, 'bool'

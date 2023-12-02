@@ -102,6 +102,8 @@ module FacebookAds
     field :auto_event_mapping_android, { list: 'object' }
     field :auto_event_mapping_ios, { list: 'object' }
     field :auto_event_setup_enabled, 'bool'
+    field :auto_log_app_events_default, 'bool'
+    field :auto_log_app_events_enabled, 'bool'
     field :business, 'Business'
     field :canvas_fluid_height, 'bool'
     field :canvas_fluid_width, 'int'
@@ -159,8 +161,6 @@ module FacebookAds
     field :restrictions, 'object'
     field :restrictive_data_filter_params, 'string'
     field :restrictive_data_filter_rules, 'string'
-    field :sdk_auto_logging_default_value, 'bool'
-    field :sdk_auto_logging_override_value, 'bool'
     field :sdk_update_message, 'string'
     field :seamless_login, 'int'
     field :secure_canvas_url, 'string'
@@ -395,12 +395,6 @@ module FacebookAds
     has_edge :authorized_adaccounts do |edge|
       edge.get 'AdAccount' do |api|
         api.has_param :business, 'string'
-      end
-    end
-
-    has_edge :banned do |edge|
-      edge.get 'User' do |api|
-        api.has_param :uid, 'int'
       end
     end
 
