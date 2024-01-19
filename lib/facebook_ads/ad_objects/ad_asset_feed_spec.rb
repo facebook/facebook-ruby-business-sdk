@@ -54,7 +54,6 @@ module FacebookAds
       "LISTEN_NOW",
       "MESSAGE_PAGE",
       "MOBILE_DOWNLOAD",
-      "MOMENTS",
       "NO_BUTTON",
       "OPEN_INSTANT_APP",
       "OPEN_LINK",
@@ -95,22 +94,25 @@ module FacebookAds
 
 
     field :ad_formats, { list: 'string' }
-    field :additional_data, 'object'
+    field :additional_data, 'AdAssetFeedAdditionalData'
     field :app_product_page_id, 'string'
     field :asset_customization_rules, { list: 'AdAssetFeedSpecAssetCustomizationRule' }
     field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }
     field :call_to_action_types, { list: { enum: -> { CALL_TO_ACTION_TYPES }} }
-    field :call_to_actions, { list: 'object' }
+    field :call_to_actions, { list: 'AdAssetFeedSpecCallToAction' }
     field :captions, { list: 'AdAssetFeedSpecCaption' }
-    field :carousels, { list: 'object' }
+    field :carousels, { list: 'AdAssetFeedSpecCarousel' }
     field :descriptions, { list: 'AdAssetFeedSpecDescription' }
-    field :events, { list: 'object' }
+    field :events, { list: 'AdAssetFeedSpecEvents' }
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
     field :message_extensions, { list: 'AdAssetMessageExtensions' }
+    field :onsite_destinations, { list: 'AdAssetOnsiteDestinations' }
     field :optimization_type, 'string'
+    field :reasons_to_shop, 'bool'
+    field :shops_bundle, 'bool'
     field :titles, { list: 'AdAssetFeedSpecTitle' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id

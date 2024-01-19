@@ -309,6 +309,8 @@ module FacebookAds
       "AVAILABLE",
       "BAD_QUALITY_IMAGE",
       "CANNOT_EDIT_SUBSCRIPTION_PRODUCTS",
+      "CHECKOUT_DISABLED_BY_USER",
+      "COMMERCE_ACCOUNT_NOT_LEGALLY_COMPLIANT",
       "CRAWLED_AVAILABILITY_MISMATCH",
       "DA_DISABLED_BY_USER",
       "DA_POLICY_VIOLATION",
@@ -320,6 +322,7 @@ module FacebookAds
       "EMPTY_DESCRIPTION",
       "EMPTY_PRODUCT_URL",
       "EMPTY_SELLER_DESCRIPTION",
+      "EXTERNAL_MERCHANT_ID_MISMATCH",
       "GENERIC_INVALID_FIELD",
       "HIDDEN_UNTIL_PRODUCT_LAUNCH",
       "IMAGE_FETCH_FAILED",
@@ -346,6 +349,7 @@ module FacebookAds
       "ITEM_OVERRIDE_EMPTY_PRICE",
       "ITEM_OVERRIDE_NOT_VISIBLE",
       "ITEM_STALE_OUT_OF_STOCK",
+      "MARKETPLACE_DISABLED_BY_USER",
       "MINI_SHOPS_DISABLED_BY_USER",
       "MISSING_CHECKOUT",
       "MISSING_CHECKOUT_CURRENCY",
@@ -357,9 +361,11 @@ module FacebookAds
       "MISSING_TAX_CATEGORY",
       "NEGATIVE_COMMUNITY_FEEDBACK",
       "NOT_ENOUGH_IMAGES",
+      "NOT_ENOUGH_UNIQUE_PRODUCTS",
       "PART_OF_PRODUCT_LAUNCH",
       "PRODUCT_EXPIRED",
       "PRODUCT_ITEM_HIDDEN_FROM_ALL_SHOPS",
+      "PRODUCT_ITEM_INVALID_PARTNER_TOKENS",
       "PRODUCT_ITEM_NOT_INCLUDED_IN_ANY_SHOP",
       "PRODUCT_ITEM_NOT_VISIBLE",
       "PRODUCT_NOT_APPROVED",
@@ -384,6 +390,7 @@ module FacebookAds
       "QUALITY_ITEM_LINK_BROKEN",
       "QUALITY_ITEM_LINK_REDIRECTING",
       "RETAILER_ID_NOT_PROVIDED",
+      "SHOPIFY_INVALID_RETAILER_ID",
       "SHOPIFY_ITEM_MISSING_SHIPPING_PROFILE",
       "SHOPS_POLICY_VIOLATION",
       "SUBSCRIPTION_INFO_NOT_ENABLED_FOR_FEED",
@@ -735,6 +742,7 @@ module FacebookAds
     field :short_description, 'string'
     field :size, 'string'
     field :start_date, 'string'
+    field :tags, { list: 'string' }
     field :url, 'string'
     field :video_fetch_status, { enum: -> { VIDEO_FETCH_STATUS }}
     field :visibility, { enum: -> { VISIBILITY }}

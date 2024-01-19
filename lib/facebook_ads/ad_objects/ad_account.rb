@@ -410,7 +410,6 @@ module FacebookAds
         api.has_param :engagement_audience, 'bool'
         api.has_param :execution_options, { list: { enum: -> { Ad::EXECUTION_OPTIONS }} }
         api.has_param :include_demolink_hashes, 'bool'
-        api.has_param :meta_reward_adgroup_status, { enum: -> { Ad::META_REWARD_ADGROUP_STATUS }}
         api.has_param :name, 'string'
         api.has_param :priority, 'int'
         api.has_param :source_ad_id, 'string'
@@ -789,6 +788,7 @@ module FacebookAds
         api.has_param :subtype, { enum: -> { CustomAudience::SUBTYPE }}
         api.has_param :use_in_campaigns, 'bool'
         api.has_param :video_group_ids, { list: 'string' }
+        api.has_param :whats_app_business_phone_number_id, 'string'
       end
     end
 

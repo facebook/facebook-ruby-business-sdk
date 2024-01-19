@@ -463,6 +463,15 @@ module FacebookAds
       end
     end
 
+    has_edge :budget_schedules do |edge|
+      edge.post 'HighDemandPeriod' do |api|
+        api.has_param :budget_value, 'int'
+        api.has_param :budget_value_type, { enum: -> { HighDemandPeriod::BUDGET_VALUE_TYPE }}
+        api.has_param :time_end, 'int'
+        api.has_param :time_start, 'int'
+      end
+    end
+
     has_edge :copies do |edge|
       edge.get 'Campaign' do |api|
         api.has_param :date_preset, { enum: -> { Campaign::DATE_PRESET }}

@@ -13,16 +13,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCreativeBrandedContentAds < AdObject
+  class CtxPartnerAppWelcomeMessageFlow < AdObject
 
-    field :ad_format, 'int'
-    field :creator_ad_permission_type, 'string'
-    field :instagram_boost_post_access_token, 'string'
-    field :is_mca_internal, 'bool'
-    field :partners, { list: 'AdCreativeBrandedContentAdsPartners' }
-    field :ui_version, 'int'
-    has_no_id
-    has_no_get
+    field :compatible_platforms, { list: 'string' }
+    field :eligible_platforms, { list: 'string' }
+    field :id, 'string'
+    field :is_used_in_ad, 'bool'
+    field :last_update_time, 'datetime'
+    field :name, 'string'
+    field :welcome_message_flow, 'string'
     has_no_post
     has_no_delete
 

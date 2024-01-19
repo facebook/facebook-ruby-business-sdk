@@ -16,6 +16,7 @@ module FacebookAds
   class MessengerProfile < AdObject
 
     field :account_linking_url, 'string'
+    field :commands, { list: 'object' }
     field :get_started, 'object'
     field :greeting, { list: 'object' }
     field :ice_breakers, { list: 'object' }

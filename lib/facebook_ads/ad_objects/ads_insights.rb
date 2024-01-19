@@ -167,6 +167,7 @@ module FacebookAds
     field :catalog_segment_value_omni_purchase_roas, { list: 'AdsActionStats' }
     field :catalog_segment_value_website_purchase_roas, { list: 'AdsActionStats' }
     field :clicks, 'string'
+    field :conversion_lead_rate, 'string'
     field :conversion_rate_ranking, 'string'
     field :conversion_values, { list: 'AdsActionStats' }
     field :conversions, { list: 'AdsActionStats' }
@@ -177,6 +178,7 @@ module FacebookAds
     field :cost_per_action_type, { list: 'AdsActionStats' }
     field :cost_per_ad_click, { list: 'AdsActionStats' }
     field :cost_per_conversion, { list: 'AdsActionStats' }
+    field :cost_per_conversion_lead, 'string'
     field :cost_per_dda_countby_convs, 'string'
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'

@@ -19,6 +19,7 @@ module FacebookAds
       "ADD_PAYMENT_INFO",
       "ADD_TO_CART",
       "ADD_TO_WISHLIST",
+      "AD_IMPRESSION",
       "COMPLETE_REGISTRATION",
       "CONTACT",
       "CONTENT_VIEW",

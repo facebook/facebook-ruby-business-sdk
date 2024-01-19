@@ -715,6 +715,7 @@ module FacebookAds
         api.has_param :sales_rep_email, 'string'
         api.has_param :seller_external_website_url, 'string'
         api.has_param :seller_targeting_countries, { list: 'string' }
+        api.has_param :skip_partner_page_creation, 'bool'
         api.has_param :survey_business_type, { enum: %w{ADVERTISER AGENCY APP_DEVELOPER PUBLISHER }}
         api.has_param :survey_num_assets, 'int'
         api.has_param :survey_num_people, 'int'

@@ -80,11 +80,6 @@ module FacebookAds
       "validate_only",
     ]
 
-    META_REWARD_ADGROUP_STATUS = [
-      "ACTIVE",
-      "INACTIVE",
-    ]
-
     OPERATOR = [
       "ALL",
       "ANY",
@@ -123,7 +118,6 @@ module FacebookAds
     field :id, 'string'
     field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
-    field :meta_reward_adgroup_status, 'string'
     field :name, 'string'
     field :preview_shareable_link, 'string'
     field :priority, 'int'

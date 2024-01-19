@@ -134,6 +134,7 @@ module FacebookAds
     field :product_set_id, 'string'
     field :use_in_campaigns, 'bool'
     field :video_group_ids, { list: 'string' }
+    field :whats_app_business_phone_number_id, 'string'
 
     has_edge :adaccounts do |edge|
       edge.delete do |api|

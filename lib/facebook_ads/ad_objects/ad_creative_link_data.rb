@@ -27,6 +27,7 @@ module FacebookAds
     field :additional_image_index, 'int'
     field :app_link_spec, 'AdCreativeLinkDataAppLinkSpec'
     field :attachment_style, 'string'
+    field :automated_product_tags, 'bool'
     field :branded_content_shared_to_sponsor_status, 'string'
     field :branded_content_sponsor_page_id, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'

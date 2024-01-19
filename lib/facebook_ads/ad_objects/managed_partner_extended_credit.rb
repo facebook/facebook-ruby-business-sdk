@@ -13,15 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCreativeBrandedContentAds < AdObject
+  class ManagedPartnerExtendedCredit < AdObject
 
-    field :ad_format, 'int'
-    field :creator_ad_permission_type, 'string'
-    field :instagram_boost_post_access_token, 'string'
-    field :is_mca_internal, 'bool'
-    field :partners, { list: 'AdCreativeBrandedContentAdsPartners' }
-    field :ui_version, 'int'
-    has_no_id
+    field :id, 'string'
+    field :max_balance, 'CurrencyAmount'
+    field :receiving_credit_allocation_config, 'ExtendedCreditAllocationConfig'
     has_no_get
     has_no_post
     has_no_delete

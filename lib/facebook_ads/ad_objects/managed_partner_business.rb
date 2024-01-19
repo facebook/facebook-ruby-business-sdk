@@ -17,7 +17,7 @@ module FacebookAds
 
     field :ad_account, 'AdAccount'
     field :catalog_segment, 'ProductCatalog'
-    field :extended_credit, 'ExtendedCredit'
+    field :extended_credit, 'ManagedPartnerExtendedCredit'
     field :page, 'Page'
     field :seller_business_info, 'object'
     field :seller_business_status, 'string'

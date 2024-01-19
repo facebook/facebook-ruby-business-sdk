@@ -45,6 +45,7 @@ module FacebookAds
     field :country, 'string'
     field :creation_time, 'int'
     field :currency, 'string'
+    field :health_status, 'WhatsAppBusinessHealthStatusForMessageSend'
     field :id, 'string'
     field :is_enabled_for_insights, 'bool'
     field :message_template_namespace, 'string'
@@ -91,15 +92,8 @@ module FacebookAds
       end
     end
 
-    has_edge :extensions do |edge|
+    has_edge :dcc_config do |edge|
       edge.get
-      edge.post do |api|
-        api.has_param :categories, { list: { enum: %w{APPOINTMENT_BOOKING CONTACT_US CUSTOMER_SUPPORT LEAD_GENERATION OTHER SIGN_IN SIGN_UP SURVEY }} }
-        api.has_param :clone_extension_id, 'string'
-        api.has_param :clone_template, 'string'
-        api.has_param :data_channel_uri, 'string'
-        api.has_param :name, 'string'
-      end
     end
 
     has_edge :flows do |edge|
@@ -108,7 +102,7 @@ module FacebookAds
         api.has_param :categories, { list: { enum: %w{APPOINTMENT_BOOKING CONTACT_US CUSTOMER_SUPPORT LEAD_GENERATION OTHER SIGN_IN SIGN_UP SURVEY }} }
         api.has_param :clone_flow_id, 'string'
         api.has_param :clone_template, 'string'
-        api.has_param :data_channel_uri, 'string'
+        api.has_param :endpoint_uri, 'string'
         api.has_param :name, 'string'
       end
     end

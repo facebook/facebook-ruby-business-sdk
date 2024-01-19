@@ -13,14 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCreativeBrandedContentAds < AdObject
+  class AdAssetFeedSpecCarousel < AdObject
 
-    field :ad_format, 'int'
-    field :creator_ad_permission_type, 'string'
-    field :instagram_boost_post_access_token, 'string'
-    field :is_mca_internal, 'bool'
-    field :partners, { list: 'AdCreativeBrandedContentAdsPartners' }
-    field :ui_version, 'int'
+    field :adlabels, { list: 'AdAssetFeedSpecAssetLabel' }
+    field :child_attachments, { list: 'AdAssetFeedSpecCarouselChildAttachment' }
+    field :multi_share_end_card, 'bool'
+    field :multi_share_optimized, 'bool'
     has_no_id
     has_no_get
     has_no_post
