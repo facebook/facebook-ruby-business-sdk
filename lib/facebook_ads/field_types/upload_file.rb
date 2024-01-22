@@ -77,9 +77,9 @@ module FacebookAds
             if category == :video
               FacebookAds::VideoIO.new(value, content_type)
             else
-              ::UploadIO.new(value, content_type)
+              Faraday::UploadIO.new(value, content_type)
             end
-          when UploadIO
+          when Faraday::UploadIO
             value
           # when etc etc TODO Rails/Sinatra Upload
           else
@@ -98,7 +98,7 @@ module FacebookAds
       end
 
       def self.acceptable?(value)
-        [File, Tempfile, UploadIO].each do |type|
+        [File, Tempfile, Faraday::UploadIO].each do |type|
           return true if value.is_a?(type)
         end
 
