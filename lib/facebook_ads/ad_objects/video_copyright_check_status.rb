@@ -13,13 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstantArticlesStats < AdObject
+  class VideoCopyrightCheckStatus < AdObject
 
-    field :error, 'string'
-    field :metadata, { list: 'hash' }
-    field :metric, 'object'
-    field :totals, { list: 'hash' }
-    field :x_axis_breakdown, { list: { list: 'hash' } }
+    field :matches_found, 'bool'
+    field :status, 'string'
     has_no_id
     has_no_get
     has_no_post

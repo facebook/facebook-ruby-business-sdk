@@ -35,6 +35,7 @@ module FacebookAds
       "LUXURY",
       "MARKETING",
       "NON_PROFIT",
+      "NOT_SET",
       "ORGANIZATIONS_AND_ASSOCIATIONS",
       "OTHER",
       "PROFESSIONAL_SERVICES",
@@ -720,7 +721,7 @@ module FacebookAds
         api.has_param :survey_num_assets, 'int'
         api.has_param :survey_num_people, 'int'
         api.has_param :timezone_id, 'int'
-        api.has_param :vertical, { enum: %w{ADVERTISING AUTOMOTIVE CONSUMER_PACKAGED_GOODS ECOMMERCE EDUCATION ENERGY_AND_UTILITIES ENTERTAINMENT_AND_MEDIA FINANCIAL_SERVICES GAMING GOVERNMENT_AND_POLITICS HEALTH LUXURY MARKETING NON_PROFIT ORGANIZATIONS_AND_ASSOCIATIONS OTHER PROFESSIONAL_SERVICES RESTAURANT RETAIL TECHNOLOGY TELECOM TRAVEL }}
+        api.has_param :vertical, { enum: %w{ADVERTISING AUTOMOTIVE CONSUMER_PACKAGED_GOODS ECOMMERCE EDUCATION ENERGY_AND_UTILITIES ENTERTAINMENT_AND_MEDIA FINANCIAL_SERVICES GAMING GOVERNMENT_AND_POLITICS HEALTH LUXURY MARKETING NON_PROFIT NOT_SET ORGANIZATIONS_AND_ASSOCIATIONS OTHER PROFESSIONAL_SERVICES RESTAURANT RETAIL TECHNOLOGY TELECOM TRAVEL }}
       end
     end
 
@@ -885,7 +886,6 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
-        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}

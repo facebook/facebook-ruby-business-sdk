@@ -458,6 +458,7 @@ module FacebookAds
         api.has_param :click_attr_window, 'int'
         api.has_param :custom_events, { list: 'object' }
         api.has_param :decline_reason, 'string'
+        api.has_param :engagement_type, 'string'
         api.has_param :event, 'string'
         api.has_param :event_reported_time, 'int'
         api.has_param :fb_ad_id, 'int'

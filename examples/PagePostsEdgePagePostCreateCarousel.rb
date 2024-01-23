@@ -30,7 +30,7 @@ FacebookAds.configure do |config|
 end
 
 page = FacebookAds::Page.get(id)
-posts = page.posts({
+postss = page.posts({
     fields: {  },
     message: 'Browse our latest products',
     published: '0',

@@ -16,7 +16,9 @@ module FacebookAds
   class AdAccountBusinessConstraints < AdObject
 
     field :audience_controls, 'object'
+    field :campaigns_with_error, { list: 'string' }
     field :placement_controls, 'object'
+    field :status, 'string'
     has_no_id
     has_no_get
     has_no_post

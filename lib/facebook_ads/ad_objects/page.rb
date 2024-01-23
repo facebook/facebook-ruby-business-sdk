@@ -955,15 +955,6 @@ module FacebookAds
       edge.get 'InstagramUser'
     end
 
-    has_edge :instant_articles_stats do |edge|
-      edge.get 'InstantArticlesStats' do |api|
-        api.has_param :metrics_list, { list: 'hash' }
-        api.has_param :page_list, { list: 'string' }
-        api.has_param :since, 'datetime'
-        api.has_param :until, 'datetime'
-      end
-    end
-
     has_edge :leadgen_forms do |edge|
       edge.get 'LeadgenForm'
       edge.post 'LeadgenForm' do |api|
@@ -1266,7 +1257,6 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
-        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}

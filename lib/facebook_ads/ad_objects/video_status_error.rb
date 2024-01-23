@@ -13,16 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class WhitehatFbdlRun < AdObject
+  class VideoStatusError < AdObject
 
-    field :creation_time, 'datetime'
-    field :id, 'string'
-    field :is_pinned, 'bool'
-    field :note, 'string'
-    field :result, { list: 'hash' }
-    field :run_code, 'string'
-    field :status, 'string'
-    field :user_type, 'string'
+    field :code, 'int'
+    field :message, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

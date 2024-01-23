@@ -13,15 +13,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCreativeBrandedContentAds < AdObject
+  class VideoStatus < AdObject
 
-    field :ad_format, 'int'
-    field :creator_ad_permission_type, 'string'
-    field :instagram_boost_post_access_token, 'string'
-    field :is_mca_internal, 'bool'
-    field :partners, { list: 'AdCreativeBrandedContentAdsPartners' }
-    field :promoted_page_id, 'string'
-    field :ui_version, 'int'
+    field :copyright_check_status, 'VideoCopyrightCheckStatus'
+    field :processing_phase, 'VideoStatusProcessingPhase'
+    field :processing_progress, 'int'
+    field :publishing_phase, 'VideoStatusPublishingPhase'
+    field :uploading_phase, 'VideoStatusUploadingPhase'
+    field :video_status, 'string'
     has_no_id
     has_no_get
     has_no_post

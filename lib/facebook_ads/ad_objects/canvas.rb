@@ -44,6 +44,10 @@ module FacebookAds
     field :use_retailer_item_ids, 'bool'
     has_no_delete
 
+    has_edge :preview do |edge|
+      edge.get 'CanvasPreview'
+    end
+
     has_edge :previews do |edge|
       edge.get 'TextWithEntities' do |api|
         api.has_param :user_ids, { list: 'int' }

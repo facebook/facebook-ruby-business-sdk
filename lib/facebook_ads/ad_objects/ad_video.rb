@@ -41,6 +41,7 @@ module FacebookAds
       "CONTAINED_POST_AUDIO_BROADCAST",
       "CONTAINED_POST_COPYRIGHT_REFERENCE_BROADCAST",
       "COPYRIGHT_REFERENCE_BROADCAST",
+      "COPYRIGHT_REFERENCE_IG_XPOST_VIDEO",
       "COPYRIGHT_REFERENCE_VIDEO",
       "CREATION_ML_PRECREATION",
       "DCO_AD_ASSET_FEED",
@@ -330,7 +331,7 @@ module FacebookAds
     field :scheduled_publish_time, 'datetime'
     field :source, 'string'
     field :spherical, 'bool'
-    field :status, 'object'
+    field :status, 'VideoStatus'
     field :title, 'string'
     field :universal_video_id, 'string'
     field :updated_time, 'datetime'

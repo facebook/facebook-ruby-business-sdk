@@ -22,6 +22,7 @@ module FacebookAds
       "CHANGE_BID",
       "CHANGE_BUDGET",
       "CHANGE_CAMPAIGN_BUDGET",
+      "DCO",
       "INCREASE_RADIUS",
       "NOTIFICATION",
       "PAUSE",

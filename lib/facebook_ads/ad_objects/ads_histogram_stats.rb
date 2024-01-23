@@ -45,7 +45,11 @@ module FacebookAds
     field :interactive_component_sticker_id, 'string'
     field :interactive_component_sticker_response, 'string'
     field :skan_click, { list: 'int' }
+    field :skan_click_second_postback, { list: 'int' }
+    field :skan_click_third_postback, { list: 'int' }
     field :skan_view, { list: 'int' }
+    field :skan_view_second_postback, { list: 'int' }
+    field :skan_view_third_postback, { list: 'int' }
     field :value, { list: 'int' }
     has_no_id
     has_no_get

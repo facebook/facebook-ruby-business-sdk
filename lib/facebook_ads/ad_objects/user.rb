@@ -228,10 +228,6 @@ module FacebookAds
       end
     end
 
-    has_edge :fbdl_runs do |edge|
-      edge.get 'WhitehatFbdlRun'
-    end
-
     has_edge :feed do |edge|
       edge.get 'Post' do |api|
         api.has_param :include_hidden, 'bool'
@@ -378,17 +374,6 @@ module FacebookAds
         api.has_param :goal_amount, 'int'
         api.has_param :name, 'string'
         api.has_param :page_id, 'string'
-      end
-    end
-
-    has_edge :game_items do |edge|
-      edge.post 'GameItem' do |api|
-        api.has_param :action, { enum: -> { GameItem::ACTION }}
-        api.has_param :app_id, 'string'
-        api.has_param :drop_table_id, 'string'
-        api.has_param :ext_id, 'string'
-        api.has_param :item_id, 'string'
-        api.has_param :quantity, 'int'
       end
     end
 
@@ -565,7 +550,6 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
-        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}

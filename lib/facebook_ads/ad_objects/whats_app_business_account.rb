@@ -101,7 +101,6 @@ module FacebookAds
       edge.post do |api|
         api.has_param :categories, { list: { enum: %w{APPOINTMENT_BOOKING CONTACT_US CUSTOMER_SUPPORT LEAD_GENERATION OTHER SIGN_IN SIGN_UP SURVEY }} }
         api.has_param :clone_flow_id, 'string'
-        api.has_param :clone_template, 'string'
         api.has_param :endpoint_uri, 'string'
         api.has_param :name, 'string'
       end

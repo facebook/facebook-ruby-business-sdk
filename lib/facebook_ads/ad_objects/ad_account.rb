@@ -72,6 +72,14 @@ module FacebookAds
       "ZAR",
     ]
 
+    PERMITTED_TASKS = [
+      "AA_ANALYZE",
+      "ADVERTISE",
+      "ANALYZE",
+      "DRAFT",
+      "MANAGE",
+    ]
+
     TASKS = [
       "AA_ANALYZE",
       "ADVERTISE",
@@ -629,6 +637,10 @@ module FacebookAds
         api.has_param :business, 'string'
       end
       edge.get 'Business'
+      edge.post 'AdAccount' do |api|
+        api.has_param :business, 'string'
+        api.has_param :permitted_tasks, { list: { enum: -> { AdAccount::PERMITTED_TASKS }} }
+      end
     end
 
     has_edge :applications do |edge|

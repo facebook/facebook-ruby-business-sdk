@@ -158,6 +158,17 @@ module FacebookAds
       end
     end
 
+    has_edge :salts do |edge|
+      edge.get 'CustomAudienceSalts' do |api|
+        api.has_param :params, { list: 'string' }
+      end
+      edge.post 'CustomAudience' do |api|
+        api.has_param :salt, 'string'
+        api.has_param :valid_from, 'datetime'
+        api.has_param :valid_to, 'datetime'
+      end
+    end
+
     has_edge :sessions do |edge|
       edge.get 'CustomAudienceSession' do |api|
         api.has_param :session_id, 'int'

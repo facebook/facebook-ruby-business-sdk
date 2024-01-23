@@ -68,8 +68,10 @@ module FacebookAds
     field :place_page_set_id, 'string'
     field :product_catalog_id, 'string'
     field :product_item_id, 'string'
+    field :product_set, 'ProductSet'
     field :product_set_id, 'string'
     field :retention_days, 'string'
+    field :whatsapp_phone_number, 'string'
     has_no_id
     has_no_get
     has_no_post

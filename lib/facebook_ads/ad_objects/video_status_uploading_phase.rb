@@ -13,22 +13,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class GameItem < AdObject
-    ACTION = [
-      "CONSUME",
-      "DROP",
-      "MARK",
-    ]
+  class VideoStatusUploadingPhase < AdObject
 
-
-    field :count, 'int'
-    field :created, 'datetime'
-    field :ext_id, 'string'
-    field :id, 'string'
-    field :item_def, 'string'
-    field :owner, 'User'
+    field :bytes_transferred, 'int'
+    field :errors, { list: 'VideoStatusError' }
+    field :source_file_size, 'int'
     field :status, 'string'
-    field :updated, 'datetime'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 
