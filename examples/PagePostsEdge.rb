@@ -30,6 +30,6 @@ FacebookAds.configure do |config|
 end
 
 page = FacebookAds::Page.get(id)
-postss = page.posts({
+posts = page.posts({
     fields: {  },
 })
