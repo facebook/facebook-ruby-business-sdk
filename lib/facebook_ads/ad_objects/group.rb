@@ -21,9 +21,9 @@ module FacebookAds
     ]
 
     POST_PERMISSIONS = [
-      "0",
-      "1",
-      "2",
+      "ADMIN_ONLY",
+      "ANYONE",
+      "NONE",
     ]
 
     PURPOSE = [

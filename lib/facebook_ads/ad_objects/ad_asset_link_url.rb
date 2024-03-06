@@ -13,15 +13,18 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Shop < AdObject
+  class AdAssetLinkUrl < AdObject
 
-    field :commerce_merchant_settings, 'CommerceMerchantSettings'
-    field :fb_sales_channel, 'object'
+    field :android_deeplink_url, 'string'
+    field :carousel_see_more_url, 'string'
+    field :deeplink_url, 'string'
+    field :display_url, 'string'
     field :id, 'string'
-    field :ig_sales_channel, 'object'
-    field :is_onsite_enabled, 'bool'
-    field :shop_status, 'string'
-    field :workspace, 'object'
+    field :ipad_deeplink_url, 'string'
+    field :iphone_deeplink_url, 'string'
+    field :url_tags, 'string'
+    field :website_url, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

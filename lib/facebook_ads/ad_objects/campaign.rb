@@ -18,6 +18,7 @@ module FacebookAds
       "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
+      "LOWEST_COST_WITH_MIN_ROAS",
     ]
 
     CONFIGURED_STATUS = [
@@ -56,7 +57,7 @@ module FacebookAds
       "last_week_mon_sun",
       "last_week_sun_sat",
       "last_year",
-      "maximum",
+      "lifetime",
       "this_month",
       "this_quarter",
       "this_week_mon_today",

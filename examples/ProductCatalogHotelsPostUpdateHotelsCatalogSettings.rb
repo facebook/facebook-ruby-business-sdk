@@ -30,5 +30,5 @@ FacebookAds.configure do |config|
 end
 
 product_catalog = FacebookAds::ProductCatalog.get(id)
-product_catalog.hotel_catalog_settings = {'pull_config_id':'<pullConfigID>'}
+
 product_catalog.save

@@ -14,12 +14,18 @@ module FacebookAds
   # pull request for this class.
 
   class ProductCatalog < AdObject
+    ADDITIONAL_VERTICAL_OPTION = [
+      "LOCAL_DA_CATALOG",
+      "LOCAL_PRODUCTS",
+    ]
+
     VERTICAL = [
       "adoptable_pets",
       "bookable",
       "commerce",
       "destinations",
       "flights",
+      "generic",
       "home_listings",
       "hotels",
       "jobs",
@@ -97,12 +103,14 @@ module FacebookAds
     field :feed_count, 'int'
     field :id, 'string'
     field :is_catalog_segment, 'bool'
+    field :is_local_catalog, 'bool'
     field :name, 'string'
     field :owner_business, 'Business'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
     field :user_access_expire_time, 'datetime'
     field :vertical, 'string'
+    field :additional_vertical_option, { enum: -> { ADDITIONAL_VERTICAL_OPTION }}
     field :catalog_segment_filter, 'object'
     field :catalog_segment_product_set_id, 'string'
     field :destination_catalog_settings, 'hash'
@@ -452,9 +460,6 @@ module FacebookAds
         api.has_param :material, 'string'
         api.has_param :mobile_link, 'string'
         api.has_param :name, 'string'
-        api.has_param :offer_price_amount, 'int'
-        api.has_param :offer_price_end_date, 'datetime'
-        api.has_param :offer_price_start_date, 'datetime'
         api.has_param :ordering_index, 'int'
         api.has_param :origin_country, { enum: -> { ProductItem::ORIGIN_COUNTRY }}
         api.has_param :pattern, 'string'

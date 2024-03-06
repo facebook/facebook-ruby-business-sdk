@@ -39,6 +39,8 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "conversion_destination",
+      "signal_source_bucket",
       "standard_event_content_type",
     ]
 
@@ -55,6 +57,7 @@ module FacebookAds
       "body_asset",
       "call_to_action_asset",
       "coarse_conversion_value",
+      "conversion_destination",
       "country",
       "description_asset",
       "device_platform",
@@ -107,7 +110,7 @@ module FacebookAds
       "last_week_mon_sun",
       "last_week_sun_sat",
       "last_year",
-      "maximum",
+      "lifetime",
       "this_month",
       "this_quarter",
       "this_week_mon_today",
@@ -135,6 +138,8 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "conversion_destination",
+      "signal_source_bucket",
       "standard_event_content_type",
     ]
 

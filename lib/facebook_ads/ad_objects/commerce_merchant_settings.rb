@@ -74,13 +74,6 @@ module FacebookAds
       end
     end
 
-    has_edge :onsite_conversion_events do |edge|
-      edge.get do |api|
-        api.has_param :created_after, 'datetime'
-        api.has_param :created_before, 'datetime'
-      end
-    end
-
     has_edge :order_management_apps do |edge|
       edge.get 'Application'
       edge.post 'CommerceMerchantSettings'

@@ -48,6 +48,7 @@ module FacebookAds
     field :health_status, 'WhatsAppBusinessHealthStatusForMessageSend'
     field :id, 'string'
     field :is_enabled_for_insights, 'bool'
+    field :linked_commerce_account, 'CommerceMerchantSettings'
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'
@@ -140,6 +141,8 @@ module FacebookAds
         api.has_param :components, { list: 'hash' }
         api.has_param :cta_url_link_tracking_opted_out, 'bool'
         api.has_param :language, 'string'
+        api.has_param :library_template_button_inputs, { list: 'hash' }
+        api.has_param :library_template_name, 'string'
         api.has_param :message_send_ttl_seconds, 'int'
         api.has_param :name, 'string'
         api.has_param :sub_category, { enum: -> { WhatsAppBusinessAccount::SUB_CATEGORY }}

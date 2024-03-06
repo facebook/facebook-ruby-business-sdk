@@ -13,15 +13,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Shop < AdObject
+  class TargetingAutomation < AdObject
 
-    field :commerce_merchant_settings, 'CommerceMerchantSettings'
-    field :fb_sales_channel, 'object'
-    field :id, 'string'
-    field :ig_sales_channel, 'object'
-    field :is_onsite_enabled, 'bool'
-    field :shop_status, 'string'
-    field :workspace, 'object'
+    field :advantage_audience, 'int'
+    field :shared_audiences, 'int'
+    field :value_expression, 'int'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

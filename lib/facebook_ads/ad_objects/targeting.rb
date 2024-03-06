@@ -28,6 +28,7 @@ module FacebookAds
     field :adgroup_id, 'string'
     field :age_max, 'int'
     field :age_min, 'int'
+    field :age_range, { list: 'int' }
     field :alternate_auto_targeting_option, 'string'
     field :app_install_state, 'string'
     field :audience_network_positions, { list: 'string' }
@@ -105,6 +106,7 @@ module FacebookAds
     field :regions, { list: 'IdName' }
     field :relationship_statuses, { list: 'int' }
     field :site_category, { list: 'string' }
+    field :targeting_automation, 'TargetingAutomation'
     field :targeting_optimization, 'string'
     field :targeting_relaxation_types, 'TargetingRelaxation'
     field :user_adclusters, { list: 'IdName' }

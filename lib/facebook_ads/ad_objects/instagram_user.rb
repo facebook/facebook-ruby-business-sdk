@@ -47,5 +47,9 @@ module FacebookAds
       end
     end
 
+    has_edge :upcoming_events do |edge|
+      edge.get
+    end
+
   end
 end

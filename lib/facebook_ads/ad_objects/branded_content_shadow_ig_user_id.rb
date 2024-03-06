@@ -13,15 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PageAboutStory < AdObject
+  class BrandedContentShadowIgUserId < AdObject
 
-    field :composed_text, { list: 'PageAboutStoryComposedBlock' }
-    field :cover_photo, 'Photo'
-    field :entity_map, { list: 'object' }
     field :id, 'string'
-    field :is_published, 'bool'
-    field :page_id, 'string'
-    field :title, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

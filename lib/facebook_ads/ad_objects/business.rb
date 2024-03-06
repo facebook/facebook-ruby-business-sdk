@@ -816,6 +816,7 @@ module FacebookAds
     has_edge :owned_product_catalogs do |edge|
       edge.get 'ProductCatalog'
       edge.post 'ProductCatalog' do |api|
+        api.has_param :additional_vertical_option, { enum: -> { ProductCatalog::ADDITIONAL_VERTICAL_OPTION }}
         api.has_param :catalog_segment_filter, 'object'
         api.has_param :catalog_segment_product_set_id, 'string'
         api.has_param :da_display_settings, 'object'
@@ -908,6 +909,12 @@ module FacebookAds
       edge.get 'BusinessAssetSharingAgreement' do |api|
         api.has_param :initiator_id, 'string'
         api.has_param :request_status, { enum: -> { BusinessAssetSharingAgreement::REQUEST_STATUS }}
+      end
+    end
+
+    has_edge :self_certified_whatsapp_business_submissions do |edge|
+      edge.get 'WhatsAppBusinessPartnerClientVerificationSubmission' do |api|
+        api.has_param :end_business_id, 'string'
       end
     end
 

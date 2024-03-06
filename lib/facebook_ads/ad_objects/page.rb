@@ -332,6 +332,7 @@ module FacebookAds
       "message_context",
       "message_deliveries",
       "message_echoes",
+      "message_edits",
       "message_mention",
       "message_reactions",
       "message_reads",
@@ -388,6 +389,7 @@ module FacebookAds
     field :app_id, 'string'
     field :artists_we_like, 'string'
     field :attire, 'string'
+    field :available_promo_offer_ids, { list: 'map<string, list<map<string, string>>>' }
     field :awards, 'string'
     field :band_interests, 'string'
     field :band_members, 'string'
@@ -436,7 +438,6 @@ module FacebookAds
     field :has_lead_access, 'HasLeadAccess'
     field :has_transitioned_to_new_page_experience, 'bool'
     field :has_whatsapp_business_number, 'bool'
-    field :has_whatsapp_enterprise_number_using_cloud_api, 'bool'
     field :has_whatsapp_number, 'bool'
     field :hometown, 'string'
     field :hours, 'hash'
@@ -480,7 +481,6 @@ module FacebookAds
     field :offer_eligible, 'bool'
     field :overall_star_rating, 'double'
     field :owner_business, 'Business'
-    field :page_about_story, 'PageAboutStory'
     field :page_token, 'string'
     field :parent_page, 'Page'
     field :parking, 'PageParking'

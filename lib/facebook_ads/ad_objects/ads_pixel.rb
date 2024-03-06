@@ -137,10 +137,6 @@ module FacebookAds
       end
     end
 
-    has_edge :meapitocapiconsolidationhelper do |edge|
-      edge.post
-    end
-
     has_edge :offline_event_uploads do |edge|
       edge.get 'OfflineConversionDataSetUpload' do |api|
         api.has_param :end_time, 'datetime'

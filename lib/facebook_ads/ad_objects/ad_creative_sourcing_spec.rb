@@ -16,6 +16,8 @@ module FacebookAds
   class AdCreativeSourcingSpec < AdObject
 
     field :associated_product_set_id, 'string'
+    field :promotion_metadata_spec, { list: 'AdCreativePromotionMetadataSpec' }
+    field :site_links_spec, { list: 'AdCreativeSiteLinksSpec' }
     has_no_id
     has_no_get
     has_no_post

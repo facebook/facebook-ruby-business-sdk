@@ -753,6 +753,12 @@ module FacebookAds
       edge.get 'IgUser'
     end
 
+    has_edge :connected_instagram_accounts_with_iabp do |edge|
+      edge.get 'InstagramUser' do |api|
+        api.has_param :business_id, 'string'
+      end
+    end
+
     has_edge :conversion_goals do |edge|
       edge.get
     end
@@ -1172,6 +1178,10 @@ module FacebookAds
         api.has_param :payload, 'object'
         api.has_param :session, 'object'
       end
+    end
+
+    has_edge :value_adjustment_rule_persona_groups do |edge|
+      edge.get
     end
 
     has_edge :value_adjustment_rules do |edge|

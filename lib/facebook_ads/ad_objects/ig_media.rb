@@ -34,6 +34,14 @@ module FacebookAds
     field :username, 'string'
     has_no_delete
 
+    has_edge :branded_content_partner_promote do |edge|
+      edge.get 'BrandedContentShadowIgUserId'
+      edge.post 'BrandedContentShadowIgUserId' do |api|
+        api.has_param :permission, 'bool'
+        api.has_param :sponsor_id, 'int'
+      end
+    end
+
     has_edge :children do |edge|
       edge.get 'IgMedia'
     end

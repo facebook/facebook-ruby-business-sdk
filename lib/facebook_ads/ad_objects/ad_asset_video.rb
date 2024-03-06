@@ -13,15 +13,20 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Shop < AdObject
+  class AdAssetVideo < AdObject
 
-    field :commerce_merchant_settings, 'CommerceMerchantSettings'
-    field :fb_sales_channel, 'object'
+    field :caption_ids, { list: 'string' }
     field :id, 'string'
-    field :ig_sales_channel, 'object'
-    field :is_onsite_enabled, 'bool'
-    field :shop_status, 'string'
-    field :workspace, 'object'
+    field :source_image_url, 'string'
+    field :tag, 'string'
+    field :thumbnail_hash, 'string'
+    field :thumbnail_source, 'string'
+    field :thumbnail_url, 'string'
+    field :url, 'string'
+    field :url_tags, 'string'
+    field :video_id, 'string'
+    field :video_name, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

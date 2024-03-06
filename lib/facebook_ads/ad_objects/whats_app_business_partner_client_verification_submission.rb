@@ -13,15 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Shop < AdObject
+  class WhatsAppBusinessPartnerClientVerificationSubmission < AdObject
 
-    field :commerce_merchant_settings, 'CommerceMerchantSettings'
-    field :fb_sales_channel, 'object'
+    field :client_business_id, 'string'
     field :id, 'string'
-    field :ig_sales_channel, 'object'
-    field :is_onsite_enabled, 'bool'
-    field :shop_status, 'string'
-    field :workspace, 'object'
+    field :rejection_reasons, { list: 'string' }
+    field :submitted_info, 'object'
+    field :submitted_time, 'datetime'
+    field :update_time, 'datetime'
+    field :verification_status, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 

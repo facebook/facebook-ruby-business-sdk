@@ -48,6 +48,7 @@ module FacebookAds
       "INQUIRE_NOW",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
+      "JOIN_CHANNEL",
       "LEARN_MORE",
       "LIKE_PAGE",
       "LISTEN_MUSIC",

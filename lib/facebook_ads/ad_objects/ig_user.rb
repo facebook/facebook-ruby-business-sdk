@@ -38,6 +38,34 @@ module FacebookAds
       edge.get 'UserAvailableCatalogs'
     end
 
+    has_edge :branded_content_ad_permissions do |edge|
+      edge.get 'IgbcAdsPermission'
+      edge.post 'IgbcAdsPermission' do |api|
+        api.has_param :creator_instagram_account, 'string'
+        api.has_param :revoke, 'bool'
+      end
+    end
+
+    has_edge :branded_content_advertisable_medias do |edge|
+      edge.get 'BrandedContentShadowIgMediaId' do |api|
+        api.has_param :creator_username, 'string'
+        api.has_param :only_fetch_allowlisted, 'bool'
+        api.has_param :permalinks, { list: 'string' }
+      end
+    end
+
+    has_edge :branded_content_tag_approval do |edge|
+      edge.delete do |api|
+        api.has_param :user_ids, { list: 'int' }
+      end
+      edge.get 'BrandedContentShadowIgUserId' do |api|
+        api.has_param :user_ids, { list: 'int' }
+      end
+      edge.post 'BrandedContentShadowIgUserId' do |api|
+        api.has_param :user_ids, { list: 'int' }
+      end
+    end
+
     has_edge :catalog_product_search do |edge|
       edge.get 'ShadowIgUserCatalogProductSearch' do |api|
         api.has_param :catalog_id, 'string'

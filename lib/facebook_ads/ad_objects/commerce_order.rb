@@ -105,6 +105,7 @@ module FacebookAds
     has_edge :refunds do |edge|
       edge.get
       edge.post 'CommerceOrder' do |api|
+        api.has_param :adjustment_amount, 'hash'
         api.has_param :deductions, { list: 'hash' }
         api.has_param :idempotency_key, 'string'
         api.has_param :items, { list: 'hash' }

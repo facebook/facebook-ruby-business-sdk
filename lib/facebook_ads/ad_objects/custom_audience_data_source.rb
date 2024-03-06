@@ -74,6 +74,7 @@ module FacebookAds
       "WEB_PIXEL_COMBINATION_EVENTS",
       "WEB_PIXEL_HITS",
       "WEB_PIXEL_HITS_CUSTOM_AUDIENCE_USERS",
+      "WHATSAPP_SUBSCRIBER_POOL",
     ]
 
     TYPE = [

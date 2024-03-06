@@ -22,11 +22,6 @@ module FacebookAds
     ]
 
     METRIC = [
-      "carousel_album_engagement",
-      "carousel_album_impressions",
-      "carousel_album_reach",
-      "carousel_album_saved",
-      "carousel_album_video_views",
       "clips_replays_count",
       "comments",
       "engagement",
