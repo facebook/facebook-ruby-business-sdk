@@ -18,34 +18,10 @@
 
 module FacebookAds
 	module ServerSide
-		ActionSource = Set[
+		MessagingChannel = Set[
 
-			# Conversion happened over email.
-			'email',
-
-			# Conversion was made on your website.
-			'website',
-
-			# Conversion was made using your app.
-			'app',
-
-			# Conversion was made over the phone.
-			'phone_call',
-
-			# Conversion was made via a messaging app, SMS, or online messaging feature.
-			'chat',
-
-			# Conversion was made in person at your physical store.
-			'physical_store',
-
-			# Conversion happened automatically, for example, a subscription renewal that's set on auto-pay each month.
-			'system_generated',
-
-			# Conversion happened through a business messaging channel, such as WhatsApp or Instagram Direct.
-			'business_messaging',
-
-			# Conversion happened in a way that is not listed.
-			'other'
+			# Conversion happened on WhatsApp.
+			'whatsapp',
 		]
 	end
 end

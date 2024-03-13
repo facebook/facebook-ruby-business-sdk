@@ -75,6 +75,9 @@ module FacebookAds
       # Only used for the Advanced Measurement API in the Advanced Analytics product
       attr_accessor :advanced_measurement_table
 
+      # Messaging channel for the event
+      attr_accessor :messaging_channel
+
       # @param [String] event_name
       # @param [int] event_time
       # @param [String] event_source_url
@@ -88,6 +91,7 @@ module FacebookAds
       # @param [int] data_processing_options_state
       # @param String action_source
       # @param [String] advanced_measurement_table
+      # @param [String] messaging_channel
       def initialize(event_name: nil,
                      event_time: nil,
                      event_source_url: nil,
@@ -100,7 +104,9 @@ module FacebookAds
                      data_processing_options_country: nil,
                      data_processing_options_state: nil,
                      action_source: nil,
-                     advanced_measurement_table: nil)
+                     advanced_measurement_table: nil,
+                     messaging_channel: nil
+                     )
 
         unless event_name.nil?
           self.event_name = event_name
@@ -140,6 +146,9 @@ module FacebookAds
         end
         unless advanced_measurement_table.nil?
           self.advanced_measurement_table = advanced_measurement_table
+        end
+        unless messaging_channel.nil?
+          self.messaging_channel = messaging_channel
         end
       end
 
@@ -202,6 +211,10 @@ module FacebookAds
         if attributes.has_key?(:'advanced_measurement_table')
           self.advanced_measurement_table = attributes[:'advanced_measurement_table']
         end
+
+        if attributes.has_key?(:'messaging_channel')
+          self.messaging_channel = attributes[:'messaging_channel']
+        end
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -249,6 +262,7 @@ module FacebookAds
             data_processing_options_state == o.data_processing_options_state &&
             action_source == o.action_source &&
             advanced_measurement_table == o.advanced_measurement_table
+            messaging_channel == o.messaging_channel
       end
 
       # @see the `==` method
@@ -262,7 +276,7 @@ module FacebookAds
         [
           event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, app_data,
           data_processing_options, data_processing_options_country, data_processing_options_state,
-          action_source, advanced_measurement_table,
+          action_source, advanced_measurement_table, messaging_channel,
         ].hash
       end
 
@@ -306,6 +320,9 @@ module FacebookAds
         end
         unless advanced_measurement_table.nil?
           hash['advanced_measurement_table'] = advanced_measurement_table
+        end
+        unless messaging_channel.nil?
+          hash['messaging_channel'] = messaging_channel
         end
         hash.to_s
       end
@@ -355,6 +372,9 @@ module FacebookAds
         end
         unless advanced_measurement_table.nil?
           hash['advanced_measurement_table'] = advanced_measurement_table
+        end
+        unless messaging_channel.nil?
+          hash['messaging_channel'] = messaging_channel
         end
         hash
       end
