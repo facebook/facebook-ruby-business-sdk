@@ -15,11 +15,20 @@ module FacebookAds
 
   class ProductCatalogDiagnosticGroup < AdObject
     AFFECTED_CHANNELS = [
-      "business_inbox_in_messenger",
+      "b2c_marketplace",
+      "c2c_marketplace",
+      "da",
+      "daily_deals",
+      "daily_deals_legacy",
+      "ig_product_tagging",
+      "marketplace",
+      "marketplace_ads_deprecated",
+      "marketplace_shops",
+      "mini_shops",
+      "offline_conversions",
       "shops",
-      "test_capability",
       "universal_checkout",
-      "us_marketplace",
+      "whatsapp",
     ]
 
     AFFECTED_ENTITY = [
