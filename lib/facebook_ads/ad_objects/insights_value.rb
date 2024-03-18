@@ -13,23 +13,22 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class Avatar < AdObject
+  class InsightsValue < AdObject
 
-    field :id, 'string'
+    field :campaign_id, 'string'
+    field :end_time, 'datetime'
+    field :engagement_source, 'string'
+    field :message_type, 'string'
+    field :messaging_channel, 'string'
+    field :recurring_notifications_entry_point, 'string'
+    field :recurring_notifications_frequency, 'string'
+    field :recurring_notifications_topic, 'string'
+    field :start_time, 'datetime'
+    field :value, 'object'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :models do |edge|
-      edge.get do |api|
-        api.has_param :client_name, 'string'
-        api.has_param :client_version, 'string'
-        api.has_param :config_id, 'string'
-        api.has_param :force_generate, 'bool'
-        api.has_param :platform, 'string'
-        api.has_param :profile, 'string'
-        api.has_param :sdk_version, 'string'
-      end
-    end
 
   end
 end

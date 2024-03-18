@@ -169,6 +169,8 @@ module FacebookAds
         api.has_param :audience_exp, 'bool'
         api.has_param :backdated_time, 'datetime'
         api.has_param :backdated_time_granularity, { enum: -> { Post::BACKDATED_TIME_GRANULARITY }}
+        api.has_param :breaking_news, 'bool'
+        api.has_param :breaking_news_expiration, 'int'
         api.has_param :call_to_action, 'object'
         api.has_param :caption, 'string'
         api.has_param :child_attachments, { list: 'object' }
@@ -193,7 +195,6 @@ module FacebookAds
         api.has_param :formatting, { enum: -> { Post::FORMATTING }}
         api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
-        api.has_param :has_nickname, 'bool'
         api.has_param :height, 'int'
         api.has_param :holiday_card, 'string'
         api.has_param :home_checkin_city_id, 'object'
@@ -376,7 +377,6 @@ module FacebookAds
         api.has_param :proxied_app_id, 'string'
         api.has_param :published, 'bool'
         api.has_param :qn, 'string'
-        api.has_param :scheduled_publish_time, 'int'
         api.has_param :spherical_metadata, 'hash'
         api.has_param :sponsor_id, 'string'
         api.has_param :sponsor_relationship, 'int'
@@ -435,7 +435,6 @@ module FacebookAds
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :guide_enabled, 'bool'
-        api.has_param :has_nickname, 'bool'
         api.has_param :holiday_card, 'string'
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'

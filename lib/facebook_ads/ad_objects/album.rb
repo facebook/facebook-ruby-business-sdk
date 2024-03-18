@@ -116,7 +116,6 @@ module FacebookAds
         api.has_param :proxied_app_id, 'string'
         api.has_param :published, 'bool'
         api.has_param :qn, 'string'
-        api.has_param :scheduled_publish_time, 'int'
         api.has_param :spherical_metadata, 'hash'
         api.has_param :sponsor_id, 'string'
         api.has_param :sponsor_relationship, 'int'

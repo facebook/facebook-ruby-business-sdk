@@ -21,7 +21,6 @@ module FacebookAds
 
     VERTICAL = [
       "adoptable_pets",
-      "bookable",
       "commerce",
       "destinations",
       "flights",
@@ -33,7 +32,6 @@ module FacebookAds
       "local_service_businesses",
       "offer_items",
       "offline_commerce",
-      "ticketed_experiences",
       "transactable_items",
       "vehicles",
     ]

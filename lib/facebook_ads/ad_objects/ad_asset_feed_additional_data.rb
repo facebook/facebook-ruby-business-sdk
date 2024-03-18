@@ -20,6 +20,7 @@ module FacebookAds
     field :is_click_to_message, 'bool'
     field :multi_share_end_card, 'bool'
     field :page_welcome_message, 'string'
+    field :partner_app_welcome_message_flow_id, 'string'
     has_no_id
     has_no_get
     has_no_post

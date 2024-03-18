@@ -298,6 +298,7 @@ module FacebookAds
       "awards",
       "bio",
       "birthday",
+      "calls",
       "category",
       "checkins",
       "company_overview",
@@ -362,6 +363,7 @@ module FacebookAds
       "page_upcoming_change",
       "parking",
       "payment_options",
+      "payment_request_update",
       "personal_info",
       "personal_interests",
       "phone",
@@ -381,6 +383,14 @@ module FacebookAds
       "website",
     ]
 
+    ACTION = [
+      "SPAM",
+    ]
+
+    ACTION_TYPE = [
+      "REPORT_THREAD",
+    ]
+
 
     field :about, 'string'
     field :access_token, 'string'
@@ -397,6 +407,7 @@ module FacebookAds
     field :bio, 'string'
     field :birthday, 'string'
     field :booking_agent, 'string'
+    field :breaking_news_usage, 'object'
     field :built, 'string'
     field :business, 'object'
     field :can_checkin, 'bool'
@@ -808,6 +819,8 @@ module FacebookAds
         api.has_param :audience_exp, 'bool'
         api.has_param :backdated_time, 'datetime'
         api.has_param :backdated_time_granularity, { enum: -> { Page::BACKDATED_TIME_GRANULARITY }}
+        api.has_param :breaking_news, 'bool'
+        api.has_param :breaking_news_expiration, 'int'
         api.has_param :call_to_action, 'object'
         api.has_param :caption, 'string'
         api.has_param :child_attachments, { list: 'object' }
@@ -833,7 +846,6 @@ module FacebookAds
         api.has_param :formatting, { enum: -> { Page::FORMATTING }}
         api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
-        api.has_param :has_nickname, 'bool'
         api.has_param :height, 'int'
         api.has_param :holiday_card, 'string'
         api.has_param :home_checkin_city_id, 'object'
@@ -1397,6 +1409,14 @@ module FacebookAds
       end
     end
 
+    has_edge :thread_action do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :action, { enum: -> { Page::ACTION }}
+        api.has_param :action_type, { enum: -> { Page::ACTION_TYPE }}
+        api.has_param :user_id, 'hash'
+      end
+    end
+
     has_edge :thread_owner do |edge|
       edge.get 'PageThreadOwner' do |api|
         api.has_param :recipient, 'string'
@@ -1526,7 +1546,6 @@ module FacebookAds
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :guide_enabled, 'bool'
-        api.has_param :has_nickname, 'bool'
         api.has_param :holiday_card, 'string'
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'

@@ -16,6 +16,7 @@ module FacebookAds
   class FundingSourceDetailsCoupon < AdObject
 
     field :amount, 'int'
+    field :campaign_ids, { list: 'int' }
     field :currency, 'string'
     field :display_amount, 'string'
     field :expiration, 'datetime'

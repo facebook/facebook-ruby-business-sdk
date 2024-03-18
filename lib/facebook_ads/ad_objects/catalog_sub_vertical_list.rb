@@ -44,7 +44,6 @@ module FacebookAds
     field :local_service_business_item, 'object'
     field :local_service_business_restaurant, 'object'
     field :loyalty_offer, 'object'
-    field :meetup_space, 'object'
     field :nursery, 'object'
     field :printers_and_scanners, 'object'
     field :printers_scanners_and_fax_machines, 'object'

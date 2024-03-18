@@ -120,6 +120,7 @@ module FacebookAds
         api.has_param :product_tags, { list: 'hash' }
         api.has_param :share_to_feed, 'bool'
         api.has_param :thumb_offset, 'string'
+        api.has_param :upload_type, 'string'
         api.has_param :user_tags, { list: 'hash' }
         api.has_param :video_url, 'string'
       end

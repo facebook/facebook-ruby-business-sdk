@@ -23,6 +23,7 @@ module FacebookAds
     field :bsg, 'hash'
     field :city_community, 'hash'
     field :commerce, 'hash'
+    field :compromise, 'hash'
     field :daily_deals, 'hash'
     field :daily_deals_legacy, 'hash'
     field :dpa, 'hash'

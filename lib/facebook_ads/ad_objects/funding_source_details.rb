@@ -16,6 +16,7 @@ module FacebookAds
   class FundingSourceDetails < AdObject
 
     field :coupon, 'FundingSourceDetailsCoupon'
+    field :coupons, { list: 'FundingSourceDetailsCoupon' }
     field :display_string, 'string'
     field :id, 'string'
     field :type, 'int'

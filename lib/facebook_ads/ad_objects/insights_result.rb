@@ -27,7 +27,7 @@ module FacebookAds
       "last_week_mon_sun",
       "last_week_sun_sat",
       "last_year",
-      "lifetime",
+      "maximum",
       "this_month",
       "this_quarter",
       "this_week_mon_today",
@@ -53,7 +53,7 @@ module FacebookAds
     field :name, 'string'
     field :period, 'string'
     field :title, 'string'
-    field :values, { list: 'object' }
+    field :values, { list: 'InsightsValue' }
     has_no_get
     has_no_post
     has_no_delete

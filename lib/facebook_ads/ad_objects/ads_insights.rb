@@ -20,8 +20,12 @@ module FacebookAds
       "1d_view",
       "28d_click",
       "28d_view",
+      "28d_view_all_conversions",
+      "28d_view_first_conversion",
       "7d_click",
       "7d_view",
+      "7d_view_all_conversions",
+      "7d_view_first_conversion",
       "dda",
       "default",
       "skan_click",
@@ -40,6 +44,8 @@ module FacebookAds
       "action_video_sound",
       "action_video_type",
       "conversion_destination",
+      "matched_persona_id",
+      "matched_persona_name",
       "signal_source_bucket",
       "standard_event_content_type",
     ]
@@ -110,7 +116,7 @@ module FacebookAds
       "last_week_mon_sun",
       "last_week_sun_sat",
       "last_year",
-      "lifetime",
+      "maximum",
       "this_month",
       "this_quarter",
       "this_week_mon_today",
@@ -139,6 +145,8 @@ module FacebookAds
       "action_video_sound",
       "action_video_type",
       "conversion_destination",
+      "matched_persona_id",
+      "matched_persona_name",
       "signal_source_bucket",
       "standard_event_content_type",
     ]
@@ -232,6 +240,7 @@ module FacebookAds
     field :marketing_messages_cost_per_delivered, 'string'
     field :marketing_messages_cost_per_link_btn_click, 'string'
     field :marketing_messages_spend, 'string'
+    field :marketing_messages_website_purchase_values, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
     field :optimization_goal, 'string'

@@ -996,7 +996,6 @@ module FacebookAds
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :guide_enabled, 'bool'
-        api.has_param :has_nickname, 'bool'
         api.has_param :holiday_card, 'string'
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'

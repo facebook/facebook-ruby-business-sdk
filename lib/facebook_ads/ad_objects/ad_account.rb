@@ -582,7 +582,6 @@ module FacebookAds
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :guide_enabled, 'bool'
-        api.has_param :has_nickname, 'bool'
         api.has_param :holiday_card, 'string'
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'
@@ -1178,10 +1177,6 @@ module FacebookAds
         api.has_param :payload, 'object'
         api.has_param :session, 'object'
       end
-    end
-
-    has_edge :value_adjustment_rule_persona_groups do |edge|
-      edge.get
     end
 
     has_edge :value_adjustment_rules do |edge|

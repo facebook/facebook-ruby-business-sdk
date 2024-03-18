@@ -102,7 +102,7 @@ module FacebookAds
       "LAST_WEEK_MON_SUN",
       "LAST_WEEK_SUN_SAT",
       "LAST_YEAR",
-      "LIFETIME",
+      "MAXIMUM",
       "THIS_MONTH",
       "THIS_QUARTER",
       "THIS_WEEK_MON_TODAY",
