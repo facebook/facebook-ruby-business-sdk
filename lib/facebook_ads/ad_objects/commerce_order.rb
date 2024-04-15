@@ -79,10 +79,10 @@ module FacebookAds
       end
     end
 
-    has_edge :fulfill_order do |edge|
+    has_edge :item_updates do |edge|
       edge.post 'CommerceOrder' do |api|
-        api.has_param :idempotency_key, 'string'
         api.has_param :items, { list: 'hash' }
+        api.has_param :merchant_order_reference, 'string'
       end
     end
 
@@ -152,6 +152,16 @@ module FacebookAds
         api.has_param :idempotency_key, 'string'
         api.has_param :shipment_id, 'string'
         api.has_param :tracking_info, 'hash'
+      end
+    end
+
+    has_edge :updates do |edge|
+      edge.post 'CommerceOrder' do |api|
+        api.has_param :cancel_amount, 'hash'
+        api.has_param :fulfill_amount, 'hash'
+        api.has_param :merchant_order_reference, 'string'
+        api.has_param :refund_amount, 'hash'
+        api.has_param :total_amount, 'hash'
       end
     end
 

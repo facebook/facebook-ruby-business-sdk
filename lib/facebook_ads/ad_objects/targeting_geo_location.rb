@@ -23,7 +23,6 @@ module FacebookAds
     field :geo_markets, { list: 'TargetingGeoLocationMarket' }
     field :large_geo_areas, { list: 'TargetingGeoLocationGeoEntities' }
     field :location_cluster_ids, { list: 'TargetingGeoLocationLocationCluster' }
-    field :location_expansion, 'TargetingGeoLocationLocationExpansion'
     field :location_types, { list: 'string' }
     field :medium_geo_areas, { list: 'TargetingGeoLocationGeoEntities' }
     field :metro_areas, { list: 'TargetingGeoLocationGeoEntities' }

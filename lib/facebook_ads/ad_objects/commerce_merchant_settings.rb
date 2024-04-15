@@ -39,7 +39,6 @@ module FacebookAds
     field :supported_card_types, { list: 'string' }
     field :terms, 'string'
     field :terms_url_by_locale, { list: 'hash' }
-    field :whatsapp_channel, 'object'
     has_no_post
     has_no_delete
 
@@ -92,10 +91,6 @@ module FacebookAds
       end
     end
 
-    has_edge :seller_issues do |edge|
-      edge.get
-    end
-
     has_edge :setup_status do |edge|
       edge.get 'CommerceMerchantSettingsSetupStatus'
     end
@@ -120,13 +115,6 @@ module FacebookAds
 
     has_edge :tax_settings do |edge|
       edge.get
-    end
-
-    has_edge :whatsapp_channel do |edge|
-      edge.post do |api|
-        api.has_param :op, { enum: %w{ADD REMOVE }}
-        api.has_param :whatsapp_business_accounts, { list: 'string' }
-      end
     end
 
   end

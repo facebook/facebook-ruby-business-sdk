@@ -33,7 +33,6 @@ module FacebookAds
     ]
 
     SUB_CATEGORY = [
-      "CUSTOM",
       "ORDER_DETAILS",
       "ORDER_STATUS",
     ]
@@ -80,7 +79,7 @@ module FacebookAds
 
     has_edge :conversation_analytics do |edge|
       edge.get do |api|
-        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION MARKETING MARKETING_OPTIMIZED_DELIVERY SERVICE UNKNOWN UTILITY }} }
+        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL FIXED_TEMPLATE_NOTIFY MARKETING MARKETING_OPTIMIZED_DELIVERY SERVICE UNKNOWN UTILITY }} }
         api.has_param :conversation_directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
         api.has_param :conversation_types, { list: { enum: %w{FREE_ENTRY_POINT FREE_TIER REGULAR UNKNOWN }} }
         api.has_param :country_codes, { list: 'string' }
@@ -179,6 +178,10 @@ module FacebookAds
 
     has_edge :schedules do |edge|
       edge.get
+    end
+
+    has_edge :set_obo_mobility_intent do |edge|
+      edge.post
     end
 
     has_edge :subscribed_apps do |edge|

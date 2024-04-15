@@ -13,13 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PageCommerceEligibility < AdObject
+  class IgUpcomingEvent < AdObject
 
-    field :offsite, 'object'
-    field :onsite, 'object'
-    has_no_id
-    has_no_get
-    has_no_post
+    field :end_time, 'datetime'
+    field :id, 'string'
+    field :start_time, 'datetime'
+    field :title, 'string'
     has_no_delete
 
   end

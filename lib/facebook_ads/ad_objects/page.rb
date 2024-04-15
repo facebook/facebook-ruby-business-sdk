@@ -375,6 +375,7 @@ module FacebookAds
       "publisher_subscriptions",
       "ratings",
       "registration",
+      "response_feedback",
       "send_cart",
       "standby",
       "user_action",
@@ -461,6 +462,7 @@ module FacebookAds
     field :is_community_page, 'bool'
     field :is_eligible_for_branded_content, 'bool'
     field :is_eligible_for_disable_connect_ig_btn_for_non_page_admin_am_web, 'bool'
+    field :is_eligible_for_live_boosting_expansion, 'bool'
     field :is_messenger_bot_get_started_enabled, 'bool'
     field :is_messenger_platform_bot, 'bool'
     field :is_owned, 'bool'
@@ -692,10 +694,6 @@ module FacebookAds
         api.has_param :theme_color, 'string'
         api.has_param :welcome_screen_greeting, 'string'
       end
-    end
-
-    has_edge :commerce_eligibility do |edge|
-      edge.get 'PageCommerceEligibility'
     end
 
     has_edge :commerce_merchant_settings do |edge|

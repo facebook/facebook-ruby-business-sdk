@@ -17,15 +17,20 @@ module FacebookAds
     CALL_TO_ACTION_TYPES = [
       "ADD_TO_CART",
       "APPLY_NOW",
+      "ASK_ABOUT_SERVICES",
+      "ASK_FOR_MORE_INFO",
       "AUDIO_CALL",
+      "BOOK_A_CONSULTATION",
       "BOOK_NOW",
       "BOOK_TRAVEL",
       "BUY",
       "BUY_NOW",
       "BUY_TICKETS",
+      "BUY_VIA_MESSAGE",
       "CALL",
       "CALL_ME",
       "CALL_NOW",
+      "CHAT_WITH_US",
       "CONFIRM",
       "CONTACT",
       "CONTACT_US",
@@ -38,6 +43,7 @@ module FacebookAds
       "FOLLOW_NEWS_STORYLINE",
       "FOLLOW_PAGE",
       "FOLLOW_USER",
+      "GET_A_QUOTE",
       "GET_DIRECTIONS",
       "GET_OFFER",
       "GET_OFFER_VIEW",
@@ -53,6 +59,7 @@ module FacebookAds
       "LIKE_PAGE",
       "LISTEN_MUSIC",
       "LISTEN_NOW",
+      "MAKE_AN_APPOINTMENT",
       "MESSAGE_PAGE",
       "MOBILE_DOWNLOAD",
       "NO_BUTTON",
@@ -112,6 +119,7 @@ module FacebookAds
     field :message_extensions, { list: 'AdAssetMessageExtensions' }
     field :onsite_destinations, { list: 'AdAssetOnsiteDestinations' }
     field :optimization_type, 'string'
+    field :promotional_metadata, 'object'
     field :reasons_to_shop, 'bool'
     field :shops_bundle, 'bool'
     field :titles, { list: 'AdAssetFeedSpecTitle' }

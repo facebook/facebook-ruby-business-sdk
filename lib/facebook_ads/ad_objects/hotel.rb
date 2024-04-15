@@ -49,6 +49,7 @@ module FacebookAds
     field :sale_price, 'string'
     field :sanitized_images, { list: 'string' }
     field :star_rating, 'double'
+    field :tags, { list: 'string' }
     field :unit_price, 'object'
     field :url, 'string'
     field :visibility, { enum: -> { VISIBILITY }}

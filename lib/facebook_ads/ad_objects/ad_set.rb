@@ -233,6 +233,7 @@ module FacebookAds
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
     field :recurring_budget_semantics, 'bool'
+    field :regional_regulation_identities, 'object'
     field :review_feedback, 'string'
     field :rf_prediction_id, 'string'
     field :source_adset, 'AdSet'

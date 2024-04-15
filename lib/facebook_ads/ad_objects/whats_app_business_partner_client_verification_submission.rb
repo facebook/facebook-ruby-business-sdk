@@ -14,14 +14,27 @@ module FacebookAds
   # pull request for this class.
 
   class WhatsAppBusinessPartnerClientVerificationSubmission < AdObject
+    REJECTION_REASONS = [
+      "ADDRESS_NOT_MATCHING",
+      "LEGAL_NAME_NOT_MATCHING",
+      "NONE",
+      "WEBSITE_NOT_MATCHING",
+    ]
+
+    VERIFICATION_STATUS = [
+      "APPROVED",
+      "FAILED",
+      "PENDING",
+    ]
+
 
     field :client_business_id, 'string'
     field :id, 'string'
-    field :rejection_reasons, { list: 'string' }
+    field :rejection_reasons, { list: { enum: -> { REJECTION_REASONS }} }
     field :submitted_info, 'object'
     field :submitted_time, 'datetime'
     field :update_time, 'datetime'
-    field :verification_status, 'string'
+    field :verification_status, { enum: -> { VERIFICATION_STATUS }}
     has_no_get
     has_no_post
     has_no_delete

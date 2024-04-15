@@ -236,6 +236,7 @@ module FacebookAds
         api.has_param :page_id, 'int'
         api.has_param :page_scoped_user_id, 'int'
         api.has_param :receipt_data, 'string'
+        api.has_param :sdk_version, 'string'
         api.has_param :ud, 'hash'
         api.has_param :url_schemes, { list: 'string' }
         api.has_param :user_id, 'string'
@@ -421,13 +422,6 @@ module FacebookAds
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
         api.has_param :connection_method, { enum: -> { DaCheck::CONNECTION_METHOD }}
-      end
-    end
-
-    has_edge :events do |edge|
-      edge.get 'Event' do |api|
-        api.has_param :include_canceled, 'bool'
-        api.has_param :type, { enum: -> { Event::TYPE }}
       end
     end
 

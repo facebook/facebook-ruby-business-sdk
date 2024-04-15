@@ -103,6 +103,7 @@ module FacebookAds
       "AUTOMOTIVE_MODEL",
       "DESTINATION",
       "FLIGHT",
+      "GENERIC",
       "HOME_LISTING",
       "HOTEL",
       "JOB",
@@ -122,6 +123,7 @@ module FacebookAds
       "CLAIM",
       "CUSTOM",
       "ENGAGEMENT",
+      "EXCLUSION",
       "FOX",
       "LOOKALIKE",
       "MANAGED",
@@ -151,6 +153,7 @@ module FacebookAds
     field :amount_spent, 'string'
     field :attribution_spec, { list: 'AttributionSpec' }
     field :balance, 'string'
+    field :brand_safety_content_filter_levels, { list: 'string' }
     field :business, 'Business'
     field :business_city, 'string'
     field :business_country_code, 'string'
@@ -685,6 +688,10 @@ module FacebookAds
       end
     end
 
+    has_edge :audience_funnel do |edge|
+      edge.get
+    end
+
     has_edge :block_list_drafts do |edge|
       edge.post 'AdAccount' do |api|
         api.has_param :publisher_urls_file, 'file'
@@ -759,6 +766,10 @@ module FacebookAds
     end
 
     has_edge :conversion_goals do |edge|
+      edge.get
+    end
+
+    has_edge :cpa_guidance do |edge|
       edge.get
     end
 
@@ -1113,6 +1124,8 @@ module FacebookAds
         api.has_param :allow_only_fat_head_interests, 'bool'
         api.has_param :app_store, { enum: -> { AdAccountTargetingUnified::APP_STORE }}
         api.has_param :countries, { list: 'string' }
+        api.has_param :is_account_level_brand_safety_exclusion, 'bool'
+        api.has_param :is_account_level_employer_exclusion, 'bool'
         api.has_param :is_exclusion, 'bool'
         api.has_param :limit_type, { enum: -> { AdAccountTargetingUnified::LIMIT_TYPE }}
         api.has_param :objective, { enum: -> { AdAccountTargetingUnified::OBJECTIVE }}
@@ -1177,6 +1190,10 @@ module FacebookAds
         api.has_param :payload, 'object'
         api.has_param :session, 'object'
       end
+    end
+
+    has_edge :value_adjustment_rule_collections do |edge|
+      edge.get
     end
 
     has_edge :value_adjustment_rules do |edge|

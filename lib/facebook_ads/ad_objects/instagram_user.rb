@@ -48,7 +48,12 @@ module FacebookAds
     end
 
     has_edge :upcoming_events do |edge|
-      edge.get
+      edge.get 'IgUpcomingEvent'
+      edge.post 'IgUpcomingEvent' do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :start_time, 'datetime'
+        api.has_param :title, 'string'
+      end
     end
 
   end

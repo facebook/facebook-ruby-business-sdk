@@ -528,5 +528,15 @@ module FacebookAds
       end
     end
 
+    has_edge :version_items_batch do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :allow_upsert, 'bool'
+        api.has_param :item_type, 'string'
+        api.has_param :item_version, 'string'
+        api.has_param :requests, 'hash'
+        api.has_param :version, 'int'
+      end
+    end
+
   end
 end

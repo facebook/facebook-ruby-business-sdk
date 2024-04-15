@@ -19,6 +19,7 @@ module FacebookAds
       "carousel_images_multi_items",
       "carousel_images_single_item",
       "carousel_slideshows",
+      "collection_video",
       "single_image",
     ]
 

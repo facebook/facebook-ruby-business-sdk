@@ -84,6 +84,7 @@ module FacebookAds
     field :retailer_category, 'string'
     field :sanitized_images, { list: 'string' }
     field :size, 'string'
+    field :tags, { list: 'string' }
     field :title, 'string'
     field :unit_price, 'object'
     field :url, 'string'

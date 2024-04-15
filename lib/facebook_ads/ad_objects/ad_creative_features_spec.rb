@@ -16,8 +16,11 @@ module FacebookAds
   class AdCreativeFeaturesSpec < AdObject
 
     field :advantage_plus_creative, 'AdCreativeFeatureDetails'
+    field :app_highlights, 'AdCreativeFeatureDetails'
     field :audio, 'AdCreativeFeatureDetails'
     field :carousel_to_video, 'AdCreativeFeatureDetails'
+    field :catalog_feed_tag, 'AdCreativeFeatureDetails'
+    field :customize_product_recommendation, 'AdCreativeFeatureDetails'
     field :cv_transformation, 'AdCreativeFeatureDetails'
     field :description_automation, 'AdCreativeFeatureDetails'
     field :dha_optimization, 'AdCreativeFeatureDetails'
@@ -36,6 +39,7 @@ module FacebookAds
     field :product_metadata_automation, 'AdCreativeFeatureDetails'
     field :product_tags, 'AdCreativeFeatureDetails'
     field :profile_card, 'AdCreativeFeatureDetails'
+    field :site_extensions, 'AdCreativeFeatureDetails'
     field :standard_enhancements, 'AdCreativeFeatureDetails'
     field :standard_enhancements_catalog, 'AdCreativeFeatureDetails'
     field :text_generation, 'AdCreativeFeatureDetails'

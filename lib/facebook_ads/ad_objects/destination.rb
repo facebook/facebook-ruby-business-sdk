@@ -42,6 +42,7 @@ module FacebookAds
     field :price, 'string'
     field :price_change, 'string'
     field :sanitized_images, { list: 'string' }
+    field :tags, { list: 'string' }
     field :types, { list: 'string' }
     field :unit_price, 'object'
     field :url, 'string'
