@@ -93,6 +93,7 @@ module FacebookAds
       "USE_MOBILE_APP",
       "VIDEO_ANNOTATION",
       "VIDEO_CALL",
+      "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
       "WATCH_MORE",
       "WATCH_VIDEO",
@@ -123,6 +124,7 @@ module FacebookAds
     field :reasons_to_shop, 'bool'
     field :shops_bundle, 'bool'
     field :titles, { list: 'AdAssetFeedSpecTitle' }
+    field :upcoming_events, { list: 'object' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id
     has_no_get

@@ -34,7 +34,7 @@ module FacebookAds
     end
 
     has_edge :ar_effects do |edge|
-      edge.get
+      edge.get 'ArEffect'
     end
 
     has_edge :authorized_adaccounts do |edge|

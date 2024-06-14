@@ -128,16 +128,6 @@ module FacebookAds
       end
     end
 
-    has_edge :contained_offline_conversion_data_sets do |edge|
-      edge.delete do |api|
-        api.has_param :asset_id, 'string'
-      end
-      edge.get 'OfflineConversionDataSet'
-      edge.post 'BusinessAssetGroup' do |api|
-        api.has_param :asset_id, 'string'
-      end
-    end
-
     has_edge :contained_pages do |edge|
       edge.delete do |api|
         api.has_param :asset_id, 'string'

@@ -95,11 +95,14 @@ module FacebookAds
       "publisher_platform",
       "redownload",
       "region",
+      "signal_source_bucket",
       "skan_campaign_id",
       "skan_conversion_id",
       "skan_version",
       "standard_event_content_type",
       "title_asset",
+      "user_persona_id",
+      "user_persona_name",
       "video_asset",
     ]
 
@@ -161,6 +164,7 @@ module FacebookAds
     field :ad_id, 'string'
     field :ad_impression_actions, { list: 'AdsActionStats' }
     field :ad_name, 'string'
+    field :adjusted_offline_purchase, { list: 'object' }
     field :adset_end, 'string'
     field :adset_id, 'string'
     field :adset_name, 'string'
@@ -181,7 +185,6 @@ module FacebookAds
     field :catalog_segment_value_omni_purchase_roas, { list: 'AdsActionStats' }
     field :catalog_segment_value_website_purchase_roas, { list: 'AdsActionStats' }
     field :clicks, 'string'
-    field :conversion_lead_rate, 'string'
     field :conversion_rate_ranking, 'string'
     field :conversion_values, { list: 'AdsActionStats' }
     field :conversions, { list: 'AdsActionStats' }
@@ -192,7 +195,6 @@ module FacebookAds
     field :cost_per_action_type, { list: 'AdsActionStats' }
     field :cost_per_ad_click, { list: 'AdsActionStats' }
     field :cost_per_conversion, { list: 'AdsActionStats' }
-    field :cost_per_conversion_lead, 'string'
     field :cost_per_dda_countby_convs, 'string'
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
@@ -243,6 +245,7 @@ module FacebookAds
     field :marketing_messages_website_purchase_values, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
+    field :onsite_conversion_messaging_detected_purchase_deduped, { list: 'AdsActionStats' }
     field :optimization_goal, 'string'
     field :outbound_clicks, { list: 'AdsActionStats' }
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
@@ -251,6 +254,7 @@ module FacebookAds
     field :qualifying_question_qualify_answer_rate, 'string'
     field :quality_ranking, 'string'
     field :reach, 'string'
+    field :shops_assisted_purchases, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
     field :total_postbacks, 'string'

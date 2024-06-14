@@ -18,7 +18,7 @@ module FacebookAds
     field :auto_enroll, 'bool'
     field :bill_to_address, 'CrmAddress'
     field :customer_po_number, 'string'
-    field :email, 'object'
+    field :email, 'ExtendedCreditEmail'
     field :emails, { list: 'string' }
     field :id, 'string'
     field :liable_address, 'CrmAddress'

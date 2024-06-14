@@ -14,6 +14,11 @@ module FacebookAds
   # pull request for this class.
 
   class Comment < AdObject
+    ORDER = [
+      "chronological",
+      "reverse_chronological",
+    ]
+
     COMMENT_PRIVACY_VALUE = [
       "DECLINED_BY_ADMIN_ASSISTANT",
       "DEFAULT_PRIVACY",
@@ -36,11 +41,6 @@ module FacebookAds
     LIVE_FILTER = [
       "filter_low_quality",
       "no_filter",
-    ]
-
-    ORDER = [
-      "chronological",
-      "reverse_chronological",
     ]
 
 

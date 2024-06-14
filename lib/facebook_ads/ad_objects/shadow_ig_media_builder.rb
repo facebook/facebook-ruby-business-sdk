@@ -19,6 +19,7 @@ module FacebookAds
     field :id, 'string'
     field :status, 'string'
     field :status_code, 'string'
+    field :video_status, 'IgResumableVideoUploadStatus'
     has_no_post
     has_no_delete
 

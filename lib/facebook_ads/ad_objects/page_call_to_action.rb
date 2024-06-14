@@ -54,6 +54,7 @@ module FacebookAds
       "BUY_TICKETS",
       "CALL_NOW",
       "CHARITY_DONATE",
+      "CHECK_IN",
       "CONTACT_US",
       "DONATE_NOW",
       "EMAIL",

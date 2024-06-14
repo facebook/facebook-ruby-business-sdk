@@ -46,7 +46,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :update_records do |edge|
-      edge.get
+      edge.get 'MediaCopyrightUpdateRecord'
     end
 
   end

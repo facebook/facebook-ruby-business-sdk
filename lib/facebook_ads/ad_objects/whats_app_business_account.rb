@@ -21,6 +21,7 @@ module FacebookAds
       "MANAGE_PHONE",
       "MANAGE_PHONE_ASSETS",
       "MANAGE_TEMPLATES",
+      "MESSAGING",
       "VIEW_COST",
       "VIEW_PHONE_ASSETS",
       "VIEW_TEMPLATES",
@@ -32,6 +33,10 @@ module FacebookAds
       "UTILITY",
     ]
 
+    DISPLAY_FORMAT = [
+      "ORDER_DETAILS",
+    ]
+
     SUB_CATEGORY = [
       "ORDER_DETAILS",
       "ORDER_STATUS",
@@ -40,6 +45,7 @@ module FacebookAds
 
     field :account_review_status, 'string'
     field :analytics, 'object'
+    field :auth_international_rate_eligibility, 'object'
     field :business_verification_status, 'string'
     field :country, 'string'
     field :creation_time, 'int'
@@ -54,6 +60,7 @@ module FacebookAds
     field :owner_business, 'Business'
     field :owner_business_info, 'object'
     field :ownership_type, 'string'
+    field :primary_business_location, 'string'
     field :primary_funding_id, 'string'
     field :purchase_order_number, 'string'
     field :status, 'string'
@@ -79,7 +86,7 @@ module FacebookAds
 
     has_edge :conversation_analytics do |edge|
       edge.get do |api|
-        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL FIXED_TEMPLATE_NOTIFY MARKETING MARKETING_OPTIMIZED_DELIVERY SERVICE UNKNOWN UTILITY }} }
+        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL MARKETING MARKETING_OPTIMIZED_DELIVERY SERVICE UNKNOWN UTILITY UTILITY_FIXED_TEMPLATE }} }
         api.has_param :conversation_directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
         api.has_param :conversation_types, { list: { enum: %w{FREE_ENTRY_POINT FREE_TIER REGULAR UNKNOWN }} }
         api.has_param :country_codes, { list: 'string' }
@@ -132,13 +139,14 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :name_or_content, 'string'
         api.has_param :quality_score, { list: { enum: %w{GREEN RED UNKNOWN YELLOW }} }
-        api.has_param :status, { list: { enum: %w{APPROVED DELETED DISABLED IN_APPEAL LIMIT_EXCEEDED PAUSED PENDING PENDING_DELETION REJECTED }} }
+        api.has_param :status, { list: { enum: %w{APPROVED ARCHIVED DELETED DISABLED IN_APPEAL LIMIT_EXCEEDED PAUSED PENDING PENDING_DELETION REJECTED }} }
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :allow_category_change, 'bool'
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}
         api.has_param :components, { list: 'hash' }
         api.has_param :cta_url_link_tracking_opted_out, 'bool'
+        api.has_param :display_format, { enum: -> { WhatsAppBusinessAccount::DISPLAY_FORMAT }}
         api.has_param :language, 'string'
         api.has_param :library_template_button_inputs, { list: 'hash' }
         api.has_param :library_template_name, 'string'
@@ -181,7 +189,13 @@ module FacebookAds
     end
 
     has_edge :set_obo_mobility_intent do |edge|
-      edge.post
+      edge.post do |api|
+        api.has_param :solution_id, 'string'
+      end
+    end
+
+    has_edge :solutions do |edge|
+      edge.get
     end
 
     has_edge :subscribed_apps do |edge|
@@ -197,7 +211,7 @@ module FacebookAds
       edge.get do |api|
         api.has_param :end, 'datetime'
         api.has_param :granularity, { enum: %w{DAILY }}
-        api.has_param :metric_types, { list: { enum: %w{CLICKED DELIVERED READ SENT }} }
+        api.has_param :metric_types, { list: { enum: %w{CLICKED COST DELIVERED READ SENT }} }
         api.has_param :start, 'datetime'
         api.has_param :template_ids, { list: 'string' }
       end

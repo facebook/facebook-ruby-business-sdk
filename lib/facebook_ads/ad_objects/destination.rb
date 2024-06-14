@@ -51,7 +51,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :augmented_realities_metadata do |edge|
-      edge.get
+      edge.get 'DynamicArMetadata'
     end
 
     has_edge :channels_to_integrity_status do |edge|

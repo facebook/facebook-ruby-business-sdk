@@ -93,6 +93,7 @@ module FacebookAds
       "USE_MOBILE_APP",
       "VIDEO_ANNOTATION",
       "VIDEO_CALL",
+      "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
       "WATCH_MORE",
       "WATCH_VIDEO",
@@ -175,6 +176,7 @@ module FacebookAds
     field :categorization_criteria, 'string'
     field :category_media_source, 'string'
     field :collaborative_ads_lsb_image_bank_id, 'string'
+    field :contextual_multi_ads, 'AdCreativeContextualMultiAds'
     field :creative_sourcing_spec, 'AdCreativeSourcingSpec'
     field :degrees_of_freedom_spec, 'AdCreativeDegreesOfFreedomSpec'
     field :destination_set_id, 'string'
@@ -200,7 +202,6 @@ module FacebookAds
     field :link_destination_display_url, 'string'
     field :link_og_id, 'string'
     field :link_url, 'string'
-    field :messenger_sponsored_message, 'string'
     field :name, 'string'
     field :object_id, 'string'
     field :object_store_url, 'string'
@@ -209,6 +210,7 @@ module FacebookAds
     field :object_type, { enum: -> { OBJECT_TYPE }}
     field :object_url, 'string'
     field :omnichannel_link_spec, 'AdCreativeOmnichannelLinkSpec'
+    field :page_welcome_message, 'string'
     field :photo_album_source_object_story_id, 'string'
     field :place_page_set_id, 'string'
     field :platform_customizations, 'AdCreativePlatformCustomization'

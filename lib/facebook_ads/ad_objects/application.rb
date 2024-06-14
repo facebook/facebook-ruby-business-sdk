@@ -76,6 +76,32 @@ module FacebookAds
       "PAGE",
     ]
 
+    OWNER_PERMISSIONS = [
+      "DEVELOP",
+      "MANAGE",
+      "MANAGE_EXTENSIONS",
+      "MANAGE_PHONE",
+      "MANAGE_PHONE_ASSETS",
+      "MANAGE_TEMPLATES",
+      "MESSAGING",
+      "VIEW_COST",
+      "VIEW_PHONE_ASSETS",
+      "VIEW_TEMPLATES",
+    ]
+
+    PARTNER_PERMISSIONS = [
+      "DEVELOP",
+      "MANAGE",
+      "MANAGE_EXTENSIONS",
+      "MANAGE_PHONE",
+      "MANAGE_PHONE_ASSETS",
+      "MANAGE_TEMPLATES",
+      "MESSAGING",
+      "VIEW_COST",
+      "VIEW_PHONE_ASSETS",
+      "VIEW_TEMPLATES",
+    ]
+
 
     field :aam_rules, 'string'
     field :an_ad_space_limit, 'int'
@@ -425,14 +451,16 @@ module FacebookAds
       end
     end
 
+    has_edge :domain_reports do |edge|
+      edge.post do |api|
+        api.has_param :tracking_domains, { list: 'string' }
+      end
+    end
+
     has_edge :iap_purchases do |edge|
       edge.get do |api|
         api.has_param :order_id, 'string'
       end
-    end
-
-    has_edge :insights_push_schedule do |edge|
-      edge.get
     end
 
     has_edge :ios_dialog_configs do |edge|
@@ -440,7 +468,7 @@ module FacebookAds
     end
 
     has_edge :linked_dataset do |edge|
-      edge.get
+      edge.get 'AdsDataset'
     end
 
     has_edge :mmp_auditing do |edge|
@@ -579,6 +607,21 @@ module FacebookAds
         api.has_param :file_name, 'object'
         api.has_param :file_type, 'object'
         api.has_param :session_type, { enum: %w{attachment }}
+      end
+    end
+
+    has_edge :whatsapp_business_solution do |edge|
+      edge.post 'Application' do |api|
+        api.has_param :owner_permissions, { list: { enum: -> { Application::OWNER_PERMISSIONS }} }
+        api.has_param :partner_app_id, 'string'
+        api.has_param :partner_permissions, { list: { enum: -> { Application::PARTNER_PERMISSIONS }} }
+        api.has_param :solution_name, 'string'
+      end
+    end
+
+    has_edge :whatsapp_business_solutions do |edge|
+      edge.get do |api|
+        api.has_param :role, { enum: %w{OWNER PARTNER }}
       end
     end
 

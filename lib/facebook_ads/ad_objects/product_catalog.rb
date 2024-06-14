@@ -28,7 +28,6 @@ module FacebookAds
       "home_listings",
       "hotels",
       "jobs",
-      "local_delivery_shipping_profiles",
       "local_service_businesses",
       "offer_items",
       "offline_commerce",
@@ -125,6 +124,7 @@ module FacebookAds
         api.has_param :business, 'string'
         api.has_param :permitted_roles, { list: { enum: -> { ProductCatalog::PERMITTED_ROLES }} }
         api.has_param :permitted_tasks, { list: { enum: -> { ProductCatalog::PERMITTED_TASKS }} }
+        api.has_param :skip_default_utms, 'bool'
         api.has_param :utm_settings, 'hash'
       end
     end
@@ -160,7 +160,7 @@ module FacebookAds
 
     has_edge :catalog_store do |edge|
       edge.post 'StoreCatalogSettings' do |api|
-        api.has_param :page, 'int'
+        api.has_param :page, 'string'
       end
     end
 
@@ -182,12 +182,8 @@ module FacebookAds
       end
     end
 
-    has_edge :collaborative_ads_event_stats do |edge|
-      edge.get 'CatalogSegmentAllMatchCountLaser'
-    end
-
     has_edge :collaborative_ads_lsb_image_bank do |edge|
-      edge.get
+      edge.get 'CpasLsbImageBank'
     end
 
     has_edge :collaborative_ads_share_settings do |edge|
@@ -195,10 +191,16 @@ module FacebookAds
     end
 
     has_edge :cpas_lsb_image_bank do |edge|
-      edge.post do |api|
+      edge.post 'CpasLsbImageBank' do |api|
         api.has_param :ad_group_id, 'int'
         api.has_param :agency_business_id, 'int'
         api.has_param :backup_image_urls, { list: 'string' }
+      end
+    end
+
+    has_edge :creator_asset_creatives do |edge|
+      edge.get 'CreatorAssetCreative' do |api|
+        api.has_param :moderation_status, { enum: -> { CreatorAssetCreative::MODERATION_STATUS }}
       end
     end
 

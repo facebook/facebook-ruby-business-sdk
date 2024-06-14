@@ -15,7 +15,6 @@ module FacebookAds
 
   class OpenBridgeConfiguration < AdObject
 
-    field :access_key, 'string'
     field :active, 'bool'
     field :endpoint, 'string'
     field :fallback_domain, 'string'
@@ -23,6 +22,7 @@ module FacebookAds
     field :host_business_id, 'string'
     field :host_external_id, 'string'
     field :id, 'string'
+    field :instance_id, 'string'
     field :pixel_id, 'string'
 
   end

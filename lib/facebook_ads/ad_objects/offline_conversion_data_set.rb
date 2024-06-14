@@ -14,20 +14,6 @@ module FacebookAds
   # pull request for this class.
 
   class OfflineConversionDataSet < AdObject
-    PERMITTED_ROLES = [
-      "ADMIN",
-      "ADVERTISER",
-      "UPLOADER",
-    ]
-
-    RELATIONSHIP_TYPE = [
-      "AD_MANAGER",
-      "AGENCY",
-      "AGGREGATOR",
-      "AUDIENCE_MANAGER",
-      "OTHER",
-    ]
-
 
     field :automatic_matching_fields, { list: 'string' }
     field :business, 'Business'
@@ -61,27 +47,17 @@ module FacebookAds
     field :owner_business, 'Business'
     field :usage, 'OfflineConversionDataSetUsage'
     field :valid_entries, 'int'
-    field :auto_assign_to_new_accounts_only, 'bool'
+    has_no_post
+    has_no_delete
 
     has_edge :adaccounts do |edge|
       edge.get 'AdAccount' do |api|
-        api.has_param :business, 'string'
-      end
-      edge.post 'OfflineConversionDataSet' do |api|
-        api.has_param :account_id, 'string'
-        api.has_param :auto_track_for_ads, 'bool'
         api.has_param :business, 'string'
       end
     end
 
     has_edge :agencies do |edge|
       edge.get 'Business'
-      edge.post 'OfflineConversionDataSet' do |api|
-        api.has_param :business, 'string'
-        api.has_param :other_relationship, 'string'
-        api.has_param :permitted_roles, { list: { enum: -> { OfflineConversionDataSet::PERMITTED_ROLES }} }
-        api.has_param :relationship_type, { list: { enum: -> { OfflineConversionDataSet::RELATIONSHIP_TYPE }} }
-      end
     end
 
     has_edge :audiences do |edge|
@@ -132,16 +108,6 @@ module FacebookAds
         api.has_param :sort_by, { enum: -> { OfflineConversionDataSetUpload::SORT_BY }}
         api.has_param :start_time, 'datetime'
         api.has_param :upload_tag, 'string'
-      end
-      edge.post 'OfflineConversionDataSetUpload' do |api|
-        api.has_param :upload_tag, 'string'
-      end
-    end
-
-    has_edge :validate do |edge|
-      edge.post 'OfflineConversionDataSet' do |api|
-        api.has_param :data, { list: 'string' }
-        api.has_param :namespace_id, 'string'
       end
     end
 

@@ -110,6 +110,7 @@ module FacebookAds
     field :conversion_specs, { list: 'ConversionActionQuery' }
     field :created_time, 'datetime'
     field :creative, 'AdCreative'
+    field :creative_asset_groups_spec, 'AdCreativeAssetGroupsSpec'
     field :demolink_hash, 'string'
     field :display_sequence, 'int'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}

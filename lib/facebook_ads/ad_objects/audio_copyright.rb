@@ -22,6 +22,7 @@ module FacebookAds
     field :isrc, 'string'
     field :match_rule, 'VideoCopyrightRule'
     field :ownership_countries, { list: 'string' }
+    field :ownership_details, { list: 'hash' }
     field :reference_file_status, 'string'
     field :ridge_monitoring_status, 'string'
     field :tags, { list: 'string' }
@@ -32,7 +33,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :update_records do |edge|
-      edge.get
+      edge.get 'MediaCopyrightUpdateRecord'
     end
 
   end

@@ -15,6 +15,7 @@ module FacebookAds
 
   class IgMedia < AdObject
 
+    field :boost_eligibility_info, 'IgMediaBoostEligibilityInfo'
     field :caption, 'string'
     field :comments_count, 'int'
     field :copyright_check_information, 'IgVideoCopyrightCheckMatchesInformation'
@@ -33,6 +34,10 @@ module FacebookAds
     field :timestamp, 'datetime'
     field :username, 'string'
     has_no_delete
+
+    has_edge :boost_ads_list do |edge|
+      edge.get 'IgBoostMediaAd'
+    end
 
     has_edge :branded_content_partner_promote do |edge|
       edge.get 'BrandedContentShadowIgUserId'

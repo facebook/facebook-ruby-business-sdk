@@ -72,6 +72,7 @@ module FacebookAds
       "OFFSITE_CONVERSIONS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PROFILE_VISIT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
@@ -117,6 +118,7 @@ module FacebookAds
       "APPLINKS_AUTOMATIC",
       "FACEBOOK",
       "INSTAGRAM_DIRECT",
+      "INSTAGRAM_PROFILE",
       "MESSAGING_INSTAGRAM_DIRECT_MESSENGER",
       "MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP",
       "MESSAGING_INSTAGRAM_DIRECT_WHATSAPP",
@@ -128,7 +130,6 @@ module FacebookAds
       "ON_POST",
       "ON_VIDEO",
       "SHOP_AUTOMATIC",
-      "UNDEFINED",
       "WEBSITE",
       "WHATSAPP",
     ]
@@ -162,6 +163,11 @@ module FacebookAds
       "TRAVEL_INTENT_NO_DESTINATION_INTENT",
       "TRIP_CONSIDERATION",
       "VIDEO_SOUND_ON",
+    ]
+
+    REGIONAL_REGULATED_CATEGORIES = [
+      "0",
+      "1",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -233,7 +239,8 @@ module FacebookAds
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
     field :recurring_budget_semantics, 'bool'
-    field :regional_regulation_identities, 'object'
+    field :regional_regulated_categories, { list: 'string' }
+    field :regional_regulation_identities, 'RegionalRegulationIdentities'
     field :review_feedback, 'string'
     field :rf_prediction_id, 'string'
     field :source_adset, 'AdSet'

@@ -16,6 +16,7 @@ module FacebookAds
   class TargetingAutomation < AdObject
 
     field :advantage_audience, 'int'
+    field :individual_setting, 'object'
     field :shared_audiences, 'int'
     field :value_expression, 'int'
     has_no_id

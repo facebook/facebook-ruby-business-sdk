@@ -34,6 +34,7 @@ module FacebookAds
       "OFFSITE_CONVERSIONS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PROFILE_VISIT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",

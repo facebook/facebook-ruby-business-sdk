@@ -47,6 +47,7 @@ module FacebookAds
 
     field :buyer_details, 'object'
     field :channel, 'string'
+    field :contains_bopis_items, 'bool'
     field :created, 'string'
     field :estimated_payment_details, 'object'
     field :id, 'string'
@@ -65,7 +66,6 @@ module FacebookAds
       edge.post 'CommerceOrder' do |api|
         api.has_param :idempotency_key, 'string'
         api.has_param :merchant_order_reference, 'string'
-        api.has_param :return_error_response, 'bool'
       end
     end
 

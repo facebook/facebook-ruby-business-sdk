@@ -25,6 +25,7 @@ module FacebookAds
       "APPROVED",
       "FAILED",
       "PENDING",
+      "REVOKED",
     ]
 
 

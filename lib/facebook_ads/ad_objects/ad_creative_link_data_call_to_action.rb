@@ -93,6 +93,7 @@ module FacebookAds
       "USE_MOBILE_APP",
       "VIDEO_ANNOTATION",
       "VIDEO_CALL",
+      "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
       "WATCH_MORE",
       "WATCH_VIDEO",

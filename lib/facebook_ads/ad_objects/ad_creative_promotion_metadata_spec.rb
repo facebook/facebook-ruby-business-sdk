@@ -15,13 +15,13 @@ module FacebookAds
 
   class AdCreativePromotionMetadataSpec < AdObject
 
-    field :end_date, 'datetime'
+    field :end_date, 'int'
     field :id, 'string'
     field :promotion_source, 'string'
     field :promotion_type, 'string'
     field :promotion_value, 'double'
     field :required_code, 'string'
-    field :start_date, 'datetime'
+    field :start_date, 'int'
     has_no_get
     has_no_post
     has_no_delete
