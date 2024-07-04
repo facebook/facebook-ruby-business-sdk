@@ -17,6 +17,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 require 'json'
+require 'ostruct'
 
 require_relative './event'
 require_relative './event_response'
