@@ -19,6 +19,8 @@
 require_relative './user_data'
 require_relative './custom_data'
 require_relative './app_data'
+require_relative './original_event_data'
+require_relative './attribution_data'
 
 module FacebookAds
   module ServerSide
@@ -78,6 +80,12 @@ module FacebookAds
       # Messaging channel for the event
       attr_accessor :messaging_channel
 
+      # Original event info
+      attr_accessor :original_event_data
+
+      # Attribution data info
+      attr_accessor :attribution_data
+
       # @param [String] event_name
       # @param [int] event_time
       # @param [String] event_source_url
@@ -92,6 +100,8 @@ module FacebookAds
       # @param String action_source
       # @param [String] advanced_measurement_table
       # @param [String] messaging_channel
+      # @param [FacebookAds::ServerSide::OriginalEventData] original_event_data
+      # @param [FacebookAds::ServerSide::AttributionData] attribution_data
       def initialize(event_name: nil,
                      event_time: nil,
                      event_source_url: nil,
@@ -105,7 +115,9 @@ module FacebookAds
                      data_processing_options_state: nil,
                      action_source: nil,
                      advanced_measurement_table: nil,
-                     messaging_channel: nil
+                     messaging_channel: nil,
+                     original_event_data: nil,
+                     attribution_data: nil
                      )
 
         unless event_name.nil?
@@ -149,6 +161,12 @@ module FacebookAds
         end
         unless messaging_channel.nil?
           self.messaging_channel = messaging_channel
+        end
+        unless original_event_data.nil?
+          self.original_event_data = original_event_data
+        end
+        unless attribution_data.nil?
+          self.attribution_data = attribution_data
         end
       end
 
@@ -215,6 +233,14 @@ module FacebookAds
         if attributes.has_key?(:'messaging_channel')
           self.messaging_channel = attributes[:'messaging_channel']
         end
+
+        if attributes.has_key?(:'original_event_data')
+          self.original_event_data = attributes[:'original_event_data']
+        end
+
+        if attributes.has_key?(:'attribution_data')
+          self.attribution_data = attributes[:'attribution_data']
+        end
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
@@ -261,8 +287,10 @@ module FacebookAds
             data_processing_options_country == o.data_processing_options_country &&
             data_processing_options_state == o.data_processing_options_state &&
             action_source == o.action_source &&
-            advanced_measurement_table == o.advanced_measurement_table
-            messaging_channel == o.messaging_channel
+            advanced_measurement_table == o.advanced_measurement_table &&
+            messaging_channel == o.messaging_channel &&
+            original_event_data == o.original_event_data &&
+            attribution_data == o.attribution_data
       end
 
       # @see the `==` method
@@ -276,7 +304,7 @@ module FacebookAds
         [
           event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, app_data,
           data_processing_options, data_processing_options_country, data_processing_options_state,
-          action_source, advanced_measurement_table, messaging_channel,
+          action_source, advanced_measurement_table, messaging_channel, original_event_data, attribution_data
         ].hash
       end
 
@@ -323,6 +351,12 @@ module FacebookAds
         end
         unless messaging_channel.nil?
           hash['messaging_channel'] = messaging_channel
+        end
+        unless original_event_data.nil?
+          hash['original_event_data'] = original_event_data
+        end
+        unless attribution_data.nil?
+          hash['attribution_data'] = attribution_data
         end
         hash.to_s
       end
@@ -375,6 +409,12 @@ module FacebookAds
         end
         unless messaging_channel.nil?
           hash['messaging_channel'] = messaging_channel
+        end
+        unless original_event_data.nil?
+          hash['original_event_data'] = original_event_data
+        end
+        unless attribution_data.nil?
+          hash['attribution_data'] = attribution_data
         end
         hash
       end
