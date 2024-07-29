@@ -3,7 +3,7 @@ PATH
   specs:
     facebookbusiness (20.0.0)
       concurrent-ruby (~> 1.1)
-      countries (>= 3, < 6)
+      countries (>= 3, < 7)
       faraday (~> 2.6)
       faraday-multipart (~> 1.0.4)
       json (~> 2.6)
@@ -84,6 +84,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
