@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -40,6 +28,7 @@ module FacebookAds
     field :adgroup_id, 'string'
     field :age_max, 'int'
     field :age_min, 'int'
+    field :age_range, { list: 'int' }
     field :alternate_auto_targeting_option, 'string'
     field :app_install_state, 'string'
     field :audience_network_positions, { list: 'string' }
@@ -117,7 +106,9 @@ module FacebookAds
     field :regions, { list: 'IdName' }
     field :relationship_statuses, { list: 'int' }
     field :site_category, { list: 'string' }
+    field :targeting_automation, 'TargetingAutomation'
     field :targeting_optimization, 'string'
+    field :targeting_relaxation_types, 'TargetingRelaxation'
     field :user_adclusters, { list: 'IdName' }
     field :user_device, { list: 'string' }
     field :user_event, { list: 'int' }

@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -29,20 +17,23 @@ module FacebookAds
     DEFAULT_OBJECTIVE_FOR_USER = [
       "APP_INSTALLS",
       "BRAND_AWARENESS",
-      "CANVAS_APP_ENGAGEMENT",
-      "CANVAS_APP_INSTALLS",
       "EVENT_RESPONSES",
       "LEAD_GENERATION",
       "LINK_CLICKS",
       "LOCAL_AWARENESS",
       "MESSAGES",
-      "MOBILE_APP_ENGAGEMENT",
-      "MOBILE_APP_INSTALLS",
-      "NONE",
       "OFFER_CLAIMS",
+      "OUTCOME_APP_PROMOTION",
+      "OUTCOME_AWARENESS",
+      "OUTCOME_ENGAGEMENT",
+      "OUTCOME_LEADS",
+      "OUTCOME_SALES",
+      "OUTCOME_TRAFFIC",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",
+      "REACH",
+      "STORE_VISITS",
       "VIDEO_VIEWS",
       "WEBSITE_CONVERSIONS",
     ]
@@ -50,20 +41,23 @@ module FacebookAds
     OBJECTIVE_FOR_LEVEL = [
       "APP_INSTALLS",
       "BRAND_AWARENESS",
-      "CANVAS_APP_ENGAGEMENT",
-      "CANVAS_APP_INSTALLS",
       "EVENT_RESPONSES",
       "LEAD_GENERATION",
       "LINK_CLICKS",
       "LOCAL_AWARENESS",
       "MESSAGES",
-      "MOBILE_APP_ENGAGEMENT",
-      "MOBILE_APP_INSTALLS",
-      "NONE",
       "OFFER_CLAIMS",
+      "OUTCOME_APP_PROMOTION",
+      "OUTCOME_AWARENESS",
+      "OUTCOME_ENGAGEMENT",
+      "OUTCOME_LEADS",
+      "OUTCOME_SALES",
+      "OUTCOME_TRAFFIC",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",
+      "REACH",
+      "STORE_VISITS",
       "VIDEO_VIEWS",
       "WEBSITE_CONVERSIONS",
     ]

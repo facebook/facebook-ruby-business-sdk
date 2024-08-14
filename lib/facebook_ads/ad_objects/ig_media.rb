@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -27,8 +15,10 @@ module FacebookAds
 
   class IgMedia < AdObject
 
+    field :boost_eligibility_info, 'IgMediaBoostEligibilityInfo'
     field :caption, 'string'
     field :comments_count, 'int'
+    field :copyright_check_information, 'IgVideoCopyrightCheckMatchesInformation'
     field :id, 'string'
     field :ig_id, 'string'
     field :is_comment_enabled, 'bool'
@@ -45,8 +35,24 @@ module FacebookAds
     field :username, 'string'
     has_no_delete
 
+    has_edge :boost_ads_list do |edge|
+      edge.get 'IgBoostMediaAd'
+    end
+
+    has_edge :branded_content_partner_promote do |edge|
+      edge.get 'BrandedContentShadowIgUserId'
+      edge.post 'BrandedContentShadowIgUserId' do |api|
+        api.has_param :permission, 'bool'
+        api.has_param :sponsor_id, 'int'
+      end
+    end
+
     has_edge :children do |edge|
       edge.get 'IgMedia'
+    end
+
+    has_edge :collaborators do |edge|
+      edge.get 'ShadowIgMediaCollaborators'
     end
 
     has_edge :comments do |edge|
@@ -58,6 +64,7 @@ module FacebookAds
 
     has_edge :insights do |edge|
       edge.get 'InstagramInsightsResult' do |api|
+        api.has_param :breakdown, { list: { enum: -> { InstagramInsightsResult::BREAKDOWN }} }
         api.has_param :metric, { list: { enum: -> { InstagramInsightsResult::METRIC }} }
         api.has_param :period, { list: { enum: -> { InstagramInsightsResult::PERIOD }} }
       end

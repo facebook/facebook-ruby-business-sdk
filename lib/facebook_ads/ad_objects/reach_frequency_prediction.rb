@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -77,7 +65,7 @@ module FacebookAds
     field :curve_reach, { list: 'int' }
     field :daily_grp_curve, { list: 'double' }
     field :daily_impression_curve, { list: 'double' }
-    field :daily_impression_curve_map, 'map<unsigned int, list<float>>'
+    field :daily_impression_curve_map, { list: 'map<unsigned int, list<float>>' }
     field :day_parting_schedule, { list: 'ReachFrequencyDayPart' }
     field :destination_id, 'string'
     field :end_time, 'datetime'
@@ -93,8 +81,8 @@ module FacebookAds
     field :external_reach, 'int'
     field :feed_ratio_0000, 'int'
     field :frequency_cap, 'int'
-    field :frequency_distribution_map, 'map<unsigned int, list<float>>'
-    field :frequency_distribution_map_agg, 'map<unsigned int, list<unsigned int>>'
+    field :frequency_distribution_map, { list: 'map<unsigned int, list<float>>' }
+    field :frequency_distribution_map_agg, { list: 'map<unsigned int, list<unsigned int>>' }
     field :grp_audience_size, 'double'
     field :grp_avg_probability_map, 'string'
     field :grp_country_audience_size, 'double'
@@ -127,7 +115,7 @@ module FacebookAds
     field :optimization_goal_name, 'string'
     field :pause_periods, { list: 'object' }
     field :placement_breakdown, 'ReachFrequencyEstimatesPlacementBreakdown'
-    field :placement_breakdown_map, 'map<unsigned int, ReachFrequencyEstimatesPlacementBreakdown>'
+    field :placement_breakdown_map, { list: 'map<unsigned int, ReachFrequencyEstimatesPlacementBreakdown>' }
     field :plan_name, 'string'
     field :plan_type, 'string'
     field :prediction_mode, 'int'
@@ -154,6 +142,7 @@ module FacebookAds
     field :existing_campaign_id, 'string'
     field :grp_buying, 'bool'
     field :impression, 'int'
+    field :is_balanced_frequency, 'bool'
     field :is_full_view, 'bool'
     field :is_reach_and_frequency_io_buying, 'bool'
     field :num_curve_points, 'int'
@@ -162,6 +151,8 @@ module FacebookAds
     field :rf_prediction_id_to_release, 'string'
     field :rf_prediction_id_to_share, 'string'
     field :stop_time, 'int'
+    field :target_frequency, 'int'
+    field :target_frequency_reset_period, 'int'
     has_no_post
     has_no_delete
 

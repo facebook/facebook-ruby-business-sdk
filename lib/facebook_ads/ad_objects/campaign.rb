@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -30,6 +18,7 @@ module FacebookAds
       "COST_CAP",
       "LOWEST_COST_WITHOUT_CAP",
       "LOWEST_COST_WITH_BID_CAP",
+      "LOWEST_COST_WITH_MIN_ROAS",
     ]
 
     CONFIGURED_STATUS = [
@@ -93,6 +82,12 @@ module FacebookAds
       "LOCAL_AWARENESS",
       "MESSAGES",
       "OFFER_CLAIMS",
+      "OUTCOME_APP_PROMOTION",
+      "OUTCOME_AWARENESS",
+      "OUTCOME_ENGAGEMENT",
+      "OUTCOME_LEADS",
+      "OUTCOME_SALES",
+      "OUTCOME_TRAFFIC",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
       "PRODUCT_CATALOG_SALES",
@@ -391,8 +386,6 @@ module FacebookAds
 
 
     field :account_id, 'string'
-    field :ad_strategy_group_id, 'string'
-    field :ad_strategy_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :boosted_object_id, 'string'
@@ -400,13 +393,16 @@ module FacebookAds
     field :budget_rebalance_flag, 'bool'
     field :budget_remaining, 'string'
     field :buying_type, 'string'
+    field :campaign_group_active_time, 'string'
     field :can_create_brand_lift_study, 'bool'
     field :can_use_spend_cap, 'bool'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
     field :created_time, 'datetime'
     field :daily_budget, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
+    field :has_secondary_skadnetwork_reporting, 'bool'
     field :id, 'string'
+    field :is_budget_schedule_enabled, 'bool'
     field :is_skadnetwork_attribution, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :last_budget_toggling_time, 'datetime'
@@ -414,6 +410,7 @@ module FacebookAds
     field :name, 'string'
     field :objective, 'string'
     field :pacing_type, { list: 'string' }
+    field :primary_attribution, 'string'
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
     field :smart_promotion_type, 'string'
@@ -431,7 +428,6 @@ module FacebookAds
     field :adbatch, { list: 'object' }
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
     field :iterative_split_test_configs, { list: 'object' }
-    field :upstream_events, 'hash'
 
     has_edge :ad_studies do |edge|
       edge.get 'AdStudy'
@@ -454,7 +450,7 @@ module FacebookAds
       edge.get 'Ad' do |api|
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :time_range, 'object'
+        api.has_param :time_range, 'hash'
         api.has_param :updated_since, 'int'
       end
     end
@@ -464,18 +460,16 @@ module FacebookAds
         api.has_param :date_preset, { enum: -> { AdSet::DATE_PRESET }}
         api.has_param :effective_status, { list: { enum: -> { AdSet::EFFECTIVE_STATUS }} }
         api.has_param :is_completed, 'bool'
-        api.has_param :time_range, 'object'
+        api.has_param :time_range, 'hash'
       end
     end
 
-    has_edge :content_delivery_report do |edge|
-      edge.get 'ContentDeliveryReport' do |api|
-        api.has_param :end_date, 'datetime'
-        api.has_param :page_id, 'int'
-        api.has_param :platform, { enum: -> { ContentDeliveryReport::PLATFORM }}
-        api.has_param :position, { enum: -> { ContentDeliveryReport::POSITION }}
-        api.has_param :start_date, 'datetime'
-        api.has_param :summary, 'bool'
+    has_edge :budget_schedules do |edge|
+      edge.post 'HighDemandPeriod' do |api|
+        api.has_param :budget_value, 'int'
+        api.has_param :budget_value_type, { enum: -> { HighDemandPeriod::BUDGET_VALUE_TYPE }}
+        api.has_param :time_end, 'int'
+        api.has_param :time_start, 'int'
       end
     end
 
@@ -484,7 +478,7 @@ module FacebookAds
         api.has_param :date_preset, { enum: -> { Campaign::DATE_PRESET }}
         api.has_param :effective_status, { list: { enum: -> { Campaign::EFFECTIVE_STATUS }} }
         api.has_param :is_completed, 'bool'
-        api.has_param :time_range, 'object'
+        api.has_param :time_range, 'hash'
       end
       edge.post 'Campaign' do |api|
         api.has_param :deep_copy, 'bool'
@@ -514,8 +508,8 @@ module FacebookAds
         api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
-        api.has_param :time_range, 'object'
-        api.has_param :time_ranges, { list: 'object' }
+        api.has_param :time_range, 'hash'
+        api.has_param :time_ranges, { list: 'hash' }
         api.has_param :use_account_attribution_setting, 'bool'
         api.has_param :use_unified_attribution_setting, 'bool'
       end
@@ -537,8 +531,8 @@ module FacebookAds
         api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
-        api.has_param :time_range, 'object'
-        api.has_param :time_ranges, { list: 'object' }
+        api.has_param :time_range, 'hash'
+        api.has_param :time_ranges, { list: 'hash' }
         api.has_param :use_account_attribution_setting, 'bool'
         api.has_param :use_unified_attribution_setting, 'bool'
       end

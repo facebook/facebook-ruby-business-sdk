@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -26,58 +14,6 @@ module FacebookAds
   # pull request for this class.
 
   class ContentDeliveryReport < AdObject
-    PLATFORM = [
-      "AUDIENCE_NETWORK",
-      "FACEBOOK",
-      "HIDDEN_AAA",
-      "INSTAGRAM",
-      "MESSENGER",
-      "OCULUS",
-      "UNKNOWN",
-      "WHATSAPP",
-    ]
-
-    POSITION = [
-      "ALL_PLACEMENTS",
-      "AN_CLASSIC",
-      "BIZ_DISCO_FEED",
-      "FACEBOOK_GROUPS_FEED",
-      "FACEBOOK_REELS",
-      "FACEBOOK_REELS_OVERLAY",
-      "FACEBOOK_STORIES",
-      "FEED",
-      "GROUPS",
-      "HIDDEN_AAA",
-      "INSTAGRAM_EXPLORE",
-      "INSTAGRAM_IGTV",
-      "INSTAGRAM_REELS",
-      "INSTAGRAM_REELS_OVERLAY",
-      "INSTAGRAM_SHOP",
-      "INSTAGRAM_STORIES",
-      "INSTANT_ARTICLE",
-      "INSTREAM_VIDEO",
-      "JOBS_BROWSER",
-      "MARKETPLACE",
-      "MESSENGER_INBOX",
-      "MESSENGER_STORIES",
-      "OCULUS_REWARDED_VIDEO",
-      "OCULUS_TWILIGHT_DEVELOPER_UPDATE",
-      "OCULUS_TWILIGHT_FEED",
-      "OCULUS_TWILIGHT_FEED_SPOTLIGHT",
-      "OCULUS_TWILIGHT_SEARCH",
-      "OCULUS_TWILIGHT_SEARCH_NULL_STATE",
-      "OCULUS_VR_APPS",
-      "OTHERS",
-      "REWARDED_VIDEO",
-      "RIGHT_HAND_COLUMN",
-      "SEARCH",
-      "STATUS",
-      "STICKERS",
-      "SUGGESTED_VIDEO",
-      "UNKNOWN",
-      "VIDEO_FEEDS",
-    ]
-
 
     field :content_name, 'string'
     field :content_url, 'string'

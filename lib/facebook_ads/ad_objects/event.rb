@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -27,31 +15,28 @@ module FacebookAds
 
   class Event < AdObject
     CATEGORY = [
-      "ART_EVENT",
-      "BOOK_EVENT",
-      "CLASS_EVENT",
-      "COMEDY_EVENT",
-      "CONFERENCE_EVENT",
-      "DANCE_EVENT",
-      "DINING_EVENT",
-      "FAMILY_EVENT",
-      "FESTIVAL_EVENT",
-      "FITNESS",
-      "FOOD_TASTING",
-      "FUNDRAISER",
-      "LECTURE",
-      "MEETUP",
-      "MOVIE_EVENT",
-      "MUSIC_EVENT",
-      "NEIGHBORHOOD",
-      "NIGHTLIFE",
-      "OTHER",
-      "RELIGIOUS_EVENT",
-      "SHOPPING",
-      "SPORTS_EVENT",
-      "THEATER_EVENT",
-      "VOLUNTEERING",
-      "WORKSHOP",
+      "CLASSIC_LITERATURE",
+      "COMEDY",
+      "CRAFTS",
+      "DANCE",
+      "DRINKS",
+      "FITNESS_AND_WORKOUTS",
+      "FOODS",
+      "GAMES",
+      "GARDENING",
+      "HEALTHY_LIVING_AND_SELF_CARE",
+      "HEALTH_AND_MEDICAL",
+      "HOME_AND_GARDEN",
+      "MUSIC_AND_AUDIO",
+      "PARTIES",
+      "PROFESSIONAL_NETWORKING",
+      "RELIGIONS",
+      "SHOPPING_EVENT",
+      "SOCIAL_ISSUES",
+      "SPORTS",
+      "THEATER",
+      "TV_AND_MOVIES",
+      "VISUAL_ARTS",
     ]
 
     ONLINE_EVENT_FORMAT = [
@@ -109,9 +94,10 @@ module FacebookAds
     field :owner, 'object'
     field :parent_group, 'Group'
     field :place, 'Place'
+    field :registration_setting, 'EventRegistrationSetting'
     field :scheduled_publish_time, 'string'
     field :start_time, 'string'
-    field :ticket_setting, 'object'
+    field :ticket_setting, 'EventTicketSetting'
     field :ticket_uri, 'string'
     field :ticket_uri_start_sales_time, 'string'
     field :ticketing_privacy_uri, 'string'
@@ -143,7 +129,6 @@ module FacebookAds
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
@@ -174,7 +159,7 @@ module FacebookAds
     end
 
     has_edge :ticket_tiers do |edge|
-      edge.get
+      edge.get 'EventTicketTier'
     end
 
     has_edge :videos do |edge|

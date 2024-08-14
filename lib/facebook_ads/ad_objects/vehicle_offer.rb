@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -35,12 +23,18 @@ module FacebookAds
       "PARTIAL_FETCH",
     ]
 
+    VISIBILITY = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
 
     field :amount_currency, 'string'
     field :amount_percentage, 'double'
     field :amount_price, 'string'
     field :amount_qualifier, 'string'
     field :applinks, 'CatalogItemAppLinks'
+    field :availability, 'string'
     field :body_style, 'string'
     field :cashback_currency, 'string'
     field :cashback_price, 'string'
@@ -50,11 +44,17 @@ module FacebookAds
     field :downpayment_currency, 'string'
     field :downpayment_price, 'string'
     field :downpayment_qualifier, 'string'
+    field :drivetrain, 'string'
     field :end_date, 'string'
     field :end_time, 'int'
+    field :exterior_color, 'string'
+    field :fuel_type, 'string'
+    field :generation, 'string'
     field :id, 'string'
     field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
+    field :interior_color, 'string'
+    field :interior_upholstery, 'string'
     field :make, 'string'
     field :model, 'string'
     field :offer_description, 'string'
@@ -67,16 +67,18 @@ module FacebookAds
     field :term_length, 'int'
     field :term_qualifier, 'string'
     field :title, 'string'
+    field :transmission, 'string'
     field :trim, 'string'
     field :unit_price, 'object'
     field :url, 'string'
     field :vehicle_offer_id, 'string'
+    field :visibility, { enum: -> { VISIBILITY }}
     field :year, 'int'
     has_no_post
     has_no_delete
 
     has_edge :augmented_realities_metadata do |edge|
-      edge.get
+      edge.get 'DynamicArMetadata'
     end
 
     has_edge :channels_to_integrity_status do |edge|
@@ -84,7 +86,7 @@ module FacebookAds
     end
 
     has_edge :videos_metadata do |edge|
-      edge.get
+      edge.get 'DynamicVideoMetadata'
     end
 
   end

@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -26,14 +14,31 @@ module FacebookAds
   # pull request for this class.
 
   class PagePostExperiment < AdObject
+    OPTIMIZATION_GOAL = [
+      "AUTO_RESOLVE_TO_CONTROL",
+      "AVG_TIME_WATCHED",
+      "COMMENTS",
+      "IMPRESSIONS",
+      "IMPRESSIONS_UNIQUE",
+      "LINK_CLICKS",
+      "OTHER",
+      "REACTIONS",
+      "REELS_PLAYS",
+      "SHARES",
+      "VIDEO_VIEWS_60S",
+    ]
+
 
     field :auto_resolve_settings, 'object'
+    field :control_video_id, 'string'
     field :creation_time, 'datetime'
     field :creator, 'User'
     field :declared_winning_time, 'datetime'
+    field :declared_winning_video_id, 'string'
     field :description, 'string'
+    field :experiment_video_ids, { list: 'string' }
     field :id, 'string'
-    field :insight_snapshots, 'map<datetime, map<int, Object>>'
+    field :insight_snapshots, { list: 'map<datetime, list<map<int, Object>>>' }
     field :name, 'string'
     field :optimization_goal, 'string'
     field :publish_status, 'string'
@@ -41,7 +46,10 @@ module FacebookAds
     field :scheduled_experiment_timestamp, 'datetime'
     field :updated_time, 'datetime'
     has_no_post
-    has_no_delete
+
+    has_edge :video_insights do |edge|
+      edge.get
+    end
 
   end
 end

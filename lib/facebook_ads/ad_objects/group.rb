@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -33,56 +21,24 @@ module FacebookAds
     ]
 
     POST_PERMISSIONS = [
-      "0",
-      "1",
-      "2",
+      "ADMIN_ONLY",
+      "ANYONE",
+      "NONE",
     ]
 
     PURPOSE = [
-      "BOOKS",
       "CASUAL",
-      "CLOSE_FRIENDS",
-      "CLUB",
-      "COUPLE",
       "COWORKERS",
       "CUSTOM",
-      "DEALS",
-      "EPHEMERAL",
-      "EVENT_PLANNING",
-      "FAMILY",
-      "FANDOM_RADAR",
-      "FANTASY_LEAGUE",
-      "FITNESS",
       "FOR_SALE",
       "FOR_WORK",
-      "FRATERNITY",
       "GAME",
       "HEALTH_SUPPORT",
-      "HIGH_SCHOOL_FORUM",
       "JOBS",
       "LEARNING",
-      "MENTORSHIP",
-      "MUSIC_CASA_BUNDLE",
-      "NEIGHBORS",
       "NONE",
-      "OCULUS",
       "PARENTING",
-      "PARENTS",
-      "PROJECT",
-      "REAL_WORLD",
-      "REAL_WORLD_AT_WORK",
-      "RESTYLE",
-      "SCHOOL_CLASS",
-      "SORORITY",
-      "SPORTS",
-      "SPORTS_ACTIVITY",
       "STREAMER",
-      "STUDY_GROUP",
-      "SUPPORT",
-      "TEAMMATES",
-      "THEME",
-      "TOGETHER_VR",
-      "TRAVEL_PLANNING",
       "WORK_ANNOUNCEMENT",
       "WORK_DEMO_GROUP",
       "WORK_DISCUSSION",
@@ -90,65 +46,30 @@ module FacebookAds
       "WORK_FEEDBACK",
       "WORK_FOR_SALE",
       "WORK_GARDEN",
-      "WORK_GUEST_GROUP",
       "WORK_INTEGRITY",
       "WORK_LEARNING",
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
       "WORK_RECRUITING",
-      "WORK_RESUME_REVIEW",
       "WORK_SOCIAL",
       "WORK_STAGES",
       "WORK_TEAM",
       "WORK_TEAMWORK",
-      "WORK_VC_CALL",
     ]
 
     GROUP_TYPE = [
-      "BOOKS",
       "CASUAL",
-      "CLOSE_FRIENDS",
-      "CLUB",
-      "COUPLE",
       "COWORKERS",
       "CUSTOM",
-      "DEALS",
-      "EPHEMERAL",
-      "EVENT_PLANNING",
-      "FAMILY",
-      "FANDOM_RADAR",
-      "FANTASY_LEAGUE",
-      "FITNESS",
       "FOR_SALE",
       "FOR_WORK",
-      "FRATERNITY",
       "GAME",
       "HEALTH_SUPPORT",
-      "HIGH_SCHOOL_FORUM",
       "JOBS",
       "LEARNING",
-      "MENTORSHIP",
-      "MUSIC_CASA_BUNDLE",
-      "NEIGHBORS",
       "NONE",
-      "OCULUS",
       "PARENTING",
-      "PARENTS",
-      "PROJECT",
-      "REAL_WORLD",
-      "REAL_WORLD_AT_WORK",
-      "RESTYLE",
-      "SCHOOL_CLASS",
-      "SORORITY",
-      "SPORTS",
-      "SPORTS_ACTIVITY",
       "STREAMER",
-      "STUDY_GROUP",
-      "SUPPORT",
-      "TEAMMATES",
-      "THEME",
-      "TOGETHER_VR",
-      "TRAVEL_PLANNING",
       "WORK_ANNOUNCEMENT",
       "WORK_DEMO_GROUP",
       "WORK_DISCUSSION",
@@ -156,18 +77,15 @@ module FacebookAds
       "WORK_FEEDBACK",
       "WORK_FOR_SALE",
       "WORK_GARDEN",
-      "WORK_GUEST_GROUP",
       "WORK_INTEGRITY",
       "WORK_LEARNING",
       "WORK_MENTORSHIP",
       "WORK_MULTI_COMPANY",
       "WORK_RECRUITING",
-      "WORK_RESUME_REVIEW",
       "WORK_SOCIAL",
       "WORK_STAGES",
       "WORK_TEAM",
       "WORK_TEAMWORK",
-      "WORK_VC_CALL",
     ]
 
 
@@ -213,15 +131,9 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :place, 'object'
         api.has_param :privacy, 'string'
+        api.has_param :session_id, 'string'
         api.has_param :tags, { list: 'int' }
         api.has_param :visible, 'string'
-      end
-    end
-
-    has_edge :attachment_surfaces do |edge|
-      edge.get
-      edge.post do |api|
-        api.has_param :title, 'hash'
       end
     end
 
@@ -231,15 +143,6 @@ module FacebookAds
 
     has_edge :events do |edge|
       edge.get 'Event'
-    end
-
-    has_edge :featured_cards do |edge|
-      edge.get
-      edge.post do |api|
-        api.has_param :body, 'hash'
-        api.has_param :description, 'hash'
-        api.has_param :title, 'hash'
-      end
     end
 
     has_edge :feed do |edge|
@@ -253,7 +156,6 @@ module FacebookAds
       end
       edge.post 'Post' do |api|
         api.has_param :actions, 'object'
-        api.has_param :adaptive_type, 'string'
         api.has_param :album_id, 'string'
         api.has_param :android_key_hash, 'string'
         api.has_param :animated_effect_id, 'int'
@@ -266,9 +168,10 @@ module FacebookAds
         api.has_param :audience_exp, 'bool'
         api.has_param :backdated_time, 'datetime'
         api.has_param :backdated_time_granularity, { enum: -> { Post::BACKDATED_TIME_GRANULARITY }}
+        api.has_param :breaking_news, 'bool'
+        api.has_param :breaking_news_expiration, 'int'
         api.has_param :call_to_action, 'object'
         api.has_param :caption, 'string'
-        api.has_param :checkin_entry_point, { enum: -> { Post::CHECKIN_ENTRY_POINT }}
         api.has_param :child_attachments, { list: 'object' }
         api.has_param :client_mutation_id, 'string'
         api.has_param :composer_entry_picker, 'string'
@@ -291,7 +194,6 @@ module FacebookAds
         api.has_param :formatting, { enum: -> { Post::FORMATTING }}
         api.has_param :fun_fact_prompt_id, 'int'
         api.has_param :fun_fact_toastee_id, 'int'
-        api.has_param :has_nickname, 'bool'
         api.has_param :height, 'int'
         api.has_param :holiday_card, 'string'
         api.has_param :home_checkin_city_id, 'object'
@@ -338,7 +240,6 @@ module FacebookAds
         api.has_param :publish_event_id, 'int'
         api.has_param :published, 'bool'
         api.has_param :quote, 'string'
-        api.has_param :react_mode_metadata, 'string'
         api.has_param :ref, { list: 'string' }
         api.has_param :referenceable_image_ids, { list: 'string' }
         api.has_param :referral_id, 'string'
@@ -375,11 +276,11 @@ module FacebookAds
       edge.post 'Group' do |api|
         api.has_param :admin, 'int'
         api.has_param :description, 'string'
-        api.has_param :group_icon_id, 'object'
+        api.has_param :group_icon_id, 'string'
         api.has_param :group_type, { enum: -> { Group::GROUP_TYPE }}
         api.has_param :join_setting, { enum: -> { Group::JOIN_SETTING }}
         api.has_param :name, 'string'
-        api.has_param :parent_id, 'object'
+        api.has_param :parent_id, 'string'
         api.has_param :post_permissions, { enum: -> { Group::POST_PERMISSIONS }}
         api.has_param :post_requires_admin_approval, 'bool'
         api.has_param :privacy, 'string'
@@ -403,7 +304,6 @@ module FacebookAds
         api.has_param :is_audio_only, 'bool'
         api.has_param :is_spherical, 'bool'
         api.has_param :original_fov, 'int'
-        api.has_param :planned_start_time, 'int'
         api.has_param :privacy, 'string'
         api.has_param :projection, { enum: -> { LiveVideo::PROJECTION }}
         api.has_param :published, 'bool'
@@ -475,7 +375,6 @@ module FacebookAds
         api.has_param :proxied_app_id, 'string'
         api.has_param :published, 'bool'
         api.has_param :qn, 'string'
-        api.has_param :scheduled_publish_time, 'int'
         api.has_param :spherical_metadata, 'hash'
         api.has_param :sponsor_id, 'string'
         api.has_param :sponsor_relationship, 'int'
@@ -493,18 +392,10 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
-        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
         api.has_param :width, 'int'
-      end
-    end
-
-    has_edge :shift_settings do |edge|
-      edge.post do |api|
-        api.has_param :external_id, 'string'
-        api.has_param :shift_feature_setting, { enum: %w{ALL_FEATURES_OFF ALL_FEATURES_ON SHIFT_COVER_ONLY_ON SHIFT_VIEWER_ONLY_ON }}
       end
     end
 
@@ -513,7 +404,6 @@ module FacebookAds
         api.has_param :type, { enum: -> { AdVideo::TYPE }}
       end
       edge.post 'AdVideo' do |api|
-        api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
@@ -542,7 +432,6 @@ module FacebookAds
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :guide_enabled, 'bool'
-        api.has_param :has_nickname, 'bool'
         api.has_param :holiday_card, 'string'
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'
@@ -563,7 +452,6 @@ module FacebookAds
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
         api.has_param :publish_event_id, 'int'
         api.has_param :published, 'bool'
-        api.has_param :react_mode_metadata, 'string'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
         api.has_param :scheduled_publish_time, 'int'

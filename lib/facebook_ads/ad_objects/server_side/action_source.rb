@@ -41,6 +41,9 @@ module FacebookAds
 			# Conversion happened automatically, for example, a subscription renewal that's set on auto-pay each month.
 			'system_generated',
 
+			# Conversion happened through a business messaging channel, such as WhatsApp or Instagram Direct.
+			'business_messaging',
+
 			# Conversion happened in a way that is not listed.
 			'other'
 		]

@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -27,32 +15,20 @@ module FacebookAds
 
   class CommerceMerchantSettings < AdObject
 
-    field :braintree_merchant_id, 'string'
     field :checkout_message, 'string'
-    field :commerce_store, 'object'
     field :contact_email, 'string'
     field :cta, 'string'
-    field :disable_checkout_urls, 'bool'
     field :display_name, 'string'
-    field :external_merchant_id, 'string'
     field :facebook_channel, 'object'
-    field :feature_eligibility, 'object'
-    field :has_discount_code, 'bool'
-    field :has_onsite_intent, 'bool'
     field :id, 'string'
     field :instagram_channel, 'object'
-    field :merchant_alert_email, 'string'
     field :merchant_page, 'Profile'
     field :merchant_status, 'string'
     field :onsite_commerce_merchant, 'object'
     field :payment_provider, 'string'
-    field :privacy_url_by_locale, 'hash'
     field :review_rejection_messages, { list: 'string' }
     field :review_rejection_reasons, { list: 'string' }
-    field :supported_card_types, { list: 'string' }
     field :terms, 'string'
-    field :terms_url_by_locale, 'hash'
-    field :whatsapp_channel, 'object'
     has_no_post
     has_no_delete
 
@@ -129,13 +105,6 @@ module FacebookAds
 
     has_edge :tax_settings do |edge|
       edge.get
-    end
-
-    has_edge :whatsapp_channel do |edge|
-      edge.post do |api|
-        api.has_param :op, { enum: %w{ADD REMOVE }}
-        api.has_param :whatsapp_business_accounts, { list: 'string' }
-      end
     end
 
   end

@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -59,6 +47,7 @@ module FacebookAds
 
     field :buyer_details, 'object'
     field :channel, 'string'
+    field :contains_bopis_items, 'bool'
     field :created, 'string'
     field :estimated_payment_details, 'object'
     field :id, 'string'
@@ -77,7 +66,6 @@ module FacebookAds
       edge.post 'CommerceOrder' do |api|
         api.has_param :idempotency_key, 'string'
         api.has_param :merchant_order_reference, 'string'
-        api.has_param :return_error_response, 'bool'
       end
     end
 
@@ -91,10 +79,10 @@ module FacebookAds
       end
     end
 
-    has_edge :fulfill_order do |edge|
+    has_edge :item_updates do |edge|
       edge.post 'CommerceOrder' do |api|
-        api.has_param :idempotency_key, 'string'
         api.has_param :items, { list: 'hash' }
+        api.has_param :merchant_order_reference, 'string'
       end
     end
 
@@ -117,6 +105,7 @@ module FacebookAds
     has_edge :refunds do |edge|
       edge.get
       edge.post 'CommerceOrder' do |api|
+        api.has_param :adjustment_amount, 'hash'
         api.has_param :deductions, { list: 'hash' }
         api.has_param :idempotency_key, 'string'
         api.has_param :items, { list: 'hash' }
@@ -163,6 +152,16 @@ module FacebookAds
         api.has_param :idempotency_key, 'string'
         api.has_param :shipment_id, 'string'
         api.has_param :tracking_info, 'hash'
+      end
+    end
+
+    has_edge :updates do |edge|
+      edge.post 'CommerceOrder' do |api|
+        api.has_param :cancel_amount, 'hash'
+        api.has_param :fulfill_amount, 'hash'
+        api.has_param :merchant_order_reference, 'string'
+        api.has_param :refund_amount, 'hash'
+        api.has_param :total_amount, 'hash'
       end
     end
 

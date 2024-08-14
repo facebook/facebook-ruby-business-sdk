@@ -18,6 +18,9 @@
 
 require_relative './user_data'
 require_relative './custom_data'
+require_relative './app_data'
+require_relative './original_event_data'
+require_relative './attribution_data'
 
 module FacebookAds
   module ServerSide
@@ -52,6 +55,9 @@ module FacebookAds
       # An Object that includes additional business data about the event.
       attr_accessor :custom_data
 
+      # An Object that contains app data.
+      attr_accessor :app_data
+
       # Processing options you would like to enable for a specific event.
       # For more details see https://developers.facebook.com/docs/marketing-apis/data-processing-options
       attr_accessor :data_processing_options
@@ -67,6 +73,19 @@ module FacebookAds
       # Where the conversion occurred.
       attr_accessor :action_source
 
+      # Name of Advanced Measurement table.
+      # Only used for the Advanced Measurement API in the Advanced Analytics product
+      attr_accessor :advanced_measurement_table
+
+      # Messaging channel for the event
+      attr_accessor :messaging_channel
+
+      # Original event info
+      attr_accessor :original_event_data
+
+      # Attribution data info
+      attr_accessor :attribution_data
+
       # @param [String] event_name
       # @param [int] event_time
       # @param [String] event_source_url
@@ -74,10 +93,15 @@ module FacebookAds
       # @param [String] event_id
       # @param [FacebookAds::ServerSide::UserData] user_data
       # @param [FacebookAds::ServerSide::CustomData] custom_data
+      # @param [FacebookAds::ServerSide::AppData] app_data
       # @param [Array<String>] data_processing_options
       # @param [int] data_processing_options_country
       # @param [int] data_processing_options_state
       # @param String action_source
+      # @param [String] advanced_measurement_table
+      # @param [String] messaging_channel
+      # @param [FacebookAds::ServerSide::OriginalEventData] original_event_data
+      # @param [FacebookAds::ServerSide::AttributionData] attribution_data
       def initialize(event_name: nil,
                      event_time: nil,
                      event_source_url: nil,
@@ -85,10 +109,16 @@ module FacebookAds
                      event_id: nil,
                      user_data: nil,
                      custom_data: nil,
+                     app_data: nil,
                      data_processing_options: nil,
                      data_processing_options_country: nil,
                      data_processing_options_state: nil,
-                     action_source: nil)
+                     action_source: nil,
+                     advanced_measurement_table: nil,
+                     messaging_channel: nil,
+                     original_event_data: nil,
+                     attribution_data: nil
+                     )
 
         unless event_name.nil?
           self.event_name = event_name
@@ -111,6 +141,9 @@ module FacebookAds
         unless custom_data.nil?
           self.custom_data = custom_data
         end
+        unless app_data.nil?
+          self.app_data = app_data
+        end
         unless data_processing_options.nil?
           self.data_processing_options = data_processing_options
         end
@@ -122,6 +155,18 @@ module FacebookAds
         end
         unless action_source.nil?
           self.action_source = action_source
+        end
+        unless advanced_measurement_table.nil?
+          self.advanced_measurement_table = advanced_measurement_table
+        end
+        unless messaging_channel.nil?
+          self.messaging_channel = messaging_channel
+        end
+        unless original_event_data.nil?
+          self.original_event_data = original_event_data
+        end
+        unless attribution_data.nil?
+          self.attribution_data = attribution_data
         end
       end
 
@@ -161,6 +206,10 @@ module FacebookAds
           self.custom_data = attributes[:'custom_data']
         end
 
+        if attributes.has_key?(:'app_data')
+          self.app_data = attributes[:'app_data']
+        end
+
         if attributes.has_key?(:'data_processing_options')
           self.data_processing_options = attributes[:'data_processing_options']
         end
@@ -175,6 +224,22 @@ module FacebookAds
 
         if attributes.has_key?(:'action_source')
           self.action_source = attributes[:'action_source']
+        end
+
+        if attributes.has_key?(:'advanced_measurement_table')
+          self.advanced_measurement_table = attributes[:'advanced_measurement_table']
+        end
+
+        if attributes.has_key?(:'messaging_channel')
+          self.messaging_channel = attributes[:'messaging_channel']
+        end
+
+        if attributes.has_key?(:'original_event_data')
+          self.original_event_data = attributes[:'original_event_data']
+        end
+
+        if attributes.has_key?(:'attribution_data')
+          self.attribution_data = attributes[:'attribution_data']
         end
       end
 
@@ -217,10 +282,15 @@ module FacebookAds
             event_id == o.event_id &&
             user_data == o.user_data &&
             custom_data == o.custom_data &&
+            app_data == o.app_data &&
             data_processing_options == o.data_processing_options &&
             data_processing_options_country == o.data_processing_options_country &&
             data_processing_options_state == o.data_processing_options_state &&
-            action_source == o.action_source
+            action_source == o.action_source &&
+            advanced_measurement_table == o.advanced_measurement_table &&
+            messaging_channel == o.messaging_channel &&
+            original_event_data == o.original_event_data &&
+            attribution_data == o.attribution_data
       end
 
       # @see the `==` method
@@ -232,9 +302,9 @@ module FacebookAds
       # @return [Fixnum] Hash code
       def hash
         [
-          event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data,
+          event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, app_data,
           data_processing_options, data_processing_options_country, data_processing_options_state,
-          action_source,
+          action_source, advanced_measurement_table, messaging_channel, original_event_data, attribution_data
         ].hash
       end
 
@@ -261,6 +331,9 @@ module FacebookAds
         unless custom_data.nil?
           hash['custom_data'] = custom_data.to_s
         end
+        unless app_data.nil?
+          hash['app_data'] = app_data.to_s
+        end
         unless data_processing_options.nil?
           hash['data_processing_options'] = data_processing_options.to_s
         end
@@ -272,6 +345,18 @@ module FacebookAds
         end
         unless action_source.nil?
           hash['action_source'] = action_source
+        end
+        unless advanced_measurement_table.nil?
+          hash['advanced_measurement_table'] = advanced_measurement_table
+        end
+        unless messaging_channel.nil?
+          hash['messaging_channel'] = messaging_channel
+        end
+        unless original_event_data.nil?
+          hash['original_event_data'] = original_event_data
+        end
+        unless attribution_data.nil?
+          hash['attribution_data'] = attribution_data
         end
         hash.to_s
       end
@@ -301,6 +386,9 @@ module FacebookAds
         unless custom_data.nil?
           hash['custom_data'] = custom_data.normalize
         end
+        unless app_data.nil?
+          hash['app_data'] = app_data.normalize
+        end
         unless data_processing_options.nil?
           hash['data_processing_options'] = data_processing_options
         end
@@ -315,6 +403,18 @@ module FacebookAds
             action_source,
             'action_source'
           )
+        end
+        unless advanced_measurement_table.nil?
+          hash['advanced_measurement_table'] = advanced_measurement_table
+        end
+        unless messaging_channel.nil?
+          hash['messaging_channel'] = messaging_channel
+        end
+        unless original_event_data.nil?
+          hash['original_event_data'] = original_event_data
+        end
+        unless attribution_data.nil?
+          hash['attribution_data'] = attribution_data
         end
         hash
       end

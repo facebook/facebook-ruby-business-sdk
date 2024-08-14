@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -33,6 +21,9 @@ module FacebookAds
       "AUDIENCE_NETWORK_REWARDED_VIDEO",
       "BIZ_DISCO_FEED_MOBILE",
       "DESKTOP_FEED_STANDARD",
+      "FACEBOOK_PROFILE_FEED_DESKTOP",
+      "FACEBOOK_PROFILE_FEED_MOBILE",
+      "FACEBOOK_PROFILE_REELS_MOBILE",
       "FACEBOOK_REELS_BANNER",
       "FACEBOOK_REELS_BANNER_DESKTOP",
       "FACEBOOK_REELS_MOBILE",
@@ -45,18 +36,28 @@ module FacebookAds
       "INSTAGRAM_EXPLORE_IMMERSIVE",
       "INSTAGRAM_FEED_WEB",
       "INSTAGRAM_FEED_WEB_M_SITE",
+      "INSTAGRAM_LEAD_GEN_MULTI_SUBMIT_ADS",
       "INSTAGRAM_PROFILE_FEED",
+      "INSTAGRAM_PROFILE_REELS",
       "INSTAGRAM_REELS",
       "INSTAGRAM_REELS_OVERLAY",
-      "INSTAGRAM_SHOP",
+      "INSTAGRAM_SEARCH_CHAIN",
+      "INSTAGRAM_SEARCH_GRID",
       "INSTAGRAM_STANDARD",
       "INSTAGRAM_STORY",
+      "INSTAGRAM_STORY_EFFECT_TRAY",
+      "INSTAGRAM_STORY_WEB",
+      "INSTAGRAM_STORY_WEB_M_SITE",
       "INSTANT_ARTICLE_RECIRCULATION_AD",
       "INSTANT_ARTICLE_STANDARD",
       "INSTREAM_BANNER_DESKTOP",
+      "INSTREAM_BANNER_FULLSCREEN_MOBILE",
+      "INSTREAM_BANNER_IMMERSIVE_MOBILE",
       "INSTREAM_BANNER_MOBILE",
       "INSTREAM_VIDEO_DESKTOP",
+      "INSTREAM_VIDEO_FULLSCREEN_MOBILE",
       "INSTREAM_VIDEO_IMAGE",
+      "INSTREAM_VIDEO_IMMERSIVE_MOBILE",
       "INSTREAM_VIDEO_MOBILE",
       "JOB_BROWSER_DESKTOP",
       "JOB_BROWSER_MOBILE",
@@ -72,9 +73,17 @@ module FacebookAds
       "MOBILE_NATIVE",
       "RIGHT_COLUMN_STANDARD",
       "SUGGESTED_VIDEO_DESKTOP",
+      "SUGGESTED_VIDEO_FULLSCREEN_MOBILE",
+      "SUGGESTED_VIDEO_IMMERSIVE_MOBILE",
       "SUGGESTED_VIDEO_MOBILE",
       "WATCH_FEED_HOME",
       "WATCH_FEED_MOBILE",
+    ]
+
+    CREATIVE_FEATURE = [
+      "product_metadata_automation",
+      "profile_card",
+      "standard_enhancements_catalog",
     ]
 
     RENDER_TYPE = [
@@ -83,6 +92,7 @@ module FacebookAds
 
 
     field :body, 'string'
+    field :transformation_spec, 'object'
     has_no_id
     has_no_get
     has_no_post
