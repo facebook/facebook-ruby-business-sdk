@@ -203,7 +203,7 @@ module FacebookAds
 					normalized_phone = normalized_phone.gsub(PHONE_NUMBER_DROP_PREFIX_ZEROS, '')
 				end
 
-				if normalized_phone.length < 7 || normalized_phone.length > 15
+				if normalized_phone.length < 7 || normalized_phone.length > 16
 					return nil;
 				end
 
