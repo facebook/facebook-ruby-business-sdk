@@ -43,7 +43,7 @@ module FacebookAds
     field :community, 'Group'
     field :cover, 'UserCoverPhoto'
     field :currency, 'Currency'
-    field :education, { list: 'object' }
+    field :education, { list: 'EducationExperience' }
     field :email, 'string'
     field :favorite_athletes, { list: 'Experience' }
     field :favorite_teams, { list: 'Experience' }
@@ -165,6 +165,10 @@ module FacebookAds
       edge.get 'AdAccount'
     end
 
+    has_edge :assigned_applications do |edge|
+      edge.get 'Application'
+    end
+
     has_edge :assigned_business_asset_groups do |edge|
       edge.get 'BusinessAssetGroup' do |api|
         api.has_param :contained_asset_id, 'string'
@@ -203,7 +207,7 @@ module FacebookAds
         api.has_param :survey_business_type, { enum: -> { Business::SURVEY_BUSINESS_TYPE }}
         api.has_param :survey_num_assets, 'int'
         api.has_param :survey_num_people, 'int'
-        api.has_param :timezone_id, 'int'
+        api.has_param :timezone_id, { enum: -> { Business::TIMEZONE_ID }}
         api.has_param :vertical, { enum: -> { Business::VERTICAL }}
       end
     end
@@ -239,7 +243,6 @@ module FacebookAds
       end
       edge.post 'Post' do |api|
         api.has_param :actions, 'object'
-        api.has_param :adaptive_type, 'string'
         api.has_param :album_id, 'string'
         api.has_param :android_key_hash, 'string'
         api.has_param :animated_effect_id, 'int'
@@ -324,7 +327,6 @@ module FacebookAds
         api.has_param :publish_event_id, 'int'
         api.has_param :published, 'bool'
         api.has_param :quote, 'string'
-        api.has_param :react_mode_metadata, 'string'
         api.has_param :ref, { list: 'string' }
         api.has_param :referenceable_image_ids, { list: 'string' }
         api.has_param :referral_id, 'string'
@@ -375,12 +377,6 @@ module FacebookAds
         api.has_param :goal_amount, 'int'
         api.has_param :name, 'string'
         api.has_param :page_id, 'string'
-      end
-    end
-
-    has_edge :game_times do |edge|
-      edge.post do |api|
-        api.has_param :action, { enum: %w{END HEARTBEAT START }}
       end
     end
 
@@ -585,7 +581,6 @@ module FacebookAds
         api.has_param :type, { enum: -> { AdVideo::TYPE }}
       end
       edge.post 'AdVideo' do |api|
-        api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
@@ -636,7 +631,6 @@ module FacebookAds
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
         api.has_param :privacy, 'string'
         api.has_param :publish_event_id, 'int'
-        api.has_param :react_mode_metadata, 'string'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
         api.has_param :slideshow_spec, 'hash'

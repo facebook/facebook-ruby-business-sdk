@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdStudy < AdObject
     TYPE = [
+      "BACKEND_AB_TESTING",
       "CONTINUOUS_LIFT_CONFIG",
       "GEO_LIFT",
       "LIFT",

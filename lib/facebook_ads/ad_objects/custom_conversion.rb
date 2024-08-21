@@ -37,6 +37,18 @@ module FacebookAds
       "SUBSCRIBE",
     ]
 
+    ACTION_SOURCE_TYPE = [
+      "app",
+      "business_messaging",
+      "chat",
+      "email",
+      "other",
+      "phone_call",
+      "physical_store",
+      "system_generated",
+      "website",
+    ]
+
 
     field :account_id, 'string'
     field :aggregation_rule, 'string'
@@ -57,6 +69,7 @@ module FacebookAds
     field :pixel, 'AdsPixel'
     field :retention_days, 'int'
     field :rule, 'string'
+    field :action_source_type, { enum: -> { ACTION_SOURCE_TYPE }}
     field :advanced_rule, 'string'
     field :event_source_id, 'string'
     field :custom_conversion_id, 'string'

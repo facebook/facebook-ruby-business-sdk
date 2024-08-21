@@ -25,6 +25,15 @@ RSpec.describe 'FacebookAds::ServerSide::Event' do
         event_id = 'event_id-3'
         user_data = FacebookAds::ServerSide::UserData.new(email: 'eg@test.com')
         custom_data = FacebookAds::ServerSide::CustomData.new(order_id: 123)
+        original_event_data = FacebookAds::ServerSide::OriginalEventData.new(
+            event_name: 'event-name-1',
+            event_time: 12345,
+        )
+        attribution_data = FacebookAds::ServerSide::AttributionData.new(
+            scope: 'click',
+            visit_time: 12345,
+            attribution_share: 0.5,
+        )
         data_processing_options = ['1', '2']
         data_processing_options_country = 1
         data_processing_options_state = 2
@@ -41,6 +50,8 @@ RSpec.describe 'FacebookAds::ServerSide::Event' do
             data_processing_options_country: data_processing_options_country,
             data_processing_options_state: data_processing_options_state,
             action_source: action_source,
+            original_event_data: original_event_data,
+            attribution_data: attribution_data,
         )
         expected_params = {
             'event_name' => event_name,
@@ -54,6 +65,8 @@ RSpec.describe 'FacebookAds::ServerSide::Event' do
             'data_processing_options_country' => data_processing_options_country,
             'data_processing_options_state' => data_processing_options_state,
             'action_source' => action_source,
+            'original_event_data' => original_event_data.normalize,
+            'attribution_data' => attribution_data.normalize,
         }
         normalized_event = event.normalize
 
@@ -61,6 +74,15 @@ RSpec.describe 'FacebookAds::ServerSide::Event' do
     end
 
     it 'build initializes from a hash' do
+        original_event_data = FacebookAds::ServerSide::OriginalEventData.new(
+            event_name: 'event-name-1',
+            event_time: 12345,
+        )
+        attribution_data = FacebookAds::ServerSide::AttributionData.new(
+            scope: 'click',
+            visit_time: 12345,
+            attribution_share: 0.5,
+        )
         params = {
             'event_name': 'event_name-0',
             'event_time': 1,
@@ -73,6 +95,8 @@ RSpec.describe 'FacebookAds::ServerSide::Event' do
             'data_processing_options_country': 1,
             'data_processing_options_state': 2,
             'action_source': 'website',
+            'original_event_data': original_event_data,
+            'attribution_data': attribution_data,
         }
         event = FacebookAds::ServerSide::Event.new
         event.build(params)

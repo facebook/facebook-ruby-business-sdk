@@ -34,7 +34,7 @@ module FacebookAds
     field :name, 'string'
     field :owner, 'Page'
     field :property_list, { list: 'string' }
-    field :source_template, 'object'
+    field :source_template, 'CanvasTemplate'
     field :store_url, 'string'
     field :style_list, { list: 'string' }
     field :tags, { list: 'string' }

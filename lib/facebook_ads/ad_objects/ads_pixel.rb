@@ -45,6 +45,12 @@ module FacebookAds
       "FIRST_PARTY_COOKIE_ENABLED",
     ]
 
+    PERMITTED_TASKS = [
+      "ADVERTISE",
+      "ANALYZE",
+      "UPLOAD",
+    ]
+
     TASKS = [
       "AA_ANALYZE",
       "ADVERTISE",
@@ -69,6 +75,7 @@ module FacebookAds
     field :event_time_max, 'int'
     field :event_time_min, 'int'
     field :first_party_cookie_status, 'string'
+    field :has_1p_pixel_event, 'bool'
     field :id, 'string'
     field :is_consolidated_container, 'bool'
     field :is_created_by_business, 'bool'
@@ -96,7 +103,14 @@ module FacebookAds
     end
 
     has_edge :agencies do |edge|
+      edge.delete do |api|
+        api.has_param :business, 'string'
+      end
       edge.get 'Business'
+      edge.post 'AdsPixel' do |api|
+        api.has_param :business, 'string'
+        api.has_param :permitted_tasks, { list: { enum: -> { AdsPixel::PERMITTED_TASKS }} }
+      end
     end
 
     has_edge :ahp_configs do |edge|

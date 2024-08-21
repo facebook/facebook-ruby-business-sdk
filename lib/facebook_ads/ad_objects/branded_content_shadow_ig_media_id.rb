@@ -16,6 +16,7 @@ module FacebookAds
   class BrandedContentShadowIgMediaId < AdObject
 
     field :eligibility_errors, { list: 'string' }
+    field :has_permission_for_partnership_ad, 'bool'
     field :id, 'string'
     field :owner_id, 'string'
     field :permalink, 'string'

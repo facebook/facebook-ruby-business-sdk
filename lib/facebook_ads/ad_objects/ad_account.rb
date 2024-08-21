@@ -108,7 +108,6 @@ module FacebookAds
       "HOTEL",
       "JOB",
       "LOCAL_SERVICE_BUSINESS",
-      "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
       "OFFLINE_PRODUCT",
       "PRODUCT",
@@ -261,7 +260,7 @@ module FacebookAds
     end
 
     has_edge :ad_saved_keywords do |edge|
-      edge.get do |api|
+      edge.get 'AdSavedKeywords' do |api|
         api.has_param :fields, { list: 'string' }
       end
     end
@@ -289,6 +288,7 @@ module FacebookAds
         api.has_param :call_to_action, 'object'
         api.has_param :categorization_criteria, { enum: -> { AdCreative::CATEGORIZATION_CRITERIA }}
         api.has_param :category_media_source, { enum: -> { AdCreative::CATEGORY_MEDIA_SOURCE }}
+        api.has_param :contextual_multi_ads, 'hash'
         api.has_param :degrees_of_freedom_spec, 'hash'
         api.has_param :destination_set_id, 'string'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
@@ -306,7 +306,6 @@ module FacebookAds
         api.has_param :is_dco_internal, 'bool'
         api.has_param :link_og_id, 'string'
         api.has_param :link_url, 'string'
-        api.has_param :messenger_sponsored_message, 'string'
         api.has_param :name, 'string'
         api.has_param :object_id, 'int'
         api.has_param :object_story_id, 'string'
@@ -314,6 +313,7 @@ module FacebookAds
         api.has_param :object_type, 'string'
         api.has_param :object_url, 'string'
         api.has_param :omnichannel_link_spec, 'hash'
+        api.has_param :page_welcome_message, 'string'
         api.has_param :place_page_set_id, 'string'
         api.has_param :platform_customizations, 'object'
         api.has_param :playable_asset_id, 'string'
@@ -415,6 +415,7 @@ module FacebookAds
         api.has_param :bid_amount, 'int'
         api.has_param :conversion_domain, 'string'
         api.has_param :creative, 'AdCreative'
+        api.has_param :creative_asset_groups_spec, 'object'
         api.has_param :date_format, 'string'
         api.has_param :display_sequence, 'int'
         api.has_param :draft_adgroup_id, 'string'
@@ -431,18 +432,18 @@ module FacebookAds
     end
 
     has_edge :ads_reporting_mmm_reports do |edge|
-      edge.get do |api|
+      edge.get 'AdsReportBuilderMmmReport' do |api|
         api.has_param :filtering, { list: 'hash' }
       end
     end
 
     has_edge :ads_reporting_mmm_schedulers do |edge|
-      edge.get
+      edge.get 'AdsReportBuilderMmmReportScheduler'
     end
 
     has_edge :ads_volume do |edge|
       edge.get 'AdAccountAdVolume' do |api|
-        api.has_param :page_id, 'int'
+        api.has_param :page_id, 'string'
         api.has_param :recommendation_type, { enum: -> { AdAccountAdVolume::RECOMMENDATION_TYPE }}
         api.has_param :show_breakdown_by_actor, 'bool'
       end
@@ -502,6 +503,8 @@ module FacebookAds
         api.has_param :pacing_type, { list: 'string' }
         api.has_param :promoted_object, 'object'
         api.has_param :rb_prediction_id, 'string'
+        api.has_param :regional_regulated_categories, { list: { enum: -> { AdSet::REGIONAL_REGULATED_CATEGORIES }} }
+        api.has_param :regional_regulation_identities, 'hash'
         api.has_param :rf_prediction_id, 'string'
         api.has_param :source_adset_id, 'string'
         api.has_param :start_time, 'datetime'
@@ -555,7 +558,6 @@ module FacebookAds
         api.has_param :title, 'string'
       end
       edge.post 'AdVideo' do |api|
-        api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
@@ -603,7 +605,6 @@ module FacebookAds
         api.has_param :original_fov, 'int'
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
         api.has_param :publish_event_id, 'int'
-        api.has_param :react_mode_metadata, 'string'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
         api.has_param :slideshow_spec, 'hash'
@@ -689,7 +690,7 @@ module FacebookAds
     end
 
     has_edge :audience_funnel do |edge|
-      edge.get
+      edge.get 'AudienceFunnel'
     end
 
     has_edge :block_list_drafts do |edge|
@@ -705,7 +706,7 @@ module FacebookAds
     end
 
     has_edge :businessprojects do |edge|
-      edge.get do |api|
+      edge.get 'BusinessProject' do |api|
         api.has_param :business, 'string'
       end
     end
@@ -766,11 +767,11 @@ module FacebookAds
     end
 
     has_edge :conversion_goals do |edge|
-      edge.get
+      edge.get 'AdsConversionGoal'
     end
 
     has_edge :cpa_guidance do |edge|
-      edge.get
+      edge.get 'BespokePartnerGuidanceLaser'
     end
 
     has_edge :customaudiences do |edge|
@@ -831,6 +832,7 @@ module FacebookAds
     has_edge :customconversions do |edge|
       edge.get 'CustomConversion'
       edge.post 'CustomConversion' do |api|
+        api.has_param :action_source_type, { enum: -> { CustomConversion::ACTION_SOURCE_TYPE }}
         api.has_param :advanced_rule, 'string'
         api.has_param :custom_event_type, { enum: -> { CustomConversion::CUSTOM_EVENT_TYPE }}
         api.has_param :default_conversion_value, 'double'
@@ -982,10 +984,6 @@ module FacebookAds
       edge.get 'MinimumBudget' do |api|
         api.has_param :bid_amount, 'int'
       end
-    end
-
-    has_edge :offline_conversion_data_sets do |edge|
-      edge.get 'OfflineConversionDataSet'
     end
 
     has_edge :onbehalf_requests do |edge|
@@ -1193,11 +1191,11 @@ module FacebookAds
     end
 
     has_edge :value_adjustment_rule_collections do |edge|
-      edge.get
+      edge.get 'AdsValueAdjustmentRuleCollection'
     end
 
     has_edge :value_adjustment_rules do |edge|
-      edge.get
+      edge.get 'AdsValueAdjustmentRule'
     end
 
   end

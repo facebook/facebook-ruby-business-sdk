@@ -15,6 +15,8 @@ module FacebookAds
 
   class AdCreativeFeaturesSpec < AdObject
 
+    field :adapt_to_placement, 'AdCreativeFeatureDetails'
+    field :ads_with_benefits, 'AdCreativeFeatureDetails'
     field :advantage_plus_creative, 'AdCreativeFeatureDetails'
     field :app_highlights, 'AdCreativeFeatureDetails'
     field :audio, 'AdCreativeFeatureDetails'
@@ -24,9 +26,11 @@ module FacebookAds
     field :cv_transformation, 'AdCreativeFeatureDetails'
     field :description_automation, 'AdCreativeFeatureDetails'
     field :dha_optimization, 'AdCreativeFeatureDetails'
+    field :feed_caption_optimization, 'AdCreativeFeatureDetails'
     field :ig_glados_feed, 'AdCreativeFeatureDetails'
     field :image_auto_crop, 'AdCreativeFeatureDetails'
     field :image_background_gen, 'AdCreativeFeatureDetails'
+    field :image_brightness_and_contrast, 'AdCreativeFeatureDetails'
     field :image_enhancement, 'AdCreativeFeatureDetails'
     field :image_templates, 'AdCreativeFeatureDetails'
     field :image_touchups, 'AdCreativeFeatureDetails'
@@ -45,6 +49,7 @@ module FacebookAds
     field :text_generation, 'AdCreativeFeatureDetails'
     field :text_optimizations, 'AdCreativeFeatureDetails'
     field :video_auto_crop, 'AdCreativeFeatureDetails'
+    field :video_filtering, 'AdCreativeFeatureDetails'
     field :video_highlight, 'AdCreativeFeatureDetails'
     has_no_id
     has_no_get

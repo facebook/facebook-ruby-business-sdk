@@ -14,11 +14,17 @@ module FacebookAds
   # pull request for this class.
 
   class AdAccountBusinessConstraints < AdObject
+    STATUS = [
+      "ACTIVE",
+      "APPLICATION_IN_PROGRESS",
+      "WITH_CAMPAIGN_ERROR",
+    ]
+
 
     field :audience_controls, 'object'
     field :campaigns_with_error, { list: 'string' }
     field :placement_controls, 'object'
-    field :status, 'string'
+    field :status, { enum: -> { STATUS }}
     has_no_id
     has_no_get
     has_no_post

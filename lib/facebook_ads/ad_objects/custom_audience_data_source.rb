@@ -15,6 +15,7 @@ module FacebookAds
 
   class CustomAudienceDataSource < AdObject
     SUB_TYPE = [
+      "AD_CAMPAIGN",
       "ANYTHING",
       "APP_USERS",
       "AR_EFFECTS_EVENTS",
@@ -36,6 +37,7 @@ module FacebookAds
       "FACEBOOK_WIFI_EVENTS",
       "FB_EVENT_SIGNALS",
       "FB_PIXEL_HITS",
+      "GROUP_EVENTS",
       "HASHES",
       "HASHES_OR_USER_IDS",
       "HOUSEHOLD_EXPANSION",

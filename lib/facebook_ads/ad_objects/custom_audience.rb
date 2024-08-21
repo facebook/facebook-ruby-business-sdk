@@ -35,7 +35,6 @@ module FacebookAds
       "HOTEL",
       "JOB",
       "LOCAL_SERVICE_BUSINESS",
-      "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
       "OFFLINE_PRODUCT",
       "PRODUCT",

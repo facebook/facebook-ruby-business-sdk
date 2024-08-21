@@ -24,8 +24,6 @@ module FacebookAds
     METRIC = [
       "clips_replays_count",
       "comments",
-      "engagement",
-      "exits",
       "follows",
       "ig_reels_aggregated_all_plays_count",
       "ig_reels_avg_watch_time",
@@ -40,8 +38,6 @@ module FacebookAds
       "replies",
       "saved",
       "shares",
-      "taps_back",
-      "taps_forward",
       "total_interactions",
       "video_views",
     ]

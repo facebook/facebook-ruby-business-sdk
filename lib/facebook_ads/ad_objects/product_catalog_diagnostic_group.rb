@@ -33,6 +33,7 @@ module FacebookAds
 
     AFFECTED_ENTITY = [
       "product_catalog",
+      "product_event",
       "product_item",
       "product_set",
     ]
@@ -54,6 +55,7 @@ module FacebookAds
       "CATEGORY",
       "CHECKOUT",
       "DA_VISIBILITY_ISSUES",
+      "EVENT_SOURCE_ISSUES",
       "IMAGE_QUALITY",
       "LOW_QUALITY_TITLE_AND_DESCRIPTION",
       "POLICY_VIOLATION",
@@ -62,6 +64,7 @@ module FacebookAds
 
     AFFECTED_ENTITIES = [
       "product_catalog",
+      "product_event",
       "product_item",
       "product_set",
     ]
@@ -78,6 +81,7 @@ module FacebookAds
       "CATEGORY",
       "CHECKOUT",
       "DA_VISIBILITY_ISSUES",
+      "EVENT_SOURCE_ISSUES",
       "IMAGE_QUALITY",
       "LOW_QUALITY_TITLE_AND_DESCRIPTION",
       "POLICY_VIOLATION",

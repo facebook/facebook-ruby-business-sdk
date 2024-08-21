@@ -42,6 +42,7 @@ module FacebookAds
       edge.get 'IgbcAdsPermission'
       edge.post 'IgbcAdsPermission' do |api|
         api.has_param :creator_instagram_account, 'string'
+        api.has_param :creator_instagram_username, 'string'
         api.has_param :revoke, 'bool'
       end
     end
@@ -80,7 +81,8 @@ module FacebookAds
     end
 
     has_edge :dataset do |edge|
-      edge.get 'Dataset'
+      edge.get 'AdsPixel'
+      edge.post 'AdsPixel'
     end
 
     has_edge :insights do |edge|

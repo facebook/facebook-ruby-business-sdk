@@ -458,11 +458,11 @@ module FacebookAds
     field :influences, 'string'
     field :instagram_business_account, 'IgUser'
     field :is_always_open, 'bool'
+    field :is_calling_eligible, 'bool'
     field :is_chain, 'bool'
     field :is_community_page, 'bool'
     field :is_eligible_for_branded_content, 'bool'
     field :is_eligible_for_disable_connect_ig_btn_for_non_page_admin_am_web, 'bool'
-    field :is_eligible_for_live_boosting_expansion, 'bool'
     field :is_messenger_bot_get_started_enabled, 'bool'
     field :is_messenger_platform_bot, 'bool'
     field :is_owned, 'bool'
@@ -591,7 +591,7 @@ module FacebookAds
     end
 
     has_edge :ar_experience do |edge|
-      edge.get
+      edge.get 'ArAdsDataContainer'
     end
 
     has_edge :assigned_users do |edge|
@@ -635,13 +635,23 @@ module FacebookAds
     end
 
     has_edge :businessprojects do |edge|
-      edge.get do |api|
+      edge.get 'BusinessProject' do |api|
         api.has_param :business, 'string'
       end
     end
 
     has_edge :call_to_actions do |edge|
       edge.get 'PageCallToAction'
+    end
+
+    has_edge :calls do |edge|
+      edge.post do |api|
+        api.has_param :action, { enum: %w{ACCEPT REJECT TERMINATE }}
+        api.has_param :call_id, 'string'
+        api.has_param :platform, { enum: %w{INSTAGRAM MESSENGER }}
+        api.has_param :session, 'hash'
+        api.has_param :to, 'string'
+      end
     end
 
     has_edge :canvas_elements do |edge|
@@ -734,11 +744,11 @@ module FacebookAds
     end
 
     has_edge :copyright_manual_claims do |edge|
-      edge.post do |api|
-        api.has_param :action, { enum: %w{BLOCK CLAIM_AD_EARNINGS MANUAL_REVIEW MONITOR REQUEST_TAKEDOWN }}
-        api.has_param :action_reason, { enum: %w{ARTICLE_17_PREFLAGGING ARTIST_OBJECTION OBJECTIONABLE_CONTENT PREMIUM_MUSIC_VIDEO PRERELEASE_CONTENT PRODUCT_PARAMETERS RESTRICTED_CONTENT UNAUTHORIZED_COMMERCIAL_USE }}
+      edge.post 'VideoCopyrightMatch' do |api|
+        api.has_param :action, { enum: -> { VideoCopyrightMatch::ACTION }}
+        api.has_param :action_reason, { enum: -> { VideoCopyrightMatch::ACTION_REASON }}
         api.has_param :countries, 'object'
-        api.has_param :match_content_type, { enum: %w{AUDIO_ONLY VIDEO_AND_AUDIO VIDEO_ONLY }}
+        api.has_param :match_content_type, { enum: -> { VideoCopyrightMatch::MATCH_CONTENT_TYPE }}
         api.has_param :matched_asset_id, 'string'
         api.has_param :reference_asset_id, 'string'
         api.has_param :selected_segments, { list: 'hash' }
@@ -772,7 +782,8 @@ module FacebookAds
     end
 
     has_edge :dataset do |edge|
-      edge.get 'Dataset'
+      edge.get 'AdsPixel'
+      edge.post 'AdsPixel'
     end
 
     has_edge :events do |edge|
@@ -792,7 +803,7 @@ module FacebookAds
     end
 
     has_edge :fantasy_games do |edge|
-      edge.get
+      edge.get 'FantasyGame'
     end
 
     has_edge :feed do |edge|
@@ -804,7 +815,6 @@ module FacebookAds
       end
       edge.post 'Page' do |api|
         api.has_param :actions, 'object'
-        api.has_param :adaptive_type, 'string'
         api.has_param :album_id, 'string'
         api.has_param :android_key_hash, 'string'
         api.has_param :animated_effect_id, 'int'
@@ -890,7 +900,6 @@ module FacebookAds
         api.has_param :publish_event_id, 'int'
         api.has_param :published, 'bool'
         api.has_param :quote, 'string'
-        api.has_param :react_mode_metadata, 'string'
         api.has_param :ref, { list: 'string' }
         api.has_param :referenceable_image_ids, { list: 'string' }
         api.has_param :referral_id, 'string'
@@ -1092,6 +1101,13 @@ module FacebookAds
 
     has_edge :messaging_feature_review do |edge|
       edge.get 'MessagingFeatureReview'
+    end
+
+    has_edge :messenger_call_settings do |edge|
+      edge.get 'MessengerCallSettings'
+      edge.post 'Page' do |api|
+        api.has_param :audio_enabled, 'bool'
+      end
     end
 
     has_edge :messenger_lead_forms do |edge|
@@ -1507,7 +1523,6 @@ module FacebookAds
       end
       edge.post 'AdVideo' do |api|
         api.has_param :ad_breaks, { list: 'string' }
-        api.has_param :adaptive_type, 'string'
         api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
@@ -1566,7 +1581,6 @@ module FacebookAds
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
         api.has_param :publish_event_id, 'int'
         api.has_param :published, 'bool'
-        api.has_param :react_mode_metadata, 'string'
         api.has_param :reference_only, 'bool'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'

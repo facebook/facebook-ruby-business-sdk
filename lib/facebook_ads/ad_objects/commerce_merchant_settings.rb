@@ -15,30 +15,20 @@ module FacebookAds
 
   class CommerceMerchantSettings < AdObject
 
-    field :braintree_merchant_id, 'string'
     field :checkout_message, 'string'
     field :contact_email, 'string'
     field :cta, 'string'
-    field :disable_checkout_urls, 'bool'
     field :display_name, 'string'
-    field :external_merchant_id, 'string'
     field :facebook_channel, 'object'
-    field :feature_eligibility, 'object'
-    field :has_discount_code, 'bool'
-    field :has_onsite_intent, 'bool'
     field :id, 'string'
     field :instagram_channel, 'object'
-    field :merchant_alert_email, 'string'
     field :merchant_page, 'Profile'
     field :merchant_status, 'string'
     field :onsite_commerce_merchant, 'object'
     field :payment_provider, 'string'
-    field :privacy_url_by_locale, { list: 'hash' }
     field :review_rejection_messages, { list: 'string' }
     field :review_rejection_reasons, { list: 'string' }
-    field :supported_card_types, { list: 'string' }
     field :terms, 'string'
-    field :terms_url_by_locale, { list: 'hash' }
     has_no_post
     has_no_delete
 

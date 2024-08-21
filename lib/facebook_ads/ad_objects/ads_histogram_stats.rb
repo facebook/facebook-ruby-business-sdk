@@ -16,12 +16,26 @@ module FacebookAds
   class AdsHistogramStats < AdObject
 
     field :_1d_click, { list: 'int' }
+    field :_1d_click_all_conversions, { list: 'int' }
+    field :_1d_click_first_conversion, { list: 'int' }
     field :_1d_ev, { list: 'int' }
+    field :_1d_ev_all_conversions, { list: 'int' }
+    field :_1d_ev_first_conversion, { list: 'int' }
     field :_1d_view, { list: 'int' }
+    field :_1d_view_all_conversions, { list: 'int' }
+    field :_1d_view_first_conversion, { list: 'int' }
     field :_28d_click, { list: 'int' }
+    field :_28d_click_all_conversions, { list: 'int' }
+    field :_28d_click_first_conversion, { list: 'int' }
     field :_28d_view, { list: 'int' }
+    field :_28d_view_all_conversions, { list: 'int' }
+    field :_28d_view_first_conversion, { list: 'int' }
     field :_7d_click, { list: 'int' }
+    field :_7d_click_all_conversions, { list: 'int' }
+    field :_7d_click_first_conversion, { list: 'int' }
     field :_7d_view, { list: 'int' }
+    field :_7d_view_all_conversions, { list: 'int' }
+    field :_7d_view_first_conversion, { list: 'int' }
     field :action_brand, 'string'
     field :action_canvas_component_id, 'string'
     field :action_canvas_component_name, 'string'

@@ -16,7 +16,9 @@ module FacebookAds
   class AdCreativeBrandedContentAds < AdObject
 
     field :ad_format, 'int'
+    field :content_search_input, 'string'
     field :creator_ad_permission_type, 'string'
+    field :facebook_boost_post_access_token, 'string'
     field :instagram_boost_post_access_token, 'string'
     field :is_mca_internal, 'bool'
     field :partners, { list: 'AdCreativeBrandedContentAdsPartners' }

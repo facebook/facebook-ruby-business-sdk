@@ -94,10 +94,10 @@ module FacebookAds
     field :owner, 'object'
     field :parent_group, 'Group'
     field :place, 'Place'
-    field :registration_setting, 'object'
+    field :registration_setting, 'EventRegistrationSetting'
     field :scheduled_publish_time, 'string'
     field :start_time, 'string'
-    field :ticket_setting, 'object'
+    field :ticket_setting, 'EventTicketSetting'
     field :ticket_uri, 'string'
     field :ticket_uri_start_sales_time, 'string'
     field :ticketing_privacy_uri, 'string'
@@ -159,7 +159,7 @@ module FacebookAds
     end
 
     has_edge :ticket_tiers do |edge|
-      edge.get
+      edge.get 'EventTicketTier'
     end
 
     has_edge :videos do |edge|

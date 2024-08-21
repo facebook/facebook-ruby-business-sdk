@@ -28,6 +28,7 @@ module FacebookAds
       "APP_REREVIEW_SCREENCAST",
       "APP_REVIEW_SCREENCAST",
       "ASSET_MANAGER",
+      "ATLAS_VIDEO",
       "AUDIO_BRIEF",
       "AUDIO_BROADCAST",
       "AUDIO_COMMENT",
@@ -166,7 +167,6 @@ module FacebookAds
       "SOUNDBITES_VIDEO",
       "SOUND_PLATFORM_STREAM",
       "SRT_ATTACHMENT",
-      "STAGES_BROADCAST",
       "STORIES_VIDEO",
       "STORIES_WEARABLE",
       "STORYLINE",
@@ -178,7 +178,6 @@ module FacebookAds
       "TEMPORARY_UNLISTED",
       "TEMP_MULTIMEDIA_POST",
       "UNLISTED",
-      "UNLISTED_HACK_TV",
       "UNLISTED_HORIZON",
       "UNLISTED_OCULUS",
       "VIDEO_COMMENT",
@@ -294,7 +293,7 @@ module FacebookAds
 
     field :ad_breaks, { list: 'int' }
     field :admin_creator, 'User'
-    field :audio_isrc, 'object'
+    field :audio_isrc, 'AudioIsrc'
     field :backdated_time, 'datetime'
     field :backdated_time_granularity, 'string'
     field :content_category, 'string'
@@ -338,7 +337,6 @@ module FacebookAds
     field :universal_video_id, 'string'
     field :updated_time, 'datetime'
     field :views, 'int'
-    field :adaptive_type, 'string'
     field :animated_effect_id, 'int'
     field :application_id, 'string'
     field :asked_fun_fact_prompt_id, 'int'
@@ -383,7 +381,6 @@ module FacebookAds
     field :original_fov, 'int'
     field :original_projection_type, { enum: -> { ORIGINAL_PROJECTION_TYPE }}
     field :publish_event_id, 'int'
-    field :react_mode_metadata, 'string'
     field :referenced_sticker_id, 'string'
     field :replace_video_id, 'string'
     field :slideshow_spec, 'hash'
@@ -489,7 +486,7 @@ module FacebookAds
     end
 
     has_edge :tags do |edge|
-      edge.get
+      edge.get 'TaggableSubject'
       edge.post 'AdVideo' do |api|
         api.has_param :tag_uid, 'int'
         api.has_param :uid, 'int'
