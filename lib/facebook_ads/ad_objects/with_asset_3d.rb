@@ -13,7 +13,7 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class WithAsset3D < AdObject
+  class WithAsset3d < AdObject
 
     field :id, 'string'
     has_no_post

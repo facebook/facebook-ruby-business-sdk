@@ -13,7 +13,7 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class P2MInvoicePayments < AdObject
+  class P2mInvoicePayments < AdObject
 
     field :page_id, 'string'
     field :payments, { list: 'object' }
