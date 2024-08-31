@@ -14,6 +14,18 @@ module FacebookAds
   # pull request for this class.
 
   class ThirdPartyPartnerViewabilityRequest < AdObject
+    METRIC = [
+      "DISPLAY_EVENT",
+      "IMPRESSION",
+      "VIDEO_EVENT",
+    ]
+
+    PLATFORM = [
+      "AUDIENCE_NETWORK",
+      "FACEBOOK",
+      "INSTAGRAM",
+    ]
+
     STATUS = [
       "CREATED",
       "FAILURE",
@@ -27,10 +39,10 @@ module FacebookAds
     field :description, 'string'
     field :hour, 'datetime'
     field :id, 'string'
-    field :metric, 'string'
+    field :metric, { enum: -> { METRIC }}
     field :modified_time, 'datetime'
     field :owner_instance_id, 'string'
-    field :platform, 'string'
+    field :platform, { enum: -> { PLATFORM }}
     field :status, { enum: -> { STATUS }}
     field :total_file_count, 'int'
     has_no_post

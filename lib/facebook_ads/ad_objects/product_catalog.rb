@@ -124,7 +124,7 @@ module FacebookAds
         api.has_param :business, 'string'
         api.has_param :permitted_roles, { list: { enum: -> { ProductCatalog::PERMITTED_ROLES }} }
         api.has_param :permitted_tasks, { list: { enum: -> { ProductCatalog::PERMITTED_TASKS }} }
-        api.has_param :skip_default_utms, 'bool'
+        api.has_param :skip_defaults, 'bool'
         api.has_param :utm_settings, 'hash'
       end
     end
@@ -409,7 +409,6 @@ module FacebookAds
       end
       edge.post 'ProductItem' do |api|
         api.has_param :additional_image_urls, { list: 'string' }
-        api.has_param :additional_uploaded_image_ids, { list: 'string' }
         api.has_param :additional_variant_attributes, 'hash'
         api.has_param :android_app_name, 'string'
         api.has_param :android_class, 'string'
@@ -464,6 +463,11 @@ module FacebookAds
         api.has_param :origin_country, { enum: -> { ProductItem::ORIGIN_COUNTRY }}
         api.has_param :pattern, 'string'
         api.has_param :price, 'int'
+        api.has_param :product_priority_0, 'double'
+        api.has_param :product_priority_1, 'double'
+        api.has_param :product_priority_2, 'double'
+        api.has_param :product_priority_3, 'double'
+        api.has_param :product_priority_4, 'double'
         api.has_param :product_type, 'string'
         api.has_param :quantity_to_sell_on_facebook, 'int'
         api.has_param :retailer_id, 'string'

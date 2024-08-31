@@ -77,6 +77,7 @@ module FacebookAds
       "image_asset",
       "impression_device",
       "is_conversion_id_modeled",
+      "is_rendered_as_delayed_skip_ad",
       "landing_destination",
       "link_url_asset",
       "marketing_messages_btn_name",
@@ -164,7 +165,6 @@ module FacebookAds
     field :ad_id, 'string'
     field :ad_impression_actions, { list: 'AdsActionStats' }
     field :ad_name, 'string'
-    field :adjusted_offline_purchase, { list: 'object' }
     field :adset_end, 'string'
     field :adset_id, 'string'
     field :adset_name, 'string'
@@ -238,6 +238,9 @@ module FacebookAds
     field :instant_experience_outbound_clicks, { list: 'AdsActionStats' }
     field :interactive_component_tap, { list: 'AdsActionStats' }
     field :labels, 'string'
+    field :landing_page_view_actions_per_link_click, { list: 'AdsActionStats' }
+    field :landing_page_view_per_purchase_rate, { list: 'AdsActionStats' }
+    field :link_clicks_per_results, { list: 'AdsActionStats' }
     field :location, 'string'
     field :marketing_messages_cost_per_delivered, 'string'
     field :marketing_messages_cost_per_link_btn_click, 'string'
@@ -251,6 +254,7 @@ module FacebookAds
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :place_page_name, 'string'
     field :purchase_roas, { list: 'AdsActionStats' }
+    field :purchases_per_link_click, { list: 'AdsActionStats' }
     field :qualifying_question_qualify_answer_rate, 'string'
     field :quality_ranking, 'string'
     field :reach, 'string'

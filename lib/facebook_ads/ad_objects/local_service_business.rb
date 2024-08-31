@@ -97,5 +97,12 @@ module FacebookAds
       edge.get 'CatalogItemChannelsToIntegrityStatus'
     end
 
+    has_edge :override_details do |edge|
+      edge.get 'OverrideDetails' do |api|
+        api.has_param :keys, { list: 'string' }
+        api.has_param :type, { enum: -> { OverrideDetails::TYPE }}
+      end
+    end
+
   end
 end

@@ -13,12 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PageVideosYouCanUse < AdObject
+  class AlmAdAccountInfo < AdObject
 
-    field :description, 'string'
+    field :ad_account_id, 'string'
     field :id, 'string'
-    field :title, 'string'
-    has_no_get
+    field :managed_by, 'string'
+    field :parent_advertiser_id, 'string'
+    field :sub_vertical, 'string'
+    field :tag, { list: 'string' }
+    field :user_ids, { list: 'string' }
+    field :vertical, 'string'
     has_no_post
     has_no_delete
 

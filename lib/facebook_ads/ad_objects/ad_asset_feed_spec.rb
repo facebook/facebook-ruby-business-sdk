@@ -93,6 +93,7 @@ module FacebookAds
       "USE_MOBILE_APP",
       "VIDEO_ANNOTATION",
       "VIDEO_CALL",
+      "VIEW_CHANNEL",
       "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
       "WATCH_MORE",
@@ -108,6 +109,7 @@ module FacebookAds
     field :asset_customization_rules, { list: 'AdAssetFeedSpecAssetCustomizationRule' }
     field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }
+    field :call_ads_configuration, 'object'
     field :call_to_action_types, { list: { enum: -> { CALL_TO_ACTION_TYPES }} }
     field :call_to_actions, { list: 'AdAssetFeedSpecCallToAction' }
     field :captions, { list: 'AdAssetFeedSpecCaption' }

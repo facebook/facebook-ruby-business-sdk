@@ -15,10 +15,15 @@ module FacebookAds
 
   class CommerceOrderTransactionDetail < AdObject
 
+    field :merchant_order_id, 'string'
     field :net_payment_amount, 'object'
+    field :order_created, 'string'
     field :order_details, 'CommerceOrder'
+    field :order_id, 'string'
     field :payout_reference_id, 'string'
+    field :postal_code, 'string'
     field :processing_fee, 'object'
+    field :state, 'string'
     field :tax_rate, 'string'
     field :transaction_date, 'string'
     field :transaction_type, 'string'

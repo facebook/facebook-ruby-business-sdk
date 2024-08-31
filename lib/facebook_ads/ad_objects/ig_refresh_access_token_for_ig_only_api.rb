@@ -17,6 +17,7 @@ module FacebookAds
 
     field :access_token, 'string'
     field :expires_in, 'int'
+    field :permissions, 'string'
     field :token_type, 'string'
     field :id, 'string'
     has_no_post

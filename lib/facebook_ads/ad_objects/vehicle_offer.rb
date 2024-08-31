@@ -77,12 +77,15 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :augmented_realities_metadata do |edge|
-      edge.get 'DynamicArMetadata'
-    end
-
     has_edge :channels_to_integrity_status do |edge|
       edge.get 'CatalogItemChannelsToIntegrityStatus'
+    end
+
+    has_edge :override_details do |edge|
+      edge.get 'OverrideDetails' do |api|
+        api.has_param :keys, { list: 'string' }
+        api.has_param :type, { enum: -> { OverrideDetails::TYPE }}
+      end
     end
 
     has_edge :videos_metadata do |edge|

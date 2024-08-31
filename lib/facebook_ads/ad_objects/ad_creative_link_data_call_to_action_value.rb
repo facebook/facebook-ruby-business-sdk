@@ -23,6 +23,7 @@ module FacebookAds
     field :link, 'string'
     field :link_caption, 'string'
     field :link_format, 'string'
+    field :object_store_urls, { list: 'string' }
     field :page, 'string'
     field :product_link, 'string'
     field :whatsapp_number, 'string'

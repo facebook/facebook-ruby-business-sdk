@@ -13,11 +13,9 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductFeedMissingFeedItemReplacement < AdObject
+  class AdCreativeDestinationSpec < AdObject
 
-    field :home_listing, 'object'
-    field :product_item, 'object'
-    field :vehicle, 'object'
+    field :destination_type, 'string'
     has_no_id
     has_no_get
     has_no_post

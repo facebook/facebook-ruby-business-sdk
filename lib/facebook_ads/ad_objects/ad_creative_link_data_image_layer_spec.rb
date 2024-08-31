@@ -69,6 +69,7 @@ module FacebookAds
 
     field :blending_mode, { enum: -> { BLENDING_MODE }}
     field :content, 'object'
+    field :frame_auto_show_enroll_status, 'string'
     field :frame_image_hash, 'string'
     field :frame_source, { enum: -> { FRAME_SOURCE }}
     field :image_source, { enum: -> { IMAGE_SOURCE }}

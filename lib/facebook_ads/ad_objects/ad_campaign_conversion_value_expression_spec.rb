@@ -13,13 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstantArticleCta < AdObject
+  class AdCampaignConversionValueExpressionSpec < AdObject
 
-    field :id, 'string'
-    field :is_enabled, 'bool'
-    field :publisher_defined_value, 'double'
-    field :type, 'string'
-    field :update_time, 'datetime'
+    field :adjustment_sign, 'string'
+    field :adjustment_weight, 'int'
+    field :destination_type, 'string'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete

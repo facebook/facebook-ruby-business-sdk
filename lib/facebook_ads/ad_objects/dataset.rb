@@ -13,12 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdjacentContentDeliveryReport < AdObject
+  class Dataset < AdObject
 
-    field :ad_id, 'string'
-    field :content, { list: 'object' }
-    field :impression_id, 'string'
-    has_no_id
+    field :id, 'string'
+    field :name, 'string'
     has_no_get
     has_no_post
     has_no_delete

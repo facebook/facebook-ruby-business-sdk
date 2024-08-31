@@ -56,6 +56,7 @@ module FacebookAds
     field :last_updated, 'string'
     field :merchant_order_id, 'string'
     field :order_status, 'object'
+    field :pre_order_details, 'object'
     field :selected_shipping_option, 'object'
     field :ship_by_date, 'string'
     field :shipping_address, 'object'

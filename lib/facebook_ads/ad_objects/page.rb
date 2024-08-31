@@ -235,6 +235,7 @@ module FacebookAds
       "MESSAGE_TAG",
       "RESPONSE",
       "UPDATE",
+      "UTILITY",
     ]
 
     NOTIFICATION_TYPE = [
@@ -298,6 +299,7 @@ module FacebookAds
       "awards",
       "bio",
       "birthday",
+      "call_permission_reply",
       "calls",
       "category",
       "checkins",
@@ -348,6 +350,7 @@ module FacebookAds
       "messaging_game_plays",
       "messaging_handovers",
       "messaging_in_thread_lead_form_submit",
+      "messaging_integrity",
       "messaging_optins",
       "messaging_optouts",
       "messaging_payments",
@@ -782,8 +785,10 @@ module FacebookAds
     end
 
     has_edge :dataset do |edge|
-      edge.get 'AdsPixel'
-      edge.post 'AdsPixel'
+      edge.get 'Dataset'
+      edge.post 'Dataset' do |api|
+        api.has_param :dataset_name, 'string'
+      end
     end
 
     has_edge :events do |edge|
@@ -817,7 +822,6 @@ module FacebookAds
         api.has_param :actions, 'object'
         api.has_param :album_id, 'string'
         api.has_param :android_key_hash, 'string'
-        api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
         api.has_param :asset3d_id, 'int'
@@ -929,13 +933,6 @@ module FacebookAds
 
     has_edge :global_brand_children do |edge|
       edge.get 'Page'
-    end
-
-    has_edge :groups do |edge|
-      edge.get 'Group' do |api|
-        api.has_param :admin_only, 'bool'
-        api.has_param :parent, 'string'
-      end
     end
 
     has_edge :image_copyrights do |edge|
@@ -1190,7 +1187,7 @@ module FacebookAds
       edge.post 'Page' do |api|
         api.has_param :metadata, 'string'
         api.has_param :recipient, 'object'
-        api.has_param :target_app_id, 'int'
+        api.has_param :target_app_id, 'string'
       end
     end
 
@@ -1523,7 +1520,6 @@ module FacebookAds
       end
       edge.post 'AdVideo' do |api|
         api.has_param :ad_breaks, { list: 'string' }
-        api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
         api.has_param :audio_story_wave_animation_handle, 'string'
@@ -1634,7 +1630,7 @@ module FacebookAds
         api.has_param :flow_id, 'string'
       end
       edge.post do |api|
-        api.has_param :eligible_platforms, { list: { enum: %w{INSTAGRAM MESSENGER }} }
+        api.has_param :eligible_platforms, { list: { enum: %w{INSTAGRAM MESSENGER WHATSAPP }} }
         api.has_param :flow_id, 'string'
         api.has_param :name, 'string'
         api.has_param :welcome_message_flow, { list: 'object' }

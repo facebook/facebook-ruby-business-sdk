@@ -16,7 +16,6 @@ module FacebookAds
   class AdCreativeLinkDataMoment < AdObject
     TYPE = [
       "FB_LIVE_SHOPPING",
-      "IG_DROPS",
       "IG_LIVE_SHOPPING",
     ]
 

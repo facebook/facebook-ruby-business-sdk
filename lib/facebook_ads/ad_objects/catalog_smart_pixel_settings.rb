@@ -20,8 +20,6 @@ module FacebookAds
     field :catalog, 'ProductCatalog'
     field :cbb_custom_override_filters, { list: 'object' }
     field :cbb_default_filter, { list: 'map<string, list<string>>' }
-    field :cbb_default_filter_crawl_params, 'string'
-    field :cbb_override_type_field_mapping, { list: 'map<string, list<string>>' }
     field :defaults, { list: 'hash' }
     field :filters, { list: 'map<string, list<string>>' }
     field :id, 'string'
@@ -32,7 +30,6 @@ module FacebookAds
     field :microdata_format_precedence, { list: 'string' }
     field :pixel, 'AdsPixel'
     field :property_filter, { list: 'string' }
-    field :retention_time_sec, 'int'
     field :trusted_domains, { list: 'string' }
     has_no_post
     has_no_delete

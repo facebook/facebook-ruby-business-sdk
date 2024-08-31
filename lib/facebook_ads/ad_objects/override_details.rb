@@ -13,10 +13,17 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogMicrodataStatsPixelInfo < AdObject
+  class OverrideDetails < AdObject
+    TYPE = [
+      "COUNTRY",
+      "LANGUAGE",
+      "LANGUAGE_AND_COUNTRY",
+    ]
 
-    field :is_already_connected, 'bool'
-    field :pixel_id, 'string'
+
+    field :key, 'string'
+    field :type, 'string'
+    field :values, 'object'
     has_no_id
     has_no_get
     has_no_post

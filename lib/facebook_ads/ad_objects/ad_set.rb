@@ -117,8 +117,10 @@ module FacebookAds
       "APP",
       "APPLINKS_AUTOMATIC",
       "FACEBOOK",
+      "FACEBOOK_PAGE",
       "INSTAGRAM_DIRECT",
       "INSTAGRAM_PROFILE",
+      "INSTAGRAM_PROFILE_AND_FACEBOOK_PAGE",
       "MESSAGING_INSTAGRAM_DIRECT_MESSENGER",
       "MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP",
       "MESSAGING_INSTAGRAM_DIRECT_WHATSAPP",
@@ -202,6 +204,7 @@ module FacebookAds
     field :bid_info, 'map<string, unsigned int>'
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :billing_event, { enum: -> { BILLING_EVENT }}
+    field :brand_safety_config, 'BrandSafetyCampaignConfig'
     field :budget_remaining, 'string'
     field :campaign, 'Campaign'
     field :campaign_active_time, 'string'
@@ -397,6 +400,18 @@ module FacebookAds
         api.has_param :time_ranges, { list: 'hash' }
         api.has_param :use_account_attribution_setting, 'bool'
         api.has_param :use_unified_attribution_setting, 'bool'
+      end
+    end
+
+    has_edge :message_delivery_estimate do |edge|
+      edge.get 'MessageDeliveryEstimate' do |api|
+        api.has_param :bid_amount, 'int'
+        api.has_param :lifetime_budget, 'int'
+        api.has_param :lifetime_in_days, 'int'
+        api.has_param :optimization_goal, { enum: -> { MessageDeliveryEstimate::OPTIMIZATION_GOAL }}
+        api.has_param :pacing_type, { enum: -> { MessageDeliveryEstimate::PACING_TYPE }}
+        api.has_param :promoted_object, 'object'
+        api.has_param :targeting_spec, 'Targeting'
       end
     end
 

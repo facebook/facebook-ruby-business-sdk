@@ -416,6 +416,7 @@ module FacebookAds
     field :smart_promotion_type, 'string'
     field :source_campaign, 'Campaign'
     field :source_campaign_id, 'string'
+    field :source_recommendation_type, 'string'
     field :special_ad_categories, { list: 'string' }
     field :special_ad_category, 'string'
     field :special_ad_category_country, { list: 'string' }

@@ -26,10 +26,15 @@ module FacebookAds
     field :post_id, 'string'
     field :status, 'string'
     field :url, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :insights do |edge|
+      edge.get 'InsightsResult' do |api|
+        api.has_param :metric, { list: { enum: -> { InsightsResult::METRIC }} }
+      end
+    end
 
   end
 end

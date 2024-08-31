@@ -16,6 +16,7 @@ module FacebookAds
   class AdCreativeFeaturesSpec < AdObject
 
     field :adapt_to_placement, 'AdCreativeFeatureDetails'
+    field :add_text_overlay, 'AdCreativeFeatureDetails'
     field :ads_with_benefits, 'AdCreativeFeatureDetails'
     field :advantage_plus_creative, 'AdCreativeFeatureDetails'
     field :app_highlights, 'AdCreativeFeatureDetails'
@@ -26,6 +27,7 @@ module FacebookAds
     field :cv_transformation, 'AdCreativeFeatureDetails'
     field :description_automation, 'AdCreativeFeatureDetails'
     field :dha_optimization, 'AdCreativeFeatureDetails'
+    field :enhance_cta, 'AdCreativeFeatureDetails'
     field :feed_caption_optimization, 'AdCreativeFeatureDetails'
     field :ig_glados_feed, 'AdCreativeFeatureDetails'
     field :image_auto_crop, 'AdCreativeFeatureDetails'
@@ -36,6 +38,7 @@ module FacebookAds
     field :image_touchups, 'AdCreativeFeatureDetails'
     field :image_uncrop, 'AdCreativeFeatureDetails'
     field :inline_comment, 'AdCreativeFeatureDetails'
+    field :local_store_extension, 'AdCreativeFeatureDetails'
     field :media_liquidity_animated_image, 'AdCreativeFeatureDetails'
     field :media_order, 'AdCreativeFeatureDetails'
     field :media_type_automation, 'AdCreativeFeatureDetails'

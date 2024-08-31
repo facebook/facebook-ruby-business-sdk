@@ -15,6 +15,9 @@ module FacebookAds
 
   class AdCreativeSiteLinksSpec < AdObject
 
+    field :site_link_image_hash, 'string'
+    field :site_link_image_url, 'string'
+    field :site_link_recommendation_type, 'string'
     field :site_link_title, 'string'
     field :site_link_url, 'string'
     has_no_id

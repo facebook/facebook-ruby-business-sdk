@@ -21,6 +21,7 @@ module FacebookAds
     field :photo_data, 'AdCreativePhotoData'
     field :template_data, 'AdCreativeLinkData'
     field :text_data, 'AdCreativeTextData'
+    field :threads_actor_id, 'string'
     field :video_data, 'AdCreativeVideoData'
     has_no_id
     has_no_get

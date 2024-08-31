@@ -158,7 +158,6 @@ module FacebookAds
         api.has_param :actions, 'object'
         api.has_param :album_id, 'string'
         api.has_param :android_key_hash, 'string'
-        api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
         api.has_param :asset3d_id, 'int'
@@ -404,7 +403,6 @@ module FacebookAds
         api.has_param :type, { enum: -> { AdVideo::TYPE }}
       end
       edge.post 'AdVideo' do |api|
-        api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
         api.has_param :audio_story_wave_animation_handle, 'string'

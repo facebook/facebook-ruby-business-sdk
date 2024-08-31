@@ -13,10 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class VidwallaBroadcast < AdObject
+  class ProductDeliveryPreference < AdObject
 
+    field :ad_object_id, 'string'
     field :id, 'string'
-    field :overlay_url, 'string'
+    field :product_priority, 'string'
+    field :product_priority_category, { list: 'string' }
     has_no_post
     has_no_delete
 

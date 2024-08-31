@@ -49,6 +49,7 @@ module FacebookAds
 
     has_edge :branded_content_advertisable_medias do |edge|
       edge.get 'BrandedContentShadowIgMediaId' do |api|
+        api.has_param :ad_code, 'string'
         api.has_param :creator_username, 'string'
         api.has_param :only_fetch_allowlisted, 'bool'
         api.has_param :permalinks, { list: 'string' }
@@ -81,8 +82,10 @@ module FacebookAds
     end
 
     has_edge :dataset do |edge|
-      edge.get 'AdsPixel'
-      edge.post 'AdsPixel'
+      edge.get 'Dataset'
+      edge.post 'Dataset' do |api|
+        api.has_param :dataset_name, 'string'
+      end
     end
 
     has_edge :insights do |edge|

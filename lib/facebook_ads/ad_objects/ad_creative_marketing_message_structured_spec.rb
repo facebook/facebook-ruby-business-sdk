@@ -18,6 +18,7 @@ module FacebookAds
     field :buttons, { list: 'object' }
     field :footer, 'string'
     field :greeting, 'string'
+    field :is_optimized_text, 'bool'
     field :language, 'string'
     field :referenced_adgroup_id, 'string'
     field :whats_app_business_phone_number_id, 'string'

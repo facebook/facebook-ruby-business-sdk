@@ -54,6 +54,7 @@ module FacebookAds
     field :picture, 'string'
     field :post_click_configuration, 'AdCreativePostClickConfiguration'
     field :preferred_image_tags, { list: 'string' }
+    field :preferred_video_tags, { list: 'string' }
     field :retailer_item_ids, { list: 'string' }
     field :show_multiple_images, 'bool'
     field :static_fallback_spec, 'AdCreativeStaticFallbackSpec'

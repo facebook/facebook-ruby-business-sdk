@@ -42,6 +42,13 @@ module FacebookAds
       "ORDER_STATUS",
     ]
 
+    PROVIDER_NAME = [
+      "PAYU",
+      "RAZORPAY",
+      "UPI_VPA",
+      "ZAAKPAY",
+    ]
+
 
     field :account_review_status, 'string'
     field :analytics, 'object'
@@ -66,6 +73,10 @@ module FacebookAds
     field :status, 'string'
     field :timezone_id, 'string'
     has_no_delete
+
+    has_edge :activities do |edge|
+      edge.get
+    end
 
     has_edge :assigned_users do |edge|
       edge.delete do |api|
@@ -99,6 +110,13 @@ module FacebookAds
       end
     end
 
+    has_edge :dataset do |edge|
+      edge.get 'Dataset'
+      edge.post 'Dataset' do |api|
+        api.has_param :dataset_name, 'string'
+      end
+    end
+
     has_edge :dcc_config do |edge|
       edge.get
     end
@@ -106,10 +124,17 @@ module FacebookAds
     has_edge :flows do |edge|
       edge.get
       edge.post do |api|
-        api.has_param :categories, { list: { enum: %w{APPOINTMENT_BOOKING CONTACT_US CUSTOMER_SUPPORT LEAD_GENERATION OTHER SIGN_IN SIGN_UP SURVEY }} }
+        api.has_param :categories, { list: { enum: %w{APPOINTMENT_BOOKING CONTACT_US CUSTOMER_SUPPORT LEAD_GENERATION OTHER SHOPPING SIGN_IN SIGN_UP SURVEY }} }
         api.has_param :clone_flow_id, 'string'
         api.has_param :endpoint_uri, 'string'
         api.has_param :name, 'string'
+      end
+    end
+
+    has_edge :generate_payment_configuration_oauth_link do |edge|
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :configuration_name, 'string'
+        api.has_param :redirect_url, 'string'
       end
     end
 
@@ -156,11 +181,40 @@ module FacebookAds
       end
     end
 
+    has_edge :migrate_flows do |edge|
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :page_number, 'int'
+        api.has_param :source_flow_ids, { list: 'string' }
+        api.has_param :source_waba_id, 'string'
+      end
+    end
+
     has_edge :migrate_message_templates do |edge|
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :page_number, 'int'
         api.has_param :source_waba_id, 'string'
       end
+    end
+
+    has_edge :payment_configuration do |edge|
+      edge.delete do |api|
+        api.has_param :configuration_name, 'string'
+      end
+      edge.get do |api|
+        api.has_param :configuration_name, 'string'
+      end
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :configuration_name, 'string'
+        api.has_param :merchant_category_code, 'string'
+        api.has_param :merchant_vpa, 'string'
+        api.has_param :provider_name, { enum: -> { WhatsAppBusinessAccount::PROVIDER_NAME }}
+        api.has_param :purpose_code, 'string'
+        api.has_param :redirect_url, 'string'
+      end
+    end
+
+    has_edge :payment_configurations do |edge|
+      edge.get
     end
 
     has_edge :phone_numbers do |edge|
@@ -194,6 +248,12 @@ module FacebookAds
       end
     end
 
+    has_edge :set_solution_migration_intent do |edge|
+      edge.post do |api|
+        api.has_param :solution_id, 'string'
+      end
+    end
+
     has_edge :solutions do |edge|
       edge.get
     end
@@ -212,6 +272,7 @@ module FacebookAds
         api.has_param :end, 'datetime'
         api.has_param :granularity, { enum: %w{DAILY }}
         api.has_param :metric_types, { list: { enum: %w{CLICKED COST DELIVERED READ SENT }} }
+        api.has_param :product_type, { enum: %w{CLOUD_API MARKETING_MESSAGES_LITE_API }}
         api.has_param :start, 'datetime'
         api.has_param :template_ids, { list: 'string' }
       end
@@ -231,6 +292,13 @@ module FacebookAds
         api.has_param :languages, { list: 'string' }
         api.has_param :message_send_ttl_seconds, 'int'
         api.has_param :name, 'string'
+      end
+    end
+
+    has_edge :welcome_message_sequences do |edge|
+      edge.get 'CtxPartnerAppWelcomeMessageFlow' do |api|
+        api.has_param :app_id, 'string'
+        api.has_param :sequence_id, 'string'
       end
     end
 

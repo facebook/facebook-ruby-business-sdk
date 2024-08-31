@@ -832,9 +832,23 @@ module FacebookAds
       end
     end
 
+    has_edge :ad_account_infos do |edge|
+      edge.get 'AlmAdAccountInfo' do |api|
+        api.has_param :ad_account_id, 'string'
+        api.has_param :parent_advertiser_id, 'string'
+        api.has_param :user_id, 'string'
+      end
+    end
+
     has_edge :ad_accounts do |edge|
       edge.delete do |api|
         api.has_param :adaccount_id, 'string'
+      end
+    end
+
+    has_edge :ad_review_requests do |edge|
+      edge.post do |api|
+        api.has_param :ad_account_ids, { list: 'string' }
       end
     end
 
@@ -956,6 +970,12 @@ module FacebookAds
       end
     end
 
+    has_edge :bm_review_requests do |edge|
+      edge.post do |api|
+        api.has_param :business_manager_ids, { list: 'string' }
+      end
+    end
+
     has_edge :business_asset_groups do |edge|
       edge.get 'BusinessAssetGroup'
     end
@@ -976,6 +996,7 @@ module FacebookAds
       edge.get 'BusinessUser'
       edge.post 'BusinessUser' do |api|
         api.has_param :email, 'string'
+        api.has_param :invited_user_type, { list: { enum: -> { BusinessUser::INVITED_USER_TYPE }} }
         api.has_param :role, { enum: -> { BusinessUser::ROLE }}
       end
     end
@@ -1444,7 +1465,6 @@ module FacebookAds
     has_edge :videos do |edge|
       edge.post 'AdVideo' do |api|
         api.has_param :ad_placements_validation_only, 'bool'
-        api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
         api.has_param :audio_story_wave_animation_handle, 'string'

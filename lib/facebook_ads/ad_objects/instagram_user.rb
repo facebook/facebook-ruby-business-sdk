@@ -51,6 +51,8 @@ module FacebookAds
       edge.get 'IgUpcomingEvent'
       edge.post 'IgUpcomingEvent' do |api|
         api.has_param :end_time, 'datetime'
+        api.has_param :notification_subtypes, { list: { enum: -> { IgUpcomingEvent::NOTIFICATION_SUBTYPES }} }
+        api.has_param :notification_target_time, { enum: -> { IgUpcomingEvent::NOTIFICATION_TARGET_TIME }}
         api.has_param :start_time, 'datetime'
         api.has_param :title, 'string'
       end

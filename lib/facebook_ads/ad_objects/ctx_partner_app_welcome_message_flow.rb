@@ -18,10 +18,12 @@ module FacebookAds
     field :compatible_platforms, { list: 'string' }
     field :eligible_platforms, { list: 'string' }
     field :id, 'string'
+    field :is_ig_only_flow, 'bool'
     field :is_used_in_ad, 'bool'
     field :last_update_time, 'datetime'
     field :name, 'string'
     field :welcome_message_flow, 'string'
+    field :welcome_message_sequence, 'string'
     has_no_post
     has_no_delete
 

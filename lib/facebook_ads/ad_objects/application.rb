@@ -592,6 +592,7 @@ module FacebookAds
         api.has_param :fields, { list: 'string' }
         api.has_param :object, 'string'
       end
+      edge.get
       edge.post do |api|
         api.has_param :callback_url, 'string'
         api.has_param :fields, { list: 'string' }

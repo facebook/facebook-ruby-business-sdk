@@ -56,6 +56,7 @@ module FacebookAds
     field :export_deleted_items_with_delivery, 'bool'
     field :export_summary_row, 'bool'
     field :has_seen_groups_column_flexing_experience, 'bool'
+    field :has_seen_instagram_column_flexing_experience, 'bool'
     field :has_seen_leads_column_flexing_experience, 'bool'
     field :has_seen_shops_ads_metrics_onboarding_tour, 'bool'
     field :has_seen_shops_column_flexing_experience, 'bool'

@@ -16,6 +16,7 @@ module FacebookAds
   class AdAccountRecommendations < AdObject
 
     field :recommendations, { list: 'object' }
+    field :recommendation_signature, 'string'
     has_no_id
     has_no_get
     has_no_post

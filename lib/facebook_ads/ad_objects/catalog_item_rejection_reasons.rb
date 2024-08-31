@@ -20,6 +20,7 @@ module FacebookAds
       "test_capability",
       "universal_checkout",
       "us_marketplace",
+      "whatsapp_marketing_message",
     ]
 
 

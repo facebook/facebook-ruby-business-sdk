@@ -44,6 +44,7 @@ module FacebookAds
       "COPYRIGHT_REFERENCE_IG_XPOST_VIDEO",
       "COPYRIGHT_REFERENCE_VIDEO",
       "CREATION_ML_PRECREATION",
+      "CREATOR_STOREFRONT_PERSONALIZED_VIDEO",
       "DATAGENIX_VIDEO",
       "DCO_AD_ASSET_FEED",
       "DCO_AUTOGEN_VIDEO",
@@ -127,6 +128,7 @@ module FacebookAds
       "OCULUS_CREATOR_PORTAL",
       "OCULUS_VENUES_BROADCAST",
       "OFFERS_VIDEO",
+      "ORIGINALITY_SELF_ADVOCACY",
       "PAGES_COVER_VIDEO",
       "PAGE_REVIEW_SCREENCAST",
       "PAGE_SLIDESHOW_VIDEO",
@@ -337,7 +339,6 @@ module FacebookAds
     field :universal_video_id, 'string'
     field :updated_time, 'datetime'
     field :views, 'int'
-    field :animated_effect_id, 'int'
     field :application_id, 'string'
     field :asked_fun_fact_prompt_id, 'int'
     field :audio_story_wave_animation_handle, 'string'
@@ -487,11 +488,6 @@ module FacebookAds
 
     has_edge :tags do |edge|
       edge.get 'TaggableSubject'
-      edge.post 'AdVideo' do |api|
-        api.has_param :tag_uid, 'int'
-        api.has_param :uid, 'int'
-        api.has_param :vid, 'string'
-      end
     end
 
     has_edge :thumbnails do |edge|

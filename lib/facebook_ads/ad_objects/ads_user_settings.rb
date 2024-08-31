@@ -17,6 +17,7 @@ module FacebookAds
 
     field :a_plus_c_survey_seen, 'bool'
     field :adgroup_name_template, 'object'
+    field :ads_cs_catalog_opt_out_timestamp, { list: 'hash' }
     field :ads_tool_visits, { list: 'object' }
     field :aplusc_carousel_cda_opt_in_status, 'string'
     field :aplusc_carousel_inline_comment_opt_in_status, 'string'
@@ -25,6 +26,7 @@ module FacebookAds
     field :autoflow_lite_opt_in_status, 'string'
     field :autoflow_lite_should_opt_in, 'bool'
     field :blended_ads_creation_defaulting_opt_in_status, 'string'
+    field :blended_ads_creation_defaulting_opt_out_campaign_group_ids, { list: 'int' }
     field :bookmarked_pages, { list: 'Page' }
     field :campaign_group_name_template, 'object'
     field :campaign_name_template, 'object'
@@ -41,7 +43,6 @@ module FacebookAds
     field :is_se_removal_guidance_dismissed, 'bool'
     field :last_used_post_format, 'string'
     field :last_visited_time, 'datetime'
-    field :multi_ads_settings, { list: 'hash' }
     field :music_on_reels_opt_in, { list: 'hash' }
     field :muted_cbo_midflight_education_messages, { list: 'string' }
     field :onsite_destination_optimization_opt_in, 'string'
@@ -67,6 +68,7 @@ module FacebookAds
     field :syd_campaign_trends_metric, 'string'
     field :total_coupon_syd_dismissals, 'int'
     field :total_coupon_upsell_dismissals, 'int'
+    field :url_prefill_removal_timestamp, 'int'
     field :use_pe_create_flow, 'bool'
     field :use_stepper_primary_entry, 'bool'
     field :user, 'User'

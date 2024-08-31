@@ -88,6 +88,21 @@ module FacebookAds
       "MANAGE",
     ]
 
+    BRAND_SAFETY_CONTENT_FILTER_LEVELS = [
+      "AN_RELAXED",
+      "AN_STANDARD",
+      "AN_STRICT",
+      "FACEBOOK_RELAXED",
+      "FACEBOOK_STANDARD",
+      "FACEBOOK_STRICT",
+      "FEED_DNM",
+      "FEED_RELAXED",
+      "FEED_STANDARD",
+      "FEED_STRICT",
+      "UNINITIALIZED",
+      "UNKNOWN",
+    ]
+
     CLAIM_OBJECTIVE = [
       "AUTOMOTIVE_MODEL",
       "COLLABORATIVE_ADS",
@@ -558,7 +573,6 @@ module FacebookAds
         api.has_param :title, 'string'
       end
       edge.post 'AdVideo' do |api|
-        api.has_param :animated_effect_id, 'int'
         api.has_param :application_id, 'string'
         api.has_param :asked_fun_fact_prompt_id, 'int'
         api.has_param :audio_story_wave_animation_handle, 'string'
@@ -696,6 +710,13 @@ module FacebookAds
     has_edge :block_list_drafts do |edge|
       edge.post 'AdAccount' do |api|
         api.has_param :publisher_urls_file, 'file'
+      end
+    end
+
+    has_edge :brand_safety_content_filter_levels do |edge|
+      edge.post 'AdAccount' do |api|
+        api.has_param :brand_safety_content_filter_levels, { list: { enum: -> { AdAccount::BRAND_SAFETY_CONTENT_FILTER_LEVELS }} }
+        api.has_param :business_id, 'string'
       end
     end
 
@@ -1084,6 +1105,13 @@ module FacebookAds
         api.has_param :target_frequency_reset_period, 'int'
         api.has_param :target_spec, 'Targeting'
         api.has_param :video_view_length_constraint, 'int'
+      end
+    end
+
+    has_edge :recommendations do |edge|
+      edge.get 'AdAccountRecommendations'
+      edge.post 'AdAccountRecommendations' do |api|
+        api.has_param :recommendation_signature, 'string'
       end
     end
 

@@ -14,6 +14,11 @@ module FacebookAds
   # pull request for this class.
 
   class BusinessUser < AdObject
+    INVITED_USER_TYPE = [
+      "FB",
+      "MWA",
+    ]
+
     ROLE = [
       "ADMIN",
       "ADS_RIGHTS_REVIEWER",
@@ -47,6 +52,7 @@ module FacebookAds
     field :role, 'string'
     field :title, 'string'
     field :two_fac_status, 'string'
+    field :invited_user_type, { list: { enum: -> { INVITED_USER_TYPE }} }
 
     has_edge :assigned_ad_accounts do |edge|
       edge.get 'AdAccount'

@@ -21,10 +21,7 @@ module FacebookAds
     field :advertiser_name, 'string'
     field :attributed_to_reseller_l7d, 'bool'
     field :available_guidance, { list: 'string' }
-    field :benchmark_report_link, 'string'
     field :guidance_adoption_rate_l7d, 'double'
-    field :no_adsets_gte_benchmark, 'int'
-    field :no_adsets_lt_benchmark, 'int'
     field :nurtured_by_reseller_l7d, 'bool'
     field :planning_agency_name, 'string'
     field :recommendation_time, 'datetime'

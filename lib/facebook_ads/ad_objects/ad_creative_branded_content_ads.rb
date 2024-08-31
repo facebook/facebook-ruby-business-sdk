@@ -22,7 +22,9 @@ module FacebookAds
     field :instagram_boost_post_access_token, 'string'
     field :is_mca_internal, 'bool'
     field :partners, { list: 'AdCreativeBrandedContentAdsPartners' }
+    field :product_set_partner_selection_status, 'string'
     field :promoted_page_id, 'string'
+    field :testimonial, 'string'
     field :ui_version, 'int'
     has_no_id
     has_no_get

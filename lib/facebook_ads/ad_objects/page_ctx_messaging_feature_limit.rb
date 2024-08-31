@@ -13,11 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdjacentContentDeliveryReport < AdObject
+  class PageCtxMessagingFeatureLimit < AdObject
 
-    field :ad_id, 'string'
-    field :content, { list: 'object' }
-    field :impression_id, 'string'
+    field :messaging_feature_limit_duration, 'int'
+    field :messaging_feature_limit_type, 'string'
+    field :messaging_violation_type, 'string'
     has_no_id
     has_no_get
     has_no_post

@@ -41,6 +41,7 @@ module FacebookAds
     field :finance_role, 'string'
     field :id, 'string'
     field :invite_link, 'string'
+    field :invited_user_type, { list: 'string' }
     field :ip_role, 'string'
     field :owner, 'Business'
     field :role, 'string'

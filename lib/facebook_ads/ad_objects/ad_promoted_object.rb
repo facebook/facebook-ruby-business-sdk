@@ -48,6 +48,7 @@ module FacebookAds
 
 
     field :application_id, 'string'
+    field :boosted_product_set_id, 'string'
     field :conversion_goal_id, 'string'
     field :custom_conversion_id, 'string'
     field :custom_event_str, 'string'

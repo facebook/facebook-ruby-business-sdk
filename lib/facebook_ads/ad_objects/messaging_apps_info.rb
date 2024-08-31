@@ -15,6 +15,7 @@ module FacebookAds
 
   class MessagingAppsInfo < AdObject
 
+    field :ctd_support_only_for_ig_app, 'bool'
     field :has_instagram_messaging_permission, 'bool'
     field :has_messenger_messaging_permission, 'bool'
     field :id, 'string'

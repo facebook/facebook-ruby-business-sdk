@@ -19,6 +19,7 @@ module FacebookAds
     field :catalog_feed_tag_name, 'string'
     field :font_name, 'string'
     field :product_recommendation_type, 'string'
+    field :product_versioning_fallback_strategy, 'string'
     field :showcase_card_display, 'string'
     field :text_style, 'string'
     field :video_crop_style, 'string'
