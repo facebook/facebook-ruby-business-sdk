@@ -15,14 +15,7 @@ module FacebookAds
 
   class AdCreativeFeatureCustomizations < AdObject
 
-    field :background_color, 'string'
-    field :catalog_feed_tag_name, 'string'
-    field :font_name, 'string'
-    field :product_recommendation_type, 'string'
-    field :product_versioning_fallback_strategy, 'string'
     field :showcase_card_display, 'string'
-    field :text_style, 'string'
-    field :video_crop_style, 'string'
     has_no_id
     has_no_get
     has_no_post

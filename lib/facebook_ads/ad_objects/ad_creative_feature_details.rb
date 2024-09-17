@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdCreativeFeatureDetails < AdObject
 
+    field :customizations, 'AdCreativeFeatureCustomizations'
     field :enroll_status, 'string'
     has_no_id
     has_no_get
