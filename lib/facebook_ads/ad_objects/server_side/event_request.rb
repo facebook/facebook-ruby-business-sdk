@@ -58,6 +58,9 @@ module FacebookAds
       # The HttpServiceInterface client to use for executing the request.
       attr_accessor :http_service_client
 
+      # AdObject Session
+      attr_accessor :session
+
       # @param [String] pixel_id
       # @param [Array(FacebookAds::ServerSide::Event)] events
       # @param [String] test_event_code
@@ -70,7 +73,7 @@ module FacebookAds
       # @param [HttpServiceInterface] http_service_client
       def initialize(pixel_id: nil, events: nil, test_event_code: nil, partner_agent: nil,
           namespace_id: nil, upload_id: nil, upload_tag: nil, upload_source: nil,
-          access_token: nil, http_service_client: nil)
+          access_token: nil, http_service_client: nil, session: nil)
         unless pixel_id.nil?
           self.pixel_id = pixel_id
         end
@@ -100,6 +103,9 @@ module FacebookAds
         end
         unless http_service_client.nil?
           self.http_service_client = http_service_client
+        end
+        unless session.nil?
+          self.session = session
         end
       end
 
@@ -161,7 +167,7 @@ module FacebookAds
         end
         params = get_params()
         params[:data] = normalize
-        session = FacebookAds::Session.new(access_token: access_token) if access_token
+        session = self.session || (access_token ? FacebookAds::Session.new(access_token: access_token) : nil)
         ads_pixel = FacebookAds::AdsPixel.get(pixel_id, session)
         response = ads_pixel.events.create(params)
         json_response_object = JSON.parse(JSON.generate(response), object_class: OpenStruct)
