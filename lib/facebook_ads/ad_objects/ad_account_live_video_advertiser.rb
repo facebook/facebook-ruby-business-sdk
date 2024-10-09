@@ -13,10 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CatalogItemRejectionReasons < AdObject
+  class AdAccountLiveVideoAdvertiser < AdObject
 
-    field :capability, 'string'
-    field :rejection_information, { list: 'object' }
+    field :is_lva_toggle_on, 'bool'
+    field :lva_default_budget, 'int'
+    field :should_show_lva_toggle, 'bool'
     has_no_id
     has_no_get
     has_no_post

@@ -43,5 +43,13 @@ module FacebookAds
       end
     end
 
+    has_edge :insights do |edge|
+      edge.get 'InsightsResult' do |api|
+        api.has_param :breakdown, { list: { enum: -> { InsightsResult::BREAKDOWN }} }
+        api.has_param :metric, { list: { enum: -> { InsightsResult::METRIC }} }
+        api.has_param :period, { list: { enum: -> { InsightsResult::PERIOD }} }
+      end
+    end
+
   end
 end

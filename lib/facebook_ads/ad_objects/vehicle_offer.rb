@@ -61,6 +61,11 @@ module FacebookAds
     field :offer_disclaimer, 'string'
     field :offer_type, 'string'
     field :price, 'string'
+    field :product_priority_0, 'double'
+    field :product_priority_1, 'double'
+    field :product_priority_2, 'double'
+    field :product_priority_3, 'double'
+    field :product_priority_4, 'double'
     field :sanitized_images, { list: 'string' }
     field :start_date, 'string'
     field :start_time, 'int'

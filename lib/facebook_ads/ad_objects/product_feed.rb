@@ -46,6 +46,7 @@ module FacebookAds
 
     FEED_TYPE = [
       "AUTOMOTIVE_MODEL",
+      "COLLECTION",
       "DESTINATION",
       "FLIGHT",
       "HOME_LISTING",

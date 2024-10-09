@@ -43,6 +43,7 @@ module FacebookAds
     ]
 
     PROVIDER_NAME = [
+      "BILLDESK",
       "PAYU",
       "RAZORPAY",
       "UPI_VPA",
@@ -93,6 +94,19 @@ module FacebookAds
 
     has_edge :audiences do |edge|
       edge.get
+    end
+
+    has_edge :call_analytics do |edge|
+      edge.get do |api|
+        api.has_param :country_codes, { list: 'string' }
+        api.has_param :dimensions, { list: { enum: %w{COUNTRY DIRECTION PHONE UNKNOWN }} }
+        api.has_param :directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
+        api.has_param :end, 'int'
+        api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
+        api.has_param :metric_types, { list: { enum: %w{AVERAGE_DURATION COST COUNT UNKNOWN }} }
+        api.has_param :phone_numbers, { list: 'string' }
+        api.has_param :start, 'int'
+      end
     end
 
     has_edge :conversation_analytics do |edge|
@@ -173,6 +187,7 @@ module FacebookAds
         api.has_param :cta_url_link_tracking_opted_out, 'bool'
         api.has_param :display_format, { enum: -> { WhatsAppBusinessAccount::DISPLAY_FORMAT }}
         api.has_param :language, 'string'
+        api.has_param :library_template_body_inputs, 'hash'
         api.has_param :library_template_button_inputs, { list: 'hash' }
         api.has_param :library_template_name, 'string'
         api.has_param :message_send_ttl_seconds, 'int'

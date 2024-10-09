@@ -120,6 +120,7 @@ module FacebookAds
     field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
     field :name, 'string'
+    field :placement, 'Placement'
     field :preview_shareable_link, 'string'
     field :priority, 'int'
     field :recommendations, { list: 'AdRecommendation' }

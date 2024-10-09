@@ -136,6 +136,12 @@ module FacebookAds
         api.has_param :app_id, 'string'
         api.has_param :flow_id, 'string'
       end
+      edge.post do |api|
+        api.has_param :eligible_platforms, { list: { enum: %w{INSTAGRAM MESSENGER WHATSAPP }} }
+        api.has_param :flow_id, 'string'
+        api.has_param :name, 'string'
+        api.has_param :welcome_message_flow, { list: 'object' }
+      end
     end
 
   end

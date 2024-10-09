@@ -20,7 +20,7 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :personas do |edge|
+    has_edge :rules do |edge|
       edge.get
     end
 

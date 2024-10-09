@@ -55,6 +55,7 @@ module FacebookAds
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :event_id, 'string'
     field :fundraiser_campaign_id, 'string'
+    field :lead_ads_form_event_source_type, 'string'
     field :mcme_conversion_id, 'string'
     field :object_store_url, 'string'
     field :offer_id, 'string'
@@ -72,6 +73,8 @@ module FacebookAds
     field :product_set, 'ProductSet'
     field :product_set_id, 'string'
     field :retention_days, 'string'
+    field :value_semantic_type, 'string'
+    field :variation, 'string'
     field :whatsapp_phone_number, 'string'
     has_no_id
     has_no_get

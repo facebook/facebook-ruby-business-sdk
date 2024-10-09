@@ -48,6 +48,11 @@ module FacebookAds
       "USER_PROVIDED_ONLY",
     ]
 
+    SUBSCRIPTION_INFO = [
+      "MESSENGER",
+      "WHATSAPP",
+    ]
+
     SUBTYPE = [
       "APP",
       "BAG_OF_ACCOUNTS",
@@ -60,6 +65,7 @@ module FacebookAds
       "LOOKALIKE",
       "MANAGED",
       "MEASUREMENT",
+      "MESSENGER_SUBSCRIBER_LIST",
       "OFFLINE_CONVERSION",
       "PARTNER",
       "PRIMARY",
@@ -68,6 +74,11 @@ module FacebookAds
       "SUBSCRIBER_SEGMENT",
       "VIDEO",
       "WEBSITE",
+    ]
+
+    USE_FOR_PRODUCTS = [
+      "ADS",
+      "MARKETING_MESSAGES",
     ]
 
     ACTION_SOURCE = [
@@ -126,13 +137,17 @@ module FacebookAds
     field :event_source_group, 'string'
     field :event_sources, { list: 'hash' }
     field :exclusions, { list: 'object' }
+    field :facebook_page_id, 'string'
     field :inclusions, { list: 'object' }
     field :list_of_accounts, { list: 'int' }
+    field :marketing_message_channels, 'object'
     field :origin_audience_id, 'string'
     field :parent_audience_id, 'int'
     field :partner_reference_key, 'string'
     field :prefill, 'bool'
     field :product_set_id, 'string'
+    field :subscription_info, { list: { enum: -> { SUBSCRIPTION_INFO }} }
+    field :use_for_products, { list: { enum: -> { USE_FOR_PRODUCTS }} }
     field :use_in_campaigns, 'bool'
     field :video_group_ids, { list: 'string' }
     field :whats_app_business_phone_number_id, 'string'

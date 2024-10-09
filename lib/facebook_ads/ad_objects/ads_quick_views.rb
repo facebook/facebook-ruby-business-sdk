@@ -13,11 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class DogNotificationSettings < AdObject
+  class AdsQuickViews < AdObject
 
-    field :dog_check_key, 'string'
+    field :attribution_windows, { list: 'string' }
+    field :breakdowns, { list: 'string' }
+    field :column_fields, { list: 'string' }
+    field :description, 'string'
     field :id, 'string'
-    field :subscription_status_per_channel, { list: 'hash' }
+    field :name, 'string'
+    field :permission, 'string'
+    field :sort, { list: 'object' }
     has_no_post
     has_no_delete
 

@@ -170,11 +170,13 @@ module FacebookAds
     REGIONAL_REGULATED_CATEGORIES = [
       "0",
       "1",
+      "2",
     ]
 
     TUNE_FOR_CATEGORY = [
       "CREDIT",
       "EMPLOYMENT",
+      "FINANCIAL_PRODUCTS_SERVICES",
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
@@ -234,6 +236,8 @@ module FacebookAds
     field :lifetime_imps, 'int'
     field :lifetime_min_spend_target, 'string'
     field :lifetime_spend_cap, 'string'
+    field :max_budget_spend_percentage, 'string'
+    field :min_budget_spend_percentage, 'string'
     field :multi_optimization_goal_weight, 'string'
     field :name, 'string'
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}

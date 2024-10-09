@@ -19,9 +19,10 @@ module FacebookAds
     field :link_data, 'AdCreativeLinkData'
     field :page_id, 'string'
     field :photo_data, 'AdCreativePhotoData'
+    field :product_data, { list: 'AdCreativeProductData' }
     field :template_data, 'AdCreativeLinkData'
     field :text_data, 'AdCreativeTextData'
-    field :threads_actor_id, 'string'
+    field :threads_user_id, 'string'
     field :video_data, 'AdCreativeVideoData'
     has_no_id
     has_no_get

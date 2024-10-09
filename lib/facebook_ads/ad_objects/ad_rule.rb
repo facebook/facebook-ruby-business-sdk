@@ -57,6 +57,7 @@ module FacebookAds
     field :account_id, 'string'
     field :created_by, 'User'
     field :created_time, 'datetime'
+    field :disable_error_code, 'int'
     field :evaluation_spec, 'AdRuleEvaluationSpec'
     field :execution_spec, 'AdRuleExecutionSpec'
     field :id, 'string'

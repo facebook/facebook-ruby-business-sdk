@@ -16,6 +16,7 @@ module FacebookAds
   class AdCreativeBrandedContentAdsPartners < AdObject
 
     field :fb_page_id, 'string'
+    field :has_create_ads_access, 'bool'
     field :identity_type, 'string'
     field :ig_asset_id, 'string'
     field :ig_user_id, 'string'

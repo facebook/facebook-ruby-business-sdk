@@ -15,8 +15,11 @@ module FacebookAds
 
   class PartnershipAdContentSearchMedia < AdObject
 
+    field :ig_ad_code_sponsor_count, 'int'
+    field :ig_ad_code_sponsors, { list: 'FbPageAndInstagramAccount' }
     field :ig_media, 'IgMedia'
     field :ig_media_has_product_tags, 'bool'
+    field :is_ad_code_eligible_for_boosting_by_two_sponsors, 'bool'
     field :is_ad_code_entry, 'bool'
     has_no_id
     has_no_get

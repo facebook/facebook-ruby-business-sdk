@@ -14,6 +14,49 @@ module FacebookAds
   # pull request for this class.
 
   class InsightsResult < AdObject
+    BREAKDOWN = [
+      "action_type",
+      "follow_type",
+      "story_navigation_action_type",
+      "surface_type",
+    ]
+
+    METRIC = [
+      "clips_replays_count",
+      "comments",
+      "follows",
+      "ig_reels_aggregated_all_plays_count",
+      "ig_reels_avg_watch_time",
+      "ig_reels_video_view_total_time",
+      "impressions",
+      "likes",
+      "navigation",
+      "peak_concurrent_viewers",
+      "plays",
+      "profile_activity",
+      "profile_visits",
+      "quotes",
+      "reach",
+      "replies",
+      "reposts",
+      "saved",
+      "shares",
+      "thread_replies",
+      "thread_shares",
+      "total_interactions",
+      "video_views",
+      "views",
+    ]
+
+    PERIOD = [
+      "day",
+      "days_28",
+      "lifetime",
+      "month",
+      "total_over_range",
+      "week",
+    ]
+
     DATE_PRESET = [
       "data_maximum",
       "last_14d",
@@ -35,25 +78,6 @@ module FacebookAds
       "this_year",
       "today",
       "yesterday",
-    ]
-
-    PERIOD = [
-      "day",
-      "days_28",
-      "lifetime",
-      "month",
-      "total_over_range",
-      "week",
-    ]
-
-    METRIC = [
-      "PAGES_FB_STORY_REPLIES",
-      "PAGES_FB_STORY_SHARES",
-      "PAGES_FB_STORY_STICKER_INTERACTIONS",
-      "PAGES_FB_STORY_THREAD_LIGHTWEIGHT_REACTIONS",
-      "PAGE_STORY_IMPRESSIONS_BY_STORY_ID",
-      "PAGE_STORY_IMPRESSIONS_BY_STORY_ID_UNIQUE",
-      "STORY_INTERACTION",
     ]
 
 

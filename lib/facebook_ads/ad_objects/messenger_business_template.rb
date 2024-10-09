@@ -13,18 +13,19 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PanelApiReport < AdObject
+  class MessengerBusinessTemplate < AdObject
 
-    field :checksum, 'string'
-    field :download_url, 'string'
-    field :end_date, 'datetime'
-    field :export_file_type, 'string'
+    field :category, 'string'
+    field :components, { list: 'object' }
+    field :creation_time, 'int'
     field :id, 'string'
-    field :index, 'int'
+    field :language, 'string'
+    field :language_count, 'int'
+    field :last_updated_time, 'datetime'
+    field :library_template_name, 'string'
     field :name, 'string'
-    field :number_of_chunks, 'int'
-    field :start_date, 'datetime'
-    field :upload_date, 'datetime'
+    field :rejected_reason, 'string'
+    field :status, 'string'
     has_no_post
     has_no_delete
 

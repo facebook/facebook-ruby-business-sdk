@@ -18,6 +18,7 @@ module FacebookAds
     field :ad_account_id, 'string'
     field :id, 'string'
     field :managed_by, 'string'
+    field :owned_by, 'string'
     field :parent_advertiser_id, 'string'
     field :sub_vertical, 'string'
     field :tag, { list: 'string' }

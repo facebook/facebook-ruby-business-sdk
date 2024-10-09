@@ -360,11 +360,10 @@ module FacebookAds
     field :formatting, { enum: -> { FORMATTING }}
     field :fov, 'int'
     field :front_z_rotation, 'double'
-    field :fun_fact_prompt_id, 'int'
+    field :fun_fact_prompt_id, 'string'
     field :fun_fact_toastee_id, 'int'
     field :guide, { list: { list: 'int' } }
     field :guide_enabled, 'bool'
-    field :holiday_card, 'string'
     field :initial_heading, 'int'
     field :initial_pitch, 'int'
     field :instant_game_entry_point_data, 'string'
@@ -373,7 +372,6 @@ module FacebookAds
     field :is_voice_clip, 'bool'
     field :location_source_id, 'string'
     field :name, 'string'
-    field :offer_like_post_id, 'int'
     field :og_action_type_id, 'string'
     field :og_icon_id, 'string'
     field :og_object_id, 'string'

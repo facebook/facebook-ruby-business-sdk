@@ -16,6 +16,7 @@ module FacebookAds
   class AdsUserSettings < AdObject
 
     field :a_plus_c_survey_seen, 'bool'
+    field :add_overlays_opt_in_status, 'string'
     field :adgroup_name_template, 'object'
     field :ads_cs_catalog_opt_out_timestamp, { list: 'hash' }
     field :ads_tool_visits, { list: 'object' }
@@ -37,6 +38,7 @@ module FacebookAds
     field :focus_mode_default, 'string'
     field :gen_ai_alpha_test_status, 'int'
     field :id, 'string'
+    field :image_background_generation_opt_in_status, 'string'
     field :image_expansion_opt_in_status, 'string'
     field :is_ads_ai_consented, 'bool'
     field :is_cbo_default_on, 'bool'

@@ -46,6 +46,11 @@ module FacebookAds
     field :margin_level, 'int'
     field :name, 'string'
     field :phone, 'string'
+    field :product_priority_0, 'double'
+    field :product_priority_1, 'double'
+    field :product_priority_2, 'double'
+    field :product_priority_3, 'double'
+    field :product_priority_4, 'double'
     field :sale_price, 'string'
     field :sanitized_images, { list: 'string' }
     field :star_rating, 'double'

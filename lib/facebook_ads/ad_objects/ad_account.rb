@@ -142,6 +142,7 @@ module FacebookAds
       "LOOKALIKE",
       "MANAGED",
       "MEASUREMENT",
+      "MESSENGER_SUBSCRIBER_LIST",
       "OFFLINE_CONVERSION",
       "PARTNER",
       "PRIMARY",
@@ -511,6 +512,8 @@ module FacebookAds
         api.has_param :lifetime_min_spend_target, 'int'
         api.has_param :lifetime_spend_cap, 'int'
         api.has_param :line_number, 'int'
+        api.has_param :max_budget_spend_percentage, 'int'
+        api.has_param :min_budget_spend_percentage, 'int'
         api.has_param :multi_optimization_goal_weight, { enum: -> { AdSet::MULTI_OPTIMIZATION_GOAL_WEIGHT }}
         api.has_param :name, 'string'
         api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
@@ -597,11 +600,10 @@ module FacebookAds
         api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
         api.has_param :fov, 'int'
         api.has_param :front_z_rotation, 'double'
-        api.has_param :fun_fact_prompt_id, 'int'
+        api.has_param :fun_fact_prompt_id, 'string'
         api.has_param :fun_fact_toastee_id, 'int'
         api.has_param :guide, { list: { list: 'int' } }
         api.has_param :guide_enabled, 'bool'
-        api.has_param :holiday_card, 'string'
         api.has_param :initial_heading, 'int'
         api.has_param :initial_pitch, 'int'
         api.has_param :instant_game_entry_point_data, 'string'
@@ -610,7 +612,6 @@ module FacebookAds
         api.has_param :is_voice_clip, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :name, 'string'
-        api.has_param :offer_like_post_id, 'int'
         api.has_param :og_action_type_id, 'string'
         api.has_param :og_icon_id, 'string'
         api.has_param :og_object_id, 'string'
@@ -817,11 +818,13 @@ module FacebookAds
         api.has_param :event_source_group, 'string'
         api.has_param :event_sources, { list: 'hash' }
         api.has_param :exclusions, { list: 'object' }
+        api.has_param :facebook_page_id, 'string'
         api.has_param :inclusions, { list: 'object' }
         api.has_param :is_snapshot, 'bool'
         api.has_param :is_value_based, 'bool'
         api.has_param :list_of_accounts, { list: 'int' }
         api.has_param :lookalike_spec, 'string'
+        api.has_param :marketing_message_channels, 'object'
         api.has_param :name, 'string'
         api.has_param :opt_out_link, 'string'
         api.has_param :origin_audience_id, 'string'
@@ -835,7 +838,9 @@ module FacebookAds
         api.has_param :rev_share_policy_id, 'int'
         api.has_param :rule, 'string'
         api.has_param :rule_aggregation, 'string'
+        api.has_param :subscription_info, { list: { enum: -> { CustomAudience::SUBSCRIPTION_INFO }} }
         api.has_param :subtype, { enum: -> { CustomAudience::SUBTYPE }}
+        api.has_param :use_for_products, { list: { enum: -> { CustomAudience::USE_FOR_PRODUCTS }} }
         api.has_param :use_in_campaigns, 'bool'
         api.has_param :video_group_ids, { list: 'string' }
         api.has_param :whats_app_business_phone_number_id, 'string'
@@ -1218,12 +1223,19 @@ module FacebookAds
       end
     end
 
-    has_edge :value_adjustment_rule_collections do |edge|
+    has_edge :value_adjustment_rules do |edge|
+      edge.get 'AdsValueAdjustmentRule'
+    end
+
+    has_edge :value_rule_set do |edge|
       edge.get 'AdsValueAdjustmentRuleCollection'
     end
 
-    has_edge :value_adjustment_rules do |edge|
-      edge.get 'AdsValueAdjustmentRule'
+    has_edge :video_ads do |edge|
+      edge.get 'AdVideo' do |api|
+        api.has_param :since, 'datetime'
+        api.has_param :until, 'datetime'
+      end
     end
 
   end

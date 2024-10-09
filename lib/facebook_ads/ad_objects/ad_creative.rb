@@ -203,6 +203,7 @@ module FacebookAds
     field :link_destination_display_url, 'string'
     field :link_og_id, 'string'
     field :link_url, 'string'
+    field :messenger_sponsored_message, 'string'
     field :name, 'string'
     field :object_id, 'string'
     field :object_store_url, 'string'

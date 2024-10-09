@@ -65,17 +65,6 @@ module FacebookAds
       "EYMT",
     ]
 
-    LOGGING_SOURCE = [
-      "DETECTION",
-      "MESSENGER_BOT",
-    ]
-
-    LOGGING_TARGET = [
-      "APP",
-      "APP_AND_PAGE",
-      "PAGE",
-    ]
-
     OWNER_PERMISSIONS = [
       "DEVELOP",
       "MANAGE",
@@ -251,6 +240,7 @@ module FacebookAds
         api.has_param :data_processing_options_state, 'int'
         api.has_param :device_token, 'string'
         api.has_param :event, { enum: %w{CUSTOM_APP_EVENTS DEFERRED_APP_LINK MOBILE_APP_INSTALL }}
+        api.has_param :event_id, 'string'
         api.has_param :extinfo, 'object'
         api.has_param :include_dwell_data, 'bool'
         api.has_param :include_video_data, 'bool'
@@ -471,6 +461,12 @@ module FacebookAds
       edge.get 'AdsDataset'
     end
 
+    has_edge :message_templates do |edge|
+      edge.get do |api|
+        api.has_param :template_id, 'string'
+      end
+    end
+
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
         api.has_param :advertiser_id, 'string'
@@ -522,18 +518,6 @@ module FacebookAds
       edge.post do |api|
         api.has_param :flash, 'bool'
         api.has_param :unity, 'bool'
-      end
-    end
-
-    has_edge :page_activities do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :advertiser_tracking_enabled, 'bool'
-        api.has_param :application_tracking_enabled, 'bool'
-        api.has_param :custom_events, { list: 'object' }
-        api.has_param :logging_source, { enum: -> { Application::LOGGING_SOURCE }}
-        api.has_param :logging_target, { enum: -> { Application::LOGGING_TARGET }}
-        api.has_param :page_id, 'int'
-        api.has_param :page_scoped_user_id, 'int'
       end
     end
 

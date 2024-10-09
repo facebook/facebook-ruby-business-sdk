@@ -104,6 +104,7 @@ module FacebookAds
     SPECIAL_AD_CATEGORIES = [
       "CREDIT",
       "EMPLOYMENT",
+      "FINANCIAL_PRODUCTS_SERVICES",
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
@@ -372,6 +373,7 @@ module FacebookAds
     SPECIAL_AD_CATEGORY = [
       "CREDIT",
       "EMPLOYMENT",
+      "FINANCIAL_PRODUCTS_SERVICES",
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",

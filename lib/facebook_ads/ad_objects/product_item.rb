@@ -34,6 +34,14 @@ module FacebookAds
       "preorder",
     ]
 
+    CAPABILITY_TO_REVIEW_STATUS = [
+      "APPROVED",
+      "NO_REVIEW",
+      "OUTDATED",
+      "PENDING",
+      "REJECTED",
+    ]
+
     CONDITION = [
       "cpo",
       "new",
@@ -369,6 +377,7 @@ module FacebookAds
       "INVALID_SUBSCRIPTION_DISABLE_PARAMS",
       "INVALID_SUBSCRIPTION_ENABLE_PARAMS",
       "INVALID_SUBSCRIPTION_PARAMS",
+      "INVALID_TAX_EXTENSION_STATE",
       "INVALID_VEHICLE_STATE",
       "INVALID_VIRTUAL_TOUR_URL_DOMAIN",
       "INVENTORY_ZERO_AVAILABILITY_IN_STOCK",

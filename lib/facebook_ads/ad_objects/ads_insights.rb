@@ -61,6 +61,7 @@ module FacebookAds
       "age",
       "app_id",
       "body_asset",
+      "breakdown_reporting_ad_id",
       "call_to_action_asset",
       "coarse_conversion_value",
       "conversion_destination",
@@ -88,6 +89,7 @@ module FacebookAds
       "media_format",
       "media_origin_url",
       "media_text_content",
+      "media_type",
       "mmm",
       "place_page_id",
       "platform_position",
@@ -174,6 +176,7 @@ module FacebookAds
     field :auction_bid, 'string'
     field :auction_competitiveness, 'string'
     field :auction_max_competitor_bid, 'string'
+    field :average_purchases_conversion_value, { list: 'AdsActionStats' }
     field :buying_type, 'string'
     field :campaign_id, 'string'
     field :campaign_name, 'string'
@@ -238,9 +241,6 @@ module FacebookAds
     field :instant_experience_outbound_clicks, { list: 'AdsActionStats' }
     field :interactive_component_tap, { list: 'AdsActionStats' }
     field :labels, 'string'
-    field :landing_page_view_actions_per_link_click, { list: 'AdsActionStats' }
-    field :landing_page_view_per_purchase_rate, { list: 'AdsActionStats' }
-    field :link_clicks_per_results, { list: 'AdsActionStats' }
     field :location, 'string'
     field :marketing_messages_cost_per_delivered, 'string'
     field :marketing_messages_cost_per_link_btn_click, 'string'
@@ -254,7 +254,6 @@ module FacebookAds
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :place_page_name, 'string'
     field :purchase_roas, { list: 'AdsActionStats' }
-    field :purchases_per_link_click, { list: 'AdsActionStats' }
     field :qualifying_question_qualify_answer_rate, 'string'
     field :quality_ranking, 'string'
     field :reach, 'string'

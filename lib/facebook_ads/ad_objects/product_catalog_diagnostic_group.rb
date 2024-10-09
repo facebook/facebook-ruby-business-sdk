@@ -14,23 +14,6 @@ module FacebookAds
   # pull request for this class.
 
   class ProductCatalogDiagnosticGroup < AdObject
-    AFFECTED_CHANNELS = [
-      "b2c_marketplace",
-      "c2c_marketplace",
-      "da",
-      "daily_deals",
-      "daily_deals_legacy",
-      "ig_product_tagging",
-      "marketplace",
-      "marketplace_ads_deprecated",
-      "marketplace_shops",
-      "mini_shops",
-      "offline_conversions",
-      "shops",
-      "universal_checkout",
-      "whatsapp",
-    ]
-
     AFFECTED_ENTITY = [
       "product_catalog",
       "product_event",
@@ -62,6 +45,23 @@ module FacebookAds
       "SHOPS_VISIBILITY_ISSUES",
     ]
 
+    AFFECTED_CHANNELS = [
+      "b2c_marketplace",
+      "c2c_marketplace",
+      "da",
+      "daily_deals",
+      "daily_deals_legacy",
+      "ig_product_tagging",
+      "marketplace",
+      "marketplace_ads_deprecated",
+      "marketplace_shops",
+      "mini_shops",
+      "offline_conversions",
+      "shops",
+      "universal_checkout",
+      "whatsapp",
+    ]
+
     AFFECTED_ENTITIES = [
       "product_catalog",
       "product_event",
@@ -89,7 +89,7 @@ module FacebookAds
     ]
 
 
-    field :affected_channels, { list: { enum: -> { AFFECTED_CHANNELS }} }
+    field :affected_channels, { list: 'string' }
     field :affected_entity, { enum: -> { AFFECTED_ENTITY }}
     field :affected_features, { list: { enum: -> { AFFECTED_FEATURES }} }
     field :diagnostics, { list: 'object' }

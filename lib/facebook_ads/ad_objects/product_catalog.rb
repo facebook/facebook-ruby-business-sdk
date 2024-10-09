@@ -329,6 +329,12 @@ module FacebookAds
       end
     end
 
+    has_edge :marketplace_partner_sellers_details do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :requests, 'hash'
+      end
+    end
+
     has_edge :pricing_variables_batch do |edge|
       edge.get 'ProductCatalogPricingVariablesBatch' do |api|
         api.has_param :handle, 'string'

@@ -42,6 +42,7 @@ module FacebookAds
       "saved",
       "shares",
       "thread_replies",
+      "thread_shares",
       "total_interactions",
       "video_views",
       "views",

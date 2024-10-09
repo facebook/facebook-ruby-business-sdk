@@ -15,7 +15,6 @@ module FacebookAds
 
   class SavedMessageResponse < AdObject
 
-    field :category, 'string'
     field :id, 'string'
     field :image, 'string'
     field :is_enabled, 'bool'

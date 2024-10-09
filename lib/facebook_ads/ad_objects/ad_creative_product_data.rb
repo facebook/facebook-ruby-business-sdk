@@ -13,14 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ExternalEventSourceDaStatsResult < AdObject
+  class AdCreativeProductData < AdObject
 
-    field :count_content_ids, 'int'
-    field :count_content_ids_match_any_catalog, 'int'
-    field :count_fires, 'int'
-    field :count_fires_match_any_catalog, 'int'
-    field :date, 'string'
-    field :percentage_missed_users, 'double'
+    field :product_id, 'string'
+    field :product_source, 'string'
     has_no_id
     has_no_get
     has_no_post
