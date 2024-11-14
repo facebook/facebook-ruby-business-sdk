@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdCreativeFeatureCustomizations < AdObject
 
+    field :image_crop_style, 'string'
     field :showcase_card_display, 'string'
     has_no_id
     has_no_get
