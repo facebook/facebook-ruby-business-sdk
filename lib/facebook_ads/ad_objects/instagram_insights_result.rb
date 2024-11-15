@@ -31,21 +31,15 @@ module FacebookAds
       "impressions",
       "likes",
       "navigation",
-      "peak_concurrent_viewers",
       "plays",
       "profile_activity",
       "profile_visits",
-      "quotes",
       "reach",
       "replies",
-      "reposts",
       "saved",
       "shares",
-      "thread_replies",
-      "thread_shares",
       "total_interactions",
       "video_views",
-      "views",
     ]
 
     PERIOD = [

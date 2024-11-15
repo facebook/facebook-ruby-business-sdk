@@ -16,6 +16,7 @@ module FacebookAds
   class MessengerCallSettings < AdObject
 
     field :audio_enabled, 'bool'
+    field :icon_enabled, 'bool'
     has_no_id
     has_no_get
     has_no_post

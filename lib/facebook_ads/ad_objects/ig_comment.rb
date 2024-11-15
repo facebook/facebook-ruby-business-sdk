@@ -18,6 +18,7 @@ module FacebookAds
     field :from, 'IgCommentFromUser'
     field :hidden, 'bool'
     field :id, 'string'
+    field :legacy_instagram_comment_id, 'string'
     field :like_count, 'int'
     field :media, 'IgMedia'
     field :parent_id, 'string'

@@ -17,6 +17,8 @@ module FacebookAds
 
     field :app_id, 'int'
     field :public_key, 'string'
+    field :salts, { list: 'object' }
+    field :user_id, 'int'
     has_no_id
     has_no_get
     has_no_post

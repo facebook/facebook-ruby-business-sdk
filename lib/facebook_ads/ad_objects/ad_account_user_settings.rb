@@ -84,6 +84,7 @@ module FacebookAds
     field :should_default_instagram_profile_card_optimization, 'bool'
     field :should_default_text_swapping_optimization, 'bool'
     field :should_logout_of_3p_sourcing, 'bool'
+    field :should_show_shops_ads_metrics_onboarding_tour, 'bool'
     field :show_archived_data, 'bool'
     field :show_text_variation_nux_tooltip, 'bool'
     field :syd_campaign_trends_activemetric, 'string'

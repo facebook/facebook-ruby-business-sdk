@@ -23,6 +23,7 @@ module FacebookAds
     field :ig_id, 'string'
     field :is_comment_enabled, 'bool'
     field :is_shared_to_feed, 'bool'
+    field :legacy_instagram_media_id, 'string'
     field :like_count, 'int'
     field :media_product_type, 'string'
     field :media_type, 'string'

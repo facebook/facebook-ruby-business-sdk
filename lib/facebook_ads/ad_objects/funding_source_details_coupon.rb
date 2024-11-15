@@ -23,6 +23,7 @@ module FacebookAds
     field :expiration, 'datetime'
     field :original_amount, 'int'
     field :original_display_amount, 'string'
+    field :start_date, 'datetime'
     has_no_id
     has_no_get
     has_no_post

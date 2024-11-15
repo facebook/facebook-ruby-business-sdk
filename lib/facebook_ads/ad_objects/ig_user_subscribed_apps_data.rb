@@ -13,12 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AnalyticsCohortQueryResult < AdObject
+  class IgUserSubscribedAppsData < AdObject
 
-    field :data, 'object'
-    field :error, 'object'
-    field :query_id, 'string'
-    field :status, 'string'
+    field :app_id, 'string'
+    field :subscribed_fields, { list: 'string' }
     has_no_id
     has_no_get
     has_no_post

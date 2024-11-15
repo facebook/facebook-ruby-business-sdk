@@ -19,6 +19,7 @@ module FacebookAds
       "BUSINESS_NOT_ELIGIBLE",
       "LEGAL_NAME_NOT_FOUND_IN_DOCUMENTS",
       "LEGAL_NAME_NOT_MATCHING",
+      "MALFORMED_DOCUMENTS",
       "NONE",
       "WEBSITE_NOT_MATCHING",
     ]

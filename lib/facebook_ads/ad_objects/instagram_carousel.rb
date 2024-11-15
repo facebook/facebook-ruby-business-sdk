@@ -20,6 +20,7 @@ module FacebookAds
     field :content_type, 'int'
     field :display_url, 'string'
     field :id, 'string'
+    field :ig_media_id, 'string'
     field :like_count, 'int'
     field :owner_instagram_user, 'InstagramUser'
     field :permalink, 'string'

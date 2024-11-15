@@ -16,6 +16,7 @@ module FacebookAds
   class AdsValueAdjustmentRuleCollection < AdObject
 
     field :id, 'string'
+    field :is_default_setting, 'bool'
     field :name, 'string'
     has_no_post
     has_no_delete

@@ -237,7 +237,6 @@ module FacebookAds
         api.has_param :text_format_metadata, 'string'
         api.has_param :text_format_preset_id, 'string'
         api.has_param :text_only_place, 'string'
-        api.has_param :throwback_camera_roll_media, 'string'
         api.has_param :thumbnail, 'file'
         api.has_param :time_since_original_post, 'int'
         api.has_param :title, 'string'
@@ -442,7 +441,6 @@ module FacebookAds
         api.has_param :start_offset, 'int'
         api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
         api.has_param :text_format_metadata, 'string'
-        api.has_param :throwback_camera_roll_media, 'string'
         api.has_param :thumb, 'file'
         api.has_param :time_since_original_post, 'int'
         api.has_param :title, 'string'

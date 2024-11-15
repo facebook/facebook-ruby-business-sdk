@@ -15,6 +15,7 @@ module FacebookAds
 
   class PartnershipAdsIdentity < AdObject
 
+    field :is_saved, 'bool'
     field :post_types, { list: 'string' }
     field :secondary_identities, { list: 'object' }
     has_no_id

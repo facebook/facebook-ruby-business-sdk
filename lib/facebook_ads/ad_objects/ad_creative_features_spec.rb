@@ -50,6 +50,7 @@ module FacebookAds
     field :media_liquidity_animated_image, 'AdCreativeFeatureDetails'
     field :media_order, 'AdCreativeFeatureDetails'
     field :media_type_automation, 'AdCreativeFeatureDetails'
+    field :multi_photo_to_video, 'AdCreativeFeatureDetails'
     field :pac_relaxation, 'AdCreativeFeatureDetails'
     field :product_extensions, 'AdCreativeFeatureDetails'
     field :product_metadata_automation, 'AdCreativeFeatureDetails'

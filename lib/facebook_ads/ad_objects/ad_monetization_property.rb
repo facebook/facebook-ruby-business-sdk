@@ -29,6 +29,7 @@ module FacebookAds
         api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
         api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
+        api.has_param :should_include_until, 'bool'
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end

@@ -387,7 +387,6 @@ module FacebookAds
     field :start_offset, 'int'
     field :swap_mode, { enum: -> { SWAP_MODE }}
     field :text_format_metadata, 'string'
-    field :throwback_camera_roll_media, 'string'
     field :thumb, 'file'
     field :time_since_original_post, 'int'
     field :transcode_setting_properties, 'string'

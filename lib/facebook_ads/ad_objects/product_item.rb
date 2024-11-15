@@ -390,6 +390,13 @@ module FacebookAds
       "ITEM_PRICE_NOT_POSITIVE",
       "ITEM_STALE_OUT_OF_STOCK",
       "MARKETPLACE_DISABLED_BY_USER",
+      "MARKETPLACE_PARTNER_LISTING_LIMIT_EXCEEDED",
+      "MARKETPLACE_PARTNER_NOT_LOCAL_ITEM",
+      "MARKETPLACE_PARTNER_NOT_SHIPPED_ITEM",
+      "MARKETPLACE_PARTNER_POLICY_VIOLATION",
+      "MARKETPLACE_PARTNER_RULE_LISTING_LIMIT_EXCEEDED",
+      "MARKETPLACE_PARTNER_SELLER_BANNED",
+      "MARKETPLACE_PARTNER_SELLER_NOT_VALID",
       "MINI_SHOPS_DISABLED_BY_USER",
       "MISSING_CHECKOUT",
       "MISSING_CHECKOUT_CURRENCY",
@@ -801,6 +808,7 @@ module FacebookAds
     field :start_date, 'string'
     field :tags, { list: 'string' }
     field :url, 'string'
+    field :vendor_id, 'string'
     field :video_fetch_status, { enum: -> { VIDEO_FETCH_STATUS }}
     field :visibility, { enum: -> { VISIBILITY }}
     field :wa_compliance_category, 'string'

@@ -15,6 +15,8 @@ module FacebookAds
 
   class RegionalRegulationIdentities < AdObject
 
+    field :australia_finserv_beneficiary, 'string'
+    field :australia_finserv_payer, 'string'
     field :taiwan_finserv_beneficiary, 'string'
     field :taiwan_finserv_payer, 'string'
     has_no_id

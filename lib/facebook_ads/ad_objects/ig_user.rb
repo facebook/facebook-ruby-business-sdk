@@ -21,6 +21,7 @@ module FacebookAds
     field :follows_count, 'int'
     field :id, 'string'
     field :ig_id, 'int'
+    field :legacy_instagram_user_id, 'string'
     field :media_count, 'int'
     field :mentioned_comment, 'IgComment'
     field :mentioned_media, 'IgMedia'
@@ -169,6 +170,15 @@ module FacebookAds
 
     has_edge :tags do |edge|
       edge.get 'IgMedia'
+    end
+
+    has_edge :upcoming_events do |edge|
+      edge.post do |api|
+        api.has_param :end_time, 'datetime'
+        api.has_param :notification_subtypes, { list: { enum: %w{AFTER_EVENT_1DAY AFTER_EVENT_2DAY AFTER_EVENT_3DAY AFTER_EVENT_4DAY AFTER_EVENT_5DAY AFTER_EVENT_6DAY AFTER_EVENT_7DAY BEFORE_EVENT_15MIN BEFORE_EVENT_1DAY BEFORE_EVENT_1HOUR BEFORE_EVENT_2DAY EVENT_START RESCHEDULED }} }
+        api.has_param :start_time, 'datetime'
+        api.has_param :title, 'string'
+      end
     end
 
   end

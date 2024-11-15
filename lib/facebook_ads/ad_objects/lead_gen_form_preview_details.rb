@@ -17,6 +17,8 @@ module FacebookAds
 
     field :call_business_text, 'string'
     field :call_to_action_title, 'string'
+    field :chat_on_messenger_text, 'string'
+    field :chat_on_whatsapp_text, 'string'
     field :contact_information_text, 'string'
     field :creatives_overview_default_text, 'string'
     field :data_privacy_policy_setting_description, 'string'

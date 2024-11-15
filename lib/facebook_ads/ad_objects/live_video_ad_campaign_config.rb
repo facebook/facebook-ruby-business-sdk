@@ -13,12 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AnalyticsQueryResult < AdObject
+  class LiveVideoAdCampaignConfig < AdObject
 
-    field :query_id, 'string'
-    field :status, 'string'
-    has_no_id
-    has_no_get
+    field :id, 'string'
+    field :live_video_ad_type, 'string'
     has_no_post
     has_no_delete
 

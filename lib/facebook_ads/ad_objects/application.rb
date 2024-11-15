@@ -135,6 +135,7 @@ module FacebookAds
     field :deauth_callback_url, 'string'
     field :default_share_mode, 'string'
     field :description, 'string'
+    field :enigma_config, 'object'
     field :financial_id, 'string'
     field :gdpv4_chrome_custom_tabs_enabled, 'bool'
     field :gdpv4_enabled, 'bool'
@@ -281,6 +282,7 @@ module FacebookAds
         api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
         api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
+        api.has_param :should_include_until, 'bool'
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end

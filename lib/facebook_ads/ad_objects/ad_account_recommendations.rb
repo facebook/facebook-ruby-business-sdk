@@ -16,7 +16,12 @@ module FacebookAds
   class AdAccountRecommendations < AdObject
 
     field :recommendations, { list: 'object' }
+    field :asc_fragmentation_parameters, 'hash'
+    field :autoflow_parameters, 'hash'
+    field :fragmentation_parameters, 'hash'
+    field :music_parameters, 'hash'
     field :recommendation_signature, 'string'
+    field :scale_good_campaign_parameters, 'hash'
     has_no_id
     has_no_get
     has_no_post

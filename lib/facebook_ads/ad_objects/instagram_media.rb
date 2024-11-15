@@ -21,6 +21,7 @@ module FacebookAds
     field :display_url, 'string'
     field :filter_name, 'string'
     field :id, 'string'
+    field :ig_media_id, 'string'
     field :latitude, 'double'
     field :like_count, 'int'
     field :location, 'Location'

@@ -14,6 +14,19 @@ module FacebookAds
   # pull request for this class.
 
   class MessengerBusinessTemplate < AdObject
+    STATUS = [
+      "APPROVED",
+      "ARCHIVED",
+      "DELETED",
+      "DISABLED",
+      "IN_APPEAL",
+      "LIMIT_EXCEEDED",
+      "PAUSED",
+      "PENDING",
+      "PENDING_DELETION",
+      "REJECTED",
+    ]
+
 
     field :category, 'string'
     field :components, { list: 'object' }
@@ -26,7 +39,6 @@ module FacebookAds
     field :name, 'string'
     field :rejected_reason, 'string'
     field :status, 'string'
-    has_no_post
     has_no_delete
 
   end

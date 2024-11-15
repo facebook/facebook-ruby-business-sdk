@@ -19,6 +19,7 @@ module FacebookAds
     field :followed_by_count, 'int'
     field :has_profile_picture, 'bool'
     field :id, 'string'
+    field :ig_user_id, 'string'
     field :is_private, 'bool'
     field :is_published, 'bool'
     field :media_count, 'int'

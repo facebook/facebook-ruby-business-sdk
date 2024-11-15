@@ -188,6 +188,7 @@ module FacebookAds
     field :end_advertiser, 'string'
     field :end_advertiser_name, 'string'
     field :existing_customers, { list: 'string' }
+    field :expired_funding_source_details, 'FundingSourceDetails'
     field :extended_credit_invoice_group, 'ExtendedCreditInvoiceGroup'
     field :failed_delivery_checks, { list: 'DeliveryCheck' }
     field :fb_entity, 'int'
@@ -293,6 +294,7 @@ module FacebookAds
       edge.get 'AdCreative'
       edge.post 'AdCreative' do |api|
         api.has_param :actor_id, 'int'
+        api.has_param :ad_disclaimer_spec, 'hash'
         api.has_param :adlabels, { list: 'object' }
         api.has_param :applink_treatment, { enum: -> { AdCreative::APPLINK_TREATMENT }}
         api.has_param :asset_feed_spec, 'object'
@@ -305,6 +307,7 @@ module FacebookAds
         api.has_param :categorization_criteria, { enum: -> { AdCreative::CATEGORIZATION_CRITERIA }}
         api.has_param :category_media_source, { enum: -> { AdCreative::CATEGORY_MEDIA_SOURCE }}
         api.has_param :contextual_multi_ads, 'hash'
+        api.has_param :creative_sourcing_spec, 'hash'
         api.has_param :degrees_of_freedom_spec, 'hash'
         api.has_param :destination_set_id, 'string'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
@@ -629,7 +632,6 @@ module FacebookAds
         api.has_param :start_offset, 'int'
         api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
         api.has_param :text_format_metadata, 'string'
-        api.has_param :throwback_camera_roll_media, 'string'
         api.has_param :thumb, 'file'
         api.has_param :time_since_original_post, 'int'
         api.has_param :title, 'string'
@@ -1116,7 +1118,12 @@ module FacebookAds
     has_edge :recommendations do |edge|
       edge.get 'AdAccountRecommendations'
       edge.post 'AdAccountRecommendations' do |api|
+        api.has_param :asc_fragmentation_parameters, 'hash'
+        api.has_param :autoflow_parameters, 'hash'
+        api.has_param :fragmentation_parameters, 'hash'
+        api.has_param :music_parameters, 'hash'
         api.has_param :recommendation_signature, 'string'
+        api.has_param :scale_good_campaign_parameters, 'hash'
       end
     end
 

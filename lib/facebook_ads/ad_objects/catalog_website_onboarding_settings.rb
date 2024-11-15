@@ -16,6 +16,7 @@ module FacebookAds
   class CatalogWebsiteOnboardingSettings < AdObject
 
     field :id, 'string'
+    field :quality_band, 'string'
     field :status, 'string'
     has_no_post
     has_no_delete

@@ -16,13 +16,20 @@ module FacebookAds
   class OpenBridgeConfiguration < AdObject
 
     field :active, 'bool'
+    field :cloud_provider, 'string'
+    field :cloud_region, 'string'
+    field :destination_id, 'string'
     field :endpoint, 'string'
     field :fallback_domain, 'string'
     field :fallback_domain_enabled, 'bool'
+    field :first_party_domain, 'string'
     field :host_business_id, 'string'
     field :host_external_id, 'string'
     field :id, 'string'
     field :instance_id, 'string'
+    field :instance_version, 'string'
+    field :is_sgw_instance, 'bool'
+    field :partner_name, 'string'
     field :pixel_id, 'string'
 
   end

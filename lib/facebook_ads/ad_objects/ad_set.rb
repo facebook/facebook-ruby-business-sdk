@@ -171,6 +171,7 @@ module FacebookAds
       "0",
       "1",
       "2",
+      "3",
     ]
 
     TUNE_FOR_CATEGORY = [

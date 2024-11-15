@@ -53,6 +53,7 @@ module FacebookAds
     field :id, 'string'
     field :id_for_avatars, 'string'
     field :inspirational_people, { list: 'Experience' }
+    field :instagram_user_self_asset, 'InstagramUser'
     field :install_type, 'string'
     field :installed, 'bool'
     field :is_guest_user, 'bool'
@@ -73,6 +74,7 @@ module FacebookAds
     field :profile_pic, 'string'
     field :quotes, 'string'
     field :relationship_status, 'string'
+    field :religion, 'string'
     field :shared_login_upgrade_required_by, 'datetime'
     field :short_name, 'string'
     field :significant_other, 'User'
@@ -339,7 +341,6 @@ module FacebookAds
         api.has_param :text_format_metadata, 'string'
         api.has_param :text_format_preset_id, 'string'
         api.has_param :text_only_place, 'string'
-        api.has_param :throwback_camera_roll_media, 'string'
         api.has_param :thumbnail, 'file'
         api.has_param :time_since_original_post, 'int'
         api.has_param :title, 'string'
@@ -636,7 +637,6 @@ module FacebookAds
         api.has_param :start_offset, 'int'
         api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
         api.has_param :text_format_metadata, 'string'
-        api.has_param :throwback_camera_roll_media, 'string'
         api.has_param :thumb, 'file'
         api.has_param :time_since_original_post, 'int'
         api.has_param :title, 'string'

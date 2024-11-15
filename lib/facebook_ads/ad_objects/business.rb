@@ -14,6 +14,19 @@ module FacebookAds
   # pull request for this class.
 
   class Business < AdObject
+    VERIFICATION_STATUS = [
+      "expired",
+      "failed",
+      "ineligible",
+      "not_verified",
+      "pending",
+      "pending_need_more_info",
+      "pending_submission",
+      "rejected",
+      "revoked",
+      "verified",
+    ]
+
     TWO_FACTOR_TYPE = [
       "admin_required",
       "all_required",
@@ -593,6 +606,38 @@ module FacebookAds
       "VIEW_MONETIZATION_INSIGHTS",
     ]
 
+    BUSINESS_VERTICAL = [
+      "ADULT_PRODUCTS_AND_SERVICES",
+      "ALCOHOL_AND_TOBACCO",
+      "AUTOMOTIVE_DEALERS",
+      "BODY_PARTS_FLUIDS",
+      "BUSINESS_AND_UTILITY",
+      "CONTENT_AND_APPS",
+      "CREATORS_AND_CELEBRITIES",
+      "DATING",
+      "DRUGS",
+      "ENDANGERED_SPECIES",
+      "FIREARMS",
+      "FRAUDULENT_MISLEADING_OFFENSIVE",
+      "GAMBLING",
+      "GROCERY_AND_CONVENIENCE_STORE",
+      "HAZARDOUS_GOODS_AND_MATERIALS",
+      "HOME",
+      "HOME_AND_AUTO_MANUFACTURING",
+      "LIFESTYLE",
+      "LIVE_NON_ENDANGERED_SPECIES",
+      "LOANS_DEBT_COLLECTION_BAIL_BONDS",
+      "LOCAL_EVENTS",
+      "MEDICAL_HEALTHCARE",
+      "MULTILEVEL_MARKETING",
+      "NON_PROFIT_AND_RELIGIOUS_ORGS",
+      "PROFESSIONAL",
+      "REAL_VIRTUAL_FAKE_CURRENCY",
+      "RESTAURANTS",
+      "RETAIL",
+      "TRANSPORTATION_AND_ACCOMMODATION",
+    ]
+
     SUBVERTICAL_V2 = [
       "ACCOUNTING_AND_TAX",
       "ACTIVITIES_AND_LEISURE",
@@ -818,7 +863,7 @@ module FacebookAds
     field :updated_by, 'object'
     field :updated_time, 'datetime'
     field :user_access_expire_time, 'datetime'
-    field :verification_status, 'string'
+    field :verification_status, { enum: -> { VERIFICATION_STATUS }}
     field :vertical, 'string'
     field :vertical_id, 'int'
     has_no_delete
@@ -909,6 +954,7 @@ module FacebookAds
         api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
         api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
+        api.has_param :should_include_until, 'bool'
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end
@@ -1239,12 +1285,19 @@ module FacebookAds
       edge.get 'OpenBridgeConfiguration'
       edge.post 'OpenBridgeConfiguration' do |api|
         api.has_param :active, 'bool'
+        api.has_param :cloud_provider, 'string'
+        api.has_param :cloud_region, 'string'
+        api.has_param :destination_id, 'string'
         api.has_param :endpoint, 'string'
         api.has_param :fallback_domain, 'string'
         api.has_param :fallback_domain_enabled, 'bool'
+        api.has_param :first_party_domain, 'string'
         api.has_param :host_business_id, 'int'
         api.has_param :host_external_id, 'string'
         api.has_param :instance_id, 'string'
+        api.has_param :instance_version, 'string'
+        api.has_param :is_sgw_instance, 'bool'
+        api.has_param :partner_name, 'string'
         api.has_param :pixel_id, 'int'
       end
     end
@@ -1418,6 +1471,20 @@ module FacebookAds
       end
     end
 
+    has_edge :self_certify_whatsapp_business do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :average_monthly_revenue_spend_with_partner, 'hash'
+        api.has_param :business_documents, { list: 'file' }
+        api.has_param :business_vertical, { enum: -> { Business::BUSINESS_VERTICAL }}
+        api.has_param :end_business_address, 'hash'
+        api.has_param :end_business_id, 'string'
+        api.has_param :end_business_legal_name, 'string'
+        api.has_param :end_business_trade_names, { list: 'string' }
+        api.has_param :end_business_website, 'string'
+        api.has_param :num_billing_cycles_with_partner, 'int'
+      end
+    end
+
     has_edge :setup_managed_partner_adaccounts do |edge|
       edge.post 'Business' do |api|
         api.has_param :credit_line_id, 'string'
@@ -1518,7 +1585,6 @@ module FacebookAds
         api.has_param :start_offset, 'int'
         api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
         api.has_param :text_format_metadata, 'string'
-        api.has_param :throwback_camera_roll_media, 'string'
         api.has_param :thumb, 'file'
         api.has_param :time_since_original_post, 'int'
         api.has_param :title, 'string'

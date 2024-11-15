@@ -114,6 +114,7 @@ module FacebookAds
     field :optimization_goal, 'int'
     field :optimization_goal_name, 'string'
     field :pause_periods, { list: 'object' }
+    field :percent_reach_at_target_frequency, 'int'
     field :placement_breakdown, 'ReachFrequencyEstimatesPlacementBreakdown'
     field :placement_breakdown_map, { list: 'map<unsigned int, ReachFrequencyEstimatesPlacementBreakdown>' }
     field :plan_name, 'string'

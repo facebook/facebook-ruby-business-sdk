@@ -15,7 +15,6 @@ module FacebookAds
 
   class AdNetworkAnalyticsAsyncQueryExport < AdObject
 
-    field :error, 'object'
     field :export_link, 'string'
     field :query_id, 'string'
     field :status, 'string'

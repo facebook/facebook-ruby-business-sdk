@@ -15,8 +15,6 @@ module FacebookAds
 
   class AnalyticsFunnelQueryResult < AdObject
 
-    field :data, 'object'
-    field :error, 'object'
     field :query_id, 'string'
     field :status, 'string'
     has_no_id

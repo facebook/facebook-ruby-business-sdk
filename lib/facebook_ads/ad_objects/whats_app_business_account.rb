@@ -14,6 +14,19 @@ module FacebookAds
   # pull request for this class.
 
   class WhatsAppBusinessAccount < AdObject
+    BUSINESS_VERIFICATION_STATUS = [
+      "expired",
+      "failed",
+      "ineligible",
+      "not_verified",
+      "pending",
+      "pending_need_more_info",
+      "pending_submission",
+      "rejected",
+      "revoked",
+      "verified",
+    ]
+
     TASKS = [
       "DEVELOP",
       "MANAGE",
@@ -37,6 +50,11 @@ module FacebookAds
       "ORDER_DETAILS",
     ]
 
+    PARAMETER_FORMAT = [
+      "NAMED",
+      "POSITIONAL",
+    ]
+
     SUB_CATEGORY = [
       "ORDER_DETAILS",
       "ORDER_STATUS",
@@ -54,7 +72,7 @@ module FacebookAds
     field :account_review_status, 'string'
     field :analytics, 'object'
     field :auth_international_rate_eligibility, 'object'
-    field :business_verification_status, 'string'
+    field :business_verification_status, { enum: -> { BUSINESS_VERIFICATION_STATUS }}
     field :country, 'string'
     field :creation_time, 'int'
     field :currency, 'string'
@@ -111,7 +129,7 @@ module FacebookAds
 
     has_edge :conversation_analytics do |edge|
       edge.get do |api|
-        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL MARKETING MARKETING_OPTIMIZED_DELIVERY SERVICE UNKNOWN UTILITY UTILITY_FIXED_TEMPLATE }} }
+        api.has_param :conversation_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL MARKETING MARKETING_LITE SERVICE UTILITY }} }
         api.has_param :conversation_directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
         api.has_param :conversation_types, { list: { enum: %w{FREE_ENTRY_POINT FREE_TIER REGULAR UNKNOWN }} }
         api.has_param :country_codes, { list: 'string' }
@@ -192,6 +210,7 @@ module FacebookAds
         api.has_param :library_template_name, 'string'
         api.has_param :message_send_ttl_seconds, 'int'
         api.has_param :name, 'string'
+        api.has_param :parameter_format, { enum: -> { WhatsAppBusinessAccount::PARAMETER_FORMAT }}
         api.has_param :sub_category, { enum: -> { WhatsAppBusinessAccount::SUB_CATEGORY }}
       end
     end

@@ -17,12 +17,14 @@ module FacebookAds
 
     field :account_id, 'string'
     field :async_percent_completion, 'int'
+    field :async_report_url, 'string'
     field :async_status, 'string'
     field :date_start, 'string'
     field :date_stop, 'string'
     field :emails, { list: 'string' }
     field :friendly_name, 'string'
     field :id, 'string'
+    field :is_async_export, 'int'
     field :is_bookmarked, 'bool'
     field :is_running, 'bool'
     field :schedule_id, 'string'

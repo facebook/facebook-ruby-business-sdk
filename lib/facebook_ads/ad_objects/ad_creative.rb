@@ -164,6 +164,7 @@ module FacebookAds
 
     field :account_id, 'string'
     field :actor_id, 'string'
+    field :ad_disclaimer_spec, 'AdCreativeAdDisclaimer'
     field :adlabels, { list: 'AdLabel' }
     field :applink_treatment, 'string'
     field :asset_feed_spec, 'AdAssetFeedSpec'
@@ -218,6 +219,7 @@ module FacebookAds
     field :platform_customizations, 'AdCreativePlatformCustomization'
     field :playable_asset_id, 'string'
     field :portrait_customizations, 'AdCreativePortraitCustomizations'
+    field :product_data, { list: 'AdCreativeProductData' }
     field :product_set_id, 'string'
     field :recommender_settings, 'AdCreativeRecommenderSettings'
     field :source_instagram_media_id, 'string'

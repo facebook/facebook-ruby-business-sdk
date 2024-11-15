@@ -18,6 +18,7 @@ module FacebookAds
     field :comment_type, 'string'
     field :created_at, 'datetime'
     field :id, 'string'
+    field :ig_comment_id, 'string'
     field :instagram_comment_id, 'string'
     field :instagram_user, 'InstagramUser'
     field :mentioned_instagram_users, { list: 'InstagramUser' }
