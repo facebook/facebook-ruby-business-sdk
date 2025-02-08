@@ -15,9 +15,9 @@ module FacebookAds
   extend self
   extend Shortcuts
 
-  def with_session(access_token, secret = nil, api_version = DEFAULT_API_VERSION)
+  def with_session(access_token, app_secret = nil, api_version = DEFAULT_API_VERSION)
     original_session = Session.current_session
-    Session.current_session = Session.new(access_token, secret, api_version)
+    Session.current_session = Session.new(access_token: access_token, app_secret: app_secret, api_version: api_version)
     yield
     Session.current_session = original_session
   end
