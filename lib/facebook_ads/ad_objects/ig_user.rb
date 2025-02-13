@@ -19,8 +19,10 @@ module FacebookAds
     field :business_discovery, 'IgUser'
     field :followers_count, 'int'
     field :follows_count, 'int'
+    field :has_profile_pic, 'bool'
     field :id, 'string'
     field :ig_id, 'int'
+    field :is_published, 'bool'
     field :legacy_instagram_user_id, 'string'
     field :media_count, 'int'
     field :mentioned_comment, 'IgComment'
@@ -34,6 +36,20 @@ module FacebookAds
     field :website, 'string'
     has_no_post
     has_no_delete
+
+    has_edge :agencies do |edge|
+      edge.get 'Business'
+    end
+
+    has_edge :authorized_adaccounts do |edge|
+      edge.get 'AdAccount' do |api|
+        api.has_param :business, 'string'
+      end
+      edge.post 'IgUser' do |api|
+        api.has_param :account_id, 'string'
+        api.has_param :business, 'string'
+      end
+    end
 
     has_edge :available_catalogs do |edge|
       edge.get 'UserAvailableCatalogs'
@@ -114,6 +130,7 @@ module FacebookAds
         api.has_param :until, 'datetime'
       end
       edge.post 'IgMedia' do |api|
+        api.has_param :alt_text, 'string'
         api.has_param :audio_name, 'string'
         api.has_param :caption, 'string'
         api.has_param :children, { list: 'string' }
@@ -173,6 +190,7 @@ module FacebookAds
     end
 
     has_edge :upcoming_events do |edge|
+      edge.get 'IgUpcomingEvent'
       edge.post do |api|
         api.has_param :end_time, 'datetime'
         api.has_param :notification_subtypes, { list: { enum: %w{AFTER_EVENT_1DAY AFTER_EVENT_2DAY AFTER_EVENT_3DAY AFTER_EVENT_4DAY AFTER_EVENT_5DAY AFTER_EVENT_6DAY AFTER_EVENT_7DAY BEFORE_EVENT_15MIN BEFORE_EVENT_1DAY BEFORE_EVENT_1HOUR BEFORE_EVENT_2DAY EVENT_START RESCHEDULED }} }

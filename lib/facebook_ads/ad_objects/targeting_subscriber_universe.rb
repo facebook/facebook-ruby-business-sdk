@@ -13,10 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ParentCatalogReport < AdObject
+  class TargetingSubscriberUniverse < AdObject
 
-    field :purchase_conversion_value, 'double'
-    field :purchases, 'int'
+    field :messenger_subscriber_source, 'IdName'
+    field :whatsapp_subscriber_source, 'IdName'
     has_no_id
     has_no_get
     has_no_post

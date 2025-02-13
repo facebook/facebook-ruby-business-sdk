@@ -21,7 +21,9 @@ module FacebookAds
     field :displayed_fb_matches_count, 'int'
     field :displayed_ig_matches_count, 'int'
     field :displayed_matches_count, 'int'
+    field :has_rev_share_eligible_isrcs, 'bool'
     field :id, 'string'
+    field :is_linking_required_to_monetize_for_manual_claim, 'bool'
     field :match_rule, 'VideoCopyrightRule'
     field :status, 'string'
     field :tags, { list: 'string' }

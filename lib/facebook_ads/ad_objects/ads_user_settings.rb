@@ -22,7 +22,9 @@ module FacebookAds
     field :ads_tool_visits, { list: 'object' }
     field :aplusc_carousel_cda_opt_in_status, 'string'
     field :aplusc_carousel_inline_comment_opt_in_status, 'string'
+    field :aplusc_enhance_cta_opt_in_status, 'string'
     field :aplusc_epa_opt_in_status, 'string'
+    field :aplusc_local_store_extension_opt_in_status, 'string'
     field :aplusc_opt_out_friction, { list: 'string' }
     field :autoflow_lite_opt_in_status, 'string'
     field :autoflow_lite_should_opt_in, 'bool'
@@ -34,6 +36,7 @@ module FacebookAds
     field :carousel_to_video_opt_in_status, 'string'
     field :connected_sources_catalog_opt_in_status, 'string'
     field :default_creation_mode, 'string'
+    field :dynamic_partnership_ads_opt_in_status, 'string'
     field :enhance_cta_text_extraction_opt_in_status, 'string'
     field :export_format_default, 'string'
     field :focus_mode_default, 'string'

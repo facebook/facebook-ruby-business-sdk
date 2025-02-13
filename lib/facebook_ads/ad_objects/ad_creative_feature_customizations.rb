@@ -15,8 +15,13 @@ module FacebookAds
 
   class AdCreativeFeatureCustomizations < AdObject
 
+    field :background_color, 'string'
+    field :catalog_feed_tag_name, 'string'
+    field :font_name, 'string'
     field :image_crop_style, 'string'
     field :showcase_card_display, 'string'
+    field :text_extraction, 'object'
+    field :text_style, 'string'
     has_no_id
     has_no_get
     has_no_post

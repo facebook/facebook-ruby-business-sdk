@@ -20,6 +20,7 @@ module FacebookAds
     field :audit_log, { list: 'object' }
     field :available_ui_actions, { list: 'string' }
     field :expiration_days, 'int'
+    field :generic_match_data, { list: 'object' }
     field :id, 'string'
     field :is_business_page_match, 'bool'
     field :last_modified_time, 'datetime'

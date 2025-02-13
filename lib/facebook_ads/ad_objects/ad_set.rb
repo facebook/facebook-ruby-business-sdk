@@ -172,6 +172,7 @@ module FacebookAds
       "1",
       "2",
       "3",
+      "4",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -228,7 +229,7 @@ module FacebookAds
     field :frequency_control_specs, { list: 'AdCampaignFrequencyControlSpecs' }
     field :full_funnel_exploration_mode, 'string'
     field :id, 'string'
-    field :instagram_actor_id, 'string'
+    field :instagram_user_id, 'string'
     field :is_budget_schedule_enabled, 'bool'
     field :is_dynamic_creative, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
@@ -265,6 +266,7 @@ module FacebookAds
     field :daily_imps, 'int'
     field :date_format, 'string'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
+    field :is_sac_cfca_terms_certified, 'bool'
     field :line_number, 'int'
     field :rb_prediction_id, 'string'
     field :time_start, 'datetime'

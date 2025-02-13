@@ -46,6 +46,38 @@ module FacebookAds
       "TUTORIAL_COMPLETION",
     ]
 
+    LEAD_ADS_CUSTOM_EVENT_TYPE = [
+      "ACHIEVEMENT_UNLOCKED",
+      "ADD_PAYMENT_INFO",
+      "ADD_TO_CART",
+      "ADD_TO_WISHLIST",
+      "AD_IMPRESSION",
+      "COMPLETE_REGISTRATION",
+      "CONTACT",
+      "CONTENT_VIEW",
+      "CUSTOMIZE_PRODUCT",
+      "D2_RETENTION",
+      "D7_RETENTION",
+      "DONATE",
+      "FIND_LOCATION",
+      "INITIATED_CHECKOUT",
+      "LEAD",
+      "LEVEL_ACHIEVED",
+      "LISTING_INTERACTION",
+      "MESSAGING_CONVERSATION_STARTED_7D",
+      "OTHER",
+      "PURCHASE",
+      "RATE",
+      "SCHEDULE",
+      "SEARCH",
+      "SERVICE_BOOKING_REQUEST",
+      "SPENT_CREDITS",
+      "START_TRIAL",
+      "SUBMIT_APPLICATION",
+      "SUBSCRIBE",
+      "TUTORIAL_COMPLETION",
+    ]
+
 
     field :application_id, 'string'
     field :boosted_product_set_id, 'string'
@@ -55,7 +87,10 @@ module FacebookAds
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :event_id, 'string'
     field :fundraiser_campaign_id, 'string'
+    field :lead_ads_custom_event_str, 'string'
+    field :lead_ads_custom_event_type, { enum: -> { LEAD_ADS_CUSTOM_EVENT_TYPE }}
     field :lead_ads_form_event_source_type, 'string'
+    field :lead_ads_offsite_conversion_type, 'string'
     field :mcme_conversion_id, 'string'
     field :object_store_url, 'string'
     field :offer_id, 'string'

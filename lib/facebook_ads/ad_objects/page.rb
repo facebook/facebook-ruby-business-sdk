@@ -80,6 +80,17 @@ module FacebookAds
       "Vietnamese",
     ]
 
+    GEN_AI_PROVENANCE_TYPE = [
+      "C2PA",
+      "C2PA_METADATA_EDITED",
+      "EXPLICIT",
+      "EXPLICIT_IMAGINE",
+      "EXPLICIT_IMAGINE_ME",
+      "INVISIBLE_WATERMARK",
+      "IPTC",
+      "IPTC_METADATA_EDITED",
+    ]
+
     PICKUP_OPTIONS = [
       "CURBSIDE",
       "IN_STORE",
@@ -297,6 +308,7 @@ module FacebookAds
       "live_videos",
       "local_delivery",
       "location",
+      "marketing_message_delivery_failed",
       "mcom_invoice_change",
       "members",
       "mention",
@@ -308,6 +320,7 @@ module FacebookAds
       "message_mention",
       "message_reactions",
       "message_reads",
+      "message_template_status_update",
       "messages",
       "messaging_account_linking",
       "messaging_appointments",
@@ -353,14 +366,6 @@ module FacebookAds
       "video_text_question_responses",
       "videos",
       "website",
-    ]
-
-    ACTION = [
-      "SPAM",
-    ]
-
-    ACTION_TYPE = [
-      "REPORT_THREAD",
     ]
 
 
@@ -1053,7 +1058,6 @@ module FacebookAds
       edge.post 'Page' do |api|
         api.has_param :category, { enum: -> { Page::CATEGORY }}
         api.has_param :components, { list: 'hash' }
-        api.has_param :example, 'hash'
         api.has_param :language, 'string'
         api.has_param :library_template_button_inputs, { list: 'hash' }
         api.has_param :library_template_name, 'string'
@@ -1239,6 +1243,7 @@ module FacebookAds
         api.has_param :place, 'object'
         api.has_param :privacy, 'string'
         api.has_param :profile_id, 'int'
+        api.has_param :provenance_info, 'hash'
         api.has_param :proxied_app_id, 'string'
         api.has_param :published, 'bool'
         api.has_param :qn, 'string'
@@ -1319,10 +1324,6 @@ module FacebookAds
       end
     end
 
-    has_edge :ratings do |edge|
-      edge.get 'Recommendation'
-    end
-
     has_edge :release_thread_control do |edge|
       edge.post 'Page' do |api|
         api.has_param :recipient, 'object'
@@ -1398,14 +1399,6 @@ module FacebookAds
       edge.post 'Page' do |api|
         api.has_param :metadata, 'string'
         api.has_param :recipient, 'object'
-      end
-    end
-
-    has_edge :thread_action do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :action, { enum: -> { Page::ACTION }}
-        api.has_param :action_type, { enum: -> { Page::ACTION_TYPE }}
-        api.has_param :user_id, 'hash'
       end
     end
 

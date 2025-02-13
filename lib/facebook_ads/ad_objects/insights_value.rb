@@ -16,6 +16,7 @@ module FacebookAds
   class InsightsValue < AdObject
 
     field :campaign_id, 'string'
+    field :earning_source, 'string'
     field :end_time, 'datetime'
     field :engagement_source, 'string'
     field :message_type, 'string'

@@ -48,6 +48,7 @@ module FacebookAds
     field :products_section_headers, { list: 'hash' }
     field :qualified_thank_you_card_transparency_info_text, 'string'
     field :redeem_promo_code_text, 'string'
+    field :return_to_facebook_text, 'string'
     field :review_your_info_text, 'string'
     field :secure_sharing_text, 'string'
     field :slide_to_submit_text, 'string'

@@ -45,6 +45,7 @@ module FacebookAds
       "FOLLOW_USER",
       "GET_A_QUOTE",
       "GET_DIRECTIONS",
+      "GET_IN_TOUCH",
       "GET_OFFER",
       "GET_OFFER_VIEW",
       "GET_PROMOTIONS",
@@ -96,6 +97,7 @@ module FacebookAds
       "VIEW_CHANNEL",
       "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
+      "WATCH_LIVE_VIDEO",
       "WATCH_MORE",
       "WATCH_VIDEO",
       "WHATSAPP_MESSAGE",
@@ -185,7 +187,6 @@ module FacebookAds
     field :dynamic_ad_voice, 'string'
     field :effective_authorization_category, 'string'
     field :effective_instagram_media_id, 'string'
-    field :effective_instagram_story_id, 'string'
     field :effective_object_story_id, 'string'
     field :enable_direct_install, 'bool'
     field :enable_launch_instant_app, 'bool'
@@ -194,10 +195,8 @@ module FacebookAds
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
     field :image_url, 'string'
-    field :instagram_actor_id, 'string'
     field :instagram_branded_content, 'AdCreativeInstagramBrandedContent'
     field :instagram_permalink_url, 'string'
-    field :instagram_story_id, 'string'
     field :instagram_user_id, 'string'
     field :interactive_components_spec, 'AdCreativeInteractiveComponentsSpec'
     field :link_deep_link_url, 'string'
@@ -222,6 +221,7 @@ module FacebookAds
     field :product_data, { list: 'AdCreativeProductData' }
     field :product_set_id, 'string'
     field :recommender_settings, 'AdCreativeRecommenderSettings'
+    field :regional_regulation_disclaimer_spec, 'AdCreativeRegionalRegulationDisclaimer'
     field :source_instagram_media_id, 'string'
     field :status, { enum: -> { STATUS }}
     field :template_url, 'string'

@@ -13,13 +13,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstagramVideoMetadata < AdObject
+  class AdsMcmeConversion < AdObject
 
-    field :duration, 'double'
-    field :height, 'double'
-    field :width, 'double'
-    has_no_id
-    has_no_get
+    field :creation_time, 'datetime'
+    field :description, 'string'
+    field :id, 'string'
+    field :is_archived, 'bool'
+    field :mcme_conversion_type, 'string'
+    field :name, 'string'
+    field :omnichannel_object_id, 'string'
     has_no_post
     has_no_delete
 

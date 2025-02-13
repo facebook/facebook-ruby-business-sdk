@@ -13,19 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class VideoMetricsReport < AdObject
+  class AdsEligibility < AdObject
 
-    field :checksum, 'string'
-    field :chunks, 'int'
-    field :end_date, 'datetime'
-    field :id, 'string'
-    field :index, 'int'
-    field :name, 'string'
-    field :platform, 'string'
-    field :start_date, 'datetime'
-    field :type, 'string'
-    field :upload_date, 'datetime'
-    field :url, 'string'
+    field :live_shopping, 'object'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -38,6 +38,8 @@ module FacebookAds
     field :library_template_name, 'string'
     field :name, 'string'
     field :rejected_reason, 'string'
+    field :rejection_reasons, 'object'
+    field :specific_rejection_reasons, 'object'
     field :status, 'string'
     has_no_delete
 

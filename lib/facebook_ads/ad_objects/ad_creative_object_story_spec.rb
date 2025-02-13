@@ -15,7 +15,7 @@ module FacebookAds
 
   class AdCreativeObjectStorySpec < AdObject
 
-    field :instagram_actor_id, 'string'
+    field :instagram_user_id, 'string'
     field :link_data, 'AdCreativeLinkData'
     field :page_id, 'string'
     field :photo_data, 'AdCreativePhotoData'

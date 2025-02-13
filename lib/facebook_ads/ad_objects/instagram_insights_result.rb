@@ -40,6 +40,7 @@ module FacebookAds
       "shares",
       "total_interactions",
       "video_views",
+      "views",
     ]
 
     PERIOD = [

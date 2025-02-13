@@ -22,6 +22,7 @@ module FacebookAds
     field :id, 'string'
     field :iswc, 'string'
     field :metadata, 'object'
+    field :playable_video_uri, 'string'
     field :published_time, 'datetime'
     field :thumbnail_url, 'string'
     field :title, 'string'

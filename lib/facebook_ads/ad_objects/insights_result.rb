@@ -24,6 +24,7 @@ module FacebookAds
     METRIC = [
       "clips_replays_count",
       "comments",
+      "content_views",
       "follows",
       "ig_reels_aggregated_all_plays_count",
       "ig_reels_avg_watch_time",
@@ -43,6 +44,7 @@ module FacebookAds
       "shares",
       "thread_replies",
       "thread_shares",
+      "threads_views",
       "total_interactions",
       "video_views",
       "views",
@@ -78,6 +80,21 @@ module FacebookAds
       "this_year",
       "today",
       "yesterday",
+    ]
+
+    METRIC_TYPE = [
+      "default",
+      "time_series",
+      "total_value",
+    ]
+
+    TIMEFRAME = [
+      "last_14_days",
+      "last_30_days",
+      "last_90_days",
+      "prev_month",
+      "this_month",
+      "this_week",
     ]
 
 

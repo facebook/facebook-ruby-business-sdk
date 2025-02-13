@@ -17,9 +17,7 @@ module FacebookAds
 
     field :acceptance_status, 'string'
     field :category, 'string'
-    field :current_value, 'string'
     field :id, 'string'
-    field :proposed_value, 'string'
     field :upcoming_change_info, 'PageUpcomingChange'
     has_no_get
     has_no_post

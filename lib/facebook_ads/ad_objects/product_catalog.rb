@@ -540,6 +540,10 @@ module FacebookAds
       end
     end
 
+    has_edge :version_configs do |edge|
+      edge.get 'CatalogContentVersionConfig'
+    end
+
     has_edge :version_items_batch do |edge|
       edge.post 'ProductCatalog' do |api|
         api.has_param :allow_upsert, 'bool'

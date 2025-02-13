@@ -26,6 +26,7 @@ module FacebookAds
 
     VERIFICATION_STATUS = [
       "APPROVED",
+      "DISCARDED",
       "FAILED",
       "PENDING",
       "REVOKED",

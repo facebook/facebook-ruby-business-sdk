@@ -23,17 +23,14 @@ module FacebookAds
       "AD_LIBRARY_WATERMARK",
       "AGE_UP",
       "ALBUM_MULTIMEDIA_POST",
-      "ALOHA_CALL_VIDEO",
       "ALOHA_SUPERFRAME",
       "APP_REREVIEW_SCREENCAST",
       "APP_REVIEW_SCREENCAST",
       "ASSET_MANAGER",
       "ATLAS_VIDEO",
-      "AUDIO_BRIEF",
       "AUDIO_BROADCAST",
       "AUDIO_COMMENT",
       "BROADCAST",
-      "BULLETIN_ARTICLE_AUDIO",
       "CANVAS",
       "CFC_VIDEO",
       "CMS_MEDIA_MANAGER",
@@ -64,7 +61,6 @@ module FacebookAds
       "FB_COLLECTIBLE_VIDEO",
       "FB_SHORTS",
       "FB_SHORTS_CONTENT_REMIXABLE",
-      "FB_SHORTS_CROSS_META_POST",
       "FB_SHORTS_GROUP_POST",
       "FB_SHORTS_LINKED_PRODUCT",
       "FB_SHORTS_PMV_POST",
@@ -73,7 +69,6 @@ module FacebookAds
       "FB_SHORTS_REMIX_POST",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
-      "GEMSTONE",
       "GIF_TO_VIDEO",
       "GOODWILL_ANNIVERSARY_DEPRECATED",
       "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
@@ -82,7 +77,6 @@ module FacebookAds
       "GOODWILL_VIDEO_SHARE",
       "GOODWILL_VIDEO_TOKEN_REQUIRED",
       "GROUP_POST",
-      "HACK_TV",
       "HEURISTIC_CLUSTER_VIDEO",
       "HIGHLIGHT_CLIP_VIDEO",
       "HUDDLE_BROADCAST",
@@ -93,13 +87,9 @@ module FacebookAds
       "INSTAGRAM_VIDEO_COPY",
       "INSTANT_APPLICATION_PREVIEW",
       "INSTANT_ARTICLE",
-      "INSTANT_GAMES_PROMO",
-      "INSTANT_GAME_CLIP",
       "ISSUE_MODULE",
       "JOBS_CAREERS",
       "JOBS_VISUAL_INTRO_ENTRY",
-      "JOB_APPLICATION_VIDEO",
-      "JOB_OPENING_VIDEO",
       "LEARN",
       "LEGACY",
       "LEGACY_CONTAINED_POST_BROADCAST",
@@ -114,7 +104,6 @@ module FacebookAds
       "MESSENGER_WATCH_TOGETHER",
       "MOMENTS_VIDEO",
       "MUSIC_CLIP",
-      "MUSIC_CLIP_IN_AUDIO_DIGEST",
       "MUSIC_CLIP_IN_COMMENT",
       "MUSIC_CLIP_IN_LIGHTWEIGHT_STATUS",
       "MUSIC_CLIP_IN_MSGR_NOTE",
@@ -246,6 +235,12 @@ module FacebookAds
       "transfer",
     ]
 
+    VIDEO_STATE = [
+      "DRAFT",
+      "PUBLISHED",
+      "SCHEDULED",
+    ]
+
     VALIDATION_AD_PLACEMENTS = [
       "AUDIENCE_NETWORK_INSTREAM_VIDEO",
       "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
@@ -277,12 +272,6 @@ module FacebookAds
       "uploaded",
     ]
 
-    VIDEO_STATE = [
-      "DRAFT",
-      "PUBLISHED",
-      "SCHEDULED",
-    ]
-
     BACKDATED_TIME_GRANULARITY = [
       "day",
       "hour",
@@ -298,6 +287,7 @@ module FacebookAds
     field :audio_isrc, 'AudioIsrc'
     field :backdated_time, 'datetime'
     field :backdated_time_granularity, 'string'
+    field :boost_eligibility_info, 'object'
     field :content_category, 'string'
     field :content_tags, { list: 'string' }
     field :copyright, 'VideoCopyright'
@@ -398,9 +388,15 @@ module FacebookAds
     field :video_id_original, 'string'
     field :video_start_time_ms, 'int'
     field :waterfall_id, 'string'
+    field :video_id, 'string'
+    field :video_state, { enum: -> { VIDEO_STATE }}
     field :ad_placements_validation_only, 'bool'
     field :creative_folder_id, 'string'
     field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
+
+    has_edge :boost_ads_list do |edge|
+      edge.get
+    end
 
     has_edge :captions do |edge|
       edge.get

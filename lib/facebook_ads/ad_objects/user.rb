@@ -443,6 +443,12 @@ module FacebookAds
       edge.post 'User'
     end
 
+    has_edge :messenger_kids_accounts_unread_badge do |edge|
+      edge.post 'User' do |api|
+        api.has_param :proxied_app_id, 'int'
+      end
+    end
+
     has_edge :music do |edge|
       edge.get 'Page' do |api|
         api.has_param :target_id, 'string'
@@ -525,6 +531,7 @@ module FacebookAds
         api.has_param :place, 'object'
         api.has_param :privacy, 'string'
         api.has_param :profile_id, 'int'
+        api.has_param :provenance_info, 'hash'
         api.has_param :proxied_app_id, 'string'
         api.has_param :published, 'bool'
         api.has_param :qn, 'string'

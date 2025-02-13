@@ -148,7 +148,6 @@ module FacebookAds
       "PRIMARY",
       "REGULATED_CATEGORIES_AUDIENCE",
       "STUDY_RULE_AUDIENCE",
-      "SUBSCRIBER_SEGMENT",
       "VIDEO",
       "WEBSITE",
     ]
@@ -317,7 +316,6 @@ module FacebookAds
         api.has_param :image_file, 'string'
         api.has_param :image_hash, 'string'
         api.has_param :image_url, 'string'
-        api.has_param :instagram_actor_id, 'string'
         api.has_param :instagram_branded_content, 'hash'
         api.has_param :instagram_permalink_url, 'string'
         api.has_param :instagram_user_id, 'string'
@@ -339,6 +337,7 @@ module FacebookAds
         api.has_param :portrait_customizations, 'hash'
         api.has_param :product_set_id, 'string'
         api.has_param :recommender_settings, 'hash'
+        api.has_param :regional_regulation_disclaimer_spec, 'hash'
         api.has_param :source_instagram_media_id, 'string'
         api.has_param :template_url, 'string'
         api.has_param :template_url_spec, 'string'
@@ -510,6 +509,7 @@ module FacebookAds
         api.has_param :frequency_control_specs, { list: 'object' }
         api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
         api.has_param :is_dynamic_creative, 'bool'
+        api.has_param :is_sac_cfca_terms_certified, 'bool'
         api.has_param :lifetime_budget, 'int'
         api.has_param :lifetime_imps, 'int'
         api.has_param :lifetime_min_spend_target, 'int'
@@ -1145,6 +1145,15 @@ module FacebookAds
       end
     end
 
+    has_edge :suggested_product_tags do |edge|
+      edge.get 'AdAccountSuggestedTag' do |api|
+        api.has_param :image_hash, 'string'
+        api.has_param :instagram_actor_id, 'string'
+        api.has_param :is_shops_ad, 'bool'
+        api.has_param :page_id, 'string'
+      end
+    end
+
     has_edge :targetingbrowse do |edge|
       edge.get 'AdAccountTargetingUnified' do |api|
         api.has_param :excluded_category, 'string'
@@ -1242,6 +1251,14 @@ module FacebookAds
       edge.get 'AdVideo' do |api|
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
+      end
+      edge.post 'AdVideo' do |api|
+        api.has_param :description, 'string'
+        api.has_param :privacy, 'string'
+        api.has_param :title, 'string'
+        api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
+        api.has_param :video_id, 'string'
+        api.has_param :video_state, { enum: -> { AdVideo::VIDEO_STATE }}
       end
     end
 

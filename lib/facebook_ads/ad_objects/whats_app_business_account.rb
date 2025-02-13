@@ -80,6 +80,7 @@ module FacebookAds
     field :id, 'string'
     field :is_enabled_for_insights, 'bool'
     field :linked_commerce_account, 'CommerceMerchantSettings'
+    field :marketing_messages_lite_api_status, 'string'
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'
@@ -149,17 +150,15 @@ module FacebookAds
       end
     end
 
-    has_edge :dcc_config do |edge|
-      edge.get
-    end
-
     has_edge :flows do |edge|
       edge.get
       edge.post do |api|
         api.has_param :categories, { list: { enum: %w{APPOINTMENT_BOOKING CONTACT_US CUSTOMER_SUPPORT LEAD_GENERATION OTHER SHOPPING SIGN_IN SIGN_UP SURVEY }} }
         api.has_param :clone_flow_id, 'string'
         api.has_param :endpoint_uri, 'string'
+        api.has_param :flow_json, 'string'
         api.has_param :name, 'string'
+        api.has_param :publish, 'bool'
       end
     end
 
@@ -217,8 +216,7 @@ module FacebookAds
 
     has_edge :migrate_flows do |edge|
       edge.post 'WhatsAppBusinessAccount' do |api|
-        api.has_param :page_number, 'int'
-        api.has_param :source_flow_ids, { list: 'string' }
+        api.has_param :source_flow_names, { list: 'string' }
         api.has_param :source_waba_id, 'string'
       end
     end
@@ -239,6 +237,7 @@ module FacebookAds
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :configuration_name, 'string'
+        api.has_param :data_endpoint_url, 'string'
         api.has_param :merchant_category_code, 'string'
         api.has_param :merchant_vpa, 'string'
         api.has_param :provider_name, { enum: -> { WhatsAppBusinessAccount::PROVIDER_NAME }}
@@ -259,6 +258,20 @@ module FacebookAds
         api.has_param :phone_number, 'string'
         api.has_param :preverified_id, 'string'
         api.has_param :verified_name, 'string'
+      end
+    end
+
+    has_edge :pricing_analytics do |edge|
+      edge.get do |api|
+        api.has_param :country_codes, { list: 'string' }
+        api.has_param :dimensions, { list: { enum: %w{COUNTRY PHONE PRICING_CATEGORY PRICING_TYPE }} }
+        api.has_param :end, 'int'
+        api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
+        api.has_param :metric_types, { list: { enum: %w{COST VOLUME }} }
+        api.has_param :phone_numbers, { list: 'string' }
+        api.has_param :pricing_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL MARKETING MARKETING_LITE SERVICE UTILITY }} }
+        api.has_param :pricing_types, { list: { enum: %w{FREE_CUSTOMER_SERVICE FREE_ENTRY_POINT REGULAR }} }
+        api.has_param :start, 'int'
       end
     end
 
@@ -284,6 +297,7 @@ module FacebookAds
 
     has_edge :set_solution_migration_intent do |edge|
       edge.post do |api|
+        api.has_param :app_id, 'string'
         api.has_param :solution_id, 'string'
       end
     end
@@ -305,10 +319,29 @@ module FacebookAds
       edge.get do |api|
         api.has_param :end, 'datetime'
         api.has_param :granularity, { enum: %w{DAILY }}
-        api.has_param :metric_types, { list: { enum: %w{CLICKED COST DELIVERED READ SENT }} }
+        api.has_param :metric_types, { list: { enum: %w{CLICKED COST DELIVERED READ REPLIED SENT }} }
         api.has_param :product_type, { enum: %w{CLOUD_API MARKETING_MESSAGES_LITE_API }}
         api.has_param :start, 'datetime'
         api.has_param :template_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :template_group_analytics do |edge|
+      edge.get do |api|
+        api.has_param :end, 'datetime'
+        api.has_param :granularity, { enum: %w{DAILY }}
+        api.has_param :metric_types, { list: { enum: %w{CLICKED COST DELIVERED READ REPLIED SENT }} }
+        api.has_param :start, 'datetime'
+        api.has_param :template_group_ids, { list: 'string' }
+      end
+    end
+
+    has_edge :template_groups do |edge|
+      edge.get
+      edge.post do |api|
+        api.has_param :description, 'string'
+        api.has_param :name, 'string'
+        api.has_param :whatsapp_business_templates, { list: 'string' }
       end
     end
 

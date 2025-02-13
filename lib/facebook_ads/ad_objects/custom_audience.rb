@@ -71,7 +71,6 @@ module FacebookAds
       "PRIMARY",
       "REGULATED_CATEGORIES_AUDIENCE",
       "STUDY_RULE_AUDIENCE",
-      "SUBSCRIBER_SEGMENT",
       "VIDEO",
       "WEBSITE",
     ]
@@ -102,6 +101,7 @@ module FacebookAds
     field :household_audience, 'int'
     field :id, 'string'
     field :included_custom_audiences, { list: 'CustomAudience' }
+    field :is_eligible_for_sac_campaigns, 'bool'
     field :is_household, 'bool'
     field :is_snapshot, 'bool'
     field :is_value_based, 'bool'

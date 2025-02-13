@@ -44,6 +44,18 @@ module FacebookAds
       end
     end
 
+    has_edge :insights do |edge|
+      edge.get 'InsightsResult' do |api|
+        api.has_param :breakdown, { list: { enum: -> { InsightsResult::BREAKDOWN }} }
+        api.has_param :metric, { list: { enum: -> { InsightsResult::METRIC }} }
+        api.has_param :metric_type, { enum: -> { InsightsResult::METRIC_TYPE }}
+        api.has_param :period, { list: { enum: -> { InsightsResult::PERIOD }} }
+        api.has_param :since, 'datetime'
+        api.has_param :timeframe, { enum: -> { InsightsResult::TIMEFRAME }}
+        api.has_param :until, 'datetime'
+      end
+    end
+
     has_edge :live_media do |edge|
       edge.get
     end
@@ -54,6 +66,7 @@ module FacebookAds
         api.has_param :until, 'datetime'
       end
       edge.post do |api|
+        api.has_param :alt_text, 'string'
         api.has_param :audio_name, 'string'
         api.has_param :caption, 'string'
         api.has_param :children, { list: 'string' }
@@ -123,7 +136,7 @@ module FacebookAds
       edge.delete
       edge.get
       edge.post do |api|
-        api.has_param :subscribed_fields, { list: { enum: %w{comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta live_comments mentions message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen standby story_insights }} }
+        api.has_param :subscribed_fields, { list: { enum: %w{comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta live_comments mentions message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen standby story_insights story_reactions }} }
       end
     end
 

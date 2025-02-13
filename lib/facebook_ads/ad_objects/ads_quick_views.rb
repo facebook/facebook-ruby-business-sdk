@@ -22,6 +22,7 @@ module FacebookAds
     field :id, 'string'
     field :name, 'string'
     field :permission, 'string'
+    field :quick_view_type, 'string'
     field :sort, { list: 'object' }
     has_no_post
     has_no_delete

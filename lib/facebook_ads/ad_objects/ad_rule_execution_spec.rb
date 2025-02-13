@@ -39,6 +39,7 @@ module FacebookAds
 
     field :execution_options, { list: 'AdRuleExecutionOptions' }
     field :execution_type, { enum: -> { EXECUTION_TYPE }}
+    field :is_once_off, 'bool'
     field :id, 'string'
     has_no_post
     has_no_delete

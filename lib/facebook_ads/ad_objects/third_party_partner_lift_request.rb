@@ -29,8 +29,11 @@ module FacebookAds
     field :description, 'string'
     field :holdout_size, 'double'
     field :id, 'string'
+    field :legacy_ads_data_partner_id, 'string'
+    field :legacy_ads_data_partner_name, 'string'
     field :modified_time, 'datetime'
     field :owner_instance_id, 'string'
+    field :partner_household_graph_dataset_id, 'string'
     field :region, 'string'
     field :status, { enum: -> { STATUS }}
     field :study_cells, { list: 'string' }

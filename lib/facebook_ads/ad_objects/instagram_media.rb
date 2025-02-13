@@ -34,13 +34,5 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :comments do |edge|
-      edge.get 'InstagramComment'
-      edge.post 'InstagramComment' do |api|
-        api.has_param :ad_id, 'string'
-        api.has_param :message, 'string'
-      end
-    end
-
   end
 end

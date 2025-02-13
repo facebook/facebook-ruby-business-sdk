@@ -24,14 +24,7 @@ module FacebookAds
     field :mentioned_instagram_users, { list: 'InstagramUser' }
     field :message, 'string'
     field :username, 'string'
-
-    has_edge :replies do |edge|
-      edge.get 'InstagramComment'
-      edge.post 'InstagramComment' do |api|
-        api.has_param :ad_id, 'string'
-        api.has_param :message, 'string'
-      end
-    end
+    has_no_delete
 
   end
 end

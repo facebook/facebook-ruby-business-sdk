@@ -18,6 +18,7 @@ module FacebookAds
     field :audio_conflicting_segments, { list: 'object' }
     field :audio_current_conflict_resolved_segments, { list: 'object' }
     field :audio_segment_resolution_history, { list: 'object' }
+    field :conflict_status, 'string'
     field :conflict_type, 'string'
     field :conflicting_countries, { list: 'string' }
     field :country_resolution_history, { list: 'map<string, list<Object>>' }

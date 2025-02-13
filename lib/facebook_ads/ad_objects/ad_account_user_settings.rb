@@ -41,6 +41,8 @@ module FacebookAds
 
     field :acf_should_opt_out_video_adjustments, 'bool'
     field :aco_sticky_settings, { list: 'hash' }
+    field :actions_quick_view_created, 'bool'
+    field :active_ads_quick_view_created, 'bool'
     field :ad_account, 'AdAccount'
     field :ad_object_export_format, 'string'
     field :auto_review_video_caption, 'bool'
@@ -55,6 +57,7 @@ module FacebookAds
     field :draft_mode_enabled, 'bool'
     field :export_deleted_items_with_delivery, 'bool'
     field :export_summary_row, 'bool'
+    field :had_delivery_quick_view_created, 'bool'
     field :has_seen_groups_column_flexing_experience, 'bool'
     field :has_seen_instagram_column_flexing_experience, 'bool'
     field :has_seen_leads_column_flexing_experience, 'bool'

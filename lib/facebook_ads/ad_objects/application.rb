@@ -227,6 +227,7 @@ module FacebookAds
         api.has_param :app_user_id, 'string'
         api.has_param :application_tracking_enabled, 'bool'
         api.has_param :attribution, 'string'
+        api.has_param :attribution_sources, { list: 'hash' }
         api.has_param :auto_publish, 'bool'
         api.has_param :bundle_id, 'string'
         api.has_param :bundle_short_version, 'string'
@@ -248,8 +249,10 @@ module FacebookAds
         api.has_param :install_referrer, 'string'
         api.has_param :install_timestamp, 'int'
         api.has_param :installer_package, 'string'
+        api.has_param :is_fb, 'bool'
         api.has_param :limited_data_use, 'bool'
         api.has_param :migration_bundle, 'string'
+        api.has_param :operational_parameters, { list: 'hash' }
         api.has_param :page_id, 'int'
         api.has_param :page_scoped_user_id, 'int'
         api.has_param :receipt_data, 'string'
@@ -473,18 +476,27 @@ module FacebookAds
       edge.post do |api|
         api.has_param :advertiser_id, 'string'
         api.has_param :attribution, 'string'
+        api.has_param :attribution_method, 'string'
         api.has_param :attribution_model, 'string'
+        api.has_param :attribution_referrer, 'string'
         api.has_param :auditing_token, 'string'
         api.has_param :click_attr_window, 'int'
         api.has_param :custom_events, { list: 'object' }
         api.has_param :decline_reason, 'string'
+        api.has_param :device_os, 'string'
         api.has_param :engagement_type, 'string'
         api.has_param :event, 'string'
+        api.has_param :event_id, 'string'
         api.has_param :event_reported_time, 'int'
         api.has_param :fb_ad_id, 'int'
+        api.has_param :fb_adgroup_id, 'int'
         api.has_param :fb_click_time, 'int'
         api.has_param :fb_view_time, 'int'
+        api.has_param :google_install_referrer, 'string'
+        api.has_param :inactivity_window_hours, 'int'
+        api.has_param :install_id, 'string'
         api.has_param :is_fb, 'bool'
+        api.has_param :meta_install_referrer, 'string'
         api.has_param :used_install_referrer, 'bool'
         api.has_param :view_attr_window, 'int'
       end
@@ -520,12 +532,6 @@ module FacebookAds
       edge.post do |api|
         api.has_param :flash, 'bool'
         api.has_param :unity, 'bool'
-      end
-    end
-
-    has_edge :payment_currencies do |edge|
-      edge.post 'Application' do |api|
-        api.has_param :currency_url, 'string'
       end
     end
 

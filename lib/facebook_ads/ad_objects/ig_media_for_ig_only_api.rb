@@ -15,6 +15,7 @@ module FacebookAds
 
   class IgMediaForIgOnlyApi < AdObject
 
+    field :alt_text, 'string'
     field :caption, 'string'
     field :comments_count, 'int'
     field :id, 'string'

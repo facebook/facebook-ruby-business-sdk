@@ -16,7 +16,6 @@ module FacebookAds
   class RecommendedIgMedia < AdObject
 
     field :intent_score, 'double'
-    field :media, 'InstagramMedia'
     has_no_id
     has_no_get
     has_no_post
