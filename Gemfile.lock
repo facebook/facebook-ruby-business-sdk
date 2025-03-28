@@ -1,11 +1,11 @@
 PATH
   remote: .
   specs:
-    facebookbusiness (20.0.0)
+    facebookbusiness (22.0.0)
       concurrent-ruby (~> 1.1)
       countries (>= 3, < 7)
       faraday (~> 2.6)
-      faraday-multipart (~> 1.0.4)
+      faraday-multipart (~> 1.0, >= 1.0.4)
       json (~> 2.6)
       money (~> 6.13)
 
@@ -103,4 +103,4 @@ DEPENDENCIES
   rubocop (~> 0.71)
 
 BUNDLED WITH
-   2.2.33
+   2.5.23
