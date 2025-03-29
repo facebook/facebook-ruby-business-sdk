@@ -56,6 +56,7 @@ module FacebookAds
       "CHARITY_DONATE",
       "CHECK_IN",
       "CONTACT_US",
+      "CREATOR_STOREFRONT",
       "DONATE_NOW",
       "EMAIL",
       "FOLLOW_PAGE",

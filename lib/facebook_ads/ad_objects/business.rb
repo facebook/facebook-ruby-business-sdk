@@ -64,6 +64,7 @@ module FacebookAds
       "ANALYZE",
       "CASHIER_ROLE",
       "CREATE_CONTENT",
+      "GLOBAL_STRUCTURE_MANAGEMENT",
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
@@ -583,6 +584,7 @@ module FacebookAds
       "ANALYZE",
       "CASHIER_ROLE",
       "CREATE_CONTENT",
+      "GLOBAL_STRUCTURE_MANAGEMENT",
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
@@ -977,6 +979,15 @@ module FacebookAds
       end
     end
 
+    has_edge :ads_dataset do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :ad_account_id, 'string'
+        api.has_param :app_id, 'string'
+        api.has_param :is_crm, 'bool'
+        api.has_param :name, 'string'
+      end
+    end
+
     has_edge :ads_reporting_mmm_reports do |edge|
       edge.get 'AdsReportBuilderMmmReport' do |api|
         api.has_param :filtering, { list: 'hash' }
@@ -1164,12 +1175,6 @@ module FacebookAds
       end
     end
 
-    has_edge :draft_negative_keyword_lists do |edge|
-      edge.post do |api|
-        api.has_param :negative_keyword_list_file, 'file'
-      end
-    end
-
     has_edge :event_source_groups do |edge|
       edge.get 'EventSourceGroup'
       edge.post 'EventSourceGroup' do |api|
@@ -1277,8 +1282,10 @@ module FacebookAds
       end
     end
 
-    has_edge :negative_keyword_lists do |edge|
-      edge.get 'NegativeKeywordList'
+    has_edge :onboard_partners_to_mm_lite do |edge|
+      edge.post do |api|
+        api.has_param :solution_id, 'string'
+      end
     end
 
     has_edge :openbridge_configurations do |edge|
@@ -1364,6 +1371,7 @@ module FacebookAds
       edge.get 'ProductCatalog'
       edge.post 'ProductCatalog' do |api|
         api.has_param :additional_vertical_option, { enum: -> { ProductCatalog::ADDITIONAL_VERTICAL_OPTION }}
+        api.has_param :business_metadata, 'hash'
         api.has_param :catalog_segment_filter, 'object'
         api.has_param :catalog_segment_product_set_id, 'string'
         api.has_param :da_display_settings, 'object'
@@ -1400,6 +1408,10 @@ module FacebookAds
         api.has_param :retailer_custom_audience_config, 'hash'
         api.has_param :vendor_id, 'string'
       end
+    end
+
+    has_edge :passback_attribution_metadata_configs do |edge|
+      edge.get
     end
 
     has_edge :pending_client_ad_accounts do |edge|

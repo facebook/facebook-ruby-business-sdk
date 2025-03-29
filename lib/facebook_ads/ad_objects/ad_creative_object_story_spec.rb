@@ -22,7 +22,6 @@ module FacebookAds
     field :product_data, { list: 'AdCreativeProductData' }
     field :template_data, 'AdCreativeLinkData'
     field :text_data, 'AdCreativeTextData'
-    field :threads_user_id, 'string'
     field :video_data, 'AdCreativeVideoData'
     has_no_id
     has_no_get

@@ -52,6 +52,7 @@ module FacebookAds
       "community",
       "friends",
       "group",
+      "messenger_community",
       "private",
       "public",
       "work_company",

@@ -14,11 +14,18 @@ module FacebookAds
   # pull request for this class.
 
   class AdsValueAdjustmentRuleCollection < AdObject
+    PRODUCT_TYPE = [
+      "AUDIENCE",
+      "LEADGEN_ADS",
+      "OMNI_CHANNEL",
+    ]
+
 
     field :id, 'string'
     field :is_default_setting, 'bool'
     field :name, 'string'
-    has_no_post
+    field :product_type, 'string'
+    field :rules, { list: 'hash' }
     has_no_delete
 
     has_edge :rules do |edge|

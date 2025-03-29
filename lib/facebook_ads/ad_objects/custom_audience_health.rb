@@ -13,17 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstagramComment < AdObject
+  class CustomAudienceHealth < AdObject
 
-    field :comment_type, 'string'
-    field :created_at, 'datetime'
-    field :id, 'string'
-    field :ig_comment_id, 'string'
-    field :instagram_comment_id, 'string'
-    field :instagram_user, 'InstagramUser'
-    field :mentioned_instagram_users, { list: 'InstagramUser' }
-    field :message, 'string'
-    field :username, 'string'
+    field :health, { list: 'object' }
+    has_no_id
+    has_no_get
+    has_no_post
     has_no_delete
 
   end

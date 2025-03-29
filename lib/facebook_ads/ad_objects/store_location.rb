@@ -13,12 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdsPixelCapiSetupQuality < AdObject
+  class StoreLocation < AdObject
 
-    field :event_match_quality, 'object'
-    field :event_name, 'string'
-    has_no_id
-    has_no_get
+    field :full_address, 'string'
+    field :hours, 'object'
+    field :id, 'string'
+    field :phone_number, 'string'
+    field :pickup_options, { list: 'string' }
+    field :price_range, 'string'
+    field :store_code, 'string'
+    field :zip_code, 'string'
     has_no_post
     has_no_delete
 

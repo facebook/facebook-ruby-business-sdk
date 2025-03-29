@@ -16,6 +16,7 @@ module FacebookAds
   class BusinessOwnedObjectOnBehalfOfRequest < AdObject
     STATUS = [
       "APPROVE",
+      "CANCELED",
       "DECLINE",
       "EXPIRED",
       "IN_PROGRESS",

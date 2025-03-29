@@ -94,6 +94,7 @@ module FacebookAds
       "USE_MOBILE_APP",
       "VIDEO_ANNOTATION",
       "VIDEO_CALL",
+      "VIEW_CART",
       "VIEW_CHANNEL",
       "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
@@ -176,6 +177,7 @@ module FacebookAds
     field :branded_content, 'AdCreativeBrandedContentAds'
     field :branded_content_sponsor_page_id, 'string'
     field :bundle_folder_id, 'string'
+    field :call_to_action, 'AdCreativeLinkDataCallToAction'
     field :call_to_action_type, { enum: -> { CALL_TO_ACTION_TYPE }}
     field :categorization_criteria, 'string'
     field :category_media_source, 'string'
@@ -232,7 +234,6 @@ module FacebookAds
     field :url_tags, 'string'
     field :use_page_actor_override, 'bool'
     field :video_id, 'string'
-    field :call_to_action, 'object'
     field :image_file, 'string'
     field :is_dco_internal, 'bool'
 

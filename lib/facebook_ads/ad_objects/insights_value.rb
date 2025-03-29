@@ -21,6 +21,7 @@ module FacebookAds
     field :engagement_source, 'string'
     field :message_type, 'string'
     field :messaging_channel, 'string'
+    field :monetization_tool, 'string'
     field :recurring_notifications_entry_point, 'string'
     field :recurring_notifications_frequency, 'string'
     field :recurring_notifications_topic, 'string'

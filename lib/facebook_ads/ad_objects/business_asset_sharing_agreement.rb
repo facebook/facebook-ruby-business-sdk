@@ -16,6 +16,7 @@ module FacebookAds
   class BusinessAssetSharingAgreement < AdObject
     REQUEST_STATUS = [
       "APPROVE",
+      "CANCELED",
       "DECLINE",
       "EXPIRED",
       "IN_PROGRESS",

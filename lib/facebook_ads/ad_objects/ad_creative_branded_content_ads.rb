@@ -27,6 +27,7 @@ module FacebookAds
     field :product_set_partner_selection_status, 'string'
     field :promoted_page_id, 'string'
     field :testimonial, 'string'
+    field :testimonial_locale, 'string'
     field :ui_version, 'int'
     has_no_id
     has_no_get

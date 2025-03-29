@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdAccountOptimizationGoalsAemv2Eligibility < AdObject
     OPTIMIZATION_GOAL = [
+      "ADVERTISER_SILOED_VALUE",
       "AD_RECALL_LIFT",
       "APP_INSTALLS",
       "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
@@ -34,6 +35,7 @@ module FacebookAds
       "OFFSITE_CONVERSIONS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PROFILE_AND_PAGE_ENGAGEMENT",
       "PROFILE_VISIT",
       "QUALITY_CALL",
       "QUALITY_LEAD",

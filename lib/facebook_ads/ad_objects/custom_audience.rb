@@ -174,6 +174,16 @@ module FacebookAds
       end
     end
 
+    has_edge :health do |edge|
+      edge.get 'CustomAudienceHealth' do |api|
+        api.has_param :calculated_date, 'string'
+        api.has_param :processed_date, 'string'
+        api.has_param :value_aggregation_duration, 'int'
+        api.has_param :value_currency, 'string'
+        api.has_param :value_version, 'int'
+      end
+    end
+
     has_edge :salts do |edge|
       edge.get 'CustomAudienceSalts' do |api|
         api.has_param :params, { list: 'string' }

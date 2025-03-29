@@ -29,7 +29,11 @@ module FacebookAds
       "dda",
       "default",
       "skan_click",
+      "skan_click_second_postback",
+      "skan_click_third_postback",
       "skan_view",
+      "skan_view_second_postback",
+      "skan_view_third_postback",
     ]
 
     ACTION_BREAKDOWNS = [
@@ -202,6 +206,8 @@ module FacebookAds
     field :conversions, { list: 'AdsActionStats' }
     field :converted_product_quantity, { list: 'AdsActionStats' }
     field :converted_product_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_quantity, { list: 'AdsActionStats' }
+    field :converted_promoted_product_value, { list: 'AdsActionStats' }
     field :cost_per_15_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }
@@ -256,13 +262,22 @@ module FacebookAds
     field :location, 'string'
     field :marketing_messages_cost_per_delivered, 'string'
     field :marketing_messages_cost_per_link_btn_click, 'string'
+    field :marketing_messages_delivered, 'string'
     field :marketing_messages_delivery_rate, 'string'
+    field :marketing_messages_link_btn_click, 'string'
     field :marketing_messages_link_btn_click_rate, 'string'
     field :marketing_messages_media_view_rate, 'string'
     field :marketing_messages_phone_call_btn_click_rate, 'string'
+    field :marketing_messages_quick_reply_btn_click, 'string'
     field :marketing_messages_quick_reply_btn_click_rate, 'string'
+    field :marketing_messages_read, 'string'
     field :marketing_messages_read_rate, 'string'
+    field :marketing_messages_sent, 'string'
     field :marketing_messages_spend, 'string'
+    field :marketing_messages_spend_currency, 'string'
+    field :marketing_messages_website_add_to_cart, 'string'
+    field :marketing_messages_website_initiate_checkout, 'string'
+    field :marketing_messages_website_purchase, 'string'
     field :marketing_messages_website_purchase_values, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'

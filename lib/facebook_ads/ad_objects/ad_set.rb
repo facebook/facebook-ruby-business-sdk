@@ -53,6 +53,7 @@ module FacebookAds
     ]
 
     OPTIMIZATION_GOAL = [
+      "ADVERTISER_SILOED_VALUE",
       "AD_RECALL_LIFT",
       "APP_INSTALLS",
       "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
@@ -72,6 +73,7 @@ module FacebookAds
       "OFFSITE_CONVERSIONS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PROFILE_AND_PAGE_ENGAGEMENT",
       "PROFILE_VISIT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
@@ -173,6 +175,7 @@ module FacebookAds
       "2",
       "3",
       "4",
+      "5",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -230,6 +233,7 @@ module FacebookAds
     field :full_funnel_exploration_mode, 'string'
     field :id, 'string'
     field :instagram_user_id, 'string'
+    field :is_ba_skip_delayed_eligible, 'bool'
     field :is_budget_schedule_enabled, 'bool'
     field :is_dynamic_creative, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
