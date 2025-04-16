@@ -17,6 +17,8 @@ module FacebookAds
 
     field :is_lva_toggle_on, 'bool'
     field :lva_default_budget, 'int'
+    field :should_default_current_live, 'bool'
+    field :should_default_scheduled_live, 'bool'
     field :should_show_lva_toggle, 'bool'
     has_no_id
     has_no_get

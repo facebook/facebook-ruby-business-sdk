@@ -390,6 +390,7 @@ module FacebookAds
       "ITEM_PRICE_NOT_POSITIVE",
       "ITEM_STALE_OUT_OF_STOCK",
       "MARKETPLACE_DISABLED_BY_USER",
+      "MARKETPLACE_PARTNER_AUCTION_NO_BID_CLOSE_TIME",
       "MARKETPLACE_PARTNER_LISTING_LIMIT_EXCEEDED",
       "MARKETPLACE_PARTNER_NOT_LOCAL_ITEM",
       "MARKETPLACE_PARTNER_NOT_SHIPPED_ITEM",
@@ -792,6 +793,7 @@ module FacebookAds
     field :product_feed, 'ProductFeed'
     field :product_group, 'ProductGroup'
     field :product_local_info, 'ProductItemLocalInfo'
+    field :product_relationship, 'string'
     field :product_type, 'string'
     field :quantity_to_sell_on_facebook, 'int'
     field :retailer_id, 'string'

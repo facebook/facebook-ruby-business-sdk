@@ -21,6 +21,7 @@ module FacebookAds
     field :description, 'string'
     field :id, 'string'
     field :name, 'string'
+    field :owner, 'Profile'
     field :permission, 'string'
     field :quick_view_type, 'string'
     field :sort, { list: 'object' }

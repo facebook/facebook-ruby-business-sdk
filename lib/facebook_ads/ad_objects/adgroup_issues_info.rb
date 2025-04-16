@@ -20,6 +20,7 @@ module FacebookAds
     field :error_summary, 'string'
     field :error_type, 'string'
     field :level, 'string'
+    field :mid, 'string'
     has_no_id
     has_no_get
     has_no_post

@@ -26,6 +26,7 @@ module FacebookAds
     field :aplusc_epa_opt_in_status, 'string'
     field :aplusc_local_store_extension_opt_in_status, 'string'
     field :aplusc_opt_out_friction, { list: 'string' }
+    field :aplusc_videofilter_opt_in_status, 'string'
     field :autoflow_lite_opt_in_status, 'string'
     field :autoflow_lite_should_opt_in, 'bool'
     field :blended_ads_creation_defaulting_opt_in_status, 'string'
@@ -55,6 +56,8 @@ module FacebookAds
     field :open_tabs, { list: 'string' }
     field :previously_seen_recommendations, { list: 'string' }
     field :product_extensions_opt_in, 'string'
+    field :sa_off_conv_loc_seen, 'string'
+    field :saon_migr_l1_seen_status, 'string'
     field :selected_ad_account, 'AdAccount'
     field :selected_comparison_timerange, 'object'
     field :selected_metric_cic, 'string'

@@ -69,6 +69,7 @@ module FacebookAds
         api.has_param :ad_code, 'string'
         api.has_param :creator_username, 'string'
         api.has_param :only_fetch_allowlisted, 'bool'
+        api.has_param :only_fetch_recommended_content, 'bool'
         api.has_param :permalinks, { list: 'string' }
       end
     end
@@ -90,6 +91,10 @@ module FacebookAds
         api.has_param :catalog_id, 'string'
         api.has_param :q, 'string'
       end
+    end
+
+    has_edge :connected_threads_user do |edge|
+      edge.get 'ThreadsUser'
     end
 
     has_edge :content_publishing_limit do |edge|
@@ -115,6 +120,11 @@ module FacebookAds
         api.has_param :timeframe, { enum: -> { InstagramInsightsResult::TIMEFRAME }}
         api.has_param :until, 'datetime'
       end
+    end
+
+    has_edge :instagram_backed_threads_user do |edge|
+      edge.get 'ThreadsUser'
+      edge.post 'ThreadsUser'
     end
 
     has_edge :live_media do |edge|

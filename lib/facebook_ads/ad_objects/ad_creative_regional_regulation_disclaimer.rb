@@ -16,6 +16,8 @@ module FacebookAds
   class AdCreativeRegionalRegulationDisclaimer < AdObject
 
     field :australia_finserv, 'object'
+    field :india_finserv, 'object'
+    field :singapore_universal, 'object'
     field :taiwan_finserv, 'object'
     field :taiwan_universal, 'object'
     has_no_id

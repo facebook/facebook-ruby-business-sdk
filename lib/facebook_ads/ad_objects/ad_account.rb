@@ -198,6 +198,7 @@ module FacebookAds
     field :id, 'string'
     field :io_number, 'string'
     field :is_attribution_spec_system_default, 'bool'
+    field :is_ba_skip_delayed_eligible, 'bool'
     field :is_direct_deals_enabled, 'bool'
     field :is_in_3ds_authorization_enabled_market, 'bool'
     field :is_notifications_enabled, 'bool'
@@ -508,6 +509,7 @@ module FacebookAds
         api.has_param :existing_customer_budget_percentage, 'int'
         api.has_param :frequency_control_specs, { list: 'object' }
         api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
+        api.has_param :is_ba_skip_delayed_eligible, 'bool'
         api.has_param :is_dynamic_creative, 'bool'
         api.has_param :is_sac_cfca_terms_certified, 'bool'
         api.has_param :lifetime_budget, 'int'
@@ -1008,6 +1010,10 @@ module FacebookAds
       edge.get 'AdAccountMaxBid'
     end
 
+    has_edge :mcmeconversions do |edge|
+      edge.get 'AdsMcmeConversion'
+    end
+
     has_edge :minimum_budgets do |edge|
       edge.get 'MinimumBudget' do |api|
         api.has_param :bid_amount, 'int'
@@ -1244,7 +1250,14 @@ module FacebookAds
     end
 
     has_edge :value_rule_set do |edge|
-      edge.get 'AdsValueAdjustmentRuleCollection'
+      edge.get 'AdsValueAdjustmentRuleCollection' do |api|
+        api.has_param :product_type, { enum: -> { AdsValueAdjustmentRuleCollection::PRODUCT_TYPE }}
+      end
+      edge.post 'AdsValueAdjustmentRuleCollection' do |api|
+        api.has_param :name, 'string'
+        api.has_param :product_type, { enum: -> { AdsValueAdjustmentRuleCollection::PRODUCT_TYPE }}
+        api.has_param :rules, { list: 'hash' }
+      end
     end
 
     has_edge :video_ads do |edge|

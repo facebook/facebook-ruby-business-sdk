@@ -20,6 +20,7 @@ module FacebookAds
     field :id, 'string'
     field :owner_id, 'string'
     field :permalink, 'string'
+    field :recommended_campaign_objectives, { list: 'string' }
     has_no_get
     has_no_post
     has_no_delete

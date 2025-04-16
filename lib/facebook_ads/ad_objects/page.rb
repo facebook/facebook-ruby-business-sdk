@@ -109,6 +109,7 @@ module FacebookAds
       "ANALYZE",
       "CASHIER_ROLE",
       "CREATE_CONTENT",
+      "GLOBAL_STRUCTURE_MANAGEMENT",
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
@@ -137,6 +138,7 @@ module FacebookAds
       "ANALYZE",
       "CASHIER_ROLE",
       "CREATE_CONTENT",
+      "GLOBAL_STRUCTURE_MANAGEMENT",
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
@@ -241,6 +243,14 @@ module FacebookAds
     PLATFORM = [
       "INSTAGRAM",
       "MESSENGER",
+    ]
+
+    ACTIONS = [
+      "BAN_USER",
+      "BLOCK_USER",
+      "MOVE_TO_SPAM",
+      "UNBAN_USER",
+      "UNBLOCK_USER",
     ]
 
     MODEL = [
@@ -1133,6 +1143,13 @@ module FacebookAds
       end
     end
 
+    has_edge :moderate_conversations do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :actions, { list: { enum: -> { Page::ACTIONS }} }
+        api.has_param :user_ids, { list: 'hash' }
+      end
+    end
+
     has_edge :nlp_configs do |edge|
       edge.post 'Page' do |api|
         api.has_param :api_version, 'object'
@@ -1173,14 +1190,6 @@ module FacebookAds
         api.has_param :metadata, 'string'
         api.has_param :recipient, 'object'
         api.has_param :target_app_id, 'string'
-      end
-    end
-
-    has_edge :pass_thread_metadata do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :metadata, 'string'
-        api.has_param :recipient, 'object'
-        api.has_param :target_app_id, 'int'
       end
     end
 
@@ -1367,6 +1376,10 @@ module FacebookAds
 
     has_edge :shop_setup_status do |edge|
       edge.get 'CommerceMerchantSettingsSetupStatus'
+    end
+
+    has_edge :store_locations do |edge|
+      edge.get 'StoreLocation'
     end
 
     has_edge :stories do |edge|

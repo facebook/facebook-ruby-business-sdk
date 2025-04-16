@@ -79,6 +79,7 @@ module FacebookAds
     field :sanitized_images, { list: 'string' }
     field :start_date, 'string'
     field :start_time, 'int'
+    field :tags, { list: 'string' }
     field :term_length, 'int'
     field :term_qualifier, 'string'
     field :title, 'string'

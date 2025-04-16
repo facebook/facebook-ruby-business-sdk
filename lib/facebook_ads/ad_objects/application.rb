@@ -227,6 +227,7 @@ module FacebookAds
         api.has_param :app_user_id, 'string'
         api.has_param :application_tracking_enabled, 'bool'
         api.has_param :attribution, 'string'
+        api.has_param :attribution_referrer, 'string'
         api.has_param :attribution_sources, { list: 'hash' }
         api.has_param :auto_publish, 'bool'
         api.has_param :bundle_id, 'string'
@@ -244,13 +245,16 @@ module FacebookAds
         api.has_param :event, { enum: %w{CUSTOM_APP_EVENTS DEFERRED_APP_LINK MOBILE_APP_INSTALL }}
         api.has_param :event_id, 'string'
         api.has_param :extinfo, 'object'
+        api.has_param :google_install_referrer, 'string'
         api.has_param :include_dwell_data, 'bool'
         api.has_param :include_video_data, 'bool'
+        api.has_param :install_id, 'string'
         api.has_param :install_referrer, 'string'
         api.has_param :install_timestamp, 'int'
         api.has_param :installer_package, 'string'
         api.has_param :is_fb, 'bool'
         api.has_param :limited_data_use, 'bool'
+        api.has_param :meta_install_referrer, 'string'
         api.has_param :migration_bundle, 'string'
         api.has_param :operational_parameters, { list: 'hash' }
         api.has_param :page_id, 'int'

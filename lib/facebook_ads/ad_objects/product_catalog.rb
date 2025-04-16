@@ -108,6 +108,7 @@ module FacebookAds
     field :user_access_expire_time, 'datetime'
     field :vertical, 'string'
     field :additional_vertical_option, { enum: -> { ADDITIONAL_VERTICAL_OPTION }}
+    field :business_metadata, 'hash'
     field :catalog_segment_filter, 'object'
     field :catalog_segment_product_set_id, 'string'
     field :destination_catalog_settings, 'hash'

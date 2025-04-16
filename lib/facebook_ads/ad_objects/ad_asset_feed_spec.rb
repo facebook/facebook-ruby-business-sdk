@@ -94,6 +94,7 @@ module FacebookAds
       "USE_MOBILE_APP",
       "VIDEO_ANNOTATION",
       "VIDEO_CALL",
+      "VIEW_CART",
       "VIEW_CHANNEL",
       "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",

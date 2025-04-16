@@ -167,6 +167,7 @@ module FacebookAds
     field :sale_price, 'string'
     field :sanitized_images, { list: 'string' }
     field :state_of_vehicle, 'string'
+    field :tags, { list: 'string' }
     field :title, 'string'
     field :transmission, 'string'
     field :trim, 'string'

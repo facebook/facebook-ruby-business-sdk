@@ -13,14 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCampaignIssuesInfo < AdObject
+  class AdCampaignGroupAdvantageState < AdObject
 
-    field :error_code, 'int'
-    field :error_message, 'string'
-    field :error_summary, 'string'
-    field :error_type, 'string'
-    field :level, 'string'
-    field :mid, 'string'
+    field :advantage_audience_state, 'string'
+    field :advantage_budget_state, 'string'
+    field :advantage_placement_state, 'string'
+    field :advantage_state, 'string'
     has_no_id
     has_no_get
     has_no_post

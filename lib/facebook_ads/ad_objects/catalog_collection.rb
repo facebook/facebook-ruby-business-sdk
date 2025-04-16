@@ -13,19 +13,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class InstagramCarousel < AdObject
+  class CatalogCollection < AdObject
 
-    field :caption_text, 'string'
-    field :comment_count, 'int'
-    field :content_type, 'int'
-    field :display_url, 'string'
-    field :id, 'string'
-    field :ig_media_id, 'string'
-    field :like_count, 'int'
-    field :owner_instagram_user, 'InstagramUser'
-    field :permalink, 'string'
-    field :taken_at, 'datetime'
-    field :video_url, 'string'
+    field :description, 'string'
+    field :title, 'string'
+    field :url, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

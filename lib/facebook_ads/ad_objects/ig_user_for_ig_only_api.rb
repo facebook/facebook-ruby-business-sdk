@@ -136,7 +136,7 @@ module FacebookAds
       edge.delete
       edge.get
       edge.post do |api|
-        api.has_param :subscribed_fields, { list: { enum: %w{comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta live_comments mentions message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen standby story_insights story_reactions }} }
+        api.has_param :subscribed_fields, { list: { enum: %w{comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta live_comments mentions message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen onboarding_welcome_message_series standby story_insights story_reactions }} }
       end
     end
 
@@ -145,6 +145,9 @@ module FacebookAds
     end
 
     has_edge :welcome_message_flows do |edge|
+      edge.delete do |api|
+        api.has_param :flow_id, 'string'
+      end
       edge.get 'CtxPartnerAppWelcomeMessageFlow' do |api|
         api.has_param :app_id, 'string'
         api.has_param :flow_id, 'string'

@@ -13,14 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCampaignIssuesInfo < AdObject
+  class AdsPixelCapiIntegrationQuality < AdObject
 
-    field :error_code, 'int'
-    field :error_message, 'string'
-    field :error_summary, 'string'
-    field :error_type, 'string'
-    field :level, 'string'
-    field :mid, 'string'
+    field :event_match_quality, 'object'
+    field :event_name, 'string'
     has_no_id
     has_no_get
     has_no_post

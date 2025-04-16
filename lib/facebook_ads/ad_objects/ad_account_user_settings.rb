@@ -48,6 +48,7 @@ module FacebookAds
     field :auto_review_video_caption, 'bool'
     field :campaign_overview_columns, { list: 'string' }
     field :column_suggestion_status, 'string'
+    field :conditional_formatting_rules, { list: 'string' }
     field :default_account_overview_agegender_metrics, { list: 'string' }
     field :default_account_overview_location_metrics, { list: 'string' }
     field :default_account_overview_metrics, { list: 'string' }
@@ -66,6 +67,8 @@ module FacebookAds
     field :hidden_optimization_tips, { list: 'hash' }
     field :id, 'string'
     field :is_3p_auth_setting_set, 'bool'
+    field :is_ads_manager_footer_row_preference_set, 'bool'
+    field :is_ads_manager_footer_row_shown, 'bool'
     field :is_text_variation_nux_close, 'bool'
     field :last_used_columns, 'object'
     field :last_used_pe_filters, { list: 'object' }
