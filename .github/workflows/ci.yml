@@ -16,9 +16,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.version }}
-
-      - name: Bundle install
-        run: bundle install
+          bundler-cache: true
 
       - name: Gem build
         run: gem build *.gemspec
