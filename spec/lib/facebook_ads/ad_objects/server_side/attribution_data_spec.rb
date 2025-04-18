@@ -39,14 +39,14 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
         )
 
         expect(attribution_data.normalize).to eq({
-            'scope': scope,
-            'visit_time': visit_time,
-            'ad_id': ad_id,
-            'adset_id': adset_id,
-            'campaign_id': campaign_id,
-            'attr_window': attr_window,
-            'attribution_share': attribution_share,
-            'attribution_model': attribution_model,
+            'scope' => scope,
+            'visit_time' => visit_time,
+            'ad_id' => ad_id,
+            'adset_id' => adset_id,
+            'campaign_id' => campaign_id,
+            'attr_window' => attr_window,
+            'attribution_share' => attribution_share,
+            'attribution_model' => attribution_model,
         })
     end
 

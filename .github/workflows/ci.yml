@@ -18,5 +18,9 @@ jobs:
           ruby-version: ${{ matrix.version }}
           bundler-cache: true
 
+      - name: Run RSpec
+        continue-on-error: ${{ matrix.ruby == 'head' }}
+        run: bundle exec rspec
+
       - name: Gem build
         run: gem build *.gemspec
