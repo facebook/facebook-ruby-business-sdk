@@ -7,7 +7,9 @@ PATH
       faraday (~> 2.6)
       faraday-multipart (~> 1.0, >= 1.0.4)
       json (~> 2.6)
+      logger
       money (~> 6.13)
+      ostruct
 
 GEM
   remote: https://rubygems.org/
@@ -22,6 +24,7 @@ GEM
       unicode_utils (~> 1.4)
     countries (5.7.2)
       unaccent (~> 0.3)
+    date (3.4.1)
     diff-lcs (1.5.0)
     dotenv (2.8.1)
     faraday (2.9.2)
@@ -32,7 +35,13 @@ GEM
       net-http
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
+    io-console (0.8.0)
+    irb (1.15.2)
+      pp (>= 0.6.0)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
     json (2.7.2)
+    logger (1.7.0)
     method_source (1.0.0)
     minitest (5.14.4)
     money (6.19.0)
@@ -40,18 +49,29 @@ GEM
     multipart-post (2.4.1)
     net-http (0.4.1)
       uri
+    ostruct (0.6.1)
     parallel (1.22.1)
     parser (3.2.0.0)
       ast (~> 2.4.1)
+    pp (0.6.2)
+      prettyprint
+    prettyprint (0.2.0)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
     pry-coolline (0.2.6)
       coolline (~> 0.5)
       pry (~> 0.13)
+    psych (5.2.3)
+      date
+      stringio
     rainbow (3.1.1)
     rake (13.0.6)
+    rdoc (6.13.1)
+      psych (>= 4.0.0)
     regexp_parser (2.6.2)
+    reline (0.6.1)
+      io-console (~> 0.5)
     rexml (3.3.3)
       strscan
     rspec (3.12.0)
@@ -79,6 +99,7 @@ GEM
     rubocop-ast (1.24.1)
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
+    stringio (3.1.7)
     strscan (3.1.0)
     unaccent (0.4.0)
     unicode-display_width (1.8.0)
@@ -97,6 +118,7 @@ DEPENDENCIES
   byebug (~> 11.0)
   dotenv (~> 2.7)
   facebookbusiness!
+  irb
   minitest (~> 5.14.2)
   pry (~> 0.12)
   pry-coolline (~> 0.2)
