@@ -136,9 +136,9 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             messages: 'message3',
             fbtrace_id: 'fbtrace123',
         }
-        expected_response = FacebookAds::ServerSide::EventResponse.new(response)
+        expected_response = FacebookAds::ServerSide::EventResponse.new(**response)
         expect(mock_ads_pixel).to receive_message_chain('events.create').with(expected_params).and_return(response)
-        expect(FacebookAds::AdsPixel).to receive(:get).with(event_request.pixel_id).and_return(mock_ads_pixel)
+        expect(FacebookAds::AdsPixel).to receive(:get).with(event_request.pixel_id, nil).and_return(mock_ads_pixel)
         response = event_request.execute
 
         expect(response).to eq(expected_response)
@@ -159,9 +159,9 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequest' do
             messages: 'message3',
             fbtrace_id: 'fbtrace123',
         }
-        expected_response = FacebookAds::ServerSide::EventResponse.new(response)
+        expected_response = FacebookAds::ServerSide::EventResponse.new(**response)
         expect(mock_ads_pixel).to receive_message_chain('events.create').with(expected_params).and_return(response)
-        expect(FacebookAds::AdsPixel).to receive(:get).with(event_request.pixel_id).and_return(mock_ads_pixel)
+        expect(FacebookAds::AdsPixel).to receive(:get).with(event_request.pixel_id, nil).and_return(mock_ads_pixel)
         response = event_request.execute
 
         expect(response).to eq(expected_response)

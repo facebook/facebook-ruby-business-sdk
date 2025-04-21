@@ -42,9 +42,9 @@ RSpec.describe 'FacebookAds::ServerSide::EventRequestAsync' do
             messages: 'message3',
             fbtrace_id: 'fbtrace123',
         }
-        expected_response = FacebookAds::ServerSide::EventResponse.new(response)
+        expected_response = FacebookAds::ServerSide::EventResponse.new(**response)
         expect(mock_ads_pixel).to receive_message_chain('events.create').with(expected_params).and_return(response)
-        expect(FacebookAds::AdsPixel).to receive(:get).with(event_request_async.pixel_id).and_return(mock_ads_pixel)
+        expect(FacebookAds::AdsPixel).to receive(:get).with(event_request_async.pixel_id, nil).and_return(mock_ads_pixel)
         promise = event_request_async.execute
         response = promise.value!
 

@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
-        version: ['3.0', '3.2']
+        version: ['3.0', '3.1', '3.2', '3.3', '3.4', 'head']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -16,12 +16,11 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.version }}
+          bundler-cache: true
 
-      - name: Before install
-        run: gem install bundler -v "< 2.0"
-
-      - name: Bundle install
-        run: bundle install
+      - name: Run RSpec
+        continue-on-error: ${{ matrix.ruby == 'head' }}
+        run: bundle exec rspec
 
       - name: Gem build
         run: gem build *.gemspec

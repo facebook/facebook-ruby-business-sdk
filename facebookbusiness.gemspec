@@ -40,6 +40,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'json', '~> 2.6'
   s.add_dependency 'countries', '>= 3', '< 7'
   s.add_dependency 'money', '~> 6.13'
+  s.add_dependency 'logger'
+  s.add_dependency 'ostruct'
 
   s.add_development_dependency 'awesome_print', '~> 1.8'
   s.add_development_dependency 'bundler', '~> 2.2'
@@ -51,6 +53,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 13.0'
   s.add_development_dependency 'rspec', '~> 3.8'
   s.add_development_dependency 'rubocop', '~> 0.71'
+  s.add_development_dependency 'irb'
 
   s.files = Dir['LICENSE.txt', 'README.md', 'lib/**/*', 'bin/*']
   s.executables = s.files.grep(%r{^bin/}).map { |f| File.basename(f) }
