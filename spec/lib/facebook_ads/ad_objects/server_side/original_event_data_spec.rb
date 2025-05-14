@@ -21,14 +21,20 @@ RSpec.describe 'FacebookAds::ServerSide::OriginalEventData' do
     it 'normalize works' do
         event_name = 'event-name-1'
         event_time = 12345
+        order_id = 'order_id-1'
+        event_id = 'event_id-1'
         original_event_data = FacebookAds::ServerSide::OriginalEventData.new(
             event_name: event_name,
             event_time: event_time,
+            order_id: order_id,
+            event_id: event_id,
         )
 
         expect(original_event_data.normalize).to eq({
             'event_name' => event_name,
             'event_time' => event_time,
+            'order_id' => order_id,
+            'event_id' => event_id,
         })
     end
 

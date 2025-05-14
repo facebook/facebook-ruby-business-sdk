@@ -29,14 +29,28 @@ module FacebookAds
         # A Unix timestamp in seconds indicating when the original event occurred.
         attr_accessor :event_time
 
+        # The order ID for this transaction as a string.
+        attr_accessor :order_id
+
+        # A unique string chosen by the advertiser.
+        attr_accessor :event_id
+
         # @param [String] event_name
         # @param [int] event_time
-        def initialize(event_name: nil, event_time: nil)
+        # @param [String] order_id
+        # @param [String] event_id
+        def initialize(event_name: nil, event_time: nil, order_id: nil, event_id: nil)
           unless event_name.nil?
             self.event_name = event_name
           end
           unless event_time.nil?
             self.event_time = event_time
+          end
+          unless order_id.nil?
+            self.order_id = order_id
+          end
+          unless event_id.nil?
+            self.event_id = event_id
           end
         end
 
@@ -55,6 +69,14 @@ module FacebookAds
           if attributes.has_key?(:'event_time')
             self.event_time = attributes[:'event_time']
           end
+
+          if attributes.has_key?(:'order_id')
+            self.order_id = attributes[:'order_id']
+          end
+
+          if attributes.has_key?(:'event_id')
+            self.event_id = attributes[:'event_id']
+          end
         end
 
         # Checks equality by comparing each attribute.
@@ -62,7 +84,9 @@ module FacebookAds
           return true if self.equal?(o)
           self.class == o.class &&
               event_name == o.event_name &&
-              event_time == o.event_time
+              event_time == o.event_time &&
+              order_id == o.order_id &&
+              event_id == o.event_id
         end
 
         # @see the `==` method
@@ -74,7 +98,7 @@ module FacebookAds
         # @return [Fixnum] Hash code
         def hash
           [
-            event_name, event_time,
+            event_name, event_time, order_id, event_id,
           ].hash
         end
 
@@ -85,6 +109,12 @@ module FacebookAds
           end
           unless event_time.nil?
             hash['event_time'] = event_time
+          end
+          unless order_id.nil?
+            hash['order_id'] = order_id
+          end
+          unless event_id.nil?
+            hash['event_id'] = event_id
           end
           hash.to_s
         end
@@ -98,6 +128,12 @@ module FacebookAds
           end
           unless event_time.nil?
             hash['event_time'] = event_time
+          end
+          unless order_id.nil?
+            hash['order_id'] = order_id
+          end
+          unless event_id.nil?
+            hash['event_id'] = event_id
           end
           hash
         end

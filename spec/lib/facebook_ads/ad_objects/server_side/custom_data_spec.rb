@@ -20,6 +20,7 @@
 RSpec.describe 'FacebookAds::ServerSide::CustomData' do
   it 'normalize works' do
     value = 0.1
+    net_revenue = 0.05
     currency = 'usd'
     content_name = 'content-name-1'
     content_category = 'content-category-2'
@@ -36,6 +37,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
     custom_properties = {'custom10' => 'property10'}
     custom_data = FacebookAds::ServerSide::CustomData.new(
       value: value,
+      net_revenue: net_revenue,
       currency: currency,
       content_name: content_name,
       content_category: content_category,
@@ -54,6 +56,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
 
     expect(custom_data.normalize).to eq(custom_properties.merge(
       'value' => value,
+      'net_revenue' => net_revenue,
       'currency' => currency,
       'content_name' => content_name,
       'content_category' => content_category,
@@ -88,6 +91,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
 
     custom_data1 = FacebookAds::ServerSide::CustomData.new(
       value: 0.1,
+      net_revenue: 0.05,
       currency: 'usd',
       content_name: 'content-name-1',
       content_category: 'content-category-2',
@@ -105,6 +109,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
     )
     custom_data2 = FacebookAds::ServerSide::CustomData.new(
       value: 0.1,
+      net_revenue: 0.05,
       currency: 'usd',
       content_name: 'content-name-1',
       content_category: 'content-category-2',
@@ -127,6 +132,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
   it 'not equals works' do
     custom_data1 = FacebookAds::ServerSide::CustomData.new(
       value: 0.1,
+      net_revenue: 0.05,
       currency: 'usd',
       content_name: 'content-name-1',
       content_category: 'content-category-2',
@@ -144,6 +150,7 @@ RSpec.describe 'FacebookAds::ServerSide::CustomData' do
     )
     custom_data2 = FacebookAds::ServerSide::CustomData.new(
       value: 0.1,
+      net_revenue: 0.03,
       currency: 'usd',
       content_name: 'content-name-1',
       content_category: 'content-category-2',

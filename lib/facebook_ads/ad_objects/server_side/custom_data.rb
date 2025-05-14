@@ -25,6 +25,10 @@ module FacebookAds
       # Example: 142.54.
       attr_accessor :value
 
+      # A numeric net_revenue associated with this event. This could be a monetary net_revenue or a net_revenue in some other metric.
+      # Example: 30.54.
+      attr_accessor :net_revenue
+
       # The currency for the value specified, if applicable. Currency must be a valid ISO 4217 three digit currency code.
       # Example: 'usd'.
       attr_accessor :currency
@@ -83,6 +87,7 @@ module FacebookAds
 
 
       # @param [Float] value
+      # @param [Float] net_revenue
       # @param [String] currency
       # @param [String] content_name
       # @param [String] content_category
@@ -98,6 +103,7 @@ module FacebookAds
       # @param [String] item_number
       # @param [String] custom_properties
       def initialize(value: nil,
+                     net_revenue: nil,
                      currency: nil,
                      content_name: nil,
                      content_category: nil,
@@ -115,6 +121,9 @@ module FacebookAds
 
         unless value.nil?
           self.value = value
+        end
+        unless net_revenue.nil?
+          self.net_revenue = net_revenue
         end
         unless currency.nil?
           self.currency = currency
@@ -171,6 +180,10 @@ module FacebookAds
 
         if attributes.has_key?(:'value')
           self.value = attributes[:'value']
+        end
+
+        if attributes.has_key?(:'net_revenue')
+          self.net_revenue = attributes[:'net_revenue']
         end
 
         if attributes.has_key?(:'currency')
@@ -239,6 +252,7 @@ module FacebookAds
         return true if self.equal?(o)
         self.class == o.class &&
             value == o.value &&
+            net_revenue == o.net_revenue &&
             currency == o.currency &&
             content_name == o.content_name &&
             content_category == o.content_category &&
@@ -265,6 +279,7 @@ module FacebookAds
       def hash
         [
             value,
+            net_revenue,
             currency,
             content_name,
             content_category,
@@ -288,6 +303,9 @@ module FacebookAds
         hash = {}
         unless value.nil?
           hash['value'] = value
+        end
+        unless net_revenue.nil?
+          hash['net_revenue'] = net_revenue
         end
         unless currency.nil?
           hash['currency'] = currency
@@ -341,6 +359,9 @@ module FacebookAds
         hash = {}
         unless value.nil?
           hash['value'] = value
+        end
+        unless net_revenue.nil?
+          hash['net_revenue'] = net_revenue
         end
         unless currency.nil?
           hash['currency'] = FacebookAds::ServerSide::Util.normalize(currency, 'currency')

@@ -27,6 +27,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
         attr_window = 7
         attribution_share = 0.5
         attribution_model = 'last_click'
+        attribution_value = 3.45
         attribution_data = FacebookAds::ServerSide::AttributionData.new(
             scope: scope,
             visit_time: visit_time,
@@ -36,6 +37,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attr_window: attr_window,
             attribution_share: attribution_share,
             attribution_model: attribution_model,
+            attribution_value: attribution_value,
         )
 
         expect(attribution_data.normalize).to eq({
@@ -47,6 +49,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             'attr_window': attr_window,
             'attribution_share': attribution_share,
             'attribution_model': attribution_model,
+            'attribution_value': attribution_value,
         })
     end
 
@@ -65,6 +68,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attr_window: 7,
             attribution_share: 0.5,
             attribution_model: 'last_click',
+            attribution_value: 3.45,
         )
         attribution_data2 = FacebookAds::ServerSide::AttributionData.new(
             scope: 'click',
@@ -75,6 +79,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attr_window: 7,
             attribution_share: 0.5,
             attribution_model: 'last_click',
+            attribution_value: 3.45,
         )
         expect(attribution_data1).to eq(attribution_data2)
         expect(attribution_data1.hash).to eq(attribution_data2.hash)
@@ -95,6 +100,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attr_window: 7,
             attribution_share: 0.5,
             attribution_model: 'last_click',
+            attribution_value: 3.45,
         )
         attribution_data2 = FacebookAds::ServerSide::AttributionData.new(
             scope: 'click',
@@ -106,6 +112,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             # different attribution share to test
             attribution_share: 0.4,
             attribution_model: 'last_click',
+            attribution_value: 2.45,
         )
         expect(attribution_data1).to_not eq(attribution_data2)
         expect(attribution_data1.hash).to_not eq(attribution_data2.hash)
