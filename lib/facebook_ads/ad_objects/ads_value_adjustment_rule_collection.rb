@@ -20,13 +20,23 @@ module FacebookAds
       "OMNI_CHANNEL",
     ]
 
+    STATUS = [
+      "ACTIVE",
+      "DELETED",
+    ]
+
 
     field :id, 'string'
     field :is_default_setting, 'bool'
     field :name, 'string'
     field :product_type, 'string'
+    field :status, 'string'
     field :rules, { list: 'hash' }
     has_no_delete
+
+    has_edge :delete_rule_set do |edge|
+      edge.post 'AdsValueAdjustmentRuleCollection'
+    end
 
     has_edge :rules do |edge|
       edge.get

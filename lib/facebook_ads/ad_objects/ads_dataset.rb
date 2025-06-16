@@ -14,6 +14,11 @@ module FacebookAds
   # pull request for this class.
 
   class AdsDataset < AdObject
+    SORT_BY = [
+      "LAST_FIRED_TIME",
+      "NAME",
+    ]
+
 
     field :can_proxy, 'bool'
     field :collection_rate, 'double'

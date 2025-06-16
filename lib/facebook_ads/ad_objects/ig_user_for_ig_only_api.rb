@@ -29,6 +29,12 @@ module FacebookAds
     has_no_post
     has_no_delete
 
+    has_edge :business_messaging_feature_status do |edge|
+      edge.get do |api|
+        api.has_param :feature, 'string'
+      end
+    end
+
     has_edge :content_publishing_limit do |edge|
       edge.get 'ContentPublishingLimitResponse' do |api|
         api.has_param :since, 'datetime'
@@ -119,7 +125,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE TITLE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED GREETING HOME_URL ICE_BREAKERS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TITLE WHITELISTED_DOMAINS }} }
       end
       edge.get
       edge.post do |api|
@@ -136,7 +142,7 @@ module FacebookAds
       edge.delete
       edge.get
       edge.post do |api|
-        api.has_param :subscribed_fields, { list: { enum: %w{comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta live_comments mentions message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen onboarding_welcome_message_series standby story_insights story_reactions }} }
+        api.has_param :subscribed_fields, { list: { enum: %w{comment_poll_response comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta follow live_comments mentions message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen onboarding_welcome_message_series standby story_insights story_poll_response story_reactions story_share }} }
       end
     end
 

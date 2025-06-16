@@ -15,6 +15,7 @@ module FacebookAds
 
   class CommerceMerchantSettings < AdObject
 
+    field :checkout_config, 'string'
     field :checkout_message, 'string'
     field :contact_email, 'string'
     field :cta, 'string'
@@ -22,10 +23,13 @@ module FacebookAds
     field :facebook_channel, 'object'
     field :id, 'string'
     field :instagram_channel, 'object'
+    field :korea_ftc_listing, 'string'
     field :merchant_page, 'Profile'
     field :merchant_status, 'string'
     field :onsite_commerce_merchant, 'object'
     field :payment_provider, 'string'
+    field :privacy_policy_localized, 'string'
+    field :return_policy_localized, 'string'
     field :review_rejection_messages, { list: 'string' }
     field :review_rejection_reasons, { list: 'string' }
     field :terms, 'string'

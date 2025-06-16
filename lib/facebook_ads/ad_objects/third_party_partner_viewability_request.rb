@@ -37,6 +37,7 @@ module FacebookAds
 
     field :created_time, 'datetime'
     field :description, 'string'
+    field :ds, 'string'
     field :hour, 'datetime'
     field :id, 'string'
     field :metric, { enum: -> { METRIC }}

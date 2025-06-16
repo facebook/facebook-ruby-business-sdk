@@ -45,6 +45,7 @@ module FacebookAds
     field :active_ads_quick_view_created, 'bool'
     field :ad_account, 'AdAccount'
     field :ad_object_export_format, 'string'
+    field :ads_manager_footer_row_toast_impressions, 'int'
     field :auto_review_video_caption, 'bool'
     field :campaign_overview_columns, { list: 'string' }
     field :column_suggestion_status, 'string'
@@ -65,6 +66,7 @@ module FacebookAds
     field :has_seen_shops_ads_metrics_onboarding_tour, 'bool'
     field :has_seen_shops_column_flexing_experience, 'bool'
     field :hidden_optimization_tips, { list: 'hash' }
+    field :high_performing_quick_view_created, 'bool'
     field :id, 'string'
     field :is_3p_auth_setting_set, 'bool'
     field :is_ads_manager_footer_row_preference_set, 'bool'
@@ -99,6 +101,8 @@ module FacebookAds
     field :syd_campaign_trends_objective, { enum: -> { SYD_CAMPAIGN_TRENDS_OBJECTIVE }}
     field :syd_campaign_trends_time_range, 'string'
     field :syd_landing_page_opt_in_status, 'string'
+    field :text_gen_persona_opt_in_type, 'string'
+    field :text_variations_opt_in_out_ts, 'datetime'
     field :text_variations_opt_in_type, 'string'
     field :user, 'User'
     has_no_post

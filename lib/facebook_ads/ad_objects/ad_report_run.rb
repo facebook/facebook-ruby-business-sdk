@@ -22,6 +22,7 @@ module FacebookAds
     field :date_start, 'string'
     field :date_stop, 'string'
     field :emails, { list: 'string' }
+    field :error_code, 'int'
     field :friendly_name, 'string'
     field :id, 'string'
     field :is_async_export, 'int'
@@ -42,6 +43,7 @@ module FacebookAds
     field :fields, { list: 'string' }
     field :filtering, { list: 'object' }
     field :level, 'adaccountinsights_level_enum_param'
+    field :limit, 'int'
     field :product_id_limit, 'int'
     field :sort, { list: 'string' }
     field :summary, { list: 'string' }

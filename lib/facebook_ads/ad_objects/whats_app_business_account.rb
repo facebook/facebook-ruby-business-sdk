@@ -79,6 +79,7 @@ module FacebookAds
     field :health_status, 'WhatsAppBusinessHealthStatusForMessageSend'
     field :id, 'string'
     field :is_enabled_for_insights, 'bool'
+    field :is_shared_with_partners, 'bool'
     field :linked_commerce_account, 'CommerceMerchantSettings'
     field :marketing_messages_lite_api_status, 'string'
     field :message_template_namespace, 'string'
@@ -118,7 +119,7 @@ module FacebookAds
     has_edge :call_analytics do |edge|
       edge.get do |api|
         api.has_param :country_codes, { list: 'string' }
-        api.has_param :dimensions, { list: { enum: %w{COUNTRY DIRECTION PHONE UNKNOWN }} }
+        api.has_param :dimensions, { list: { enum: %w{COUNTRY DIRECTION PHONE TIER UNKNOWN }} }
         api.has_param :directions, { list: { enum: %w{BUSINESS_INITIATED UNKNOWN USER_INITIATED }} }
         api.has_param :end, 'int'
         api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
@@ -202,6 +203,7 @@ module FacebookAds
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}
         api.has_param :components, { list: 'hash' }
         api.has_param :cta_url_link_tracking_opted_out, 'bool'
+        api.has_param :degrees_of_freedom_spec, 'hash'
         api.has_param :display_format, { enum: -> { WhatsAppBusinessAccount::DISPLAY_FORMAT }}
         api.has_param :language, 'string'
         api.has_param :library_template_body_inputs, 'hash'
@@ -264,14 +266,15 @@ module FacebookAds
     has_edge :pricing_analytics do |edge|
       edge.get do |api|
         api.has_param :country_codes, { list: 'string' }
-        api.has_param :dimensions, { list: { enum: %w{COUNTRY PHONE PRICING_CATEGORY PRICING_TYPE }} }
+        api.has_param :dimensions, { list: { enum: %w{COUNTRY PHONE PRICING_CATEGORY PRICING_TYPE TIER }} }
         api.has_param :end, 'int'
         api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
         api.has_param :metric_types, { list: { enum: %w{COST VOLUME }} }
         api.has_param :phone_numbers, { list: 'string' }
-        api.has_param :pricing_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL MARKETING MARKETING_LITE SERVICE UTILITY }} }
+        api.has_param :pricing_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL GROUP_MARKETING GROUP_SERVICE GROUP_UTILITY MARKETING MARKETING_LITE SERVICE UTILITY }} }
         api.has_param :pricing_types, { list: { enum: %w{FREE_CUSTOMER_SERVICE FREE_ENTRY_POINT REGULAR }} }
         api.has_param :start, 'int'
+        api.has_param :tiers, { list: 'string' }
       end
     end
 

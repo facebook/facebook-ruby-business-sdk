@@ -16,6 +16,7 @@ module FacebookAds
   class IgCommentFromUser < AdObject
 
     field :id, 'string'
+    field :self_ig_scoped_id, 'string'
     field :username, 'string'
     has_no_get
     has_no_post

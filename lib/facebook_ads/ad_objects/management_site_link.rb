@@ -13,17 +13,17 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ContentDeliveryReport < AdObject
+  class ManagementSiteLink < AdObject
 
-    field :content_id, 'string'
-    field :content_name, 'string'
-    field :content_url, 'string'
-    field :creator_id, 'string'
-    field :creator_name, 'string'
-    field :creator_url, 'string'
-    field :estimated_impressions, 'int'
-    has_no_id
-    has_no_get
+    field :ad_account_id, 'string'
+    field :id, 'string'
+    field :link_domain, 'string'
+    field :link_hash, 'string'
+    field :link_image_hash, 'string'
+    field :link_image_url, 'string'
+    field :link_title, 'string'
+    field :link_type, 'string'
+    field :link_url, 'string'
     has_no_post
     has_no_delete
 

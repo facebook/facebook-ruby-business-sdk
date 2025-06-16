@@ -96,6 +96,7 @@ module FacebookAds
       "VIDEO_CALL",
       "VIEW_CART",
       "VIEW_CHANNEL",
+      "VIEW_IN_CART",
       "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
       "WATCH_LIVE_VIDEO",
@@ -224,6 +225,7 @@ module FacebookAds
     field :product_set_id, 'string'
     field :recommender_settings, 'AdCreativeRecommenderSettings'
     field :regional_regulation_disclaimer_spec, 'AdCreativeRegionalRegulationDisclaimer'
+    field :source_facebook_post_id, 'string'
     field :source_instagram_media_id, 'string'
     field :status, { enum: -> { STATUS }}
     field :template_url, 'string'

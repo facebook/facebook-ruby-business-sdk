@@ -37,6 +37,24 @@ module FacebookAds
       "PARTNER_CENTER_OPERATIONS",
     ]
 
+    TASKS = [
+      "ADMIN",
+      "ADS_RIGHTS_REVIEWER",
+      "DEFAULT",
+      "DEVELOPER",
+      "EMPLOYEE",
+      "FINANCE_ANALYST",
+      "FINANCE_EDIT",
+      "FINANCE_EDITOR",
+      "FINANCE_VIEW",
+      "MANAGE",
+      "PARTNER_CENTER_ADMIN",
+      "PARTNER_CENTER_ANALYST",
+      "PARTNER_CENTER_EDUCATION",
+      "PARTNER_CENTER_MARKETING",
+      "PARTNER_CENTER_OPERATIONS",
+    ]
+
 
     field :business, 'Business'
     field :business_role_request, 'BusinessRoleRequest'
@@ -50,6 +68,7 @@ module FacebookAds
     field :name, 'string'
     field :pending_email, 'string'
     field :role, 'string'
+    field :tasks, { list: 'string' }
     field :title, 'string'
     field :two_fac_status, 'string'
     field :invited_user_type, { list: { enum: -> { INVITED_USER_TYPE }} }

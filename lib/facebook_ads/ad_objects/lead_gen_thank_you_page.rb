@@ -21,6 +21,7 @@ module FacebookAds
     field :button_type, 'string'
     field :country_code, 'string'
     field :enable_messenger, 'bool'
+    field :gated_file, 'LeadGenThankYouPageGatedFile'
     field :id, 'string'
     field :lead_gen_use_case, 'string'
     field :status, 'string'

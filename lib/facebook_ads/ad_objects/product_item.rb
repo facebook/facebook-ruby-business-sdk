@@ -329,6 +329,7 @@ module FacebookAds
       "COMMERCE_ACCOUNT_NOT_LEGALLY_COMPLIANT",
       "CRAWLED_AVAILABILITY_MISMATCH",
       "DA_DISABLED_BY_USER",
+      "DA_POLICY_UNFIT_FOR_AUDIENCE",
       "DA_POLICY_VIOLATION",
       "DELETED_ITEM",
       "DIGITAL_GOODS_NOT_AVAILABLE_FOR_CHECKOUT",
@@ -391,7 +392,11 @@ module FacebookAds
       "ITEM_STALE_OUT_OF_STOCK",
       "MARKETPLACE_DISABLED_BY_USER",
       "MARKETPLACE_PARTNER_AUCTION_NO_BID_CLOSE_TIME",
+      "MARKETPLACE_PARTNER_CURRENCY_NOT_VALID",
+      "MARKETPLACE_PARTNER_LISTING_COUNTRY_NOT_MATCH_CATALOG",
       "MARKETPLACE_PARTNER_LISTING_LIMIT_EXCEEDED",
+      "MARKETPLACE_PARTNER_MISSING_LATLONG",
+      "MARKETPLACE_PARTNER_MISSING_SHIPPING_COST",
       "MARKETPLACE_PARTNER_NOT_LOCAL_ITEM",
       "MARKETPLACE_PARTNER_NOT_SHIPPED_ITEM",
       "MARKETPLACE_PARTNER_POLICY_VIOLATION",
@@ -766,6 +771,8 @@ module FacebookAds
     field :expiration_date, 'string'
     field :fb_product_category, 'string'
     field :gender, { enum: -> { GENDER }}
+    field :generated_background_images, { list: 'AiGeneratedProductImage' }
+    field :generated_background_images_ad_usage, 'bool'
     field :gtin, 'string'
     field :id, 'string'
     field :image_cdn_urls, { list: 'hash' }
@@ -812,6 +819,7 @@ module FacebookAds
     field :url, 'string'
     field :vendor_id, 'string'
     field :video_fetch_status, { enum: -> { VIDEO_FETCH_STATUS }}
+    field :videos, { list: 'ProductItemVideoData' }
     field :visibility, { enum: -> { VISIBILITY }}
     field :wa_compliance_category, 'string'
     field :android_app_name, 'string'

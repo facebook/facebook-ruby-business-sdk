@@ -86,6 +86,7 @@ module FacebookAds
       "EXPLICIT",
       "EXPLICIT_IMAGINE",
       "EXPLICIT_IMAGINE_ME",
+      "EXPLICIT_RESTYLE",
       "INVISIBLE_WATERMARK",
       "IPTC",
       "IPTC_METADATA_EDITED",
@@ -632,7 +633,7 @@ module FacebookAds
 
     has_edge :calls do |edge|
       edge.post do |api|
-        api.has_param :action, { enum: %w{ACCEPT CONNECT REJECT TERMINATE }}
+        api.has_param :action, { enum: %w{ACCEPT CONNECT MEDIA_UPDATE REJECT TERMINATE }}
         api.has_param :call_id, 'string'
         api.has_param :platform, { enum: %w{INSTAGRAM MESSENGER }}
         api.has_param :session, 'hash'
@@ -938,7 +939,7 @@ module FacebookAds
     end
 
     has_edge :instagram_accounts do |edge|
-      edge.get 'InstagramUser'
+      edge.get 'IgUser'
     end
 
     has_edge :leadgen_forms do |edge|
@@ -1083,6 +1084,7 @@ module FacebookAds
         api.has_param :payload, 'string'
         api.has_param :persona_id, 'string'
         api.has_param :recipient, 'object'
+        api.has_param :reply_to, 'string'
         api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
         api.has_param :suggestion_action, { enum: -> { Page::SUGGESTION_ACTION }}
         api.has_param :tag, 'object'
@@ -1098,6 +1100,8 @@ module FacebookAds
       edge.get 'MessengerCallSettings'
       edge.post 'Page' do |api|
         api.has_param :audio_enabled, 'bool'
+        api.has_param :call_hours, 'hash'
+        api.has_param :call_routing, 'hash'
         api.has_param :icon_enabled, 'bool'
       end
     end
@@ -1121,7 +1125,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED GREETING HOME_URL ICE_BREAKERS PAYMENT_SETTINGS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TARGET_AUDIENCE TITLE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED GREETING HOME_URL ICE_BREAKERS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TITLE WHITELISTED_DOMAINS }} }
         api.has_param :platform, { enum: -> { Page::PLATFORM }}
       end
       edge.get 'MessengerProfile' do |api|
@@ -1134,10 +1138,8 @@ module FacebookAds
         api.has_param :get_started, 'object'
         api.has_param :greeting, { list: 'object' }
         api.has_param :ice_breakers, { list: 'hash' }
-        api.has_param :payment_settings, 'object'
         api.has_param :persistent_menu, { list: 'object' }
         api.has_param :platform, { enum: -> { Page::PLATFORM }}
-        api.has_param :target_audience, 'object'
         api.has_param :title, { list: 'object' }
         api.has_param :whitelisted_domains, { list: 'string' }
       end
@@ -1174,8 +1176,8 @@ module FacebookAds
     end
 
     has_edge :page_backed_instagram_accounts do |edge|
-      edge.get 'InstagramUser'
-      edge.post 'InstagramUser'
+      edge.get 'IgUser'
+      edge.post 'IgUser'
     end
 
     has_edge :page_whatsapp_number_verification do |edge|
@@ -1548,6 +1550,7 @@ module FacebookAds
         api.has_param :is_boost_intended, 'bool'
         api.has_param :is_explicit_share, 'bool'
         api.has_param :is_group_linking_post, 'bool'
+        api.has_param :is_partnership_ad, 'bool'
         api.has_param :is_voice_clip, 'bool'
         api.has_param :location_source_id, 'string'
         api.has_param :manual_privacy, 'bool'
@@ -1560,6 +1563,7 @@ module FacebookAds
         api.has_param :og_suggestion_mechanism, 'string'
         api.has_param :original_fov, 'int'
         api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
+        api.has_param :partnership_ad_ad_code, 'string'
         api.has_param :publish_event_id, 'int'
         api.has_param :published, 'bool'
         api.has_param :reference_only, 'bool'

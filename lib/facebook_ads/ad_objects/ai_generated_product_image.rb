@@ -13,14 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ShadowIgMediaBoostedInsightsResult < AdObject
+  class AiGeneratedProductImage < AdObject
 
-    field :description, 'string'
-    field :name, 'string'
-    field :organic_media_id, 'string'
-    field :source_type, 'string'
-    field :title, 'string'
-    field :values, { list: 'object' }
+    field :flagged_for_manual_review, 'bool'
+    field :transformed_image_url, 'string'
     has_no_id
     has_no_get
     has_no_post

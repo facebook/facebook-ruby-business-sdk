@@ -13,14 +13,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BespokePartnerGuidanceLaser < AdObject
+  class AudioSubLabel < AdObject
 
-    field :business, 'Business'
-    field :campaign_group, 'Campaign'
-    field :cpa_improvement, 'double'
-    field :guidance_type, 'string'
+    field :expiration_timestamp, 'datetime'
+    field :flagged_timestamp, 'datetime'
     field :id, 'string'
-    has_no_get
+    field :label_name, 'string'
+    field :last_update_timestamp, 'datetime'
+    field :num_audio_tracks, 'int'
+    field :state, 'string'
     has_no_post
     has_no_delete
 

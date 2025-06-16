@@ -21,6 +21,7 @@ module FacebookAds
       "CAMPAIGN_GROUP",
       "OPPORTUNITIES",
       "PRIVACY_INFO_CENTER",
+      "PRODUCT",
       "TOPLINE",
       "UNIQUE_ADCREATIVE",
     ]

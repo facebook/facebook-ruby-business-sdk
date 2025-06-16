@@ -15,10 +15,8 @@ module FacebookAds
 
   class Organization < AdObject
 
-    field :hq_country, 'string'
     field :id, 'string'
     field :legal_entity_name, 'string'
-    field :master_bm_id, 'string'
     field :owner_business, 'Business'
     has_no_post
     has_no_delete

@@ -17,6 +17,7 @@ module FacebookAds
 
     field :ad_account_id, 'string'
     field :guidances, { list: 'object' }
+    field :opportunity_score, 'double'
     field :parent_advertiser_id, 'string'
     field :parent_advertiser_name, 'string'
     has_no_id

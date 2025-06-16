@@ -164,6 +164,7 @@ module FacebookAds
       end
       edge.post 'Ad' do |api|
         api.has_param :adset_id, 'string'
+        api.has_param :creative_parameters, 'AdCreative'
         api.has_param :rename_options, 'object'
         api.has_param :status_option, { enum: -> { Ad::STATUS_OPTION }}
       end
@@ -183,6 +184,7 @@ module FacebookAds
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
+        api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
         api.has_param :sort, { list: 'string' }
         api.has_param :summary, { list: 'string' }
@@ -206,6 +208,7 @@ module FacebookAds
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
+        api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
         api.has_param :sort, { list: 'string' }
         api.has_param :summary, { list: 'string' }

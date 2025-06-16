@@ -107,9 +107,11 @@ module FacebookAds
     field :product_item_id, 'string'
     field :product_set, 'ProductSet'
     field :product_set_id, 'string'
+    field :product_set_optimization, 'string'
     field :retention_days, 'string'
     field :value_semantic_type, 'string'
     field :variation, 'string'
+    field :whats_app_business_phone_number_id, 'string'
     field :whatsapp_phone_number, 'string'
     has_no_id
     has_no_get

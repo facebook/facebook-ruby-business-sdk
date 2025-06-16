@@ -27,7 +27,6 @@ module FacebookAds
       "generic",
       "home_listings",
       "hotels",
-      "jobs",
       "local_service_businesses",
       "offer_items",
       "offline_commerce",
@@ -85,6 +84,13 @@ module FacebookAds
       "TVS_AND_MONITORS",
       "VIDEO_GAME_CONSOLES_AND_VIDEO_GAMES",
       "WATCHES",
+    ]
+
+    EVENT_NAME = [
+      "ADD_TO_CART",
+      "PURCHASE",
+      "TEST",
+      "VIEW_ITEM",
     ]
 
 
@@ -183,6 +189,12 @@ module FacebookAds
       end
     end
 
+    has_edge :check_marketplace_partner_sellers_status do |edge|
+      edge.get 'ProductCatalogCheckMarketplacePartnerSellersStatus' do |api|
+        api.has_param :session_id, 'string'
+      end
+    end
+
     has_edge :collaborative_ads_lsb_image_bank do |edge|
       edge.get 'CpasLsbImageBank'
     end
@@ -248,6 +260,14 @@ module FacebookAds
       edge.get 'Flight' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :geolocated_items_batch do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :allow_upsert, 'bool'
+        api.has_param :item_type, 'string'
+        api.has_param :requests, 'hash'
       end
     end
 
@@ -336,6 +356,16 @@ module FacebookAds
       end
     end
 
+    has_edge :marketplace_partner_signals do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :event_name, { enum: -> { ProductCatalog::EVENT_NAME }}
+        api.has_param :event_source_url, 'string'
+        api.has_param :event_time, 'datetime'
+        api.has_param :order_data, 'hash'
+        api.has_param :user_data, 'hash'
+      end
+    end
+
     has_edge :pricing_variables_batch do |edge|
       edge.get 'ProductCatalogPricingVariablesBatch' do |api|
         api.has_param :handle, 'string'
@@ -417,6 +447,7 @@ module FacebookAds
       edge.post 'ProductItem' do |api|
         api.has_param :additional_image_urls, { list: 'string' }
         api.has_param :additional_variant_attributes, 'hash'
+        api.has_param :age_group, { enum: -> { ProductItem::AGE_GROUP }}
         api.has_param :android_app_name, 'string'
         api.has_param :android_class, 'string'
         api.has_param :android_package, 'string'
@@ -492,6 +523,12 @@ module FacebookAds
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'
+      end
+    end
+
+    has_edge :update_generated_image_config do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :data, { list: 'object' }
       end
     end
 

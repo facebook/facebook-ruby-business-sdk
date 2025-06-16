@@ -13,16 +13,17 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdsValueAdjustmentRule < AdObject
+  class CustomAudienceIntegrityFlagsAndAppealStatus < AdObject
 
-    field :base_value, 'int'
-    field :id, 'string'
+    field :closeout_time, 'int'
+    field :flagged_fields, { list: 'string' }
+    field :latest_appeal_requestor, 'string'
+    field :latest_appeal_time, 'int'
+    field :restriction_status, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :criterias do |edge|
-      edge.get
-    end
 
   end
 end

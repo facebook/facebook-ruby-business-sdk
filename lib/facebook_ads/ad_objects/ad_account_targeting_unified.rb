@@ -386,6 +386,7 @@ module FacebookAds
       "industries",
       "instagram_hashtags",
       "instagram_positions",
+      "install_state_application",
       "instream_video_skippable_excluded",
       "instream_video_sponsorship_placements",
       "interest_defaults_source",

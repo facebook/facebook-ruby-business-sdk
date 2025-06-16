@@ -96,6 +96,7 @@ module FacebookAds
       "VIDEO_CALL",
       "VIEW_CART",
       "VIEW_CHANNEL",
+      "VIEW_IN_CART",
       "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
       "WATCH_LIVE_VIDEO",

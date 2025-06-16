@@ -13,16 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ContentDeliveryReport < AdObject
+  class ShadowIgUserCtxPartnerAppWelcomeMessageFlow < AdObject
 
-    field :content_id, 'string'
-    field :content_name, 'string'
-    field :content_url, 'string'
-    field :creator_id, 'string'
-    field :creator_name, 'string'
-    field :creator_url, 'string'
-    field :estimated_impressions, 'int'
-    has_no_id
+    field :compatible_platforms, { list: 'string' }
+    field :eligible_platforms, { list: 'string' }
+    field :id, 'string'
+    field :is_ig_only_flow, 'bool'
+    field :is_used_in_ad, 'bool'
+    field :last_update_time, 'datetime'
+    field :name, 'string'
+    field :welcome_message_flow, 'string'
     has_no_get
     has_no_post
     has_no_delete

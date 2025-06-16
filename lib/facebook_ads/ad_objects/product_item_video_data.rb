@@ -13,11 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdAccountSuggestedTag < AdObject
+  class ProductItemVideoData < AdObject
 
-    field :product_id, 'int'
-    field :x, 'double'
-    field :y, 'double'
+    field :tags, { list: 'string' }
+    field :url, 'string'
     has_no_id
     has_no_get
     has_no_post

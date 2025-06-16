@@ -32,7 +32,6 @@ module FacebookAds
       "impressions",
       "likes",
       "navigation",
-      "peak_concurrent_viewers",
       "plays",
       "profile_activity",
       "profile_visits",
@@ -44,9 +43,9 @@ module FacebookAds
       "shares",
       "thread_replies",
       "thread_shares",
+      "threads_media_clicks",
       "threads_views",
       "total_interactions",
-      "video_views",
       "views",
     ]
 

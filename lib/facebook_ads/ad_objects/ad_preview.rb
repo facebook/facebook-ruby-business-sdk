@@ -26,6 +26,8 @@ module FacebookAds
       "FACEBOOK_PROFILE_REELS_MOBILE",
       "FACEBOOK_REELS_BANNER",
       "FACEBOOK_REELS_BANNER_DESKTOP",
+      "FACEBOOK_REELS_BANNER_FULLSCREEN_IOS",
+      "FACEBOOK_REELS_BANNER_FULLSCREEN_MOBILE",
       "FACEBOOK_REELS_MOBILE",
       "FACEBOOK_REELS_POSTLOOP",
       "FACEBOOK_REELS_STICKER",
@@ -51,6 +53,7 @@ module FacebookAds
       "INSTANT_ARTICLE_RECIRCULATION_AD",
       "INSTANT_ARTICLE_STANDARD",
       "INSTREAM_BANNER_DESKTOP",
+      "INSTREAM_BANNER_FULLSCREEN_IOS",
       "INSTREAM_BANNER_FULLSCREEN_MOBILE",
       "INSTREAM_BANNER_IMMERSIVE_MOBILE",
       "INSTREAM_BANNER_MOBILE",
@@ -85,6 +88,7 @@ module FacebookAds
       "product_metadata_automation",
       "profile_card",
       "standard_enhancements_catalog",
+      "video_to_image",
     ]
 
     RENDER_TYPE = [

@@ -443,6 +443,10 @@ module FacebookAds
       end
     end
 
+    has_edge :connected_client_businesses do |edge|
+      edge.get 'Business'
+    end
+
     has_edge :da_checks do |edge|
       edge.get 'DaCheck' do |api|
         api.has_param :checks, { list: 'string' }
@@ -565,6 +569,19 @@ module FacebookAds
 
     has_edge :server_domain_infos do |edge|
       edge.get
+    end
+
+    has_edge :sgw_dataset_status do |edge|
+      edge.get do |api|
+        api.has_param :dataset_id, 'int'
+      end
+    end
+
+    has_edge :sgw_install_deferral_link do |edge|
+      edge.get do |api|
+        api.has_param :client_ip, 'string'
+        api.has_param :dataset_id, 'int'
+      end
     end
 
     has_edge :subscribed_domains do |edge|

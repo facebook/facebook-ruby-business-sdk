@@ -21,7 +21,7 @@ module FacebookAds
     ]
 
 
-    field :code_verification_status, 'string'
+    field :code_verification_status, { enum: -> { CODE_VERIFICATION_STATUS }}
     field :code_verification_time, 'datetime'
     field :id, 'string'
     field :owner_business, 'Business'

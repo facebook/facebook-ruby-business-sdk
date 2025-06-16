@@ -57,10 +57,13 @@ module FacebookAds
     ACTION_REPORT_TIME = [
       "conversion",
       "impression",
+      "lifetime",
       "mixed",
     ]
 
     BREAKDOWNS = [
+      "ad_extension_domain",
+      "ad_extension_url",
       "ad_format_asset",
       "age",
       "app_id",
@@ -69,13 +72,18 @@ module FacebookAds
       "breakdown_reporting_ad_id",
       "call_to_action_asset",
       "coarse_conversion_value",
+      "comscore_market",
+      "comscore_market_code",
       "conversion_destination",
       "country",
+      "creative_relaxation_asset_type",
       "description_asset",
       "device_platform",
       "dma",
       "fidelity_type",
+      "flexible_format_asset_type",
       "frequency_value",
+      "gen_ai_asset_type",
       "gender",
       "hourly_stats_aggregated_by_advertiser_time_zone",
       "hourly_stats_aggregated_by_audience_time_zone",
@@ -83,6 +91,7 @@ module FacebookAds
       "image_asset",
       "impression_device",
       "impression_view_time_advertiser_hour_v2",
+      "is_auto_advance",
       "is_conversion_id_modeled",
       "is_rendered_as_delayed_skip_ad",
       "landing_destination",
@@ -204,10 +213,26 @@ module FacebookAds
     field :conversion_rate_ranking, 'string'
     field :conversion_values, { list: 'AdsActionStats' }
     field :conversions, { list: 'AdsActionStats' }
+    field :converted_product_app_custom_event_fb_mobile_purchase, { list: 'AdsActionStats' }
+    field :converted_product_app_custom_event_fb_mobile_purchase_value, { list: 'AdsActionStats' }
+    field :converted_product_offline_purchase, { list: 'AdsActionStats' }
+    field :converted_product_offline_purchase_value, { list: 'AdsActionStats' }
+    field :converted_product_omni_purchase, { list: 'AdsActionStats' }
+    field :converted_product_omni_purchase_values, { list: 'AdsActionStats' }
     field :converted_product_quantity, { list: 'AdsActionStats' }
     field :converted_product_value, { list: 'AdsActionStats' }
+    field :converted_product_website_pixel_purchase, { list: 'AdsActionStats' }
+    field :converted_product_website_pixel_purchase_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_app_custom_event_fb_mobile_purchase, { list: 'AdsActionStats' }
+    field :converted_promoted_product_app_custom_event_fb_mobile_purchase_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_offline_purchase, { list: 'AdsActionStats' }
+    field :converted_promoted_product_offline_purchase_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_omni_purchase, { list: 'AdsActionStats' }
+    field :converted_promoted_product_omni_purchase_values, { list: 'AdsActionStats' }
     field :converted_promoted_product_quantity, { list: 'AdsActionStats' }
     field :converted_promoted_product_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_website_pixel_purchase, { list: 'AdsActionStats' }
+    field :converted_promoted_product_website_pixel_purchase_value, { list: 'AdsActionStats' }
     field :cost_per_15_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }
@@ -218,8 +243,10 @@ module FacebookAds
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
+    field :cost_per_objective_result, { list: 'object' }
     field :cost_per_one_thousand_ad_impression, { list: 'AdsActionStats' }
     field :cost_per_outbound_click, { list: 'AdsActionStats' }
+    field :cost_per_result, { list: 'object' }
     field :cost_per_thruplay, { list: 'AdsActionStats' }
     field :cost_per_unique_action_type, { list: 'AdsActionStats' }
     field :cost_per_unique_click, 'string'
@@ -258,8 +285,10 @@ module FacebookAds
     field :interactive_component_tap, { list: 'AdsActionStats' }
     field :labels, 'string'
     field :landing_page_view_actions_per_link_click, 'string'
+    field :landing_page_view_per_link_click, 'string'
     field :landing_page_view_per_purchase_rate, 'string'
     field :location, 'string'
+    field :marketing_messages_click_rate_benchmark, 'string'
     field :marketing_messages_cost_per_delivered, 'string'
     field :marketing_messages_cost_per_link_btn_click, 'string'
     field :marketing_messages_delivered, 'string'
@@ -272,6 +301,7 @@ module FacebookAds
     field :marketing_messages_quick_reply_btn_click_rate, 'string'
     field :marketing_messages_read, 'string'
     field :marketing_messages_read_rate, 'string'
+    field :marketing_messages_read_rate_benchmark, 'string'
     field :marketing_messages_sent, 'string'
     field :marketing_messages_spend, 'string'
     field :marketing_messages_spend_currency, 'string'
@@ -281,17 +311,34 @@ module FacebookAds
     field :marketing_messages_website_purchase_values, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
+    field :objective_result_rate, { list: 'object' }
+    field :objective_results, { list: 'object' }
     field :onsite_conversion_messaging_detected_purchase_deduped, { list: 'AdsActionStats' }
     field :optimization_goal, 'string'
     field :outbound_clicks, { list: 'AdsActionStats' }
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :place_page_name, 'string'
+    field :product_brand, 'string'
+    field :product_category, 'string'
+    field :product_content_id, 'string'
+    field :product_custom_label_0, 'string'
+    field :product_custom_label_1, 'string'
+    field :product_custom_label_2, 'string'
+    field :product_custom_label_3, 'string'
+    field :product_custom_label_4, 'string'
+    field :product_group_content_id, 'string'
+    field :product_group_retailer_id, 'string'
+    field :product_name, 'string'
+    field :product_retailer_id, 'string'
+    field :purchase_per_landing_page_view, 'string'
     field :purchase_roas, { list: 'AdsActionStats' }
     field :purchases_per_link_click, 'string'
     field :qualifying_question_qualify_answer_rate, 'string'
     field :quality_ranking, 'string'
     field :reach, 'string'
+    field :result_rate, { list: 'object' }
     field :result_values_performance_indicator, 'string'
+    field :results, { list: 'object' }
     field :shops_assisted_purchases, 'string'
     field :social_spend, 'string'
     field :spend, 'string'

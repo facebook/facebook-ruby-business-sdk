@@ -18,6 +18,7 @@ module FacebookAds
     field :auto_optimization, 'string'
     field :details_page_product_id, 'string'
     field :shop_collection_product_set_id, 'string'
+    field :source, 'string'
     field :storefront_shop_id, 'string'
     has_no_id
     has_no_get

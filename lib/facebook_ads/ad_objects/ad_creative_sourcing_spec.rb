@@ -17,6 +17,7 @@ module FacebookAds
 
     field :associated_product_set_id, 'string'
     field :brand, 'object'
+    field :dynamic_site_links_spec, 'object'
     field :enable_social_feedback_preservation, 'bool'
     field :promotion_metadata_spec, { list: 'AdCreativePromotionMetadataSpec' }
     field :site_links_spec, { list: 'AdCreativeSiteLinksSpec' }

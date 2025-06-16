@@ -56,6 +56,7 @@ module FacebookAds
       "MEDIA_TITLE",
       "OFFER",
       "PRODUCTS",
+      "PRODUCT_RATINGS_AND_REVIEWS",
       "TRANSACTABLE_ITEMS",
       "VEHICLES",
       "VEHICLE_OFFER",

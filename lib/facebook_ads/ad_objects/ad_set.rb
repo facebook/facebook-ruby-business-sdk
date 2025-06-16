@@ -92,6 +92,16 @@ module FacebookAds
       "PAUSED",
     ]
 
+    BUDGET_SOURCE = [
+      "NONE",
+      "RMN",
+    ]
+
+    CREATIVE_SEQUENCE_REPETITION_PATTERN = [
+      "FULL_SEQUENCE",
+      "LAST_AD",
+    ]
+
     DATE_PRESET = [
       "DATA_MAXIMUM",
       "LAST_14D",
@@ -119,8 +129,11 @@ module FacebookAds
       "APP",
       "APPLINKS_AUTOMATIC",
       "FACEBOOK",
+      "FACEBOOK_LIVE",
       "FACEBOOK_PAGE",
+      "IMAGINE",
       "INSTAGRAM_DIRECT",
+      "INSTAGRAM_LIVE",
       "INSTAGRAM_PROFILE",
       "INSTAGRAM_PROFILE_AND_FACEBOOK_PAGE",
       "MESSAGING_INSTAGRAM_DIRECT_MESSENGER",
@@ -176,6 +189,7 @@ module FacebookAds
       "3",
       "4",
       "5",
+      "6",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -220,6 +234,7 @@ module FacebookAds
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
     field :created_time, 'datetime'
     field :creative_sequence, { list: 'string' }
+    field :creative_sequence_repetition_pattern, 'string'
     field :daily_budget, 'string'
     field :daily_min_spend_target, 'string'
     field :daily_spend_cap, 'string'
@@ -236,6 +251,7 @@ module FacebookAds
     field :is_ba_skip_delayed_eligible, 'bool'
     field :is_budget_schedule_enabled, 'bool'
     field :is_dynamic_creative, 'bool'
+    field :is_incremental_attribution_enabled, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :learning_stage_info, 'AdCampaignLearningStageInfo'
     field :lifetime_budget, 'string'
@@ -266,6 +282,8 @@ module FacebookAds
     field :time_based_ad_rotation_intervals, { list: 'int' }
     field :updated_time, 'datetime'
     field :use_new_app_click, 'bool'
+    field :budget_source, { enum: -> { BUDGET_SOURCE }}
+    field :budget_split_set_id, 'string'
     field :campaign_spec, 'object'
     field :daily_imps, 'int'
     field :date_format, 'string'
@@ -379,6 +397,7 @@ module FacebookAds
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
+        api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
         api.has_param :sort, { list: 'string' }
         api.has_param :summary, { list: 'string' }
@@ -402,6 +421,7 @@ module FacebookAds
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
+        api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
         api.has_param :sort, { list: 'string' }
         api.has_param :summary, { list: 'string' }
@@ -417,6 +437,8 @@ module FacebookAds
     has_edge :message_delivery_estimate do |edge|
       edge.get 'MessageDeliveryEstimate' do |api|
         api.has_param :bid_amount, 'int'
+        api.has_param :daily_budget, 'int'
+        api.has_param :is_direct_send_campaign, 'bool'
         api.has_param :lifetime_budget, 'int'
         api.has_param :lifetime_in_days, 'int'
         api.has_param :optimization_goal, { enum: -> { MessageDeliveryEstimate::OPTIMIZATION_GOAL }}

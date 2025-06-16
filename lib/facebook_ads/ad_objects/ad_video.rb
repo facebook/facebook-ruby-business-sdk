@@ -15,13 +15,11 @@ module FacebookAds
 
   class AdVideo < AdObject
     CONTAINER_TYPE = [
-      "ACO_AUTOEXTRACTED_VIDEO",
       "ACO_VIDEO_VARIATION",
       "ADS_AI_GENERATED",
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
       "AD_LIBRARY_WATERMARK",
-      "AGE_UP",
       "ALBUM_MULTIMEDIA_POST",
       "ALOHA_SUPERFRAME",
       "APP_REREVIEW_SCREENCAST",
@@ -32,7 +30,6 @@ module FacebookAds
       "AUDIO_COMMENT",
       "BROADCAST",
       "CANVAS",
-      "CFC_VIDEO",
       "CMS_MEDIA_MANAGER",
       "CONTAINED_POST_ATTACHMENT",
       "CONTAINED_POST_AUDIO_BROADCAST",
@@ -50,9 +47,7 @@ module FacebookAds
       "DIM_SUM",
       "DIRECTED_POST_ATTACHMENT",
       "DIRECT_INBOX",
-      "DIRECT_INBOX_REACTION",
       "DROPS_SHOPPING_EVENT_PAGE",
-      "DYNAMIC_ITEM_DISPLAY_BUNDLE",
       "DYNAMIC_ITEM_VIDEO",
       "DYNAMIC_TEMPLATE_VIDEO",
       "EVENT_COVER_VIDEO",
@@ -65,7 +60,6 @@ module FacebookAds
       "FB_SHORTS_GROUP_POST",
       "FB_SHORTS_LINKED_PRODUCT",
       "FB_SHORTS_PMV_POST",
-      "FB_SHORTS_PMV_POST_NO_NEWSFEED_NOR_TIMELINE",
       "FB_SHORTS_POST",
       "FB_SHORTS_REMIX_POST",
       "FUNDRAISER_COVER_VIDEO",
@@ -80,6 +74,7 @@ module FacebookAds
       "GROUP_POST",
       "HEURISTIC_CLUSTER_VIDEO",
       "HIGHLIGHT_CLIP_VIDEO",
+      "HORIZON_WORLDS_TV",
       "HUDDLE_BROADCAST",
       "IG_REELS_XPV",
       "IG_STORIES_READER",
@@ -110,7 +105,6 @@ module FacebookAds
       "NEO_ASYNC_GAME_VIDEO",
       "NEW_CONTAINED_POST_BROADCAST",
       "NO_STORY",
-      "NPE_COLLAB_COPYRIGHT_CHECK",
       "OCULUS_CREATOR_PORTAL",
       "OCULUS_VENUES_BROADCAST",
       "ORIGINALITY_SELF_ADVOCACY",
@@ -120,8 +114,6 @@ module FacebookAds
       "PAID_CONTENT_PREVIEW",
       "PAID_CONTENT_VIDEO",
       "PAID_CONTENT_VIDEO__POST",
-      "PAPER_DOCUMENT_AUDIO",
-      "PAPER_DOCUMENT_VIDEO",
       "PIXELCLOUD",
       "PODCAST_HIGHLIGHT",
       "PODCAST_ML_PREVIEW",
@@ -150,11 +142,9 @@ module FacebookAds
       "SLIDESHOW_ANIMOTO",
       "SLIDESHOW_SHAKR",
       "SLIDESHOW_VARIATION_VIDEO",
-      "SOUNDBITES_VIDEO",
       "SOUND_PLATFORM_STREAM",
       "SRT_ATTACHMENT",
       "STORIES_VIDEO",
-      "STORIES_WEARABLE",
       "STORYLINE",
       "STORYLINE_WITH_EXTERNAL_MUSIC",
       "STORY_ARCHIVE_VIDEO",
@@ -162,10 +152,8 @@ module FacebookAds
       "STREAM_HIGHLIGHTS_VIDEO",
       "TAROT_DIGEST",
       "TEMPORARY_UNLISTED",
-      "TEMP_MULTIMEDIA_POST",
       "TEMP_VIDEO_COPYRIGHT_SCAN",
       "UNLISTED",
-      "UNLISTED_HORIZON",
       "UNLISTED_OCULUS",
       "VIDEO_COMMENT",
       "VIDEO_COMPOSITION_VARIATION",
@@ -355,6 +343,7 @@ module FacebookAds
     field :instant_game_entry_point_data, 'string'
     field :is_boost_intended, 'bool'
     field :is_group_linking_post, 'bool'
+    field :is_partnership_ad, 'bool'
     field :is_voice_clip, 'bool'
     field :location_source_id, 'string'
     field :name, 'string'
@@ -365,6 +354,7 @@ module FacebookAds
     field :og_suggestion_mechanism, 'string'
     field :original_fov, 'int'
     field :original_projection_type, { enum: -> { ORIGINAL_PROJECTION_TYPE }}
+    field :partnership_ad_ad_code, 'string'
     field :publish_event_id, 'int'
     field :referenced_sticker_id, 'string'
     field :replace_video_id, 'string'

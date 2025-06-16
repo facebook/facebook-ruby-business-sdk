@@ -36,6 +36,7 @@ module FacebookAds
     field :success_count, 'int'
     field :total_count, 'int'
     field :updated_time, 'datetime'
+    field :creative_spec, 'AdCreative'
     field :ad_specs, { list: 'hash' }
 
     has_edge :requests do |edge|

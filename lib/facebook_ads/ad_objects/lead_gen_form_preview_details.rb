@@ -59,6 +59,8 @@ module FacebookAds
     field :social_proof_section_headers, { list: 'hash' }
     field :submit_button_text, 'string'
     field :view_file_text, 'string'
+    field :whats_app_opt_in_body, 'string'
+    field :whats_app_opt_in_title, 'string'
     has_no_id
     has_no_get
     has_no_post

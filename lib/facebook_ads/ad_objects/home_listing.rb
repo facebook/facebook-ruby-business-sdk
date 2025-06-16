@@ -81,6 +81,8 @@ module FacebookAds
     field :price, 'string'
     field :property_type, 'string'
     field :sanitized_images, { list: 'string' }
+    field :securitydeposit_currency, 'string'
+    field :securitydeposit_price, 'string'
     field :tags, { list: 'string' }
     field :unit_price, 'object'
     field :url, 'string'

@@ -55,6 +55,7 @@ module FacebookAds
     field :effective_instagram_positions, { list: 'string' }
     field :effective_messenger_positions, { list: 'string' }
     field :effective_publisher_platforms, { list: 'string' }
+    field :effective_threads_positions, { list: 'string' }
     field :engagement_specs, { list: 'TargetingDynamicRule' }
     field :ethnic_affinity, { list: 'IdName' }
     field :exclude_reached_since, { list: 'string' }
@@ -109,6 +110,7 @@ module FacebookAds
     field :targeting_automation, 'TargetingAutomation'
     field :targeting_optimization, 'string'
     field :targeting_relaxation_types, 'TargetingRelaxation'
+    field :threads_positions, { list: 'string' }
     field :user_adclusters, { list: 'IdName' }
     field :user_device, { list: 'string' }
     field :user_event, { list: 'int' }

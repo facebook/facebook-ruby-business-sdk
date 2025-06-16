@@ -15,6 +15,9 @@ module FacebookAds
 
   class AdCreativeSiteLinksSpec < AdObject
 
+    field :is_site_link_sticky, 'bool'
+    field :site_link_hash, 'string'
+    field :site_link_id, 'string'
     field :site_link_image_hash, 'string'
     field :site_link_image_url, 'string'
     field :site_link_recommendation_type, 'string'

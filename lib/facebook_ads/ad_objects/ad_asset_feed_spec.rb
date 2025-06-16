@@ -96,6 +96,7 @@ module FacebookAds
       "VIDEO_CALL",
       "VIEW_CART",
       "VIEW_CHANNEL",
+      "VIEW_IN_CART",
       "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
       "WATCH_LIVE_VIDEO",
@@ -131,6 +132,7 @@ module FacebookAds
     field :reasons_to_shop, 'bool'
     field :shops_bundle, 'bool'
     field :titles, { list: 'AdAssetFeedSpecTitle' }
+    field :translations, { list: 'object' }
     field :upcoming_events, { list: 'object' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id

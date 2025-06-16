@@ -13,15 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class SplitTestConfig < AdObject
+  class AdCreativeMediaSourcingSpec < AdObject
 
-    field :budget, 'int'
-    field :early_winner_declaration_enabled, 'bool'
-    field :end_time, 'datetime'
-    field :splits, { list: 'int' }
-    field :start_time, 'datetime'
-    field :test_variable, 'string'
-    field :id, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

@@ -15,6 +15,7 @@ module FacebookAds
 
   class IgMedia < AdObject
 
+    field :alt_text, 'string'
     field :boost_eligibility_info, 'IgMediaBoostEligibilityInfo'
     field :caption, 'string'
     field :comments_count, 'int'
@@ -34,6 +35,7 @@ module FacebookAds
     field :thumbnail_url, 'string'
     field :timestamp, 'datetime'
     field :username, 'string'
+    field :view_count, 'int'
     has_no_delete
 
     has_edge :boost_ads_list do |edge|
@@ -59,6 +61,7 @@ module FacebookAds
     has_edge :comments do |edge|
       edge.get 'IgComment'
       edge.post 'IgComment' do |api|
+        api.has_param :ad_id, 'string'
         api.has_param :message, 'string'
       end
     end

@@ -33,7 +33,6 @@ module FacebookAds
       "GENERIC",
       "HOME_LISTING",
       "HOTEL",
-      "JOB",
       "LOCAL_SERVICE_BUSINESS",
       "MEDIA_TITLE",
       "OFFLINE_PRODUCT",
@@ -179,6 +178,7 @@ module FacebookAds
         api.has_param :calculated_date, 'string'
         api.has_param :processed_date, 'string'
         api.has_param :value_aggregation_duration, 'int'
+        api.has_param :value_country, 'string'
         api.has_param :value_currency, 'string'
         api.has_param :value_version, 'int'
       end

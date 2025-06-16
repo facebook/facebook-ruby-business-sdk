@@ -31,7 +31,6 @@ module FacebookAds
     field :computers_and_tablets, 'object'
     field :computers_laptops_and_tablets, 'object'
     field :diapering_and_potty_training, 'object'
-    field :digital_product_offer, 'object'
     field :electronic_accessories_and_cables, 'object'
     field :electronics_accessories, 'object'
     field :furniture, 'object'

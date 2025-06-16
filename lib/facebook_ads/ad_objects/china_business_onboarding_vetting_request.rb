@@ -19,9 +19,12 @@ module FacebookAds
     field :ad_account_limit, 'int'
     field :ad_account_number, 'string'
     field :ad_accounts_info, { list: 'object' }
+    field :advertiser_business_id, 'string'
+    field :advertiser_business_name, 'string'
     field :business_manager_id, 'string'
     field :business_registration, 'string'
     field :business_registration_id, 'string'
+    field :business_verification_status, 'string'
     field :chinese_address, 'string'
     field :chinese_legal_entity_name, 'string'
     field :city, 'string'

@@ -13,17 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class KeywordDeliveryReport < AdObject
+  class IgUserMessengerProfile < AdObject
 
-    field :estimated_clicks, 'int'
-    field :estimated_conversions, 'int'
-    field :estimated_cost, 'double'
-    field :estimated_cpc, 'double'
-    field :estimated_ctr, 'double'
-    field :estimated_cvr, 'double'
-    field :estimated_impressions, 'int'
-    field :estimated_returns, 'double'
-    field :keyword, 'string'
+    field :ice_breakers, { list: 'object' }
+    field :persistent_menu, { list: 'object' }
     has_no_id
     has_no_get
     has_no_post

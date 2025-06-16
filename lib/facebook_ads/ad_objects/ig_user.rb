@@ -124,7 +124,6 @@ module FacebookAds
 
     has_edge :instagram_backed_threads_user do |edge|
       edge.get 'ThreadsUser'
-      edge.post 'ThreadsUser'
     end
 
     has_edge :live_media do |edge|
@@ -206,6 +205,13 @@ module FacebookAds
         api.has_param :notification_subtypes, { list: { enum: %w{AFTER_EVENT_1DAY AFTER_EVENT_2DAY AFTER_EVENT_3DAY AFTER_EVENT_4DAY AFTER_EVENT_5DAY AFTER_EVENT_6DAY AFTER_EVENT_7DAY BEFORE_EVENT_15MIN BEFORE_EVENT_1DAY BEFORE_EVENT_1HOUR BEFORE_EVENT_2DAY EVENT_START RESCHEDULED }} }
         api.has_param :start_time, 'datetime'
         api.has_param :title, 'string'
+      end
+    end
+
+    has_edge :welcome_message_flows do |edge|
+      edge.get 'ShadowIgUserCtxPartnerAppWelcomeMessageFlow' do |api|
+        api.has_param :app_id, 'string'
+        api.has_param :flow_id, 'string'
       end
     end
 

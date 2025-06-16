@@ -32,6 +32,7 @@ module FacebookAds
       "AVAILABLE",
       "NOT_AVAILABLE",
       "PENDING",
+      "UNKNOWN",
     ]
 
     BODY_STYLE = [
@@ -120,6 +121,8 @@ module FacebookAds
     field :address, 'object'
     field :applinks, 'CatalogItemAppLinks'
     field :availability, 'string'
+    field :availability_circle_radius, 'double'
+    field :availability_circle_radius_unit, 'string'
     field :body_style, 'string'
     field :category_specific_fields, 'CatalogSubVerticalList'
     field :condition, 'string'

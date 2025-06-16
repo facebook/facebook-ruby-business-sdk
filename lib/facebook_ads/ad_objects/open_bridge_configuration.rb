@@ -27,8 +27,12 @@ module FacebookAds
     field :instance_id, 'string'
     field :instance_version, 'string'
     field :is_sgw_instance, 'bool'
+    field :is_sgw_pixel_from_meta_pixel, 'bool'
     field :partner_name, 'string'
     field :pixel_id, 'string'
+    field :sgw_account_id, 'string'
+    field :sgw_instance_url, 'string'
+    field :sgw_pixel_id, 'string'
 
   end
 end

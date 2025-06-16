@@ -13,17 +13,20 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ContentDeliveryReport < AdObject
+  class AdAccountAgencyFeeConfig < AdObject
+    STATUS = [
+      "ACTIVE",
+      "ARCHIVED",
+      "DRAFT",
+      "UNKNOWN",
+    ]
 
-    field :content_id, 'string'
-    field :content_name, 'string'
-    field :content_url, 'string'
-    field :creator_id, 'string'
-    field :creator_name, 'string'
-    field :creator_url, 'string'
-    field :estimated_impressions, 'int'
-    has_no_id
-    has_no_get
+
+    field :can_add_agency_fee_to_invoice, 'bool'
+    field :default_agency_fee_pct, 'double'
+    field :id, 'string'
+    field :is_agency_fee_disabled, 'bool'
+    field :status, { enum: -> { STATUS }}
     has_no_post
     has_no_delete
 

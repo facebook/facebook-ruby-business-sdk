@@ -17,6 +17,7 @@ module FacebookAds
     CUSTOM_TEXT_TYPE = [
       "free_shipping",
       "popular",
+      "sale",
     ]
 
     OVERLAY_TEMPLATE = [

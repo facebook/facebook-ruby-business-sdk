@@ -55,6 +55,9 @@ module FacebookAds
     field :action_video_sound, 'string'
     field :action_video_type, 'string'
     field :dda, { list: 'int' }
+    field :incrementality, { list: 'int' }
+    field :incrementality_all_conversions, { list: 'int' }
+    field :incrementality_first_conversion, { list: 'int' }
     field :inline, { list: 'int' }
     field :interactive_component_sticker_id, 'string'
     field :interactive_component_sticker_response, 'string'
