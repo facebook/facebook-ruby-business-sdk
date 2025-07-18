@@ -78,6 +78,7 @@ module FacebookAds
       "PROFILE_PLUS_CREATE_CONTENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
+      "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
@@ -598,6 +599,7 @@ module FacebookAds
       "PROFILE_PLUS_CREATE_CONTENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
+      "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
@@ -1044,10 +1046,15 @@ module FacebookAds
 
     has_edge :business_invoices do |edge|
       edge.get 'OmegaCustomerTrx' do |api|
+        api.has_param :account_ids, { list: 'int' }
+        api.has_param :advertiser_name, 'string'
+        api.has_param :billing_period_end, 'string'
+        api.has_param :billing_period_start, 'string'
         api.has_param :end_date, 'string'
         api.has_param :invoice_id, 'string'
         api.has_param :issue_end_date, 'string'
         api.has_param :issue_start_date, 'string'
+        api.has_param :product_types, { list: { enum: -> { OmegaCustomerTrx::PRODUCT_TYPES }} }
         api.has_param :root_id, 'int'
         api.has_param :start_date, 'string'
         api.has_param :type, { enum: -> { OmegaCustomerTrx::TYPE }}
@@ -1085,6 +1092,10 @@ module FacebookAds
       edge.post 'Business' do |api|
         api.has_param :app_id, 'object'
       end
+    end
+
+    has_edge :client_instagram_assets do |edge|
+      edge.get 'InstagramBusinessAsset'
     end
 
     has_edge :client_offsite_signal_container_business_objects do |edge|
@@ -1364,6 +1375,10 @@ module FacebookAds
 
     has_edge :owned_instagram_accounts do |edge|
       edge.get 'IgUser'
+    end
+
+    has_edge :owned_instagram_assets do |edge|
+      edge.get 'InstagramBusinessAsset'
     end
 
     has_edge :owned_offsite_signal_container_business_objects do |edge|

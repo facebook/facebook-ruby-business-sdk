@@ -81,6 +81,7 @@ module FacebookAds
     field :should_not_show_cbo_campaign_toggle_off_confirmation_message, 'bool'
     field :should_not_show_publish_message_on_editor_close, 'bool'
     field :show_original_videos_opt_in, 'string'
+    field :show_summary_opt_in_status, 'string'
     field :static_ad_product_extensions_opt_in, 'string'
     field :sticky_setting_after_default_on, 'string'
     field :syd_campaign_trends_metric, 'string'

@@ -142,7 +142,7 @@ module FacebookAds
       edge.delete
       edge.get
       edge.post do |api|
-        api.has_param :subscribed_fields, { list: { enum: %w{comment_poll_response comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta follow live_comments mentions message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen onboarding_welcome_message_series standby story_insights story_poll_response story_reactions story_share }} }
+        api.has_param :subscribed_fields, { list: { enum: %w{comment_poll_response comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta follow live_comments mentions message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen onboarding_welcome_message_series share_to_story standby story_insights story_poll_response story_reactions }} }
       end
     end
 

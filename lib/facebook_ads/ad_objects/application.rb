@@ -474,12 +474,6 @@ module FacebookAds
       edge.get 'AdsDataset'
     end
 
-    has_edge :message_templates do |edge|
-      edge.get do |api|
-        api.has_param :template_id, 'string'
-      end
-    end
-
     has_edge :mmp_auditing do |edge|
       edge.post do |api|
         api.has_param :advertiser_id, 'string'

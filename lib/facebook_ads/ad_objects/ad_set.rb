@@ -57,6 +57,7 @@ module FacebookAds
       "AD_RECALL_LIFT",
       "APP_INSTALLS",
       "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
+      "AUTOMATIC_OBJECTIVE",
       "CONVERSATIONS",
       "DERIVED_EVENTS",
       "ENGAGED_USERS",
@@ -90,6 +91,12 @@ module FacebookAds
       "ARCHIVED",
       "DELETED",
       "PAUSED",
+    ]
+
+    AUTOMATIC_MANUAL_STATE = [
+      "AUTOMATIC",
+      "MANUAL",
+      "UNSET",
     ]
 
     BUDGET_SOURCE = [
@@ -190,6 +197,7 @@ module FacebookAds
       "4",
       "5",
       "6",
+      "7",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -219,6 +227,7 @@ module FacebookAds
     field :adset_schedule, { list: 'DayPart' }
     field :asset_feed_id, 'string'
     field :attribution_spec, { list: 'AttributionSpec' }
+    field :automatic_manual_state, 'string'
     field :bid_adjustments, 'AdBidAdjustments'
     field :bid_amount, 'int'
     field :bid_constraints, 'AdCampaignBidConstraint'

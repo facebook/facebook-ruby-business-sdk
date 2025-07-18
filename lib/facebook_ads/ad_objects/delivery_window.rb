@@ -15,6 +15,7 @@ module FacebookAds
 
   class DeliveryWindow < AdObject
 
+    field :ac, 'int'
     field :ad, 'int'
     field :ae, 'int'
     field :af, 'int'

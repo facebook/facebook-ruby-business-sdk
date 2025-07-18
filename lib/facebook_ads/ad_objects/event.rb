@@ -100,8 +100,6 @@ module FacebookAds
     field :registration_setting, 'EventRegistrationSetting'
     field :scheduled_publish_time, 'string'
     field :start_time, 'string'
-    field :sub_categories, { list: 'string' }
-    field :ticket_selling_status, 'string'
     field :ticket_setting, 'EventTicketSetting'
     field :ticket_uri, 'string'
     field :ticket_uri_start_sales_time, 'string'

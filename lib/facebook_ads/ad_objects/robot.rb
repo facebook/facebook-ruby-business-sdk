@@ -22,6 +22,7 @@ module FacebookAds
     field :init_pos, { list: 'hash' }
     field :last_pos, { list: 'hash' }
     field :meetup_link_hash, 'string'
+    field :robot_notes, 'string'
     field :suite, 'string'
     field :target_map_image_uri, 'string'
     field :target_os_image_uri, 'string'

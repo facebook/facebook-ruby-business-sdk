@@ -25,8 +25,11 @@ module FacebookAds
     field :payout_amount, 'object'
     field :slip_verification_error, 'string'
     field :slip_verification_status, 'string'
+    field :sof_transfer_id, 'string'
+    field :sof_transfer_timestamp, 'int'
     field :transaction_fee, 'object'
     field :transfer_slip, 'string'
+    field :transfer_slip_qr_code, 'string'
     has_no_id
     has_no_get
     has_no_post

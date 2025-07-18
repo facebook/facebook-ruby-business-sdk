@@ -16,7 +16,9 @@ module FacebookAds
   class LookalikeSpec < AdObject
 
     field :country, 'string'
+    field :is_created_by_recommended_dfca, 'bool'
     field :is_financial_service, 'bool'
+    field :is_parent_lal, 'bool'
     field :origin, { list: 'object' }
     field :origin_event_name, 'string'
     field :origin_event_source_name, 'string'

@@ -46,6 +46,30 @@ module FacebookAds
       "TUTORIAL_COMPLETION",
     ]
 
+    FULL_FUNNEL_OBJECTIVE = [
+      "APP_INSTALLS",
+      "BRAND_AWARENESS",
+      "EVENT_RESPONSES",
+      "LEAD_GENERATION",
+      "LINK_CLICKS",
+      "LOCAL_AWARENESS",
+      "MESSAGES",
+      "OFFER_CLAIMS",
+      "OUTCOME_APP_PROMOTION",
+      "OUTCOME_AWARENESS",
+      "OUTCOME_ENGAGEMENT",
+      "OUTCOME_LEADS",
+      "OUTCOME_SALES",
+      "OUTCOME_TRAFFIC",
+      "PAGE_LIKES",
+      "POST_ENGAGEMENT",
+      "PRODUCT_CATALOG_SALES",
+      "REACH",
+      "STORE_VISITS",
+      "VIDEO_VIEWS",
+      "WEBSITE_CONVERSIONS",
+    ]
+
     LEAD_ADS_CUSTOM_EVENT_TYPE = [
       "ACHIEVEMENT_UNLOCKED",
       "ADD_PAYMENT_INFO",
@@ -85,7 +109,9 @@ module FacebookAds
     field :custom_conversion_id, 'string'
     field :custom_event_str, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
+    field :dataset_split_id, 'string'
     field :event_id, 'string'
+    field :full_funnel_objective, { enum: -> { FULL_FUNNEL_OBJECTIVE }}
     field :fundraiser_campaign_id, 'string'
     field :lead_ads_custom_event_str, 'string'
     field :lead_ads_custom_event_type, { enum: -> { LEAD_ADS_CUSTOM_EVENT_TYPE }}
@@ -93,6 +119,7 @@ module FacebookAds
     field :lead_ads_offsite_conversion_type, 'string'
     field :mcme_conversion_id, 'string'
     field :object_store_url, 'string'
+    field :object_store_urls, { list: 'string' }
     field :offer_id, 'string'
     field :offline_conversion_data_set_id, 'string'
     field :offsite_conversion_event_id, 'string'

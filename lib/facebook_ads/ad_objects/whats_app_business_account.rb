@@ -82,6 +82,7 @@ module FacebookAds
     field :is_shared_with_partners, 'bool'
     field :linked_commerce_account, 'CommerceMerchantSettings'
     field :marketing_messages_lite_api_status, 'string'
+    field :marketing_messages_onboarding_status, 'string'
     field :message_template_namespace, 'string'
     field :name, 'string'
     field :on_behalf_of_business_info, 'object'
@@ -272,7 +273,7 @@ module FacebookAds
         api.has_param :metric_types, { list: { enum: %w{COST VOLUME }} }
         api.has_param :phone_numbers, { list: 'string' }
         api.has_param :pricing_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL GROUP_MARKETING GROUP_SERVICE GROUP_UTILITY MARKETING MARKETING_LITE SERVICE UTILITY }} }
-        api.has_param :pricing_types, { list: { enum: %w{FREE_CUSTOMER_SERVICE FREE_ENTRY_POINT REGULAR }} }
+        api.has_param :pricing_types, { list: { enum: %w{FREE_CUSTOMER_SERVICE FREE_ENTRY_POINT FREE_GROUP_CUSTOMER_SERVICE REGULAR }} }
         api.has_param :start, 'int'
         api.has_param :tiers, { list: 'string' }
       end

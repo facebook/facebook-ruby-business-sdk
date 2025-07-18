@@ -34,6 +34,11 @@ module FacebookAds
       "vehicles",
     ]
 
+    ENABLED_COLLAB_TERMS = [
+      "ENFORCE_CREATE_NEW_AD_ACCOUNT",
+      "ENFORCE_SHARE_AD_PERFORMANCE_ACCESS",
+    ]
+
     PERMITTED_ROLES = [
       "ADMIN",
       "ADVERTISER",
@@ -129,6 +134,7 @@ module FacebookAds
       edge.get 'Business'
       edge.post 'ProductCatalog' do |api|
         api.has_param :business, 'string'
+        api.has_param :enabled_collab_terms, { list: { enum: -> { ProductCatalog::ENABLED_COLLAB_TERMS }} }
         api.has_param :permitted_roles, { list: { enum: -> { ProductCatalog::PERMITTED_ROLES }} }
         api.has_param :permitted_tasks, { list: { enum: -> { ProductCatalog::PERMITTED_TASKS }} }
         api.has_param :skip_defaults, 'bool'

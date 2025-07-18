@@ -480,6 +480,7 @@ module FacebookAds
     ]
 
     ORIGIN_COUNTRY = [
+      "AC",
       "AD",
       "AE",
       "AF",
@@ -748,6 +749,7 @@ module FacebookAds
     field :brand, 'string'
     field :bundle_items, { list: 'string' }
     field :bundle_retailer_ids, { list: 'string' }
+    field :capabilities_disabled_by_user, { list: 'string' }
     field :capability_to_review_status, { list: 'hash' }
     field :category, 'string'
     field :category_specific_fields, 'CatalogSubVerticalList'

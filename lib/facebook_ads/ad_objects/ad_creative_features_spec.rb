@@ -66,12 +66,14 @@ module FacebookAds
     field :standard_enhancements_catalog, 'AdCreativeFeatureDetails'
     field :text_generation, 'AdCreativeFeatureDetails'
     field :text_optimizations, 'AdCreativeFeatureDetails'
+    field :text_overlay_translation, 'AdCreativeFeatureDetails'
     field :text_translation, 'AdCreativeFeatureDetails'
     field :video_auto_crop, 'AdCreativeFeatureDetails'
     field :video_filtering, 'AdCreativeFeatureDetails'
     field :video_highlight, 'AdCreativeFeatureDetails'
     field :video_to_image, 'AdCreativeFeatureDetails'
     field :video_uncrop, 'AdCreativeFeatureDetails'
+    field :wa_mm_text_truncation_length, 'AdCreativeFeatureDetails'
     has_no_id
     has_no_get
     has_no_post

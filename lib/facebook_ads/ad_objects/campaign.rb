@@ -112,6 +112,7 @@ module FacebookAds
     ]
 
     SPECIAL_AD_CATEGORY_COUNTRY = [
+      "AC",
       "AD",
       "AE",
       "AF",

@@ -64,5 +64,9 @@ module FacebookAds
       edge.get 'ProductCatalog'
     end
 
+    has_edge :assigned_whatsapp_business_accounts do |edge|
+      edge.get 'WhatsAppBusinessAccount'
+    end
+
   end
 end

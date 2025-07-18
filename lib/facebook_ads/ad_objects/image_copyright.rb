@@ -15,6 +15,7 @@ module FacebookAds
 
   class ImageCopyright < AdObject
     GEO_OWNERSHIP = [
+      "AC",
       "AD",
       "AE",
       "AF",

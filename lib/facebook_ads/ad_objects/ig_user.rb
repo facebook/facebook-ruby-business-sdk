@@ -103,6 +103,25 @@ module FacebookAds
       end
     end
 
+    has_edge :creator_marketplace_creators do |edge|
+      edge.get 'IgUserExportForCam' do |api|
+        api.has_param :creator_age_bucket, { list: 'object' }
+        api.has_param :creator_countries, { list: { enum: -> { IgUserExportForCam::CREATOR_COUNTRIES }} }
+        api.has_param :creator_gender, { list: { enum: -> { IgUserExportForCam::CREATOR_GENDER }} }
+        api.has_param :creator_interests, { list: 'object' }
+        api.has_param :creator_max_engaged_accounts, 'int'
+        api.has_param :creator_max_followers, 'int'
+        api.has_param :creator_min_engaged_accounts, 'int'
+        api.has_param :creator_min_followers, 'int'
+        api.has_param :major_audience_age_bucket, { list: 'object' }
+        api.has_param :major_audience_countries, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_COUNTRIES }} }
+        api.has_param :major_audience_gender, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_GENDER }} }
+        api.has_param :query, 'string'
+        api.has_param :reels_interaction_rate, 'object'
+        api.has_param :similar_to_creators, { list: 'string' }
+      end
+    end
+
     has_edge :dataset do |edge|
       edge.get 'Dataset'
       edge.post 'Dataset' do |api|
@@ -124,6 +143,7 @@ module FacebookAds
 
     has_edge :instagram_backed_threads_user do |edge|
       edge.get 'ThreadsUser'
+      edge.post 'ThreadsUser'
     end
 
     has_edge :live_media do |edge|

@@ -287,6 +287,7 @@ module FacebookAds
     field :landing_page_view_actions_per_link_click, 'string'
     field :landing_page_view_per_link_click, 'string'
     field :landing_page_view_per_purchase_rate, 'string'
+    field :link_clicks_per_results, { list: 'object' }
     field :location, 'string'
     field :marketing_messages_click_rate_benchmark, 'string'
     field :marketing_messages_cost_per_delivered, 'string'
@@ -330,6 +331,7 @@ module FacebookAds
     field :product_group_retailer_id, 'string'
     field :product_name, 'string'
     field :product_retailer_id, 'string'
+    field :product_views, 'string'
     field :purchase_per_landing_page_view, 'string'
     field :purchase_roas, { list: 'AdsActionStats' }
     field :purchases_per_link_click, 'string'
@@ -342,6 +344,7 @@ module FacebookAds
     field :shops_assisted_purchases, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
+    field :total_card_view, 'string'
     field :total_postbacks, 'string'
     field :total_postbacks_detailed, { list: 'AdsActionStats' }
     field :total_postbacks_detailed_v4, { list: 'AdsActionStats' }

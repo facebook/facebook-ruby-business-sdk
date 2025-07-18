@@ -309,9 +309,11 @@ module FacebookAds
         api.has_param :creative_sourcing_spec, 'hash'
         api.has_param :degrees_of_freedom_spec, 'hash'
         api.has_param :destination_set_id, 'string'
+        api.has_param :destination_spec, 'hash'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
         api.has_param :enable_launch_instant_app, 'bool'
         api.has_param :facebook_branded_content, 'hash'
+        api.has_param :format_transformation_spec, { list: 'hash' }
         api.has_param :image_crops, 'hash'
         api.has_param :image_file, 'string'
         api.has_param :image_hash, 'string'
@@ -486,6 +488,7 @@ module FacebookAds
         api.has_param :adlabels, { list: 'object' }
         api.has_param :adset_schedule, { list: 'object' }
         api.has_param :attribution_spec, { list: 'hash' }
+        api.has_param :automatic_manual_state, { enum: -> { AdSet::AUTOMATIC_MANUAL_STATE }}
         api.has_param :bid_adjustments, 'object'
         api.has_param :bid_amount, 'int'
         api.has_param :bid_constraints, 'hash'
@@ -1112,6 +1115,7 @@ module FacebookAds
         api.has_param :target_frequency, 'int'
         api.has_param :target_frequency_reset_period, 'int'
         api.has_param :target_spec, 'Targeting'
+        api.has_param :trending_topics_spec, 'hash'
         api.has_param :video_view_length_constraint, 'int'
       end
     end

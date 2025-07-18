@@ -15,6 +15,7 @@ module FacebookAds
 
   class ImageReferenceMatch < AdObject
 
+    field :conflict_status, 'string'
     field :conflicting_countries, { list: 'string' }
     field :country_resolution_history, { list: 'map<string, list<Object>>' }
     field :creation_time, 'datetime'

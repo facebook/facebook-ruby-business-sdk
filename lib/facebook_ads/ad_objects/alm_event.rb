@@ -22,6 +22,7 @@ module FacebookAds
     field :event_time, 'datetime'
     field :guidance, 'string'
     field :guidance_detail, 'string'
+    field :guidance_type, 'string'
     field :id, 'string'
     field :parent_advertiser_ids, { list: 'string' }
     field :reseller_business_id, 'string'

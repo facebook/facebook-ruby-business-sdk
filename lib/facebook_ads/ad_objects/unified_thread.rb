@@ -33,7 +33,6 @@ module FacebookAds
     field :scoped_thread_key, 'string'
     field :senders, 'object'
     field :snippet, 'string'
-    field :subject, 'string'
     field :unread_count, 'int'
     field :updated_time, 'datetime'
     field :wallpaper, 'string'

@@ -13,21 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class EventTour < AdObject
+  class AbTestPostTestActions < AdObject
 
-    field :description, 'string'
-    field :dominant_color, 'string'
-    field :end_time, 'string'
-    field :id, 'string'
-    field :is_past, 'bool'
-    field :last_event_timestamp, 'int'
-    field :name, 'string'
-    field :num_events, 'int'
-    field :photo, 'Photo'
-    field :scheduled_publish_timestamp, 'int'
-    field :start_time, 'string'
-    field :ticketing_uri, 'string'
-    field :video, 'AdVideo'
+    field :auto_change_budget_to_winner, 'int'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

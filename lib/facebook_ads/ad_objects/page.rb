@@ -124,6 +124,7 @@ module FacebookAds
       "PROFILE_PLUS_CREATE_CONTENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
+      "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
@@ -153,6 +154,7 @@ module FacebookAds
       "PROFILE_PLUS_CREATE_CONTENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
+      "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
@@ -635,9 +637,12 @@ module FacebookAds
       edge.post do |api|
         api.has_param :action, { enum: %w{ACCEPT CONNECT MEDIA_UPDATE REJECT TERMINATE }}
         api.has_param :call_id, 'string'
+        api.has_param :from_version, 'int'
         api.has_param :platform, { enum: %w{INSTAGRAM MESSENGER }}
         api.has_param :session, 'hash'
         api.has_param :to, 'string'
+        api.has_param :to_version, 'int'
+        api.has_param :tracks, { list: 'hash' }
       end
     end
 
@@ -953,6 +958,7 @@ module FacebookAds
         api.has_param :follow_up_action_url, 'string'
         api.has_param :is_for_canvas, 'bool'
         api.has_param :is_optimized_for_quality, 'bool'
+        api.has_param :is_phone_sms_verify_enabled, 'bool'
         api.has_param :locale, { enum: -> { LeadgenForm::LOCALE }}
         api.has_param :name, 'string'
         api.has_param :privacy_policy, 'object'
@@ -1084,7 +1090,7 @@ module FacebookAds
         api.has_param :payload, 'string'
         api.has_param :persona_id, 'string'
         api.has_param :recipient, 'object'
-        api.has_param :reply_to, 'string'
+        api.has_param :reply_to, 'object'
         api.has_param :sender_action, { enum: -> { Page::SENDER_ACTION }}
         api.has_param :suggestion_action, { enum: -> { Page::SUGGESTION_ACTION }}
         api.has_param :tag, 'object'

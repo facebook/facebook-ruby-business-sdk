@@ -54,6 +54,7 @@ module FacebookAds
     ]
 
     REGULATED_COUNTRIES = [
+      "AC",
       "AD",
       "AE",
       "AF",

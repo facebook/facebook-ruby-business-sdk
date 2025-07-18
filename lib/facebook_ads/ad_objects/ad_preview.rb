@@ -42,7 +42,9 @@ module FacebookAds
       "INSTAGRAM_PROFILE_FEED",
       "INSTAGRAM_PROFILE_REELS",
       "INSTAGRAM_REELS",
+      "INSTAGRAM_REELS_INSTREAM",
       "INSTAGRAM_REELS_OVERLAY",
+      "INSTAGRAM_REELS_WEB",
       "INSTAGRAM_SEARCH_CHAIN",
       "INSTAGRAM_SEARCH_GRID",
       "INSTAGRAM_STANDARD",
@@ -88,6 +90,7 @@ module FacebookAds
       "product_metadata_automation",
       "profile_card",
       "standard_enhancements_catalog",
+      "text_overlay_translation",
       "video_to_image",
     ]
 

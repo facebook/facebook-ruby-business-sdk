@@ -26,12 +26,14 @@ module FacebookAds
     field :korea_ftc_listing, 'string'
     field :merchant_page, 'Profile'
     field :merchant_status, 'string'
+    field :offsite_iab_checkout_enabled_countries, { list: 'string' }
     field :onsite_commerce_merchant, 'object'
     field :payment_provider, 'string'
     field :privacy_policy_localized, 'string'
     field :return_policy_localized, 'string'
     field :review_rejection_messages, { list: 'string' }
     field :review_rejection_reasons, { list: 'string' }
+    field :shops_ads_setup, 'object'
     field :terms, 'string'
     has_no_post
     has_no_delete

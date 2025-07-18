@@ -15,6 +15,7 @@ module FacebookAds
 
   class ApacMonSellerStatusApiContainer < AdObject
 
+    field :structured_messaging_commerce, 'object'
     has_no_id
     has_no_get
     has_no_post

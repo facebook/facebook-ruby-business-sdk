@@ -14,6 +14,11 @@ module FacebookAds
   # pull request for this class.
 
   class OmegaCustomerTrx < AdObject
+    PRODUCT_TYPES = [
+      "FACEBOOK",
+      "WHATSAPP",
+    ]
+
     TYPE = [
       "CM",
       "DM",

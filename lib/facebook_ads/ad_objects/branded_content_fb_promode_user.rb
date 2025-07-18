@@ -13,11 +13,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CollaborativeAdsPartnerBusinesses < AdObject
+  class BrandedContentFbPromodeUser < AdObject
 
-    field :collaborative_ads_partner_businesses_info, { list: 'Business' }
-    field :dedicated_partner_business_info, 'Business'
-    field :dedicated_partners_business_info, { list: 'Business' }
+    field :delegate_page_for_ads_only_id, 'string'
+    field :is_iabp, 'bool'
+    field :is_managed, 'bool'
+    field :name, 'string'
+    field :profile_picture_url, 'string'
     has_no_id
     has_no_get
     has_no_post

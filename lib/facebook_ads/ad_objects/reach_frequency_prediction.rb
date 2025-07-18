@@ -154,6 +154,7 @@ module FacebookAds
     field :rf_prediction_id_to_release, 'string'
     field :rf_prediction_id_to_share, 'string'
     field :stop_time, 'int'
+    field :trending_topics_spec, 'hash'
     has_no_post
     has_no_delete
 

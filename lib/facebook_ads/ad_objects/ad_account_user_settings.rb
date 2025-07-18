@@ -65,6 +65,7 @@ module FacebookAds
     field :has_seen_leads_column_flexing_experience, 'bool'
     field :has_seen_shops_ads_metrics_onboarding_tour, 'bool'
     field :has_seen_shops_column_flexing_experience, 'bool'
+    field :has_used_quick_views_panel, 'bool'
     field :hidden_optimization_tips, { list: 'hash' }
     field :high_performing_quick_view_created, 'bool'
     field :id, 'string'
@@ -80,6 +81,7 @@ module FacebookAds
     field :rb_export_format, 'string'
     field :rb_export_raw_data, 'bool'
     field :rb_export_summary_row, 'bool'
+    field :recently_used_quick_views, { list: 'string' }
     field :saip_advertiser_setup_optimisation_guidance_overall_state, 'string'
     field :saip_advertiser_setup_optimisation_guidance_state, { list: 'hash' }
     field :shops_ads_metrics_onboarding_tour_close_count, 'int'
