@@ -50,6 +50,9 @@ module FacebookAds
         # Attribution token used for Windows 10.
         attr_accessor :windows_attribution_id
 
+        # An encrypted string and non-user metadata appended to the outbound URL (for example, ad_destination_url) or deep link (for App Aggregated Event Manager) when a user clicked on a link from Facebook.
+        attr_accessor :campaign_ids
+
         # @param [Boolean] application_tracking_enabled
         # @param [Boolean] advertiser_tracking_enabled
         # @param [Boolean] consider_views
@@ -60,6 +63,7 @@ module FacebookAds
         # @param [String] installer_package
         # @param [Array<String>] url_schemes
         # @param [String] windows_attribution_id
+        # @param [String] campaign_ids
         def initialize(application_tracking_enabled: nil,
           advertiser_tracking_enabled: nil,
           consider_views: nil,
@@ -69,7 +73,8 @@ module FacebookAds
           install_referrer: nil,
           installer_package: nil,
           url_schemes: nil,
-          windows_attribution_id: nil)
+          windows_attribution_id: nil,
+          campaign_ids: nil)
 
           unless application_tracking_enabled.nil?
             self.application_tracking_enabled = application_tracking_enabled
@@ -100,6 +105,9 @@ module FacebookAds
           end
           unless windows_attribution_id.nil?
             self.windows_attribution_id = windows_attribution_id
+          end
+          unless campaign_ids.nil?
+            self.campaign_ids = campaign_ids
           end
         end
 
@@ -151,6 +159,10 @@ module FacebookAds
           if attributes.has_key?(:'windows_attribution_id')
             self.windows_attribution_id = attributes[:'windows_attribution_id']
           end
+
+          if attributes.has_key?(:'campaign_ids')
+            self.campaign_ids = attributes[:'campaign_ids']
+          end
         end
 
       # Checks equality by comparing each attribute.
@@ -166,7 +178,8 @@ module FacebookAds
             install_referrer == o.install_referrer &&
             installer_package == o.installer_package &&
             url_schemes == o.url_schemes &&
-            windows_attribution_id == o.windows_attribution_id
+            windows_attribution_id == o.windows_attribution_id &&
+            campaign_ids == o.campaign_ids
       end
 
       # @see the `==` method
@@ -187,7 +200,8 @@ module FacebookAds
             install_referrer,
             installer_package,
             url_schemes,
-            windows_attribution_id
+            windows_attribution_id,
+            campaign_ids
         ].hash
       end
 
@@ -225,6 +239,9 @@ module FacebookAds
         unless windows_attribution_id.nil?
           hash['windows_attribution_id'] = windows_attribution_id
         end
+        unless campaign_ids.nil?
+          hash['campaign_ids'] = campaign_ids
+        end
         hash.to_s
       end
 
@@ -257,6 +274,9 @@ module FacebookAds
         end
         unless windows_attribution_id.nil?
           hash['windows_attribution_id'] = windows_attribution_id
+        end
+        unless campaign_ids.nil?
+          hash['campaign_ids'] = campaign_ids
         end
 
         unless extinfo.nil?

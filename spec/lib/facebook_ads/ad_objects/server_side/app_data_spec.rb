@@ -46,6 +46,7 @@ RSpec.describe 'FacebookAds::ServerSide::AppData' do
     installer_package = 'b'
     url_schemes = ['abc']
     windows_attribution_id = '123'
+    campaign_ids = '678'
     app_data = FacebookAds::ServerSide::AppData.new(
       application_tracking_enabled: application_tracking_enabled,
       advertiser_tracking_enabled: advertiser_tracking_enabled,
@@ -57,6 +58,7 @@ RSpec.describe 'FacebookAds::ServerSide::AppData' do
       installer_package: installer_package,
       url_schemes: url_schemes,
       windows_attribution_id: windows_attribution_id,
+      campaign_ids: campaign_ids,
     )
 
     expect(app_data.normalize).to eq(
@@ -70,6 +72,7 @@ RSpec.describe 'FacebookAds::ServerSide::AppData' do
       'installer_package' => installer_package,
       'url_schemes' => url_schemes,
       'windows_attribution_id' => windows_attribution_id,
+      'campaign_ids' => campaign_ids,
     )
   end
 
@@ -108,6 +111,7 @@ RSpec.describe 'FacebookAds::ServerSide::AppData' do
       installer_package: 'b',
       url_schemes: ['abc'],
       windows_attribution_id: '123',
+      campaign_ids: '678',
     )
     app_data2 = FacebookAds::ServerSide::AppData.new(
       application_tracking_enabled: true,
@@ -137,6 +141,7 @@ RSpec.describe 'FacebookAds::ServerSide::AppData' do
       installer_package: 'b',
       url_schemes: ['abc'],
       windows_attribution_id: '123',
+      campaign_ids: '678'
     )
     expect(app_data1).to eq(app_data2)
     expect(app_data1.hash).to eq(app_data2.hash)
@@ -171,6 +176,7 @@ RSpec.describe 'FacebookAds::ServerSide::AppData' do
       installer_package: 'b',
       url_schemes: ['abc'],
       windows_attribution_id: '123',
+      campaign_ids: '678'
     )
     app_data2 = FacebookAds::ServerSide::AppData.new(
       application_tracking_enabled: true,

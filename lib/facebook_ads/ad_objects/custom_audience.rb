@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -42,11 +30,10 @@ module FacebookAds
       "AUTOMOTIVE_MODEL",
       "DESTINATION",
       "FLIGHT",
+      "GENERIC",
       "HOME_LISTING",
       "HOTEL",
-      "JOB",
       "LOCAL_SERVICE_BUSINESS",
-      "LOCATION_BASED_ITEM",
       "MEDIA_TITLE",
       "OFFLINE_PRODUCT",
       "PRODUCT",
@@ -60,6 +47,11 @@ module FacebookAds
       "USER_PROVIDED_ONLY",
     ]
 
+    SUBSCRIPTION_INFO = [
+      "MESSENGER",
+      "WHATSAPP",
+    ]
+
     SUBTYPE = [
       "APP",
       "BAG_OF_ACCOUNTS",
@@ -67,10 +59,12 @@ module FacebookAds
       "CLAIM",
       "CUSTOM",
       "ENGAGEMENT",
+      "EXCLUSION",
       "FOX",
       "LOOKALIKE",
       "MANAGED",
       "MEASUREMENT",
+      "MESSENGER_SUBSCRIBER_LIST",
       "OFFLINE_CONVERSION",
       "PARTNER",
       "PRIMARY",
@@ -78,6 +72,11 @@ module FacebookAds
       "STUDY_RULE_AUDIENCE",
       "VIDEO",
       "WEBSITE",
+    ]
+
+    USE_FOR_PRODUCTS = [
+      "ADS",
+      "MARKETING_MESSAGES",
     ]
 
     ACTION_SOURCE = [
@@ -101,6 +100,7 @@ module FacebookAds
     field :household_audience, 'int'
     field :id, 'string'
     field :included_custom_audiences, { list: 'CustomAudience' }
+    field :is_eligible_for_sac_campaigns, 'bool'
     field :is_household, 'bool'
     field :is_snapshot, 'bool'
     field :is_value_based, 'bool'
@@ -136,15 +136,20 @@ module FacebookAds
     field :event_source_group, 'string'
     field :event_sources, { list: 'hash' }
     field :exclusions, { list: 'object' }
+    field :facebook_page_id, 'string'
     field :inclusions, { list: 'object' }
     field :list_of_accounts, { list: 'int' }
+    field :marketing_message_channels, 'object'
     field :origin_audience_id, 'string'
     field :parent_audience_id, 'int'
     field :partner_reference_key, 'string'
     field :prefill, 'bool'
     field :product_set_id, 'string'
+    field :subscription_info, { list: { enum: -> { SUBSCRIPTION_INFO }} }
+    field :use_for_products, { list: { enum: -> { USE_FOR_PRODUCTS }} }
     field :use_in_campaigns, 'bool'
     field :video_group_ids, { list: 'string' }
+    field :whats_app_business_phone_number_id, 'string'
 
     has_edge :adaccounts do |edge|
       edge.delete do |api|
@@ -165,6 +170,28 @@ module FacebookAds
       edge.get 'Ad' do |api|
         api.has_param :effective_status, { list: 'string' }
         api.has_param :status, { list: 'string' }
+      end
+    end
+
+    has_edge :health do |edge|
+      edge.get 'CustomAudienceHealth' do |api|
+        api.has_param :calculated_date, 'string'
+        api.has_param :processed_date, 'string'
+        api.has_param :value_aggregation_duration, 'int'
+        api.has_param :value_country, 'string'
+        api.has_param :value_currency, 'string'
+        api.has_param :value_version, 'int'
+      end
+    end
+
+    has_edge :salts do |edge|
+      edge.get 'CustomAudienceSalts' do |api|
+        api.has_param :params, { list: 'string' }
+      end
+      edge.post 'CustomAudience' do |api|
+        api.has_param :salt, 'string'
+        api.has_param :valid_from, 'datetime'
+        api.has_param :valid_to, 'datetime'
       end
     end
 

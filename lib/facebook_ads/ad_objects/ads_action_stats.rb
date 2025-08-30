@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -28,11 +16,26 @@ module FacebookAds
   class AdsActionStats < AdObject
 
     field :_1d_click, 'string'
+    field :_1d_click_all_conversions, 'string'
+    field :_1d_click_first_conversion, 'string'
+    field :_1d_ev, 'string'
+    field :_1d_ev_all_conversions, 'string'
+    field :_1d_ev_first_conversion, 'string'
     field :_1d_view, 'string'
+    field :_1d_view_all_conversions, 'string'
+    field :_1d_view_first_conversion, 'string'
     field :_28d_click, 'string'
+    field :_28d_click_all_conversions, 'string'
+    field :_28d_click_first_conversion, 'string'
     field :_28d_view, 'string'
+    field :_28d_view_all_conversions, 'string'
+    field :_28d_view_first_conversion, 'string'
     field :_7d_click, 'string'
+    field :_7d_click_all_conversions, 'string'
+    field :_7d_click_first_conversion, 'string'
     field :_7d_view, 'string'
+    field :_7d_view_all_conversions, 'string'
+    field :_7d_view_first_conversion, 'string'
     field :action_brand, 'string'
     field :action_canvas_component_id, 'string'
     field :action_canvas_component_name, 'string'
@@ -52,11 +55,18 @@ module FacebookAds
     field :action_video_sound, 'string'
     field :action_video_type, 'string'
     field :dda, 'string'
+    field :incrementality, 'string'
+    field :incrementality_all_conversions, 'string'
+    field :incrementality_first_conversion, 'string'
     field :inline, 'string'
     field :interactive_component_sticker_id, 'string'
     field :interactive_component_sticker_response, 'string'
     field :skan_click, 'string'
+    field :skan_click_second_postback, 'string'
+    field :skan_click_third_postback, 'string'
     field :skan_view, 'string'
+    field :skan_view_second_postback, 'string'
+    field :skan_view_third_postback, 'string'
     field :value, 'string'
     has_no_id
     has_no_get

@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -26,22 +14,29 @@ module FacebookAds
   # pull request for this class.
 
   class ProductCatalog < AdObject
+    ADDITIONAL_VERTICAL_OPTION = [
+      "LOCAL_DA_CATALOG",
+      "LOCAL_PRODUCTS",
+    ]
+
     VERTICAL = [
       "adoptable_pets",
-      "bookable",
       "commerce",
       "destinations",
       "flights",
+      "generic",
       "home_listings",
       "hotels",
-      "jobs",
-      "local_delivery_shipping_profiles",
       "local_service_businesses",
       "offer_items",
       "offline_commerce",
-      "ticketed_experiences",
       "transactable_items",
       "vehicles",
+    ]
+
+    ENABLED_COLLAB_TERMS = [
+      "ENFORCE_CREATE_NEW_AD_ACCOUNT",
+      "ENFORCE_SHARE_AD_PERFORMANCE_ACCESS",
     ]
 
     PERMITTED_ROLES = [
@@ -50,12 +45,14 @@ module FacebookAds
     ]
 
     PERMITTED_TASKS = [
+      "AA_ANALYZE",
       "ADVERTISE",
       "MANAGE",
       "MANAGE_AR",
     ]
 
     TASKS = [
+      "AA_ANALYZE",
       "ADVERTISE",
       "MANAGE",
       "MANAGE_AR",
@@ -94,6 +91,13 @@ module FacebookAds
       "WATCHES",
     ]
 
+    EVENT_NAME = [
+      "ADD_TO_CART",
+      "PURCHASE",
+      "TEST",
+      "VIEW_ITEM",
+    ]
+
 
     field :ad_account_to_collaborative_ads_share_settings, 'CollaborativeAdsShareSettings'
     field :agency_collaborative_ads_share_settings, 'CollaborativeAdsShareSettings'
@@ -107,11 +111,15 @@ module FacebookAds
     field :feed_count, 'int'
     field :id, 'string'
     field :is_catalog_segment, 'bool'
+    field :is_local_catalog, 'bool'
     field :name, 'string'
     field :owner_business, 'Business'
     field :product_count, 'int'
     field :store_catalog_settings, 'StoreCatalogSettings'
+    field :user_access_expire_time, 'datetime'
     field :vertical, 'string'
+    field :additional_vertical_option, { enum: -> { ADDITIONAL_VERTICAL_OPTION }}
+    field :business_metadata, 'hash'
     field :catalog_segment_filter, 'object'
     field :catalog_segment_product_set_id, 'string'
     field :destination_catalog_settings, 'hash'
@@ -126,15 +134,11 @@ module FacebookAds
       edge.get 'Business'
       edge.post 'ProductCatalog' do |api|
         api.has_param :business, 'string'
+        api.has_param :enabled_collab_terms, { list: { enum: -> { ProductCatalog::ENABLED_COLLAB_TERMS }} }
         api.has_param :permitted_roles, { list: { enum: -> { ProductCatalog::PERMITTED_ROLES }} }
         api.has_param :permitted_tasks, { list: { enum: -> { ProductCatalog::PERMITTED_TASKS }} }
+        api.has_param :skip_defaults, 'bool'
         api.has_param :utm_settings, 'hash'
-      end
-    end
-
-    has_edge :ar_effects_batch_status do |edge|
-      edge.get 'ArEffectsBatchStatus' do |api|
-        api.has_param :handle, 'string'
       end
     end
 
@@ -169,7 +173,7 @@ module FacebookAds
 
     has_edge :catalog_store do |edge|
       edge.post 'StoreCatalogSettings' do |api|
-        api.has_param :page, 'int'
+        api.has_param :page, 'string'
       end
     end
 
@@ -191,12 +195,14 @@ module FacebookAds
       end
     end
 
-    has_edge :collaborative_ads_event_stats do |edge|
-      edge.get 'CatalogSegmentAllMatchCountLaser'
+    has_edge :check_marketplace_partner_sellers_status do |edge|
+      edge.get 'ProductCatalogCheckMarketplacePartnerSellersStatus' do |api|
+        api.has_param :session_id, 'string'
+      end
     end
 
     has_edge :collaborative_ads_lsb_image_bank do |edge|
-      edge.get
+      edge.get 'CpasLsbImageBank'
     end
 
     has_edge :collaborative_ads_share_settings do |edge|
@@ -204,10 +210,16 @@ module FacebookAds
     end
 
     has_edge :cpas_lsb_image_bank do |edge|
-      edge.post do |api|
+      edge.post 'CpasLsbImageBank' do |api|
         api.has_param :ad_group_id, 'int'
         api.has_param :agency_business_id, 'int'
         api.has_param :backup_image_urls, { list: 'string' }
+      end
+    end
+
+    has_edge :creator_asset_creatives do |edge|
+      edge.get 'CreatorAssetCreative' do |api|
+        api.has_param :moderation_status, { enum: -> { CreatorAssetCreative::MODERATION_STATUS }}
       end
     end
 
@@ -254,6 +266,14 @@ module FacebookAds
       edge.get 'Flight' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
+      end
+    end
+
+    has_edge :geolocated_items_batch do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :allow_upsert, 'bool'
+        api.has_param :item_type, 'string'
+        api.has_param :requests, 'hash'
       end
     end
 
@@ -333,6 +353,22 @@ module FacebookAds
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'
         api.has_param :version, 'int'
+      end
+    end
+
+    has_edge :marketplace_partner_sellers_details do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :requests, 'hash'
+      end
+    end
+
+    has_edge :marketplace_partner_signals do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :event_name, { enum: -> { ProductCatalog::EVENT_NAME }}
+        api.has_param :event_source_url, 'string'
+        api.has_param :event_time, 'datetime'
+        api.has_param :order_data, 'hash'
+        api.has_param :user_data, 'hash'
       end
     end
 
@@ -416,8 +452,8 @@ module FacebookAds
       end
       edge.post 'ProductItem' do |api|
         api.has_param :additional_image_urls, { list: 'string' }
-        api.has_param :additional_uploaded_image_ids, { list: 'string' }
         api.has_param :additional_variant_attributes, 'hash'
+        api.has_param :age_group, { enum: -> { ProductItem::AGE_GROUP }}
         api.has_param :android_app_name, 'string'
         api.has_param :android_class, 'string'
         api.has_param :android_package, 'string'
@@ -467,13 +503,15 @@ module FacebookAds
         api.has_param :material, 'string'
         api.has_param :mobile_link, 'string'
         api.has_param :name, 'string'
-        api.has_param :offer_price_amount, 'int'
-        api.has_param :offer_price_end_date, 'datetime'
-        api.has_param :offer_price_start_date, 'datetime'
         api.has_param :ordering_index, 'int'
         api.has_param :origin_country, { enum: -> { ProductItem::ORIGIN_COUNTRY }}
         api.has_param :pattern, 'string'
         api.has_param :price, 'int'
+        api.has_param :product_priority_0, 'double'
+        api.has_param :product_priority_1, 'double'
+        api.has_param :product_priority_2, 'double'
+        api.has_param :product_priority_3, 'double'
+        api.has_param :product_priority_4, 'double'
         api.has_param :product_type, 'string'
         api.has_param :quantity_to_sell_on_facebook, 'int'
         api.has_param :retailer_id, 'string'
@@ -491,6 +529,12 @@ module FacebookAds
         api.has_param :windows_phone_app_id, 'string'
         api.has_param :windows_phone_app_name, 'string'
         api.has_param :windows_phone_url, 'string'
+      end
+    end
+
+    has_edge :update_generated_image_config do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :data, { list: 'object' }
       end
     end
 
@@ -537,6 +581,20 @@ module FacebookAds
         api.has_param :vehicle_type, { enum: -> { Vehicle::VEHICLE_TYPE }}
         api.has_param :vin, 'string'
         api.has_param :year, 'int'
+      end
+    end
+
+    has_edge :version_configs do |edge|
+      edge.get 'CatalogContentVersionConfig'
+    end
+
+    has_edge :version_items_batch do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :allow_upsert, 'bool'
+        api.has_param :item_type, 'string'
+        api.has_param :item_version, 'string'
+        api.has_param :requests, 'hash'
+        api.has_param :version, 'int'
       end
     end
 

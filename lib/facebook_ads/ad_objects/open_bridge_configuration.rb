@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -27,13 +15,24 @@ module FacebookAds
 
   class OpenBridgeConfiguration < AdObject
 
-    field :access_key, 'string'
     field :active, 'bool'
+    field :cloud_provider, 'string'
+    field :cloud_region, 'string'
+    field :destination_id, 'string'
     field :endpoint, 'string'
+    field :fallback_domain, 'string'
+    field :first_party_domain, 'string'
     field :host_business_id, 'string'
-    field :host_external_id, 'string'
     field :id, 'string'
+    field :instance_id, 'string'
+    field :instance_version, 'string'
+    field :is_sgw_instance, 'bool'
+    field :is_sgw_pixel_from_meta_pixel, 'bool'
+    field :partner_name, 'string'
     field :pixel_id, 'string'
+    field :sgw_account_id, 'string'
+    field :sgw_instance_url, 'string'
+    field :sgw_pixel_id, 'string'
 
   end
 end

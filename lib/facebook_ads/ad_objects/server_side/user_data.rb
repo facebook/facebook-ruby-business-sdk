@@ -239,6 +239,11 @@ module FacebookAds
         @madids = [madid]
       end
 
+      # ctwaClid ID of a conversation that was started on WhatsApp
+      attr_accessor :ctwa_clid
+
+      # pageId ID of the page that the ad is associated with
+      attr_accessor :page_id
 
       #UserData is a set of identifiers Facebook can use for targeted attribution
       # @param [String] email
@@ -280,13 +285,16 @@ module FacebookAds
       # @param [Array<String>] anon_ids
       # @param [String] madid
       # @param [Array<String>] madids
+      # @param [String] ctwa_clid
+      # @param [String] page_id
       def initialize(email: nil, emails: nil, phone: nil, phones: nil, gender: nil, genders: nil,
                      date_of_birth: nil, dates_of_birth: nil, last_name: nil, last_names: nil,
                      first_name: nil, first_names: nil, city: nil, cities: nil, state: nil, states: nil,
                      country_code: nil, country_codes: nil, zip_code: nil, zip_codes: nil,
                      external_id: nil, external_ids: nil, client_ip_address: nil,
                      client_user_agent: nil, fbc: nil, fbp: nil, subscription_id: nil, fb_login_id: nil, lead_id: nil,
-                     f5first: nil, f5last: nil, fi: nil, dobd: nil, dobm: nil, doby: nil, anon_id: nil, anon_ids: nil, madid:nil, madids: nil)
+                     f5first: nil, f5last: nil, fi: nil, dobd: nil, dobm: nil, doby: nil, anon_id: nil, anon_ids: nil, madid:nil, madids: nil,
+                     ctwa_clid: nil, page_id: nil)
         validate_constructor_values(emails, email, 'emails', 'email')
         validate_constructor_values(phones, phone, 'phones', 'phone')
         validate_constructor_values(genders, gender, 'genders', 'gender')
@@ -415,6 +423,12 @@ module FacebookAds
         end
         unless madids.nil?
           self.madids = madids
+        end
+        unless ctwa_clid.nil?
+          self.ctwa_clid = ctwa_clid
+        end
+        unless page_id.nil?
+          self.page_id = page_id
         end
       end
 
@@ -551,6 +565,14 @@ module FacebookAds
         elsif attributes.has_key?(:'madid')
           self.madids = [attributes[:'madid']]
         end
+
+        if attributes.has_key?(:'ctwa_clid')
+          self.ctwa_clid = [attributes[:'ctwa_clid']]
+        end
+
+        if attributes.has_key?(:'page_id')
+          self.page_id = [attributes[:'page_id']]
+        end
       end
 
       # Checks equality by comparing each attribute.
@@ -582,7 +604,9 @@ module FacebookAds
             dobm == o.dobm &&
             doby == o.doby &&
             anon_ids == o.anon_ids &&
-            madids == o.madids
+            madids == o.madids &&
+            ctwa_clid == ctwa_clid &&
+            page_id == page_id
       end
 
       # @see the `==` method
@@ -619,7 +643,9 @@ module FacebookAds
             dobm,
             doby,
             anon_ids,
-            madids
+            madids,
+            ctwa_clid,
+            page_id
         ].hash
 
       end
@@ -706,6 +732,12 @@ module FacebookAds
         unless madids.nil?
           hash['madids'] = madids
         end
+        unless ctwa_clid.nil?
+          hash['ctwa_clid'] = ctwa_clid
+        end
+        unless page_id.nil?
+          hash['page_id'] = page_id
+        end
         hash.to_s
       end
 
@@ -790,6 +822,12 @@ module FacebookAds
         end
         unless madid.nil?
           hash['madid'] = madids
+        end
+        unless ctwa_clid.nil?
+          hash['ctwa_clid'] = ctwa_clid
+        end
+        unless page_id.nil?
+          hash['page_id'] =  page_id
         end
         hash.select{|k, v| !v.nil?}
       end

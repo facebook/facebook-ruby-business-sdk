@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -92,11 +80,6 @@ module FacebookAds
       "validate_only",
     ]
 
-    META_REWARD_ADGROUP_STATUS = [
-      "ACTIVE",
-      "INACTIVE",
-    ]
-
     OPERATOR = [
       "ALL",
       "ANY",
@@ -110,7 +93,10 @@ module FacebookAds
 
 
     field :account_id, 'string'
+    field :ad_active_time, 'string'
     field :ad_review_feedback, 'AdgroupReviewFeedback'
+    field :ad_schedule_end_time, 'datetime'
+    field :ad_schedule_start_time, 'datetime'
     field :adlabels, { list: 'AdLabel' }
     field :adset, 'AdSet'
     field :adset_id, 'string'
@@ -124,6 +110,7 @@ module FacebookAds
     field :conversion_specs, { list: 'ConversionActionQuery' }
     field :created_time, 'datetime'
     field :creative, 'AdCreative'
+    field :creative_asset_groups_spec, 'AdCreativeAssetGroupsSpec'
     field :demolink_hash, 'string'
     field :display_sequence, 'int'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
@@ -132,8 +119,8 @@ module FacebookAds
     field :id, 'string'
     field :issues_info, { list: 'AdgroupIssuesInfo' }
     field :last_updated_by_app_id, 'string'
-    field :meta_reward_adgroup_status, 'string'
     field :name, 'string'
+    field :placement, 'Placement'
     field :preview_shareable_link, 'string'
     field :priority, 'int'
     field :recommendations, { list: 'AdRecommendation' }
@@ -172,11 +159,12 @@ module FacebookAds
       edge.get 'Ad' do |api|
         api.has_param :date_preset, { enum: -> { Ad::DATE_PRESET }}
         api.has_param :effective_status, { list: 'string' }
-        api.has_param :time_range, 'object'
+        api.has_param :time_range, 'hash'
         api.has_param :updated_since, 'int'
       end
       edge.post 'Ad' do |api|
         api.has_param :adset_id, 'string'
+        api.has_param :creative_parameters, 'AdCreative'
         api.has_param :rename_options, 'object'
         api.has_param :status_option, { enum: -> { Ad::STATUS_OPTION }}
       end
@@ -196,13 +184,14 @@ module FacebookAds
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
+        api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
         api.has_param :sort, { list: 'string' }
         api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
-        api.has_param :time_range, 'object'
-        api.has_param :time_ranges, { list: 'object' }
+        api.has_param :time_range, 'hash'
+        api.has_param :time_ranges, { list: 'hash' }
         api.has_param :use_account_attribution_setting, 'bool'
         api.has_param :use_unified_attribution_setting, 'bool'
       end
@@ -219,13 +208,14 @@ module FacebookAds
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
+        api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
         api.has_param :sort, { list: 'string' }
         api.has_param :summary, { list: 'string' }
         api.has_param :summary_action_breakdowns, { list: { enum: -> { AdsInsights::SUMMARY_ACTION_BREAKDOWNS }} }
         api.has_param :time_increment, 'string'
-        api.has_param :time_range, 'object'
-        api.has_param :time_ranges, { list: 'object' }
+        api.has_param :time_range, 'hash'
+        api.has_param :time_ranges, { list: 'hash' }
         api.has_param :use_account_attribution_setting, 'bool'
         api.has_param :use_unified_attribution_setting, 'bool'
       end

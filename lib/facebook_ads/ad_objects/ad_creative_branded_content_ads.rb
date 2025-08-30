@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -28,9 +16,18 @@ module FacebookAds
   class AdCreativeBrandedContentAds < AdObject
 
     field :ad_format, 'int'
+    field :content_search_input, 'string'
     field :creator_ad_permission_type, 'string'
+    field :facebook_boost_post_access_token, 'string'
     field :instagram_boost_post_access_token, 'string'
-    field :partners, { list: 'object' }
+    field :is_mca_internal, 'bool'
+    field :parent_source_facebook_post_id, 'string'
+    field :parent_source_instagram_media_id, 'string'
+    field :partners, { list: 'AdCreativeBrandedContentAdsPartners' }
+    field :product_set_partner_selection_status, 'string'
+    field :promoted_page_id, 'string'
+    field :testimonial, 'string'
+    field :testimonial_locale, 'string'
     field :ui_version, 'int'
     has_no_id
     has_no_get

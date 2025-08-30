@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -27,6 +15,7 @@ module FacebookAds
 
   class AdActivity < AdObject
     EVENT_TYPE = [
+      "accept_custom_audience_appeal",
       "account_spending_limit_reached",
       "ad_account_add_user_to_role",
       "ad_account_billing_charge",
@@ -39,21 +28,27 @@ module FacebookAds
       "ad_account_remove_user_from_role",
       "ad_account_reset_spend_limit",
       "ad_account_set_business_information",
+      "ad_account_update_audience_type_url_parameter",
       "ad_account_update_spend_limit",
       "ad_account_update_status",
       "ad_review_approved",
       "ad_review_declined",
+      "adaccount_update_audience_segment",
       "add_funding_source",
       "add_images",
+      "apply_restrictions_custom_audience",
       "billing_event",
       "campaign_ended",
       "campaign_spending_limit_reached",
       "conversion_event_updated",
       "create_ad",
       "create_ad_set",
+      "create_adaccount_agency_fee",
       "create_audience",
       "create_campaign_group",
+      "create_campaign_group_agency_fee",
       "create_campaign_legacy",
+      "create_custom_audience_appeal",
       "delete_audience",
       "delete_images",
       "di_ad_set_learning_stage_exit",
@@ -65,6 +60,7 @@ module FacebookAds
       "lifetime_budget_spent",
       "merge_campaigns",
       "receive_audience",
+      "reject_custom_audience_appeal",
       "remove_funding_source",
       "remove_shared_audience",
       "share_audience",
@@ -91,18 +87,27 @@ module FacebookAds
       "update_ad_set_spend_cap",
       "update_ad_set_target_spec",
       "update_ad_targets_spec",
+      "update_adaccount_agency_fee",
       "update_adgroup_stop_delivery",
       "update_audience",
       "update_campaign_ad_scheduling",
       "update_campaign_budget",
       "update_campaign_budget_optimization_toggling_status",
+      "update_campaign_budget_scheduling_state",
+      "update_campaign_conversion_goal",
+      "update_campaign_delivery_destination",
       "update_campaign_delivery_type",
       "update_campaign_group_ad_scheduling",
+      "update_campaign_group_agency_fee",
+      "update_campaign_group_budget_scheduling_state",
       "update_campaign_group_delivery_type",
+      "update_campaign_group_high_demand_periods",
       "update_campaign_group_spend_cap",
+      "update_campaign_high_demand_periods",
       "update_campaign_name",
       "update_campaign_run_status",
       "update_campaign_schedule",
+      "update_campaign_value_adjustment_rule",
       "update_delivery_type_cross_level_shift",
     ]
 

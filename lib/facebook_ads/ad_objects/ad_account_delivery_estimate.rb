@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -27,9 +15,11 @@ module FacebookAds
 
   class AdAccountDeliveryEstimate < AdObject
     OPTIMIZATION_GOAL = [
+      "ADVERTISER_SILOED_VALUE",
       "AD_RECALL_LIFT",
       "APP_INSTALLS",
       "APP_INSTALLS_AND_OFFSITE_CONVERSIONS",
+      "AUTOMATIC_OBJECTIVE",
       "CONVERSATIONS",
       "DERIVED_EVENTS",
       "ENGAGED_USERS",
@@ -39,15 +29,19 @@ module FacebookAds
       "LANDING_PAGE_VIEWS",
       "LEAD_GENERATION",
       "LINK_CLICKS",
+      "MEANINGFUL_CALL_ATTEMPT",
       "MESSAGING_APPOINTMENT_CONVERSION",
       "MESSAGING_PURCHASE_CONVERSION",
       "NONE",
       "OFFSITE_CONVERSIONS",
       "PAGE_LIKES",
       "POST_ENGAGEMENT",
+      "PROFILE_AND_PAGE_ENGAGEMENT",
+      "PROFILE_VISIT",
       "QUALITY_CALL",
       "QUALITY_LEAD",
       "REACH",
+      "REMINDERS_SET",
       "SUBSCRIBERS",
       "THRUPLAY",
       "VALUE",

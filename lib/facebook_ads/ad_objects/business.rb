@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -26,6 +14,19 @@ module FacebookAds
   # pull request for this class.
 
   class Business < AdObject
+    VERIFICATION_STATUS = [
+      "expired",
+      "failed",
+      "ineligible",
+      "not_verified",
+      "pending",
+      "pending_need_more_info",
+      "pending_submission",
+      "rejected",
+      "revoked",
+      "verified",
+    ]
+
     TWO_FACTOR_TYPE = [
       "admin_required",
       "all_required",
@@ -47,6 +48,7 @@ module FacebookAds
       "LUXURY",
       "MARKETING",
       "NON_PROFIT",
+      "NOT_SET",
       "ORGANIZATIONS_AND_ASSOCIATIONS",
       "OTHER",
       "PROFESSIONAL_SERVICES",
@@ -62,6 +64,7 @@ module FacebookAds
       "ANALYZE",
       "CASHIER_ROLE",
       "CREATE_CONTENT",
+      "GLOBAL_STRUCTURE_MANAGEMENT",
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
@@ -75,6 +78,7 @@ module FacebookAds
       "PROFILE_PLUS_CREATE_CONTENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
+      "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
@@ -92,11 +96,496 @@ module FacebookAds
       "PUBLISHER",
     ]
 
+    TIMEZONE_ID = [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20",
+      "21",
+      "22",
+      "23",
+      "24",
+      "25",
+      "26",
+      "27",
+      "28",
+      "29",
+      "30",
+      "31",
+      "32",
+      "33",
+      "34",
+      "35",
+      "36",
+      "37",
+      "38",
+      "39",
+      "40",
+      "41",
+      "42",
+      "43",
+      "44",
+      "45",
+      "46",
+      "47",
+      "48",
+      "49",
+      "50",
+      "51",
+      "52",
+      "53",
+      "54",
+      "55",
+      "56",
+      "57",
+      "58",
+      "59",
+      "60",
+      "61",
+      "62",
+      "63",
+      "64",
+      "65",
+      "66",
+      "67",
+      "68",
+      "69",
+      "70",
+      "71",
+      "72",
+      "73",
+      "74",
+      "75",
+      "76",
+      "77",
+      "78",
+      "79",
+      "80",
+      "81",
+      "82",
+      "83",
+      "84",
+      "85",
+      "86",
+      "87",
+      "88",
+      "89",
+      "90",
+      "91",
+      "92",
+      "93",
+      "94",
+      "95",
+      "96",
+      "97",
+      "98",
+      "99",
+      "100",
+      "101",
+      "102",
+      "103",
+      "104",
+      "105",
+      "106",
+      "107",
+      "108",
+      "109",
+      "110",
+      "111",
+      "112",
+      "113",
+      "114",
+      "115",
+      "116",
+      "117",
+      "118",
+      "119",
+      "120",
+      "121",
+      "122",
+      "123",
+      "124",
+      "125",
+      "126",
+      "127",
+      "128",
+      "129",
+      "130",
+      "131",
+      "132",
+      "133",
+      "134",
+      "135",
+      "136",
+      "137",
+      "138",
+      "139",
+      "140",
+      "141",
+      "142",
+      "143",
+      "144",
+      "145",
+      "146",
+      "147",
+      "148",
+      "149",
+      "150",
+      "151",
+      "152",
+      "153",
+      "154",
+      "155",
+      "156",
+      "157",
+      "158",
+      "159",
+      "160",
+      "161",
+      "162",
+      "163",
+      "164",
+      "165",
+      "166",
+      "167",
+      "168",
+      "169",
+      "170",
+      "171",
+      "172",
+      "173",
+      "174",
+      "175",
+      "176",
+      "177",
+      "178",
+      "179",
+      "180",
+      "181",
+      "182",
+      "183",
+      "184",
+      "185",
+      "186",
+      "187",
+      "188",
+      "189",
+      "190",
+      "191",
+      "192",
+      "193",
+      "194",
+      "195",
+      "196",
+      "197",
+      "198",
+      "199",
+      "200",
+      "201",
+      "202",
+      "203",
+      "204",
+      "205",
+      "206",
+      "207",
+      "208",
+      "209",
+      "210",
+      "211",
+      "212",
+      "213",
+      "214",
+      "215",
+      "216",
+      "217",
+      "218",
+      "219",
+      "220",
+      "221",
+      "222",
+      "223",
+      "224",
+      "225",
+      "226",
+      "227",
+      "228",
+      "229",
+      "230",
+      "231",
+      "232",
+      "233",
+      "234",
+      "235",
+      "236",
+      "237",
+      "238",
+      "239",
+      "240",
+      "241",
+      "242",
+      "243",
+      "244",
+      "245",
+      "246",
+      "247",
+      "248",
+      "249",
+      "250",
+      "251",
+      "252",
+      "253",
+      "254",
+      "255",
+      "256",
+      "257",
+      "258",
+      "259",
+      "260",
+      "261",
+      "262",
+      "263",
+      "264",
+      "265",
+      "266",
+      "267",
+      "268",
+      "269",
+      "270",
+      "271",
+      "272",
+      "273",
+      "274",
+      "275",
+      "276",
+      "277",
+      "278",
+      "279",
+      "280",
+      "281",
+      "282",
+      "283",
+      "284",
+      "285",
+      "286",
+      "287",
+      "288",
+      "289",
+      "290",
+      "291",
+      "292",
+      "293",
+      "294",
+      "295",
+      "296",
+      "297",
+      "298",
+      "299",
+      "300",
+      "301",
+      "302",
+      "303",
+      "304",
+      "305",
+      "306",
+      "307",
+      "308",
+      "309",
+      "310",
+      "311",
+      "312",
+      "313",
+      "314",
+      "315",
+      "316",
+      "317",
+      "318",
+      "319",
+      "320",
+      "321",
+      "322",
+      "323",
+      "324",
+      "325",
+      "326",
+      "327",
+      "328",
+      "329",
+      "330",
+      "331",
+      "332",
+      "333",
+      "334",
+      "335",
+      "336",
+      "337",
+      "338",
+      "339",
+      "340",
+      "341",
+      "342",
+      "343",
+      "344",
+      "345",
+      "346",
+      "347",
+      "348",
+      "349",
+      "350",
+      "351",
+      "352",
+      "353",
+      "354",
+      "355",
+      "356",
+      "357",
+      "358",
+      "359",
+      "360",
+      "361",
+      "362",
+      "363",
+      "364",
+      "365",
+      "366",
+      "367",
+      "368",
+      "369",
+      "370",
+      "371",
+      "372",
+      "373",
+      "374",
+      "375",
+      "376",
+      "377",
+      "378",
+      "379",
+      "380",
+      "381",
+      "382",
+      "383",
+      "384",
+      "385",
+      "386",
+      "387",
+      "388",
+      "389",
+      "390",
+      "391",
+      "392",
+      "393",
+      "394",
+      "395",
+      "396",
+      "397",
+      "398",
+      "399",
+      "400",
+      "401",
+      "402",
+      "403",
+      "404",
+      "405",
+      "406",
+      "407",
+      "408",
+      "409",
+      "410",
+      "411",
+      "412",
+      "413",
+      "414",
+      "415",
+      "416",
+      "417",
+      "418",
+      "419",
+      "420",
+      "421",
+      "422",
+      "423",
+      "424",
+      "425",
+      "426",
+      "427",
+      "428",
+      "429",
+      "430",
+      "431",
+      "432",
+      "433",
+      "434",
+      "435",
+      "436",
+      "437",
+      "438",
+      "439",
+      "440",
+      "441",
+      "442",
+      "443",
+      "444",
+      "445",
+      "446",
+      "447",
+      "448",
+      "449",
+      "450",
+      "451",
+      "452",
+      "453",
+      "454",
+      "455",
+      "456",
+      "457",
+      "458",
+      "459",
+      "460",
+      "461",
+      "462",
+      "463",
+      "464",
+      "465",
+      "466",
+      "467",
+      "468",
+      "469",
+      "470",
+      "471",
+      "472",
+      "473",
+      "474",
+      "475",
+      "476",
+      "477",
+      "478",
+      "479",
+      "480",
+    ]
+
     PAGE_PERMITTED_TASKS = [
       "ADVERTISE",
       "ANALYZE",
       "CASHIER_ROLE",
       "CREATE_CONTENT",
+      "GLOBAL_STRUCTURE_MANAGEMENT",
       "MANAGE",
       "MANAGE_JOBS",
       "MANAGE_LEADS",
@@ -110,6 +599,7 @@ module FacebookAds
       "PROFILE_PLUS_CREATE_CONTENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
+      "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
       "PROFILE_PLUS_MANAGE",
       "PROFILE_PLUS_MANAGE_LEADS",
       "PROFILE_PLUS_MESSAGING",
@@ -118,6 +608,38 @@ module FacebookAds
       "PROFILE_PLUS_REVENUE",
       "READ_PAGE_MAILBOXES",
       "VIEW_MONETIZATION_INSIGHTS",
+    ]
+
+    BUSINESS_VERTICAL = [
+      "ADULT_PRODUCTS_AND_SERVICES",
+      "ALCOHOL_AND_TOBACCO",
+      "AUTOMOTIVE_DEALERS",
+      "BODY_PARTS_FLUIDS",
+      "BUSINESS_AND_UTILITY",
+      "CONTENT_AND_APPS",
+      "CREATORS_AND_CELEBRITIES",
+      "DATING",
+      "DRUGS",
+      "ENDANGERED_SPECIES",
+      "FIREARMS",
+      "FRAUDULENT_MISLEADING_OFFENSIVE",
+      "GAMBLING",
+      "GROCERY_AND_CONVENIENCE_STORE",
+      "HAZARDOUS_GOODS_AND_MATERIALS",
+      "HOME",
+      "HOME_AND_AUTO_MANUFACTURING",
+      "LIFESTYLE",
+      "LIVE_NON_ENDANGERED_SPECIES",
+      "LOANS_DEBT_COLLECTION_BAIL_BONDS",
+      "LOCAL_EVENTS",
+      "MEDICAL_HEALTHCARE",
+      "MULTILEVEL_MARKETING",
+      "NON_PROFIT_AND_RELIGIOUS_ORGS",
+      "PROFESSIONAL",
+      "REAL_VIRTUAL_FAKE_CURRENCY",
+      "RESTAURANTS",
+      "RETAIL",
+      "TRANSPORTATION_AND_ACCOMMODATION",
     ]
 
     SUBVERTICAL_V2 = [
@@ -344,7 +866,8 @@ module FacebookAds
     field :two_factor_type, 'string'
     field :updated_by, 'object'
     field :updated_time, 'datetime'
-    field :verification_status, 'string'
+    field :user_access_expire_time, 'datetime'
+    field :verification_status, { enum: -> { VERIFICATION_STATUS }}
     field :vertical, 'string'
     field :vertical_id, 'int'
     has_no_delete
@@ -358,9 +881,23 @@ module FacebookAds
       end
     end
 
+    has_edge :ad_account_infos do |edge|
+      edge.get 'AlmAdAccountInfo' do |api|
+        api.has_param :ad_account_id, 'string'
+        api.has_param :parent_advertiser_id, 'string'
+        api.has_param :user_id, 'string'
+      end
+    end
+
     has_edge :ad_accounts do |edge|
       edge.delete do |api|
         api.has_param :adaccount_id, 'string'
+      end
+    end
+
+    has_edge :ad_review_requests do |edge|
+      edge.post do |api|
+        api.has_param :ad_account_ids, { list: 'string' }
       end
     end
 
@@ -421,6 +958,7 @@ module FacebookAds
         api.has_param :metrics, { list: { enum: -> { AdNetworkAnalyticsSyncQueryResult::METRICS }} }
         api.has_param :ordering_column, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_COLUMN }}
         api.has_param :ordering_type, { enum: -> { AdNetworkAnalyticsSyncQueryResult::ORDERING_TYPE }}
+        api.has_param :should_include_until, 'bool'
         api.has_param :since, 'datetime'
         api.has_param :until, 'datetime'
       end
@@ -443,14 +981,28 @@ module FacebookAds
       end
     end
 
+    has_edge :ads_dataset do |edge|
+      edge.get 'AdsDataset' do |api|
+        api.has_param :id_filter, 'string'
+        api.has_param :name_filter, 'string'
+        api.has_param :sort_by, { enum: -> { AdsDataset::SORT_BY }}
+      end
+      edge.post 'Business' do |api|
+        api.has_param :ad_account_id, 'string'
+        api.has_param :app_id, 'string'
+        api.has_param :is_crm, 'bool'
+        api.has_param :name, 'string'
+      end
+    end
+
     has_edge :ads_reporting_mmm_reports do |edge|
-      edge.get do |api|
+      edge.get 'AdsReportBuilderMmmReport' do |api|
         api.has_param :filtering, { list: 'hash' }
       end
     end
 
     has_edge :ads_reporting_mmm_schedulers do |edge|
-      edge.get
+      edge.get 'AdsReportBuilderMmmReportScheduler'
     end
 
     has_edge :adspixels do |edge|
@@ -482,16 +1034,27 @@ module FacebookAds
       end
     end
 
+    has_edge :bm_review_requests do |edge|
+      edge.post do |api|
+        api.has_param :business_manager_ids, { list: 'string' }
+      end
+    end
+
     has_edge :business_asset_groups do |edge|
       edge.get 'BusinessAssetGroup'
     end
 
     has_edge :business_invoices do |edge|
       edge.get 'OmegaCustomerTrx' do |api|
+        api.has_param :account_ids, { list: 'int' }
+        api.has_param :advertiser_name, 'string'
+        api.has_param :billing_period_end, 'string'
+        api.has_param :billing_period_start, 'string'
         api.has_param :end_date, 'string'
         api.has_param :invoice_id, 'string'
         api.has_param :issue_end_date, 'string'
         api.has_param :issue_start_date, 'string'
+        api.has_param :product_types, { list: { enum: -> { OmegaCustomerTrx::PRODUCT_TYPES }} }
         api.has_param :root_id, 'int'
         api.has_param :start_date, 'string'
         api.has_param :type, { enum: -> { OmegaCustomerTrx::TYPE }}
@@ -502,12 +1065,14 @@ module FacebookAds
       edge.get 'BusinessUser'
       edge.post 'BusinessUser' do |api|
         api.has_param :email, 'string'
+        api.has_param :invited_user_type, { list: { enum: -> { BusinessUser::INVITED_USER_TYPE }} }
         api.has_param :role, { enum: -> { BusinessUser::ROLE }}
+        api.has_param :tasks, { list: { enum: -> { BusinessUser::TASKS }} }
       end
     end
 
     has_edge :businessprojects do |edge|
-      edge.get
+      edge.get 'BusinessProject'
     end
 
     has_edge :claim_custom_conversions do |edge|
@@ -529,8 +1094,12 @@ module FacebookAds
       end
     end
 
+    has_edge :client_instagram_assets do |edge|
+      edge.get 'InstagramBusinessAsset'
+    end
+
     has_edge :client_offsite_signal_container_business_objects do |edge|
-      edge.get
+      edge.get 'OffsiteSignalContainerBusinessObject'
     end
 
     has_edge :client_pages do |edge|
@@ -598,12 +1167,21 @@ module FacebookAds
       edge.get 'CpasMerchantConfig'
     end
 
+    has_edge :creative_folders do |edge|
+      edge.post 'BusinessCreativeFolder' do |api|
+        api.has_param :description, 'string'
+        api.has_param :name, 'string'
+        api.has_param :parent_folder_id, 'string'
+      end
+    end
+
     has_edge :creditcards do |edge|
       edge.get 'CreditCard'
     end
 
     has_edge :customconversions do |edge|
       edge.post 'CustomConversion' do |api|
+        api.has_param :action_source_type, { enum: -> { CustomConversion::ACTION_SOURCE_TYPE }}
         api.has_param :advanced_rule, 'string'
         api.has_param :custom_event_type, { enum: -> { CustomConversion::CUSTOM_EVENT_TYPE }}
         api.has_param :default_conversion_value, 'double'
@@ -611,12 +1189,6 @@ module FacebookAds
         api.has_param :event_source_id, 'string'
         api.has_param :name, 'string'
         api.has_param :rule, 'string'
-      end
-    end
-
-    has_edge :draft_negative_keyword_lists do |edge|
-      edge.post do |api|
-        api.has_param :negative_keyword_list_file, 'file'
       end
     end
 
@@ -629,7 +1201,7 @@ module FacebookAds
     end
 
     has_edge :extendedcreditapplications do |edge|
-      edge.get do |api|
+      edge.get 'ExtendedCreditApplication' do |api|
         api.has_param :only_show_pending, 'bool'
       end
     end
@@ -637,6 +1209,16 @@ module FacebookAds
     has_edge :extendedcredits do |edge|
       edge.get 'ExtendedCredit' do |api|
         api.has_param :order_by_is_owned_credential, 'bool'
+      end
+    end
+
+    has_edge :images do |edge|
+      edge.post 'BusinessImage' do |api|
+        api.has_param :ad_placements_validation_only, 'bool'
+        api.has_param :bytes, 'string'
+        api.has_param :creative_folder_id, 'string'
+        api.has_param :name, 'string'
+        api.has_param :validation_ad_placements, { list: { enum: -> { BusinessImage::VALIDATION_AD_PLACEMENTS }} }
       end
     end
 
@@ -651,7 +1233,7 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :instagram_account, 'string'
       end
-      edge.get 'InstagramUser'
+      edge.get 'IgUser'
     end
 
     has_edge :instagram_business_accounts do |edge|
@@ -670,8 +1252,14 @@ module FacebookAds
         api.has_param :survey_business_type, { enum: -> { Business::SURVEY_BUSINESS_TYPE }}
         api.has_param :survey_num_assets, 'int'
         api.has_param :survey_num_people, 'int'
-        api.has_param :timezone_id, 'int'
+        api.has_param :timezone_id, { enum: -> { Business::TIMEZONE_ID }}
         api.has_param :vertical, { enum: -> { Business::VERTICAL }}
+      end
+    end
+
+    has_edge :managed_partner_ads_funding_source_details do |edge|
+      edge.get 'FundingSourceDetailsCoupon' do |api|
+        api.has_param :year_quarter, 'string'
       end
     end
 
@@ -692,7 +1280,7 @@ module FacebookAds
         api.has_param :child_business_external_id, 'string'
         api.has_param :child_business_id, 'string'
       end
-      edge.post do |api|
+      edge.post 'ManagedPartnerBusiness' do |api|
         api.has_param :ad_account_currency, 'string'
         api.has_param :catalog_id, 'string'
         api.has_param :child_business_external_id, 'string'
@@ -702,43 +1290,47 @@ module FacebookAds
         api.has_param :no_ad_account, 'bool'
         api.has_param :page_name, 'string'
         api.has_param :page_profile_image_url, 'string'
+        api.has_param :partition_type, { enum: -> { ManagedPartnerBusiness::PARTITION_TYPE }}
         api.has_param :partner_facebook_page_url, 'string'
         api.has_param :partner_registration_countries, { list: 'string' }
         api.has_param :sales_rep_email, 'string'
         api.has_param :seller_external_website_url, 'string'
         api.has_param :seller_targeting_countries, { list: 'string' }
-        api.has_param :survey_business_type, { enum: %w{ADVERTISER AGENCY APP_DEVELOPER PUBLISHER }}
+        api.has_param :skip_partner_page_creation, 'bool'
+        api.has_param :survey_business_type, { enum: -> { ManagedPartnerBusiness::SURVEY_BUSINESS_TYPE }}
         api.has_param :survey_num_assets, 'int'
         api.has_param :survey_num_people, 'int'
-        api.has_param :timezone_id, 'int'
-        api.has_param :vertical, { enum: %w{ADVERTISING AUTOMOTIVE CONSUMER_PACKAGED_GOODS ECOMMERCE EDUCATION ENERGY_AND_UTILITIES ENTERTAINMENT_AND_MEDIA FINANCIAL_SERVICES GAMING GOVERNMENT_AND_POLITICS HEALTH LUXURY MARKETING NON_PROFIT ORGANIZATIONS_AND_ASSOCIATIONS OTHER PROFESSIONAL_SERVICES RESTAURANT RETAIL TECHNOLOGY TELECOM TRAVEL }}
+        api.has_param :timezone_id, { enum: -> { ManagedPartnerBusiness::TIMEZONE_ID }}
+        api.has_param :vertical, { enum: -> { ManagedPartnerBusiness::VERTICAL }}
       end
     end
 
-    has_edge :negative_keyword_lists do |edge|
-      edge.get
-    end
-
-    has_edge :offline_conversion_data_sets do |edge|
-      edge.get 'OfflineConversionDataSet'
-      edge.post 'OfflineConversionDataSet' do |api|
-        api.has_param :auto_assign_to_new_accounts_only, 'bool'
-        api.has_param :description, 'string'
-        api.has_param :enable_auto_assign_to_accounts, 'bool'
-        api.has_param :is_mta_use, 'bool'
-        api.has_param :name, 'string'
+    has_edge :onboard_partners_to_mm_lite do |edge|
+      edge.post do |api|
+        api.has_param :solution_id, 'string'
       end
     end
 
     has_edge :openbridge_configurations do |edge|
       edge.get 'OpenBridgeConfiguration'
       edge.post 'OpenBridgeConfiguration' do |api|
-        api.has_param :access_key, 'string'
         api.has_param :active, 'bool'
+        api.has_param :cloud_provider, 'string'
+        api.has_param :cloud_region, 'string'
+        api.has_param :destination_id, 'string'
         api.has_param :endpoint, 'string'
+        api.has_param :fallback_domain, 'string'
+        api.has_param :first_party_domain, 'string'
         api.has_param :host_business_id, 'int'
-        api.has_param :host_external_id, 'string'
+        api.has_param :instance_id, 'string'
+        api.has_param :instance_version, 'string'
+        api.has_param :is_sgw_instance, 'bool'
+        api.has_param :is_sgw_pixel_from_meta_pixel, 'bool'
+        api.has_param :partner_name, 'string'
         api.has_param :pixel_id, 'int'
+        api.has_param :sgw_account_id, 'string'
+        api.has_param :sgw_instance_url, 'string'
+        api.has_param :sgw_pixel_id, 'int'
       end
     end
 
@@ -772,26 +1364,32 @@ module FacebookAds
         api.has_param :page_permitted_tasks, { list: { enum: -> { Business::PAGE_PERMITTED_TASKS }} }
         api.has_param :sales_rep_email, 'string'
         api.has_param :shared_page_id, 'string'
+        api.has_param :should_generate_name, 'bool'
         api.has_param :survey_business_type, { enum: -> { Business::SURVEY_BUSINESS_TYPE }}
         api.has_param :survey_num_assets, 'int'
         api.has_param :survey_num_people, 'int'
-        api.has_param :timezone_id, 'int'
+        api.has_param :timezone_id, { enum: -> { Business::TIMEZONE_ID }}
         api.has_param :vertical, { enum: -> { Business::VERTICAL }}
       end
     end
 
     has_edge :owned_instagram_accounts do |edge|
-      edge.get 'InstagramUser'
+      edge.get 'IgUser'
+    end
+
+    has_edge :owned_instagram_assets do |edge|
+      edge.get 'InstagramBusinessAsset'
     end
 
     has_edge :owned_offsite_signal_container_business_objects do |edge|
-      edge.get
+      edge.get 'OffsiteSignalContainerBusinessObject'
     end
 
     has_edge :owned_pages do |edge|
       edge.get 'Page'
       edge.post 'Business' do |api|
         api.has_param :code, 'string'
+        api.has_param :entry_point, 'string'
         api.has_param :page_id, 'int'
       end
     end
@@ -803,6 +1401,8 @@ module FacebookAds
     has_edge :owned_product_catalogs do |edge|
       edge.get 'ProductCatalog'
       edge.post 'ProductCatalog' do |api|
+        api.has_param :additional_vertical_option, { enum: -> { ProductCatalog::ADDITIONAL_VERTICAL_OPTION }}
+        api.has_param :business_metadata, 'hash'
         api.has_param :catalog_segment_filter, 'object'
         api.has_param :catalog_segment_product_set_id, 'string'
         api.has_param :da_display_settings, 'object'
@@ -826,6 +1426,10 @@ module FacebookAds
       end
     end
 
+    has_edge :partner_account_linking do |edge|
+      edge.get 'PartnerAccountLinking'
+    end
+
     has_edge :partner_premium_options do |edge|
       edge.post do |api|
         api.has_param :catalog_segment_id, 'string'
@@ -835,6 +1439,10 @@ module FacebookAds
         api.has_param :retailer_custom_audience_config, 'hash'
         api.has_param :vendor_id, 'string'
       end
+    end
+
+    has_edge :passback_attribution_metadata_configs do |edge|
+      edge.get
     end
 
     has_edge :pending_client_ad_accounts do |edge|
@@ -858,7 +1466,7 @@ module FacebookAds
     end
 
     has_edge :pending_shared_offsite_signal_container_business_objects do |edge|
-      edge.get
+      edge.get 'OffsiteSignalContainerBusinessObject'
     end
 
     has_edge :pending_users do |edge|
@@ -869,7 +1477,6 @@ module FacebookAds
 
     has_edge :picture do |edge|
       edge.get 'ProfilePictureSource' do |api|
-        api.has_param :breaking_change, { enum: -> { ProfilePictureSource::BREAKING_CHANGE }}
         api.has_param :height, 'int'
         api.has_param :redirect, 'bool'
         api.has_param :type, { enum: -> { ProfilePictureSource::TYPE }}
@@ -895,6 +1502,30 @@ module FacebookAds
       end
     end
 
+    has_edge :reseller_guidances do |edge|
+      edge.get 'ResellerGuidance'
+    end
+
+    has_edge :self_certified_whatsapp_business_submissions do |edge|
+      edge.get 'WhatsAppBusinessPartnerClientVerificationSubmission' do |api|
+        api.has_param :end_business_id, 'string'
+      end
+    end
+
+    has_edge :self_certify_whatsapp_business do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :average_monthly_revenue_spend_with_partner, 'hash'
+        api.has_param :business_documents, { list: 'file' }
+        api.has_param :business_vertical, { enum: -> { Business::BUSINESS_VERTICAL }}
+        api.has_param :end_business_address, 'hash'
+        api.has_param :end_business_id, 'string'
+        api.has_param :end_business_legal_name, 'string'
+        api.has_param :end_business_trade_names, { list: 'string' }
+        api.has_param :end_business_website, 'string'
+        api.has_param :num_billing_cycles_with_partner, 'int'
+      end
+    end
+
     has_edge :setup_managed_partner_adaccounts do |edge|
       edge.post 'Business' do |api|
         api.has_param :credit_line_id, 'string'
@@ -902,6 +1533,27 @@ module FacebookAds
         api.has_param :subvertical_v2, { enum: -> { Business::SUBVERTICAL_V2 }}
         api.has_param :vendor_id, 'string'
         api.has_param :vertical_v2, { enum: -> { Business::VERTICAL_V2 }}
+      end
+    end
+
+    has_edge :share_preverified_numbers do |edge|
+      edge.delete do |api|
+        api.has_param :partner_business_id, 'string'
+        api.has_param :preverified_id, 'string'
+      end
+      edge.post 'Business' do |api|
+        api.has_param :partner_business_id, 'string'
+        api.has_param :preverified_id, 'string'
+      end
+    end
+
+    has_edge :system_user_access_tokens do |edge|
+      edge.post 'Business' do |api|
+        api.has_param :asset, { list: 'int' }
+        api.has_param :fetch_only, 'bool'
+        api.has_param :scope, { list: 'Permission' }
+        api.has_param :set_token_expires_in_60_days, 'bool'
+        api.has_param :system_user_id, 'int'
       end
     end
 
@@ -915,7 +1567,81 @@ module FacebookAds
     end
 
     has_edge :third_party_measurement_report_dataset do |edge|
-      edge.get
+      edge.get 'ThirdPartyMeasurementReportDataset'
+    end
+
+    has_edge :videos do |edge|
+      edge.post 'AdVideo' do |api|
+        api.has_param :ad_placements_validation_only, 'bool'
+        api.has_param :application_id, 'string'
+        api.has_param :asked_fun_fact_prompt_id, 'int'
+        api.has_param :audio_story_wave_animation_handle, 'string'
+        api.has_param :chunk_session_id, 'string'
+        api.has_param :composer_entry_picker, 'string'
+        api.has_param :composer_entry_point, 'string'
+        api.has_param :composer_entry_time, 'int'
+        api.has_param :composer_session_events_log, 'string'
+        api.has_param :composer_session_id, 'string'
+        api.has_param :composer_source_surface, 'string'
+        api.has_param :composer_type, 'string'
+        api.has_param :container_type, { enum: -> { AdVideo::CONTAINER_TYPE }}
+        api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
+        api.has_param :creative_folder_id, 'string'
+        api.has_param :creative_tools, 'string'
+        api.has_param :description, 'string'
+        api.has_param :embeddable, 'bool'
+        api.has_param :end_offset, 'int'
+        api.has_param :fbuploader_video_file_chunk, 'string'
+        api.has_param :file_size, 'int'
+        api.has_param :file_url, 'string'
+        api.has_param :fisheye_video_cropped, 'bool'
+        api.has_param :formatting, { enum: -> { AdVideo::FORMATTING }}
+        api.has_param :fov, 'int'
+        api.has_param :front_z_rotation, 'double'
+        api.has_param :fun_fact_prompt_id, 'string'
+        api.has_param :fun_fact_toastee_id, 'int'
+        api.has_param :guide, { list: { list: 'int' } }
+        api.has_param :guide_enabled, 'bool'
+        api.has_param :initial_heading, 'int'
+        api.has_param :initial_pitch, 'int'
+        api.has_param :instant_game_entry_point_data, 'string'
+        api.has_param :is_boost_intended, 'bool'
+        api.has_param :is_group_linking_post, 'bool'
+        api.has_param :is_partnership_ad, 'bool'
+        api.has_param :is_voice_clip, 'bool'
+        api.has_param :location_source_id, 'string'
+        api.has_param :og_action_type_id, 'string'
+        api.has_param :og_icon_id, 'string'
+        api.has_param :og_object_id, 'string'
+        api.has_param :og_phrase, 'string'
+        api.has_param :og_suggestion_mechanism, 'string'
+        api.has_param :original_fov, 'int'
+        api.has_param :original_projection_type, { enum: -> { AdVideo::ORIGINAL_PROJECTION_TYPE }}
+        api.has_param :partnership_ad_ad_code, 'string'
+        api.has_param :publish_event_id, 'int'
+        api.has_param :referenced_sticker_id, 'string'
+        api.has_param :replace_video_id, 'string'
+        api.has_param :slideshow_spec, 'hash'
+        api.has_param :source, 'string'
+        api.has_param :source_instagram_media_id, 'string'
+        api.has_param :spherical, 'bool'
+        api.has_param :start_offset, 'int'
+        api.has_param :swap_mode, { enum: -> { AdVideo::SWAP_MODE }}
+        api.has_param :text_format_metadata, 'string'
+        api.has_param :thumb, 'file'
+        api.has_param :time_since_original_post, 'int'
+        api.has_param :title, 'string'
+        api.has_param :transcode_setting_properties, 'string'
+        api.has_param :unpublished_content_type, { enum: -> { AdVideo::UNPUBLISHED_CONTENT_TYPE }}
+        api.has_param :upload_phase, { enum: -> { AdVideo::UPLOAD_PHASE }}
+        api.has_param :upload_session_id, 'string'
+        api.has_param :upload_setting_properties, 'string'
+        api.has_param :validation_ad_placements, { list: { enum: -> { AdVideo::VALIDATION_AD_PLACEMENTS }} }
+        api.has_param :video_file_chunk, 'string'
+        api.has_param :video_id_original, 'string'
+        api.has_param :video_start_time_ms, 'int'
+        api.has_param :waterfall_id, 'string'
+      end
     end
 
   end

@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -58,6 +46,7 @@ module FacebookAds
     REGULATED_CATEGORIES = [
       "CREDIT",
       "EMPLOYMENT",
+      "FINANCIAL_PRODUCTS_SERVICES",
       "HOUSING",
       "ISSUES_ELECTIONS_POLITICS",
       "NONE",
@@ -65,6 +54,7 @@ module FacebookAds
     ]
 
     REGULATED_COUNTRIES = [
+      "AC",
       "AD",
       "AE",
       "AF",
@@ -355,6 +345,7 @@ module FacebookAds
       "effective_messenger_positions",
       "effective_oculus_positions",
       "effective_publisher_platforms",
+      "effective_threads_positions",
       "effective_whatsapp_positions",
       "engagement_specs",
       "ethnic_affinity",
@@ -373,6 +364,7 @@ module FacebookAds
       "excluded_user_adclusters",
       "excluded_user_device",
       "exclusions",
+      "expanded_implicit_custom_audiences",
       "facebook_positions",
       "family_statuses",
       "fb_deal_id",
@@ -389,11 +381,13 @@ module FacebookAds
       "home_type",
       "home_value",
       "household_composition",
+      "household_income",
       "id",
       "income",
       "industries",
       "instagram_hashtags",
       "instagram_positions",
+      "install_state_application",
       "instream_video_skippable_excluded",
       "instream_video_sponsorship_placements",
       "interest_defaults_source",
@@ -407,6 +401,7 @@ module FacebookAds
       "location_categories",
       "location_cluster_ids",
       "location_expansion",
+      "marketing_message_channels",
       "marketplace_product_categories",
       "messenger_positions",
       "mobile_device_model",
@@ -427,13 +422,17 @@ module FacebookAds
       "relationship_statuses",
       "rtb_flag",
       "site_category",
+      "subscriber_universe",
+      "tafe_ca_mitigation_strategy",
       "targeting_automation",
       "targeting_optimization",
       "targeting_relaxation_types",
+      "threads_positions",
       "timezones",
       "topic",
       "trending",
       "user_adclusters",
+      "user_age_unknown",
       "user_device",
       "user_event",
       "user_os",
@@ -453,6 +452,7 @@ module FacebookAds
       "apk_pure",
       "aptoide_a1_store",
       "bemobi_mobile_store",
+      "digital_turbine_store",
       "does_not_exist",
       "fb_android_store",
       "fb_canvas",

@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -27,44 +15,40 @@ module FacebookAds
 
   class AdVideo < AdObject
     CONTAINER_TYPE = [
-      "ACO_AUTOEXTRACTED_VIDEO",
       "ACO_VIDEO_VARIATION",
       "ADS_AI_GENERATED",
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
       "AD_LIBRARY_WATERMARK",
-      "AGE_UP",
       "ALBUM_MULTIMEDIA_POST",
-      "ALOHA_CALL_VIDEO",
       "ALOHA_SUPERFRAME",
       "APP_REREVIEW_SCREENCAST",
       "APP_REVIEW_SCREENCAST",
       "ASSET_MANAGER",
       "ATLAS_VIDEO",
-      "AUDIO_BRIEF",
       "AUDIO_BROADCAST",
       "AUDIO_COMMENT",
       "BROADCAST",
-      "BULLETIN_ARTICLE_AUDIO",
-      "CANDIDATE_VIDEOS_DELETED",
       "CANVAS",
-      "CFC_VIDEO",
       "CMS_MEDIA_MANAGER",
       "CONTAINED_POST_ATTACHMENT",
       "CONTAINED_POST_AUDIO_BROADCAST",
       "CONTAINED_POST_COPYRIGHT_REFERENCE_BROADCAST",
       "COPYRIGHT_REFERENCE_BROADCAST",
+      "COPYRIGHT_REFERENCE_IG_XPOST_VIDEO",
       "COPYRIGHT_REFERENCE_VIDEO",
       "CREATION_ML_PRECREATION",
+      "CREATOR_FAN_CHALLENGE",
+      "CREATOR_STOREFRONT_PERSONALIZED_VIDEO",
+      "CREATOR_STOREFRONT_PROMOTIONAL_VIDEO",
+      "DATAGENIX_VIDEO",
       "DCO_AD_ASSET_FEED",
       "DCO_AUTOGEN_VIDEO",
       "DCO_TRIMMED_VIDEO",
       "DIM_SUM",
       "DIRECTED_POST_ATTACHMENT",
       "DIRECT_INBOX",
-      "DIRECT_INBOX_REACTION",
       "DROPS_SHOPPING_EVENT_PAGE",
-      "DYNAMIC_ITEM_DISPLAY_BUNDLE",
       "DYNAMIC_ITEM_VIDEO",
       "DYNAMIC_TEMPLATE_VIDEO",
       "EVENT_COVER_VIDEO",
@@ -74,15 +58,13 @@ module FacebookAds
       "FB_COLLECTIBLE_VIDEO",
       "FB_SHORTS",
       "FB_SHORTS_CONTENT_REMIXABLE",
-      "FB_SHORTS_CROSS_META_POST",
       "FB_SHORTS_GROUP_POST",
+      "FB_SHORTS_LINKED_PRODUCT",
       "FB_SHORTS_PMV_POST",
-      "FB_SHORTS_PMV_POST_NO_NEWSFEED_NOR_TIMELINE",
       "FB_SHORTS_POST",
       "FB_SHORTS_REMIX_POST",
       "FUNDRAISER_COVER_VIDEO",
       "GAME_CLIP",
-      "GEMSTONE",
       "GIF_TO_VIDEO",
       "GOODWILL_ANNIVERSARY_DEPRECATED",
       "GOODWILL_ANNIVERSARY_PROMOTION_DEPRECATED",
@@ -91,10 +73,9 @@ module FacebookAds
       "GOODWILL_VIDEO_SHARE",
       "GOODWILL_VIDEO_TOKEN_REQUIRED",
       "GROUP_POST",
-      "HACK_TV",
       "HEURISTIC_CLUSTER_VIDEO",
-      "HEURISTIC_PREVIEW",
       "HIGHLIGHT_CLIP_VIDEO",
+      "HORIZON_WORLDS_TV",
       "HUDDLE_BROADCAST",
       "IG_REELS_XPV",
       "IG_STORIES_READER",
@@ -103,13 +84,7 @@ module FacebookAds
       "INSTAGRAM_VIDEO_COPY",
       "INSTANT_APPLICATION_PREVIEW",
       "INSTANT_ARTICLE",
-      "INSTANT_GAME_CLIP",
       "ISSUE_MODULE",
-      "JOBS_CAREERS",
-      "JOBS_VISUAL_INTRO_ENTRY",
-      "JOB_APPLICATION_VIDEO",
-      "JOB_OPENING_VIDEO",
-      "KOTOTORO",
       "LEARN",
       "LEGACY",
       "LEGACY_CONTAINED_POST_BROADCAST",
@@ -121,30 +96,25 @@ module FacebookAds
       "LOOK_NOW_DEPRECATED",
       "MARKETPLACE_LISTING_VIDEO",
       "MARKETPLACE_PRE_RECORDED_VIDEO",
-      "MESSENGER_WATCH_TOGETHER",
       "MOMENTS_VIDEO",
       "MUSIC_CLIP",
-      "MUSIC_CLIP_IN_AUDIO_DIGEST",
       "MUSIC_CLIP_IN_COMMENT",
       "MUSIC_CLIP_IN_LIGHTWEIGHT_STATUS",
+      "MUSIC_CLIP_IN_MSGR_NOTE",
       "MUSIC_CLIP_IN_POLL_OPTION",
       "MUSIC_CLIP_ON_DATING_PROFILE",
       "NEO_ASYNC_GAME_VIDEO",
       "NEW_CONTAINED_POST_BROADCAST",
       "NO_STORY",
-      "NO_STORY_WITH_ENTPOST",
-      "NPE_COLLAB_COPYRIGHT_CHECK",
       "OCULUS_CREATOR_PORTAL",
       "OCULUS_VENUES_BROADCAST",
-      "OFFERS_VIDEO",
+      "ORIGINALITY_SELF_ADVOCACY",
       "PAGES_COVER_VIDEO",
       "PAGE_REVIEW_SCREENCAST",
       "PAGE_SLIDESHOW_VIDEO",
       "PAID_CONTENT_PREVIEW",
       "PAID_CONTENT_VIDEO",
       "PAID_CONTENT_VIDEO__POST",
-      "PAPER_DOCUMENT_AUDIO",
-      "PAPER_DOCUMENT_VIDEO",
       "PIXELCLOUD",
       "PODCAST_HIGHLIGHT",
       "PODCAST_ML_PREVIEW",
@@ -165,21 +135,17 @@ module FacebookAds
       "PROFILE_INTRO_CARD",
       "PROFILE_VIDEO",
       "PROTON",
+      "QUICK_CLIP_WORKPLACE_POST",
       "QUICK_PROMOTION",
       "REPLACE_VIDEO",
       "SALES_CLIENT_INTERACTION",
-      "SAY_THANKS_DEPRECATED",
       "SHOWREEL_NATIVE_DUMMY_VIDEO",
       "SLIDESHOW_ANIMOTO",
       "SLIDESHOW_SHAKR",
       "SLIDESHOW_VARIATION_VIDEO",
-      "SOTTO_CONTENT",
-      "SOUNDBITES_VIDEO",
       "SOUND_PLATFORM_STREAM",
       "SRT_ATTACHMENT",
-      "STAGES_BROADCAST",
       "STORIES_VIDEO",
-      "STORIES_WEARABLE",
       "STORYLINE",
       "STORYLINE_WITH_EXTERNAL_MUSIC",
       "STORY_ARCHIVE_VIDEO",
@@ -187,10 +153,8 @@ module FacebookAds
       "STREAM_HIGHLIGHTS_VIDEO",
       "TAROT_DIGEST",
       "TEMPORARY_UNLISTED",
-      "TEMP_MULTIMEDIA_POST",
+      "TEMP_VIDEO_COPYRIGHT_SCAN",
       "UNLISTED",
-      "UNLISTED_HACK_TV",
-      "UNLISTED_HORIZON",
       "UNLISTED_OCULUS",
       "VIDEO_COMMENT",
       "VIDEO_COMPOSITION_VARIATION",
@@ -256,15 +220,41 @@ module FacebookAds
       "transfer",
     ]
 
-    TYPE = [
-      "tagged",
-      "uploaded",
-    ]
-
     VIDEO_STATE = [
       "DRAFT",
       "PUBLISHED",
       "SCHEDULED",
+    ]
+
+    VALIDATION_AD_PLACEMENTS = [
+      "AUDIENCE_NETWORK_INSTREAM_VIDEO",
+      "AUDIENCE_NETWORK_INSTREAM_VIDEO_MOBILE",
+      "AUDIENCE_NETWORK_REWARDED_VIDEO",
+      "DESKTOP_FEED_STANDARD",
+      "FACEBOOK_STORY_MOBILE",
+      "FACEBOOK_STORY_STICKER_MOBILE",
+      "INSTAGRAM_STANDARD",
+      "INSTAGRAM_STORY",
+      "INSTANT_ARTICLE_STANDARD",
+      "INSTREAM_BANNER_DESKTOP",
+      "INSTREAM_BANNER_MOBILE",
+      "INSTREAM_VIDEO_DESKTOP",
+      "INSTREAM_VIDEO_IMAGE",
+      "INSTREAM_VIDEO_MOBILE",
+      "MESSENGER_MOBILE_INBOX_MEDIA",
+      "MESSENGER_MOBILE_STORY_MEDIA",
+      "MOBILE_FEED_STANDARD",
+      "MOBILE_FULLWIDTH",
+      "MOBILE_INTERSTITIAL",
+      "MOBILE_MEDIUM_RECTANGLE",
+      "MOBILE_NATIVE",
+      "RIGHT_COLUMN_STANDARD",
+      "SUGGESTED_VIDEO_MOBILE",
+    ]
+
+    TYPE = [
+      "tagged",
+      "uploaded",
     ]
 
     BACKDATED_TIME_GRANULARITY = [
@@ -279,12 +269,14 @@ module FacebookAds
 
     field :ad_breaks, { list: 'int' }
     field :admin_creator, 'User'
-    field :audio_isrc, 'object'
+    field :audio_isrc, 'AudioIsrc'
     field :backdated_time, 'datetime'
     field :backdated_time_granularity, 'string'
+    field :boost_eligibility_info, 'object'
     field :content_category, 'string'
     field :content_tags, { list: 'string' }
     field :copyright, 'VideoCopyright'
+    field :copyright_check_information, 'object'
     field :copyright_monitoring_status, 'string'
     field :created_time, 'datetime'
     field :custom_labels, { list: 'string' }
@@ -306,9 +298,10 @@ module FacebookAds
     field :live_audience_count, 'int'
     field :live_status, 'string'
     field :music_video_copyright, 'MusicVideoCopyright'
-    field :permalink_url, 'object'
+    field :permalink_url, 'string'
     field :picture, 'string'
     field :place, 'Place'
+    field :post_id, 'string'
     field :post_views, 'int'
     field :premiere_living_room_status, 'string'
     field :privacy, 'Privacy'
@@ -316,13 +309,11 @@ module FacebookAds
     field :scheduled_publish_time, 'datetime'
     field :source, 'string'
     field :spherical, 'bool'
-    field :status, 'object'
+    field :status, 'VideoStatus'
     field :title, 'string'
     field :universal_video_id, 'string'
     field :updated_time, 'datetime'
     field :views, 'int'
-    field :adaptive_type, 'string'
-    field :animated_effect_id, 'int'
     field :application_id, 'string'
     field :asked_fun_fact_prompt_id, 'int'
     field :audio_story_wave_animation_handle, 'string'
@@ -344,21 +335,19 @@ module FacebookAds
     field :formatting, { enum: -> { FORMATTING }}
     field :fov, 'int'
     field :front_z_rotation, 'double'
-    field :fun_fact_prompt_id, 'int'
+    field :fun_fact_prompt_id, 'string'
     field :fun_fact_toastee_id, 'int'
     field :guide, { list: { list: 'int' } }
     field :guide_enabled, 'bool'
-    field :has_nickname, 'bool'
-    field :holiday_card, 'string'
     field :initial_heading, 'int'
     field :initial_pitch, 'int'
     field :instant_game_entry_point_data, 'string'
     field :is_boost_intended, 'bool'
     field :is_group_linking_post, 'bool'
+    field :is_partnership_ad, 'bool'
     field :is_voice_clip, 'bool'
     field :location_source_id, 'string'
     field :name, 'string'
-    field :offer_like_post_id, 'int'
     field :og_action_type_id, 'string'
     field :og_icon_id, 'string'
     field :og_object_id, 'string'
@@ -366,8 +355,8 @@ module FacebookAds
     field :og_suggestion_mechanism, 'string'
     field :original_fov, 'int'
     field :original_projection_type, { enum: -> { ORIGINAL_PROJECTION_TYPE }}
+    field :partnership_ad_ad_code, 'string'
     field :publish_event_id, 'int'
-    field :react_mode_metadata, 'string'
     field :referenced_sticker_id, 'string'
     field :replace_video_id, 'string'
     field :slideshow_spec, 'hash'
@@ -375,7 +364,6 @@ module FacebookAds
     field :start_offset, 'int'
     field :swap_mode, { enum: -> { SWAP_MODE }}
     field :text_format_metadata, 'string'
-    field :throwback_camera_roll_media, 'string'
     field :thumb, 'file'
     field :time_since_original_post, 'int'
     field :transcode_setting_properties, 'string'
@@ -387,6 +375,15 @@ module FacebookAds
     field :video_id_original, 'string'
     field :video_start_time_ms, 'int'
     field :waterfall_id, 'string'
+    field :video_id, 'string'
+    field :video_state, { enum: -> { VIDEO_STATE }}
+    field :ad_placements_validation_only, 'bool'
+    field :creative_folder_id, 'string'
+    field :validation_ad_placements, { list: { enum: -> { VALIDATION_AD_PLACEMENTS }} }
+
+    has_edge :boost_ads_list do |edge|
+      edge.get
+    end
 
     has_edge :captions do |edge|
       edge.get
@@ -470,12 +467,7 @@ module FacebookAds
     end
 
     has_edge :tags do |edge|
-      edge.get
-      edge.post 'AdVideo' do |api|
-        api.has_param :tag_uid, 'int'
-        api.has_param :uid, 'int'
-        api.has_param :vid, 'string'
-      end
+      edge.get 'TaggableSubject'
     end
 
     has_edge :thumbnails do |edge|

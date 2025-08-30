@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -29,14 +17,21 @@ module FacebookAds
     CALL_TO_ACTION_TYPES = [
       "ADD_TO_CART",
       "APPLY_NOW",
+      "ASK_ABOUT_SERVICES",
+      "ASK_FOR_MORE_INFO",
       "AUDIO_CALL",
+      "BOOK_A_CONSULTATION",
+      "BOOK_NOW",
       "BOOK_TRAVEL",
       "BUY",
       "BUY_NOW",
       "BUY_TICKETS",
+      "BUY_VIA_MESSAGE",
       "CALL",
       "CALL_ME",
       "CALL_NOW",
+      "CHAT_WITH_US",
+      "CONFIRM",
       "CONTACT",
       "CONTACT_US",
       "DONATE",
@@ -48,7 +43,9 @@ module FacebookAds
       "FOLLOW_NEWS_STORYLINE",
       "FOLLOW_PAGE",
       "FOLLOW_USER",
+      "GET_A_QUOTE",
       "GET_DIRECTIONS",
+      "GET_IN_TOUCH",
       "GET_OFFER",
       "GET_OFFER_VIEW",
       "GET_PROMOTIONS",
@@ -58,13 +55,14 @@ module FacebookAds
       "INQUIRE_NOW",
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
+      "JOIN_CHANNEL",
       "LEARN_MORE",
       "LIKE_PAGE",
       "LISTEN_MUSIC",
       "LISTEN_NOW",
+      "MAKE_AN_APPOINTMENT",
       "MESSAGE_PAGE",
       "MOBILE_DOWNLOAD",
-      "MOMENTS",
       "NO_BUTTON",
       "OPEN_INSTANT_APP",
       "OPEN_LINK",
@@ -96,7 +94,12 @@ module FacebookAds
       "USE_MOBILE_APP",
       "VIDEO_ANNOTATION",
       "VIDEO_CALL",
+      "VIEW_CART",
+      "VIEW_CHANNEL",
+      "VIEW_IN_CART",
+      "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
+      "WATCH_LIVE_VIDEO",
       "WATCH_MORE",
       "WATCH_VIDEO",
       "WHATSAPP_MESSAGE",
@@ -105,22 +108,32 @@ module FacebookAds
 
 
     field :ad_formats, { list: 'string' }
-    field :additional_data, 'object'
+    field :additional_data, 'AdAssetFeedAdditionalData'
     field :app_product_page_id, 'string'
-    field :asset_customization_rules, { list: 'object' }
+    field :asset_customization_rules, { list: 'AdAssetFeedSpecAssetCustomizationRule' }
+    field :audios, { list: 'object' }
     field :autotranslate, { list: 'string' }
     field :bodies, { list: 'AdAssetFeedSpecBody' }
+    field :call_ads_configuration, 'object'
     field :call_to_action_types, { list: { enum: -> { CALL_TO_ACTION_TYPES }} }
-    field :call_to_actions, { list: 'object' }
+    field :call_to_actions, { list: 'AdAssetFeedSpecCallToAction' }
     field :captions, { list: 'AdAssetFeedSpecCaption' }
-    field :carousels, { list: 'object' }
+    field :carousels, { list: 'AdAssetFeedSpecCarousel' }
+    field :ctwa_consent_data, { list: 'object' }
     field :descriptions, { list: 'AdAssetFeedSpecDescription' }
-    field :events, { list: 'object' }
+    field :events, { list: 'AdAssetFeedSpecEvents' }
     field :groups, { list: 'AdAssetFeedSpecGroupRule' }
     field :images, { list: 'AdAssetFeedSpecImage' }
     field :link_urls, { list: 'AdAssetFeedSpecLinkUrl' }
+    field :message_extensions, { list: 'AdAssetMessageExtensions' }
+    field :onsite_destinations, { list: 'AdAssetOnsiteDestinations' }
     field :optimization_type, 'string'
+    field :promotional_metadata, 'object'
+    field :reasons_to_shop, 'bool'
+    field :shops_bundle, 'bool'
     field :titles, { list: 'AdAssetFeedSpecTitle' }
+    field :translations, { list: 'object' }
+    field :upcoming_events, { list: 'object' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
     has_no_id
     has_no_get

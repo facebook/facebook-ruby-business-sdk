@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -30,6 +18,7 @@ module FacebookAds
       "AVAILABLE_FOR_ORDER",
       "DISCONTINUED",
       "IN_STOCK",
+      "MARK_AS_SOLD",
       "OUT_OF_STOCK",
       "PENDING",
       "PREORDER",
@@ -86,13 +75,16 @@ module FacebookAds
     field :id, 'string'
     field :image_fetch_status, { enum: -> { IMAGE_FETCH_STATUS }}
     field :images, { list: 'string' }
+    field :local_info, 'ProductItemLocalInfo'
     field :local_service_business_id, 'string'
+    field :main_local_info, 'ProductItemLocalInfo'
     field :phone, 'string'
     field :price, 'string'
     field :price_range, 'string'
     field :retailer_category, 'string'
     field :sanitized_images, { list: 'string' }
     field :size, 'string'
+    field :tags, { list: 'string' }
     field :title, 'string'
     field :unit_price, 'object'
     field :url, 'string'
@@ -103,6 +95,13 @@ module FacebookAds
 
     has_edge :channels_to_integrity_status do |edge|
       edge.get 'CatalogItemChannelsToIntegrityStatus'
+    end
+
+    has_edge :override_details do |edge|
+      edge.get 'OverrideDetails' do |api|
+        api.has_param :keys, { list: 'string' }
+        api.has_param :type, { enum: -> { OverrideDetails::TYPE }}
+      end
     end
 
   end

@@ -1,20 +1,8 @@
-# Copyright (c) 2017-present, Facebook, Inc. All rights reserved.
-#
-# You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
-# copy, modify, and distribute this software in source code or binary form for use
-# in connection with the web services and APIs provided by Facebook.
-#
-# As with any software that integrates with the Facebook platform, your use of
-# this software is subject to the Facebook Platform Policy
-# [http://developers.facebook.com/policy/]. This copyright notice shall be
-# included in all copies or substantial portions of the software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-# FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-# COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-# IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-# CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 
 # FB:AUTOGEN
 
@@ -28,15 +16,24 @@ module FacebookAds
   class AdsInsights < AdObject
     ACTION_ATTRIBUTION_WINDOWS = [
       "1d_click",
+      "1d_ev",
       "1d_view",
       "28d_click",
       "28d_view",
+      "28d_view_all_conversions",
+      "28d_view_first_conversion",
       "7d_click",
       "7d_view",
+      "7d_view_all_conversions",
+      "7d_view_first_conversion",
       "dda",
       "default",
       "skan_click",
+      "skan_click_second_postback",
+      "skan_click_third_postback",
       "skan_view",
+      "skan_view_second_postback",
+      "skan_view_third_postback",
     ]
 
     ACTION_BREAKDOWNS = [
@@ -50,35 +47,64 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "conversion_destination",
+      "matched_persona_id",
+      "matched_persona_name",
+      "signal_source_bucket",
+      "standard_event_content_type",
     ]
 
     ACTION_REPORT_TIME = [
       "conversion",
       "impression",
+      "lifetime",
       "mixed",
     ]
 
     BREAKDOWNS = [
+      "ad_extension_domain",
+      "ad_extension_url",
       "ad_format_asset",
       "age",
       "app_id",
       "body_asset",
+      "breakdown_ad_objective",
+      "breakdown_reporting_ad_id",
       "call_to_action_asset",
       "coarse_conversion_value",
+      "comscore_market",
+      "comscore_market_code",
+      "conversion_destination",
       "country",
+      "creative_relaxation_asset_type",
       "description_asset",
       "device_platform",
       "dma",
       "fidelity_type",
+      "flexible_format_asset_type",
       "frequency_value",
+      "gen_ai_asset_type",
       "gender",
       "hourly_stats_aggregated_by_advertiser_time_zone",
       "hourly_stats_aggregated_by_audience_time_zone",
       "hsid",
       "image_asset",
       "impression_device",
+      "impression_view_time_advertiser_hour_v2",
+      "is_auto_advance",
       "is_conversion_id_modeled",
+      "is_rendered_as_delayed_skip_ad",
+      "landing_destination",
       "link_url_asset",
+      "marketing_messages_btn_name",
+      "mdsa_landing_destination",
+      "media_asset_url",
+      "media_creator",
+      "media_destination_url",
+      "media_format",
+      "media_origin_url",
+      "media_text_content",
+      "media_type",
       "mmm",
       "place_page_id",
       "platform_position",
@@ -87,9 +113,19 @@ module FacebookAds
       "publisher_platform",
       "redownload",
       "region",
+      "signal_source_bucket",
       "skan_campaign_id",
       "skan_conversion_id",
+      "skan_version",
+      "sot_attribution_model_type",
+      "sot_attribution_window",
+      "sot_channel",
+      "sot_event_type",
+      "sot_source",
+      "standard_event_content_type",
       "title_asset",
+      "user_persona_id",
+      "user_persona_name",
       "video_asset",
     ]
 
@@ -134,6 +170,11 @@ module FacebookAds
       "action_type",
       "action_video_sound",
       "action_video_type",
+      "conversion_destination",
+      "matched_persona_id",
+      "matched_persona_name",
+      "signal_source_bucket",
+      "standard_event_content_type",
     ]
 
 
@@ -155,6 +196,7 @@ module FacebookAds
     field :auction_bid, 'string'
     field :auction_competitiveness, 'string'
     field :auction_max_competitor_bid, 'string'
+    field :average_purchases_conversion_value, { list: 'AdsActionStats' }
     field :buying_type, 'string'
     field :campaign_id, 'string'
     field :campaign_name, 'string'
@@ -166,22 +208,45 @@ module FacebookAds
     field :catalog_segment_value_omni_purchase_roas, { list: 'AdsActionStats' }
     field :catalog_segment_value_website_purchase_roas, { list: 'AdsActionStats' }
     field :clicks, 'string'
+    field :conversion_lead_rate, { list: 'AdsActionStats' }
+    field :conversion_leads, { list: 'AdsActionStats' }
     field :conversion_rate_ranking, 'string'
     field :conversion_values, { list: 'AdsActionStats' }
     field :conversions, { list: 'AdsActionStats' }
+    field :converted_product_app_custom_event_fb_mobile_purchase, { list: 'AdsActionStats' }
+    field :converted_product_app_custom_event_fb_mobile_purchase_value, { list: 'AdsActionStats' }
+    field :converted_product_offline_purchase, { list: 'AdsActionStats' }
+    field :converted_product_offline_purchase_value, { list: 'AdsActionStats' }
+    field :converted_product_omni_purchase, { list: 'AdsActionStats' }
+    field :converted_product_omni_purchase_values, { list: 'AdsActionStats' }
     field :converted_product_quantity, { list: 'AdsActionStats' }
     field :converted_product_value, { list: 'AdsActionStats' }
+    field :converted_product_website_pixel_purchase, { list: 'AdsActionStats' }
+    field :converted_product_website_pixel_purchase_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_app_custom_event_fb_mobile_purchase, { list: 'AdsActionStats' }
+    field :converted_promoted_product_app_custom_event_fb_mobile_purchase_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_offline_purchase, { list: 'AdsActionStats' }
+    field :converted_promoted_product_offline_purchase_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_omni_purchase, { list: 'AdsActionStats' }
+    field :converted_promoted_product_omni_purchase_values, { list: 'AdsActionStats' }
+    field :converted_promoted_product_quantity, { list: 'AdsActionStats' }
+    field :converted_promoted_product_value, { list: 'AdsActionStats' }
+    field :converted_promoted_product_website_pixel_purchase, { list: 'AdsActionStats' }
+    field :converted_promoted_product_website_pixel_purchase_value, { list: 'AdsActionStats' }
     field :cost_per_15_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }
     field :cost_per_ad_click, { list: 'AdsActionStats' }
     field :cost_per_conversion, { list: 'AdsActionStats' }
+    field :cost_per_conversion_lead, { list: 'AdsActionStats' }
     field :cost_per_dda_countby_convs, 'string'
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
+    field :cost_per_objective_result, { list: 'object' }
     field :cost_per_one_thousand_ad_impression, { list: 'AdsActionStats' }
     field :cost_per_outbound_click, { list: 'AdsActionStats' }
+    field :cost_per_result, { list: 'object' }
     field :cost_per_thruplay, { list: 'AdsActionStats' }
     field :cost_per_unique_action_type, { list: 'AdsActionStats' }
     field :cost_per_unique_click, 'string'
@@ -219,25 +284,70 @@ module FacebookAds
     field :instant_experience_outbound_clicks, { list: 'AdsActionStats' }
     field :interactive_component_tap, { list: 'AdsActionStats' }
     field :labels, 'string'
+    field :landing_page_view_actions_per_link_click, 'string'
+    field :landing_page_view_per_link_click, 'string'
+    field :landing_page_view_per_purchase_rate, 'string'
+    field :link_clicks_per_results, { list: 'object' }
     field :location, 'string'
+    field :marketing_messages_click_rate_benchmark, 'string'
+    field :marketing_messages_cost_per_delivered, 'string'
+    field :marketing_messages_cost_per_link_btn_click, 'string'
+    field :marketing_messages_delivered, 'string'
+    field :marketing_messages_delivery_rate, 'string'
+    field :marketing_messages_link_btn_click, 'string'
+    field :marketing_messages_link_btn_click_rate, 'string'
+    field :marketing_messages_media_view_rate, 'string'
+    field :marketing_messages_phone_call_btn_click_rate, 'string'
+    field :marketing_messages_quick_reply_btn_click, 'string'
+    field :marketing_messages_quick_reply_btn_click_rate, 'string'
+    field :marketing_messages_read, 'string'
+    field :marketing_messages_read_rate, 'string'
+    field :marketing_messages_read_rate_benchmark, 'string'
+    field :marketing_messages_sent, 'string'
+    field :marketing_messages_spend, 'string'
+    field :marketing_messages_spend_currency, 'string'
+    field :marketing_messages_website_add_to_cart, 'string'
+    field :marketing_messages_website_initiate_checkout, 'string'
+    field :marketing_messages_website_purchase, 'string'
+    field :marketing_messages_website_purchase_values, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :objective, 'string'
+    field :objective_result_rate, { list: 'object' }
+    field :objective_results, { list: 'object' }
+    field :onsite_conversion_messaging_detected_purchase_deduped, { list: 'AdsActionStats' }
     field :optimization_goal, 'string'
     field :outbound_clicks, { list: 'AdsActionStats' }
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :place_page_name, 'string'
+    field :product_brand, 'string'
+    field :product_category, 'string'
+    field :product_content_id, 'string'
+    field :product_custom_label_0, 'string'
+    field :product_custom_label_1, 'string'
+    field :product_custom_label_2, 'string'
+    field :product_custom_label_3, 'string'
+    field :product_custom_label_4, 'string'
+    field :product_group_content_id, 'string'
+    field :product_group_retailer_id, 'string'
+    field :product_name, 'string'
+    field :product_retailer_id, 'string'
+    field :product_views, 'string'
+    field :purchase_per_landing_page_view, 'string'
     field :purchase_roas, { list: 'AdsActionStats' }
+    field :purchases_per_link_click, 'string'
     field :qualifying_question_qualify_answer_rate, 'string'
     field :quality_ranking, 'string'
-    field :quality_score_ectr, 'string'
-    field :quality_score_ecvr, 'string'
-    field :quality_score_organic, 'string'
     field :reach, 'string'
+    field :result_rate, { list: 'object' }
+    field :result_values_performance_indicator, 'string'
+    field :results, { list: 'object' }
+    field :shops_assisted_purchases, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
+    field :total_card_view, 'string'
     field :total_postbacks, 'string'
     field :total_postbacks_detailed, { list: 'AdsActionStats' }
-    field :total_postbacks_detailed_v4, 'string'
+    field :total_postbacks_detailed_v4, { list: 'AdsActionStats' }
     field :unique_actions, { list: 'AdsActionStats' }
     field :unique_clicks, 'string'
     field :unique_conversions, { list: 'AdsActionStats' }
@@ -260,12 +370,13 @@ module FacebookAds
     field :video_p75_watched_actions, { list: 'AdsActionStats' }
     field :video_p95_watched_actions, { list: 'AdsActionStats' }
     field :video_play_actions, { list: 'AdsActionStats' }
-    field :video_play_curve_actions, { list: 'object' }
-    field :video_play_retention_0_to_15s_actions, { list: 'object' }
-    field :video_play_retention_20_to_60s_actions, { list: 'object' }
-    field :video_play_retention_graph_actions, { list: 'object' }
+    field :video_play_curve_actions, { list: 'AdsHistogramStats' }
+    field :video_play_retention_0_to_15s_actions, { list: 'AdsHistogramStats' }
+    field :video_play_retention_20_to_60s_actions, { list: 'AdsHistogramStats' }
+    field :video_play_retention_graph_actions, { list: 'AdsHistogramStats' }
     field :video_thruplay_watched_actions, { list: 'AdsActionStats' }
     field :video_time_watched_actions, { list: 'AdsActionStats' }
+    field :video_view_per_impression, { list: 'AdsActionStats' }
     field :website_ctr, { list: 'AdsActionStats' }
     field :website_purchase_roas, { list: 'AdsActionStats' }
     field :wish_bid, 'string'
