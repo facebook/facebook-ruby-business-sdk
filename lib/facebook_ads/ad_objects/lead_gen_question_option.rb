@@ -16,6 +16,7 @@ module FacebookAds
   class LeadGenQuestionOption < AdObject
 
     field :key, 'string'
+    field :photo, 'Photo'
     field :value, 'string'
     has_no_id
     has_no_get

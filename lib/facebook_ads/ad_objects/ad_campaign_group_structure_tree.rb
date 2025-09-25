@@ -18,7 +18,7 @@ module FacebookAds
     field :children, { list: 'AdCampaignGroupStructureTree' }
     field :id, 'string'
     field :name, 'string'
-    field :time_updated, 'int'
+    field :status, 'string'
     has_no_get
     has_no_post
     has_no_delete

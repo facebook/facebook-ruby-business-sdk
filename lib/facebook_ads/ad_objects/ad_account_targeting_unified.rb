@@ -334,6 +334,7 @@ module FacebookAds
       "custom_audiences",
       "device_platforms",
       "direct_install_devices",
+      "dt_consolidation_state",
       "dynamic_audience_ids",
       "education_majors",
       "education_schools",

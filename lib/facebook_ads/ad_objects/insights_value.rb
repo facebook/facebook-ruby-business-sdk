@@ -19,6 +19,8 @@ module FacebookAds
     field :earning_source, 'string'
     field :end_time, 'datetime'
     field :engagement_source, 'string'
+    field :is_from_ads, 'string'
+    field :is_from_followers, 'string'
     field :message_type, 'string'
     field :messaging_channel, 'string'
     field :monetization_tool, 'string'

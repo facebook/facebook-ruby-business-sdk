@@ -13,15 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CustomAudienceIntegrityFlagsAndAppealStatus < AdObject
+  class CtxdfoObjectiveDefaults < AdObject
 
-    field :closeout_time, 'int'
-    field :days_until_enforcement, 'int'
-    field :flagged_fields, { list: 'string' }
-    field :is_enforcement_rolled_out, 'bool'
-    field :latest_appeal_requestor, 'string'
-    field :latest_appeal_time, 'int'
-    field :restriction_status, 'string'
+    field :objective, 'string'
+    field :optimization_goal, 'string'
+    field :page_id, 'string'
     has_no_id
     has_no_get
     has_no_post

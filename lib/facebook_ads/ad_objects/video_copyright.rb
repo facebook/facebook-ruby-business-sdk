@@ -28,8 +28,10 @@ module FacebookAds
 
 
     field :content_category, 'string'
+    field :content_protect_protection_disabled_reason, 'string'
     field :copyright_content_id, 'string'
     field :creator, 'User'
+    field :disable_protection_by_content_protect_status, 'bool'
     field :excluded_ownership_segments, { list: 'VideoCopyrightSegment' }
     field :id, 'string'
     field :in_conflict, 'bool'

@@ -13,10 +13,13 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AvatarProfilePicture < AdObject
+  class ProductCatalogCheckMarketplacePartnerDealsStatus < AdObject
 
-    field :id, 'string'
-    field :url, 'string'
+    field :errors, { list: 'object' }
+    field :session_id, 'string'
+    field :status, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

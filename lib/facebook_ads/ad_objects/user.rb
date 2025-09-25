@@ -38,7 +38,6 @@ module FacebookAds
 
     field :about, 'string'
     field :age_range, 'AgeRange'
-    field :avatar_2d_profile_picture, 'AvatarProfilePicture'
     field :birthday, 'string'
     field :client_business_id, 'string'
     field :community, 'Group'
@@ -52,7 +51,6 @@ module FacebookAds
     field :gender, 'string'
     field :hometown, 'Page'
     field :id, 'string'
-    field :id_for_avatars, 'string'
     field :inspirational_people, { list: 'Experience' }
     field :install_type, 'string'
     field :installed, 'bool'
@@ -192,10 +190,6 @@ module FacebookAds
       edge.get 'WhatsAppBusinessAccount'
     end
 
-    has_edge :avatars do |edge|
-      edge.get 'Avatar'
-    end
-
     has_edge :business_users do |edge|
       edge.get 'BusinessUser'
     end
@@ -222,6 +216,7 @@ module FacebookAds
     has_edge :conversations do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
+        api.has_param :is_owner, 'bool'
         api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'

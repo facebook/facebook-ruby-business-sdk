@@ -19,7 +19,6 @@ module FacebookAds
     field :fb_sales_channel, 'object'
     field :id, 'string'
     field :ig_sales_channel, 'object'
-    field :is_onsite_enabled, 'bool'
     field :shop_status, 'string'
     field :workspace, 'object'
     has_no_post

@@ -35,6 +35,7 @@ module FacebookAds
     field :thumbnail_url, 'string'
     field :timestamp, 'datetime'
     field :username, 'string'
+    field :video_title, 'string'
     field :view_count, 'int'
     has_no_delete
 

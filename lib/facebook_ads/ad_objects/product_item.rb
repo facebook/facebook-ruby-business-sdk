@@ -83,6 +83,11 @@ module FacebookAds
       "oz",
     ]
 
+    STATUS = [
+      "PUBLISHED",
+      "STAGING",
+    ]
+
     VIDEO_FETCH_STATUS = [
       "DIRECT_UPLOAD",
       "FETCHED",
@@ -329,7 +334,6 @@ module FacebookAds
       "COMMERCE_ACCOUNT_NOT_LEGALLY_COMPLIANT",
       "CRAWLED_AVAILABILITY_MISMATCH",
       "DA_DISABLED_BY_USER",
-      "DA_POLICY_UNFIT_FOR_AUDIENCE",
       "DA_POLICY_VIOLATION",
       "DELETED_ITEM",
       "DIGITAL_GOODS_NOT_AVAILABLE_FOR_CHECKOUT",
@@ -393,6 +397,7 @@ module FacebookAds
       "MARKETPLACE_DISABLED_BY_USER",
       "MARKETPLACE_PARTNER_AUCTION_NO_BID_CLOSE_TIME",
       "MARKETPLACE_PARTNER_CURRENCY_NOT_VALID",
+      "MARKETPLACE_PARTNER_DISTRIBUTION_DISABLED",
       "MARKETPLACE_PARTNER_LISTING_COUNTRY_NOT_MATCH_CATALOG",
       "MARKETPLACE_PARTNER_LISTING_LIMIT_EXCEEDED",
       "MARKETPLACE_PARTNER_MISSING_LATLONG",
@@ -451,6 +456,7 @@ module FacebookAds
       "QUALITY_ITEM_LINK_BROKEN",
       "QUALITY_ITEM_LINK_REDIRECTING",
       "RETAILER_ID_NOT_PROVIDED",
+      "RETAILER_ID_USED_BY_GROUP",
       "SHOPIFY_INVALID_RETAILER_ID",
       "SHOPIFY_ITEM_MISSING_SHIPPING_PROFILE",
       "SHOPS_POLICY_VIOLATION",
@@ -786,6 +792,7 @@ module FacebookAds
     field :invalidation_errors, { list: 'ProductItemInvalidationError' }
     field :inventory, 'int'
     field :is_bundle_hero, 'bool'
+    field :live_special_price, 'string'
     field :manufacturer_info, 'string'
     field :manufacturer_part_number, 'string'
     field :marked_for_product_launch, 'string'
@@ -809,6 +816,7 @@ module FacebookAds
     field :retailer_product_group_id, 'string'
     field :review_rejection_reasons, { list: 'string' }
     field :review_status, { enum: -> { REVIEW_STATUS }}
+    field :rich_text_description, 'string'
     field :sale_price, 'string'
     field :sale_price_end_date, 'string'
     field :sale_price_start_date, 'string'
@@ -817,6 +825,7 @@ module FacebookAds
     field :short_description, 'string'
     field :size, 'string'
     field :start_date, 'string'
+    field :status, { enum: -> { STATUS }}
     field :tags, { list: 'string' }
     field :url, 'string'
     field :vendor_id, 'string'

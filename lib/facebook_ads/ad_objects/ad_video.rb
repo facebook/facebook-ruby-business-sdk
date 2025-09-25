@@ -48,6 +48,7 @@ module FacebookAds
       "DIM_SUM",
       "DIRECTED_POST_ATTACHMENT",
       "DIRECT_INBOX",
+      "DOUBLE_PROD_EXPERIMENT",
       "DROPS_SHOPPING_EVENT_PAGE",
       "DYNAMIC_ITEM_VIDEO",
       "DYNAMIC_TEMPLATE_VIDEO",
@@ -100,6 +101,7 @@ module FacebookAds
       "MUSIC_CLIP",
       "MUSIC_CLIP_IN_COMMENT",
       "MUSIC_CLIP_IN_LIGHTWEIGHT_STATUS",
+      "MUSIC_CLIP_IN_MAPLE_POST",
       "MUSIC_CLIP_IN_MSGR_NOTE",
       "MUSIC_CLIP_IN_POLL_OPTION",
       "MUSIC_CLIP_ON_DATING_PROFILE",
@@ -307,6 +309,7 @@ module FacebookAds
     field :privacy, 'Privacy'
     field :published, 'bool'
     field :scheduled_publish_time, 'datetime'
+    field :season, 'VideoList'
     field :source, 'string'
     field :spherical, 'bool'
     field :status, 'VideoStatus'

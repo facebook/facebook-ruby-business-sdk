@@ -97,6 +97,7 @@ module FacebookAds
     field :description, 'string'
     field :excluded_custom_audiences, { list: 'CustomAudience' }
     field :external_event_source, 'AdsPixel'
+    field :fields_violating_integrity_policy, { list: 'string' }
     field :household_audience, 'int'
     field :id, 'string'
     field :included_custom_audiences, { list: 'CustomAudience' }

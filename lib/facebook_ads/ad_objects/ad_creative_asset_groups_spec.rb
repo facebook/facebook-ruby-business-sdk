@@ -17,6 +17,7 @@ module FacebookAds
 
     field :groups, { list: 'object' }
     field :origin, 'string'
+    field :origins, { list: 'string' }
     has_no_id
     has_no_get
     has_no_post

@@ -28,7 +28,6 @@ module FacebookAds
     field :is_enabled, 'bool'
     field :link_title, 'string'
     field :match_count, 'int'
-    field :owner, 'Page'
     field :status, 'string'
     field :title, 'string'
     has_no_post

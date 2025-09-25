@@ -40,6 +40,11 @@ module FacebookAds
       "VIEW_TEMPLATES",
     ]
 
+    TYPE = [
+      "INTERACTIVE",
+      "TEXT",
+    ]
+
     CATEGORY = [
       "AUTHENTICATION",
       "MARKETING",
@@ -55,9 +60,15 @@ module FacebookAds
       "POSITIONAL",
     ]
 
+    SEND_TYPE = [
+      "CAMPAIGN",
+      "DIRECT",
+    ]
+
     SUB_CATEGORY = [
       "ORDER_DETAILS",
       "ORDER_STATUS",
+      "RICH_ORDER_STATUS",
     ]
 
     PROVIDER_NAME = [
@@ -127,6 +138,7 @@ module FacebookAds
         api.has_param :metric_types, { list: { enum: %w{AVERAGE_DURATION COST COUNT UNKNOWN }} }
         api.has_param :phone_numbers, { list: 'string' }
         api.has_param :start, 'int'
+        api.has_param :tiers, { list: 'string' }
       end
     end
 
@@ -171,13 +183,36 @@ module FacebookAds
       end
     end
 
+    has_edge :group_analytics do |edge|
+      edge.get do |api|
+        api.has_param :end, 'datetime'
+        api.has_param :granularity, { enum: %w{DAILY }}
+        api.has_param :group_ids, { list: 'string' }
+        api.has_param :metric_types, { list: { enum: %w{CLICKS COST DELIVERED PARTICIPANTS_JOINED PARTICIPANTS_LEFT READ REPLIES SENT }} }
+        api.has_param :start, 'datetime'
+      end
+    end
+
+    has_edge :marketing_campaigns do |edge|
+      edge.get
+    end
+
     has_edge :message_campaigns do |edge|
       edge.get
+    end
+
+    has_edge :message_samples do |edge|
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :interactive, 'hash'
+        api.has_param :text, 'hash'
+        api.has_param :type, { enum: -> { WhatsAppBusinessAccount::TYPE }}
+      end
     end
 
     has_edge :message_template_previews do |edge|
       edge.get do |api|
         api.has_param :add_security_recommendation, 'bool'
+        api.has_param :business_name, 'string'
         api.has_param :button_types, { list: { enum: %w{OTP }} }
         api.has_param :category, { enum: %w{AUTHENTICATION }}
         api.has_param :code_expiration_minutes, 'int'
@@ -197,10 +232,12 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :name_or_content, 'string'
         api.has_param :quality_score, { list: { enum: %w{GREEN RED UNKNOWN YELLOW }} }
+        api.has_param :source, { enum: %w{AUTO_GENERATED MANUAL }}
         api.has_param :status, { list: { enum: %w{APPROVED ARCHIVED DELETED DISABLED IN_APPEAL LIMIT_EXCEEDED PAUSED PENDING PENDING_DELETION REJECTED }} }
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :allow_category_change, 'bool'
+        api.has_param :bid_spec, 'hash'
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}
         api.has_param :components, { list: 'hash' }
         api.has_param :cta_url_link_tracking_opted_out, 'bool'
@@ -213,6 +250,7 @@ module FacebookAds
         api.has_param :message_send_ttl_seconds, 'int'
         api.has_param :name, 'string'
         api.has_param :parameter_format, { enum: -> { WhatsAppBusinessAccount::PARAMETER_FORMAT }}
+        api.has_param :send_type, { enum: -> { WhatsAppBusinessAccount::SEND_TYPE }}
         api.has_param :sub_category, { enum: -> { WhatsAppBusinessAccount::SUB_CATEGORY }}
       end
     end
@@ -226,8 +264,10 @@ module FacebookAds
 
     has_edge :migrate_message_templates do |edge|
       edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :count, 'int'
         api.has_param :page_number, 'int'
         api.has_param :source_waba_id, 'string'
+        api.has_param :template_ids, { list: 'string' }
       end
     end
 
@@ -272,7 +312,7 @@ module FacebookAds
         api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
         api.has_param :metric_types, { list: { enum: %w{COST VOLUME }} }
         api.has_param :phone_numbers, { list: 'string' }
-        api.has_param :pricing_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL GROUP_MARKETING GROUP_SERVICE GROUP_UTILITY MARKETING MARKETING_LITE SERVICE UTILITY }} }
+        api.has_param :pricing_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL GROUP_MARKETING GROUP_MARKETING_LITE GROUP_SERVICE GROUP_UTILITY MARKETING MARKETING_LITE MARKETING_LITE_DYNAMIC SERVICE UTILITY }} }
         api.has_param :pricing_types, { list: { enum: %w{FREE_CUSTOMER_SERVICE FREE_ENTRY_POINT FREE_GROUP_CUSTOMER_SERVICE REGULAR }} }
         api.has_param :start, 'int'
         api.has_param :tiers, { list: 'string' }
@@ -327,6 +367,7 @@ module FacebookAds
         api.has_param :product_type, { enum: %w{CLOUD_API MARKETING_MESSAGES_LITE_API }}
         api.has_param :start, 'datetime'
         api.has_param :template_ids, { list: 'string' }
+        api.has_param :use_waba_timezone, 'bool'
       end
     end
 
@@ -367,9 +408,17 @@ module FacebookAds
     end
 
     has_edge :welcome_message_sequences do |edge|
+      edge.delete do |api|
+        api.has_param :sequence_id, 'string'
+      end
       edge.get 'CtxPartnerAppWelcomeMessageFlow' do |api|
         api.has_param :app_id, 'string'
         api.has_param :sequence_id, 'string'
+      end
+      edge.post do |api|
+        api.has_param :name, 'string'
+        api.has_param :sequence_id, 'string'
+        api.has_param :welcome_message_sequence, 'object'
       end
     end
 

@@ -16,6 +16,7 @@ module FacebookAds
   class OpenBridgeConfiguration < AdObject
 
     field :active, 'bool'
+    field :browser_agent, { list: 'string' }
     field :cloud_provider, 'string'
     field :cloud_region, 'string'
     field :destination_id, 'string'

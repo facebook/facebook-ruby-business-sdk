@@ -110,6 +110,7 @@ module FacebookAds
     field :custom_event_str, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
     field :dataset_split_id, 'string'
+    field :dataset_split_ids, { list: 'string' }
     field :event_id, 'string'
     field :full_funnel_objective, { enum: -> { FULL_FUNNEL_OBJECTIVE }}
     field :fundraiser_campaign_id, 'string'
@@ -117,7 +118,9 @@ module FacebookAds
     field :lead_ads_custom_event_type, { enum: -> { LEAD_ADS_CUSTOM_EVENT_TYPE }}
     field :lead_ads_form_event_source_type, 'string'
     field :lead_ads_offsite_conversion_type, 'string'
+    field :lead_ads_selected_pixel_id, 'string'
     field :mcme_conversion_id, 'string'
+    field :multi_event_product, 'string'
     field :object_store_url, 'string'
     field :object_store_urls, { list: 'string' }
     field :offer_id, 'string'
@@ -125,6 +128,8 @@ module FacebookAds
     field :offsite_conversion_event_id, 'string'
     field :omnichannel_object, 'object'
     field :page_id, 'string'
+    field :passback_application_id, 'string'
+    field :passback_pixel_id, 'string'
     field :pixel_aggregation_rule, 'string'
     field :pixel_id, 'string'
     field :pixel_rule, 'string'

@@ -68,6 +68,7 @@ module FacebookAds
       edge.get 'BrandedContentShadowIgMediaId' do |api|
         api.has_param :ad_code, 'string'
         api.has_param :creator_username, 'string'
+        api.has_param :media_relationship, { list: { enum: -> { BrandedContentShadowIgMediaId::MEDIA_RELATIONSHIP }} }
         api.has_param :only_fetch_allowlisted, 'bool'
         api.has_param :only_fetch_recommended_content, 'bool'
         api.has_param :permalinks, { list: 'string' }
@@ -91,6 +92,10 @@ module FacebookAds
         api.has_param :catalog_id, 'string'
         api.has_param :q, 'string'
       end
+    end
+
+    has_edge :collaboration_invites do |edge|
+      edge.get 'ShadowIgUserCollaborationInvites'
     end
 
     has_edge :connected_threads_user do |edge|
@@ -118,7 +123,9 @@ module FacebookAds
         api.has_param :major_audience_gender, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_GENDER }} }
         api.has_param :query, 'string'
         api.has_param :reels_interaction_rate, 'object'
+        api.has_param :show_onboarded_creators_only, 'bool'
         api.has_param :similar_to_creators, { list: 'string' }
+        api.has_param :username, 'string'
       end
     end
 

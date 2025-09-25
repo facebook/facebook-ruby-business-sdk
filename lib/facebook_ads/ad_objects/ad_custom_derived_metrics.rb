@@ -14,6 +14,12 @@ module FacebookAds
   # pull request for this class.
 
   class AdCustomDerivedMetrics < AdObject
+    SCOPE = [
+      "ACCOUNT",
+      "BUSINESS",
+      "BUSINESS_ASSET_GROUP",
+    ]
+
 
     field :ad_account_id, 'string'
     field :business, 'Business'

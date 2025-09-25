@@ -47,6 +47,7 @@ module FacebookAds
     field :match_status, 'string'
     field :notes, 'string'
     field :permalink, 'string'
+    field :policy_eval_modify_reasons, { list: 'object' }
     field :ugc_content_format, 'string'
     has_no_post
     has_no_delete

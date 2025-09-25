@@ -136,6 +136,7 @@ module FacebookAds
     field :timezone_id, 'int'
     field :timezone_name, 'string'
     field :topline_id, 'int'
+    field :trending_topics_spec, 'TrendingTopicsSpec'
     field :video_view_length_constraint, 'int'
     field :viewtag, 'string'
     field :action, { enum: -> { ACTION }}
@@ -154,7 +155,6 @@ module FacebookAds
     field :rf_prediction_id_to_release, 'string'
     field :rf_prediction_id_to_share, 'string'
     field :stop_time, 'int'
-    field :trending_topics_spec, 'hash'
     has_no_post
     has_no_delete
 

@@ -15,6 +15,12 @@ module FacebookAds
 
   class AdCreativeMediaSourcingSpec < AdObject
 
+    field :bodies, { list: 'object' }
+    field :descriptions, { list: 'object' }
+    field :images, { list: 'object' }
+    field :related_media, 'object'
+    field :titles, { list: 'object' }
+    field :videos, { list: 'object' }
     has_no_id
     has_no_get
     has_no_post

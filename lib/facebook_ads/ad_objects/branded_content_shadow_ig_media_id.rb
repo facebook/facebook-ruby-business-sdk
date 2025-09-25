@@ -14,6 +14,11 @@ module FacebookAds
   # pull request for this class.
 
   class BrandedContentShadowIgMediaId < AdObject
+    MEDIA_RELATIONSHIP = [
+      "IS_TAGGED",
+      "OWNED",
+    ]
+
 
     field :eligibility_errors, { list: 'string' }
     field :has_permission_for_partnership_ad, 'bool'

@@ -84,6 +84,7 @@ module FacebookAds
       "C2PA",
       "C2PA_METADATA_EDITED",
       "EXPLICIT",
+      "EXPLICIT_ANIMATE",
       "EXPLICIT_IMAGINE",
       "EXPLICIT_IMAGINE_ME",
       "EXPLICIT_RESTYLE",
@@ -212,6 +213,13 @@ module FacebookAds
       "SCHEDULED_RECURRING",
     ]
 
+    RECOMMENDATION_ACTION = [
+      "ACCEPT_CLOSED",
+      "ACCEPT_NEW",
+      "REJECT_CLOSED",
+      "REJECT_NEW",
+    ]
+
     CATEGORY = [
       "UTILITY",
     ]
@@ -292,10 +300,13 @@ module FacebookAds
       "awards",
       "bio",
       "birthday",
+      "business_integrity",
       "call_permission_reply",
+      "call_settings_update",
       "calls",
       "category",
       "checkins",
+      "comment_poll_response",
       "company_overview",
       "conversations",
       "culinary_team",
@@ -304,6 +315,7 @@ module FacebookAds
       "email",
       "feature_access_list",
       "feed",
+      "follow",
       "founded",
       "general_info",
       "general_manager",
@@ -322,6 +334,8 @@ module FacebookAds
       "local_delivery",
       "location",
       "marketing_message_delivery_failed",
+      "marketing_message_echoes",
+      "marketing_messages_subscriber_upload_status",
       "mcom_invoice_change",
       "members",
       "mention",
@@ -375,6 +389,8 @@ module FacebookAds
       "response_feedback",
       "send_cart",
       "standby",
+      "story_poll_response",
+      "story_share",
       "user_action",
       "video_text_question_responses",
       "videos",
@@ -409,6 +425,7 @@ module FacebookAds
     field :connected_instagram_account, 'IgUser'
     field :connected_page_backed_instagram_account, 'IgUser'
     field :contact_address, 'MailingAddress'
+    field :copyright_attribution_insights, 'CopyrightAttributionInsights'
     field :copyright_whitelisted_ig_partners, { list: 'string' }
     field :country_page_likes, 'int'
     field :cover, 'CoverPhoto'
@@ -555,6 +572,12 @@ module FacebookAds
       end
     end
 
+    has_edge :ads_eligibility do |edge|
+      edge.get 'AdsEligibility' do |api|
+        api.has_param :ads_account_id, 'string'
+      end
+    end
+
     has_edge :ads_posts do |edge|
       edge.get 'PagePost' do |api|
         api.has_param :exclude_dynamic_ads, 'bool'
@@ -623,6 +646,12 @@ module FacebookAds
       end
     end
 
+    has_edge :business_messaging_feature_status do |edge|
+      edge.post 'Page' do |api|
+        api.has_param :features, { list: 'hash' }
+      end
+    end
+
     has_edge :businessprojects do |edge|
       edge.get 'BusinessProject' do |api|
         api.has_param :business, 'string'
@@ -651,6 +680,7 @@ module FacebookAds
       edge.post 'CanvasBodyElement' do |api|
         api.has_param :canvas_button, 'object'
         api.has_param :canvas_carousel, 'object'
+        api.has_param :canvas_existing_post, 'object'
         api.has_param :canvas_footer, 'object'
         api.has_param :canvas_header, 'object'
         api.has_param :canvas_lead_form, 'object'
@@ -673,6 +703,8 @@ module FacebookAds
         api.has_param :background_color, 'string'
         api.has_param :body_element_ids, { list: 'string' }
         api.has_param :enable_swipe_to_open, 'bool'
+        api.has_param :hero_asset_facebook_post_id, 'string'
+        api.has_param :hero_asset_instagram_media_id, 'string'
         api.has_param :is_hidden, 'bool'
         api.has_param :is_published, 'bool'
         api.has_param :name, 'string'
@@ -715,6 +747,7 @@ module FacebookAds
     has_edge :conversations do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
+        api.has_param :is_owner, 'bool'
         api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
@@ -964,6 +997,7 @@ module FacebookAds
         api.has_param :privacy_policy, 'object'
         api.has_param :question_page_custom_headline, 'string'
         api.has_param :questions, { list: 'object' }
+        api.has_param :should_enforce_work_email, 'bool'
         api.has_param :thank_you_page, 'object'
         api.has_param :tracking_parameters, 'hash'
         api.has_param :upload_gated_file, 'file'
@@ -1030,11 +1064,15 @@ module FacebookAds
         api.has_param :pickup_options, { list: { enum: -> { Page::PICKUP_OPTIONS }} }
         api.has_param :place_topics, { list: 'string' }
         api.has_param :price_range, 'string'
+        api.has_param :recommendation_action, { enum: -> { Page::RECOMMENDATION_ACTION }}
+        api.has_param :recommendation_ds, 'string'
+        api.has_param :recommendation_store_id, 'int'
         api.has_param :store_code, 'string'
         api.has_param :store_location_descriptor, 'string'
         api.has_param :store_name, 'string'
         api.has_param :store_number, 'int'
         api.has_param :temporary_status, { enum: -> { Page::TEMPORARY_STATUS }}
+        api.has_param :type, 'string'
         api.has_param :website, 'string'
       end
     end
@@ -1109,6 +1147,7 @@ module FacebookAds
         api.has_param :call_hours, 'hash'
         api.has_param :call_routing, 'hash'
         api.has_param :icon_enabled, 'bool'
+        api.has_param :video, 'hash'
       end
     end
 
@@ -1171,7 +1210,9 @@ module FacebookAds
     end
 
     has_edge :notification_message_tokens do |edge|
-      edge.get 'UserPageOneTimeOptInTokenSettings'
+      edge.get 'UserPageOneTimeOptInTokenSettings' do |api|
+        api.has_param :custom_audience_ids, { list: 'string' }
+      end
     end
 
     has_edge :notification_messages_dev_support do |edge|
@@ -1341,6 +1382,10 @@ module FacebookAds
       end
     end
 
+    has_edge :ratings do |edge|
+      edge.get 'Recommendation'
+    end
+
     has_edge :release_thread_control do |edge|
       edge.post 'Page' do |api|
         api.has_param :recipient, 'object'
@@ -1432,6 +1477,7 @@ module FacebookAds
     has_edge :threads do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
+        api.has_param :is_owner, 'bool'
         api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'

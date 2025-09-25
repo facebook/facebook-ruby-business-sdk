@@ -15,9 +15,11 @@ module FacebookAds
 
   class AdCreativeBrandedContentAds < AdObject
 
+    field :acting_business_id, 'string'
     field :ad_format, 'int'
     field :content_search_input, 'string'
     field :creator_ad_permission_type, 'string'
+    field :deliver_dynamic_partner_content, 'bool'
     field :facebook_boost_post_access_token, 'string'
     field :instagram_boost_post_access_token, 'string'
     field :is_mca_internal, 'bool'

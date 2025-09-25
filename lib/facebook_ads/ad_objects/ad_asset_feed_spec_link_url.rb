@@ -16,9 +16,11 @@ module FacebookAds
   class AdAssetFeedSpecLinkUrl < AdObject
 
     field :adlabels, { list: 'AdAssetFeedSpecAssetLabel' }
+    field :android_url, 'string'
     field :carousel_see_more_url, 'string'
     field :deeplink_url, 'string'
     field :display_url, 'string'
+    field :ios_url, 'string'
     field :object_store_urls, { list: 'string' }
     field :url_tags, 'string'
     field :website_url, 'string'

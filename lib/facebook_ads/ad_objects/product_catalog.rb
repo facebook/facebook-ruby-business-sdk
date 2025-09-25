@@ -195,6 +195,12 @@ module FacebookAds
       end
     end
 
+    has_edge :check_marketplace_partner_deals_status do |edge|
+      edge.get 'ProductCatalogCheckMarketplacePartnerDealsStatus' do |api|
+        api.has_param :session_id, 'string'
+      end
+    end
+
     has_edge :check_marketplace_partner_sellers_status do |edge|
       edge.get 'ProductCatalogCheckMarketplacePartnerSellersStatus' do |api|
         api.has_param :session_id, 'string'
@@ -356,6 +362,12 @@ module FacebookAds
       end
     end
 
+    has_edge :marketplace_partner_deals_details do |edge|
+      edge.post 'ProductCatalog' do |api|
+        api.has_param :requests, 'hash'
+      end
+    end
+
     has_edge :marketplace_partner_sellers_details do |edge|
       edge.post 'ProductCatalog' do |api|
         api.has_param :requests, 'hash'
@@ -497,6 +509,7 @@ module FacebookAds
         api.has_param :iphone_app_store_id, 'int'
         api.has_param :iphone_url, 'string'
         api.has_param :launch_date, 'string'
+        api.has_param :live_special_price, 'string'
         api.has_param :manufacturer_info, 'string'
         api.has_param :manufacturer_part_number, 'string'
         api.has_param :marked_for_product_launch, { enum: -> { ProductItem::MARKED_FOR_PRODUCT_LAUNCH }}
@@ -517,6 +530,7 @@ module FacebookAds
         api.has_param :retailer_id, 'string'
         api.has_param :retailer_product_group_id, 'string'
         api.has_param :return_policy_days, 'int'
+        api.has_param :rich_text_description, 'string'
         api.has_param :sale_price, 'int'
         api.has_param :sale_price_end_date, 'datetime'
         api.has_param :sale_price_start_date, 'datetime'

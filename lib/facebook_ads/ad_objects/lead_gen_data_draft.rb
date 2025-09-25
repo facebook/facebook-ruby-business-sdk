@@ -27,6 +27,7 @@ module FacebookAds
     field :page, 'Page'
     field :question_page_custom_headline, 'string'
     field :questions, { list: 'LeadGenDraftQuestion' }
+    field :should_enforce_work_email, 'bool'
     field :status, 'string'
     field :thank_you_page, 'object'
     field :tracking_parameters, { list: 'hash' }

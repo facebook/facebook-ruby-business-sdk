@@ -13,10 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class FavoriteCatalog < AdObject
+  class PartnerCenterExportFile < AdObject
 
-    field :catalog, 'ProductCatalog'
     field :id, 'string'
+    field :report_ds, 'string'
+    field :url, 'string'
     has_no_post
     has_no_delete
 

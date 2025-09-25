@@ -178,6 +178,7 @@ module FacebookAds
 
     OPTIMIZATION_SUB_EVENT = [
       "NONE",
+      "POST_INTERACTION",
       "TRAVEL_INTENT",
       "TRAVEL_INTENT_BUCKET_01",
       "TRAVEL_INTENT_BUCKET_02",
@@ -198,6 +199,10 @@ module FacebookAds
       "5",
       "6",
       "7",
+      "8",
+      "9",
+      "10",
+      "11",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -274,6 +279,7 @@ module FacebookAds
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}
     field :optimization_sub_event, 'string'
     field :pacing_type, { list: 'string' }
+    field :placement_soft_opt_out, 'Placement'
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
     field :recurring_budget_semantics, 'bool'
@@ -289,8 +295,12 @@ module FacebookAds
     field :targeting_optimization_types, { list: 'hash' }
     field :time_based_ad_rotation_id_blocks, { list: { list: 'int' } }
     field :time_based_ad_rotation_intervals, { list: 'int' }
+    field :trending_topics_spec, 'TrendingTopicsSpec'
     field :updated_time, 'datetime'
     field :use_new_app_click, 'bool'
+    field :value_rule_set_id, 'string'
+    field :value_rules_applied, 'bool'
+    field :budget_schedule_specs, { list: 'object' }
     field :budget_source, { enum: -> { BUDGET_SOURCE }}
     field :budget_split_set_id, 'string'
     field :campaign_spec, 'object'
@@ -358,6 +368,10 @@ module FacebookAds
     end
 
     has_edge :budget_schedules do |edge|
+      edge.get 'HighDemandPeriod' do |api|
+        api.has_param :time_start, 'datetime'
+        api.has_param :time_stop, 'datetime'
+      end
       edge.post 'HighDemandPeriod' do |api|
         api.has_param :budget_value, 'int'
         api.has_param :budget_value_type, { enum: -> { HighDemandPeriod::BUDGET_VALUE_TYPE }}
@@ -405,6 +419,7 @@ module FacebookAds
         api.has_param :export_name, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
+        api.has_param :graph_cache, 'bool'
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
@@ -429,6 +444,7 @@ module FacebookAds
         api.has_param :export_name, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
+        api.has_param :graph_cache, 'bool'
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'

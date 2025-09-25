@@ -15,10 +15,14 @@ module FacebookAds
 
   class AdCreativeLinkDataCallToActionValue < AdObject
 
+    field :android_url, 'string'
     field :app_destination, 'string'
     field :app_link, 'string'
     field :application, 'string'
     field :event_id, 'string'
+    field :ios_url, 'string'
+    field :land_on_whatsapp_catalog, 'int'
+    field :land_on_whatsapp_profile, 'int'
     field :lead_gen_form_id, 'string'
     field :link, 'string'
     field :link_caption, 'string'

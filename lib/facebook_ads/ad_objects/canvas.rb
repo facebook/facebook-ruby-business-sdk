@@ -26,6 +26,8 @@ module FacebookAds
     field :element_payload, 'string'
     field :elements, { list: 'RichMediaElement' }
     field :fb_body_elements, { list: 'object' }
+    field :hero_asset_facebook_post_id, 'string'
+    field :hero_asset_instagram_media_id, 'string'
     field :id, 'string'
     field :is_hidden, 'bool'
     field :is_published, 'bool'

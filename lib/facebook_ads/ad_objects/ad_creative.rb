@@ -23,6 +23,7 @@ module FacebookAds
       "BOOK_A_CONSULTATION",
       "BOOK_NOW",
       "BOOK_TRAVEL",
+      "BROWSE_SHOP",
       "BUY",
       "BUY_NOW",
       "BUY_TICKETS",
@@ -39,11 +40,13 @@ module FacebookAds
       "DOWNLOAD",
       "EVENT_RSVP",
       "FIND_A_GROUP",
+      "FIND_OUT_MORE",
       "FIND_YOUR_GROUPS",
       "FOLLOW_NEWS_STORYLINE",
       "FOLLOW_PAGE",
       "FOLLOW_USER",
       "GET_A_QUOTE",
+      "GET_DETAILS",
       "GET_DIRECTIONS",
       "GET_IN_TOUCH",
       "GET_OFFER",
@@ -77,18 +80,22 @@ module FacebookAds
       "REQUEST_TIME",
       "SAY_THANKS",
       "SEE_MORE",
+      "SEE_SHOP",
       "SELL_NOW",
       "SEND_A_GIFT",
       "SEND_GIFT_MONEY",
       "SEND_UPDATES",
       "SHARE",
       "SHOP_NOW",
+      "SHOP_WITH_AI",
       "SIGN_UP",
       "SOTTO_SUBSCRIBE",
       "START_ORDER",
       "SUBSCRIBE",
       "SWIPE_UP_PRODUCT",
       "SWIPE_UP_SHOP",
+      "TRY_DEMO",
+      "TRY_ON_WITH_AI",
       "UPDATE_APP",
       "USE_APP",
       "USE_MOBILE_APP",
@@ -99,6 +106,7 @@ module FacebookAds
       "VIEW_IN_CART",
       "VIEW_PRODUCT",
       "VISIT_PAGES_FEED",
+      "VISIT_WEBSITE",
       "WATCH_LIVE_VIDEO",
       "WATCH_MORE",
       "WATCH_VIDEO",
@@ -195,7 +203,7 @@ module FacebookAds
     field :enable_direct_install, 'bool'
     field :enable_launch_instant_app, 'bool'
     field :facebook_branded_content, 'AdCreativeFacebookBrandedContent'
-    field :format_transformation_spec, 'AdCreativeFormatTransformationSpec'
+    field :format_transformation_spec, { list: 'AdCreativeFormatTransformationSpec' }
     field :id, 'string'
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
@@ -208,6 +216,7 @@ module FacebookAds
     field :link_destination_display_url, 'string'
     field :link_og_id, 'string'
     field :link_url, 'string'
+    field :media_sourcing_spec, 'AdCreativeMediaSourcingSpec'
     field :messenger_sponsored_message, 'string'
     field :name, 'string'
     field :object_id, 'string'

@@ -15,12 +15,15 @@ module FacebookAds
 
   class AdCreativeLinkDataChildAttachment < AdObject
 
+    field :android_url, 'string'
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
     field :caption, 'string'
     field :description, 'string'
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
+    field :ios_url, 'string'
     field :link, 'string'
+    field :marketing_message_buttons, { list: 'object' }
     field :name, 'string'
     field :picture, 'string'
     field :place_data, 'AdCreativePlaceData'

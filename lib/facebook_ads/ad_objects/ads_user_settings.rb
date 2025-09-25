@@ -19,9 +19,13 @@ module FacebookAds
     field :add_overlays_opt_in_status, 'string'
     field :adgroup_name_template, 'object'
     field :ads_cs_catalog_opt_out_timestamp, { list: 'hash' }
+    field :ads_cs_sitelinks_opt_in_status, 'string'
+    field :ads_cs_sitelinks_opt_out_timestamp, { list: 'hash' }
     field :ads_tool_visits, { list: 'object' }
+    field :aplusc_ai_agent_opt_in_status, 'string'
     field :aplusc_carousel_cda_opt_in_status, 'string'
     field :aplusc_carousel_inline_comment_opt_in_status, 'string'
+    field :aplusc_da_opt_in_status, 'string'
     field :aplusc_enhance_cta_opt_in_status, 'string'
     field :aplusc_epa_opt_in_status, 'string'
     field :aplusc_local_store_extension_opt_in_status, 'string'
@@ -37,6 +41,8 @@ module FacebookAds
     field :campaign_name_template, 'object'
     field :carousel_to_video_opt_in_status, 'string'
     field :connected_sources_catalog_opt_in_status, 'string'
+    field :create_cta_sticker_opt_in_status, 'string'
+    field :creative_flex_opt_in_status, 'string'
     field :da_add_overlays_opt_in_status, 'string'
     field :da_hide_price_opt_in_status, 'string'
     field :default_creation_mode, 'string'
@@ -45,15 +51,18 @@ module FacebookAds
     field :export_format_default, 'string'
     field :focus_mode_default, 'string'
     field :gen_ai_alpha_test_status, 'int'
+    field :gen_ai_auto_select_opt_in_status, 'string'
     field :id, 'string'
     field :image_background_generation_opt_in_status, 'string'
     field :image_brightness_and_contrast_opt_in_status, 'string'
     field :image_expansion_opt_in_status, 'string'
+    field :image_templates_text_extraction_opt_in_status, 'string'
     field :is_ads_ai_consented, 'bool'
     field :is_cbo_default_on, 'bool'
     field :is_se_removal_guidance_dismissed, 'bool'
     field :last_used_post_format, 'string'
     field :last_visited_time, 'datetime'
+    field :metadata_brand_kit_last_opt_out_timestamp, 'int'
     field :metadata_brand_kit_opt_in_status, 'string'
     field :music_on_reels_opt_in, { list: 'hash' }
     field :muted_cbo_midflight_education_messages, { list: 'string' }
@@ -64,6 +73,8 @@ module FacebookAds
     field :placement_group_vertical_opt_in_status, 'string'
     field :previously_seen_recommendations, { list: 'string' }
     field :product_extensions_opt_in, 'string'
+    field :reactive_control_settings, { list: 'object' }
+    field :replace_media_text_opt_in_status, 'string'
     field :sa_off_conv_loc_seen, 'string'
     field :saoff_published_l2_conv_loc_seen, 'string'
     field :saon_migr_l1_seen_status, 'string'
@@ -94,6 +105,9 @@ module FacebookAds
     field :use_pe_create_flow, 'bool'
     field :use_stepper_primary_entry, 'bool'
     field :user, 'User'
+    field :website_media_opt_in_status, 'string'
+    field :website_reviews_data_opt_in_status, 'string'
+    field :website_selling_points_data_opt_in_status, 'string'
     has_no_post
     has_no_delete
 

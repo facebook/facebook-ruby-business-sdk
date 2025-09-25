@@ -858,6 +858,7 @@ module FacebookAds
     field :id, 'string'
     field :is_hidden, 'bool'
     field :link, 'string'
+    field :marketing_messages_onboarding_status, 'MarketingMessagesOnboardingStatus'
     field :name, 'string'
     field :payment_account_id, 'string'
     field :primary_page, 'Page'
@@ -892,6 +893,13 @@ module FacebookAds
     has_edge :ad_accounts do |edge|
       edge.delete do |api|
         api.has_param :adaccount_id, 'string'
+      end
+    end
+
+    has_edge :ad_custom_derived_metrics do |edge|
+      edge.get 'AdCustomDerivedMetrics' do |api|
+        api.has_param :adhoc_custom_metrics, { list: 'string' }
+        api.has_param :scope, { enum: -> { AdCustomDerivedMetrics::SCOPE }}
       end
     end
 

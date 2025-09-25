@@ -19,6 +19,7 @@ module FacebookAds
     field :all_ddex_main_artists, 'string'
     field :audio_cluster_id, 'string'
     field :cover_image_source, 'string'
+    field :description, 'string'
     field :display_artist, 'string'
     field :download_hd_url, 'string'
     field :download_sd_url, 'string'

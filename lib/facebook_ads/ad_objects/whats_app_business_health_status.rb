@@ -16,6 +16,7 @@ module FacebookAds
   class WhatsAppBusinessHealthStatus < AdObject
 
     field :additional_info, { list: 'string' }
+    field :can_receive_call_sip, 'string'
     field :can_send_message, 'string'
     field :entity_type, 'string'
     field :errors, { list: 'object' }

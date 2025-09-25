@@ -16,6 +16,7 @@ module FacebookAds
   class UserPageOneTimeOptInTokenSettings < AdObject
 
     field :creation_timestamp, 'int'
+    field :custom_audience_ids, { list: 'string' }
     field :next_eligible_time, 'int'
     field :next_eligible_time_for_paid_messaging, 'int'
     field :notification_messages_frequency, 'string'

@@ -15,6 +15,7 @@ module FacebookAds
 
   class CtxDefaultOptimizationConfig < AdObject
 
+    field :defaulting_source, 'string'
     field :destination_type, 'string'
     field :objective, 'string'
     field :optimization_goal, 'string'

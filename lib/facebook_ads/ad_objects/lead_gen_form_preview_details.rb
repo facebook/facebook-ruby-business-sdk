@@ -15,6 +15,7 @@ module FacebookAds
 
   class LeadGenFormPreviewDetails < AdObject
 
+    field :book_on_website_text, 'string'
     field :call_business_text, 'string'
     field :call_to_action_title, 'string'
     field :chat_on_messenger_text, 'string'

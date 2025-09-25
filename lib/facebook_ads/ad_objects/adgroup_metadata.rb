@@ -18,6 +18,7 @@ module FacebookAds
     field :ad_standard_enhancements_edit_source, 'int'
     field :adgroup_creation_source, 'string'
     field :adgroup_edit_source, 'string'
+    field :adgroup_media_source, 'string'
     field :carousel_style, 'string'
     field :carousel_with_static_card_style, 'string'
     has_no_id

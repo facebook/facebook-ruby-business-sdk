@@ -183,6 +183,7 @@ module FacebookAds
         api.has_param :export_name, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
+        api.has_param :graph_cache, 'bool'
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
@@ -207,6 +208,7 @@ module FacebookAds
         api.has_param :export_name, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
+        api.has_param :graph_cache, 'bool'
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'

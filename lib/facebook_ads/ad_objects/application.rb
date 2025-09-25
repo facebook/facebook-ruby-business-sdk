@@ -250,7 +250,7 @@ module FacebookAds
         api.has_param :include_video_data, 'bool'
         api.has_param :install_id, 'string'
         api.has_param :install_referrer, 'string'
-        api.has_param :install_timestamp, 'int'
+        api.has_param :install_timestamp, 'double'
         api.has_param :installer_package, 'string'
         api.has_param :is_fb, 'bool'
         api.has_param :limited_data_use, 'bool'

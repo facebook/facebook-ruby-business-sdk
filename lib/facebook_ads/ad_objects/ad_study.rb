@@ -17,6 +17,7 @@ module FacebookAds
     TYPE = [
       "BACKEND_AB_TESTING",
       "CONTINUOUS_LIFT_CONFIG",
+      "CREATIVE_SPEND_ENFORCEMENT",
       "GEO_LIFT",
       "LIFT",
       "SPLIT_TEST",

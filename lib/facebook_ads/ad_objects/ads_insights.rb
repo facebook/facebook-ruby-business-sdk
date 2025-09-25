@@ -73,10 +73,14 @@ module FacebookAds
       "call_to_action_asset",
       "coarse_conversion_value",
       "comscore_market",
-      "comscore_market_code",
       "conversion_destination",
       "country",
+      "creative_automation_asset_id",
       "creative_relaxation_asset_type",
+      "crm_advertiser_l12_territory_ids",
+      "crm_advertiser_subvertical_id",
+      "crm_advertiser_vertical_id",
+      "crm_ult_advertiser_id",
       "description_asset",
       "device_platform",
       "dma",
@@ -109,10 +113,22 @@ module FacebookAds
       "place_page_id",
       "platform_position",
       "postback_sequence_index",
+      "product_brand_breakdown",
+      "product_category_breakdown",
+      "product_custom_label_0_breakdown",
+      "product_custom_label_1_breakdown",
+      "product_custom_label_2_breakdown",
+      "product_custom_label_3_breakdown",
+      "product_custom_label_4_breakdown",
+      "product_group_content_id_breakdown",
       "product_id",
+      "product_set_id_breakdown",
       "publisher_platform",
       "redownload",
       "region",
+      "rta_ugc_topic",
+      "rule_set_id",
+      "rule_set_name",
       "signal_source_bucket",
       "skan_campaign_id",
       "skan_conversion_id",
@@ -319,17 +335,7 @@ module FacebookAds
     field :outbound_clicks, { list: 'AdsActionStats' }
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
     field :place_page_name, 'string'
-    field :product_brand, 'string'
-    field :product_category, 'string'
-    field :product_content_id, 'string'
-    field :product_custom_label_0, 'string'
-    field :product_custom_label_1, 'string'
-    field :product_custom_label_2, 'string'
-    field :product_custom_label_3, 'string'
-    field :product_custom_label_4, 'string'
-    field :product_group_content_id, 'string'
     field :product_group_retailer_id, 'string'
-    field :product_name, 'string'
     field :product_retailer_id, 'string'
     field :product_views, 'string'
     field :purchase_per_landing_page_view, 'string'

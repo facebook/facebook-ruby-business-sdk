@@ -406,7 +406,10 @@ module FacebookAds
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
     field :has_secondary_skadnetwork_reporting, 'bool'
     field :id, 'string'
+    field :is_adset_budget_sharing_enabled, 'bool'
     field :is_budget_schedule_enabled, 'bool'
+    field :is_direct_send_campaign, 'bool'
+    field :is_message_campaign, 'bool'
     field :is_skadnetwork_attribution, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :last_budget_toggling_time, 'datetime'
@@ -431,6 +434,7 @@ module FacebookAds
     field :topline_id, 'string'
     field :updated_time, 'datetime'
     field :adbatch, { list: 'object' }
+    field :budget_schedule_specs, { list: 'object' }
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
     field :iterative_split_test_configs, { list: 'object' }
 
@@ -470,6 +474,10 @@ module FacebookAds
     end
 
     has_edge :budget_schedules do |edge|
+      edge.get 'HighDemandPeriod' do |api|
+        api.has_param :time_start, 'datetime'
+        api.has_param :time_stop, 'datetime'
+      end
       edge.post 'HighDemandPeriod' do |api|
         api.has_param :budget_value, 'int'
         api.has_param :budget_value_type, { enum: -> { HighDemandPeriod::BUDGET_VALUE_TYPE }}
@@ -488,6 +496,8 @@ module FacebookAds
       edge.post 'Campaign' do |api|
         api.has_param :deep_copy, 'bool'
         api.has_param :end_time, 'datetime'
+        api.has_param :migrate_to_advantage_plus, 'bool'
+        api.has_param :parameter_overrides, 'object'
         api.has_param :rename_options, 'object'
         api.has_param :start_time, 'datetime'
         api.has_param :status_option, { enum: -> { Campaign::STATUS_OPTION }}
@@ -507,6 +517,7 @@ module FacebookAds
         api.has_param :export_name, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
+        api.has_param :graph_cache, 'bool'
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
@@ -531,6 +542,7 @@ module FacebookAds
         api.has_param :export_name, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
+        api.has_param :graph_cache, 'bool'
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'

@@ -47,6 +47,7 @@ module FacebookAds
     field :ad_object_export_format, 'string'
     field :ads_manager_footer_row_toast_impressions, 'int'
     field :auto_review_video_caption, 'bool'
+    field :budget_optimization_quick_view_created, 'bool'
     field :campaign_overview_columns, { list: 'string' }
     field :column_suggestion_status, 'string'
     field :conditional_formatting_rules, { list: 'string' }
@@ -104,9 +105,14 @@ module FacebookAds
     field :syd_campaign_trends_time_range, 'string'
     field :syd_landing_page_opt_in_status, 'string'
     field :text_gen_persona_opt_in_type, 'string'
+    field :text_variations_hl_opt_in_out_ts, 'datetime'
+    field :text_variations_hl_opt_in_type, 'string'
     field :text_variations_opt_in_out_ts, 'datetime'
     field :text_variations_opt_in_type, 'string'
     field :user, 'User'
+    field :value_optimized_qv_created, 'bool'
+    field :value_qv_nux_impressions, 'int'
+    field :value_suggested_column_status, 'string'
     has_no_post
     has_no_delete
 

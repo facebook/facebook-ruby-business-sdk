@@ -45,6 +45,7 @@ module FacebookAds
     field :image_hash, 'string'
     field :image_layer_specs, { list: 'AdCreativeLinkDataImageLayerSpec' }
     field :image_overlay_spec, 'AdCreativeLinkDataImageOverlaySpec'
+    field :is_local_expansion, 'bool'
     field :link, 'string'
     field :message, 'string'
     field :multi_share_end_card, 'bool'

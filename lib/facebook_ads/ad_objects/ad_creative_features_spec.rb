@@ -24,6 +24,7 @@ module FacebookAds
     field :biz_ai, 'AdCreativeFeatureDetails'
     field :carousel_to_video, 'AdCreativeFeatureDetails'
     field :catalog_feed_tag, 'AdCreativeFeatureDetails'
+    field :creative_stickers, 'AdCreativeFeatureDetails'
     field :customize_product_recommendation, 'AdCreativeFeatureDetails'
     field :cv_transformation, 'AdCreativeFeatureDetails'
     field :description_automation, 'AdCreativeFeatureDetails'
@@ -60,6 +61,9 @@ module FacebookAds
     field :product_tags, 'AdCreativeFeatureDetails'
     field :profile_card, 'AdCreativeFeatureDetails'
     field :profile_extension, 'AdCreativeFeatureDetails'
+    field :replace_media_text, 'AdCreativeFeatureDetails'
+    field :reveal_details_over_time, 'AdCreativeFeatureDetails'
+    field :show_destination_blurbs, 'AdCreativeFeatureDetails'
     field :show_summary, 'AdCreativeFeatureDetails'
     field :site_extensions, 'AdCreativeFeatureDetails'
     field :standard_enhancements, 'AdCreativeFeatureDetails'
@@ -71,8 +75,10 @@ module FacebookAds
     field :video_auto_crop, 'AdCreativeFeatureDetails'
     field :video_filtering, 'AdCreativeFeatureDetails'
     field :video_highlight, 'AdCreativeFeatureDetails'
+    field :video_highlights, 'AdCreativeFeatureDetails'
     field :video_to_image, 'AdCreativeFeatureDetails'
     field :video_uncrop, 'AdCreativeFeatureDetails'
+    field :wa_mm_image_filtering, 'AdCreativeFeatureDetails'
     field :wa_mm_text_truncation_length, 'AdCreativeFeatureDetails'
     has_no_id
     has_no_get

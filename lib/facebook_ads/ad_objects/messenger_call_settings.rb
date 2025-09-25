@@ -19,6 +19,7 @@ module FacebookAds
     field :call_hours, 'object'
     field :call_routing, 'string'
     field :icon_enabled, 'bool'
+    field :video, 'string'
     has_no_id
     has_no_get
     has_no_post

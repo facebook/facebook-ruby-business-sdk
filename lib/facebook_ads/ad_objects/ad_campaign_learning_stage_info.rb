@@ -17,6 +17,9 @@ module FacebookAds
 
     field :attribution_windows, { list: 'string' }
     field :conversions, 'int'
+    field :dynamic_lp_conversions_threshold, 'int'
+    field :dynamic_lp_days_threshold, 'int'
+    field :dynamic_lp_status, 'string'
     field :last_sig_edit_ts, 'int'
     field :status, 'string'
     has_no_id

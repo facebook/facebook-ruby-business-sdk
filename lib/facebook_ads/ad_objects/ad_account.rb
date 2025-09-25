@@ -211,6 +211,7 @@ module FacebookAds
     field :min_daily_budget, 'int'
     field :name, 'string'
     field :offsite_pixels_tos_accepted, 'bool'
+    field :opportunity_score, 'double'
     field :owner, 'string'
     field :owner_business, 'Business'
     field :partner, 'string'
@@ -325,6 +326,7 @@ module FacebookAds
         api.has_param :is_dco_internal, 'bool'
         api.has_param :link_og_id, 'string'
         api.has_param :link_url, 'string'
+        api.has_param :media_sourcing_spec, 'hash'
         api.has_param :name, 'string'
         api.has_param :object_id, 'int'
         api.has_param :object_story_id, 'string'
@@ -494,6 +496,7 @@ module FacebookAds
         api.has_param :bid_constraints, 'hash'
         api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
         api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
+        api.has_param :budget_schedule_specs, { list: 'object' }
         api.has_param :budget_source, { enum: -> { AdSet::BUDGET_SOURCE }}
         api.has_param :budget_split_set_id, 'string'
         api.has_param :campaign_attribution, 'object'
@@ -515,6 +518,7 @@ module FacebookAds
         api.has_param :frequency_control_specs, { list: 'object' }
         api.has_param :full_funnel_exploration_mode, { enum: -> { AdSet::FULL_FUNNEL_EXPLORATION_MODE }}
         api.has_param :is_ba_skip_delayed_eligible, 'bool'
+        api.has_param :is_budget_schedule_enabled, 'bool'
         api.has_param :is_dynamic_creative, 'bool'
         api.has_param :is_incremental_attribution_enabled, 'bool'
         api.has_param :is_sac_cfca_terms_certified, 'bool'
@@ -544,7 +548,10 @@ module FacebookAds
         api.has_param :time_start, 'datetime'
         api.has_param :time_stop, 'datetime'
         api.has_param :topline_id, 'string'
+        api.has_param :trending_topics_spec, 'hash'
         api.has_param :tune_for_category, { enum: -> { AdSet::TUNE_FOR_CATEGORY }}
+        api.has_param :value_rule_set_id, 'string'
+        api.has_param :value_rules_applied, 'bool'
       end
     end
 
@@ -773,9 +780,14 @@ module FacebookAds
       edge.post 'Campaign' do |api|
         api.has_param :adlabels, { list: 'object' }
         api.has_param :bid_strategy, { enum: -> { Campaign::BID_STRATEGY }}
+        api.has_param :budget_schedule_specs, { list: 'object' }
         api.has_param :buying_type, 'string'
         api.has_param :daily_budget, 'int'
         api.has_param :execution_options, { list: { enum: -> { Campaign::EXECUTION_OPTIONS }} }
+        api.has_param :is_adset_budget_sharing_enabled, 'bool'
+        api.has_param :is_budget_schedule_enabled, 'bool'
+        api.has_param :is_direct_send_campaign, 'bool'
+        api.has_param :is_message_campaign, 'bool'
         api.has_param :is_skadnetwork_attribution, 'bool'
         api.has_param :iterative_split_test_configs, { list: 'object' }
         api.has_param :lifetime_budget, 'int'
@@ -918,6 +930,7 @@ module FacebookAds
         api.has_param :end_date, 'datetime'
         api.has_param :height, 'int'
         api.has_param :locale, 'string'
+        api.has_param :message, 'object'
         api.has_param :place_page_id, 'int'
         api.has_param :post, 'object'
         api.has_param :product_item_ids, { list: 'string' }
@@ -944,6 +957,7 @@ module FacebookAds
         api.has_param :export_name, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
+        api.has_param :graph_cache, 'bool'
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
@@ -968,6 +982,7 @@ module FacebookAds
         api.has_param :export_name, 'string'
         api.has_param :fields, { list: 'string' }
         api.has_param :filtering, { list: 'object' }
+        api.has_param :graph_cache, 'bool'
         api.has_param :level, { enum: -> { AdsInsights::LEVEL }}
         api.has_param :limit, 'int'
         api.has_param :product_id_limit, 'int'
@@ -1001,6 +1016,7 @@ module FacebookAds
         api.has_param :is_skadnetwork_search, 'bool'
         api.has_param :only_apps_with_permission, 'bool'
         api.has_param :query_term, 'string'
+        api.has_param :stores_to_filter, { list: { enum: -> { AdAccountMatchedSearchApplicationsEdgeData::STORES_TO_FILTER }} }
       end
     end
 
@@ -1010,6 +1026,38 @@ module FacebookAds
 
     has_edge :mcmeconversions do |edge|
       edge.get 'AdsMcmeConversion'
+    end
+
+    has_edge :message_campaign do |edge|
+      edge.post do |api|
+        api.has_param :bid_amount, 'int'
+        api.has_param :daily_budget, 'int'
+        api.has_param :lifetime_budget, 'int'
+        api.has_param :name, 'string'
+        api.has_param :page_id, 'string'
+      end
+    end
+
+    has_edge :message_delivery_estimate do |edge|
+      edge.get 'MessageDeliveryEstimate' do |api|
+        api.has_param :bid_amount, 'int'
+        api.has_param :daily_budget, 'int'
+        api.has_param :is_direct_send_campaign, 'bool'
+        api.has_param :lifetime_budget, 'int'
+        api.has_param :lifetime_in_days, 'int'
+        api.has_param :optimization_goal, { enum: -> { MessageDeliveryEstimate::OPTIMIZATION_GOAL }}
+        api.has_param :pacing_type, { enum: -> { MessageDeliveryEstimate::PACING_TYPE }}
+        api.has_param :promoted_object, 'object'
+        api.has_param :targeting_spec, 'Targeting'
+      end
+    end
+
+    has_edge :messages do |edge|
+      edge.post do |api|
+        api.has_param :message, 'object'
+        api.has_param :message_id, 'int'
+        api.has_param :messenger_delivery_data, 'hash'
+      end
     end
 
     has_edge :minimum_budgets do |edge|

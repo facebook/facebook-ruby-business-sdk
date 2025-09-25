@@ -42,6 +42,7 @@ module FacebookAds
     field :export_name, 'string'
     field :fields, { list: 'string' }
     field :filtering, { list: 'object' }
+    field :graph_cache, 'bool'
     field :level, 'adaccountinsights_level_enum_param'
     field :limit, 'int'
     field :product_id_limit, 'int'

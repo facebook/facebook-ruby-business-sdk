@@ -28,13 +28,14 @@ module FacebookAds
 
     field :id, 'string'
     field :is_default_setting, 'bool'
+    field :last_attach_time, 'datetime'
     field :name, 'string'
     field :product_type, 'string'
     field :status, 'string'
     field :rules, { list: 'hash' }
     has_no_delete
 
-    has_edge :delete_rule_set do |edge|
+    has_edge :deleteruleset do |edge|
       edge.post 'AdsValueAdjustmentRuleCollection'
     end
 

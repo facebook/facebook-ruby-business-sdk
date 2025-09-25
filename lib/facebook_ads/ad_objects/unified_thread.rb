@@ -24,6 +24,7 @@ module FacebookAds
     field :folder, 'string'
     field :former_participants, 'object'
     field :id, 'string'
+    field :is_owner, 'bool'
     field :is_subscribed, 'bool'
     field :link, 'string'
     field :linked_group, 'Group'

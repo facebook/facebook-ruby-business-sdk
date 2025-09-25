@@ -31,8 +31,6 @@ module FacebookAds
     field :payment_provider, 'string'
     field :privacy_policy_localized, 'string'
     field :return_policy_localized, 'string'
-    field :review_rejection_messages, { list: 'string' }
-    field :review_rejection_reasons, { list: 'string' }
     field :shops_ads_setup, 'object'
     field :terms, 'string'
     has_no_post
@@ -71,7 +69,6 @@ module FacebookAds
 
     has_edge :order_management_apps do |edge|
       edge.get 'Application'
-      edge.post 'CommerceMerchantSettings'
     end
 
     has_edge :product_catalogs do |edge|

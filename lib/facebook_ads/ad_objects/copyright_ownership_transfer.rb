@@ -15,6 +15,7 @@ module FacebookAds
 
   class CopyrightOwnershipTransfer < AdObject
 
+    field :assets, { list: 'object' }
     field :id, 'string'
     field :receiving_rights_holder, 'Profile'
     field :sending_rights_holder, 'Profile'
