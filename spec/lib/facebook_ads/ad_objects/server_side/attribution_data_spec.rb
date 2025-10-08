@@ -28,6 +28,9 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
         attribution_share = 0.5
         attribution_model = 'last_click'
         attribution_value = 3.45
+        attribution_source = 'AMM'
+        touchpoint_type = 'click'
+        touchpoint_ts = 1234567890
         attribution_data = FacebookAds::ServerSide::AttributionData.new(
             scope: scope,
             visit_time: visit_time,
@@ -38,6 +41,9 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attribution_share: attribution_share,
             attribution_model: attribution_model,
             attribution_value: attribution_value,
+            attribution_source: attribution_source,
+            touchpoint_type: touchpoint_type,
+            touchpoint_ts: touchpoint_ts,
         )
 
         expect(attribution_data.normalize).to eq({
@@ -50,6 +56,9 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             'attribution_share': attribution_share,
             'attribution_model': attribution_model,
             'attribution_value': attribution_value,
+            'attribution_source': attribution_source,
+            'touchpoint_type': touchpoint_type,
+            'touchpoint_ts': touchpoint_ts,
         })
     end
 
@@ -69,6 +78,9 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attribution_share: 0.5,
             attribution_model: 'last_click',
             attribution_value: 3.45,
+            attribution_source: 'AMM',
+            touchpoint_type: 'click',
+            touchpoint_ts: 1234567890,
         )
         attribution_data2 = FacebookAds::ServerSide::AttributionData.new(
             scope: 'click',
@@ -80,6 +92,9 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attribution_share: 0.5,
             attribution_model: 'last_click',
             attribution_value: 3.45,
+            attribution_source: 'AMM',
+            touchpoint_type: 'click',
+            touchpoint_ts: 1234567890,
         )
         expect(attribution_data1).to eq(attribution_data2)
         expect(attribution_data1.hash).to eq(attribution_data2.hash)
@@ -101,6 +116,9 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attribution_share: 0.5,
             attribution_model: 'last_click',
             attribution_value: 3.45,
+            attribution_source: 'AMM',
+            touchpoint_type: 'click',
+            touchpoint_ts: 1234567890,
         )
         attribution_data2 = FacebookAds::ServerSide::AttributionData.new(
             scope: 'click',
@@ -113,6 +131,9 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             attribution_share: 0.4,
             attribution_model: 'last_click',
             attribution_value: 2.45,
+            attribution_source: 'Custom Attribution',
+            touchpoint_type: 'view',
+            touchpoint_ts: 9876543210,
         )
         expect(attribution_data1).to_not eq(attribution_data2)
         expect(attribution_data1.hash).to_not eq(attribution_data2.hash)

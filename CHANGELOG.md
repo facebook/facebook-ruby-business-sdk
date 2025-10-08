@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## v24.0.0
+### Added
+- Add AMM fields to attribution data
+
 ## v22.0.2
 ### Changed
 - Update attribution_data, custom_data and original_event_data fields
@@ -116,4 +120,3 @@ All notable changes to this project will be documented in this file.
 ## v0.3.3.0
 ### Changed
 - Graph API call upgrade to [v3.3](https://developers.facebook.com/docs/graph-api/changelog/version3.3)
-
