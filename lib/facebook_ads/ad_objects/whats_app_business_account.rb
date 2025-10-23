@@ -27,6 +27,15 @@ module FacebookAds
       "verified",
     ]
 
+    WHATSAPP_BUSINESS_MANAGER_MESSAGING_LIMIT = [
+      "TIER_100K",
+      "TIER_10K",
+      "TIER_250",
+      "TIER_2K",
+      "TIER_UNLIMITED",
+      "UNTIERED",
+    ]
+
     TASKS = [
       "DEVELOP",
       "MANAGE",
@@ -105,6 +114,7 @@ module FacebookAds
     field :purchase_order_number, 'string'
     field :status, 'string'
     field :timezone_id, 'string'
+    field :whatsapp_business_manager_messaging_limit, { enum: -> { WHATSAPP_BUSINESS_MANAGER_MESSAGING_LIMIT }}
     has_no_delete
 
     has_edge :activities do |edge|
@@ -162,6 +172,10 @@ module FacebookAds
       edge.post 'Dataset' do |api|
         api.has_param :dataset_name, 'string'
       end
+    end
+
+    has_edge :degrees_of_freedom_spec do |edge|
+      edge.get
     end
 
     has_edge :flows do |edge|
@@ -240,6 +254,7 @@ module FacebookAds
         api.has_param :bid_spec, 'hash'
         api.has_param :category, { enum: -> { WhatsAppBusinessAccount::CATEGORY }}
         api.has_param :components, { list: 'hash' }
+        api.has_param :creative_sourcing_spec, 'hash'
         api.has_param :cta_url_link_tracking_opted_out, 'bool'
         api.has_param :degrees_of_freedom_spec, 'hash'
         api.has_param :display_format, { enum: -> { WhatsAppBusinessAccount::DISPLAY_FORMAT }}
@@ -363,7 +378,7 @@ module FacebookAds
       edge.get do |api|
         api.has_param :end, 'datetime'
         api.has_param :granularity, { enum: %w{DAILY }}
-        api.has_param :metric_types, { list: { enum: %w{CLICKED COST DELIVERED READ REPLIED SENT }} }
+        api.has_param :metric_types, { list: { enum: %w{APP_ACTIVATIONS APP_ADD_TO_CART APP_CHECKOUTS_INITIATED APP_PURCHASES APP_PURCHASES_CONVERSION_VALUE CLICKED COST DELIVERED READ REPLIED SENT WEBSITE_ADD_TO_CART WEBSITE_CHECKOUTS_INITIATED WEBSITE_PURCHASES WEBSITE_PURCHASES_CONVERSION_VALUE }} }
         api.has_param :product_type, { enum: %w{CLOUD_API MARKETING_MESSAGES_LITE_API }}
         api.has_param :start, 'datetime'
         api.has_param :template_ids, { list: 'string' }
@@ -375,9 +390,10 @@ module FacebookAds
       edge.get do |api|
         api.has_param :end, 'datetime'
         api.has_param :granularity, { enum: %w{DAILY }}
-        api.has_param :metric_types, { list: { enum: %w{CLICKED COST DELIVERED READ REPLIED SENT }} }
+        api.has_param :metric_types, { list: { enum: %w{APP_ACTIVATIONS APP_ADD_TO_CART APP_CHECKOUTS_INITIATED APP_PURCHASES APP_PURCHASES_CONVERSION_VALUE CLICKED COST DELIVERED READ REPLIED SENT WEBSITE_ADD_TO_CART WEBSITE_CHECKOUTS_INITIATED WEBSITE_PURCHASES WEBSITE_PURCHASES_CONVERSION_VALUE }} }
         api.has_param :start, 'datetime'
         api.has_param :template_group_ids, { list: 'string' }
+        api.has_param :use_waba_timezone, 'bool'
       end
     end
 

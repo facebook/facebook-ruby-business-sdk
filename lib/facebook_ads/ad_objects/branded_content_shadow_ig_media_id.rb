@@ -23,8 +23,10 @@ module FacebookAds
     field :eligibility_errors, { list: 'string' }
     field :has_permission_for_partnership_ad, 'bool'
     field :id, 'string'
+    field :linked_products, { list: 'ProductItem' }
     field :owner_id, 'string'
     field :permalink, 'string'
+    field :product_suggestions, { list: 'ProductItem' }
     field :recommended_campaign_objectives, { list: 'string' }
     has_no_get
     has_no_post

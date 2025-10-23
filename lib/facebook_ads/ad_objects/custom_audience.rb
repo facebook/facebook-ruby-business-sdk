@@ -138,6 +138,7 @@ module FacebookAds
     field :event_sources, { list: 'hash' }
     field :exclusions, { list: 'object' }
     field :facebook_page_id, 'string'
+    field :inclusionoperator, 'string'
     field :inclusions, { list: 'object' }
     field :list_of_accounts, { list: 'int' }
     field :marketing_message_channels, 'object'

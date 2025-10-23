@@ -16,6 +16,7 @@ module FacebookAds
   class AdCreativeSiteLinksSpec < AdObject
 
     field :is_site_link_sticky, 'bool'
+    field :site_link_classification, 'string'
     field :site_link_extra_metadata, 'string'
     field :site_link_hash, 'string'
     field :site_link_id, 'string'
@@ -25,6 +26,7 @@ module FacebookAds
     field :site_link_recommendation_type, 'string'
     field :site_link_title, 'string'
     field :site_link_url, 'string'
+    field :site_link_url_anchor, 'string'
     has_no_id
     has_no_get
     has_no_post

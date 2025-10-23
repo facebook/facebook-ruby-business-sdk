@@ -18,6 +18,7 @@ module FacebookAds
     field :_100x100, { list: { list: 'string' } }
     field :_100x72, { list: { list: 'string' } }
     field :_191x100, { list: { list: 'string' } }
+    field :_300x400, { list: { list: 'string' } }
     field :_400x150, { list: { list: 'string' } }
     field :_400x500, { list: { list: 'string' } }
     field :_600x360, { list: { list: 'string' } }

@@ -472,6 +472,7 @@ module FacebookAds
       "VIDEO_FETCH_FAILED_FORBIDDEN",
       "VIDEO_FETCH_FAILED_LINK_BROKEN",
       "VIDEO_FETCH_FAILED_TIMED_OUT",
+      "VIDEO_ISSUE_GENERIC",
       "VIDEO_NOT_DOWNLOADABLE",
       "WHATSAPP_DISABLED_BY_USER",
       "WHATSAPP_MARKETING_MESSAGE_DISABLED_BY_USER",
@@ -833,6 +834,7 @@ module FacebookAds
     field :videos, { list: 'ProductItemVideoData' }
     field :visibility, { enum: -> { VISIBILITY }}
     field :wa_compliance_category, 'string'
+    field :allow_upsert, 'bool'
     field :android_app_name, 'string'
     field :android_class, 'string'
     field :android_package, 'string'

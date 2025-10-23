@@ -580,18 +580,10 @@ module FacebookAds
 
     has_edge :subscribed_domains do |edge|
       edge.get
-      edge.post 'Application' do |api|
-        api.has_param :subscribe, { list: 'string' }
-        api.has_param :unsubscribe, { list: 'string' }
-      end
     end
 
     has_edge :subscribed_domains_phishing do |edge|
       edge.get
-      edge.post 'Application' do |api|
-        api.has_param :subscribe, { list: 'string' }
-        api.has_param :unsubscribe, { list: 'string' }
-      end
     end
 
     has_edge :subscriptions do |edge|

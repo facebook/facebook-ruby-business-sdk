@@ -420,6 +420,7 @@ module FacebookAds
         api.has_param :schedule, 'string'
         api.has_param :selected_override_fields, { list: 'string' }
         api.has_param :update_schedule, 'string'
+        api.has_param :use_case, { enum: -> { ProductFeed::USE_CASE }}
       end
     end
 
@@ -466,6 +467,7 @@ module FacebookAds
         api.has_param :additional_image_urls, { list: 'string' }
         api.has_param :additional_variant_attributes, 'hash'
         api.has_param :age_group, { enum: -> { ProductItem::AGE_GROUP }}
+        api.has_param :allow_upsert, 'bool'
         api.has_param :android_app_name, 'string'
         api.has_param :android_class, 'string'
         api.has_param :android_package, 'string'

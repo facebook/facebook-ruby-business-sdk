@@ -13,17 +13,14 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdAccountLiveVideoAdvertiser < AdObject
+  class ShadowIgScheduledMedia < AdObject
 
-    field :is_lva_toggle_on, 'bool'
-    field :lva_default_budget, 'int'
-    field :lva_default_duration_s, 'int'
-    field :should_default_current_live, 'bool'
-    field :should_default_scheduled_live, 'bool'
-    field :should_default_toggle_on_from_model, 'bool'
-    field :should_show_lva_toggle, 'bool'
-    has_no_id
-    has_no_get
+    field :caption, 'string'
+    field :id, 'string'
+    field :media_type, 'string'
+    field :media_url, 'string'
+    field :publish_timestamp, 'int'
+    field :thumbnail_url, 'string'
     has_no_post
     has_no_delete
 

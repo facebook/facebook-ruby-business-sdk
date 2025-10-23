@@ -747,7 +747,6 @@ module FacebookAds
     has_edge :conversations do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
-        api.has_param :is_owner, 'bool'
         api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'
@@ -1477,7 +1476,6 @@ module FacebookAds
     has_edge :threads do |edge|
       edge.get 'UnifiedThread' do |api|
         api.has_param :folder, 'string'
-        api.has_param :is_owner, 'bool'
         api.has_param :platform, { enum: -> { UnifiedThread::PLATFORM }}
         api.has_param :tags, { list: 'string' }
         api.has_param :user_id, 'string'

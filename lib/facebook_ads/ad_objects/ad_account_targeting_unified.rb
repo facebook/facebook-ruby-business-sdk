@@ -447,6 +447,7 @@ module FacebookAds
     ]
 
     APP_STORE = [
+      "all_app_stores_for_android_and_ios",
       "amazon_app_store",
       "apk_mirror",
       "apk_monk",

@@ -35,7 +35,7 @@ module FacebookAds
     field :rules, { list: 'hash' }
     has_no_delete
 
-    has_edge :deleteruleset do |edge|
+    has_edge :delete_rule_set do |edge|
       edge.post 'AdsValueAdjustmentRuleCollection'
     end
 

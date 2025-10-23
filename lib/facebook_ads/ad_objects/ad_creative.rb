@@ -168,6 +168,10 @@ module FacebookAds
       "STORY_OWNER",
     ]
 
+    EXECUTION_OPTIONS = [
+      "validate_only",
+    ]
+
     OPERATOR = [
       "ALL",
       "ANY",
@@ -247,6 +251,7 @@ module FacebookAds
     field :url_tags, 'string'
     field :use_page_actor_override, 'bool'
     field :video_id, 'string'
+    field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
     field :image_file, 'string'
     field :is_dco_internal, 'bool'
 

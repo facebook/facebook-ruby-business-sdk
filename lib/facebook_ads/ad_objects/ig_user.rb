@@ -96,6 +96,10 @@ module FacebookAds
 
     has_edge :collaboration_invites do |edge|
       edge.get 'ShadowIgUserCollaborationInvites'
+      edge.post 'ShadowIgUserCollaborationInvites' do |api|
+        api.has_param :accept, 'bool'
+        api.has_param :media_id, 'string'
+      end
     end
 
     has_edge :connected_threads_user do |edge|
@@ -118,6 +122,7 @@ module FacebookAds
         api.has_param :creator_max_followers, 'int'
         api.has_param :creator_min_engaged_accounts, 'int'
         api.has_param :creator_min_followers, 'int'
+        api.has_param :has_public_contact_email, 'bool'
         api.has_param :major_audience_age_bucket, { list: 'object' }
         api.has_param :major_audience_countries, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_COUNTRIES }} }
         api.has_param :major_audience_gender, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_GENDER }} }
@@ -179,6 +184,7 @@ module FacebookAds
         api.has_param :product_tags, { list: 'hash' }
         api.has_param :share_to_feed, 'bool'
         api.has_param :thumb_offset, 'string'
+        api.has_param :trial_params, 'hash'
         api.has_param :upload_type, 'string'
         api.has_param :user_tags, { list: 'hash' }
         api.has_param :video_url, 'string'
@@ -215,6 +221,10 @@ module FacebookAds
 
     has_edge :recently_searched_hashtags do |edge|
       edge.get 'ShadowIgHashtag'
+    end
+
+    has_edge :scheduled_media do |edge|
+      edge.get 'ShadowIgScheduledMedia'
     end
 
     has_edge :stories do |edge|

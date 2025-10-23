@@ -102,6 +102,10 @@ module FacebookAds
       "VERSION",
     ]
 
+    USE_CASE = [
+      "CREATOR_ASSET",
+    ]
+
 
     field :country, 'string'
     field :created_time, 'datetime'
@@ -128,6 +132,7 @@ module FacebookAds
     field :primary_feed_ids, { list: 'string' }
     field :rules, { list: 'string' }
     field :selected_override_fields, { list: 'string' }
+    field :use_case, { enum: -> { USE_CASE }}
 
     has_edge :automotive_models do |edge|
       edge.get 'AutomotiveModel' do |api|

@@ -13,15 +13,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdAccountLiveVideoAdvertiser < AdObject
+  class PlacementSoftOptOut < AdObject
 
-    field :is_lva_toggle_on, 'bool'
-    field :lva_default_budget, 'int'
-    field :lva_default_duration_s, 'int'
-    field :should_default_current_live, 'bool'
-    field :should_default_scheduled_live, 'bool'
-    field :should_default_toggle_on_from_model, 'bool'
-    field :should_show_lva_toggle, 'bool'
+    field :audience_network_positions, { list: 'string' }
+    field :facebook_positions, { list: 'string' }
+    field :instagram_positions, { list: 'string' }
+    field :messenger_positions, { list: 'string' }
+    field :oculus_positions, { list: 'string' }
+    field :threads_positions, { list: 'string' }
+    field :whatsapp_positions, { list: 'string' }
     has_no_id
     has_no_get
     has_no_post

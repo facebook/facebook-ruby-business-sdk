@@ -19,6 +19,7 @@ module FacebookAds
     field :call_to_action, 'AdCreativeLinkDataCallToAction'
     field :caption, 'string'
     field :description, 'string'
+    field :ig_media_id, 'string'
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
     field :ios_url, 'string'

@@ -97,7 +97,6 @@ module FacebookAds
       "profile_card",
       "standard_enhancements_catalog",
       "text_overlay_translation",
-      "video_to_image",
     ]
 
     RENDER_TYPE = [

@@ -19,8 +19,11 @@ module FacebookAds
     field :add_overlays_opt_in_status, 'string'
     field :adgroup_name_template, 'object'
     field :ads_cs_catalog_opt_out_timestamp, { list: 'hash' }
+    field :ads_cs_dynamic_se_opt_in_status, 'string'
+    field :ads_cs_dynamic_se_opt_out_timestamp, { list: 'hash' }
     field :ads_cs_sitelinks_opt_in_status, 'string'
     field :ads_cs_sitelinks_opt_out_timestamp, { list: 'hash' }
+    field :ads_destination_optimization_opt_out_timestamp, { list: 'hash' }
     field :ads_tool_visits, { list: 'object' }
     field :aplusc_ai_agent_opt_in_status, 'string'
     field :aplusc_carousel_cda_opt_in_status, 'string'
@@ -44,7 +47,9 @@ module FacebookAds
     field :create_cta_sticker_opt_in_status, 'string'
     field :creative_flex_opt_in_status, 'string'
     field :da_add_overlays_opt_in_status, 'string'
+    field :da_creative_flex_opt_in_status, 'string'
     field :da_hide_price_opt_in_status, 'string'
+    field :da_manual_media_nux_impressions, 'int'
     field :default_creation_mode, 'string'
     field :dynamic_partnership_ads_opt_in_status, 'string'
     field :enhance_cta_text_extraction_opt_in_status, 'string'

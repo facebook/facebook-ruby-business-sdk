@@ -17,6 +17,7 @@ module FacebookAds
 
     field :is_campaign_enabled, 'bool'
     field :is_terms_signed, 'bool'
+    field :is_user_manually_toggle_mc_off, 'bool'
     field :merchant_type, 'string'
     has_no_id
     has_no_get

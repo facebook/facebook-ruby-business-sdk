@@ -203,6 +203,7 @@ module FacebookAds
       "9",
       "10",
       "11",
+      "12",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -230,6 +231,7 @@ module FacebookAds
     field :account_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :adset_schedule, { list: 'DayPart' }
+    field :anchor_event_attribution_window_days, 'int'
     field :asset_feed_id, 'string'
     field :attribution_spec, { list: 'AttributionSpec' }
     field :automatic_manual_state, 'string'
@@ -279,7 +281,7 @@ module FacebookAds
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}
     field :optimization_sub_event, 'string'
     field :pacing_type, { list: 'string' }
-    field :placement_soft_opt_out, 'Placement'
+    field :placement_soft_opt_out, 'PlacementSoftOptOut'
     field :promoted_object, 'AdPromotedObject'
     field :recommendations, { list: 'AdRecommendation' }
     field :recurring_budget_semantics, 'bool'

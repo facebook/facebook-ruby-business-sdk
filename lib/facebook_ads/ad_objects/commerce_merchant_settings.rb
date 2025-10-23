@@ -27,7 +27,6 @@ module FacebookAds
     field :merchant_page, 'Profile'
     field :merchant_status, 'string'
     field :offsite_iab_checkout_enabled_countries, { list: 'string' }
-    field :onsite_commerce_merchant, 'object'
     field :payment_provider, 'string'
     field :privacy_policy_localized, 'string'
     field :return_policy_localized, 'string'
@@ -89,9 +88,6 @@ module FacebookAds
     end
 
     has_edge :shipping_profiles do |edge|
-      edge.get do |api|
-        api.has_param :reference_id, 'string'
-      end
       edge.post do |api|
         api.has_param :handling_time, 'hash'
         api.has_param :is_default, 'bool'

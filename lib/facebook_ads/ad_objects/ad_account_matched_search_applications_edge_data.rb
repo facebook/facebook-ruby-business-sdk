@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdAccountMatchedSearchApplicationsEdgeData < AdObject
     APP_STORE = [
+      "ALL_APP_STORES_FOR_ANDROID_AND_IOS",
       "AMAZON_APP_STORE",
       "APK_MIRROR",
       "APK_MONK",
@@ -44,6 +45,7 @@ module FacebookAds
     ]
 
     STORES_TO_FILTER = [
+      "ALL_APP_STORES_FOR_ANDROID_AND_IOS",
       "AMAZON_APP_STORE",
       "APK_MIRROR",
       "APK_MONK",

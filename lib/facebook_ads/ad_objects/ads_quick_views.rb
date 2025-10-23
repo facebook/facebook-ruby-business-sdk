@@ -25,6 +25,7 @@ module FacebookAds
     field :permission, 'string'
     field :quick_view_type, 'string'
     field :sort, { list: 'object' }
+    field :time_stamp_last_used_by_owner, 'datetime'
     has_no_post
     has_no_delete
 

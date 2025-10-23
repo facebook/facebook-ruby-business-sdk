@@ -14,13 +14,22 @@ module FacebookAds
   # pull request for this class.
 
   class OpenBridgeConfiguration < AdObject
+    EVENT_ENRICHMENT_STATE = [
+      "NO",
+      "NOT_INITIALIZED",
+      "YES",
+    ]
+
 
     field :active, 'bool'
+    field :blocked_event_types, { list: 'string' }
+    field :blocked_websites, { list: 'string' }
     field :browser_agent, { list: 'string' }
     field :cloud_provider, 'string'
     field :cloud_region, 'string'
     field :destination_id, 'string'
     field :endpoint, 'string'
+    field :event_enrichment_state, 'string'
     field :fallback_domain, 'string'
     field :first_party_domain, 'string'
     field :host_business_id, 'string'

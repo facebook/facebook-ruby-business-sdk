@@ -20,6 +20,8 @@ module FacebookAds
     field :caption, 'string'
     field :comments_count, 'int'
     field :copyright_check_information, 'IgVideoCopyrightCheckMatchesInformation'
+    field :has_poll, 'bool'
+    field :has_slider, 'bool'
     field :id, 'string'
     field :ig_id, 'string'
     field :is_comment_enabled, 'bool'
@@ -37,7 +39,6 @@ module FacebookAds
     field :username, 'string'
     field :video_title, 'string'
     field :view_count, 'int'
-    has_no_delete
 
     has_edge :boost_ads_list do |edge|
       edge.get 'IgBoostMediaAd'

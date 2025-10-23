@@ -95,7 +95,6 @@ module FacebookAds
     field :is_manual_mode, 'bool'
     field :is_reference_only, 'bool'
     field :live_views, 'int'
-    field :overlay_url, 'string'
     field :permalink_url, 'string'
     field :planned_start_time, 'datetime'
     field :recommended_encoder_settings, 'LiveVideoRecommendedEncoderSettings'

@@ -42,7 +42,6 @@ module FacebookAds
     ONLINE_EVENT_FORMAT = [
       "fb_live",
       "horizon_event",
-      "horizon_world",
       "messenger_room",
       "none",
       "other",

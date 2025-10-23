@@ -103,6 +103,7 @@ module FacebookAds
     ]
 
 
+    field :anchor_event_config, 'string'
     field :application_id, 'string'
     field :boosted_product_set_id, 'string'
     field :conversion_goal_id, 'string'

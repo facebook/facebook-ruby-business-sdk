@@ -313,6 +313,7 @@ module FacebookAds
         api.has_param :destination_spec, 'hash'
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
         api.has_param :enable_launch_instant_app, 'bool'
+        api.has_param :execution_options, { list: { enum: -> { AdCreative::EXECUTION_OPTIONS }} }
         api.has_param :facebook_branded_content, 'hash'
         api.has_param :format_transformation_spec, { list: 'hash' }
         api.has_param :image_crops, 'hash'
@@ -534,6 +535,7 @@ module FacebookAds
         api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}
         api.has_param :optimization_sub_event, { enum: -> { AdSet::OPTIMIZATION_SUB_EVENT }}
         api.has_param :pacing_type, { list: 'string' }
+        api.has_param :placement_soft_opt_out, 'object'
         api.has_param :promoted_object, 'object'
         api.has_param :rb_prediction_id, 'string'
         api.has_param :regional_regulated_categories, { list: { enum: -> { AdSet::REGIONAL_REGULATED_CATEGORIES }} }
@@ -851,6 +853,7 @@ module FacebookAds
         api.has_param :event_sources, { list: 'hash' }
         api.has_param :exclusions, { list: 'object' }
         api.has_param :facebook_page_id, 'string'
+        api.has_param :inclusionoperator, 'string'
         api.has_param :inclusions, { list: 'object' }
         api.has_param :is_snapshot, 'bool'
         api.has_param :is_value_based, 'bool'
@@ -1084,6 +1087,7 @@ module FacebookAds
         api.has_param :event_source_group, 'string'
         api.has_param :event_sources, { list: 'hash' }
         api.has_param :exclusions, { list: 'object' }
+        api.has_param :inclusionoperator, 'string'
         api.has_param :inclusions, { list: 'object' }
         api.has_param :is_snapshot, 'bool'
         api.has_param :is_value_based, 'bool'

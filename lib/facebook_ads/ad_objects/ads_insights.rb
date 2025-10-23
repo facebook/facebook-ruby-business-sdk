@@ -121,6 +121,7 @@ module FacebookAds
       "product_custom_label_3_breakdown",
       "product_custom_label_4_breakdown",
       "product_group_content_id_breakdown",
+      "product_group_id",
       "product_id",
       "product_set_id_breakdown",
       "publisher_platform",
@@ -208,6 +209,7 @@ module FacebookAds
     field :adset_name, 'string'
     field :adset_start, 'string'
     field :age_targeting, 'string'
+    field :anchor_events_performance_indicator, 'string'
     field :attribution_setting, 'string'
     field :auction_bid, 'string'
     field :auction_competitiveness, 'string'

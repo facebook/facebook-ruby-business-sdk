@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdCreativeFeatureCustomizations < AdObject
 
+    field :aspect_ratio_config, 'object'
     field :background_color, 'string'
     field :catalog_feed_tag_name, 'string'
     field :font_name, 'string'

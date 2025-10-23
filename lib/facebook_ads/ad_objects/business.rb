@@ -27,6 +27,15 @@ module FacebookAds
       "verified",
     ]
 
+    WHATSAPP_BUSINESS_MANAGER_MESSAGING_LIMIT = [
+      "TIER_100K",
+      "TIER_10K",
+      "TIER_250",
+      "TIER_2K",
+      "TIER_UNLIMITED",
+      "UNTIERED",
+    ]
+
     TWO_FACTOR_TYPE = [
       "admin_required",
       "all_required",
@@ -871,6 +880,7 @@ module FacebookAds
     field :verification_status, { enum: -> { VERIFICATION_STATUS }}
     field :vertical, 'string'
     field :vertical_id, 'int'
+    field :whatsapp_business_manager_messaging_limit, { enum: -> { WHATSAPP_BUSINESS_MANAGER_MESSAGING_LIMIT }}
     has_no_delete
 
     has_edge :access_token do |edge|
@@ -1054,15 +1064,10 @@ module FacebookAds
 
     has_edge :business_invoices do |edge|
       edge.get 'OmegaCustomerTrx' do |api|
-        api.has_param :account_ids, { list: 'int' }
-        api.has_param :advertiser_name, 'string'
-        api.has_param :billing_period_end, 'string'
-        api.has_param :billing_period_start, 'string'
         api.has_param :end_date, 'string'
         api.has_param :invoice_id, 'string'
         api.has_param :issue_end_date, 'string'
         api.has_param :issue_start_date, 'string'
-        api.has_param :product_types, { list: { enum: -> { OmegaCustomerTrx::PRODUCT_TYPES }} }
         api.has_param :root_id, 'int'
         api.has_param :start_date, 'string'
         api.has_param :type, { enum: -> { OmegaCustomerTrx::TYPE }}
@@ -1323,10 +1328,13 @@ module FacebookAds
       edge.get 'OpenBridgeConfiguration'
       edge.post 'OpenBridgeConfiguration' do |api|
         api.has_param :active, 'bool'
+        api.has_param :blocked_event_types, { list: 'string' }
+        api.has_param :blocked_websites, { list: 'string' }
         api.has_param :cloud_provider, 'string'
         api.has_param :cloud_region, 'string'
         api.has_param :destination_id, 'string'
         api.has_param :endpoint, 'string'
+        api.has_param :event_enrichment_state, { enum: -> { OpenBridgeConfiguration::EVENT_ENRICHMENT_STATE }}
         api.has_param :fallback_domain, 'string'
         api.has_param :first_party_domain, 'string'
         api.has_param :host_business_id, 'int'
