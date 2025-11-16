@@ -23,6 +23,7 @@ module FacebookAds
     setting :app_secret, ENV['FB_APP_SECRET']
     setting :crash_logging_enabled, true
     setting :log_api_bodies, false
+    setting :faraday_adapter, Faraday.default_adapter
 
     def logger=(logger)
       Utils.logger = logger
