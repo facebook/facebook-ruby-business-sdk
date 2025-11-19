@@ -16,6 +16,8 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+require_relative './attribution_setting'
+
 module FacebookAds
     module ServerSide
 
@@ -58,6 +60,21 @@ module FacebookAds
         # The time when the touchpoint event occurred with the ad that the install was credited to.
         attr_accessor :touchpoint_ts
 
+        # The attribution method used to attribute the event.
+        attr_accessor :attribution_method
+
+        # The decline reason for the attribution.
+        attr_accessor :decline_reason
+
+        # The auditing token for the attribution.
+        attr_accessor :auditing_token
+
+        # The linkage key for the attribution.
+        attr_accessor :linkage_key
+
+        # The attribution setting for the attribution.
+        attr_accessor :attribution_setting
+
 
 
         # @param [String] scope
@@ -72,7 +89,12 @@ module FacebookAds
         # @param [String] attribution_source
         # @param [String] touchpoint_type
         # @param [Integer] touchpoint_ts
-        def initialize(scope: nil, visit_time: nil, ad_id: nil, adset_id: nil, campaign_id: nil, attribution_share: nil, attribution_model: nil, attr_window: nil, attribution_value: nil, attribution_source: nil, touchpoint_type: nil, touchpoint_ts: nil)
+        # @param [String] attribution_method
+        # @param [String] decline_reason
+        # @param [String] auditing_token
+        # @param [String] linkage_key
+        # @param [FacebookAds::ServerSide::AttributionSetting] attribution_setting
+        def initialize(scope: nil, visit_time: nil, ad_id: nil, adset_id: nil, campaign_id: nil, attribution_share: nil, attribution_model: nil, attr_window: nil, attribution_value: nil, attribution_source: nil, touchpoint_type: nil, touchpoint_ts: nil, attribution_method: nil, decline_reason: nil, auditing_token: nil, linkage_key: nil, attribution_setting: nil)
           unless scope.nil?
             self.scope = scope
           end
@@ -108,6 +130,21 @@ module FacebookAds
           end
           unless touchpoint_ts.nil?
             self.touchpoint_ts = touchpoint_ts
+          end
+          unless attribution_method.nil?
+            self.attribution_method = attribution_method
+          end
+          unless decline_reason.nil?
+            self.decline_reason = decline_reason
+          end
+          unless auditing_token.nil?
+            self.auditing_token = auditing_token
+          end
+          unless linkage_key.nil?
+            self.linkage_key = linkage_key
+          end
+          unless attribution_setting.nil?
+            self.attribution_setting = attribution_setting
           end
         end
 
@@ -166,6 +203,26 @@ module FacebookAds
           if attributes.has_key?(:'touchpoint_ts')
             self.touchpoint_ts = attributes[:'touchpoint_ts']
           end
+
+          if attributes.has_key?(:'attribution_method')
+            self.attribution_method = attributes[:'attribution_method']
+          end
+
+          if attributes.has_key?(:'decline_reason')
+            self.decline_reason = attributes[:'decline_reason']
+          end
+
+          if attributes.has_key?(:'auditing_token')
+            self.auditing_token = attributes[:'auditing_token']
+          end
+
+          if attributes.has_key?(:'linkage_key')
+            self.linkage_key = attributes[:'linkage_key']
+          end
+
+          if attributes.has_key?(:'attribution_setting')
+            self.attribution_setting = attributes[:'attribution_setting']
+          end
         end
 
         # Checks equality by comparing each attribute.
@@ -183,7 +240,12 @@ module FacebookAds
               attribution_value == o.attribution_value &&
               attribution_source == o.attribution_source &&
               touchpoint_type == o.touchpoint_type &&
-              touchpoint_ts == o.touchpoint_ts
+              touchpoint_ts == o.touchpoint_ts &&
+              attribution_method == o.attribution_method &&
+              decline_reason == o.decline_reason &&
+              auditing_token == o.auditing_token &&
+              linkage_key == o.linkage_key &&
+              attribution_setting == o.attribution_setting
         end
 
         # @see the `==` method
@@ -195,7 +257,7 @@ module FacebookAds
         # @return [Fixnum] Hash code
         def hash
           [
-            scope, visit_time, ad_id, adset_id, campaign_id, attribution_share, attribution_model, attr_window, attribution_value, attribution_source, touchpoint_type, touchpoint_ts
+            scope, visit_time, ad_id, adset_id, campaign_id, attribution_share, attribution_model, attr_window, attribution_value, attribution_source, touchpoint_type, touchpoint_ts, attribution_method, decline_reason, auditing_token, linkage_key, attribution_setting
           ].hash
         end
 
@@ -236,6 +298,21 @@ module FacebookAds
           end
           unless touchpoint_ts.nil?
             hash['touchpoint_ts'] = touchpoint_ts
+          end
+          unless attribution_method.nil?
+            hash['attribution_method'] = attribution_method
+          end
+          unless decline_reason.nil?
+            hash['decline_reason'] = decline_reason
+          end
+          unless auditing_token.nil?
+            hash['auditing_token'] = auditing_token
+          end
+          unless linkage_key.nil?
+            hash['linkage_key'] = linkage_key
+          end
+          unless attribution_setting.nil?
+            hash['attribution_setting'] = attribution_setting
           end
           hash.to_s
         end
@@ -279,6 +356,21 @@ module FacebookAds
           end
           unless touchpoint_ts.nil?
             hash['touchpoint_ts'] = touchpoint_ts
+          end
+          unless attribution_method.nil?
+            hash['attribution_method'] = FacebookAds::ServerSide::Util.normalize_attribution_method(attribution_method)
+          end
+          unless decline_reason.nil?
+            hash['decline_reason'] = FacebookAds::ServerSide::Util.normalize_decline_reason(decline_reason)
+          end
+          unless auditing_token.nil?
+            hash['auditing_token'] = auditing_token
+          end
+          unless linkage_key.nil?
+            hash['linkage_key'] = linkage_key
+          end
+          unless attribution_setting.nil?
+            hash['attribution_setting'] = attribution_setting.normalize
           end
           hash
         end

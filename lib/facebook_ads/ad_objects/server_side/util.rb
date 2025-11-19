@@ -318,6 +318,30 @@ module FacebookAds
 
 				action_source
 			end
+
+			# Normalizes the input attribution_method and returns valid value (or throw exception if invalid).
+			def self.normalize_attribution_method(attribution_method)
+				unless FacebookAds::ServerSide::AttributionMethod.include?(attribution_method)
+					values = FacebookAds::ServerSide::AttributionMethod.to_a.join(',')
+					raise ArgumentError.new(
+						"Invalid attribution_method passed: #{attribution_method}. Please use one of the defined values: #{values}"
+					)
+				end
+
+				attribution_method
+			end
+
+			# Normalizes the input decline_reason and returns valid value (or throw exception if invalid).
+			def self.normalize_decline_reason(decline_reason)
+				unless FacebookAds::ServerSide::DeclineReason.include?(decline_reason)
+					values = FacebookAds::ServerSide::DeclineReason.to_a.join(',')
+					raise ArgumentError.new(
+						"Invalid decline_reason passed: #{decline_reason}. Please use one of the defined values: #{values}"
+					)
+				end
+
+				decline_reason
+			end
 		end
 	end
 end
