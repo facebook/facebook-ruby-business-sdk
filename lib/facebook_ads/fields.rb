@@ -46,7 +46,7 @@ module FacebookAds
       def define_writer(name)
         define_method("#{name}=") do |val|
           changes[name] = val
-          @__all_fields.add(name.to_s)
+          @__all_fields.add(name.to_sym)
         end
       end
     end
