@@ -9,6 +9,7 @@ module FacebookAds
     def initialize
       @params = {}
       @accepts_files = false
+      @base_path = nil
     end
 
     def has_param(name, type)
@@ -21,6 +22,14 @@ module FacebookAds
 
     def accepts_files?
       @accepts_files
+    end
+
+    def has_base_path(path)
+      @base_path = path
+    end
+
+    def base_path
+      @base_path
     end
 
     def to_params(data)

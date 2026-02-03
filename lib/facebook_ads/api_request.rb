@@ -9,15 +9,16 @@ require 'securerandom'
 module FacebookAds
   class APIRequest
     attr_reader :method, :path, :session, :params,
-                :options, :callback, :batch_proxy
+                :options, :callback, :batch_proxy, :base_path
 
-    def initialize(method, path, session: nil, params: nil, options: nil)
+    def initialize(method, path, session: nil, params: nil, options: nil, base_path: nil)
       @method = method
       @path = path
       @session = session
       @params = params
       @options = options
       @batch_proxy = nil
+      @base_path = base_path
     end
 
     # Returns either APIResponse instantly if not within a batch, or
@@ -37,7 +38,13 @@ module FacebookAds
     end
 
     def execute_now
-      faraday_response = session.request(method, path, params)
+      request_path = if base_path && !base_path.empty?
+        clean_base_path = base_path.gsub(/^\/|\/$/,'')
+        "#{clean_base_path}/#{path}"
+      else
+        path
+      end
+      faraday_response = session.request(method, request_path, params)
       create_response(faraday_response.status, faraday_response.headers, faraday_response.body)
     end
 
@@ -77,10 +84,16 @@ module FacebookAds
     end
 
     def to_batch_params
+      relative_url = if base_path && !base_path.empty?
+        clean_base_path = base_path.gsub(/^\/|\/$/,'')
+        "#{clean_base_path}/#{path}"
+      else
+        path
+      end
       {
         name: batch_name,
         method: method.to_s.upcase,
-        relative_url: path,
+        relative_url: relative_url,
         body: batch_body,
         omit_response_on_success: false,
         attached_files: files.empty? ? nil : files.keys.join(','),
