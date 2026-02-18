@@ -108,16 +108,17 @@ module FacebookAds
     [:get, :post, :delete].each do |verb|
       define_method(verb) do |params = {}, &block|
         params, options = extract_options(params)
-        APIRequest.new(verb, self.id, session: session, params: params, options: options).execute do |api_response|
+        base_path = params.delete(:base_path)
+        APIRequest.new(verb, self.id, session: session, params: params, options: options, base_path: base_path).execute do |api_response|
           @last_api_response = api_response
           block ? block[api_response.result] : api_response
         end
       end
 
-      define_method("#{verb}_edge") do |edge_name, params = {}, &block|
+      define_method("#{verb}_edge") do |edge_name, params = {}, base_path: nil, &block|
         params, options = extract_options(params)
         path = "#{self.id}/#{edge_name}"
-        APIRequest.new(verb, path, session: session, params: params, options: options).execute do |api_response|
+        APIRequest.new(verb, path, session: session, params: params, options: options, base_path: base_path).execute do |api_response|
           @last_api_response = api_response
           block ? block[api_response.result] : api_response
         end

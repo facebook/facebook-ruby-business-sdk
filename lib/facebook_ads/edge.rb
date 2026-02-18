@@ -5,7 +5,7 @@
 # LICENSE file in the root directory of this source tree.
 
 module FacebookAds
-  module EdgeHasGet
+module EdgeHasGet
     include Enumerable
 
     extend Forwardable
@@ -49,7 +49,8 @@ module FacebookAds
       fetch_options = {limit: DEFAULT_PAGE_SIZE}.merge(serialized_options)
       fetch_options = fetch_options.merge({after: next_page_cursor}) if next_page_cursor
 
-      node.get_edge(name, fetch_options) do |response|
+      base_path = self.class.param_set_for_get&.base_path
+      node.get_edge(name, fetch_options, base_path: base_path) do |response|
         response["data"].each do |data|
           field_type = self.class.return_types[:get]
 
@@ -75,13 +76,14 @@ module FacebookAds
     end
   end
 
-  module EdgeHasPost
+module EdgeHasPost
     def create(params)
       if self.class.param_set_for_post
         params = self.class.param_set_for_post.to_params(params)
       end
 
-      node.post_edge(name, graph_params.merge(params)) do |response|
+      base_path = self.class.param_set_for_post&.base_path
+      node.post_edge(name, graph_params.merge(params), base_path: base_path) do |response|
         # TODO params check
         # TODO Add new object to collection?
 
@@ -94,11 +96,12 @@ module FacebookAds
     end
   end
 
-  module EdgeHasDelete
+module EdgeHasDelete
     def destroy(params)
       params = @param_set_for_delete.to_params(params) if @param_set_for_delete
 
-      node.delete_edge(name, params) do |response|
+      base_path = @param_set_for_delete&.base_path
+      node.delete_edge(name, params, base_path: base_path) do |response|
         yield response if block_given?
         response
       end
