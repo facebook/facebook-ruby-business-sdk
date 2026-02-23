@@ -41,7 +41,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
         allow(FacebookAds::ServerSide::Util).to receive(:normalize) do |input, field_type|
             "#{field_type}_#{input}-normalized"
         end
-        user_data = FacebookAds::ServerSide::UserData.new(attrs)
+        user_data = FacebookAds::ServerSide::UserData.new(**attrs)
         normalized = user_data.normalize
 
         expect(normalized).to eq(
@@ -83,7 +83,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
         allow(FacebookAds::ServerSide::Util).to receive(:normalize_array) do |input, field_type|
             input + [field_type]
         end
-        user_data = FacebookAds::ServerSide::UserData.new(attrs)
+        user_data = FacebookAds::ServerSide::UserData.new(**attrs)
         normalized = user_data.normalize
 
         expect(normalized).to eq(
@@ -216,8 +216,8 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
         expect(user_data1).to eq(user_data2)
         expect(user_data1.hash).to eq(user_data2.hash)
 
-        user_data1 = FacebookAds::ServerSide::UserData.new(attrs)
-        user_data2 = FacebookAds::ServerSide::UserData.new(attrs)
+        user_data1 = FacebookAds::ServerSide::UserData.new(**attrs)
+        user_data2 = FacebookAds::ServerSide::UserData.new(**attrs)
         expect(user_data1).to eq(user_data2)
         expect(user_data1.hash).to eq(user_data2.hash)
     end

@@ -411,10 +411,10 @@ module FacebookAds
           hash['messaging_channel'] = messaging_channel
         end
         unless original_event_data.nil?
-          hash['original_event_data'] = original_event_data
+          hash['original_event_data'] = original_event_data.normalize
         end
         unless attribution_data.nil?
-          hash['attribution_data'] = attribution_data
+          hash['attribution_data'] = attribution_data.normalize
         end
         hash
       end
