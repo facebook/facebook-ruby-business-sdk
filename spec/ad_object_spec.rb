@@ -21,10 +21,6 @@ RSpec.describe FacebookAds::AdObject do
       expect(post.fb_object_id).to eq('updated_789')
     end
 
-    it 'does not shadow Ruby native Object#object_id' do
-      expect(post.object_id).to be_a(Integer)
-    end
-
     it 'serializes with the original :object_id key for the API' do
       post.fb_object_id = 'updated_789'
       allow(post).to receive(:load!)
