@@ -144,6 +144,40 @@ RSpec.describe 'FacebookAds::ServerSide::Util' do
         end
     end
 
+    context 'normalize_attribution_method' do
+        it 'accepts lowercase values' do
+            expect(FacebookAds::ServerSide::Util.normalize_attribution_method('ard')).to eq('ard')
+        end
+
+        it 'downcases mixed-case values' do
+            expect(FacebookAds::ServerSide::Util.normalize_attribution_method('ARD')).to eq('ard')
+            expect(FacebookAds::ServerSide::Util.normalize_attribution_method('Deeplink')).to eq('deeplink')
+        end
+
+        it 'raises ArgumentError for invalid values' do
+            expect {
+                FacebookAds::ServerSide::Util.normalize_attribution_method('not_valid')
+            }.to raise_error(ArgumentError, /Invalid attribution_method passed/)
+        end
+    end
+
+    context 'normalize_decline_reason' do
+        it 'accepts lowercase values' do
+            expect(FacebookAds::ServerSide::Util.normalize_decline_reason('lookback')).to eq('lookback')
+        end
+
+        it 'downcases mixed-case values' do
+            expect(FacebookAds::ServerSide::Util.normalize_decline_reason('Lookback')).to eq('lookback')
+            expect(FacebookAds::ServerSide::Util.normalize_decline_reason('INACTIVE')).to eq('inactive')
+        end
+
+        it 'raises ArgumentError for invalid values' do
+            expect {
+                FacebookAds::ServerSide::Util.normalize_decline_reason('not_valid')
+            }.to raise_error(ArgumentError, /Invalid decline_reason passed/)
+        end
+    end
+
     context 'sha256Hash' do
         it 'hashes strings' do
             expect(FacebookAds::ServerSide::Util.sha256Hash('test-string')).to eq('ffe65f1d98fafedea3514adc956c8ada5980c6c5d2552fd61f48401aefd5c00e')

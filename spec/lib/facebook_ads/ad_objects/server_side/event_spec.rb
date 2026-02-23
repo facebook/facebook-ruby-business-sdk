@@ -106,6 +106,30 @@ RSpec.describe 'FacebookAds::ServerSide::Event' do
         end
     end
 
+    it 'normalize returns hashes for nested original_event_data and attribution_data' do
+        event = FacebookAds::ServerSide::Event.new(
+            event_name: 'test',
+            original_event_data: FacebookAds::ServerSide::OriginalEventData.new(
+                event_name: 'purchase',
+                event_time: 99999,
+            ),
+            attribution_data: FacebookAds::ServerSide::AttributionData.new(
+                scope: 'click',
+                visit_time: 11111,
+            ),
+        )
+        normalized = event.normalize
+
+        expect(normalized['original_event_data']).to eq({
+            'event_name' => 'purchase',
+            'event_time' => 99999,
+        })
+        expect(normalized['attribution_data']).to eq({
+            'scope' => 'click',
+            'visit_time' => 11111,
+        })
+    end
+
     it 'normalize validates the action_source' do
         expect{
             FacebookAds::ServerSide::Event.new(

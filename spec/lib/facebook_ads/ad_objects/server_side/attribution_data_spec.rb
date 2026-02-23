@@ -192,6 +192,22 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
         expect(attribution_data1.hash).to_not eq(attribution_data2.hash)
     end
 
+    it 'normalizes mixed-case attribution_method to lowercase' do
+        attribution_data = FacebookAds::ServerSide::AttributionData.new(
+            attribution_method: 'DEEPLINK'
+        )
+        normalized = attribution_data.normalize
+        expect(normalized['attribution_method']).to eq('deeplink')
+    end
+
+    it 'normalizes mixed-case decline_reason to lowercase' do
+        attribution_data = FacebookAds::ServerSide::AttributionData.new(
+            decline_reason: 'Lookback'
+        )
+        normalized = attribution_data.normalize
+        expect(normalized['decline_reason']).to eq('lookback')
+    end
+
     it 'validates attribution_method with valid value' do
         attribution_data = FacebookAds::ServerSide::AttributionData.new(
             attribution_method: 'ard'
