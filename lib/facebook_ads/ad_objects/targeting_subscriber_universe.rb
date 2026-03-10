@@ -15,6 +15,7 @@ module FacebookAds
 
   class TargetingSubscriberUniverse < AdObject
 
+    field :messenger_subscriber_pool, 'IdName'
     field :messenger_subscriber_source, 'IdName'
     field :whatsapp_subscriber_pool, 'IdName'
     field :whatsapp_subscriber_source, 'IdName'

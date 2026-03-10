@@ -21,6 +21,7 @@ module FacebookAds
     field :adgroup_media_source, 'string'
     field :carousel_style, 'string'
     field :carousel_with_static_card_style, 'string'
+    field :is_pca_unified_format_ad, 'bool'
     has_no_id
     has_no_get
     has_no_post

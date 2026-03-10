@@ -15,6 +15,7 @@ module FacebookAds
 
   class TargetingProductAudienceSubSpec < AdObject
 
+    field :min_retention_seconds, 'string'
     field :retention_seconds, 'string'
     field :rule, 'string'
     has_no_id

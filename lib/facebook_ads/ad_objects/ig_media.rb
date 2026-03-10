@@ -20,6 +20,7 @@ module FacebookAds
     field :caption, 'string'
     field :comments_count, 'int'
     field :copyright_check_information, 'IgVideoCopyrightCheckMatchesInformation'
+    field :current_live_viewer_count, 'int'
     field :has_poll, 'bool'
     field :has_slider, 'bool'
     field :id, 'string'

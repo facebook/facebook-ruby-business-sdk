@@ -28,6 +28,7 @@ module FacebookAds
       "DRAFT",
       "INLINE_CREATED",
       "PUBLISHED",
+      "PUBLISH_PENDING",
       "REVIEWABLE_BRANDED_CONTENT",
       "SCHEDULED",
       "SCHEDULED_RECURRING",

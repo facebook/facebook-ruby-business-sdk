@@ -13,17 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class MerchantCompliance < AdObject
+  class ProductCatalogMediaTitles < AdObject
 
-    field :active_campaigns, 'int'
-    field :compliance_status, 'string'
-    field :count_down_start_time, 'int'
-    field :purchase, 'int'
-    field :purchase_conversion_value, 'double'
-    has_no_id
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :media_titles do |edge|
+      edge.post 'ProductCatalogMediaTitlesPost'
+    end
 
   end
 end

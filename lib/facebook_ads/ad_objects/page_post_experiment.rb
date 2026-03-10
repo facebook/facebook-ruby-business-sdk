@@ -26,6 +26,8 @@ module FacebookAds
       "REELS_PLAYS",
       "SHARES",
       "VIDEO_VIEWS_60S",
+      "VIEWERS",
+      "VIEWS",
     ]
 
 

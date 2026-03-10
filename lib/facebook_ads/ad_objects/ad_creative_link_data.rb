@@ -59,6 +59,7 @@ module FacebookAds
     field :preferred_video_tags, { list: 'string' }
     field :retailer_item_ids, { list: 'string' }
     field :show_multiple_images, 'bool'
+    field :smart_pse_enabled, 'bool'
     field :static_fallback_spec, 'AdCreativeStaticFallbackSpec'
     field :use_flexible_image_aspect_ratio, 'bool'
     has_no_id

@@ -14,6 +14,11 @@ module FacebookAds
   # pull request for this class.
 
   class MessengerBusinessTemplate < AdObject
+    PARAMETER_FORMAT = [
+      "NAMED",
+      "POSITIONAL",
+    ]
+
     STATUS = [
       "APPROVED",
       "ARCHIVED",
@@ -37,6 +42,7 @@ module FacebookAds
     field :last_updated_time, 'datetime'
     field :library_template_name, 'string'
     field :name, 'string'
+    field :parameter_format, 'string'
     field :rejected_reason, 'string'
     field :rejection_reasons, 'object'
     field :specific_rejection_reasons, 'object'

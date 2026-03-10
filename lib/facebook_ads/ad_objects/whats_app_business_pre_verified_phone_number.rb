@@ -35,7 +35,7 @@ module FacebookAds
 
     has_edge :request_code do |edge|
       edge.post do |api|
-        api.has_param :code_method, { enum: %w{SMS VOICE }}
+        api.has_param :code_method, { enum: %w{IVR SMS VOICE }}
         api.has_param :language, 'string'
       end
     end

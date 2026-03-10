@@ -103,7 +103,6 @@ module FacebookAds
     ]
 
 
-    field :anchor_event_config, 'string'
     field :application_id, 'string'
     field :boosted_product_set_id, 'string'
     field :conversion_goal_id, 'string'
@@ -120,6 +119,7 @@ module FacebookAds
     field :lead_ads_form_event_source_type, 'string'
     field :lead_ads_offsite_conversion_type, 'string'
     field :lead_ads_selected_pixel_id, 'string'
+    field :live_video_destination, 'string'
     field :mcme_conversion_id, 'string'
     field :multi_event_product, 'string'
     field :object_store_url, 'string'
@@ -142,6 +142,8 @@ module FacebookAds
     field :product_set_id, 'string'
     field :product_set_optimization, 'string'
     field :retention_days, 'string'
+    field :smart_pse_enabled, 'bool'
+    field :smart_pse_setting, 'string'
     field :value_semantic_type, 'string'
     field :variation, 'string'
     field :whats_app_business_phone_number_id, 'string'

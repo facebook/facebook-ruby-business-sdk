@@ -14,12 +14,6 @@ module FacebookAds
   # pull request for this class.
 
   class CpasCollaborationRequest < AdObject
-    REQUESTER_AGENCY_OR_BRAND = [
-      "AGENCY",
-      "BRAND",
-      "MERCHANT",
-    ]
-
 
     field :brands, { list: 'string' }
     field :contact_email, 'string'

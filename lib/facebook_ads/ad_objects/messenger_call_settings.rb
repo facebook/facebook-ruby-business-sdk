@@ -17,9 +17,9 @@ module FacebookAds
 
     field :audio_enabled, 'bool'
     field :call_hours, 'object'
-    field :call_routing, 'string'
+    field :call_routing, 'object'
     field :icon_enabled, 'bool'
-    field :video, 'string'
+    field :video_enabled, 'bool'
     has_no_id
     has_no_get
     has_no_post

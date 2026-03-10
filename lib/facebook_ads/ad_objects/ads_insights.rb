@@ -48,6 +48,7 @@ module FacebookAds
       "action_video_sound",
       "action_video_type",
       "conversion_destination",
+      "is_business_ai_assisted",
       "matched_persona_id",
       "matched_persona_name",
       "signal_source_bucket",
@@ -121,11 +122,10 @@ module FacebookAds
       "product_custom_label_3_breakdown",
       "product_custom_label_4_breakdown",
       "product_group_content_id_breakdown",
-      "product_group_id",
       "product_id",
-      "product_set_id_breakdown",
       "publisher_platform",
       "redownload",
+      "reels_trending_topic",
       "region",
       "rta_ugc_topic",
       "rule_set_id",
@@ -188,6 +188,7 @@ module FacebookAds
       "action_video_sound",
       "action_video_type",
       "conversion_destination",
+      "is_business_ai_assisted",
       "matched_persona_id",
       "matched_persona_name",
       "signal_source_bucket",
@@ -208,7 +209,12 @@ module FacebookAds
     field :adset_id, 'string'
     field :adset_name, 'string'
     field :adset_start, 'string'
+    field :advanced_actions_28d_view, { list: 'AdsActionStats' }
+    field :advanced_reach_1d_lookback, 'string'
+    field :advanced_reach_28d_lookback, 'string'
+    field :advanced_reach_7d_lookback, 'string'
     field :age_targeting, 'string'
+    field :anchor_event_attribution_setting, 'string'
     field :anchor_events_performance_indicator, 'string'
     field :attribution_setting, 'string'
     field :auction_bid, 'string'
@@ -296,6 +302,7 @@ module FacebookAds
     field :inline_link_click_ctr, 'string'
     field :inline_link_clicks, 'string'
     field :inline_post_engagement, 'string'
+    field :instagram_profile_visits, 'string'
     field :instagram_upcoming_event_reminders_set, 'string'
     field :instant_experience_clicks_to_open, 'string'
     field :instant_experience_clicks_to_start, 'string'
@@ -329,6 +336,7 @@ module FacebookAds
     field :marketing_messages_website_purchase, 'string'
     field :marketing_messages_website_purchase_values, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
+    field :multi_event_conversion_attribution_setting, 'string'
     field :objective, 'string'
     field :objective_result_rate, { list: 'object' }
     field :objective_results, { list: 'object' }

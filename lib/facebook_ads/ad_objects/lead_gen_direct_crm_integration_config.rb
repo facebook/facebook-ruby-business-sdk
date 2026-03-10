@@ -18,6 +18,7 @@ module FacebookAds
     field :auth_id, 'string'
     field :creation_time, 'datetime'
     field :id, 'string'
+    field :lead_filter_settings, { list: 'hash' }
     field :lead_gen_data, 'LeadgenForm'
     field :matched_fields, { list: 'hash' }
     field :matched_fields_labels, { list: 'hash' }

@@ -15,6 +15,8 @@ module FacebookAds
 
   class PartnershipAdContentSearchMedia < AdObject
 
+    field :fb_ad_code_sponsor_count, 'int'
+    field :fb_ad_code_sponsors, { list: 'FbPageAndInstagramAccount' }
     field :ig_ad_code_sponsor_count, 'int'
     field :ig_ad_code_sponsors, { list: 'FbPageAndInstagramAccount' }
     field :ig_media, 'IgMedia'

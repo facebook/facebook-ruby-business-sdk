@@ -56,6 +56,7 @@ module FacebookAds
     field :effective_messenger_positions, { list: 'string' }
     field :effective_publisher_platforms, { list: 'string' }
     field :effective_threads_positions, { list: 'string' }
+    field :effective_whatsapp_positions, { list: 'string' }
     field :engagement_specs, { list: 'TargetingDynamicRule' }
     field :ethnic_affinity, { list: 'IdName' }
     field :exclude_reached_since, { list: 'string' }
@@ -86,6 +87,7 @@ module FacebookAds
     field :income, { list: 'IdName' }
     field :industries, { list: 'IdName' }
     field :instagram_positions, { list: 'string' }
+    field :install_state_application, 'string'
     field :instream_video_skippable_excluded, 'bool'
     field :interested_in, { list: 'int' }
     field :interests, { list: 'IdName' }
@@ -112,9 +114,11 @@ module FacebookAds
     field :targeting_relaxation_types, 'TargetingRelaxation'
     field :threads_positions, { list: 'string' }
     field :user_adclusters, { list: 'IdName' }
+    field :user_age_unknown, 'bool'
     field :user_device, { list: 'string' }
     field :user_event, { list: 'int' }
     field :user_os, { list: 'string' }
+    field :whatsapp_positions, { list: 'string' }
     field :wireless_carrier, { list: 'string' }
     field :work_employers, { list: 'IdName' }
     field :work_positions, { list: 'IdName' }

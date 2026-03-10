@@ -56,7 +56,9 @@ module FacebookAds
     end
 
     has_edge :branded_content_ad_permissions do |edge|
-      edge.get 'IgbcAdsPermission'
+      edge.get 'IgbcAdsPermission' do |api|
+        api.has_param :creator_username, 'string'
+      end
       edge.post 'IgbcAdsPermission' do |api|
         api.has_param :creator_instagram_account, 'string'
         api.has_param :creator_instagram_username, 'string'
@@ -87,6 +89,12 @@ module FacebookAds
       end
     end
 
+    has_edge :business_messaging_feature_status do |edge|
+      edge.post 'IgUser' do |api|
+        api.has_param :features, { list: 'hash' }
+      end
+    end
+
     has_edge :catalog_product_search do |edge|
       edge.get 'ShadowIgUserCatalogProductSearch' do |api|
         api.has_param :catalog_id, 'string'
@@ -100,6 +108,10 @@ module FacebookAds
         api.has_param :accept, 'bool'
         api.has_param :media_id, 'string'
       end
+    end
+
+    has_edge :collaborative_media do |edge|
+      edge.get 'ShadowIgUserCollaborativeMedia'
     end
 
     has_edge :connected_threads_user do |edge|
@@ -131,6 +143,7 @@ module FacebookAds
         api.has_param :show_onboarded_creators_only, 'bool'
         api.has_param :similar_to_creators, { list: 'string' }
         api.has_param :username, 'string'
+        api.has_param :usernames, { list: 'string' }
       end
     end
 
@@ -202,6 +215,13 @@ module FacebookAds
         api.has_param :comment_id, 'string'
         api.has_param :media_id, 'string'
         api.has_param :message, 'string'
+      end
+    end
+
+    has_edge :moderate_conversations do |edge|
+      edge.post do |api|
+        api.has_param :actions, { list: { enum: %w{BLOCK_USER MOVE_TO_SPAM UNBLOCK_USER }} }
+        api.has_param :user_ids, { list: 'hash' }
       end
     end
 

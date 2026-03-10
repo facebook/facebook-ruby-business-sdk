@@ -64,6 +64,7 @@ module FacebookAds
     field :inline, { list: 'int' }
     field :interactive_component_sticker_id, 'string'
     field :interactive_component_sticker_response, 'string'
+    field :promoted_product_set_result, 'string'
     field :skan_click, { list: 'int' }
     field :skan_click_second_postback, { list: 'int' }
     field :skan_click_third_postback, { list: 'int' }

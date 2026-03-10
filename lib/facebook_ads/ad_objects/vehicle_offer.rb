@@ -38,7 +38,7 @@ module FacebookAds
     field :body_style, 'string'
     field :cashback_currency, 'string'
     field :cashback_price, 'string'
-    field :category_specific_fields, 'CatalogSubVerticalList'
+    field :comscore_market_codes, { list: 'string' }
     field :currency, 'string'
     field :custom_label_0, 'string'
     field :custom_label_1, 'string'

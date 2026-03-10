@@ -91,8 +91,14 @@ module FacebookAds
       "WATCHES",
     ]
 
+    CONVERSION_TYPE = [
+      "ATTRIBUTED",
+      "IN_SESSION",
+    ]
+
     EVENT_NAME = [
       "ADD_TO_CART",
+      "OFFER_SUBMITTED",
       "PURCHASE",
       "TEST",
       "VIEW_ITEM",
@@ -376,11 +382,52 @@ module FacebookAds
 
     has_edge :marketplace_partner_signals do |edge|
       edge.post 'ProductCatalog' do |api|
+        api.has_param :conversion_type, { enum: -> { ProductCatalog::CONVERSION_TYPE }}
+        api.has_param :event_id, 'string'
         api.has_param :event_name, { enum: -> { ProductCatalog::EVENT_NAME }}
         api.has_param :event_source_url, 'string'
         api.has_param :event_time, 'datetime'
+        api.has_param :offer_data, 'hash'
         api.has_param :order_data, 'hash'
         api.has_param :user_data, 'hash'
+      end
+    end
+
+    has_edge :media_titles do |edge|
+      edge.post do |api|
+        api.has_param :additional_image_urls, { list: 'string' }
+        api.has_param :android_app_name, 'string'
+        api.has_param :android_class, 'string'
+        api.has_param :android_package, 'string'
+        api.has_param :android_url, 'string'
+        api.has_param :awards, { list: 'string' }
+        api.has_param :cast, { list: 'string' }
+        api.has_param :category, 'string'
+        api.has_param :currency, 'string'
+        api.has_param :description, 'string'
+        api.has_param :director, { list: 'string' }
+        api.has_param :fb_product_category, 'string'
+        api.has_param :genre, { list: 'string' }
+        api.has_param :image_url, 'string'
+        api.has_param :ios_app_name, 'string'
+        api.has_param :ios_app_store_id, 'int'
+        api.has_param :ios_url, 'string'
+        api.has_param :ipad_app_name, 'string'
+        api.has_param :ipad_app_store_id, 'int'
+        api.has_param :ipad_url, 'string'
+        api.has_param :iphone_app_name, 'string'
+        api.has_param :iphone_app_store_id, 'int'
+        api.has_param :iphone_url, 'string'
+        api.has_param :media_category, 'string'
+        api.has_param :name, 'string'
+        api.has_param :price, 'int'
+        api.has_param :rating, 'string'
+        api.has_param :release_date, 'string'
+        api.has_param :retailer_id, 'string'
+        api.has_param :url, 'string'
+        api.has_param :windows_phone_app_id, 'string'
+        api.has_param :windows_phone_app_name, 'string'
+        api.has_param :windows_phone_url, 'string'
       end
     end
 

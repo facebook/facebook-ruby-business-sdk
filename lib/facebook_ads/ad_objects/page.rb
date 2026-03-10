@@ -208,6 +208,7 @@ module FacebookAds
       "DRAFT",
       "INLINE_CREATED",
       "PUBLISHED",
+      "PUBLISH_PENDING",
       "REVIEWABLE_BRANDED_CONTENT",
       "SCHEDULED",
       "SCHEDULED_RECURRING",
@@ -222,6 +223,15 @@ module FacebookAds
 
     CATEGORY = [
       "UTILITY",
+    ]
+
+    PARAMETER_FORMAT = [
+      "NAMED",
+      "POSITIONAL",
+    ]
+
+    FOLDER = [
+      "PARTNERSHIP",
     ]
 
     MESSAGING_TYPE = [
@@ -330,11 +340,15 @@ module FacebookAds
       "invoice_access_onboarding_status_active",
       "leadgen",
       "leadgen_fat",
+      "leadgen_update",
       "live_videos",
       "local_delivery",
       "location",
+      "marketing_message_clicks",
+      "marketing_message_deliveries",
       "marketing_message_delivery_failed",
       "marketing_message_echoes",
+      "marketing_message_reads",
       "marketing_messages_subscriber_upload_status",
       "mcom_invoice_change",
       "members",
@@ -514,6 +528,7 @@ module FacebookAds
     field :preferred_audience, 'Targeting'
     field :press_contact, 'string'
     field :price_range, 'string'
+    field :priority_hours, { list: 'hash' }
     field :privacy_info_url, 'string'
     field :produced_by, 'string'
     field :products, 'string'
@@ -638,14 +653,6 @@ module FacebookAds
       end
     end
 
-    has_edge :business_data do |edge|
-      edge.post do |api|
-        api.has_param :data, { list: 'string' }
-        api.has_param :partner_agent, 'string'
-        api.has_param :processing_type, 'string'
-      end
-    end
-
     has_edge :business_messaging_feature_status do |edge|
       edge.post 'Page' do |api|
         api.has_param :features, { list: 'hash' }
@@ -655,6 +662,20 @@ module FacebookAds
     has_edge :businessprojects do |edge|
       edge.get 'BusinessProject' do |api|
         api.has_param :business, 'string'
+      end
+    end
+
+    has_edge :call_metrics do |edge|
+      edge.post do |api|
+        api.has_param :audio_stats, 'hash'
+        api.has_param :call_ended_time, 'datetime'
+        api.has_param :call_id, 'string'
+        api.has_param :end_call_reason, { enum: %w{CALLER_NOT_VISIBLE CALL_END_ACCEPT_AFTER_HANG_UP CAMERA_PERMISSION_DENIED CLIENT_ERROR CLIENT_INTERRUPTED CONNECTION_DROPPED HANGUP_CALL IGNORE_CALL INACTIVE_TIMEOUT INCOMING_TIMEOUT IN_ANOTHER_CALL MAX_ALLOWED_PARTICIPANTS_REACHED MICROPHONE_PERMISSION_DENIED NO_ANSWER_TIMEOUT NO_PERMISSION REMOVED_BY_PARTICIPANT RING_MUTED SIGNALING_MESSAGE_FAILED UNEXPECTED_END_OF_CALL UNKNOWN VERSION_UNSUPPORTED WEBRTC_ERROR }}
+        api.has_param :end_call_subreason, 'string'
+        api.has_param :first_audio_packet_received_time, 'datetime'
+        api.has_param :first_video_packet_received_time, 'datetime'
+        api.has_param :platform, { enum: %w{MESSENGER }}
+        api.has_param :video_stats, 'hash'
       end
     end
 
@@ -1116,11 +1137,13 @@ module FacebookAds
         api.has_param :library_template_button_inputs, { list: 'hash' }
         api.has_param :library_template_name, 'string'
         api.has_param :name, 'string'
+        api.has_param :parameter_format, { enum: -> { Page::PARAMETER_FORMAT }}
       end
     end
 
     has_edge :messages do |edge|
       edge.post 'Page' do |api|
+        api.has_param :folder, { enum: -> { Page::FOLDER }}
         api.has_param :message, 'object'
         api.has_param :messaging_type, { enum: -> { Page::MESSAGING_TYPE }}
         api.has_param :notification_type, { enum: -> { Page::NOTIFICATION_TYPE }}
@@ -1139,6 +1162,12 @@ module FacebookAds
       edge.get 'MessagingFeatureReview'
     end
 
+    has_edge :messenger_call_permissions do |edge|
+      edge.get 'MessengerCallPermissions' do |api|
+        api.has_param :psid, 'string'
+      end
+    end
+
     has_edge :messenger_call_settings do |edge|
       edge.get 'MessengerCallSettings'
       edge.post 'Page' do |api|
@@ -1146,7 +1175,7 @@ module FacebookAds
         api.has_param :call_hours, 'hash'
         api.has_param :call_routing, 'hash'
         api.has_param :icon_enabled, 'bool'
-        api.has_param :video, 'hash'
+        api.has_param :video_enabled, 'bool'
       end
     end
 
@@ -1169,7 +1198,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED GREETING HOME_URL ICE_BREAKERS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TITLE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED HOME_URL ICE_BREAKERS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TITLE WHITELISTED_DOMAINS }} }
         api.has_param :platform, { enum: -> { Page::PLATFORM }}
       end
       edge.get 'MessengerProfile' do |api|
@@ -1180,11 +1209,9 @@ module FacebookAds
         api.has_param :commands, { list: 'object' }
         api.has_param :description, { list: 'object' }
         api.has_param :get_started, 'object'
-        api.has_param :greeting, { list: 'object' }
         api.has_param :ice_breakers, { list: 'hash' }
         api.has_param :persistent_menu, { list: 'object' }
         api.has_param :platform, { enum: -> { Page::PLATFORM }}
-        api.has_param :title, { list: 'object' }
         api.has_param :whitelisted_domains, { list: 'string' }
       end
     end
@@ -1211,6 +1238,7 @@ module FacebookAds
     has_edge :notification_message_tokens do |edge|
       edge.get 'UserPageOneTimeOptInTokenSettings' do |api|
         api.has_param :custom_audience_ids, { list: 'string' }
+        api.has_param :do_not_return_duplicates, 'bool'
       end
     end
 
@@ -1430,6 +1458,14 @@ module FacebookAds
       edge.get 'CommerceMerchantSettingsSetupStatus'
     end
 
+    has_edge :space_participants do |edge|
+      edge.get 'Page'
+      edge.post 'Page' do |api|
+        api.has_param :recipient, 'object'
+        api.has_param :space_name, 'string'
+      end
+    end
+
     has_edge :store_locations do |edge|
       edge.get 'StoreLocation'
     end
@@ -1579,6 +1615,7 @@ module FacebookAds
         api.has_param :custom_labels, { list: 'string' }
         api.has_param :description, 'string'
         api.has_param :direct_share_status, 'int'
+        api.has_param :edit_description_spec, 'hash'
         api.has_param :embeddable, 'bool'
         api.has_param :end_offset, 'int'
         api.has_param :expiration, 'object'

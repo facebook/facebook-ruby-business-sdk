@@ -56,6 +56,7 @@ module FacebookAds
       "DRAFT",
       "INLINE_CREATED",
       "PUBLISHED",
+      "PUBLISH_PENDING",
       "REVIEWABLE_BRANDED_CONTENT",
       "SCHEDULED",
       "SCHEDULED_RECURRING",
@@ -97,6 +98,7 @@ module FacebookAds
     field :id, 'string'
     field :instagram_eligibility, 'string'
     field :is_app_share, 'bool'
+    field :is_eligible_for_dark_post, 'bool'
     field :is_eligible_for_promotion, 'bool'
     field :is_expired, 'bool'
     field :is_hidden, 'bool'

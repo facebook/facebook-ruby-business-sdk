@@ -55,7 +55,6 @@ module FacebookAds
     field :availability, { enum: -> { AVAILABILITY }}
     field :brand, 'string'
     field :category, 'string'
-    field :category_specific_fields, 'CatalogSubVerticalList'
     field :condition, { enum: -> { CONDITION }}
     field :cuisine_type, 'string'
     field :currency, 'string'

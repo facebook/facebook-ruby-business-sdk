@@ -31,7 +31,6 @@ module FacebookAds
 
     field :action_title, 'string'
     field :applinks, 'CatalogItemAppLinks'
-    field :category_specific_fields, 'CatalogSubVerticalList'
     field :currency, 'string'
     field :description, 'string'
     field :duration_time, 'int'

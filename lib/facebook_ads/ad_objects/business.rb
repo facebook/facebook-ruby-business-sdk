@@ -587,6 +587,118 @@ module FacebookAds
       "478",
       "479",
       "480",
+      "481",
+      "482",
+      "483",
+      "484",
+      "485",
+      "486",
+      "487",
+      "488",
+      "489",
+      "490",
+      "491",
+      "492",
+      "493",
+      "494",
+      "495",
+      "496",
+      "497",
+      "498",
+      "499",
+      "500",
+      "501",
+      "502",
+      "503",
+      "504",
+      "505",
+      "506",
+      "507",
+      "508",
+      "509",
+      "510",
+      "511",
+      "512",
+      "513",
+      "514",
+      "515",
+      "516",
+      "517",
+      "518",
+      "519",
+      "520",
+      "521",
+      "522",
+      "523",
+      "524",
+      "525",
+      "526",
+      "527",
+      "528",
+      "529",
+      "530",
+      "531",
+      "532",
+      "533",
+      "534",
+      "535",
+      "536",
+      "537",
+      "538",
+      "539",
+      "540",
+      "541",
+      "542",
+      "543",
+      "544",
+      "545",
+      "546",
+      "547",
+      "548",
+      "549",
+      "550",
+      "551",
+      "552",
+      "553",
+      "554",
+      "555",
+      "556",
+      "557",
+      "558",
+      "559",
+      "560",
+      "561",
+      "562",
+      "563",
+      "564",
+      "565",
+      "566",
+      "567",
+      "568",
+      "569",
+      "570",
+      "571",
+      "572",
+      "573",
+      "574",
+      "575",
+      "576",
+      "577",
+      "578",
+      "579",
+      "580",
+      "581",
+      "582",
+      "583",
+      "584",
+      "585",
+      "586",
+      "587",
+      "588",
+      "589",
+      "590",
+      "591",
+      "592",
     ]
 
     PAGE_PERMITTED_TASKS = [
@@ -926,6 +1038,7 @@ module FacebookAds
         api.has_param :client_business, 'string'
         api.has_param :confidence_level, 'double'
         api.has_param :cooldown_start_time, 'int'
+        api.has_param :creative_test_config, 'hash'
         api.has_param :description, 'string'
         api.has_param :end_time, 'int'
         api.has_param :name, 'string'
@@ -1146,16 +1259,6 @@ module FacebookAds
       edge.get 'CpasCollaborationRequest' do |api|
         api.has_param :status, 'string'
       end
-      edge.post 'CpasCollaborationRequest' do |api|
-        api.has_param :brands, { list: 'string' }
-        api.has_param :contact_email, 'string'
-        api.has_param :contact_first_name, 'string'
-        api.has_param :contact_last_name, 'string'
-        api.has_param :phone_number, 'string'
-        api.has_param :receiver_business, 'string'
-        api.has_param :requester_agency_or_brand, { enum: -> { CpasCollaborationRequest::REQUESTER_AGENCY_OR_BRAND }}
-        api.has_param :sender_client_business, 'string'
-      end
     end
 
     has_edge :collaborative_ads_suggested_partners do |edge|
@@ -1330,13 +1433,15 @@ module FacebookAds
         api.has_param :active, 'bool'
         api.has_param :blocked_event_types, { list: 'string' }
         api.has_param :blocked_websites, { list: 'string' }
+        api.has_param :capi_publishing_state, { enum: -> { OpenBridgeConfiguration::CAPI_PUBLISHING_STATE }}
         api.has_param :cloud_provider, 'string'
         api.has_param :cloud_region, 'string'
         api.has_param :destination_id, 'string'
         api.has_param :endpoint, 'string'
+        api.has_param :event_enrichment_advertiser_state, { enum: -> { OpenBridgeConfiguration::EVENT_ENRICHMENT_ADVERTISER_STATE }}
+        api.has_param :event_enrichment_meta_state, { enum: -> { OpenBridgeConfiguration::EVENT_ENRICHMENT_META_STATE }}
         api.has_param :event_enrichment_state, { enum: -> { OpenBridgeConfiguration::EVENT_ENRICHMENT_STATE }}
         api.has_param :fallback_domain, 'string'
-        api.has_param :first_party_domain, 'string'
         api.has_param :host_business_id, 'int'
         api.has_param :instance_id, 'string'
         api.has_param :instance_version, 'string'
@@ -1352,6 +1457,7 @@ module FacebookAds
 
     has_edge :owned_ad_accounts do |edge|
       edge.get 'AdAccount' do |api|
+        api.has_param :include_shared_ad_accounts, 'bool'
         api.has_param :search_query, 'string'
       end
       edge.post 'Business' do |api|
@@ -1605,6 +1711,7 @@ module FacebookAds
         api.has_param :creative_folder_id, 'string'
         api.has_param :creative_tools, 'string'
         api.has_param :description, 'string'
+        api.has_param :edit_description_spec, 'hash'
         api.has_param :embeddable, 'bool'
         api.has_param :end_offset, 'int'
         api.has_param :fbuploader_video_file_chunk, 'string'

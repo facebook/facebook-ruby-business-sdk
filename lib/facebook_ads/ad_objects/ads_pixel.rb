@@ -190,6 +190,7 @@ module FacebookAds
 
     has_edge :stats do |edge|
       edge.get 'AdsPixelStatsResult' do |api|
+        api.has_param :agent, 'string'
         api.has_param :aggregation, { enum: -> { AdsPixelStatsResult::AGGREGATION }}
         api.has_param :end_time, 'datetime'
         api.has_param :event, 'string'

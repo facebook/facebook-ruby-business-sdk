@@ -73,7 +73,6 @@ module FacebookAds
     field :is_3p_auth_setting_set, 'bool'
     field :is_ads_manager_footer_row_preference_set, 'bool'
     field :is_ads_manager_footer_row_shown, 'bool'
-    field :is_text_variation_nux_close, 'bool'
     field :last_used_columns, 'object'
     field :last_used_pe_filters, { list: 'object' }
     field :last_used_website_urls, { list: 'string' }
@@ -97,7 +96,6 @@ module FacebookAds
     field :should_logout_of_3p_sourcing, 'bool'
     field :should_show_shops_ads_metrics_onboarding_tour, 'bool'
     field :show_archived_data, 'bool'
-    field :show_text_variation_nux_tooltip, 'bool'
     field :syd_campaign_trends_activemetric, 'string'
     field :syd_campaign_trends_attribution, 'string'
     field :syd_campaign_trends_metrics, { list: 'string' }

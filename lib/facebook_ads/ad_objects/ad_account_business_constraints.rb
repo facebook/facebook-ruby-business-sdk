@@ -23,6 +23,7 @@ module FacebookAds
 
     field :audience_controls, 'object'
     field :campaigns_with_error, { list: 'string' }
+    field :is_age_restriction_enabled, 'bool'
     field :placement_controls, 'object'
     field :status, { enum: -> { STATUS }}
     has_no_id

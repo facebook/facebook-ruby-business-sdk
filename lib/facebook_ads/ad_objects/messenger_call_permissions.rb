@@ -16,6 +16,7 @@ module FacebookAds
   class MessengerCallPermissions < AdObject
 
     field :actions, { list: 'object' }
+    field :permission, 'object'
     has_no_id
     has_no_get
     has_no_post

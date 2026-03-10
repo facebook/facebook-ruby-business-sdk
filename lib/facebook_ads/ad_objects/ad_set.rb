@@ -60,6 +60,7 @@ module FacebookAds
       "AUTOMATIC_OBJECTIVE",
       "CONVERSATIONS",
       "DERIVED_EVENTS",
+      "ENGAGED_PAGE_VIEWS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",
@@ -204,6 +205,8 @@ module FacebookAds
       "10",
       "11",
       "12",
+      "13",
+      "14",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -249,6 +252,8 @@ module FacebookAds
     field :campaign_id, 'string'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
     field :created_time, 'datetime'
+    field :creative_diversity_label, { list: 'string' }
+    field :creative_diversity_score, { list: 'string' }
     field :creative_sequence, { list: 'string' }
     field :creative_sequence_repetition_pattern, 'string'
     field :daily_budget, 'string'

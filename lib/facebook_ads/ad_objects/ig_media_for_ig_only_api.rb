@@ -18,6 +18,7 @@ module FacebookAds
     field :alt_text, 'string'
     field :caption, 'string'
     field :comments_count, 'int'
+    field :current_live_viewer_count, 'int'
     field :id, 'string'
     field :is_comment_enabled, 'bool'
     field :is_shared_to_feed, 'bool'

@@ -124,7 +124,6 @@ module FacebookAds
     field :availability_circle_radius, 'double'
     field :availability_circle_radius_unit, 'string'
     field :body_style, 'string'
-    field :category_specific_fields, 'CatalogSubVerticalList'
     field :condition, 'string'
     field :currency, 'string'
     field :custom_label_0, 'string'

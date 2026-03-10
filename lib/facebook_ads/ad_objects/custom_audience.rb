@@ -74,6 +74,11 @@ module FacebookAds
       "WEBSITE",
     ]
 
+    USAGE_RESTRICTION = [
+      "EXCLUSION_ONLY",
+      "NONE",
+    ]
+
     USE_FOR_PRODUCTS = [
       "ADS",
       "MARKETING_MESSAGES",
@@ -107,6 +112,7 @@ module FacebookAds
     field :is_value_based, 'bool'
     field :lookalike_audience_ids, { list: 'string' }
     field :lookalike_spec, 'LookalikeSpec'
+    field :messenger_marketing_messages_page, 'Page'
     field :name, 'string'
     field :operation_status, 'CustomAudienceStatus'
     field :opt_out_link, 'string'
@@ -148,6 +154,7 @@ module FacebookAds
     field :prefill, 'bool'
     field :product_set_id, 'string'
     field :subscription_info, { list: { enum: -> { SUBSCRIPTION_INFO }} }
+    field :usage_restriction, { enum: -> { USAGE_RESTRICTION }}
     field :use_for_products, { list: { enum: -> { USE_FOR_PRODUCTS }} }
     field :use_in_campaigns, 'bool'
     field :video_group_ids, { list: 'string' }

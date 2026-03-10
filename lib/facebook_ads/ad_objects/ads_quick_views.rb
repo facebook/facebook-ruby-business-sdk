@@ -20,6 +20,10 @@ module FacebookAds
     field :column_fields, { list: 'string' }
     field :description, 'string'
     field :id, 'string'
+    field :is_attribution_windows_disabled, 'bool'
+    field :is_breakdowns_disabled, 'bool'
+    field :is_columns_and_sort_disabled, 'bool'
+    field :is_filters_disabled, 'bool'
     field :name, 'string'
     field :owner, 'Profile'
     field :permission, 'string'

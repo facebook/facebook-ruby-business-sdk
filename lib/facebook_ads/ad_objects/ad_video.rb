@@ -20,6 +20,7 @@ module FacebookAds
       "AD_BREAK_PREVIEW",
       "AD_DERIVATIVE",
       "AD_LIBRARY_WATERMARK",
+      "AI_INTERACTIVE_EMBODIMENT",
       "ALBUM_MULTIMEDIA_POST",
       "ALOHA_SUPERFRAME",
       "APP_REREVIEW_SCREENCAST",
@@ -57,6 +58,7 @@ module FacebookAds
       "FACECAST_DVR",
       "FB_AVATAR_ANIMATED_SATP",
       "FB_COLLECTIBLE_VIDEO",
+      "FB_QUICKSNAP_VIDEO",
       "FB_SHORTS",
       "FB_SHORTS_CONTENT_REMIXABLE",
       "FB_SHORTS_GROUP_POST",
@@ -98,6 +100,7 @@ module FacebookAds
       "MOMENTS_VIDEO",
       "MUSIC_CLIP",
       "MUSIC_CLIP_IN_COMMENT",
+      "MUSIC_CLIP_IN_FB_MSGR_STATUS",
       "MUSIC_CLIP_IN_LIGHTWEIGHT_STATUS",
       "MUSIC_CLIP_IN_MAPLE_POST",
       "MUSIC_CLIP_IN_MSGR_NOTE",
@@ -117,7 +120,6 @@ module FacebookAds
       "PAID_CONTENT_VIDEO__POST",
       "PIXELCLOUD",
       "PODCAST_HIGHLIGHT",
-      "PODCAST_ML_PREVIEW",
       "PODCAST_ML_PREVIEW_NO_NEWSFEED_STORY",
       "PODCAST_RSS",
       "PODCAST_RSS_EPHEMERAL",
@@ -134,10 +136,8 @@ module FacebookAds
       "PROFILE_COVER_VIDEO",
       "PROFILE_INTRO_CARD",
       "PROFILE_VIDEO",
-      "PROTON",
       "QUICK_CLIP_WORKPLACE_POST",
       "QUICK_PROMOTION",
-      "REPLACE_VIDEO",
       "SHOWREEL_NATIVE_DUMMY_VIDEO",
       "SLIDESHOW_ANIMOTO",
       "SLIDESHOW_SHAKR",
@@ -207,6 +207,7 @@ module FacebookAds
       "DRAFT",
       "INLINE_CREATED",
       "PUBLISHED",
+      "PUBLISH_PENDING",
       "REVIEWABLE_BRANDED_CONTENT",
       "SCHEDULED",
       "SCHEDULED_RECURRING",
@@ -306,7 +307,6 @@ module FacebookAds
     field :privacy, 'Privacy'
     field :published, 'bool'
     field :scheduled_publish_time, 'datetime'
-    field :season, 'VideoList'
     field :source, 'string'
     field :spherical, 'bool'
     field :status, 'VideoStatus'
@@ -327,6 +327,7 @@ module FacebookAds
     field :composer_type, 'string'
     field :container_type, { enum: -> { CONTAINER_TYPE }}
     field :creative_tools, 'string'
+    field :edit_description_spec, 'hash'
     field :end_offset, 'int'
     field :fbuploader_video_file_chunk, 'string'
     field :file_size, 'int'

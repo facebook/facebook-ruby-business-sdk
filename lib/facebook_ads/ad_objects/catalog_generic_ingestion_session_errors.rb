@@ -13,21 +13,18 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AnalyticsPlatformMetricsConfig < AdObject
+  class CatalogGenericIngestionSessionErrors < AdObject
 
-    field :has_a2u, 'bool'
-    field :has_api_calls, 'bool'
-    field :has_app_invites, 'bool'
-    field :has_fb_login, 'bool'
-    field :has_game_requests, 'bool'
-    field :has_payments, 'bool'
-    field :has_referrals, 'bool'
-    field :has_stories, 'bool'
-    field :has_structured_requests, 'bool'
-    has_no_id
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :errors do |edge|
+      edge.get 'CatalogGenericIngestionSessionErrorsGet' do |api|
+        api.has_param :error_priority, 'string'
+      end
+    end
 
   end
 end

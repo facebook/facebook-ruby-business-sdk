@@ -32,7 +32,6 @@ module FacebookAds
     field :applinks, 'CatalogItemAppLinks'
     field :brand, 'string'
     field :category, 'string'
-    field :category_specific_fields, 'CatalogSubVerticalList'
     field :currency, 'string'
     field :description, 'string'
     field :id, 'string'

@@ -13,16 +13,20 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PublisherWhiteList < AdObject
+  class ProductFeedMediaTitles < AdObject
 
-    field :business_owner_id, 'string'
     field :id, 'string'
-    field :last_updated_time, 'datetime'
-    field :last_updated_user, 'string'
-    field :name, 'string'
-    field :placement_type, 'string'
+    has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :media_titles do |edge|
+      edge.get 'ProductFeedMediaTitlesGet' do |api|
+        api.has_param :after, 'string'
+        api.has_param :before, 'string'
+        api.has_param :limit, 'int'
+      end
+    end
 
   end
 end

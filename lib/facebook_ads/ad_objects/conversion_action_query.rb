@@ -20,6 +20,7 @@ module FacebookAds
     field :conversion_id, { list: 'string' }
     field :creative, { list: 'object' }
     field :dataset, { list: 'string' }
+    field :dataset_split, { list: 'string' }
     field :event, { list: 'string' }
     field :_event_creator, { list: 'string' }
     field :event_type, { list: 'string' }
