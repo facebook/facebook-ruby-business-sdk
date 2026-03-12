@@ -35,6 +35,7 @@ module FacebookAds
     field :aplusc_opt_out_friction, { list: 'string' }
     field :aplusc_videofilter_opt_in_status, 'string'
     field :aplusc_videouncrop_opt_in_status, 'string'
+    field :app_details_data_opt_in_status, 'string'
     field :autoflow_lite_opt_in_status, 'string'
     field :autoflow_lite_should_opt_in, 'bool'
     field :blended_ads_creation_defaulting_opt_in_status, 'string'
@@ -46,6 +47,7 @@ module FacebookAds
     field :connected_sources_catalog_opt_in_status, 'string'
     field :create_cta_sticker_opt_in_status, 'string'
     field :creative_flex_opt_in_status, 'string'
+    field :da_adapt_images_opt_in_status, 'string'
     field :da_add_overlays_opt_in_status, 'string'
     field :da_creative_flex_opt_in_status, 'string'
     field :da_hide_price_opt_in_status, 'string'
@@ -54,6 +56,7 @@ module FacebookAds
     field :dynamic_partnership_ads_opt_in_status, 'string'
     field :enhance_cta_text_extraction_opt_in_status, 'string'
     field :export_format_default, 'string'
+    field :feedback_surveys, { list: 'string' }
     field :focus_mode_default, 'string'
     field :gen_ai_alpha_test_status, 'int'
     field :gen_ai_auto_select_opt_in_status, 'string'
@@ -69,6 +72,7 @@ module FacebookAds
     field :last_visited_time, 'datetime'
     field :metadata_brand_kit_last_opt_out_timestamp, 'int'
     field :metadata_brand_kit_opt_in_status, 'string'
+    field :multi_media_opt_out_status, 'string'
     field :music_on_reels_opt_in, { list: 'hash' }
     field :muted_cbo_midflight_education_messages, { list: 'string' }
     field :onsite_destination_optimization_opt_in, 'string'
@@ -110,6 +114,7 @@ module FacebookAds
     field :use_pe_create_flow, 'bool'
     field :use_stepper_primary_entry, 'bool'
     field :user, 'User'
+    field :video_to_image_opt_in_status, 'string'
     field :website_media_opt_in_status, 'string'
     field :website_reviews_data_opt_in_status, 'string'
     field :website_selling_points_data_opt_in_status, 'string'

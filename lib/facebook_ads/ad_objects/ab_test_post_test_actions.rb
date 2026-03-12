@@ -16,6 +16,7 @@ module FacebookAds
   class AbTestPostTestActions < AdObject
 
     field :auto_change_budget_to_winner, 'int'
+    field :winner_budget, 'string'
     has_no_id
     has_no_get
     has_no_post

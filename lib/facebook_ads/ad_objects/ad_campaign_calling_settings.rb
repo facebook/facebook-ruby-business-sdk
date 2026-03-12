@@ -13,11 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class PageBroadcast < AdObject
+  class AdCampaignCallingSettings < AdObject
 
-    field :id, 'string'
-    field :scheduled_time, 'string'
-    field :status, 'string'
+    field :call_forwarding, 'string'
+    field :call_transcript, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

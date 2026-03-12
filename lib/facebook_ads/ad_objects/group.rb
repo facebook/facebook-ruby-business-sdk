@@ -401,6 +401,7 @@ module FacebookAds
         api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
         api.has_param :creative_tools, 'string'
         api.has_param :description, 'string'
+        api.has_param :edit_description_spec, 'hash'
         api.has_param :embeddable, 'bool'
         api.has_param :end_offset, 'int'
         api.has_param :fbuploader_video_file_chunk, 'string'

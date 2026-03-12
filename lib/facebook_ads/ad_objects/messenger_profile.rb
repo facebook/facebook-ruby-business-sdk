@@ -18,7 +18,6 @@ module FacebookAds
     field :account_linking_url, 'string'
     field :commands, { list: 'object' }
     field :get_started, 'object'
-    field :greeting, { list: 'object' }
     field :ice_breakers, { list: 'object' }
     field :persistent_menu, { list: 'object' }
     field :subject_to_new_eu_privacy_rules, 'bool'

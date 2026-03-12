@@ -124,7 +124,7 @@ module FacebookAds
       edge.delete do |api|
         api.has_param :asset_id, 'string'
       end
-      edge.get 'InstagramUser'
+      edge.get 'IgUser'
       edge.post 'BusinessAssetGroup' do |api|
         api.has_param :asset_id, 'string'
       end

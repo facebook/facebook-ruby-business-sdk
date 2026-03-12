@@ -23,6 +23,10 @@ module FacebookAds
     field :date_stop, 'string'
     field :emails, { list: 'string' }
     field :error_code, 'int'
+    field :error_message, 'string'
+    field :error_subcode, 'int'
+    field :error_user_msg, 'string'
+    field :error_user_title, 'string'
     field :friendly_name, 'string'
     field :id, 'string'
     field :is_async_export, 'int'

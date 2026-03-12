@@ -18,7 +18,9 @@ module FacebookAds
       "ADD_TO_CART",
       "APPLY_NOW",
       "ASK_ABOUT_SERVICES",
+      "ASK_A_QUESTION",
       "ASK_FOR_MORE_INFO",
+      "ASK_US",
       "AUDIO_CALL",
       "BOOK_A_CONSULTATION",
       "BOOK_NOW",
@@ -31,6 +33,7 @@ module FacebookAds
       "CALL",
       "CALL_ME",
       "CALL_NOW",
+      "CHAT_NOW",
       "CHAT_WITH_US",
       "CONFIRM",
       "CONTACT",
@@ -90,6 +93,7 @@ module FacebookAds
       "SHOP_WITH_AI",
       "SIGN_UP",
       "SOTTO_SUBSCRIBE",
+      "START_A_CHAT",
       "START_ORDER",
       "SUBSCRIBE",
       "SWIPE_UP_PRODUCT",
@@ -220,6 +224,7 @@ module FacebookAds
     field :link_destination_display_url, 'string'
     field :link_og_id, 'string'
     field :link_url, 'string'
+    field :marketing_message_structured_spec, 'AdCreativeMarketingMessageStructuredSpec'
     field :media_sourcing_spec, 'AdCreativeMediaSourcingSpec'
     field :messenger_sponsored_message, 'string'
     field :name, 'string'
@@ -238,6 +243,7 @@ module FacebookAds
     field :portrait_customizations, 'AdCreativePortraitCustomizations'
     field :product_data, { list: 'AdCreativeProductData' }
     field :product_set_id, 'string'
+    field :product_suggestion_settings, 'AdCreativeProductSuggestionSettings'
     field :recommender_settings, 'AdCreativeRecommenderSettings'
     field :regional_regulation_disclaimer_spec, 'AdCreativeRegionalRegulationDisclaimer'
     field :source_facebook_post_id, 'string'

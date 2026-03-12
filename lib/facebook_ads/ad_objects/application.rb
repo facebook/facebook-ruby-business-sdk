@@ -126,6 +126,7 @@ module FacebookAds
     field :category, 'string'
     field :client_config, 'hash'
     field :company, 'string'
+    field :config_ids, { list: 'object' }
     field :configured_ios_sso, 'bool'
     field :contact_email, 'string'
     field :created_time, 'datetime'
@@ -578,14 +579,6 @@ module FacebookAds
       end
     end
 
-    has_edge :subscribed_domains do |edge|
-      edge.get
-    end
-
-    has_edge :subscribed_domains_phishing do |edge|
-      edge.get
-    end
-
     has_edge :subscriptions do |edge|
       edge.delete do |api|
         api.has_param :fields, { list: 'string' }
@@ -598,6 +591,22 @@ module FacebookAds
         api.has_param :include_values, 'bool'
         api.has_param :object, 'string'
         api.has_param :verify_token, 'string'
+      end
+    end
+
+    has_edge :threat_privacy_groups_member do |edge|
+      edge.get do |api|
+        api.has_param :description, 'string'
+        api.has_param :group_id, 'int'
+        api.has_param :name, 'string'
+      end
+    end
+
+    has_edge :threat_privacy_groups_owner do |edge|
+      edge.get do |api|
+        api.has_param :description, 'string'
+        api.has_param :group_id, 'int'
+        api.has_param :name, 'string'
       end
     end
 

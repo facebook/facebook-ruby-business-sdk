@@ -461,6 +461,7 @@ module FacebookAds
       "fb_gameroom",
       "galaxy_store",
       "google_play",
+      "horizon_world",
       "instant_game",
       "itunes",
       "itunes_ipad",
@@ -517,6 +518,7 @@ module FacebookAds
     field :info, 'string'
     field :info_title, 'string'
     field :is_recommendation, 'bool'
+    field :is_youth_ads_age_gated, 'bool'
     field :key, 'string'
     field :link, 'string'
     field :name, 'string'

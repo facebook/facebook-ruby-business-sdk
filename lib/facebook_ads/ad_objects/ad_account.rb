@@ -96,6 +96,7 @@ module FacebookAds
       "FACEBOOK_STANDARD",
       "FACEBOOK_STRICT",
       "FEED_DNM",
+      "FEED_NESTED_DNM",
       "FEED_RELAXED",
       "FEED_STANDARD",
       "FEED_STRICT",
@@ -206,10 +207,12 @@ module FacebookAds
     field :is_tax_id_required, 'bool'
     field :liable_address, 'CrmAddress'
     field :line_numbers, { list: 'int' }
+    field :marketing_messages_settings, 'AdAccountMarketingMessagesSettings'
     field :media_agency, 'string'
     field :min_campaign_group_spend_cap, 'string'
     field :min_daily_budget, 'int'
     field :name, 'string'
+    field :offsite_clo_signal_status, 'int'
     field :offsite_pixels_tos_accepted, 'bool'
     field :opportunity_score, 'double'
     field :owner, 'string'
@@ -327,6 +330,7 @@ module FacebookAds
         api.has_param :is_dco_internal, 'bool'
         api.has_param :link_og_id, 'string'
         api.has_param :link_url, 'string'
+        api.has_param :marketing_message_structured_spec, 'hash'
         api.has_param :media_sourcing_spec, 'hash'
         api.has_param :name, 'string'
         api.has_param :object_id, 'int'
@@ -341,8 +345,10 @@ module FacebookAds
         api.has_param :playable_asset_id, 'string'
         api.has_param :portrait_customizations, 'hash'
         api.has_param :product_set_id, 'string'
+        api.has_param :product_suggestion_settings, 'hash'
         api.has_param :recommender_settings, 'hash'
         api.has_param :regional_regulation_disclaimer_spec, 'hash'
+        api.has_param :source_facebook_post_id, 'string'
         api.has_param :source_instagram_media_id, 'string'
         api.has_param :template_url, 'string'
         api.has_param :template_url_spec, 'string'
@@ -363,6 +369,7 @@ module FacebookAds
     has_edge :adimages do |edge|
       edge.delete do |api|
         api.has_param :hash, 'string'
+        api.has_param :image_id, 'string'
       end
       edge.get 'AdImage' do |api|
         api.has_param :biz_tag_id, 'int'
@@ -611,6 +618,7 @@ module FacebookAds
         api.has_param :content_category, { enum: -> { AdVideo::CONTENT_CATEGORY }}
         api.has_param :creative_tools, 'string'
         api.has_param :description, 'string'
+        api.has_param :edit_description_spec, 'hash'
         api.has_param :embeddable, 'bool'
         api.has_param :end_offset, 'int'
         api.has_param :fbuploader_video_file_chunk, 'string'
@@ -875,6 +883,7 @@ module FacebookAds
         api.has_param :rule_aggregation, 'string'
         api.has_param :subscription_info, { list: { enum: -> { CustomAudience::SUBSCRIPTION_INFO }} }
         api.has_param :subtype, { enum: -> { CustomAudience::SUBTYPE }}
+        api.has_param :usage_restriction, { enum: -> { CustomAudience::USAGE_RESTRICTION }}
         api.has_param :use_for_products, { list: { enum: -> { CustomAudience::USE_FOR_PRODUCTS }} }
         api.has_param :use_in_campaigns, 'bool'
         api.has_param :video_group_ids, { list: 'string' }
@@ -1177,6 +1186,7 @@ module FacebookAds
       edge.post 'AdAccountRecommendations' do |api|
         api.has_param :asc_fragmentation_parameters, 'hash'
         api.has_param :autoflow_parameters, 'hash'
+        api.has_param :extra_data, 'hash'
         api.has_param :fragmentation_parameters, 'hash'
         api.has_param :music_parameters, 'hash'
         api.has_param :recommendation_signature, 'string'
@@ -1296,6 +1306,12 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :product_type, { enum: -> { AdsValueAdjustmentRuleCollection::PRODUCT_TYPE }}
         api.has_param :rules, { list: 'hash' }
+      end
+    end
+
+    has_edge :value_rule_set_translation do |edge|
+      edge.post do |api|
+        api.has_param :source, 'object'
       end
     end
 

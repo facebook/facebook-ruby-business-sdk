@@ -17,6 +17,7 @@ module FacebookAds
 
     field :acting_business_id, 'string'
     field :ad_format, 'int'
+    field :automated_adgroup_creation, 'bool'
     field :content_search_input, 'string'
     field :creator_ad_permission_type, 'string'
     field :deliver_dynamic_partner_content, 'bool'

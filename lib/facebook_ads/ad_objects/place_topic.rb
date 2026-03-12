@@ -20,7 +20,6 @@ module FacebookAds
     field :icon_url, 'string'
     field :id, 'string'
     field :name, 'string'
-    field :parent_ids, { list: 'string' }
     field :plural_name, 'string'
     field :top_subtopic_names, { list: 'string' }
     has_no_post

@@ -14,9 +14,13 @@ module FacebookAds
   # pull request for this class.
 
   class CommerceMerchantSettings < AdObject
+    MERCHANT_STATUS = [
+      "ENABLED",
+      "EXTERNALLY_DISABLED",
+    ]
+
 
     field :checkout_config, 'string'
-    field :checkout_message, 'string'
     field :contact_email, 'string'
     field :cta, 'string'
     field :display_name, 'string'
@@ -29,10 +33,8 @@ module FacebookAds
     field :offsite_iab_checkout_enabled_countries, { list: 'string' }
     field :payment_provider, 'string'
     field :privacy_policy_localized, 'string'
-    field :return_policy_localized, 'string'
     field :shops_ads_setup, 'object'
     field :terms, 'string'
-    has_no_post
     has_no_delete
 
     has_edge :acknowledge_orders do |edge|

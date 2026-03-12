@@ -114,10 +114,12 @@ module FacebookAds
 
     has_edge :messages do |edge|
       edge.post do |api|
+        api.has_param :folder, { enum: %w{PARTNERSHIP }}
         api.has_param :message, 'object'
         api.has_param :messaging_type, { enum: %w{MESSAGE_TAG RESPONSE UPDATE UTILITY }}
         api.has_param :payload, 'string'
         api.has_param :recipient, 'object'
+        api.has_param :reply_to, 'object'
         api.has_param :sender_action, { enum: %w{MARK_SEEN REACT TYPING_OFF TYPING_ON UNREACT }}
         api.has_param :tag, 'object'
         api.has_param :thread_control, 'object'
@@ -126,7 +128,7 @@ module FacebookAds
 
     has_edge :messenger_profile do |edge|
       edge.delete do |api|
-        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED GREETING HOME_URL ICE_BREAKERS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TITLE WHITELISTED_DOMAINS }} }
+        api.has_param :fields, { list: { enum: %w{ACCOUNT_LINKING_URL COMMANDS DESCRIPTION GET_STARTED HOME_URL ICE_BREAKERS PERSISTENT_MENU PLATFORM SUBJECT_TO_NEW_EU_PRIVACY_RULES TITLE WHITELISTED_DOMAINS }} }
       end
       edge.get
       edge.post do |api|

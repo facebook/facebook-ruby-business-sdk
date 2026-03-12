@@ -129,6 +129,7 @@ module FacebookAds
         api.has_param :client_business, 'string'
         api.has_param :confidence_level, 'double'
         api.has_param :cooldown_start_time, 'int'
+        api.has_param :creative_test_config, 'hash'
         api.has_param :description, 'string'
         api.has_param :end_time, 'int'
         api.has_param :name, 'string'
@@ -461,6 +462,7 @@ module FacebookAds
         api.has_param :label, 'string'
         api.has_param :message, 'hash'
         api.has_param :notif_ids, { list: 'string' }
+        api.has_param :notification_content_id, 'int'
         api.has_param :payload, 'string'
         api.has_param :read, 'bool'
         api.has_param :ref, 'string'
@@ -601,6 +603,7 @@ module FacebookAds
         api.has_param :creative_tools, 'string'
         api.has_param :description, 'string'
         api.has_param :direct_share_status, 'int'
+        api.has_param :edit_description_spec, 'hash'
         api.has_param :embeddable, 'bool'
         api.has_param :end_offset, 'int'
         api.has_param :fbuploader_video_file_chunk, 'string'

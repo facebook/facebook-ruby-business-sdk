@@ -27,6 +27,8 @@ module FacebookAds
     field :site_link_title, 'string'
     field :site_link_url, 'string'
     field :site_link_url_anchor, 'string'
+    field :site_link_url_recommender_type, 'string'
+    field :site_link_website_data_source, 'string'
     has_no_id
     has_no_get
     has_no_post

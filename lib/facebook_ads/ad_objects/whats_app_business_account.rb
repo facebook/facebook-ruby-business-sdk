@@ -113,6 +113,7 @@ module FacebookAds
     field :primary_funding_id, 'string'
     field :purchase_order_number, 'string'
     field :status, 'string'
+    field :template_auto_archival_enabled, 'bool'
     field :timezone_id, 'string'
     field :whatsapp_business_manager_messaging_limit, { enum: -> { WHATSAPP_BUSINESS_MANAGER_MESSAGING_LIMIT }}
     has_no_delete
@@ -136,6 +137,12 @@ module FacebookAds
 
     has_edge :audiences do |edge|
       edge.get
+    end
+
+    has_edge :business_messaging_feature_status do |edge|
+      edge.post 'WhatsAppBusinessAccount' do |api|
+        api.has_param :features, { list: 'hash' }
+      end
     end
 
     has_edge :call_analytics do |edge|
@@ -207,10 +214,6 @@ module FacebookAds
       end
     end
 
-    has_edge :marketing_campaigns do |edge|
-      edge.get
-    end
-
     has_edge :message_campaigns do |edge|
       edge.get
     end
@@ -237,6 +240,7 @@ module FacebookAds
     has_edge :message_templates do |edge|
       edge.delete do |api|
         api.has_param :hsm_id, 'string'
+        api.has_param :hsm_ids, { list: 'string' }
         api.has_param :name, 'string'
       end
       edge.get do |api|
@@ -246,8 +250,10 @@ module FacebookAds
         api.has_param :name, 'string'
         api.has_param :name_or_content, 'string'
         api.has_param :quality_score, { list: { enum: %w{GREEN RED UNKNOWN YELLOW }} }
+        api.has_param :since, 'datetime'
         api.has_param :source, { enum: %w{AUTO_GENERATED MANUAL }}
         api.has_param :status, { list: { enum: %w{APPROVED ARCHIVED DELETED DISABLED IN_APPEAL LIMIT_EXCEEDED PAUSED PENDING PENDING_DELETION REJECTED }} }
+        api.has_param :until, 'datetime'
       end
       edge.post 'WhatsAppBusinessAccount' do |api|
         api.has_param :allow_category_change, 'bool'
@@ -327,7 +333,7 @@ module FacebookAds
         api.has_param :granularity, { enum: %w{DAILY HALF_HOUR MONTHLY }}
         api.has_param :metric_types, { list: { enum: %w{COST VOLUME }} }
         api.has_param :phone_numbers, { list: 'string' }
-        api.has_param :pricing_categories, { list: { enum: %w{AUTHENTICATION AUTHENTICATION_INTERNATIONAL GROUP_MARKETING GROUP_MARKETING_LITE GROUP_SERVICE GROUP_UTILITY MARKETING MARKETING_LITE MARKETING_LITE_DYNAMIC SERVICE UTILITY }} }
+        api.has_param :pricing_categories, { list: { enum: %w{AI_BOT AUTHENTICATION AUTHENTICATION_INTERNATIONAL GROUP_MARKETING GROUP_MARKETING_LITE GROUP_SERVICE GROUP_UTILITY MARKETING MARKETING_LITE MARKETING_LITE_DYNAMIC SERVICE UTILITY }} }
         api.has_param :pricing_types, { list: { enum: %w{FREE_CUSTOMER_SERVICE FREE_ENTRY_POINT FREE_GROUP_CUSTOMER_SERVICE REGULAR }} }
         api.has_param :start, 'int'
         api.has_param :tiers, { list: 'string' }

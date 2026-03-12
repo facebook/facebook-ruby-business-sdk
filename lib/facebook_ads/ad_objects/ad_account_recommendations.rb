@@ -18,6 +18,7 @@ module FacebookAds
     field :recommendations, { list: 'object' }
     field :asc_fragmentation_parameters, 'hash'
     field :autoflow_parameters, 'hash'
+    field :extra_data, 'hash'
     field :fragmentation_parameters, 'hash'
     field :music_parameters, 'hash'
     field :recommendation_signature, 'string'

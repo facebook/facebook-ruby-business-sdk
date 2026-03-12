@@ -15,11 +15,15 @@ module FacebookAds
 
   class AdCreativeMarketingMessageStructuredSpec < AdObject
 
+    field :asset_customization, 'object'
+    field :autoreply, 'object'
     field :buttons, { list: 'object' }
+    field :conversation_template_id, 'string'
     field :footer, 'string'
     field :greeting, 'string'
     field :is_optimized_text, 'bool'
     field :language, 'string'
+    field :offer, 'object'
     field :referenced_adgroup_id, 'string'
     field :whats_app_business_phone_number_id, 'string'
     has_no_id

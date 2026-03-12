@@ -29,6 +29,7 @@ module FacebookAds
     field :instagram_positions, { list: 'string' }
     field :publisher_platforms, { list: 'string' }
     field :threads_positions, { list: 'string' }
+    field :whatsapp_positions, { list: 'string' }
     has_no_id
     has_no_get
     has_no_post

@@ -21,6 +21,8 @@ module FacebookAds
     field :dynamic_lp_days_threshold, 'int'
     field :dynamic_lp_status, 'string'
     field :last_sig_edit_ts, 'int'
+    field :recommended_budget_prediction, 'object'
+    field :sigedit_removal, 'bool'
     field :status, 'string'
     has_no_id
     has_no_get

@@ -16,6 +16,7 @@ module FacebookAds
   class AdCreativeDestinationSpec < AdObject
 
     field :destination_type, 'string'
+    field :native_commerce_experience, 'object'
     field :website, 'object'
     has_no_id
     has_no_get

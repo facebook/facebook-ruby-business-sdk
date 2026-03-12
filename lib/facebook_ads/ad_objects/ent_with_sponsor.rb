@@ -16,6 +16,7 @@ module FacebookAds
   class EntWithSponsor < AdObject
 
     field :id, 'string'
+    field :is_branded_content, 'bool'
     field :owner_linked_instagram_user_v1_id, 'string'
     field :owner_picture, 'string'
     field :post_id, 'string'

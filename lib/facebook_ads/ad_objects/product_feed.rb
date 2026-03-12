@@ -45,6 +45,9 @@ module FacebookAds
     ]
 
     FEED_TYPE = [
+      "ACTIVITY",
+      "APP_AND_SOFTWARE",
+      "ARTICLE_AND_PUBLICATION",
       "AUTOMOTIVE_MODEL",
       "COLLECTION",
       "DESTINATION",
@@ -57,6 +60,7 @@ module FacebookAds
       "OFFER",
       "PRODUCTS",
       "PRODUCT_RATINGS_AND_REVIEWS",
+      "SERVICE",
       "TRANSACTABLE_ITEMS",
       "VEHICLES",
       "VEHICLE_OFFER",
@@ -164,13 +168,6 @@ module FacebookAds
 
     has_edge :hotels do |edge|
       edge.get 'Hotel' do |api|
-        api.has_param :bulk_pagination, 'bool'
-        api.has_param :filter, 'object'
-      end
-    end
-
-    has_edge :media_titles do |edge|
-      edge.get 'MediaTitle' do |api|
         api.has_param :bulk_pagination, 'bool'
         api.has_param :filter, 'object'
       end

@@ -18,6 +18,7 @@ module FacebookAds
     field :assets, { list: 'object' }
     field :has_ownership_been_updated, 'bool'
     field :id, 'string'
+    field :num_assets, 'int'
     field :receiving_rights_holder, 'Profile'
     field :sending_rights_holder, 'Profile'
     field :status, 'string'

@@ -13,11 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductDaEventSamplesBatch < AdObject
+  class CreativeAudiencePairingPersona < AdObject
 
-    field :samples, { list: 'object' }
-    field :time_start, 'int'
-    field :time_stop, 'int'
+    field :age_max, 'int'
+    field :age_min, 'int'
+    field :genders, { list: 'int' }
     has_no_id
     has_no_get
     has_no_post

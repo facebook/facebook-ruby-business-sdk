@@ -14,6 +14,24 @@ module FacebookAds
   # pull request for this class.
 
   class OpenBridgeConfiguration < AdObject
+    CAPI_PUBLISHING_STATE = [
+      "DISABLED",
+      "ENABLED",
+      "NOT_INITIALIZED",
+    ]
+
+    EVENT_ENRICHMENT_ADVERTISER_STATE = [
+      "DISABLED",
+      "ENABLED",
+      "NOT_INITIALIZED",
+    ]
+
+    EVENT_ENRICHMENT_META_STATE = [
+      "ALLOWED",
+      "BLOCKED",
+      "NOT_INITIALIZED",
+    ]
+
     EVENT_ENRICHMENT_STATE = [
       "NO",
       "NOT_INITIALIZED",
@@ -29,9 +47,10 @@ module FacebookAds
     field :cloud_region, 'string'
     field :destination_id, 'string'
     field :endpoint, 'string'
+    field :event_enrichment_advertiser_state, 'string'
+    field :event_enrichment_meta_state, 'string'
     field :event_enrichment_state, 'string'
     field :fallback_domain, 'string'
-    field :first_party_domain, 'string'
     field :host_business_id, 'string'
     field :id, 'string'
     field :instance_id, 'string'
@@ -43,6 +62,7 @@ module FacebookAds
     field :sgw_account_id, 'string'
     field :sgw_instance_url, 'string'
     field :sgw_pixel_id, 'string'
+    field :capi_publishing_state, { enum: -> { CAPI_PUBLISHING_STATE }}
 
   end
 end

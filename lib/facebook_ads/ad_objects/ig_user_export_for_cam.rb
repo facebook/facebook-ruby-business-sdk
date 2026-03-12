@@ -552,7 +552,9 @@ module FacebookAds
     field :onboarded_status, 'bool'
     field :past_brand_partnership_partners, { list: 'string' }
     field :portfolio_url, 'string'
+    field :profile_picture_url, 'string'
     field :username, 'string'
+    has_no_get
     has_no_post
     has_no_delete
 
@@ -567,6 +569,10 @@ module FacebookAds
         api.has_param :period, { enum: %w{DAY OVERALL }}
         api.has_param :time_range, { enum: %w{LAST_14_DAYS LAST_90_DAYS LIFETIME THIS_MONTH THIS_WEEK }}
       end
+    end
+
+    has_edge :past_partnership_ads_media do |edge|
+      edge.get
     end
 
     has_edge :recent_media do |edge|

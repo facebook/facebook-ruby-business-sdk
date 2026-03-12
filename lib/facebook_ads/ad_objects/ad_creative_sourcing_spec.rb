@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdCreativeSourcingSpec < AdObject
 
+    field :ad_extensions_relevancy_spec, 'object'
     field :associated_product_set_id, 'string'
     field :brand, 'object'
     field :destination_screenshot_spec, 'object'
@@ -22,6 +23,7 @@ module FacebookAds
     field :enable_social_feedback_preservation, 'bool'
     field :intent, 'object'
     field :pca_spec, 'object'
+    field :product_media_metadata_spec, 'object'
     field :promotion_metadata_spec, { list: 'AdCreativePromotionMetadataSpec' }
     field :site_links_data_consented, 'object'
     field :site_links_spec, { list: 'AdCreativeSiteLinksSpec' }

@@ -22,6 +22,7 @@ module FacebookAds
       "AUTOMATIC_OBJECTIVE",
       "CONVERSATIONS",
       "DERIVED_EVENTS",
+      "ENGAGED_PAGE_VIEWS",
       "ENGAGED_USERS",
       "EVENT_RESPONSES",
       "IMPRESSIONS",

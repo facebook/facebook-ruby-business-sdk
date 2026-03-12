@@ -34,6 +34,7 @@ module FacebookAds
       "FACEBOOK_REELS_MOBILE",
       "FACEBOOK_REELS_POSTLOOP",
       "FACEBOOK_REELS_POSTLOOP_FEED",
+      "FACEBOOK_REELS_SIMILAR_PRODUCTS_MOBILE",
       "FACEBOOK_REELS_STICKER",
       "FACEBOOK_STORY_MOBILE",
       "FACEBOOK_STORY_STICKER_MOBILE",
@@ -46,7 +47,6 @@ module FacebookAds
       "INSTAGRAM_PROFILE_FEED",
       "INSTAGRAM_PROFILE_REELS",
       "INSTAGRAM_REELS",
-      "INSTAGRAM_REELS_INSTREAM",
       "INSTAGRAM_REELS_OVERLAY",
       "INSTAGRAM_REELS_WEB",
       "INSTAGRAM_REELS_WEB_M_SITE",
@@ -90,9 +90,11 @@ module FacebookAds
       "SUGGESTED_VIDEO_MOBILE",
       "WATCH_FEED_HOME",
       "WATCH_FEED_MOBILE",
+      "WHATSAPP_STATUS_MEDIA",
     ]
 
     CREATIVE_FEATURE = [
+      "ig_video_native_subtitle",
       "product_metadata_automation",
       "profile_card",
       "standard_enhancements_catalog",

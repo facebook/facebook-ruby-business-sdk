@@ -33,7 +33,6 @@ module FacebookAds
     field :automotive_model_id, 'string'
     field :availability, 'string'
     field :body_style, 'string'
-    field :category_specific_fields, 'CatalogSubVerticalList'
     field :currency, 'string'
     field :custom_label_0, 'string'
     field :custom_label_1, 'string'

@@ -19,6 +19,7 @@ module FacebookAds
     field :local_info, 'ProductItemLocalInfo'
     field :override_type, 'string'
     field :override_value, 'string'
+    field :upload_expected_method, 'string'
     has_no_post
     has_no_delete
 
