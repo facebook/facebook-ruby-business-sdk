@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    facebookbusiness (24.0.2)
+    facebookbusiness (25.0.1)
       bigdecimal (~> 3.1)
       concurrent-ruby (~> 1.1)
       countries (>= 3, < 7)
@@ -144,7 +144,7 @@ CHECKSUMS
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
   dotenv (2.8.1) sha256=c5944793349ae03c432e1780a2ca929d60b88c7d14d52d630db0508c3a8a17d8
   erb (6.0.1) sha256=28ecdd99c5472aebd5674d6061e3c6b0a45c049578b071e5a52c2a7f13c197e5
-  facebookbusiness (24.0.2)
+  facebookbusiness (25.0.1)
   faraday (2.14.1) sha256=a43cceedc1e39d188f4d2cdd360a8aaa6a11da0c407052e426ba8d3fb42ef61c
   faraday-multipart (1.2.0) sha256=7d89a949693714176f612323ca13746a2ded204031a6ba528adee788694ef757
   faraday-net_http (3.4.2) sha256=f147758260d3526939bf57ecf911682f94926a3666502e24c69992765875906c
