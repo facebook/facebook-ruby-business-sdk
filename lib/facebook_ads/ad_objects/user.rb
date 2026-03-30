@@ -129,7 +129,6 @@ module FacebookAds
         api.has_param :client_business, 'string'
         api.has_param :confidence_level, 'double'
         api.has_param :cooldown_start_time, 'int'
-        api.has_param :creative_test_config, 'hash'
         api.has_param :description, 'string'
         api.has_param :end_time, 'int'
         api.has_param :name, 'string'

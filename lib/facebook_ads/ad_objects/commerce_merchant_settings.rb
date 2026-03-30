@@ -37,13 +37,6 @@ module FacebookAds
     field :terms, 'string'
     has_no_delete
 
-    has_edge :acknowledge_orders do |edge|
-      edge.post 'CommerceMerchantSettings' do |api|
-        api.has_param :idempotency_key, 'string'
-        api.has_param :orders, { list: 'hash' }
-      end
-    end
-
     has_edge :commerce_orders do |edge|
       edge.get 'CommerceOrder' do |api|
         api.has_param :filters, { list: { enum: -> { CommerceOrder::FILTERS }} }

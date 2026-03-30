@@ -13,20 +13,18 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductFeedMediaTitles < AdObject
+  class ProductFeedRules < AdObject
 
     field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
 
-    has_edge :media_titles do |edge|
-      edge.get 'ProductFeedMediaTitlesGet' do |api|
+    has_edge :rules do |edge|
+      edge.get 'ProductFeedRulesGet' do |api|
         api.has_param :after, 'string'
         api.has_param :before, 'string'
-        api.has_param :display_format, { enum: -> { ProductFeedMediaTitlesGet::DISPLAY_FORMAT }}
         api.has_param :limit, 'int'
-        api.has_param :summary, 'bool'
       end
     end
 

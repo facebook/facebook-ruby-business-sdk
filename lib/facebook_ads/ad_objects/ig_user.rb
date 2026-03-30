@@ -128,8 +128,10 @@ module FacebookAds
       edge.get 'IgUserExportForCam' do |api|
         api.has_param :creator_age_bucket, { list: 'object' }
         api.has_param :creator_countries, { list: { enum: -> { IgUserExportForCam::CREATOR_COUNTRIES }} }
+        api.has_param :creator_follower_growth, 'object'
         api.has_param :creator_gender, { list: { enum: -> { IgUserExportForCam::CREATOR_GENDER }} }
         api.has_param :creator_interests, { list: 'object' }
+        api.has_param :creator_latest_post_activity, 'object'
         api.has_param :creator_max_engaged_accounts, 'int'
         api.has_param :creator_max_followers, 'int'
         api.has_param :creator_min_engaged_accounts, 'int'
@@ -137,6 +139,7 @@ module FacebookAds
         api.has_param :has_public_contact_email, 'bool'
         api.has_param :major_audience_age_bucket, { list: 'object' }
         api.has_param :major_audience_countries, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_COUNTRIES }} }
+        api.has_param :major_audience_device_type, { list: 'object' }
         api.has_param :major_audience_gender, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_GENDER }} }
         api.has_param :query, 'string'
         api.has_param :reels_interaction_rate, 'object'

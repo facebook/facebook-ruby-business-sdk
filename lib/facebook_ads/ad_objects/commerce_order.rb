@@ -30,20 +30,6 @@ module FacebookAds
       "IN_PROGRESS",
     ]
 
-    REASON_CODE = [
-      "BUYERS_REMORSE",
-      "DAMAGED_GOODS",
-      "FACEBOOK_INITIATED",
-      "NOT_AS_DESCRIBED",
-      "QUALITY_ISSUE",
-      "REFUND_COMPROMISED",
-      "REFUND_FOR_RETURN",
-      "REFUND_REASON_OTHER",
-      "REFUND_SFI_FAKE",
-      "REFUND_SFI_REAL",
-      "WRONG_ITEM",
-    ]
-
 
     field :buyer_details, 'object'
     field :channel, 'string'
@@ -63,28 +49,8 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :acknowledge_order do |edge|
-      edge.post 'CommerceOrder' do |api|
-        api.has_param :idempotency_key, 'string'
-        api.has_param :merchant_order_reference, 'string'
-      end
-    end
-
     has_edge :cancellations do |edge|
       edge.get
-      edge.post 'CommerceOrder' do |api|
-        api.has_param :cancel_reason, 'hash'
-        api.has_param :idempotency_key, 'string'
-        api.has_param :items, { list: 'hash' }
-        api.has_param :restock_items, 'bool'
-      end
-    end
-
-    has_edge :item_updates do |edge|
-      edge.post 'CommerceOrder' do |api|
-        api.has_param :items, { list: 'hash' }
-        api.has_param :merchant_order_reference, 'string'
-      end
     end
 
     has_edge :items do |edge|
@@ -105,28 +71,12 @@ module FacebookAds
 
     has_edge :refunds do |edge|
       edge.get
-      edge.post 'CommerceOrder' do |api|
-        api.has_param :adjustment_amount, 'hash'
-        api.has_param :deductions, { list: 'hash' }
-        api.has_param :idempotency_key, 'string'
-        api.has_param :items, { list: 'hash' }
-        api.has_param :reason_code, { enum: -> { CommerceOrder::REASON_CODE }}
-        api.has_param :reason_text, 'string'
-        api.has_param :return_id, 'string'
-        api.has_param :shipping, 'hash'
-      end
     end
 
     has_edge :returns do |edge|
       edge.get do |api|
         api.has_param :merchant_return_id, 'string'
         api.has_param :statuses, { list: { enum: %w{APPROVED DISAPPROVED MERCHANT_MARKED_COMPLETED REFUNDED REQUESTED }} }
-      end
-      edge.post 'CommerceOrder' do |api|
-        api.has_param :items, { list: 'hash' }
-        api.has_param :merchant_return_id, 'string'
-        api.has_param :return_message, 'string'
-        api.has_param :update, 'hash'
       end
     end
 
@@ -142,16 +92,6 @@ module FacebookAds
         api.has_param :shipment_origin_postal_code, 'string'
         api.has_param :shipping_tax_details, 'hash'
         api.has_param :should_use_default_fulfillment_location, 'bool'
-        api.has_param :tracking_info, 'hash'
-      end
-    end
-
-    has_edge :update_shipment do |edge|
-      edge.post 'CommerceOrder' do |api|
-        api.has_param :external_shipment_id, 'string'
-        api.has_param :fulfillment_id, 'string'
-        api.has_param :idempotency_key, 'string'
-        api.has_param :shipment_id, 'string'
         api.has_param :tracking_info, 'hash'
       end
     end
