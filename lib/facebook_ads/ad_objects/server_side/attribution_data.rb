@@ -75,6 +75,9 @@ module FacebookAds
         # Unique identifier for touchpoint events shared by Meta with advertisers.
         attr_accessor :touchpoint_id
 
+        # Total credit attributed to all publishers for this conversion.
+        attr_accessor :total_credit
+
         # The attribution setting for the attribution.
         attr_accessor :attribution_setting
 
@@ -97,8 +100,9 @@ module FacebookAds
         # @param [String] auditing_token
         # @param [String] linkage_key
         # @param [String] touchpoint_id
+        # @param [Float] total_credit
         # @param [FacebookAds::ServerSide::AttributionSetting] attribution_setting
-        def initialize(scope: nil, visit_time: nil, ad_id: nil, adset_id: nil, campaign_id: nil, attribution_share: nil, attribution_model: nil, attr_window: nil, attribution_value: nil, attribution_source: nil, touchpoint_type: nil, touchpoint_ts: nil, attribution_method: nil, decline_reason: nil, auditing_token: nil, linkage_key: nil, touchpoint_id: nil, attribution_setting: nil)
+        def initialize(scope: nil, visit_time: nil, ad_id: nil, adset_id: nil, campaign_id: nil, attribution_share: nil, attribution_model: nil, attr_window: nil, attribution_value: nil, attribution_source: nil, touchpoint_type: nil, touchpoint_ts: nil, attribution_method: nil, decline_reason: nil, auditing_token: nil, linkage_key: nil, touchpoint_id: nil, total_credit: nil, attribution_setting: nil)
           unless scope.nil?
             self.scope = scope
           end
@@ -149,6 +153,9 @@ module FacebookAds
           end
           unless touchpoint_id.nil?
             self.touchpoint_id = touchpoint_id
+          end
+          unless total_credit.nil?
+            self.total_credit = total_credit
           end
           unless attribution_setting.nil?
             self.attribution_setting = attribution_setting
@@ -231,6 +238,10 @@ module FacebookAds
             self.touchpoint_id = attributes[:'touchpoint_id']
           end
 
+          if attributes.has_key?(:'total_credit')
+            self.total_credit = attributes[:'total_credit']
+          end
+
           if attributes.has_key?(:'attribution_setting')
             self.attribution_setting = attributes[:'attribution_setting']
           end
@@ -257,6 +268,7 @@ module FacebookAds
               auditing_token == o.auditing_token &&
               linkage_key == o.linkage_key &&
               touchpoint_id == o.touchpoint_id &&
+              total_credit == o.total_credit &&
               attribution_setting == o.attribution_setting
         end
 
@@ -269,7 +281,7 @@ module FacebookAds
         # @return [Fixnum] Hash code
         def hash
           [
-            scope, visit_time, ad_id, adset_id, campaign_id, attribution_share, attribution_model, attr_window, attribution_value, attribution_source, touchpoint_type, touchpoint_ts, attribution_method, decline_reason, auditing_token, linkage_key, touchpoint_id, attribution_setting
+            scope, visit_time, ad_id, adset_id, campaign_id, attribution_share, attribution_model, attr_window, attribution_value, attribution_source, touchpoint_type, touchpoint_ts, attribution_method, decline_reason, auditing_token, linkage_key, touchpoint_id, total_credit, attribution_setting
           ].hash
         end
 
@@ -325,6 +337,9 @@ module FacebookAds
           end
           unless touchpoint_id.nil?
             hash['touchpoint_id'] = touchpoint_id
+          end
+          unless total_credit.nil?
+            hash['total_credit'] = total_credit
           end
           unless attribution_setting.nil?
             hash['attribution_setting'] = attribution_setting
@@ -386,6 +401,9 @@ module FacebookAds
           end
           unless touchpoint_id.nil?
             hash['touchpoint_id'] = touchpoint_id
+          end
+          unless total_credit.nil?
+            hash['total_credit'] = total_credit
           end
           unless attribution_setting.nil?
             hash['attribution_setting'] = attribution_setting.normalize
