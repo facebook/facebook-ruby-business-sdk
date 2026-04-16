@@ -37,6 +37,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
         linkage_key = 'key123'
         touchpoint_id = 'tp_test_touchpoint_id_123'
         total_credit = 0.85
+        partner_client_id = 'partner_workspace_123'
         attribution_setting = FacebookAds::ServerSide::AttributionSetting.new(
             inactivity_window_hours: 24,
             reattribution_window_hours: 48
@@ -60,6 +61,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             linkage_key: linkage_key,
             touchpoint_id: touchpoint_id,
             total_credit: total_credit,
+            partner_client_id: partner_client_id,
             attribution_setting: attribution_setting,
         )
 
@@ -82,6 +84,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             'linkage_key': linkage_key,
             'touchpoint_id': touchpoint_id,
             'total_credit': total_credit,
+            'partner_client_id': partner_client_id,
             'attribution_setting': {
                 'inactivity_window_hours': 24,
                 'reattribution_window_hours': 48
@@ -118,6 +121,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             linkage_key: 'key123',
             touchpoint_id: 'tp_test_touchpoint_id_123',
             total_credit: 0.85,
+            partner_client_id: 'partner_workspace_123',
             attribution_setting: attribution_setting,
         )
         attribution_data2 = FacebookAds::ServerSide::AttributionData.new(
@@ -139,6 +143,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             linkage_key: 'key123',
             touchpoint_id: 'tp_test_touchpoint_id_123',
             total_credit: 0.85,
+            partner_client_id: 'partner_workspace_123',
             attribution_setting: attribution_setting,
         )
         expect(attribution_data1).to eq(attribution_data2)
@@ -178,6 +183,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             linkage_key: 'key123',
             touchpoint_id: 'tp_test_touchpoint_id_123',
             total_credit: 0.85,
+            partner_client_id: 'partner_workspace_123',
             attribution_setting: attribution_setting1,
         )
         attribution_data2 = FacebookAds::ServerSide::AttributionData.new(
@@ -200,6 +206,7 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
             linkage_key: 'key456',
             touchpoint_id: 'tp_test_touchpoint_id_456',
             total_credit: 0.35,
+            partner_client_id: 'partner_workspace_456',
             attribution_setting: attribution_setting2,
         )
         expect(attribution_data1).to_not eq(attribution_data2)
