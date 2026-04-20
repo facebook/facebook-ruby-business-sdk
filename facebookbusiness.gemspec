@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'faraday', '~> 2.6'
   s.add_dependency 'faraday-multipart', '>= 1.0.4', '~> 1.0'
   s.add_dependency 'json', '~> 2.6'
-  s.add_dependency 'countries', '>= 3', '< 7'
+  s.add_dependency 'countries', '>= 3', '< 9'
   s.add_dependency 'money', '~> 6.13'
 
   s.add_development_dependency 'awesome_print', '~> 1.8'
