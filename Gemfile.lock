@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    facebookbusiness (22.0.0)
+    facebookbusiness (24.0.1)
       concurrent-ruby (~> 1.1)
       countries (>= 3, < 7)
       faraday (~> 2.6)
@@ -87,6 +87,7 @@ GEM
 PLATFORMS
   arm64-darwin-22
   arm64-darwin-23
+  arm64-darwin-24
   x86_64-linux
 
 DEPENDENCIES
