@@ -20,7 +20,7 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge : do |edge|
+    has_edge :gendelete do |edge|
       edge.delete 'ProductCatalogMediaTitleDelete'
     end
 

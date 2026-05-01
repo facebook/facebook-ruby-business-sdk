@@ -20,7 +20,7 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge : do |edge|
+    has_edge :genget do |edge|
       edge.get 'AdCampaignGroupGet' do |api|
         api.has_param :fields, 'string'
       end
