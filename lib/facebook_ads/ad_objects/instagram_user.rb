@@ -30,20 +30,6 @@ module FacebookAds
     has_no_post
     has_no_delete
 
-    has_edge :agencies do |edge|
-      edge.get 'Business'
-    end
-
-    has_edge :ar_effects do |edge|
-      edge.get 'ArEffect'
-    end
-
-    has_edge :authorized_adaccounts do |edge|
-      edge.get 'AdAccount' do |api|
-        api.has_param :business, 'string'
-      end
-    end
-
     has_edge :upcoming_events do |edge|
       edge.get 'IgUpcomingEvent'
     end

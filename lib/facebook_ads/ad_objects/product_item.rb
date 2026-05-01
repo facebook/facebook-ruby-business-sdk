@@ -757,15 +757,19 @@ module FacebookAds
     field :additional_image_cdn_urls, { list: { list: 'hash' } }
     field :additional_image_urls, { list: 'string' }
     field :additional_variant_attributes, { list: 'hash' }
+    field :affiliate_seller_rating, 'double'
+    field :affiliate_seller_rating_count, 'int'
     field :age_group, { enum: -> { AGE_GROUP }}
     field :applinks, 'CatalogItemAppLinks'
     field :availability, { enum: -> { AVAILABILITY }}
+    field :base_commission_rate, 'int'
     field :brand, 'string'
     field :bundle_items, { list: 'string' }
     field :bundle_retailer_ids, { list: 'string' }
     field :capabilities_disabled_by_user, { list: 'string' }
     field :capability_to_review_status, { list: 'hash' }
     field :category, 'string'
+    field :category_ranking, 'int'
     field :category_specific_fields, 'CatalogSubVerticalList'
     field :color, 'string'
     field :commerce_insights, 'ProductItemCommerceInsights'
@@ -809,6 +813,7 @@ module FacebookAds
     field :name, 'string'
     field :ordering_index, 'int'
     field :origin_country, 'string'
+    field :overall_ranking, 'int'
     field :parent_product_id, 'string'
     field :pattern, 'string'
     field :post_conversion_signal_based_enforcement_appeal_eligibility, 'bool'

@@ -37,6 +37,7 @@ module FacebookAds
 
 
     field :ad_entities_count, 'int'
+    field :ad_ids, { list: 'string' }
     field :control_percentage, 'double'
     field :id, 'string'
     field :name, 'string'

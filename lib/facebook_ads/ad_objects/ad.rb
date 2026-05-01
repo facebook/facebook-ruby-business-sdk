@@ -126,6 +126,7 @@ module FacebookAds
     field :recommendations, { list: 'AdRecommendation' }
     field :source_ad, 'Ad'
     field :source_ad_id, 'string'
+    field :special_ad_categories, { list: 'string' }
     field :status, { enum: -> { STATUS }}
     field :targeting, 'Targeting'
     field :tracking_and_conversion_with_defaults, 'TrackingAndConversionWithDefaults'

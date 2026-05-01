@@ -43,6 +43,7 @@ module FacebookAds
     field :blocked_event_types, { list: 'string' }
     field :blocked_websites, { list: 'string' }
     field :browser_agent, { list: 'string' }
+    field :capi_publishing_state, 'string'
     field :cloud_provider, 'string'
     field :cloud_region, 'string'
     field :destination_id, 'string'
@@ -62,7 +63,6 @@ module FacebookAds
     field :sgw_account_id, 'string'
     field :sgw_instance_url, 'string'
     field :sgw_pixel_id, 'string'
-    field :capi_publishing_state, { enum: -> { CAPI_PUBLISHING_STATE }}
 
   end
 end

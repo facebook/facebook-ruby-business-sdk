@@ -13,15 +13,21 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdjacentContentDeliveryReport < AdObject
+  class ProductFeedArticlesAndPublications < AdObject
 
-    field :ad_id, 'string'
-    field :content, { list: 'object' }
-    field :impression_id, 'string'
-    has_no_id
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :publications do |edge|
+      edge.get 'ProductFeedArticlesAndPublicationsGet' do |api|
+        api.has_param :after, 'string'
+        api.has_param :before, 'string'
+        api.has_param :limit, 'int'
+        api.has_param :summary, 'bool'
+      end
+    end
 
   end
 end

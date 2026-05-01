@@ -21,6 +21,8 @@ module FacebookAds
 
     VERTICAL = [
       "adoptable_pets",
+      "apps_and_software",
+      "articles_and_publications",
       "commerce",
       "destinations",
       "flights",
@@ -28,8 +30,10 @@ module FacebookAds
       "home_listings",
       "hotels",
       "local_service_businesses",
+      "media_titles",
       "offer_items",
       "offline_commerce",
+      "professional_services",
       "transactable_items",
       "vehicles",
     ]
@@ -100,6 +104,7 @@ module FacebookAds
       "ADD_TO_CART",
       "OFFER_SUBMITTED",
       "PURCHASE",
+      "PURCHASE_VIA_OFFER",
       "TEST",
       "VIEW_ITEM",
     ]

@@ -16,10 +16,13 @@ module FacebookAds
   class AdCampaignLearningStageInfo < AdObject
 
     field :attribution_windows, { list: 'string' }
+    field :cas_segment, 'string'
     field :conversions, 'int'
+    field :current_budget_prediction, 'object'
     field :dynamic_lp_conversions_threshold, 'int'
     field :dynamic_lp_days_threshold, 'int'
     field :dynamic_lp_status, 'string'
+    field :is_one_to_one_cbo_budget, 'bool'
     field :last_sig_edit_ts, 'int'
     field :recommended_budget_prediction, 'object'
     field :sigedit_removal, 'bool'

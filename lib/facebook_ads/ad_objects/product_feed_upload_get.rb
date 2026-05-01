@@ -29,7 +29,7 @@ module FacebookAds
     field :error_report, 'object'
     field :errors, 'object'
     field :filename, 'string'
-    field :id, 'string'
+    field :id, 'int'
     field :input_method, { enum: -> { INPUT_METHOD }}
     field :num_deleted_items, 'int'
     field :num_detected_items, 'int'

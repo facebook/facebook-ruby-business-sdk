@@ -14,19 +14,6 @@ module FacebookAds
   # pull request for this class.
 
   class AdCampaignGroupGet < AdObject
-    SPECIAL_AD_CATEGORIES = [
-      "CREDIT",
-      "EDUCATION",
-      "ELECTIONS_POLITICS",
-      "EMPLOYMENT",
-      "FINANCIAL_PRODUCTS_SERVICES",
-      "HOUSING",
-      "ISSUES_ELECTIONS_POLITICS",
-      "NONE",
-      "ONLINE_GAMBLING_AND_GAMING",
-      "SOCIAL_ISSUES",
-    ]
-
 
     field :account_id, 'string'
     field :advantage_state_info, 'object'
@@ -42,7 +29,7 @@ module FacebookAds
     field :name, 'string'
     field :objective, 'string'
     field :promoted_object, 'object'
-    field :special_ad_categories, { list: { enum: -> { SPECIAL_AD_CATEGORIES }} }
+    field :special_ad_categories, { list: 'string' }
     field :spend_cap, 'string'
     field :start_time, 'string'
     field :status, 'string'

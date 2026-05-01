@@ -96,6 +96,7 @@ module FacebookAds
     field :country, 'string'
     field :creation_time, 'int'
     field :currency, 'string'
+    field :disable_marketing_messages_on_cloud_api, 'bool'
     field :health_status, 'WhatsAppBusinessHealthStatusForMessageSend'
     field :id, 'string'
     field :is_enabled_for_insights, 'bool'

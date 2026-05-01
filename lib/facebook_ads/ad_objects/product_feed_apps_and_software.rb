@@ -24,7 +24,9 @@ module FacebookAds
       edge.get 'ProductFeedAppsAndSoftwareGet' do |api|
         api.has_param :after, 'string'
         api.has_param :before, 'string'
+        api.has_param :display_format, { enum: -> { ProductFeedAppsAndSoftwareGet::DISPLAY_FORMAT }}
         api.has_param :limit, 'int'
+        api.has_param :summary, 'bool'
       end
     end
 

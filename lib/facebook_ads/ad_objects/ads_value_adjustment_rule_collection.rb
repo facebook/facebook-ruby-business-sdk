@@ -23,6 +23,7 @@ module FacebookAds
     STATUS = [
       "ACTIVE",
       "DELETED",
+      "DRAFT",
     ]
 
 
