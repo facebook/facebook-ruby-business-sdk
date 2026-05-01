@@ -321,6 +321,7 @@ module FacebookAds
 
 			# Normalizes the input attribution_method and returns valid value (or throw exception if invalid).
 			def self.normalize_attribution_method(attribution_method)
+				attribution_method = attribution_method.downcase
 				unless FacebookAds::ServerSide::AttributionMethod.include?(attribution_method)
 					values = FacebookAds::ServerSide::AttributionMethod.to_a.join(',')
 					raise ArgumentError.new(
@@ -333,6 +334,7 @@ module FacebookAds
 
 			# Normalizes the input decline_reason and returns valid value (or throw exception if invalid).
 			def self.normalize_decline_reason(decline_reason)
+				decline_reason = decline_reason.downcase
 				unless FacebookAds::ServerSide::DeclineReason.include?(decline_reason)
 					values = FacebookAds::ServerSide::DeclineReason.to_a.join(',')
 					raise ArgumentError.new(

@@ -60,25 +60,25 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
         )
 
         expect(attribution_data.normalize).to eq({
-            'scope': scope,
-            'visit_time': visit_time,
-            'ad_id': ad_id,
-            'adset_id': adset_id,
-            'campaign_id': campaign_id,
-            'attr_window': attr_window,
-            'attribution_share': attribution_share,
-            'attribution_model': attribution_model,
-            'attribution_value': attribution_value,
-            'attribution_source': attribution_source,
-            'touchpoint_type': touchpoint_type,
-            'touchpoint_ts': touchpoint_ts,
-            'attribution_method': attribution_method,
-            'decline_reason': decline_reason,
-            'auditing_token': auditing_token,
-            'linkage_key': linkage_key,
-            'attribution_setting': {
-                'inactivity_window_hours': 24,
-                'reattribution_window_hours': 48
+            'scope' => scope,
+            'visit_time' => visit_time,
+            'ad_id' => ad_id,
+            'adset_id' => adset_id,
+            'campaign_id' => campaign_id,
+            'attr_window' => attr_window,
+            'attribution_share' => attribution_share,
+            'attribution_model' => attribution_model,
+            'attribution_value' => attribution_value,
+            'attribution_source' => attribution_source,
+            'touchpoint_type' => touchpoint_type,
+            'touchpoint_ts' => touchpoint_ts,
+            'attribution_method' => attribution_method.downcase,
+            'decline_reason' => decline_reason,
+            'auditing_token' => auditing_token,
+            'linkage_key' => linkage_key,
+            'attribution_setting' => {
+                'inactivity_window_hours' => 24,
+                'reattribution_window_hours' => 48
             },
         })
     end
@@ -190,6 +190,22 @@ RSpec.describe 'FacebookAds::ServerSide::AttributionData' do
         )
         expect(attribution_data1).to_not eq(attribution_data2)
         expect(attribution_data1.hash).to_not eq(attribution_data2.hash)
+    end
+
+    it 'normalizes mixed-case attribution_method to lowercase' do
+        attribution_data = FacebookAds::ServerSide::AttributionData.new(
+            attribution_method: 'DEEPLINK'
+        )
+        normalized = attribution_data.normalize
+        expect(normalized['attribution_method']).to eq('deeplink')
+    end
+
+    it 'normalizes mixed-case decline_reason to lowercase' do
+        attribution_data = FacebookAds::ServerSide::AttributionData.new(
+            decline_reason: 'Lookback'
+        )
+        normalized = attribution_data.normalize
+        expect(normalized['decline_reason']).to eq('lookback')
     end
 
     it 'validates attribution_method with valid value' do
