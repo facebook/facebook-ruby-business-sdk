@@ -317,6 +317,7 @@ module FacebookAds
         api.has_param :dynamic_ad_voice, { enum: -> { AdCreative::DYNAMIC_AD_VOICE }}
         api.has_param :enable_launch_instant_app, 'bool'
         api.has_param :execution_options, { list: { enum: -> { AdCreative::EXECUTION_OPTIONS }} }
+        api.has_param :existing_post_title, 'string'
         api.has_param :facebook_branded_content, 'hash'
         api.has_param :format_transformation_spec, { list: 'hash' }
         api.has_param :image_crops, 'hash'
@@ -537,6 +538,7 @@ module FacebookAds
         api.has_param :line_number, 'int'
         api.has_param :max_budget_spend_percentage, 'int'
         api.has_param :min_budget_spend_percentage, 'int'
+        api.has_param :multi_event_conversion_attribution_window_seconds, 'int'
         api.has_param :multi_optimization_goal_weight, { enum: -> { AdSet::MULTI_OPTIMIZATION_GOAL_WEIGHT }}
         api.has_param :name, 'string'
         api.has_param :optimization_goal, { enum: -> { AdSet::OPTIMIZATION_GOAL }}

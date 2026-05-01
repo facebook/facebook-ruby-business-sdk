@@ -78,6 +78,8 @@ module FacebookAds
     field :onsite_destination_optimization_opt_in, 'string'
     field :open_tabs, { list: 'string' }
     field :pac_relaxation_opt_in_status, 'string'
+    field :pcau_cat_optout_survey_impr, 'int'
+    field :pcau_cat_optout_survey_resp_ts, 'datetime'
     field :placement_group_square_opt_in_status, 'string'
     field :placement_group_vertical_opt_in_status, 'string'
     field :previously_seen_recommendations, { list: 'string' }

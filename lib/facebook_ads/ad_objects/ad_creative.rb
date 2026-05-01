@@ -210,6 +210,7 @@ module FacebookAds
     field :effective_object_story_id, 'string'
     field :enable_direct_install, 'bool'
     field :enable_launch_instant_app, 'bool'
+    field :existing_post_title, 'string'
     field :facebook_branded_content, 'AdCreativeFacebookBrandedContent'
     field :format_transformation_spec, { list: 'AdCreativeFormatTransformationSpec' }
     field :id, 'string'

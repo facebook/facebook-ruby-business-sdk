@@ -46,7 +46,6 @@ module FacebookAds
     field :updated_time, 'datetime'
     field :cells, { list: 'object' }
     field :confidence_level, 'double'
-    field :creative_test_config, 'hash'
     field :objectives, { list: 'object' }
     field :viewers, { list: 'int' }
 

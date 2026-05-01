@@ -236,6 +236,7 @@ module FacebookAds
     field :adset_schedule, { list: 'DayPart' }
     field :anchor_event_attribution_window_days, 'int'
     field :asset_feed_id, 'string'
+    field :attribution_count_type, 'string'
     field :attribution_spec, { list: 'AttributionSpec' }
     field :automatic_manual_state, 'string'
     field :bid_adjustments, 'AdBidAdjustments'
@@ -279,8 +280,10 @@ module FacebookAds
     field :lifetime_imps, 'int'
     field :lifetime_min_spend_target, 'string'
     field :lifetime_spend_cap, 'string'
+    field :low_creative_reach, { list: 'string' }
     field :max_budget_spend_percentage, 'string'
     field :min_budget_spend_percentage, 'string'
+    field :multi_event_conversion_attribution_window_seconds, 'int'
     field :multi_optimization_goal_weight, 'string'
     field :name, 'string'
     field :optimization_goal, { enum: -> { OPTIMIZATION_GOAL }}
@@ -296,6 +299,7 @@ module FacebookAds
     field :rf_prediction_id, 'string'
     field :source_adset, 'AdSet'
     field :source_adset_id, 'string'
+    field :special_ad_categories, { list: 'string' }
     field :start_time, 'datetime'
     field :status, { enum: -> { STATUS }}
     field :targeting, 'Targeting'

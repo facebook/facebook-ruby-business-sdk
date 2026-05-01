@@ -16,7 +16,11 @@ module FacebookAds
   class PageCtxBudgetSimilarAdvertiserBudgetRecommendation < AdObject
 
     field :budget, 'string'
+    field :budget_new_model, 'string'
+    field :budget_without_threshold, 'string'
     field :reported_conversion, 'string'
+    field :reported_conversions_new_model, 'string'
+    field :reported_conversions_without_threshold, 'string'
     has_no_id
     has_no_get
     has_no_post

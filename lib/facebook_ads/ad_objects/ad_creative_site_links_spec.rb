@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdCreativeSiteLinksSpec < AdObject
 
+    field :is_defaulting_eligible, 'bool'
     field :is_site_link_sticky, 'bool'
     field :site_link_classification, 'string'
     field :site_link_extra_metadata, 'string'

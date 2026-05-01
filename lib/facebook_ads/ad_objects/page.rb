@@ -580,13 +580,6 @@ module FacebookAds
       end
     end
 
-    has_edge :acknowledge_orders do |edge|
-      edge.post 'Page' do |api|
-        api.has_param :idempotency_key, 'string'
-        api.has_param :orders, { list: 'hash' }
-      end
-    end
-
     has_edge :ads_eligibility do |edge|
       edge.get 'AdsEligibility' do |api|
         api.has_param :ads_account_id, 'string'

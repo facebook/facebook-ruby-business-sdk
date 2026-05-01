@@ -55,6 +55,8 @@ module FacebookAds
     field :return_to_facebook_text, 'string'
     field :review_your_info_text, 'string'
     field :secure_sharing_text, 'string'
+    field :secure_sharing_text_for_embedded_booking_calendly, 'string'
+    field :secure_sharing_text_for_embedded_booking_ghl, 'string'
     field :secure_sharing_text_for_optional_privacy_policy, 'string'
     field :slide_to_submit_text, 'string'
     field :social_proof_section_headers, { list: 'hash' }

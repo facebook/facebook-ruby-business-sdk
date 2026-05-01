@@ -19,6 +19,7 @@ module FacebookAds
     field :configured_cell_count, 'int'
     field :daily_budget, 'int'
     field :entry_source, 'string'
+    field :lead_gen_forms, 'string'
     field :lifetime_budget, 'int'
     field :use_existing_daily_budget, 'bool'
     has_no_id

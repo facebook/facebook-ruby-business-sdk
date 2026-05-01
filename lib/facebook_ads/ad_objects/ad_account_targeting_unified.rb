@@ -315,6 +315,7 @@ module FacebookAds
       "age_range",
       "alternate_auto_targeting_option",
       "app_install_state",
+      "audience_concepts",
       "audience_network_positions",
       "behaviors",
       "brand_safety_content_filter_levels",

@@ -19,6 +19,7 @@ module FacebookAds
     field :associated_product_set_id, 'string'
     field :brand, 'object'
     field :destination_screenshot_spec, 'object'
+    field :duplication_source, 'string'
     field :dynamic_site_links_spec, 'object'
     field :enable_social_feedback_preservation, 'bool'
     field :intent, 'object'
