@@ -88,6 +88,9 @@ module FacebookAds
       # Attribution data info
       attr_accessor :attribution_data
 
+      # The referrer URL of the browser request that triggered the event.
+      attr_accessor :referrer_url
+
       # The request context (e.g. an HTTP request object) supplied via
       # set_request_context. Used by the CAPI ParamBuilder to auto-extract
       # parameters such as fbc, fbp, client_ip_address.
@@ -118,6 +121,7 @@ module FacebookAds
       # @param [String] messaging_channel
       # @param [FacebookAds::ServerSide::OriginalEventData] original_event_data
       # @param [FacebookAds::ServerSide::AttributionData] attribution_data
+      # @param [String] referrer_url
       def initialize(event_name: nil,
                      event_time: nil,
                      event_source_url: nil,
@@ -133,7 +137,8 @@ module FacebookAds
                      advanced_measurement_table: nil,
                      messaging_channel: nil,
                      original_event_data: nil,
-                     attribution_data: nil
+                     attribution_data: nil,
+                     referrer_url: nil
                      )
 
         unless event_name.nil?
@@ -183,6 +188,9 @@ module FacebookAds
         end
         unless attribution_data.nil?
           self.attribution_data = attribution_data
+        end
+        unless referrer_url.nil?
+          self.referrer_url = referrer_url
         end
       end
 
@@ -256,6 +264,10 @@ module FacebookAds
 
         if attributes.has_key?(:'attribution_data')
           self.attribution_data = attributes[:'attribution_data']
+        end
+
+        if attributes.has_key?(:'referrer_url')
+          self.referrer_url = attributes[:'referrer_url']
         end
       end
 
@@ -332,7 +344,8 @@ module FacebookAds
             advanced_measurement_table == o.advanced_measurement_table &&
             messaging_channel == o.messaging_channel &&
             original_event_data == o.original_event_data &&
-            attribution_data == o.attribution_data
+            attribution_data == o.attribution_data &&
+            referrer_url == o.referrer_url
       end
 
       # @see the `==` method
@@ -346,7 +359,8 @@ module FacebookAds
         [
           event_name, event_time, event_source_url, opt_out, event_id, user_data, custom_data, app_data,
           data_processing_options, data_processing_options_country, data_processing_options_state,
-          action_source, advanced_measurement_table, messaging_channel, original_event_data, attribution_data
+          action_source, advanced_measurement_table, messaging_channel, original_event_data, attribution_data,
+          referrer_url
         ].hash
       end
 
@@ -399,6 +413,9 @@ module FacebookAds
         end
         unless attribution_data.nil?
           hash['attribution_data'] = attribution_data.to_s
+        end
+        unless referrer_url.nil?
+          hash['referrer_url'] = referrer_url
         end
         hash.to_s
       end
@@ -460,6 +477,9 @@ module FacebookAds
         unless attribution_data.nil?
           hash['attribution_data'] = attribution_data.normalize
         end
+        unless referrer_url.nil?
+          hash['referrer_url'] = referrer_url
+        end
         hash
       end
 
@@ -491,6 +511,13 @@ module FacebookAds
            (event_source_url.nil? || event_source_url.empty?) &&
            !builder_event_source_url.nil? && !builder_event_source_url.empty?
           self.event_source_url = builder_event_source_url
+        end
+
+        builder_referrer_url = param_builder.get_referrer_url
+        if preference.is_referrer_url_allowed &&
+           (referrer_url.nil? || referrer_url.empty?) &&
+           !builder_referrer_url.nil? && !builder_referrer_url.empty?
+          self.referrer_url = builder_referrer_url
         end
       end
 

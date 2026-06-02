@@ -26,12 +26,13 @@ require 'capi_param_builder'
 # values. `process_request_from_context` is a no-op. Defaults every getter
 # to nil so unrelated tests do not see auto-stubbed truthy values leak into
 # the Event payload.
-def stub_param_builder(fbc: nil, fbp: nil, event_source_url: nil)
+def stub_param_builder(fbc: nil, fbp: nil, event_source_url: nil, referrer_url: nil)
   pb = instance_double('ParamBuilder')
   allow(pb).to receive(:process_request_from_context)
   allow(pb).to receive(:get_fbc).and_return(fbc)
   allow(pb).to receive(:get_fbp).and_return(fbp)
   allow(pb).to receive(:get_event_source_url).and_return(event_source_url)
+  allow(pb).to receive(:get_referrer_url).and_return(referrer_url)
   pb
 end
 
@@ -165,6 +166,7 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
         .and_return(stub_param_builder(
           fbc: 'XX', fbp: 'YY',
           event_source_url: 'https://shop.example.com/cart',
+          referrer_url: 'https://referrer.example.com/',
         ))
       pref = FacebookAds::ServerSide::Preference.new(
         is_fbc_allowed: false, is_fbp_allowed: false,
@@ -179,6 +181,7 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
       expect(ud).not_to have_key('fbc')
       expect(ud).not_to have_key('fbp')
       expect(payload).not_to have_key('event_source_url')
+      expect(payload).not_to have_key('referrer_url')
     end
 
     # ----- event_source_url auto-population --------------------------
@@ -205,6 +208,50 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
       event.set_request_context({})
 
       expect(event.normalize['event_source_url']).to eq('https://from-caller/')
+    end
+
+    # ----- referrer_url auto-population ------------------------------
+    it 'normalize() auto-populates referrer_url from the ParamBuilder' do
+      allow(::ParamBuilder).to receive(:new)
+        .and_return(stub_param_builder(referrer_url: 'https://google.com/search?q=foo'))
+
+      event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000070)
+      event.set_request_context({})
+
+      payload = event.normalize
+      expect(payload['referrer_url']).to eq('https://google.com/search?q=foo')
+    end
+
+    it 'caller-supplied referrer_url takes precedence over the builder' do
+      allow(::ParamBuilder).to receive(:new)
+        .and_return(stub_param_builder(referrer_url: 'https://builder.example.com/'))
+
+      event = FacebookAds::ServerSide::Event.new(
+        event_name: 'Lead',
+        event_time: 1700000071,
+        referrer_url: 'https://caller.example.com/',
+      )
+      event.set_request_context({})
+
+      expect(event.normalize['referrer_url']).to eq('https://caller.example.com/')
+    end
+
+    it 'Preference is_referrer_url_allowed=false gates referrer_url' do
+      allow(::ParamBuilder).to receive(:new)
+        .and_return(stub_param_builder(
+          fbc: 'WITHFBC', referrer_url: 'https://builder.example.com/',
+        ))
+      pref = FacebookAds::ServerSide::Preference.new(
+        is_fbc_allowed: true, is_fbp_allowed: true,
+        is_client_ip_address_allowed: true, is_referrer_url_allowed: false,
+        is_event_source_url_allowed: true,
+      )
+      event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000072)
+      event.set_request_context({}, preference: pref)
+
+      payload = event.normalize
+      expect(payload['user_data']['fbc']).to eq('WITHFBC')
+      expect(payload).not_to have_key('referrer_url')
     end
 
     it 'Preference is_event_source_url_allowed=false gates event_source_url' do
@@ -281,6 +328,7 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
       expect(pb).to respond_to(:get_fbc)
       expect(pb).to respond_to(:get_fbp)
       expect(pb).to respond_to(:get_event_source_url)
+      expect(pb).to respond_to(:get_referrer_url)
     end
 
     it 'set_request_context then normalize populates fbp from a cookie' do
