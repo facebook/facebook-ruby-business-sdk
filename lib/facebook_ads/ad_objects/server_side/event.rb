@@ -22,6 +22,7 @@ require_relative './app_data'
 require_relative './original_event_data'
 require_relative './attribution_data'
 require_relative './preference'
+require 'capi_param_builder'
 
 module FacebookAds
   module ServerSide
@@ -95,6 +96,11 @@ module FacebookAds
       # Preference allowlist controlling which fields the CAPI ParamBuilder
       # is allowed to auto-set on the event. Set by set_request_context.
       attr_accessor :preference
+
+      # The CAPI ParamBuilder instance constructed when set_request_context
+      # is called. Used internally to extract auto-populated fields from
+      # the request context.
+      attr_accessor :param_builder
 
       # @param [String] event_name
       # @param [int] event_time
@@ -274,6 +280,8 @@ module FacebookAds
 
         self.request_context = context
         self.preference = preference.nil? ? FacebookAds::ServerSide::Preference.new : preference
+        self.param_builder = ::ParamBuilder.new
+        self.param_builder.process_request_from_context(context)
         self
       end
 
