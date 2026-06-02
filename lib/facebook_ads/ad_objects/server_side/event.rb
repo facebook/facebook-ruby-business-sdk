@@ -465,10 +465,10 @@ module FacebookAds
 
       private
 
-      # Fills empty UserData fields from the ParamBuilder-extracted values,
-      # gated by Preference. No-op when set_request_context was never called.
-      # Idempotent: only fills fields that are currently empty, so the user's
-      # explicit UserData values always take precedence regardless of call order.
+      # Fills empty UserData and Event fields from the ParamBuilder-extracted
+      # values, gated by Preference. No-op when set_request_context was never
+      # called. Idempotent: only fills fields that are currently empty, so the
+      # caller's explicit values always take precedence regardless of call order.
       def apply_param_builder_defaults
         return if param_builder.nil? || preference.nil?
 
@@ -485,6 +485,13 @@ module FacebookAds
         end
 
         self.user_data = ud
+
+        builder_event_source_url = param_builder.get_event_source_url
+        if preference.is_event_source_url_allowed &&
+           (event_source_url.nil? || event_source_url.empty?) &&
+           !builder_event_source_url.nil? && !builder_event_source_url.empty?
+          self.event_source_url = builder_event_source_url
+        end
       end
 
     end

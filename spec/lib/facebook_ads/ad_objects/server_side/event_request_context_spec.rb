@@ -22,13 +22,16 @@
 require 'capi_param_builder'
 
 
-# Builds a stub that quacks like a real ParamBuilder with given fbc/fbp values.
-# `process_request_from_context` is a no-op.
-def stub_param_builder(fbc: nil, fbp: nil)
+# Builds a stub that quacks like a real ParamBuilder with given extracted
+# values. `process_request_from_context` is a no-op. Defaults every getter
+# to nil so unrelated tests do not see auto-stubbed truthy values leak into
+# the Event payload.
+def stub_param_builder(fbc: nil, fbp: nil, event_source_url: nil)
   pb = instance_double('ParamBuilder')
   allow(pb).to receive(:process_request_from_context)
   allow(pb).to receive(:get_fbc).and_return(fbc)
   allow(pb).to receive(:get_fbp).and_return(fbp)
+  allow(pb).to receive(:get_event_source_url).and_return(event_source_url)
   pb
 end
 
@@ -64,6 +67,7 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
       expect(pref.is_fbp_allowed).to eq(true)
       expect(pref.is_client_ip_address_allowed).to eq(true)
       expect(pref.is_referrer_url_allowed).to eq(true)
+      expect(pref.is_event_source_url_allowed).to eq(true)
     end
 
     it 'raises when preference is not a Preference instance' do
@@ -158,10 +162,14 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
 
     it 'Preference all-false suppresses every auto-populated field' do
       allow(::ParamBuilder).to receive(:new)
-        .and_return(stub_param_builder(fbc: 'XX', fbp: 'YY'))
+        .and_return(stub_param_builder(
+          fbc: 'XX', fbp: 'YY',
+          event_source_url: 'https://shop.example.com/cart',
+        ))
       pref = FacebookAds::ServerSide::Preference.new(
         is_fbc_allowed: false, is_fbp_allowed: false,
         is_client_ip_address_allowed: false, is_referrer_url_allowed: false,
+        is_event_source_url_allowed: false,
       )
       event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000031)
       event.set_request_context({}, preference: pref)
@@ -170,6 +178,51 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
       ud = payload['user_data'] || {}
       expect(ud).not_to have_key('fbc')
       expect(ud).not_to have_key('fbp')
+      expect(payload).not_to have_key('event_source_url')
+    end
+
+    # ----- event_source_url auto-population --------------------------
+    it 'normalize() auto-populates event_source_url from the ParamBuilder' do
+      allow(::ParamBuilder).to receive(:new)
+        .and_return(stub_param_builder(event_source_url: 'https://shop.example.com/cart'))
+
+      event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000060)
+      event.set_request_context({})
+
+      payload = event.normalize
+      expect(payload['event_source_url']).to eq('https://shop.example.com/cart')
+    end
+
+    it 'caller-supplied event_source_url takes precedence over the builder' do
+      allow(::ParamBuilder).to receive(:new)
+        .and_return(stub_param_builder(event_source_url: 'https://from-builder/'))
+
+      event = FacebookAds::ServerSide::Event.new(
+        event_name: 'Lead',
+        event_time: 1700000061,
+        event_source_url: 'https://from-caller/',
+      )
+      event.set_request_context({})
+
+      expect(event.normalize['event_source_url']).to eq('https://from-caller/')
+    end
+
+    it 'Preference is_event_source_url_allowed=false gates event_source_url' do
+      allow(::ParamBuilder).to receive(:new)
+        .and_return(stub_param_builder(
+          fbc: 'WITHFBC', event_source_url: 'https://from-builder/',
+        ))
+      pref = FacebookAds::ServerSide::Preference.new(
+        is_fbc_allowed: true, is_fbp_allowed: true,
+        is_client_ip_address_allowed: true, is_referrer_url_allowed: true,
+        is_event_source_url_allowed: false,
+      )
+      event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000062)
+      event.set_request_context({}, preference: pref)
+
+      payload = event.normalize
+      expect(payload['user_data']['fbc']).to eq('WITHFBC')
+      expect(payload).not_to have_key('event_source_url')
     end
 
     # ----- call-order independence ------------------------------------
@@ -227,6 +280,7 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
         'in facebookbusiness.gemspec if the upstream API has shifted.'
       expect(pb).to respond_to(:get_fbc)
       expect(pb).to respond_to(:get_fbp)
+      expect(pb).to respond_to(:get_event_source_url)
     end
 
     it 'set_request_context then normalize populates fbp from a cookie' do
