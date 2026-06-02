@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 3.0'
 
-  s.add_dependency 'capi_param_builder_ruby', '>= 1.1.1'
+  s.add_dependency 'capi_param_builder_ruby', '>= 1.3.0'
   s.add_dependency 'concurrent-ruby', '~> 1.1'
   s.add_dependency 'faraday', '~> 2.6'
   s.add_dependency 'faraday-multipart', '>= 1.0.4', '~> 1.0'
