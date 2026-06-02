@@ -282,6 +282,21 @@ module FacebookAds
         self.preference = preference.nil? ? FacebookAds::ServerSide::Preference.new : preference
         self.param_builder = ::ParamBuilder.new
         self.param_builder.process_request_from_context(context)
+
+        ud = self.user_data || FacebookAds::ServerSide::UserData.new
+
+        builder_fbc = self.param_builder.get_fbc
+        if self.preference.is_fbc_allowed && (ud.fbc.nil? || ud.fbc.empty?) && !builder_fbc.nil? && !builder_fbc.empty?
+          ud.fbc = builder_fbc
+        end
+
+        builder_fbp = self.param_builder.get_fbp
+        if self.preference.is_fbp_allowed && (ud.fbp.nil? || ud.fbp.empty?) && !builder_fbp.nil? && !builder_fbp.empty?
+          ud.fbp = builder_fbp
+        end
+
+        self.user_data = ud
+
         self
       end
 
