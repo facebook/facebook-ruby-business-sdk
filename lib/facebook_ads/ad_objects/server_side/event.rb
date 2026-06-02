@@ -21,6 +21,7 @@ require_relative './custom_data'
 require_relative './app_data'
 require_relative './original_event_data'
 require_relative './attribution_data'
+require_relative './preference'
 
 module FacebookAds
   module ServerSide
@@ -85,6 +86,15 @@ module FacebookAds
 
       # Attribution data info
       attr_accessor :attribution_data
+
+      # The request context (e.g. an HTTP request object) supplied via
+      # set_request_context. Used by the CAPI ParamBuilder to auto-extract
+      # parameters such as fbc, fbp, client_ip_address.
+      attr_accessor :request_context
+
+      # Preference allowlist controlling which fields the CAPI ParamBuilder
+      # is allowed to auto-set on the event. Set by set_request_context.
+      attr_accessor :preference
 
       # @param [String] event_name
       # @param [int] event_time
@@ -241,6 +251,30 @@ module FacebookAds
         if attributes.has_key?(:'attribution_data')
           self.attribution_data = attributes[:'attribution_data']
         end
+      end
+
+      # Sets the request context and optional preference for automatic data
+      # extraction.
+      #
+      # This stores the context object (e.g. an HTTP request) and a Preference
+      # allowlist. Later in the stack, the CAPI ParamBuilder will use the
+      # stored context to extract parameters like fbc, fbp, client_ip_address,
+      # and referrer_url, gated by the Preference. If no preference is given,
+      # all fields default to true.
+      #
+      # @param context Object the request context (e.g. an HTTP request)
+      # @param [FacebookAds::ServerSide::Preference] preference optional
+      #        Preference object controlling auto-extraction
+      # @return [self] returns self for chaining
+      def set_request_context(context, preference: nil)
+        unless preference.nil? || preference.is_a?(FacebookAds::ServerSide::Preference)
+          raise ArgumentError,
+            'Event.preference must be a FacebookAds::ServerSide::Preference'
+        end
+
+        self.request_context = context
+        self.preference = preference.nil? ? FacebookAds::ServerSide::Preference.new : preference
+        self
       end
 
       # Show invalid properties with the reasons. Usually used together with valid?
