@@ -331,24 +331,64 @@ RSpec.describe 'FacebookAds::ServerSide::Event#set_request_context' do
       expect(pb).to respond_to(:get_referrer_url)
     end
 
+    # Flat Rack-env hash — the shape RequestContextAdaptor actually reads
+    # (HTTP_HOST / HTTP_COOKIE / HTTP_REFERER). A nested {headers: {...}} hash is
+    # ignored by the adaptor, in which case the builder fabricates a fresh fbp
+    # instead of extracting the cookie — so these use the flat shape and assert
+    # on the supplied cookie value. The builder appends an appendix token to
+    # every value, hence start_with rather than exact equality.
+    real_env = {
+      'HTTP_HOST' => 'shop.example.com',
+      'HTTP_COOKIE' =>
+        '_fbc=fb.1.1700000000000.AbCdEf12345; _fbp=fb.1.1700000000000.987654321',
+      'HTTP_REFERER' => 'https://google.com/search?q=foo',
+      'REQUEST_URI' => '/cart',
+      'rack.url_scheme' => 'https',
+    }.freeze
+
     it 'set_request_context then normalize populates fbp from a cookie' do
-      # Real ParamBuilder, real request-shaped hash, no mocking.
-      # The builder regenerates `fbp` from the cookie input, so we assert the
-      # output is a non-empty `fb.*` value rather than echoing the input.
       event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000000)
-      # Wrap in explicit braces so Ruby 3 treats it as a positional hash, not kwargs.
-      event.set_request_context({
-        headers: {
-          host: 'shop.example.com',
-          cookie: '_fbp=fb.1.1700000000000.987654321',
-        },
-        url: '/',
-      })
-      payload = event.normalize
-      fbp = payload.dig('user_data', 'fbp')
+      event.set_request_context(real_env)
+      fbp = event.normalize.dig('user_data', 'fbp')
       expect(fbp).not_to be_nil, 'fbp should be auto-populated by ParamBuilder'
-      expect(fbp).to start_with('fb.'),
-        "fbp should follow the fb.* shape, got: #{fbp.inspect}"
+      expect(fbp).to start_with('fb.1.1700000000000.987654321'),
+        "fbp should be extracted from the _fbp cookie, got: #{fbp.inspect}"
+    end
+
+    it 'auto-populates fbc from the _fbc cookie via the real builder' do
+      event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000010)
+      event.set_request_context(real_env)
+      fbc = event.normalize.dig('user_data', 'fbc')
+      expect(fbc).not_to be_nil
+      expect(fbc).to start_with('fb.1.1700000000000.AbCdEf12345'),
+        "fbc should be extracted from the _fbc cookie, got: #{fbc.inspect}"
+    end
+
+    it 'auto-populates referrer_url from the Referer header via the real builder' do
+      event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000070)
+      event.set_request_context(real_env)
+      ref = event.normalize['referrer_url']
+      expect(ref).not_to be_nil
+      expect(ref).to start_with('https://google.com/search?q=foo'),
+        "referrer_url should be extracted from the Referer header, got: #{ref.inspect}"
+    end
+
+    it 'caller-supplied fbc takes precedence over the real builder' do
+      event = FacebookAds::ServerSide::Event.new(
+        event_name: 'Lead', event_time: 1700000020,
+        user_data: FacebookAds::ServerSide::UserData.new(fbc: 'CALLER_FBC'),
+      )
+      event.set_request_context(real_env)
+      expect(event.normalize['user_data']['fbc']).to eq('CALLER_FBC')
+    end
+
+    it 'auto-populates event_source_url from host + uri via the real builder' do
+      event = FacebookAds::ServerSide::Event.new(event_name: 'PageView', event_time: 1700000060)
+      event.set_request_context(real_env)
+      esu = event.normalize['event_source_url']
+      expect(esu).not_to be_nil
+      expect(esu).to start_with('https://shop.example.com/cart'),
+        "event_source_url should be built from host + uri, got: #{esu.inspect}"
     end
   end
 end
