@@ -262,11 +262,11 @@ module FacebookAds
       # Sets the request context and optional preference for automatic data
       # extraction.
       #
-      # This stores the context object (e.g. an HTTP request) and a Preference
-      # allowlist. Later in the stack, the CAPI ParamBuilder will use the
-      # stored context to extract parameters like fbc, fbp, client_ip_address,
-      # and referrer_url, gated by the Preference. If no preference is given,
-      # all fields default to true.
+      # Stores the context and constructs a CAPI ParamBuilder; extraction of
+      # parameters (fbc, fbp, ...) into UserData is deferred until normalize
+      # runs at send time, so call order with user_data assignment does not
+      # matter. The preference object controls which data are allowed to be
+      # auto-set. If no preference is provided, all fields default to true.
       #
       # @param context Object the request context (e.g. an HTTP request)
       # @param [FacebookAds::ServerSide::Preference] preference optional
@@ -282,21 +282,6 @@ module FacebookAds
         self.preference = preference.nil? ? FacebookAds::ServerSide::Preference.new : preference
         self.param_builder = ::ParamBuilder.new
         self.param_builder.process_request_from_context(context)
-
-        ud = self.user_data || FacebookAds::ServerSide::UserData.new
-
-        builder_fbc = self.param_builder.get_fbc
-        if self.preference.is_fbc_allowed && (ud.fbc.nil? || ud.fbc.empty?) && !builder_fbc.nil? && !builder_fbc.empty?
-          ud.fbc = builder_fbc
-        end
-
-        builder_fbp = self.param_builder.get_fbp
-        if self.preference.is_fbp_allowed && (ud.fbp.nil? || ud.fbp.empty?) && !builder_fbp.nil? && !builder_fbp.empty?
-          ud.fbp = builder_fbp
-        end
-
-        self.user_data = ud
-
         self
       end
 
@@ -421,6 +406,8 @@ module FacebookAds
 
       # Normalize input fields to server request format.
       def normalize
+        apply_param_builder_defaults
+
         hash = {}
         unless event_name.nil?
           hash['event_name'] = event_name
@@ -474,6 +461,30 @@ module FacebookAds
           hash['attribution_data'] = attribution_data.normalize
         end
         hash
+      end
+
+      private
+
+      # Fills empty UserData fields from the ParamBuilder-extracted values,
+      # gated by Preference. No-op when set_request_context was never called.
+      # Idempotent: only fills fields that are currently empty, so the user's
+      # explicit UserData values always take precedence regardless of call order.
+      def apply_param_builder_defaults
+        return if param_builder.nil? || preference.nil?
+
+        ud = self.user_data || FacebookAds::ServerSide::UserData.new
+
+        builder_fbc = param_builder.get_fbc
+        if preference.is_fbc_allowed && (ud.fbc.nil? || ud.fbc.empty?) && !builder_fbc.nil? && !builder_fbc.empty?
+          ud.fbc = builder_fbc
+        end
+
+        builder_fbp = param_builder.get_fbp
+        if preference.is_fbp_allowed && (ud.fbp.nil? || ud.fbp.empty?) && !builder_fbp.nil? && !builder_fbp.empty?
+          ud.fbp = builder_fbp
+        end
+
+        self.user_data = ud
       end
 
     end
