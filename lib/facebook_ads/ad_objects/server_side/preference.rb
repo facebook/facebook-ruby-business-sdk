@@ -36,18 +36,24 @@ module FacebookAds
       # Whether referrer_url is allowed to be set from the request context.
       attr_accessor :is_referrer_url_allowed
 
+      # Whether event_source_url is allowed to be set from the request context.
+      attr_accessor :is_event_source_url_allowed
+
       # @param [Boolean] is_fbc_allowed                  (default: true)
       # @param [Boolean] is_fbp_allowed                  (default: true)
       # @param [Boolean] is_client_ip_address_allowed    (default: true)
       # @param [Boolean] is_referrer_url_allowed         (default: true)
+      # @param [Boolean] is_event_source_url_allowed     (default: true)
       def initialize(is_fbc_allowed: true,
                      is_fbp_allowed: true,
                      is_client_ip_address_allowed: true,
-                     is_referrer_url_allowed: true)
+                     is_referrer_url_allowed: true,
+                     is_event_source_url_allowed: true)
         self.is_fbc_allowed = is_fbc_allowed
         self.is_fbp_allowed = is_fbp_allowed
         self.is_client_ip_address_allowed = is_client_ip_address_allowed
         self.is_referrer_url_allowed = is_referrer_url_allowed
+        self.is_event_source_url_allowed = is_event_source_url_allowed
       end
 
       # build the object using the input hash
@@ -73,6 +79,10 @@ module FacebookAds
         if attributes.has_key?(:'is_referrer_url_allowed')
           self.is_referrer_url_allowed = attributes[:'is_referrer_url_allowed']
         end
+
+        if attributes.has_key?(:'is_event_source_url_allowed')
+          self.is_event_source_url_allowed = attributes[:'is_event_source_url_allowed']
+        end
       end
 
       # Checks equality by comparing each attribute.
@@ -82,7 +92,8 @@ module FacebookAds
             is_fbc_allowed == o.is_fbc_allowed &&
             is_fbp_allowed == o.is_fbp_allowed &&
             is_client_ip_address_allowed == o.is_client_ip_address_allowed &&
-            is_referrer_url_allowed == o.is_referrer_url_allowed
+            is_referrer_url_allowed == o.is_referrer_url_allowed &&
+            is_event_source_url_allowed == o.is_event_source_url_allowed
       end
 
       # @see the `==` method
@@ -96,6 +107,7 @@ module FacebookAds
         [
           is_fbc_allowed, is_fbp_allowed,
           is_client_ip_address_allowed, is_referrer_url_allowed,
+          is_event_source_url_allowed,
         ].hash
       end
 
@@ -105,6 +117,7 @@ module FacebookAds
           'is_fbp_allowed' => is_fbp_allowed,
           'is_client_ip_address_allowed' => is_client_ip_address_allowed,
           'is_referrer_url_allowed' => is_referrer_url_allowed,
+          'is_event_source_url_allowed' => is_event_source_url_allowed,
         }.to_s
       end
 
@@ -115,6 +128,7 @@ module FacebookAds
           'is_fbp_allowed' => is_fbp_allowed,
           'is_client_ip_address_allowed' => is_client_ip_address_allowed,
           'is_referrer_url_allowed' => is_referrer_url_allowed,
+          'is_event_source_url_allowed' => is_event_source_url_allowed,
         }
       end
 

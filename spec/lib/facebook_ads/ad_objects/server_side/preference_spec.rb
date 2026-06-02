@@ -24,6 +24,7 @@ RSpec.describe 'FacebookAds::ServerSide::Preference' do
     expect(p.is_fbp_allowed).to eq(true)
     expect(p.is_client_ip_address_allowed).to eq(true)
     expect(p.is_referrer_url_allowed).to eq(true)
+    expect(p.is_event_source_url_allowed).to eq(true)
   end
 
   it 'all-disallowed denies every field' do
@@ -32,11 +33,13 @@ RSpec.describe 'FacebookAds::ServerSide::Preference' do
       is_fbp_allowed: false,
       is_client_ip_address_allowed: false,
       is_referrer_url_allowed: false,
+      is_event_source_url_allowed: false,
     )
     expect(p.is_fbc_allowed).to eq(false)
     expect(p.is_fbp_allowed).to eq(false)
     expect(p.is_client_ip_address_allowed).to eq(false)
     expect(p.is_referrer_url_allowed).to eq(false)
+    expect(p.is_event_source_url_allowed).to eq(false)
   end
 
   it 'partial allowlist keeps requested flags true' do
@@ -46,31 +49,36 @@ RSpec.describe 'FacebookAds::ServerSide::Preference' do
       is_fbp_allowed: false,
       is_client_ip_address_allowed: true,
       is_referrer_url_allowed: false,
+      is_event_source_url_allowed: false,
     )
     expect(p.is_fbc_allowed).to eq(true)
     expect(p.is_fbp_allowed).to eq(false)
     expect(p.is_client_ip_address_allowed).to eq(true)
     expect(p.is_referrer_url_allowed).to eq(false)
+    expect(p.is_event_source_url_allowed).to eq(false)
   end
 
   it 'each flag is independently controllable' do
     cases = [
-      [true,  false, false, false, 'fbc'],
-      [false, true,  false, false, 'fbp'],
-      [false, false, true,  false, 'client_ip_address'],
-      [false, false, false, true,  'referrer_url'],
+      [true,  false, false, false, false, 'fbc'],
+      [false, true,  false, false, false, 'fbp'],
+      [false, false, true,  false, false, 'client_ip_address'],
+      [false, false, false, true,  false, 'referrer_url'],
+      [false, false, false, false, true,  'event_source_url'],
     ]
-    cases.each do |fbc, fbp, ip, ref, _label|
+    cases.each do |fbc, fbp, ip, ref, esu, _label|
       p = FacebookAds::ServerSide::Preference.new(
         is_fbc_allowed: fbc,
         is_fbp_allowed: fbp,
         is_client_ip_address_allowed: ip,
         is_referrer_url_allowed: ref,
+        is_event_source_url_allowed: esu,
       )
       expect(p.is_fbc_allowed).to eq(fbc)
       expect(p.is_fbp_allowed).to eq(fbp)
       expect(p.is_client_ip_address_allowed).to eq(ip)
       expect(p.is_referrer_url_allowed).to eq(ref)
+      expect(p.is_event_source_url_allowed).to eq(esu)
     end
   end
 
@@ -80,10 +88,12 @@ RSpec.describe 'FacebookAds::ServerSide::Preference' do
     a = FacebookAds::ServerSide::Preference.new(
       is_fbc_allowed: true, is_fbp_allowed: false,
       is_client_ip_address_allowed: true, is_referrer_url_allowed: false,
+      is_event_source_url_allowed: true,
     )
     b = FacebookAds::ServerSide::Preference.new(
       is_fbc_allowed: true, is_fbp_allowed: false,
       is_client_ip_address_allowed: true, is_referrer_url_allowed: false,
+      is_event_source_url_allowed: true,
     )
     expect(a).to eq(b)
     expect(a.hash).to eq(b.hash)
@@ -93,20 +103,26 @@ RSpec.describe 'FacebookAds::ServerSide::Preference' do
     a = FacebookAds::ServerSide::Preference.new
     b = FacebookAds::ServerSide::Preference.new(is_fbc_allowed: false)
     expect(a).not_to eq(b)
+
+    # An is_event_source_url_allowed flip alone is enough to break equality.
+    c = FacebookAds::ServerSide::Preference.new(is_event_source_url_allowed: false)
+    expect(a).not_to eq(c)
   end
 
-  it 'normalize returns a hash with all four flags' do
+  it 'normalize returns a hash with all five flags' do
     p = FacebookAds::ServerSide::Preference.new(
       is_fbc_allowed: true,
       is_fbp_allowed: false,
       is_client_ip_address_allowed: true,
       is_referrer_url_allowed: false,
+      is_event_source_url_allowed: true,
     )
     expect(p.normalize).to eq(
       'is_fbc_allowed' => true,
       'is_fbp_allowed' => false,
       'is_client_ip_address_allowed' => true,
       'is_referrer_url_allowed' => false,
+      'is_event_source_url_allowed' => true,
     )
   end
 end
