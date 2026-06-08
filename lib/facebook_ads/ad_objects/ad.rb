@@ -111,6 +111,7 @@ module FacebookAds
     field :created_time, 'datetime'
     field :creative, 'AdCreative'
     field :creative_asset_groups_spec, 'AdCreativeAssetGroupsSpec'
+    field :creative_automation_spec, 'AdCreativeAutomationSpec'
     field :demolink_hash, 'string'
     field :display_sequence, 'int'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}

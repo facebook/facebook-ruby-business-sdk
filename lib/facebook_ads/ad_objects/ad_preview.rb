@@ -95,6 +95,8 @@ module FacebookAds
 
     CREATIVE_FEATURE = [
       "ig_video_native_subtitle",
+      "image_animation",
+      "product_browsing",
       "product_metadata_automation",
       "profile_card",
       "standard_enhancements_catalog",

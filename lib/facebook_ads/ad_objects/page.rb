@@ -85,9 +85,12 @@ module FacebookAds
       "C2PA_METADATA_EDITED",
       "EXPLICIT",
       "EXPLICIT_ANIMATE",
+      "EXPLICIT_DROP_IN",
+      "EXPLICIT_FACE_SWAP",
       "EXPLICIT_IMAGINE",
       "EXPLICIT_IMAGINE_ME",
       "EXPLICIT_RESTYLE",
+      "EXPLICIT_WARDROBE",
       "INVISIBLE_WATERMARK",
       "IPTC",
       "IPTC_METADATA_EDITED",
@@ -123,6 +126,8 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_CREATIVE_MANAGEMENT",
+      "PROFILE_PLUS_CREATOR_MANAGEMENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
@@ -153,6 +158,8 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_CREATIVE_MANAGEMENT",
+      "PROFILE_PLUS_CREATOR_MANAGEMENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
@@ -306,6 +313,8 @@ module FacebookAds
 
     SUBSCRIBED_FIELDS = [
       "affiliation",
+      "agent_messages",
+      "agent_questions",
       "attire",
       "awards",
       "bio",
@@ -514,6 +523,7 @@ module FacebookAds
     field :offer_eligible, 'bool'
     field :overall_star_rating, 'double'
     field :owner_business, 'Business'
+    field :page_backed_threads_account_id, 'string'
     field :page_token, 'string'
     field :parent_page, 'Page'
     field :parking, 'PageParking'
@@ -1232,6 +1242,11 @@ module FacebookAds
       edge.get 'UserPageOneTimeOptInTokenSettings' do |api|
         api.has_param :custom_audience_ids, { list: 'string' }
         api.has_param :do_not_return_duplicates, 'bool'
+        api.has_param :has_received_marketing_message, 'bool'
+        api.has_param :opt_in_source, { list: { enum: -> { UserPageOneTimeOptInTokenSettings::OPT_IN_SOURCE }} }
+        api.has_param :since, 'datetime'
+        api.has_param :subscriber_tag_ids, { list: 'string' }
+        api.has_param :until, 'datetime'
       end
     end
 
@@ -1245,6 +1260,10 @@ module FacebookAds
     has_edge :page_backed_instagram_accounts do |edge|
       edge.get 'IgUser'
       edge.post 'IgUser'
+    end
+
+    has_edge :page_backed_threads_accounts do |edge|
+      edge.post
     end
 
     has_edge :page_whatsapp_number_verification do |edge|
@@ -1430,14 +1449,17 @@ module FacebookAds
       edge.get 'RtbDynamicPost'
     end
 
-    has_edge :scheduled_posts do |edge|
-      edge.get 'PagePost'
+    has_edge :scheduled_live_video do |edge|
+      edge.post do |api|
+        api.has_param :end_time, 'int'
+        api.has_param :start_time, 'int'
+        api.has_param :state, { enum: %w{DRAFT PUBLISHED }}
+        api.has_param :video, 'string'
+      end
     end
 
-    has_edge :secondary_receivers do |edge|
-      edge.get 'Application' do |api|
-        api.has_param :platform, { enum: -> { Application::PLATFORM }}
-      end
+    has_edge :scheduled_posts do |edge|
+      edge.get 'PagePost'
     end
 
     has_edge :settings do |edge|
@@ -1651,6 +1673,7 @@ module FacebookAds
         api.has_param :replace_video_id, 'string'
         api.has_param :scheduled_publish_time, 'int'
         api.has_param :secret, 'bool'
+        api.has_param :selected_audio_spec, 'hash'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :social_actions, 'bool'
         api.has_param :source, 'string'

@@ -70,6 +70,7 @@ module FacebookAds
       "LINK_CLICKS",
       "MEANINGFUL_CALL_ATTEMPT",
       "MESSAGING_APPOINTMENT_CONVERSION",
+      "MESSAGING_DEEP_CONVERSATION_AND_FOLLOW",
       "MESSAGING_PURCHASE_CONVERSION",
       "NONE",
       "OFFSITE_CONVERSIONS",
@@ -94,6 +95,11 @@ module FacebookAds
       "PAUSED",
     ]
 
+    ATTRIBUTION_COUNT_TYPE = [
+      "ALL_CONVERSIONS",
+      "FIRST_CONVERSION",
+    ]
+
     AUTOMATIC_MANUAL_STATE = [
       "AUTOMATIC",
       "MANUAL",
@@ -103,6 +109,12 @@ module FacebookAds
     BUDGET_SOURCE = [
       "NONE",
       "RMN",
+    ]
+
+    COST_BIDDING_MODE = [
+      "BALANCED",
+      "COST_FOCUSED",
+      "VOLUME_FOCUSED",
     ]
 
     CREATIVE_SEQUENCE_REPETITION_PATTERN = [
@@ -207,6 +219,11 @@ module FacebookAds
       "12",
       "13",
       "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -234,7 +251,6 @@ module FacebookAds
     field :account_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :adset_schedule, { list: 'DayPart' }
-    field :anchor_event_attribution_window_days, 'int'
     field :asset_feed_id, 'string'
     field :attribution_count_type, 'string'
     field :attribution_spec, { list: 'AttributionSpec' }
@@ -252,6 +268,7 @@ module FacebookAds
     field :campaign_attribution, 'string'
     field :campaign_id, 'string'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
+    field :cost_bidding_mode, 'string'
     field :created_time, 'datetime'
     field :creative_diversity_label, { list: 'string' }
     field :creative_diversity_score, { list: 'string' }
@@ -272,16 +289,20 @@ module FacebookAds
     field :instagram_user_id, 'string'
     field :is_ba_skip_delayed_eligible, 'bool'
     field :is_budget_schedule_enabled, 'bool'
+    field :is_dc_follow_optimized, 'bool'
     field :is_dynamic_creative, 'bool'
     field :is_incremental_attribution_enabled, 'bool'
+    field :is_organic_ad_joint_optimized, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :learning_stage_info, 'AdCampaignLearningStageInfo'
     field :lifetime_budget, 'string'
     field :lifetime_imps, 'int'
     field :lifetime_min_spend_target, 'string'
     field :lifetime_spend_cap, 'string'
+    field :live_video_ad_campaign_config, 'LiveVideoAdCampaignConfig'
     field :low_creative_reach, { list: 'string' }
     field :max_budget_spend_percentage, 'string'
+    field :meta_moment_maker_spec, 'MetaMomentMakerConfig'
     field :min_budget_spend_percentage, 'string'
     field :multi_event_conversion_attribution_window_seconds, 'int'
     field :multi_optimization_goal_weight, 'string'
@@ -295,6 +316,7 @@ module FacebookAds
     field :recurring_budget_semantics, 'bool'
     field :regional_regulated_categories, { list: 'string' }
     field :regional_regulation_identities, 'RegionalRegulationIdentities'
+    field :relative_value, 'string'
     field :review_feedback, 'string'
     field :rf_prediction_id, 'string'
     field :source_adset, 'AdSet'

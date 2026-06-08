@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdAccountLiveVideoAdvertiser < AdObject
 
+    field :ig_lva_default_duration_s, 'int'
     field :is_lva_toggle_on, 'bool'
     field :lva_default_budget, 'int'
     field :lva_default_duration_s, 'int'

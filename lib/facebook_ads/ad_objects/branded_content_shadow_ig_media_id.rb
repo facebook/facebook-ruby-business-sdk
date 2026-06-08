@@ -23,6 +23,7 @@ module FacebookAds
     field :eligibility_errors, { list: 'string' }
     field :has_permission_for_partnership_ad, 'bool'
     field :id, 'string'
+    field :is_creator_allowlisted, 'bool'
     field :linked_products, { list: 'ProductItem' }
     field :owner_id, 'string'
     field :permalink, 'string'

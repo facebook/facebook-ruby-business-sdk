@@ -15,9 +15,9 @@ module FacebookAds
 
   class TargetingSubscriberUniverse < AdObject
 
+    field :messaging_customer_base_for_whatsapp, 'IdName'
     field :messenger_subscriber_pool, 'IdName'
     field :messenger_subscriber_source, 'IdName'
-    field :whatsapp_subscriber_pool, 'IdName'
     field :whatsapp_subscriber_source, 'IdName'
     has_no_id
     has_no_get

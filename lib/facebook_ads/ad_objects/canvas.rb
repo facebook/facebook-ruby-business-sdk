@@ -24,7 +24,6 @@ module FacebookAds
     field :collection_thumbnails, { list: 'CanvasCollectionThumbnail' }
     field :dynamic_setting, 'CanvasDynamicSetting'
     field :element_payload, 'string'
-    field :elements, { list: 'RichMediaElement' }
     field :fb_body_elements, { list: 'object' }
     field :hero_asset_facebook_post_id, 'string'
     field :hero_asset_instagram_media_id, 'string'

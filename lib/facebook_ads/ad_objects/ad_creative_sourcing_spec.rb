@@ -22,6 +22,7 @@ module FacebookAds
     field :duplication_source, 'string'
     field :dynamic_site_links_spec, 'object'
     field :enable_social_feedback_preservation, 'bool'
+    field :featured_offering_spec, 'object'
     field :intent, 'object'
     field :pca_spec, 'object'
     field :product_media_metadata_spec, 'object'

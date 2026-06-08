@@ -13,8 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogArticlesAndPublications < AdObject
+  class CustomAudienceMatchRateInsights < AdObject
 
+    field :email_quality, 'string'
+    field :email_upload_volume_pct, 'double'
+    field :is_eligible, 'bool'
+    field :madid_quality, 'string'
+    field :madid_upload_volume_pct, 'double'
+    field :match_rate_score, 'double'
+    field :phone_quality, 'string'
+    field :phone_upload_volume_pct, 'double'
     has_no_id
     has_no_get
     has_no_post

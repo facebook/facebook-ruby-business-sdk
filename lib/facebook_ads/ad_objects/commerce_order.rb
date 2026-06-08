@@ -42,7 +42,6 @@ module FacebookAds
     field :last_updated, 'string'
     field :merchant_order_id, 'string'
     field :order_status, 'object'
-    field :pre_order_details, 'object'
     field :selected_shipping_option, 'object'
     field :ship_by_date, 'string'
     field :shipping_address, 'object'
@@ -61,23 +60,8 @@ module FacebookAds
       edge.get
     end
 
-    has_edge :promotion_details do |edge|
-      edge.get
-    end
-
-    has_edge :promotions do |edge|
-      edge.get
-    end
-
     has_edge :refunds do |edge|
       edge.get
-    end
-
-    has_edge :returns do |edge|
-      edge.get do |api|
-        api.has_param :merchant_return_id, 'string'
-        api.has_param :statuses, { list: { enum: %w{APPROVED DISAPPROVED MERCHANT_MARKED_COMPLETED REFUNDED REQUESTED }} }
-      end
     end
 
     has_edge :shipments do |edge|

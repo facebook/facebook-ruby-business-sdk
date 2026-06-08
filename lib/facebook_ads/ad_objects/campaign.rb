@@ -404,12 +404,15 @@ module FacebookAds
     field :created_time, 'datetime'
     field :daily_budget, 'string'
     field :effective_status, { enum: -> { EFFECTIVE_STATUS }}
+    field :frequency_control_specs, { list: 'AdCampaignFrequencyControlSpecs' }
     field :has_secondary_skadnetwork_reporting, 'bool'
     field :id, 'string'
     field :is_adset_budget_sharing_enabled, 'bool'
     field :is_budget_schedule_enabled, 'bool'
     field :is_direct_send_campaign, 'bool'
     field :is_message_campaign, 'bool'
+    field :is_meta_moment_maker_enabled, 'bool'
+    field :is_reels_trending_ads_enabled, 'bool'
     field :is_skadnetwork_attribution, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :last_budget_toggling_time, 'datetime'

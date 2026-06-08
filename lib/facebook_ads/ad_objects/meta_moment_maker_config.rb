@@ -13,23 +13,11 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AsyncSession < AdObject
+  class MetaMomentMakerConfig < AdObject
 
-    field :app, 'Application'
-    field :complete_time, 'datetime'
-    field :error_code, 'int'
-    field :exception, 'string'
-    field :id, 'string'
-    field :method, 'string'
-    field :name, 'string'
-    field :page, 'Page'
-    field :percent_completed, 'int'
-    field :platform_version, 'string'
-    field :result, 'string'
-    field :start_time, 'datetime'
-    field :status, 'string'
-    field :uri, 'string'
-    field :user, 'User'
+    field :saturation_mode, 'string'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
 

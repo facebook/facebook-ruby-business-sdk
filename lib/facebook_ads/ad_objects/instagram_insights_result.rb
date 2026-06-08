@@ -22,19 +22,17 @@ module FacebookAds
     ]
 
     METRIC = [
-      "clips_replays_count",
       "comments",
       "content_views",
       "crossposted_views",
       "facebook_views",
       "follows",
-      "ig_reels_aggregated_all_plays_count",
       "ig_reels_avg_watch_time",
       "ig_reels_video_view_total_time",
       "impressions",
       "likes",
+      "link_clicks",
       "navigation",
-      "plays",
       "profile_activity",
       "profile_visits",
       "reach",
@@ -47,7 +45,6 @@ module FacebookAds
       "total_interactions",
       "total_likes",
       "total_views",
-      "video_views",
       "views",
     ]
 

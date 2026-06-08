@@ -15,11 +15,13 @@ module FacebookAds
 
   class Placement < AdObject
     DEVICE_PLATFORMS = [
+      "connected_tv",
       "desktop",
       "mobile",
     ]
 
     EFFECTIVE_DEVICE_PLATFORMS = [
+      "connected_tv",
       "desktop",
       "mobile",
     ]

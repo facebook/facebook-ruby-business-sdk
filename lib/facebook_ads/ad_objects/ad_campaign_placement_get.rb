@@ -16,11 +16,13 @@ module FacebookAds
   class AdCampaignPlacementGet < AdObject
     EFFECTIVE_AUDIENCE_NETWORK_POSITIONS = [
       "CLASSIC",
+      "CTV_INSTREAM_VIDEO",
       "INSTREAM_VIDEO",
       "REWARDED_VIDEO",
     ]
 
     EFFECTIVE_DEVICE_PLATFORMS = [
+      "CONNECTED_TV",
       "DESKTOP",
       "MOBILE",
     ]

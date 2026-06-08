@@ -18,6 +18,7 @@ module FacebookAds
       "AVAILABLE_FOR_ORDER",
       "DISCONTINUED",
       "IN_STOCK",
+      "MARK_AS_EXPIRED",
       "MARK_AS_SOLD",
       "OUT_OF_STOCK",
       "PENDING",

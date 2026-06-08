@@ -13,16 +13,20 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogMediaTitle < AdObject
+  class ProductCatalogCheckBatchRequestStatusGet < AdObject
+    ERROR_PRIORITY = [
+      "HIGH",
+      "LOW",
+      "MEDIUM",
+    ]
 
-    field :id, 'string'
+
+    field :data, { list: 'object' }
+    field :paging, 'object'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete
-
-    has_edge : do |edge|
-      edge.delete 'ProductCatalogMediaTitleDelete'
-    end
 
   end
 end

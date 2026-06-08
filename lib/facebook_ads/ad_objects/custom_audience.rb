@@ -15,6 +15,28 @@ module FacebookAds
 
   class CustomAudience < AdObject
     include CustomAudienceHelpers
+    AUDIENCE_LABELS = [
+      "APP_INSTALLERS",
+      "APP_USERS",
+      "AT_RISK",
+      "CART_ABANDONERS",
+      "CUSTOMER_LEADS",
+      "DISENGAGED",
+      "DISQUALIFIED_LEADS",
+      "ENGAGED_USERS",
+      "HIGH_VALUE_CUSTOMERS",
+      "LOW_VALUE_CUSTOMERS",
+      "OTHER_1",
+      "OTHER_2",
+      "OTHER_3",
+      "PERSONAS",
+      "QUALIFIED_LEADS",
+      "RECENT_PURCHASERS",
+      "RESTRICTED_USERS",
+      "TRIAL_USERS",
+      "UNWANTED_CUSTOMERS",
+    ]
+
     CLAIM_OBJECTIVE = [
       "AUTOMOTIVE_MODEL",
       "COLLABORATIVE_ADS",
@@ -93,6 +115,7 @@ module FacebookAds
     field :account_id, 'string'
     field :approximate_count_lower_bound, 'int'
     field :approximate_count_upper_bound, 'int'
+    field :audience_labels, { list: 'string' }
     field :customer_file_source, 'string'
     field :data_source, 'CustomAudienceDataSource'
     field :data_source_types, 'string'

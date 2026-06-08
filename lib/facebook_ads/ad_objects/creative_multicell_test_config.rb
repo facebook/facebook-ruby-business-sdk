@@ -16,6 +16,7 @@ module FacebookAds
   class CreativeMulticellTestConfig < AdObject
 
     field :budget_percentage, 'int'
+    field :budget_source, 'string'
     field :configured_cell_count, 'int'
     field :daily_budget, 'int'
     field :entry_source, 'string'

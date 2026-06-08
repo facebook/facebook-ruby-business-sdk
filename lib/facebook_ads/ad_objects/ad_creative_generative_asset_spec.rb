@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdCreativeGenerativeAssetSpec < AdObject
 
+    field :transparency_metadata, 'object'
     has_no_id
     has_no_get
     has_no_post

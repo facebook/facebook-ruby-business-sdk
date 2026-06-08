@@ -85,6 +85,7 @@ module FacebookAds
       "description_asset",
       "device_platform",
       "dma",
+      "existing_post_id",
       "fidelity_type",
       "flexible_format_asset_type",
       "frequency_value",
@@ -96,6 +97,10 @@ module FacebookAds
       "image_asset",
       "impression_device",
       "impression_view_time_advertiser_hour_v2",
+      "instagram_ads_follow_type",
+      "instagram_ads_instagram_media_product_type",
+      "instagram_ads_time_since_creation_bucket",
+      "internal_campaign_id",
       "is_auto_advance",
       "is_conversion_id_modeled",
       "is_rendered_as_delayed_skip_ad",
@@ -111,6 +116,8 @@ module FacebookAds
       "media_text_content",
       "media_type",
       "mmm",
+      "overlap_segment",
+      "pa_creator_ig_handle",
       "place_page_id",
       "platform_position",
       "postback_sequence_index",
@@ -144,6 +151,7 @@ module FacebookAds
       "user_persona_id",
       "user_persona_name",
       "video_asset",
+      "zip",
     ]
 
     DATE_PRESET = [
@@ -232,6 +240,14 @@ module FacebookAds
     field :catalog_segment_value_omni_purchase_roas, { list: 'AdsActionStats' }
     field :catalog_segment_value_website_purchase_roas, { list: 'AdsActionStats' }
     field :clicks, 'string'
+    field :configurable_attribution_action, { list: 'AdsActionStats' }
+    field :configurable_attribution_actionvalue, { list: 'AdsActionStats' }
+    field :configurable_audience_overlap_reach, { list: 'AdsActionStats' }
+    field :configurable_reachbyfrequency_action, { list: 'AdsActionStats' }
+    field :configurable_reachbyfrequency_converters_count, 'string'
+    field :configurable_reachbyfrequency_impressions_cost, 'string'
+    field :configurable_reachbyfrequency_impressions_count, 'string'
+    field :configurable_reachbyfrequency_reach, 'string'
     field :conversion_lead_rate, { list: 'AdsActionStats' }
     field :conversion_leads, { list: 'AdsActionStats' }
     field :conversion_rate_ranking, 'string'
@@ -259,6 +275,7 @@ module FacebookAds
     field :converted_promoted_product_website_pixel_purchase_value, { list: 'AdsActionStats' }
     field :cost_per_15_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_2_sec_continuous_video_view, { list: 'AdsActionStats' }
+    field :cost_per_6_sec_video_view, { list: 'AdsActionStats' }
     field :cost_per_action_type, { list: 'AdsActionStats' }
     field :cost_per_ad_click, { list: 'AdsActionStats' }
     field :cost_per_conversion, { list: 'AdsActionStats' }
@@ -267,6 +284,7 @@ module FacebookAds
     field :cost_per_estimated_ad_recallers, 'string'
     field :cost_per_inline_link_click, 'string'
     field :cost_per_inline_post_engagement, 'string'
+    field :cost_per_message_delivered, 'string'
     field :cost_per_objective_result, { list: 'object' }
     field :cost_per_one_thousand_ad_impression, { list: 'AdsActionStats' }
     field :cost_per_outbound_click, { list: 'AdsActionStats' }
@@ -281,6 +299,9 @@ module FacebookAds
     field :cpm, 'string'
     field :cpp, 'string'
     field :created_time, 'string'
+    field :creative_diversity_data, { list: 'object' }
+    field :creative_diversity_label, 'string'
+    field :creative_diversity_score, 'string'
     field :creative_media_type, 'string'
     field :ctr, 'string'
     field :date_start, 'string'
@@ -335,12 +356,15 @@ module FacebookAds
     field :marketing_messages_website_initiate_checkout, 'string'
     field :marketing_messages_website_purchase, 'string'
     field :marketing_messages_website_purchase_values, 'string'
+    field :messages_delivered, 'string'
+    field :messages_delivered_ctr, 'string'
     field :mobile_app_purchase_roas, { list: 'AdsActionStats' }
     field :multi_event_conversion_attribution_setting, 'string'
     field :objective, 'string'
     field :objective_result_rate, { list: 'object' }
     field :objective_results, { list: 'object' }
     field :onsite_conversion_messaging_detected_purchase_deduped, { list: 'AdsActionStats' }
+    field :opportunity_score_l4, 'string'
     field :optimization_goal, 'string'
     field :outbound_clicks, { list: 'AdsActionStats' }
     field :outbound_clicks_ctr, { list: 'AdsActionStats' }
@@ -354,9 +378,11 @@ module FacebookAds
     field :qualifying_question_qualify_answer_rate, 'string'
     field :quality_ranking, 'string'
     field :reach, 'string'
+    field :read_rate, 'string'
     field :result_rate, { list: 'object' }
     field :result_values_performance_indicator, 'string'
     field :results, { list: 'object' }
+    field :shop_clicks, 'string'
     field :shops_assisted_purchases, 'string'
     field :social_spend, 'string'
     field :spend, 'string'
@@ -378,6 +404,7 @@ module FacebookAds
     field :updated_time, 'string'
     field :video_15_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_30_sec_watched_actions, { list: 'AdsActionStats' }
+    field :video_6_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_avg_time_watched_actions, { list: 'AdsActionStats' }
     field :video_continuous_2_sec_watched_actions, { list: 'AdsActionStats' }
     field :video_p100_watched_actions, { list: 'AdsActionStats' }

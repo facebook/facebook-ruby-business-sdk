@@ -18,10 +18,12 @@ module FacebookAds
     field :acr, 'object'
     field :data_freshness, 'object'
     field :dedupe_key_feedback, { list: 'object' }
+    field :event_ad_sets, { list: 'object' }
     field :event_coverage, 'object'
     field :event_match_quality, 'object'
     field :event_name, 'string'
     field :event_potential_aly_acr_increase, 'object'
+    field :event_spend, 'object'
     has_no_id
     has_no_get
     has_no_post

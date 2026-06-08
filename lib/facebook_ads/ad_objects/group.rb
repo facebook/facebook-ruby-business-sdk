@@ -39,6 +39,7 @@ module FacebookAds
       "NONE",
       "PARENTING",
       "STREAMER",
+      "WORK_AGENT_TO_AGENT",
       "WORK_ANNOUNCEMENT",
       "WORK_DEMO_GROUP",
       "WORK_DISCUSSION",
@@ -70,6 +71,7 @@ module FacebookAds
       "NONE",
       "PARENTING",
       "STREAMER",
+      "WORK_AGENT_TO_AGENT",
       "WORK_ANNOUNCEMENT",
       "WORK_DEMO_GROUP",
       "WORK_DISCUSSION",
@@ -438,6 +440,7 @@ module FacebookAds
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
         api.has_param :scheduled_publish_time, 'int'
+        api.has_param :selected_audio_spec, 'hash'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :source, 'string'
         api.has_param :source_instagram_media_id, 'string'

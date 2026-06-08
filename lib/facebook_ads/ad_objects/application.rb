@@ -33,6 +33,7 @@ module FacebookAds
 
     AN_PLATFORMS = [
       "ANDROID",
+      "CTV",
       "DESKTOP",
       "GALAXY",
       "INSTANT_ARTICLES",
@@ -222,6 +223,7 @@ module FacebookAds
 
     has_edge :activities do |edge|
       edge.post do |api|
+        api.has_param :add_to_messaging_customer_base_for_whatsapp, 'string'
         api.has_param :advertiser_id, 'string'
         api.has_param :advertiser_tracking_enabled, 'bool'
         api.has_param :anon_id, 'string'
@@ -235,6 +237,7 @@ module FacebookAds
         api.has_param :bundle_short_version, 'string'
         api.has_param :bundle_version, 'string'
         api.has_param :campaign_ids, 'string'
+        api.has_param :circuit_breaker_timeout_ms, 'int'
         api.has_param :click_id, 'string'
         api.has_param :consider_views, 'bool'
         api.has_param :custom_events, { list: 'object' }
@@ -253,6 +256,7 @@ module FacebookAds
         api.has_param :install_referrer, 'string'
         api.has_param :install_timestamp, 'double'
         api.has_param :installer_package, 'string'
+        api.has_param :is_circuit_breaker_active, 'bool'
         api.has_param :is_fb, 'bool'
         api.has_param :limited_data_use, 'bool'
         api.has_param :meta_install_referrer, 'string'
@@ -588,6 +592,7 @@ module FacebookAds
       edge.post do |api|
         api.has_param :callback_url, 'string'
         api.has_param :fields, { list: 'string' }
+        api.has_param :include_client_certificate, 'bool'
         api.has_param :include_values, 'bool'
         api.has_param :object, 'string'
         api.has_param :verify_token, 'string'

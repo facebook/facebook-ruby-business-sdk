@@ -13,9 +13,10 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogMediaTitleDelete < AdObject
+  class ProductCatalogPost < AdObject
 
-    field :success, 'bool'
+    field :__firstoneof, 'object'
+    field :__secondoneof, 'object'
     has_no_id
     has_no_get
     has_no_post

@@ -73,13 +73,16 @@ module FacebookAds
       end
       edge.post do |api|
         api.has_param :alt_text, 'string'
+        api.has_param :audio_configuration, 'string'
         api.has_param :audio_name, 'string'
+        api.has_param :branded_content_sponsor_ids, { list: 'int' }
         api.has_param :caption, 'string'
         api.has_param :children, { list: 'string' }
         api.has_param :collaborators, { list: 'string' }
         api.has_param :cover_url, 'string'
         api.has_param :image_url, 'string'
         api.has_param :is_carousel_item, 'bool'
+        api.has_param :is_paid_partnership, 'bool'
         api.has_param :location_id, 'string'
         api.has_param :media_type, 'string'
         api.has_param :product_tags, { list: 'hash' }
@@ -145,7 +148,7 @@ module FacebookAds
       edge.delete
       edge.get
       edge.post do |api|
-        api.has_param :subscribed_fields, { list: { enum: %w{comment_poll_response comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta follow live_comments mentions message_edit message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen onboarding_welcome_message_series share_to_story standby story_insights story_poll_response story_reactions }} }
+        api.has_param :subscribed_fields, { list: { enum: %w{agent_messages comment_poll_response comments creator_marketplace_invited_creator_onboarding creator_marketplace_projects delta follow live_comments mentions message_edit message_reactions messages messaging_handover messaging_optins messaging_postbacks messaging_referral messaging_seen onboarding_welcome_message_series share_to_story standby story_insights story_poll_response story_reactions }} }
       end
     end
 

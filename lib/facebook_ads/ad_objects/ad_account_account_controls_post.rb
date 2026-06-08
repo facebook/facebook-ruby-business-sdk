@@ -13,18 +13,12 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductFeedAppsAndSoftwareGet < AdObject
-    DISPLAY_FORMAT = [
-      "CAROUSEL_AD",
-      "SHOPS_PDP",
-      "SINGLE_AD",
-    ]
+  class AdAccountAccountControlsPost < AdObject
 
-
-    field :data, { list: 'object' }
-    field :paging, 'object'
-    field :summary, 'object'
-    has_no_id
+    field :error_code, 'int'
+    field :error_message, 'string'
+    field :id, 'string'
+    field :success, 'bool'
     has_no_get
     has_no_post
     has_no_delete

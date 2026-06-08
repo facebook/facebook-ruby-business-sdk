@@ -62,6 +62,7 @@ module FacebookAds
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "JOIN_CHANNEL",
+      "JOIN_LIVE_VIDEO",
       "LEARN_MORE",
       "LIKE_PAGE",
       "LISTEN_MUSIC",
@@ -213,6 +214,7 @@ module FacebookAds
     field :existing_post_title, 'string'
     field :facebook_branded_content, 'AdCreativeFacebookBrandedContent'
     field :format_transformation_spec, { list: 'AdCreativeFormatTransformationSpec' }
+    field :generative_asset_spec, 'AdCreativeGenerativeAssetSpec'
     field :id, 'string'
     field :image_crops, 'AdsImageCrops'
     field :image_hash, 'string'
@@ -258,6 +260,7 @@ module FacebookAds
     field :url_tags, 'string'
     field :use_page_actor_override, 'bool'
     field :video_id, 'string'
+    field :wamo_whatsapp_identity_spec, 'AdCreativeWamoWhatsAppIdentitySpec'
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
     field :image_file, 'string'
     field :is_dco_internal, 'bool'

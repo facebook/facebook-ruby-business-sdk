@@ -24,8 +24,8 @@ module FacebookAds
 
 
     field :attribute, 'string'
-    field :id, 'string'
-    field :params, 'hash'
+    field :id, 'int'
+    field :params, { list: 'object' }
     field :rule_type, { enum: -> { RULE_TYPE }}
     has_no_get
     has_no_post

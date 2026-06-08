@@ -13,16 +13,18 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CatalogGenericFeeds < AdObject
+  class ProductGroupGet < AdObject
 
-    field :id, 'string'
+    field :id, 'int'
+    field :mini_shops_product_sets_count, 'int'
+    field :product_catalog, 'object'
+    field :products, 'object'
+    field :representative_item_id, 'string'
+    field :retailer_id, 'string'
+    field :variants, { list: 'object' }
     has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :uploads do |edge|
-      edge.get 'CatalogGenericFeedsGet'
-    end
 
   end
 end

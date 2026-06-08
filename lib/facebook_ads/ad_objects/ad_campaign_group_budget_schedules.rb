@@ -13,12 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogUserActions < AdObject
+  class AdCampaignGroupBudgetSchedules < AdObject
 
-    has_no_id
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :budget_schedules do |edge|
+      edge.post 'AdCampaignGroupBudgetSchedulesPost'
+    end
 
   end
 end

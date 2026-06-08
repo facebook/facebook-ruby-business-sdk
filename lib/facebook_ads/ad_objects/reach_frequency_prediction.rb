@@ -107,6 +107,7 @@ module FacebookAds
     field :is_io, 'bool'
     field :is_reserved_buying, 'int'
     field :is_trp, 'bool'
+    field :meta_moment_maker_spec, 'MetaMomentMakerConfig'
     field :name, 'string'
     field :objective, 'int'
     field :objective_name, 'string'

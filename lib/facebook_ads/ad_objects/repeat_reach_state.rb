@@ -13,16 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ArticlesAndPublicationsItem < AdObject
+  class RepeatReachState < AdObject
 
-    field :id, 'string'
+    field :current_saturation_level, 'double'
+    field :forecasted_saturation_level, 'double'
+    field :high_saturation_threshold, 'double'
+    field :should_display_cpr, 'bool'
+    has_no_id
     has_no_get
     has_no_post
     has_no_delete
-
-    has_edge : do |edge|
-      edge.delete 'ArticlesAndPublicationsItemDelete'
-    end
 
   end
 end

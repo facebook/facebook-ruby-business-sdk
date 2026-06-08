@@ -18,6 +18,7 @@ module FacebookAds
       "available for order",
       "discontinued",
       "in stock",
+      "mark_as_expired",
       "mark_as_sold",
       "out of stock",
       "pending",

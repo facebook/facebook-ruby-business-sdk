@@ -306,7 +306,9 @@ module FacebookAds
     field :premiere_living_room_status, 'string'
     field :privacy, 'Privacy'
     field :published, 'bool'
+    field :replace_audio_status, 'string'
     field :scheduled_publish_time, 'datetime'
+    field :selected_audio_spec, 'object'
     field :source, 'string'
     field :spherical, 'bool'
     field :status, 'VideoStatus'
@@ -430,15 +432,10 @@ module FacebookAds
       edge.get 'Page'
     end
 
-    has_edge :gaming_clip_create do |edge|
-      edge.post 'AdVideo' do |api|
-        api.has_param :duration_seconds, 'double'
-      end
-    end
-
     has_edge :likes do |edge|
       edge.get 'Profile'
       edge.post 'AdVideo' do |api|
+        api.has_param :attribution_id_v2, 'string'
         api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :notify, 'bool'

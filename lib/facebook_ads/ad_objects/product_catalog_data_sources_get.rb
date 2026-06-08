@@ -14,6 +14,12 @@ module FacebookAds
   # pull request for this class.
 
   class ProductCatalogDataSourcesGet < AdObject
+    INGESTION_SOURCE_TYPE = [
+      "ALL",
+      "PRIMARY",
+      "SUPPLEMENTARY",
+    ]
+
 
     field :data, { list: 'object' }
     field :paging, 'object'

@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdAssetTargetRuleTargeting < AdObject
     DEVICE_PLATFORMS = [
+      "connected_tv",
       "desktop",
       "mobile",
     ]

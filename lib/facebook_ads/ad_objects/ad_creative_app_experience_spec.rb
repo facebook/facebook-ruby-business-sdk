@@ -13,16 +13,15 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class BizInboxOffsiteEmailAccount < AdObject
+  class AdCreativeAppExperienceSpec < AdObject
 
-    field :email_address, 'string'
-    field :id, 'string'
+    field :reveal_details, 'object'
+    field :show_spotlights, 'object'
+    field :website_summary, 'object'
+    has_no_id
+    has_no_get
     has_no_post
     has_no_delete
-
-    has_edge :assigned_users do |edge|
-      edge.get 'AssignedUser'
-    end
 
   end
 end

@@ -33,7 +33,7 @@ module FacebookAds
       "media_titles",
       "offer_items",
       "offline_commerce",
-      "professional_services",
+      "services",
       "transactable_items",
       "vehicles",
     ]
@@ -126,6 +126,7 @@ module FacebookAds
     field :name, 'string'
     field :owner_business, 'Business'
     field :product_count, 'int'
+    field :show_assign_permissions, 'bool'
     field :store_catalog_settings, 'StoreCatalogSettings'
     field :user_access_expire_time, 'datetime'
     field :vertical, 'string'

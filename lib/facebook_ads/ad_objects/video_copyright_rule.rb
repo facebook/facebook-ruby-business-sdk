@@ -28,6 +28,7 @@ module FacebookAds
     field :id, 'string'
     field :is_in_migration, 'bool'
     field :name, 'string'
+    field :validity_status, 'string'
     has_no_post
     has_no_delete
 

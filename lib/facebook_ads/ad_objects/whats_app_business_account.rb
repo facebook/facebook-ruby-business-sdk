@@ -32,6 +32,7 @@ module FacebookAds
       "TIER_10K",
       "TIER_250",
       "TIER_2K",
+      "TIER_50",
       "TIER_UNLIMITED",
       "UNTIERED",
     ]
@@ -72,6 +73,7 @@ module FacebookAds
     SEND_TYPE = [
       "CAMPAIGN",
       "DIRECT",
+      "TRIGGER",
     ]
 
     SUB_CATEGORY = [
@@ -102,6 +104,7 @@ module FacebookAds
     field :is_enabled_for_insights, 'bool'
     field :is_shared_with_partners, 'bool'
     field :linked_commerce_account, 'CommerceMerchantSettings'
+    field :marketing_messages_ad_account, 'object'
     field :marketing_messages_lite_api_status, 'string'
     field :marketing_messages_onboarding_status, 'string'
     field :message_template_namespace, 'string'
@@ -265,13 +268,16 @@ module FacebookAds
         api.has_param :cta_url_link_tracking_opted_out, 'bool'
         api.has_param :degrees_of_freedom_spec, 'hash'
         api.has_param :display_format, { enum: -> { WhatsAppBusinessAccount::DISPLAY_FORMAT }}
+        api.has_param :is_primary_device_delivery_only, 'bool'
         api.has_param :language, 'string'
         api.has_param :library_template_body_inputs, 'hash'
         api.has_param :library_template_button_inputs, { list: 'hash' }
         api.has_param :library_template_name, 'string'
         api.has_param :message_send_ttl_seconds, 'int'
         api.has_param :name, 'string'
+        api.has_param :optimization_spec, 'hash'
         api.has_param :parameter_format, { enum: -> { WhatsAppBusinessAccount::PARAMETER_FORMAT }}
+        api.has_param :product_set_id, 'string'
         api.has_param :send_type, { enum: -> { WhatsAppBusinessAccount::SEND_TYPE }}
         api.has_param :sub_category, { enum: -> { WhatsAppBusinessAccount::SUB_CATEGORY }}
       end
@@ -355,12 +361,6 @@ module FacebookAds
       edge.get
     end
 
-    has_edge :set_obo_mobility_intent do |edge|
-      edge.post do |api|
-        api.has_param :solution_id, 'string'
-      end
-    end
-
     has_edge :set_solution_migration_intent do |edge|
       edge.post do |api|
         api.has_param :app_id, 'string'
@@ -385,8 +385,8 @@ module FacebookAds
       edge.get do |api|
         api.has_param :end, 'datetime'
         api.has_param :granularity, { enum: %w{DAILY }}
-        api.has_param :metric_types, { list: { enum: %w{APP_ACTIVATIONS APP_ADD_TO_CART APP_CHECKOUTS_INITIATED APP_PURCHASES APP_PURCHASES_CONVERSION_VALUE CLICKED COST DELIVERED READ REPLIED SENT WEBSITE_ADD_TO_CART WEBSITE_CHECKOUTS_INITIATED WEBSITE_PURCHASES WEBSITE_PURCHASES_CONVERSION_VALUE }} }
-        api.has_param :product_type, { enum: %w{CLOUD_API MARKETING_MESSAGES_LITE_API }}
+        api.has_param :metric_types, { list: 'string' }
+        api.has_param :product_type, { enum: %w{CAMPAIGN_INSIGHTS CLOUD_API MARKETING_MESSAGES_LITE_API }}
         api.has_param :start, 'datetime'
         api.has_param :template_ids, { list: 'string' }
         api.has_param :use_waba_timezone, 'bool'
@@ -397,7 +397,7 @@ module FacebookAds
       edge.get do |api|
         api.has_param :end, 'datetime'
         api.has_param :granularity, { enum: %w{DAILY }}
-        api.has_param :metric_types, { list: { enum: %w{APP_ACTIVATIONS APP_ADD_TO_CART APP_CHECKOUTS_INITIATED APP_PURCHASES APP_PURCHASES_CONVERSION_VALUE CLICKED COST DELIVERED READ REPLIED SENT WEBSITE_ADD_TO_CART WEBSITE_CHECKOUTS_INITIATED WEBSITE_PURCHASES WEBSITE_PURCHASES_CONVERSION_VALUE }} }
+        api.has_param :metric_types, { list: 'string' }
         api.has_param :start, 'datetime'
         api.has_param :template_group_ids, { list: 'string' }
         api.has_param :use_waba_timezone, 'bool'
@@ -410,13 +410,6 @@ module FacebookAds
         api.has_param :description, 'string'
         api.has_param :name, 'string'
         api.has_param :whatsapp_business_templates, { list: 'string' }
-      end
-    end
-
-    has_edge :template_performance_metrics do |edge|
-      edge.get do |api|
-        api.has_param :name, 'string'
-        api.has_param :template_id, 'string'
       end
     end
 

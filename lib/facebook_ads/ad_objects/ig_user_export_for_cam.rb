@@ -538,8 +538,17 @@ module FacebookAds
       "unknown",
     ]
 
+    RECOMMENDATION_TYPE = [
+      "high_ad_performance",
+      "most_ads_experience",
+      "most_relevant_for_me",
+      "similar_audience",
+      "similar_brands",
+    ]
+
 
     field :age_bucket, 'string'
+    field :badges, { list: 'string' }
     field :biography, 'string'
     field :country, 'string'
     field :email, 'string'
@@ -547,6 +556,7 @@ module FacebookAds
     field :has_brand_partnership_experience, 'bool'
     field :id, 'string'
     field :is_account_verified, 'bool'
+    field :is_creator_following_brand, 'bool'
     field :is_paid_partnership_messages_enabled, 'bool'
     field :messaging_id, 'string'
     field :onboarded_status, 'bool'

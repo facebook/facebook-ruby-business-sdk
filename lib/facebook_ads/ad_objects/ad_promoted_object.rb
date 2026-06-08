@@ -106,6 +106,7 @@ module FacebookAds
     field :application_id, 'string'
     field :boosted_product_set_id, 'string'
     field :conversion_goal_id, 'string'
+    field :custom_attribution_source_ids, { list: 'string' }
     field :custom_conversion_id, 'string'
     field :custom_event_str, 'string'
     field :custom_event_type, { enum: -> { CUSTOM_EVENT_TYPE }}
@@ -114,14 +115,18 @@ module FacebookAds
     field :event_id, 'string'
     field :full_funnel_objective, { enum: -> { FULL_FUNNEL_OBJECTIVE }}
     field :fundraiser_campaign_id, 'string'
+    field :instagram_actor_id, 'string'
+    field :job_listing_id, 'string'
     field :lead_ads_custom_event_str, 'string'
     field :lead_ads_custom_event_type, { enum: -> { LEAD_ADS_CUSTOM_EVENT_TYPE }}
+    field :lead_ads_follow_up_event, 'string'
     field :lead_ads_form_event_source_type, 'string'
     field :lead_ads_offsite_conversion_type, 'string'
+    field :lead_ads_quality_volume_setting, 'string'
     field :lead_ads_selected_pixel_id, 'string'
     field :live_video_destination, 'string'
     field :mcme_conversion_id, 'string'
-    field :multi_event_product, 'string'
+    field :multi_event_product, 'int'
     field :object_store_url, 'string'
     field :object_store_urls, { list: 'string' }
     field :offer_id, 'string'

@@ -13,11 +13,9 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductFeedArticlesAndPublicationsGet < AdObject
+  class PartnershipAdContentListSpec < AdObject
 
-    field :data, { list: 'object' }
-    field :paging, 'object'
-    field :summary, 'object'
+    field :list_id, 'string'
     has_no_id
     has_no_get
     has_no_post

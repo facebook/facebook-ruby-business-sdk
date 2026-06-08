@@ -13,15 +13,23 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class CatalogSubscribedApps < AdObject
+  class ProductCatalogCheckBatchRequestStatus < AdObject
 
     field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
 
-    has_edge :subscribed_apps do |edge|
-      edge.delete 'CatalogSubscribedAppsDelete'
+    has_edge :check_batch_request_status do |edge|
+      edge.get 'ProductCatalogCheckBatchRequestStatusGet' do |api|
+        api.has_param :after, 'string'
+        api.has_param :before, 'string'
+        api.has_param :error_priority, { enum: -> { ProductCatalogCheckBatchRequestStatusGet::ERROR_PRIORITY }}
+        api.has_param :fields, 'string'
+        api.has_param :handle, 'string'
+        api.has_param :limit, 'int'
+        api.has_param :load_ids_of_invalid_requests, 'bool'
+      end
     end
 
   end

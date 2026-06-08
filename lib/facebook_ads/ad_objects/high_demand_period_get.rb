@@ -13,10 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogGet < AdObject
+  class HighDemandPeriodGet < AdObject
 
+    field :ad_object_id, 'string'
+    field :budget_value, 'int'
+    field :budget_value_type, 'string'
     field :id, 'string'
-    field :name, 'string'
+    field :recurrence_type, 'string'
+    field :time_end, 'string'
+    field :time_start, 'string'
+    field :weekly_schedule, { list: 'object' }
     has_no_get
     has_no_post
     has_no_delete

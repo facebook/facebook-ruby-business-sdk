@@ -101,9 +101,11 @@ module FacebookAds
     field :is_eligible_for_dark_post, 'bool'
     field :is_eligible_for_promotion, 'bool'
     field :is_expired, 'bool'
+    field :is_fb_live_videos, 'bool'
     field :is_hidden, 'bool'
     field :is_inline_created, 'bool'
     field :is_instagram_eligible, 'bool'
+    field :is_live_clip, 'bool'
     field :is_popular, 'bool'
     field :is_published, 'bool'
     field :is_spherical, 'bool'
@@ -136,6 +138,7 @@ module FacebookAds
     field :updated_time, 'datetime'
     field :via, 'object'
     field :video_buying_eligibility, { list: 'string' }
+    field :was_fb_live_videos, 'bool'
     field :width, 'int'
 
     has_edge :attachments do |edge|
@@ -180,10 +183,12 @@ module FacebookAds
 
     has_edge :likes do |edge|
       edge.delete do |api|
+        api.has_param :attribution_id_v2, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :tracking, 'string'
       end
       edge.post 'Post' do |api|
+        api.has_param :attribution_id_v2, 'string'
         api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :tracking, 'string'

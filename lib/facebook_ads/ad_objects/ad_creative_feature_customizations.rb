@@ -27,6 +27,7 @@ module FacebookAds
     field :ig_stream_tag_name, 'string'
     field :image_crop_style, 'string'
     field :pe_carousel, 'object'
+    field :recomposition_type, 'object'
     field :showcase_card_display, 'string'
     field :text_extraction, 'object'
     field :text_style, 'string'

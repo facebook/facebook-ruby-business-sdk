@@ -25,7 +25,7 @@ module FacebookAds
         api.has_param :after, 'string'
         api.has_param :before, 'string'
         api.has_param :fields, 'string'
-        api.has_param :ingestion_source_type, 'string'
+        api.has_param :ingestion_source_type, { enum: -> { ProductCatalogDataSourcesGet::INGESTION_SOURCE_TYPE }}
         api.has_param :limit, 'int'
       end
     end

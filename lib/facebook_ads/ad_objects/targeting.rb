@@ -15,11 +15,13 @@ module FacebookAds
 
   class Targeting < AdObject
     DEVICE_PLATFORMS = [
+      "connected_tv",
       "desktop",
       "mobile",
     ]
 
     EFFECTIVE_DEVICE_PLATFORMS = [
+      "connected_tv",
       "desktop",
       "mobile",
     ]
@@ -50,6 +52,7 @@ module FacebookAds
     field :education_schools, { list: 'IdName' }
     field :education_statuses, { list: 'int' }
     field :effective_audience_network_positions, { list: 'string' }
+    field :effective_brand_safety_content_filter_levels, { list: 'string' }
     field :effective_device_platforms, { list: { enum: -> { EFFECTIVE_DEVICE_PLATFORMS }} }
     field :effective_facebook_positions, { list: 'string' }
     field :effective_instagram_positions, { list: 'string' }
@@ -109,6 +112,7 @@ module FacebookAds
     field :regions, { list: 'IdName' }
     field :relationship_statuses, { list: 'int' }
     field :site_category, { list: 'string' }
+    field :subscriber_universe, 'TargetingSubscriberUniverse'
     field :targeting_automation, 'TargetingAutomation'
     field :targeting_optimization, 'string'
     field :targeting_relaxation_types, 'TargetingRelaxation'

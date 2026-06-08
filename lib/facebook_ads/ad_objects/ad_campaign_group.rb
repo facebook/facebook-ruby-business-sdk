@@ -21,9 +21,7 @@ module FacebookAds
     has_no_delete
 
     has_edge : do |edge|
-      edge.get 'AdCampaignGroupGet' do |api|
-        api.has_param :fields, 'string'
-      end
+      edge.delete 'AdCampaignGroupDelete'
     end
 
   end

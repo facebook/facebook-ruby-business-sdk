@@ -17,7 +17,6 @@ module FacebookAds
 
     field :book_on_website_text, 'string'
     field :call_business_text, 'string'
-    field :call_to_action_title, 'string'
     field :chat_on_messenger_text, 'string'
     field :chat_on_whatsapp_text, 'string'
     field :contact_information_text, 'string'

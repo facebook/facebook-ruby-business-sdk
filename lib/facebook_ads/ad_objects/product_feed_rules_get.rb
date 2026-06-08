@@ -17,6 +17,7 @@ module FacebookAds
 
     field :data, { list: 'object' }
     field :paging, 'object'
+    field :summary, 'object'
     has_no_id
     has_no_get
     has_no_post

@@ -57,6 +57,7 @@ module FacebookAds
     field :action_video_asset_id, 'string'
     field :action_video_sound, 'string'
     field :action_video_type, 'string'
+    field :custom, 'string'
     field :dda, 'string'
     field :incrementality, 'string'
     field :incrementality_all_conversions, 'string'

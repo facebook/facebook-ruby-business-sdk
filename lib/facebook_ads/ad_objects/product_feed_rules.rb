@@ -21,11 +21,7 @@ module FacebookAds
     has_no_delete
 
     has_edge :rules do |edge|
-      edge.get 'ProductFeedRulesGet' do |api|
-        api.has_param :after, 'string'
-        api.has_param :before, 'string'
-        api.has_param :limit, 'int'
-      end
+      edge.get 'ProductFeedRulesGet'
     end
 
   end

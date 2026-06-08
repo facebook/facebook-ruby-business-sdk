@@ -17,6 +17,7 @@ module FacebookAds
 
     field :capabilities, 'object'
     field :pills, { list: 'object' }
+    field :pills_mbs_version, 'int'
     has_no_id
     has_no_get
     has_no_post

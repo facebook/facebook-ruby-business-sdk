@@ -19,6 +19,7 @@ module FacebookAds
     field :audio_library_policy, { list: 'map<string, list<map<string, Object>>>' }
     field :creation_time, 'datetime'
     field :id, 'string'
+    field :reference_file_isrcs, { list: 'string' }
     field :reference_files, { list: 'object' }
     field :title, 'string'
     field :update_time, 'datetime'

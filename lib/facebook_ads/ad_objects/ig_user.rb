@@ -17,6 +17,7 @@ module FacebookAds
 
     field :biography, 'string'
     field :business_discovery, 'IgUser'
+    field :collaborative_media_search, 'ShadowIgUserCollaborativeMedia'
     field :followers_count, 'int'
     field :follows_count, 'int'
     field :has_profile_pic, 'bool'
@@ -136,12 +137,17 @@ module FacebookAds
         api.has_param :creator_max_followers, 'int'
         api.has_param :creator_min_engaged_accounts, 'int'
         api.has_param :creator_min_followers, 'int'
+        api.has_param :creator_states, { list: 'string' }
+        api.has_param :custom_audience_id, 'string'
         api.has_param :has_public_contact_email, 'bool'
+        api.has_param :is_paid_partnership_messages_enabled, 'bool'
         api.has_param :major_audience_age_bucket, { list: 'object' }
         api.has_param :major_audience_countries, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_COUNTRIES }} }
         api.has_param :major_audience_device_type, { list: 'object' }
         api.has_param :major_audience_gender, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_GENDER }} }
+        api.has_param :major_audience_states, { list: 'string' }
         api.has_param :query, 'string'
+        api.has_param :recommendation_type, { enum: -> { IgUserExportForCam::RECOMMENDATION_TYPE }}
         api.has_param :reels_interaction_rate, 'object'
         api.has_param :show_onboarded_creators_only, 'bool'
         api.has_param :similar_to_creators, { list: 'string' }
@@ -188,13 +194,16 @@ module FacebookAds
       end
       edge.post 'IgMedia' do |api|
         api.has_param :alt_text, 'string'
+        api.has_param :audio_configuration, 'string'
         api.has_param :audio_name, 'string'
+        api.has_param :branded_content_sponsor_ids, { list: 'int' }
         api.has_param :caption, 'string'
         api.has_param :children, { list: 'string' }
         api.has_param :collaborators, { list: 'string' }
         api.has_param :cover_url, 'string'
         api.has_param :image_url, 'string'
         api.has_param :is_carousel_item, 'bool'
+        api.has_param :is_paid_partnership, 'bool'
         api.has_param :location_id, 'string'
         api.has_param :media_type, 'string'
         api.has_param :product_tags, { list: 'hash' }

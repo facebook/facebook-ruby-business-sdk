@@ -35,6 +35,7 @@ module FacebookAds
     STEREOSCOPIC_MODE = [
       "LEFT_RIGHT",
       "MONO",
+      "MULTI_VIEW",
       "TOP_BOTTOM",
     ]
 

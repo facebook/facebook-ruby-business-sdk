@@ -15,12 +15,14 @@ module FacebookAds
 
   class EntWithSponsor < AdObject
 
+    field :has_audio_swapped_fb_copy, 'bool'
     field :id, 'string'
     field :is_branded_content, 'bool'
     field :owner_linked_instagram_user_v1_id, 'string'
     field :owner_picture, 'string'
     field :post_id, 'string'
     field :post_info, 'Post'
+    field :promotable_id, 'string'
     has_no_get
     has_no_post
     has_no_delete

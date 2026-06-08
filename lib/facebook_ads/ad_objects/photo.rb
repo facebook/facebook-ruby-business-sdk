@@ -107,6 +107,7 @@ module FacebookAds
     has_edge :likes do |edge|
       edge.get 'Profile'
       edge.post 'Photo' do |api|
+        api.has_param :attribution_id_v2, 'string'
         api.has_param :feedback_source, 'string'
         api.has_param :nectar_module, 'string'
         api.has_param :notify, 'bool'

@@ -129,6 +129,7 @@ module FacebookAds
         api.has_param :client_business, 'string'
         api.has_param :confidence_level, 'double'
         api.has_param :cooldown_start_time, 'int'
+        api.has_param :creative_test_config, 'hash'
         api.has_param :description, 'string'
         api.has_param :end_time, 'int'
         api.has_param :name, 'string'
@@ -457,6 +458,7 @@ module FacebookAds
       edge.post 'User' do |api|
         api.has_param :bot_message_payload_elements, 'string'
         api.has_param :filtering, { list: { enum: -> { User::FILTERING }} }
+        api.has_param :game_metadata, 'string'
         api.has_param :href, 'object'
         api.has_param :label, 'string'
         api.has_param :message, 'hash'
@@ -639,6 +641,7 @@ module FacebookAds
         api.has_param :publish_event_id, 'int'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
+        api.has_param :selected_audio_spec, 'hash'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :source, 'string'
         api.has_param :source_instagram_media_id, 'string'

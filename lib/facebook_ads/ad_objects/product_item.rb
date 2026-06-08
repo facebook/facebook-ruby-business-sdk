@@ -28,6 +28,7 @@ module FacebookAds
       "available for order",
       "discontinued",
       "in stock",
+      "mark_as_expired",
       "mark_as_sold",
       "out of stock",
       "pending",
@@ -401,6 +402,7 @@ module FacebookAds
       "ITEM_PRICE_NOT_POSITIVE",
       "ITEM_STALE_OUT_OF_STOCK",
       "MARKETPLACE_DISABLED_BY_USER",
+      "MARKETPLACE_NOT_SHIPPED_ITEM",
       "MARKETPLACE_PARTNER_AUCTION_NO_BID_CLOSE_TIME",
       "MARKETPLACE_PARTNER_CURRENCY_NOT_VALID",
       "MARKETPLACE_PARTNER_DISTRIBUTION_DISABLED",
@@ -414,6 +416,10 @@ module FacebookAds
       "MARKETPLACE_PARTNER_RULE_LISTING_LIMIT_EXCEEDED",
       "MARKETPLACE_PARTNER_SELLER_BANNED",
       "MARKETPLACE_PARTNER_SELLER_NOT_VALID",
+      "MARKETPLACE_SHIPPED_ITEM_EXPIRED",
+      "MARKETPLACE_SHIPPED_ITEM_NOT_AVAILABLE",
+      "MARKETPLACE_SHIPPED_SELLER_FEATURE_BANNED",
+      "MARKETPLACE_SHIPPED_SELLER_NOT_FULLY_ONBOARDED",
       "MINI_SHOPS_DISABLED_BY_USER",
       "MISSING_CHECKOUT",
       "MISSING_CHECKOUT_CURRENCY",
@@ -464,6 +470,7 @@ module FacebookAds
       "RETAILER_ID_NOT_PROVIDED",
       "RETAILER_ID_USED_BY_GROUP",
       "SHOPIFY_INVALID_RETAILER_ID",
+      "SHOPIFY_ITEM_MISSING_DELIVERY_PROFILE_ZERO_INVENTORY",
       "SHOPIFY_ITEM_MISSING_SHIPPING_PROFILE",
       "SHOPS_POLICY_VIOLATION",
       "SUBSCRIPTION_INFO_NOT_ENABLED_FOR_FEED",
@@ -478,6 +485,8 @@ module FacebookAds
       "VIDEO_FETCH_FAILED_FILE_SIZE_EXCEEDED",
       "VIDEO_FETCH_FAILED_FORBIDDEN",
       "VIDEO_FETCH_FAILED_LINK_BROKEN",
+      "VIDEO_FETCH_FAILED_RATE_LIMITED",
+      "VIDEO_FETCH_FAILED_SERVER_ERROR",
       "VIDEO_FETCH_FAILED_TIMED_OUT",
       "VIDEO_ISSUE_GENERIC",
       "VIDEO_NOT_DOWNLOADABLE",
@@ -811,6 +820,8 @@ module FacebookAds
     field :material, 'string'
     field :mobile_link, 'string'
     field :name, 'string'
+    field :offer_disclaimer, 'string'
+    field :offer_disclaimer_url, 'string'
     field :ordering_index, 'int'
     field :origin_country, 'string'
     field :overall_ranking, 'int'

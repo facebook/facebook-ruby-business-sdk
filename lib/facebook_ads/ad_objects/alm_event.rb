@@ -26,6 +26,7 @@ module FacebookAds
     field :id, 'string'
     field :parent_advertiser_ids, { list: 'string' }
     field :reseller_business_id, 'string'
+    field :solution_id, 'string'
     field :sub_channel, 'string'
     field :user_id, 'string'
     has_no_post

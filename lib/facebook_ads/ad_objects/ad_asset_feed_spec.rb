@@ -62,6 +62,7 @@ module FacebookAds
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "JOIN_CHANNEL",
+      "JOIN_LIVE_VIDEO",
       "LEARN_MORE",
       "LIKE_PAGE",
       "LISTEN_MUSIC",
@@ -147,6 +148,7 @@ module FacebookAds
     field :translations, { list: 'object' }
     field :upcoming_events, { list: 'object' }
     field :videos, { list: 'AdAssetFeedSpecVideo' }
+    field :web_destination_spec, 'object'
     has_no_id
     has_no_get
     has_no_post

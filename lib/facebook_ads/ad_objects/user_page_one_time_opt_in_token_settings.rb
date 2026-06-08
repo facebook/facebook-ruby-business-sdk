@@ -14,6 +14,13 @@ module FacebookAds
   # pull request for this class.
 
   class UserPageOneTimeOptInTokenSettings < AdObject
+    OPT_IN_SOURCE = [
+      "COMMENT_AUTOMATION",
+      "CTM",
+      "REPLY_AUTOMATION",
+      "SUBSCRIBER_LIST",
+    ]
+
 
     field :creation_timestamp, 'int'
     field :custom_audience_ids, { list: 'string' }

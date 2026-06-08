@@ -14,6 +14,14 @@ module FacebookAds
   # pull request for this class.
 
   class AdsValueAdjustmentRuleCollection < AdObject
+    ENTRY_POINT = [
+      "ADVERTISING_SETTINGS",
+      "L2_CONVERSION_LOCATION",
+      "L2_GLOBAL",
+      "L2_NCA_GOAL",
+      "L2_PLACEMENT",
+    ]
+
     PRODUCT_TYPE = [
       "AUDIENCE",
       "LEADGEN_ADS",
@@ -33,11 +41,14 @@ module FacebookAds
     field :name, 'string'
     field :product_type, 'string'
     field :status, 'string'
+    field :entry_point, { enum: -> { ENTRY_POINT }}
     field :rules, { list: 'hash' }
     has_no_delete
 
     has_edge :delete_rule_set do |edge|
-      edge.post 'AdsValueAdjustmentRuleCollection'
+      edge.post 'AdsValueAdjustmentRuleCollection' do |api|
+        api.has_param :status, { enum: -> { AdsValueAdjustmentRuleCollection::STATUS }}
+      end
     end
 
     has_edge :rules do |edge|

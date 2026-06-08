@@ -15,6 +15,7 @@ module FacebookAds
 
   class AdCreativeFormatTransformationSpec < AdObject
 
+    field :customizations, { list: 'object' }
     field :data_source, { list: 'string' }
     field :format, 'string'
     has_no_id

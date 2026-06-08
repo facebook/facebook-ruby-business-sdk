@@ -22,7 +22,6 @@ module FacebookAds
 
     field :checkout_config, 'string'
     field :contact_email, 'string'
-    field :cta, 'string'
     field :display_name, 'string'
     field :facebook_channel, 'object'
     field :id, 'string'
@@ -49,14 +48,6 @@ module FacebookAds
     has_edge :commerce_payouts do |edge|
       edge.get 'CommercePayout' do |api|
         api.has_param :end_time, 'datetime'
-        api.has_param :start_time, 'datetime'
-      end
-    end
-
-    has_edge :commerce_transactions do |edge|
-      edge.get 'CommerceOrderTransactionDetail' do |api|
-        api.has_param :end_time, 'datetime'
-        api.has_param :payout_reference_id, 'string'
         api.has_param :start_time, 'datetime'
       end
     end

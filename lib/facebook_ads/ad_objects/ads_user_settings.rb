@@ -16,6 +16,7 @@ module FacebookAds
   class AdsUserSettings < AdObject
 
     field :a_plus_c_survey_seen, 'bool'
+    field :adaptive_geo_excl_banner_seen_ts, { list: 'hash' }
     field :add_overlays_opt_in_status, 'string'
     field :adgroup_name_template, 'object'
     field :ads_cs_catalog_opt_out_timestamp, { list: 'hash' }
@@ -52,11 +53,13 @@ module FacebookAds
     field :da_creative_flex_opt_in_status, 'string'
     field :da_hide_price_opt_in_status, 'string'
     field :da_manual_media_nux_impressions, 'int'
+    field :dco_to_mmu_opt_out_status, 'string'
     field :default_creation_mode, 'string'
     field :dynamic_partnership_ads_opt_in_status, 'string'
     field :enhance_cta_text_extraction_opt_in_status, 'string'
     field :export_format_default, 'string'
     field :feedback_surveys, { list: 'string' }
+    field :ff_to_mmu_opt_out_status, 'string'
     field :focus_mode_default, 'string'
     field :gen_ai_alpha_test_status, 'int'
     field :gen_ai_auto_select_opt_in_status, 'string'
@@ -65,6 +68,7 @@ module FacebookAds
     field :image_brightness_and_contrast_opt_in_status, 'string'
     field :image_expansion_opt_in_status, 'string'
     field :image_templates_text_extraction_opt_in_status, 'string'
+    field :image_text_translation_opt_in_status, 'string'
     field :is_ads_ai_consented, 'bool'
     field :is_cbo_default_on, 'bool'
     field :is_se_removal_guidance_dismissed, 'bool'
@@ -80,6 +84,9 @@ module FacebookAds
     field :pac_relaxation_opt_in_status, 'string'
     field :pcau_cat_optout_survey_impr, 'int'
     field :pcau_cat_optout_survey_resp_ts, 'datetime'
+    field :pe_ai_relevancy_opt_out_ts, 'datetime'
+    field :pe_show_products_survey_impr, 'int'
+    field :pe_show_products_survey_resp_ts, 'datetime'
     field :placement_group_square_opt_in_status, 'string'
     field :placement_group_vertical_opt_in_status, 'string'
     field :previously_seen_recommendations, { list: 'string' }
@@ -109,6 +116,8 @@ module FacebookAds
     field :syd_campaign_trends_metric, 'string'
     field :text_optimizations_text_extraction_opt_in_status, 'string'
     field :text_translation_opt_in_status, 'string'
+    field :text_unification_opt_in_status, 'string'
+    field :text_unification_opt_in_status_v2, 'string'
     field :text_variations_sticky_opt_in_status, 'string'
     field :total_coupon_syd_dismissals, 'int'
     field :total_coupon_upsell_dismissals, 'int'
@@ -117,6 +126,7 @@ module FacebookAds
     field :use_stepper_primary_entry, 'bool'
     field :user, 'User'
     field :video_to_image_opt_in_status, 'string'
+    field :voiceover_trans_opt_in_status, 'string'
     field :website_media_opt_in_status, 'string'
     field :website_reviews_data_opt_in_status, 'string'
     field :website_selling_points_data_opt_in_status, 'string'

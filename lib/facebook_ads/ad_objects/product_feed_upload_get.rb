@@ -24,7 +24,7 @@ module FacebookAds
     ]
 
 
-    field :end_time, 'string'
+    field :end_time, 'mixed'
     field :error_count, 'int'
     field :error_report, 'object'
     field :errors, 'object'
@@ -36,7 +36,7 @@ module FacebookAds
     field :num_invalid_items, 'int'
     field :num_persisted_items, 'int'
     field :progresses, 'object'
-    field :start_time, 'string'
+    field :start_time, 'mixed'
     field :upload_complete, 'bool'
     field :url, 'string'
     field :warning_count, 'int'

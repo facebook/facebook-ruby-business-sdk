@@ -32,6 +32,7 @@ module FacebookAds
       "TIER_10K",
       "TIER_250",
       "TIER_2K",
+      "TIER_50",
       "TIER_UNLIMITED",
       "UNTIERED",
     ]
@@ -85,6 +86,8 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_CREATIVE_MANAGEMENT",
+      "PROFILE_PLUS_CREATOR_MANAGEMENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
@@ -718,6 +721,8 @@ module FacebookAds
       "PROFILE_PLUS_ADVERTISE",
       "PROFILE_PLUS_ANALYZE",
       "PROFILE_PLUS_CREATE_CONTENT",
+      "PROFILE_PLUS_CREATIVE_MANAGEMENT",
+      "PROFILE_PLUS_CREATOR_MANAGEMENT",
       "PROFILE_PLUS_FACEBOOK_ACCESS",
       "PROFILE_PLUS_FULL_CONTROL",
       "PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT",
@@ -761,206 +766,6 @@ module FacebookAds
       "RESTAURANTS",
       "RETAIL",
       "TRANSPORTATION_AND_ACCOMMODATION",
-    ]
-
-    SUBVERTICAL_V2 = [
-      "ACCOUNTING_AND_TAX",
-      "ACTIVITIES_AND_LEISURE",
-      "AIR",
-      "APPAREL_AND_ACCESSORIES",
-      "ARTS_AND_HERITAGE_AND_EDUCATION",
-      "AR_OR_VR_GAMING",
-      "AUDIO_STREAMING",
-      "AUTO",
-      "AUTO_INSURANCE",
-      "AUTO_RENTAL",
-      "BABY",
-      "BALLOT_INITIATIVE_OR_REFERENDUM",
-      "BEAUTY",
-      "BEAUTY_AND_FASHION",
-      "BEER_AND_WINE_AND_LIQUOR_AND_MALT_BEVERAGES",
-      "BOOKSTORES",
-      "BROADCAST_TELEVISION",
-      "BUSINESS_CONSULTANTS",
-      "BUYING_AGENCY",
-      "CABLE_AND_SATELLITE",
-      "CABLE_TELEVISION",
-      "CALL_CENTER_AND_MESSAGING_SERVICES",
-      "CANDIDATE_OR_POLITICIAN",
-      "CAREER",
-      "CAREER_AND_TECH",
-      "CASUAL_DINING",
-      "CHRONIC_CONDITIONS_AND_MEDICAL_CAUSES",
-      "CIVIC_INFLUENCERS",
-      "CLINICAL_TRIALS",
-      "COFFEE",
-      "COMPUTER_AND_SOFTWARE_AND_HARDWARE",
-      "CONSOLE_AND_CROSS_PLATFORM_GAMING",
-      "CONSULTING",
-      "CONSUMER_ELECTRONICS",
-      "COUNSELING_AND_PSYCHOTHERAPY",
-      "CREATIVE_AGENCY",
-      "CREDIT_AND_FINANCING_AND_MORTAGES",
-      "CRUISES_AND_MARINE",
-      "CULTURE_AND_LIFESTYLE",
-      "DATA_ANALYTICS_AND_DATA_MANAGEMENT",
-      "DATING_AND_TECHNOLOGY_APPS",
-      "DEPARTMENT_STORE",
-      "DESKTOP_SOFTWARE",
-      "DIETING_AND_FITNESS_PROGRAMS",
-      "DIGITAL_NATIVE_EDUCATION_OR_TRAINING",
-      "DRINKING_PLACES",
-      "EDUCATION_RESOURCES",
-      "ED_TECH",
-      "ELEARNING_AND_MASSIVE_ONLINE_OPEN_COURSES",
-      "ELECTION_COMMISSION",
-      "ELECTRONICS_AND_APPLIANCES",
-      "ENGINEERING_AND_DESIGN",
-      "ENVIRONMENT_AND_ANIMAL_WELFARE",
-      "ESPORTS",
-      "EVENTS",
-      "FARMING_AND_RANCHING",
-      "FILE_STORAGE_AND_CLOUD_AND_DATA_SERVICES",
-      "FINANCE",
-      "FIN_TECH",
-      "FISHING_AND_HUNTING_AND_FORESTRY_AND_LOGGING",
-      "FITNESS",
-      "FOOD",
-      "FOOTWEAR",
-      "FOR_PROFIT_COLLEGES_AND_UNIVERSITIES",
-      "FULL_SERVICE_AGENCY",
-      "GOVERNMENT_CONTROLLED_ENTITY",
-      "GOVERNMENT_DEPARTMENT_OR_AGENCY",
-      "GOVERNMENT_OFFICIAL",
-      "GOVERNMENT_OWNED_MEDIA",
-      "GROCERY_AND_DRUG_AND_CONVENIENCE",
-      "HEAD_OF_STATE",
-      "HEALTH_INSURANCE",
-      "HEALTH_SYSTEMS_AND_PRACTITIONERS",
-      "HEALTH_TECH",
-      "HOME_AND_FURNITURE_AND_OFFICE",
-      "HOME_IMPROVEMENT",
-      "HOME_INSURANCE",
-      "HOME_TECH",
-      "HOTEL_AND_ACCOMODATION",
-      "HOUSEHOLD_GOODS_DURABLE",
-      "HOUSEHOLD_GOODS_NON_DURABLE",
-      "HR_AND_FINANCIAL_MANAGEMENT",
-      "HUMANITARIAN_OR_DISASTER_RELIEF",
-      "INDEPENDENT_EXPENDITURE_GROUP",
-      "INSURANCE_TECH",
-      "INTERNATIONAL_ORGANIZATON",
-      "INVESTMENT_BANK_AND_BROKERAGE",
-      "ISSUE_ADVOCACY",
-      "LEGAL",
-      "LIFE_INSURANCE",
-      "LOGISTICS_AND_TRANSPORTATION_AND_FLEET_MANAGEMENT",
-      "MANUFACTURING",
-      "MEDICAL_DEVICES_AND_SUPPLIES_AND_EQUIPMENT",
-      "MEDSPA_AND_ELECTIVE_SURGERIES_AND_ALTERNATIVE_MEDICINE",
-      "MINING_AND_QUARRYING",
-      "MOBILE_GAMING",
-      "MOVIES",
-      "MUSEUMS_AND_PARKS_AND_LIBRARIES",
-      "MUSIC",
-      "NETWORK_SECURITY_PRODUCTS",
-      "NEWS_AND_CURRENT_EVENTS",
-      "NON_PRESCRIPTION",
-      "NOT_FOR_PROFIT_COLLEGES_AND_UNIVERSITIES",
-      "OFFICE",
-      "OFFICE_OR_BUSINESS_SUPPLIES",
-      "OIL_AND_GAS_AND_CONSUMABLE_FUEL",
-      "ONLINE_ONLY_PUBLICATIONS",
-      "PACKAGE_OR_FREIGHT_DELIVERY",
-      "PARTY_INDEPENDENT_EXPENDITURE_GROUP_US",
-      "PAYMENT_PROCESSING_AND_GATEWAY_SOLUTIONS",
-      "PC_GAMING",
-      "PEOPLE",
-      "PERSONAL_CARE",
-      "PET",
-      "PHOTOGRAPHY_AND_FILMING_SERVICES",
-      "PIZZA",
-      "PLANNING_AGENCY",
-      "POLITICAL_PARTY_OR_COMMITTEE",
-      "PRESCRIPTION",
-      "PROFESSIONAL_ASSOCIATIONS",
-      "PROPERTY_AND_CASUALTY",
-      "QUICK_SERVICE",
-      "RADIO",
-      "RAILROADS",
-      "REAL_ESTATE",
-      "REAL_MONEY_GAMING",
-      "RECREATIONAL",
-      "RELIGIOUS",
-      "RESELLER",
-      "RESIDENTIAL_AND_LONG_TERM_CARE_FACILITIES_AND_OUTPATIENT_CARE_CENTERS",
-      "RETAIL_AND_CREDIT_UNION_AND_COMMERCIAL_BANK",
-      "RIDE_SHARING_OR_TAXI_SERVICES",
-      "SAFETY_SERVICES",
-      "SCHOLARLY",
-      "SCHOOL_AND_EARLY_CHILDREN_EDCATION",
-      "SOCIAL_MEDIA",
-      "SOFTWARE_AS_A_SERVICE",
-      "SPORTING",
-      "SPORTING_AND_OUTDOOR",
-      "SPORTS",
-      "SUPERSTORES",
-      "T1_AUTOMOTIVE_MANUFACTURER",
-      "T1_MOTORCYCLE",
-      "T2_DEALER_ASSOCIATIONS",
-      "T3_AUTO_AGENCY",
-      "T3_AUTO_RESELLERS",
-      "T3_DEALER_GROUPS",
-      "T3_FRANCHISE_DEALER",
-      "T3_INDEPENDENT_DEALER",
-      "T3_PARTS_AND_SERVICES",
-      "T3_PORTALS",
-      "TELECOMMUNICATIONS_EQUIPMENT_AND_ACCESSORIES",
-      "TELEPHONE_SERVICE_PROVIDERS_AND_CARRIERS",
-      "TICKETING",
-      "TOBACCO",
-      "TOURISM_AND_TRAVEL_SERVICES",
-      "TOURISM_BOARD",
-      "TOY_AND_HOBBY",
-      "TRADE_SCHOOL",
-      "TRAVEL_AGENCIES_AND_GUIDES_AND_OTAS",
-      "UTILITIES_AND_ENERGY_EQUIPMENT_AND_SERVICES",
-      "VETERINARY_CLINICS_AND_SERVICES",
-      "VIDEO_STREAMING",
-      "VIRTUAL_SERVICES",
-      "VITAMINS_OR_WELLNESS",
-      "WAREHOUSING_AND_STORAGE",
-      "WATER_AND_SOFT_DRINK_AND_BAVERAGE",
-      "WEBSITE_DESIGNERS_OR_GRAPHIC_DESIGNERS",
-      "WHOLESALE",
-      "WIRELESS_SERVICES",
-    ]
-
-    VERTICAL_V2 = [
-      "ADVERTISING_AND_MARKETING",
-      "AGRICULTURE",
-      "AUTOMOTIVE",
-      "BANKING_AND_CREDIT_CARDS",
-      "BUSINESS_TO_BUSINESS",
-      "CONSUMER_PACKAGED_GOODS",
-      "ECOMMERCE",
-      "EDUCATION",
-      "ENERGY_AND_NATURAL_RESOURCES_AND_UTILITIES",
-      "ENTERTAINMENT_AND_MEDIA",
-      "GAMING",
-      "GOVERNMENT",
-      "HEALTHCARE_AND_PHARMACEUTICALS_AND_BIOTECH",
-      "INSURANCE",
-      "NON_PROFIT",
-      "ORGANIZATIONS_AND_ASSOCIATIONS",
-      "POLITICS",
-      "PROFESSIONAL_SERVICES",
-      "PUBLISHING",
-      "RESTAURANTS",
-      "RETAIL",
-      "TECHNOLOGY",
-      "TELECOM",
-      "TRAVEL",
     ]
 
     ACTION_SOURCE = [
@@ -1038,6 +843,7 @@ module FacebookAds
         api.has_param :client_business, 'string'
         api.has_param :confidence_level, 'double'
         api.has_param :cooldown_start_time, 'int'
+        api.has_param :creative_test_config, 'hash'
         api.has_param :description, 'string'
         api.has_param :end_time, 'int'
         api.has_param :name, 'string'
@@ -1256,7 +1062,11 @@ module FacebookAds
 
     has_edge :collaborative_ads_collaboration_requests do |edge|
       edge.get 'CpasCollaborationRequest' do |api|
+        api.has_param :request_role, { enum: -> { CpasCollaborationRequest::REQUEST_ROLE }}
+        api.has_param :since, 'datetime'
+        api.has_param :source, { enum: -> { CpasCollaborationRequest::SOURCE }}
         api.has_param :status, 'string'
+        api.has_param :until, 'datetime'
       end
     end
 
@@ -1647,16 +1457,6 @@ module FacebookAds
       end
     end
 
-    has_edge :setup_managed_partner_adaccounts do |edge|
-      edge.post 'Business' do |api|
-        api.has_param :credit_line_id, 'string'
-        api.has_param :marketplace_business_id, 'string'
-        api.has_param :subvertical_v2, { enum: -> { Business::SUBVERTICAL_V2 }}
-        api.has_param :vendor_id, 'string'
-        api.has_param :vertical_v2, { enum: -> { Business::VERTICAL_V2 }}
-      end
-    end
-
     has_edge :share_preverified_numbers do |edge|
       edge.delete do |api|
         api.has_param :partner_business_id, 'string'
@@ -1743,6 +1543,7 @@ module FacebookAds
         api.has_param :publish_event_id, 'int'
         api.has_param :referenced_sticker_id, 'string'
         api.has_param :replace_video_id, 'string'
+        api.has_param :selected_audio_spec, 'hash'
         api.has_param :slideshow_spec, 'hash'
         api.has_param :source, 'string'
         api.has_param :source_instagram_media_id, 'string'

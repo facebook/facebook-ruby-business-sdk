@@ -18,14 +18,19 @@ module FacebookAds
     field :bringup_vars, { list: 'hash' }
     field :configurations, { list: 'hash' }
     field :data_center, 'string'
+    field :fw_image, 'string'
     field :id, 'string'
     field :init_pos, { list: 'hash' }
     field :last_pos, { list: 'hash' }
     field :meetup_link_hash, 'string'
+    field :release_image, 'string'
     field :robot_notes, 'string'
     field :suite, 'string'
+    field :target_fw_image, 'string'
+    field :target_fw_image_uri, 'string'
     field :target_map_image_uri, 'string'
     field :target_os_image_uri, 'string'
+    field :target_release_image, 'string'
     field :target_sw_image_uri, 'string'
     field :user, 'User'
     has_no_post

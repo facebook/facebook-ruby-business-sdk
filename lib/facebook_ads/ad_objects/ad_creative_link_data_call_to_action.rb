@@ -62,6 +62,7 @@ module FacebookAds
       "INSTALL_APP",
       "INSTALL_MOBILE_APP",
       "JOIN_CHANNEL",
+      "JOIN_LIVE_VIDEO",
       "LEARN_MORE",
       "LIKE_PAGE",
       "LISTEN_MUSIC",

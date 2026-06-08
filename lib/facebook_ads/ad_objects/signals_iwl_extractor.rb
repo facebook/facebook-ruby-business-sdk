@@ -17,6 +17,7 @@ module FacebookAds
 
     field :domain_uri, 'string'
     field :event_type, 'string'
+    field :extractor_config, 'object'
     field :extractor_type, 'string'
     field :id, 'string'
     has_no_post
