@@ -16,6 +16,7 @@ module FacebookAds
   class AdsValueAdjustmentRuleCollection < AdObject
     ENTRY_POINT = [
       "ADVERTISING_SETTINGS",
+      "L2_AUDIENCE",
       "L2_CONVERSION_LOCATION",
       "L2_GLOBAL",
       "L2_NCA_GOAL",

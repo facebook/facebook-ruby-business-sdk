@@ -538,6 +538,11 @@ module FacebookAds
       "unknown",
     ]
 
+    PLATFORM = [
+      "facebook",
+      "instagram",
+    ]
+
     RECOMMENDATION_TYPE = [
       "high_ad_performance",
       "most_ads_experience",
@@ -560,7 +565,10 @@ module FacebookAds
     field :is_paid_partnership_messages_enabled, 'bool'
     field :messaging_id, 'string'
     field :onboarded_status, 'bool'
+    field :page_id, 'string'
+    field :page_name, 'string'
     field :past_brand_partnership_partners, { list: 'string' }
+    field :platforms, { list: 'string' }
     field :portfolio_url, 'string'
     field :profile_picture_url, 'string'
     field :username, 'string'
@@ -577,6 +585,7 @@ module FacebookAds
         api.has_param :breakdown, { enum: %w{AGE FOLLOW_TYPE GENDER MEDIA_TYPE TOP_CITIES TOP_COUNTRIES }}
         api.has_param :metrics, { list: { enum: %w{CREATOR_ENGAGED_ACCOUNTS CREATOR_REACH REELS_HOOK_RATE REELS_INTERACTION_RATE TOTAL_FOLLOWERS }} }
         api.has_param :period, { enum: %w{DAY OVERALL }}
+        api.has_param :platform, { list: { enum: %w{FACEBOOK INSTAGRAM }} }
         api.has_param :time_range, { enum: %w{LAST_14_DAYS LAST_90_DAYS LIFETIME THIS_MONTH THIS_WEEK }}
       end
     end

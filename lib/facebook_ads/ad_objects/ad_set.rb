@@ -224,6 +224,9 @@ module FacebookAds
       "17",
       "18",
       "19",
+      "20",
+      "21",
+      "22",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -249,6 +252,7 @@ module FacebookAds
 
 
     field :account_id, 'string'
+    field :ad_set_goal, 'AdCampaignGoal'
     field :adlabels, { list: 'AdLabel' }
     field :adset_schedule, { list: 'DayPart' }
     field :asset_feed_id, 'string'
@@ -293,6 +297,7 @@ module FacebookAds
     field :is_dynamic_creative, 'bool'
     field :is_incremental_attribution_enabled, 'bool'
     field :is_organic_ad_joint_optimized, 'bool'
+    field :is_sequenced_conversion_creation, 'bool'
     field :issues_info, { list: 'AdCampaignIssuesInfo' }
     field :learning_stage_info, 'AdCampaignLearningStageInfo'
     field :lifetime_budget, 'string'

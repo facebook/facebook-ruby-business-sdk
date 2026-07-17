@@ -17,17 +17,24 @@ module FacebookAds
     ACTION_ATTRIBUTION_WINDOWS = [
       "1d_click",
       "1d_ev",
+      "1d_sequenced",
       "1d_view",
       "28d_click",
+      "28d_sequenced",
       "28d_view",
       "28d_view_all_conversions",
       "28d_view_first_conversion",
       "7d_click",
+      "7d_sequenced",
       "7d_view",
       "7d_view_all_conversions",
       "7d_view_first_conversion",
+      "custom",
       "dda",
       "default",
+      "incrementality",
+      "incrementality_all_conversions",
+      "incrementality_first_conversion",
       "skan_click",
       "skan_click_second_postback",
       "skan_click_third_postback",
@@ -302,6 +309,8 @@ module FacebookAds
     field :creative_diversity_data, { list: 'object' }
     field :creative_diversity_label, 'string'
     field :creative_diversity_score, 'string'
+    field :creative_fatigue_summary, { list: 'object' }
+    field :creative_fatigued_ads, { list: 'object' }
     field :creative_media_type, 'string'
     field :ctr, 'string'
     field :date_start, 'string'
@@ -382,7 +391,6 @@ module FacebookAds
     field :result_rate, { list: 'object' }
     field :result_values_performance_indicator, 'string'
     field :results, { list: 'object' }
-    field :shop_clicks, 'string'
     field :shops_assisted_purchases, 'string'
     field :social_spend, 'string'
     field :spend, 'string'

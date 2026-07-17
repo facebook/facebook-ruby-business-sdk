@@ -1240,6 +1240,7 @@ module FacebookAds
       edge.get 'OpenBridgeConfiguration'
       edge.post 'OpenBridgeConfiguration' do |api|
         api.has_param :active, 'bool'
+        api.has_param :associated_sgw_data_source_id, 'int'
         api.has_param :blocked_event_types, { list: 'string' }
         api.has_param :blocked_websites, { list: 'string' }
         api.has_param :capi_publishing_state, { enum: -> { OpenBridgeConfiguration::CAPI_PUBLISHING_STATE }}

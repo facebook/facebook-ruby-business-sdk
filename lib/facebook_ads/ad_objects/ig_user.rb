@@ -28,6 +28,7 @@ module FacebookAds
     field :media_count, 'int'
     field :mentioned_comment, 'IgComment'
     field :mentioned_media, 'IgMedia'
+    field :mini_shop_storefront, 'Shop'
     field :name, 'string'
     field :owner_business, 'Business'
     field :profile_picture_url, 'string'
@@ -146,6 +147,7 @@ module FacebookAds
         api.has_param :major_audience_device_type, { list: 'object' }
         api.has_param :major_audience_gender, { list: { enum: -> { IgUserExportForCam::MAJOR_AUDIENCE_GENDER }} }
         api.has_param :major_audience_states, { list: 'string' }
+        api.has_param :platform, { list: { enum: -> { IgUserExportForCam::PLATFORM }} }
         api.has_param :query, 'string'
         api.has_param :recommendation_type, { enum: -> { IgUserExportForCam::RECOMMENDATION_TYPE }}
         api.has_param :reels_interaction_rate, 'object'
@@ -202,6 +204,7 @@ module FacebookAds
         api.has_param :collaborators, { list: 'string' }
         api.has_param :cover_url, 'string'
         api.has_param :image_url, 'string'
+        api.has_param :is_ai_generated, 'bool'
         api.has_param :is_carousel_item, 'bool'
         api.has_param :is_paid_partnership, 'bool'
         api.has_param :location_id, 'string'
@@ -264,7 +267,11 @@ module FacebookAds
     end
 
     has_edge :tags do |edge|
-      edge.get 'IgMedia'
+      edge.get 'IgMedia' do |api|
+        api.has_param :media_type, 'string'
+        api.has_param :posted_after, 'string'
+        api.has_param :posted_before, 'string'
+      end
     end
 
     has_edge :upcoming_events do |edge|

@@ -15,6 +15,7 @@ module FacebookAds
 
   class AudioCopyright < AdObject
 
+    field :audio_asset, 'AudioAsset'
     field :creation_time, 'datetime'
     field :displayed_matches_count, 'int'
     field :id, 'string'

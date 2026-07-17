@@ -20,6 +20,7 @@ module FacebookAds
     field :comments_count, 'int'
     field :current_live_viewer_count, 'int'
     field :id, 'string'
+    field :is_ai_generated, 'bool'
     field :is_comment_enabled, 'bool'
     field :is_shared_to_feed, 'bool'
     field :like_count, 'int'

@@ -420,6 +420,7 @@ module FacebookAds
       "product_audience_specs",
       "prospecting_audience",
       "publisher_platforms",
+      "purchase_intent",
       "radius",
       "region_keys",
       "regions",

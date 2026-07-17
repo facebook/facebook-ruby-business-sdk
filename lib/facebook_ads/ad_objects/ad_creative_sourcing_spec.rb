@@ -24,6 +24,7 @@ module FacebookAds
     field :enable_social_feedback_preservation, 'bool'
     field :featured_offering_spec, 'object'
     field :intent, 'object'
+    field :ncs_testimonial, 'object'
     field :pca_spec, 'object'
     field :product_media_metadata_spec, 'object'
     field :promotion_metadata_spec, { list: 'AdCreativePromotionMetadataSpec' }

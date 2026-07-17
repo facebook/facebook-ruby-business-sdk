@@ -1013,6 +1013,7 @@ module FacebookAds
         api.has_param :custom_disclaimer, 'object'
         api.has_param :follow_up_action_url, 'string'
         api.has_param :is_for_canvas, 'bool'
+        api.has_param :is_lead_capture_ai_agent_enabled, 'bool'
         api.has_param :is_optimized_for_quality, 'bool'
         api.has_param :is_phone_sms_verify_enabled, 'bool'
         api.has_param :locale, { enum: -> { LeadgenForm::LOCALE }}
@@ -1341,6 +1342,7 @@ module FacebookAds
         api.has_param :privacy, 'string'
         api.has_param :profile_id, 'int'
         api.has_param :provenance_info, 'hash'
+        api.has_param :provenance_metadata, 'hash'
         api.has_param :proxied_app_id, 'string'
         api.has_param :published, 'bool'
         api.has_param :qn, 'string'

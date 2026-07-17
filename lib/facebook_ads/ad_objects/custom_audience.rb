@@ -16,25 +16,21 @@ module FacebookAds
   class CustomAudience < AdObject
     include CustomAudienceHelpers
     AUDIENCE_LABELS = [
-      "APP_INSTALLERS",
       "APP_USERS",
       "AT_RISK",
       "CART_ABANDONERS",
-      "CUSTOMER_LEADS",
       "DISENGAGED",
       "DISQUALIFIED_LEADS",
       "ENGAGED_USERS",
+      "GENERAL_CUSTOMERS",
       "HIGH_VALUE_CUSTOMERS",
       "LOW_VALUE_CUSTOMERS",
       "OTHER_1",
       "OTHER_2",
       "OTHER_3",
-      "PERSONAS",
       "QUALIFIED_LEADS",
       "RECENT_PURCHASERS",
-      "RESTRICTED_USERS",
       "TRIAL_USERS",
-      "UNWANTED_CUSTOMERS",
     ]
 
     CLAIM_OBJECTIVE = [

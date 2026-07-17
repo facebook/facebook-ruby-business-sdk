@@ -288,7 +288,7 @@ module FacebookAds
     end
 
     has_edge :geolocated_items_batch do |edge|
-      edge.post 'ProductCatalog' do |api|
+      edge.post do |api|
         api.has_param :allow_upsert, 'bool'
         api.has_param :item_type, 'string'
         api.has_param :requests, 'hash'

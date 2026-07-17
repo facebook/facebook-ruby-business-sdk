@@ -48,6 +48,7 @@ module FacebookAds
     field :ads_manager_footer_row_toast_impressions, 'int'
     field :auto_review_video_caption, 'bool'
     field :budget_optimization_quick_view_created, 'bool'
+    field :budget_pool_qv_created, 'bool'
     field :campaign_overview_columns, { list: 'string' }
     field :column_suggestion_status, 'string'
     field :conditional_formatting_rules, { list: 'string' }

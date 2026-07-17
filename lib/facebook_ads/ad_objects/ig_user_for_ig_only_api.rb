@@ -81,6 +81,7 @@ module FacebookAds
         api.has_param :collaborators, { list: 'string' }
         api.has_param :cover_url, 'string'
         api.has_param :image_url, 'string'
+        api.has_param :is_ai_generated, 'bool'
         api.has_param :is_carousel_item, 'bool'
         api.has_param :is_paid_partnership, 'bool'
         api.has_param :location_id, 'string'
@@ -140,6 +141,20 @@ module FacebookAds
       end
     end
 
+    has_edge :passthreadcontrol do |edge|
+      edge.post do |api|
+        api.has_param :metadata, 'string'
+        api.has_param :recipient, 'object'
+        api.has_param :target_app_id, 'string'
+      end
+    end
+
+    has_edge :releasethreadcontrol do |edge|
+      edge.post do |api|
+        api.has_param :recipient, 'object'
+      end
+    end
+
     has_edge :stories do |edge|
       edge.get
     end
@@ -153,7 +168,11 @@ module FacebookAds
     end
 
     has_edge :tags do |edge|
-      edge.get
+      edge.get do |api|
+        api.has_param :media_type, 'string'
+        api.has_param :posted_after, 'string'
+        api.has_param :posted_before, 'string'
+      end
     end
 
     has_edge :welcome_message_flows do |edge|

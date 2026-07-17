@@ -37,6 +37,11 @@ module FacebookAds
       "UNTIERED",
     ]
 
+    WHATSAPP_MANAGER_MARKETING_MESSAGES_MAX_PRICE_ENROLL_STATUS = [
+      "OPT_IN",
+      "OPT_OUT",
+    ]
+
     TASKS = [
       "DEVELOP",
       "MANAGE",
@@ -120,6 +125,7 @@ module FacebookAds
     field :template_auto_archival_enabled, 'bool'
     field :timezone_id, 'string'
     field :whatsapp_business_manager_messaging_limit, { enum: -> { WHATSAPP_BUSINESS_MANAGER_MESSAGING_LIMIT }}
+    field :whatsapp_manager_marketing_messages_max_price_enroll_status, 'string'
     has_no_delete
 
     has_edge :activities do |edge|
@@ -271,6 +277,7 @@ module FacebookAds
         api.has_param :is_primary_device_delivery_only, 'bool'
         api.has_param :language, 'string'
         api.has_param :library_template_body_inputs, 'hash'
+        api.has_param :library_template_body_param_inputs, { list: 'hash' }
         api.has_param :library_template_button_inputs, { list: 'hash' }
         api.has_param :library_template_name, 'string'
         api.has_param :message_send_ttl_seconds, 'int'

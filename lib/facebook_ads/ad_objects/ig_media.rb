@@ -16,6 +16,7 @@ module FacebookAds
   class IgMedia < AdObject
 
     field :alt_text, 'string'
+    field :audio_id, 'string'
     field :boost_eligibility_info, 'IgMediaBoostEligibilityInfo'
     field :caption, 'string'
     field :comments_count, 'int'
@@ -25,6 +26,7 @@ module FacebookAds
     field :has_slider, 'bool'
     field :id, 'string'
     field :ig_id, 'string'
+    field :is_ai_generated, 'bool'
     field :is_comment_enabled, 'bool'
     field :is_shared_to_feed, 'bool'
     field :legacy_instagram_media_id, 'string'

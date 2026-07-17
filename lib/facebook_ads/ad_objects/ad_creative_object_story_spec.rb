@@ -23,6 +23,7 @@ module FacebookAds
     field :template_data, 'AdCreativeLinkData'
     field :text_data, 'AdCreativeTextData'
     field :video_data, 'AdCreativeVideoData'
+    field :whats_app_business_phone_number, 'string'
     has_no_id
     has_no_get
     has_no_post

@@ -40,6 +40,7 @@ module FacebookAds
 
 
     field :active, 'bool'
+    field :associated_sgw_data_source_id, 'string'
     field :blocked_event_types, { list: 'string' }
     field :blocked_websites, { list: 'string' }
     field :browser_agent, { list: 'string' }
@@ -58,6 +59,7 @@ module FacebookAds
     field :instance_version, 'string'
     field :is_sgw_instance, 'bool'
     field :is_sgw_pixel_from_meta_pixel, 'bool'
+    field :mpc_fallback_domain, 'string'
     field :partner_name, 'string'
     field :pixel_id, 'string'
     field :sgw_account_id, 'string'

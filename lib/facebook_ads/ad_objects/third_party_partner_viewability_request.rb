@@ -24,6 +24,7 @@ module FacebookAds
       "AUDIENCE_NETWORK",
       "FACEBOOK",
       "INSTAGRAM",
+      "THREADS",
     ]
 
     STATUS = [

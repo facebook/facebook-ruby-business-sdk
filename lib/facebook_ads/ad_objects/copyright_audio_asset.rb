@@ -17,10 +17,12 @@ module FacebookAds
 
     field :audio_availability_status, 'string'
     field :audio_library_policy, { list: 'map<string, list<map<string, Object>>>' }
+    field :canonical_reference_file, 'AudioAsset'
     field :creation_time, 'datetime'
     field :id, 'string'
     field :reference_file_isrcs, { list: 'string' }
     field :reference_files, { list: 'object' }
+    field :representative_reference_file, 'AudioAsset'
     field :title, 'string'
     field :update_time, 'datetime'
     has_no_get

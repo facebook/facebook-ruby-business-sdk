@@ -500,6 +500,7 @@ module FacebookAds
         api.has_param :updated_since, 'int'
       end
       edge.post 'AdSet' do |api|
+        api.has_param :ad_set_goal, 'hash'
         api.has_param :adlabels, { list: 'object' }
         api.has_param :adset_schedule, { list: 'object' }
         api.has_param :attribution_count_type, { enum: -> { AdSet::ATTRIBUTION_COUNT_TYPE }}
@@ -510,6 +511,7 @@ module FacebookAds
         api.has_param :bid_constraints, 'hash'
         api.has_param :bid_strategy, { enum: -> { AdSet::BID_STRATEGY }}
         api.has_param :billing_event, { enum: -> { AdSet::BILLING_EVENT }}
+        api.has_param :brand_safety_config, 'hash'
         api.has_param :budget_schedule_specs, { list: 'object' }
         api.has_param :budget_source, { enum: -> { AdSet::BUDGET_SOURCE }}
         api.has_param :budget_split_set_id, 'string'
@@ -538,6 +540,7 @@ module FacebookAds
         api.has_param :is_dynamic_creative, 'bool'
         api.has_param :is_incremental_attribution_enabled, 'bool'
         api.has_param :is_sac_cfca_terms_certified, 'bool'
+        api.has_param :is_sequenced_conversion_creation, 'bool'
         api.has_param :lifetime_budget, 'int'
         api.has_param :lifetime_imps, 'int'
         api.has_param :lifetime_min_spend_target, 'int'
@@ -1061,12 +1064,12 @@ module FacebookAds
       edge.post do |api|
         api.has_param :bid_amount, 'int'
         api.has_param :daily_budget, 'int'
-        api.has_param :end_time, 'int'
+        api.has_param :end_time, 'datetime'
         api.has_param :lifetime_budget, 'int'
         api.has_param :name, 'string'
         api.has_param :page_id, 'string'
         api.has_param :pixel_id, 'int'
-        api.has_param :start_time, 'int'
+        api.has_param :start_time, 'datetime'
       end
     end
 

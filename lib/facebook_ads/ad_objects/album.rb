@@ -115,6 +115,7 @@ module FacebookAds
         api.has_param :privacy, 'string'
         api.has_param :profile_id, 'int'
         api.has_param :provenance_info, 'hash'
+        api.has_param :provenance_metadata, 'hash'
         api.has_param :proxied_app_id, 'string'
         api.has_param :published, 'bool'
         api.has_param :qn, 'string'

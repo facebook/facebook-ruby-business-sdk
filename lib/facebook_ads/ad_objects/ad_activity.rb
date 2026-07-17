@@ -79,6 +79,9 @@ module FacebookAds
       "update_ad_set_bid_strategy",
       "update_ad_set_bidding",
       "update_ad_set_budget",
+      "update_ad_set_budget_scaling_cost_target",
+      "update_ad_set_budget_scaling_extra_budget",
+      "update_ad_set_budget_scaling_status",
       "update_ad_set_cost_bidding_mode",
       "update_ad_set_duration",
       "update_ad_set_learning_stage_status",
@@ -105,6 +108,9 @@ module FacebookAds
       "update_campaign_delivery_type",
       "update_campaign_group_ad_scheduling",
       "update_campaign_group_agency_fee",
+      "update_campaign_group_budget_scaling_cost_target",
+      "update_campaign_group_budget_scaling_extra_budget",
+      "update_campaign_group_budget_scaling_status",
       "update_campaign_group_budget_scheduling_state",
       "update_campaign_group_delivery_type",
       "update_campaign_group_high_demand_periods",
@@ -150,6 +156,7 @@ module FacebookAds
     field :object_id, 'string'
     field :object_name, 'string'
     field :object_type, 'string'
+    field :tool, 'string'
     field :translated_event_type, 'string'
     has_no_id
     has_no_get

@@ -13,20 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AudioIsrc < AdObject
+  class AdAccountFeaturePreferences < AdObject
 
-    field :all_kg_featured_artists, 'string'
-    field :all_kg_main_artists, 'string'
-    field :artist_profile_picture_url, 'string'
-    field :canonical_audio_asset, 'AudioAsset'
     field :id, 'string'
-    field :isrc, 'string'
-    field :publishing_rights_data, 'object'
-    field :top_searchable_artist_id, 'string'
-    field :top_searchable_artist_name, 'string'
-    field :top_searchable_artist_profile_pic_url, 'string'
+    has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :feature_preferences do |edge|
+      edge.post 'AdAccountFeaturePreferencesPost'
+    end
 
   end
 end

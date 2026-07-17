@@ -23,7 +23,6 @@ module FacebookAds
 
     METRIC = [
       "comments",
-      "content_views",
       "crossposted_views",
       "facebook_views",
       "follows",
