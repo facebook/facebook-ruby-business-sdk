@@ -25,13 +25,23 @@ module FacebookAds
         raise InvalidParameterError, 'Invalid attributes. Must include at least one attribute'
       end
 
-      update_attributes(attributes)
-      # assume object with only id in the attributes as not loaded
-
       # is next arg a list of fields?
       fields = (args[0].is_a?(Array) || args[0].is_a?(String)) ? args.shift : []
       fields = fields.split(',') if fields.is_a?(String)
       session = args.shift
+
+      if attributes.has_key? "report_run_id"
+        # NOTE: `POST <AD_OBJECT>/insights` returns `report_run_id` not `id`.
+        # SEE: https://developers.facebook.com/docs/marketing-api/insights/best-practices/#asynchronous
+
+        attributes.merge!({ "id" => attributes["report_run_id"] })
+        attributes.delete("report_run_id")
+
+        fields.delete("report_run_id")
+      end
+
+      update_attributes(attributes)
+      # assume object with only id in the attributes as not loaded
 
       self.__all_fields = fields + attributes.keys
       self.session = session
