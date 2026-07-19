@@ -11,16 +11,18 @@ require 'facebook_ads/videos/video_request'
 
 module FacebookAds
   class Session
-    attr_accessor :access_token, :app_secret, :api_version, :server_host
+    attr_accessor :access_token, :app_secret, :api_version, :server_host, :connection_setup
 
     def initialize(access_token: nil,
                    app_secret:   nil,
                    server_host:  FacebookAds.config.server_host,
-                   api_version:  FacebookAds.config.api_version)
+                   api_version:  FacebookAds.config.api_version,
+                   &connection_setup)
       @access_token = access_token
       @app_secret   = app_secret
       @server_host  = server_host
       @api_version  = api_version
+      @connection_setup = connection_setup
     end
 
     def request(method, path, params = nil)
@@ -52,7 +54,7 @@ module FacebookAds
         # TODO Json Request
         # TODO URL Encode - stringify json
         faraday.request  :url_encoded
-
+        @connection_setup&.call(faraday)
         faraday.response :logger, Utils.logger, bodies: FacebookAds.config.log_api_bodies
         faraday.adapter  Faraday.default_adapter
       end
