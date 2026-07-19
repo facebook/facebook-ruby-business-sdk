@@ -91,7 +91,7 @@ module FacebookAds
       edge.post 'User' do |api|
         api.has_param :business_app, 'string'
         api.has_param :page_id, 'string'
-        api.has_param :scope, { list: 'string' }
+        api.has_param :scope, 'string'
         api.has_param :set_token_expires_in_60_days, 'bool'
       end
     end
