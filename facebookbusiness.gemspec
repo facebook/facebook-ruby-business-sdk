@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Facebook Business API SDK for Ruby (Official)'
   s.description = <<-DESC
   The official Facebook Business API SDK for Ruby.
-  https://developers.facebook.com/docs/marketing-api/sdks'
+  https://developers.facebook.com/docs/marketing-api/sdks
   DESC
   s.authors     = ['Facebook']
   s.email       = ''
