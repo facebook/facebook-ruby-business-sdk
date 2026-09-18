@@ -21,7 +21,14 @@ module FacebookAds
     has_no_delete
 
     has_edge :items_batch do |edge|
-      edge.post 'ProductCatalogItemsBatchPost'
+      edge.post 'ProductCatalogItemsBatchPost' do |api|
+        api.has_param :allow_upsert, 'bool'
+        api.has_param :item_sub_type, { enum: -> { ProductCatalogItemsBatchPost::ITEM_SUB_TYPE }}
+        api.has_param :item_type, 'string'
+        api.has_param :request_origin, { enum: -> { ProductCatalogItemsBatchPost::REQUEST_ORIGIN }}
+        api.has_param :requests, 'string'
+        api.has_param :version, 'int'
+      end
     end
 
   end

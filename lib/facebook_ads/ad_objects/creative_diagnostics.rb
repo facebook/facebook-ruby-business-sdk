@@ -13,13 +13,16 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductItemPost < AdObject
+  class CreativeDiagnostics < AdObject
 
-    field :success, 'bool'
-    has_no_id
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :creative_diagnostics do |edge|
+      edge.post 'CreativeDiagnosticsPost'
+    end
 
   end
 end

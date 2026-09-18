@@ -103,6 +103,7 @@ module FacebookAds
     ]
 
 
+    field :ads_signal_source_type, 'string'
     field :application_id, 'string'
     field :boosted_product_set_id, 'string'
     field :conversion_goal_id, 'string'

@@ -129,12 +129,6 @@ module FacebookAds
       "UNSET",
     ]
 
-    COST_BIDDING_MODE = [
-      "BALANCED",
-      "COST_FOCUSED",
-      "VOLUME_FOCUSED",
-    ]
-
     CREATIVE_SEQUENCE_REPETITION_PATTERN = [
       "FULL_SEQUENCE",
       "LAST_AD",
@@ -223,6 +217,7 @@ module FacebookAds
       "21",
       "22",
       "24",
+      "25",
     ]
 
     TUNE_FOR_CATEGORY = [
@@ -264,7 +259,6 @@ module FacebookAds
     field :campaign_attribution, 'string'
     field :campaign_id, 'string'
     field :configured_status, { enum: -> { CONFIGURED_STATUS }}
-    field :cost_bidding_mode, 'string'
     field :created_time, 'datetime'
     field :creative_diversity_label, { list: 'string' }
     field :creative_diversity_score, { list: 'string' }

@@ -92,6 +92,7 @@ module FacebookAds
       "INSTAGRAM",
       "MESSENGER",
       "OCULUS",
+      "STREAMING_SERVICES",
       "THREADS",
       "WHATSAPP",
     ]

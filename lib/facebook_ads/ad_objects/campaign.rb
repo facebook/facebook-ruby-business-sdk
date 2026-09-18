@@ -391,6 +391,7 @@ module FacebookAds
     field :account_id, 'string'
     field :adlabels, { list: 'AdLabel' }
     field :advantage_state_info, 'AdCampaignGroupAdvantageState'
+    field :bid_constraints, 'AdCampaignGroupBidConstraints'
     field :bid_strategy, { enum: -> { BID_STRATEGY }}
     field :boosted_object_id, 'string'
     field :brand_lift_studies, { list: 'AdStudy' }

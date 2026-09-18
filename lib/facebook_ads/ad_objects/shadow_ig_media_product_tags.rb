@@ -21,6 +21,7 @@ module FacebookAds
     field :name, 'string'
     field :price_string, 'string'
     field :product_id, 'int'
+    field :product_url, 'string'
     field :review_status, 'string'
     field :stripped_price_string, 'string'
     field :stripped_sale_price_string, 'string'

@@ -13,21 +13,22 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCreativeMediaSourcingSpec < AdObject
+  class ProductCatalogLocalizedItemsBatch < AdObject
 
-    field :bodies, { list: 'object' }
-    field :descriptions, { list: 'object' }
-    field :destinations, { list: 'object' }
-    field :images, { list: 'object' }
-    field :posts, { list: 'object' }
-    field :push_metadata_ids, { list: 'string' }
-    field :related_media, 'object'
-    field :titles, { list: 'object' }
-    field :videos, { list: 'object' }
-    has_no_id
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :localized_items_batch do |edge|
+      edge.post 'ProductCatalogLocalizedItemsBatchPost' do |api|
+        api.has_param :allow_upsert, 'bool'
+        api.has_param :item_sub_type, { enum: -> { ProductCatalogLocalizedItemsBatchPost::ITEM_SUB_TYPE }}
+        api.has_param :item_type, 'string'
+        api.has_param :requests, 'string'
+        api.has_param :version, 'int'
+      end
+    end
 
   end
 end

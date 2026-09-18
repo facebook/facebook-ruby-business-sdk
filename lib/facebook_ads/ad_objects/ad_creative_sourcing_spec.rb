@@ -28,6 +28,7 @@ module FacebookAds
     field :pca_spec, 'object'
     field :product_media_metadata_spec, 'object'
     field :promotion_metadata_spec, { list: 'AdCreativePromotionMetadataSpec' }
+    field :selected_video_id, 'string'
     field :site_links_data_consented, 'object'
     field :site_links_spec, { list: 'AdCreativeSiteLinksSpec' }
     field :source_url, 'string'

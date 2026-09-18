@@ -13,8 +13,25 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogItemsBatchPost < AdObject
-    ITEM_SUB_TYPE = [
+  class ProductSetDaChecksGet < AdObject
+    CAPABILITIES = [
+      "B2C_MARKETPLACE",
+      "C2C_MARKETPLACE",
+      "DA",
+      "DAILY_DEALS",
+      "DAILY_DEALS_LEGACY",
+      "IG_PRODUCT_TAGGING",
+      "MARKETPLACE",
+      "MARKETPLACE_ADS_DEPRECATED",
+      "MARKETPLACE_SHOPS",
+      "MINI_SHOPS",
+      "OFFLINE_CONVERSIONS",
+      "SHOPS",
+      "UNIVERSAL_CHECKOUT",
+      "WHATSAPP",
+    ]
+
+    CATEGORIES = [
       "APPLIANCES",
       "BABY_FEEDING",
       "BABY_TRANSPORT",
@@ -69,15 +86,29 @@ module FacebookAds
       "WATCHES",
     ]
 
-    REQUEST_ORIGIN = [
-      "BULK_ITEM_EDITOR",
-      "STORM",
-      "UNSPECIFIED",
+    CONNECTION_METHOD = [
+      "ALL",
+      "APP",
+      "BROWSER",
+      "SERVER",
+    ]
+
+    FEATURES = [
+      "AGENTIC_CHECKOUT",
+      "AMAZON_BUY_WITH_PRIME",
+      "AUGMENTED_REALITY",
+      "CHECKOUT",
+      "INTEGRATED_CHECKOUT_LOWES",
+      "INTEGRATED_CHECKOUT_MELI",
+      "INTEGRATED_CHECKOUT_SHEIN",
+      "INTEGRATED_CHECKOUT_SHOPEE",
+      "INTEGRATED_CHECKOUT_WALMART",
+      "INTEGRATED_CHECKOUT_ZALANDO",
+      "LIVE_SHOPPING",
     ]
 
 
-    field :handles, { list: 'string' }
-    field :validation_status, { list: 'object' }
+    field :data, { list: 'object' }
     has_no_id
     has_no_get
     has_no_post

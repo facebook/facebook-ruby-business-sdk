@@ -264,6 +264,7 @@ module FacebookAds
     field :execution_options, { list: { enum: -> { EXECUTION_OPTIONS }} }
     field :image_file, 'string'
     field :is_dco_internal, 'bool'
+    field :media_optimization_spec, 'hash'
 
     has_edge :adlabels do |edge|
       edge.post 'AdCreative' do |api|

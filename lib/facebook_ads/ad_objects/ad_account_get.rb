@@ -350,13 +350,18 @@ module FacebookAds
 
     field :account_controls, 'object'
     field :account_currency_ratio_to_usd, 'double'
-    field :account_id, 'string'
+    field :account_id, 'int'
     field :account_status, 'int'
     field :active_billing_date_preference, 'object'
     field :activities, 'object'
+    field :ad_account_creation_request, 'object'
     field :ad_account_promotable_objects, 'object'
     field :ad_column_sizes, 'object'
     field :ad_limits_insights, 'object'
+    field :ad_place_page_sets, 'object'
+    field :ad_quick_views, 'object'
+    field :ad_report_builder_reports, 'object'
+    field :ad_studies, 'object'
     field :adcreatives, 'object'
     field :addrafts, 'object'
     field :adimages, 'object'
@@ -365,6 +370,7 @@ module FacebookAds
     field :adrules_history, 'object'
     field :adrules_library, 'object'
     field :ads, 'object'
+    field :ads_creation_saved_state, 'object'
     field :ads_paused, 'bool'
     field :ads_volume, 'object'
     field :adsets, 'object'
@@ -392,7 +398,9 @@ module FacebookAds
     field :asset_feed_spec_from_instagram_media, 'object'
     field :asset_score, 'double'
     field :assigned_partners, 'object'
+    field :assigned_users, 'object'
     field :attr_window_deprecation_group, 'string'
+    field :audiencesharing_recipientaccounts, 'object'
     field :auth_flow_for_trust_tier_state, { enum: -> { AUTH_FLOW_FOR_TRUST_TIER_STATE }}
     field :authorized_country_for_political_ads, { enum: -> { AUTHORIZED_COUNTRY_FOR_POLITICAL_ADS }}
     field :automatic_creative_optimization_test_framework_enrolled, 'bool'
@@ -431,6 +439,7 @@ module FacebookAds
     field :cpas_campaign_group_default_budget, 'int'
     field :created_time, 'mixed'
     field :creation_packages, 'object'
+    field :creative_text_suggestions, 'object'
     field :ctwa_smb_enforcing_days_left, 'int'
     field :ctx_advertiser_sabr_lifetime_duration_recommendation, 'int'
     field :ctx_dfo_objective_defaults, 'object'
@@ -441,6 +450,7 @@ module FacebookAds
     field :current_unpaid_unrepaid_invoice, 'object'
     field :custom_audience_info, 'object'
     field :customaudiences, 'object'
+    field :customaudiencestos, 'object'
     field :customconversions, 'object'
     field :customer_po_number, 'string'
     field :daily_spend_limit, 'object'
@@ -478,7 +488,9 @@ module FacebookAds
     field :has_value_rule_set, 'bool'
     field :id, 'string'
     field :if_viewer_has_permission_to_advertise, 'bool'
+    field :impacting_ad_studies, 'object'
     field :incremental_conversion_optimization_ad_studies, { list: 'object' }
+    field :insights, 'object'
     field :instagram_accounts, 'object'
     field :invoicing_emails, 'object'
     field :ios_fourteen_campaign_limits, 'object'
@@ -510,6 +522,8 @@ module FacebookAds
     field :is_prepay_account, 'bool'
     field :is_retail_media_network, 'bool'
     field :is_shopless_awpt_eligible, 'bool'
+    field :is_simplified_creation_only_111_eligible, 'bool'
+    field :is_simplified_creation_segment_eligible, 'bool'
     field :is_tax_id_required, 'bool'
     field :is_tier_0, 'bool'
     field :is_tier_0_full, 'bool'
@@ -526,6 +540,10 @@ module FacebookAds
     field :last_used_time, 'int'
     field :liable_address, 'object'
     field :liable_addresses, 'object'
+    field :liable_to_org, 'object'
+    field :light_adsets, 'object'
+    field :light_campaigns, 'object'
+    field :lightads, 'object'
     field :live_video_advertiser_details, 'object'
     field :marketing_message_enablement_status, { enum: -> { MARKETING_MESSAGE_ENABLEMENT_STATUS }}
     field :marketing_messages_settings, 'object'
@@ -542,12 +560,14 @@ module FacebookAds
     field :modeled_reporting_type, { enum: -> { MODELED_REPORTING_TYPE }}
     field :moo_default_conversion_bid, 'int'
     field :name, 'string'
-    field :next_bill_date, 'int'
+    field :naming_templates, 'object'
+    field :next_bill_date, 'mixed'
+    field :offline_conversion_data_sets, 'object'
     field :offsite_pixels_tos_accepted, 'bool'
     field :onbehalf_requests, 'object'
     field :opportunity_score, 'double'
     field :opportunity_score_weight, 'int'
-    field :owner, 'string'
+    field :owner, 'int'
     field :owner_business, 'object'
     field :page_authorized_country_for_political_ads, { list: 'object' }
     field :pages_in_authorizations, { list: 'object' }
@@ -555,6 +575,7 @@ module FacebookAds
     field :payment_options, 'object'
     field :pending_billing_date_preference, 'object'
     field :prepay_account_balance, 'object'
+    field :promote_pages, 'object'
     field :promotion_metadata, { list: 'object' }
     field :promotion_metadata_live_crawl, { list: 'object' }
     field :publisher_block_lists, 'object'
@@ -572,6 +593,7 @@ module FacebookAds
     field :site_links_live_crawl, { list: 'object' }
     field :sold_to_address, 'object'
     field :sold_to_addresses, 'object'
+    field :sold_to_org, 'object'
     field :spend_cap, 'string'
     field :spend_cap_history, { list: 'object' }
     field :spendlimits, 'object'
@@ -597,8 +619,10 @@ module FacebookAds
     field :user_settings, 'object'
     field :user_tasks, { list: 'string' }
     field :user_tos_accepted, 'hash'
+    field :userpermissions, 'object'
     field :users, 'object'
     field :value_rule_set, 'object'
+    field :video_ads, 'object'
     field :viewable_business, 'object'
     field :viewable_businesses, { list: 'object' }
     has_no_get

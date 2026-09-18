@@ -47,6 +47,13 @@ module FacebookAds
       "SPORTS",
     ]
 
+    PRODUCT_TYPE = [
+      "ADS_BURST",
+      "ADS_SUPER_BURST",
+      "REELS_TRENDING_ADS",
+      "STANDARD",
+    ]
+
 
     field :account_id, 'int'
     field :activity_status, 'ReachFrequencyActivity'
@@ -124,6 +131,7 @@ module FacebookAds
     field :plan_type, 'string'
     field :prediction_mode, 'int'
     field :prediction_progress, 'int'
+    field :product_type, 'string'
     field :reference_id, 'string'
     field :reservation_status, 'int'
     field :start_time, 'datetime'

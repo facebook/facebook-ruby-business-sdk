@@ -21,6 +21,7 @@ module FacebookAds
     field :ad_volume_on_scope, 'int'
     field :is_admin, 'bool'
     field :page_name, 'string'
+    field :show_page_limit_removed_notice, 'bool'
     has_no_id
     has_no_get
     has_no_post

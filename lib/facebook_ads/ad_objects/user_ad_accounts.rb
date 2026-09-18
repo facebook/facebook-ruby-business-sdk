@@ -13,17 +13,24 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductSetPost < AdObject
+  class UserAdAccounts < AdObject
 
-    field :filter, 'string'
-    field :id, 'int'
-    field :name, 'string'
-    field :parent_id, 'int'
-    field :product_count, 'int'
-    field :retailer_id, 'string'
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :adaccounts do |edge|
+      edge.get 'UserAdAccountsGet' do |api|
+        api.has_param :after, 'string'
+        api.has_param :before, 'string'
+        api.has_param :fields, 'string'
+        api.has_param :filtering, 'string'
+        api.has_param :limit, 'int'
+        api.has_param :sort, 'string'
+        api.has_param :summary, 'string'
+      end
+    end
 
   end
 end

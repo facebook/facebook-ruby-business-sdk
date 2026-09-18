@@ -565,6 +565,7 @@ module FacebookAds
     field :has_brand_partnership_experience, 'bool'
     field :id, 'string'
     field :is_account_verified, 'bool'
+    field :is_brand_following_creator, 'bool'
     field :is_creator_following_brand, 'bool'
     field :is_paid_partnership_messages_enabled, 'bool'
     field :messaging_id, 'string'
@@ -581,13 +582,15 @@ module FacebookAds
     has_no_delete
 
     has_edge :branded_content_media do |edge|
-      edge.get
+      edge.get do |api|
+        api.has_param :platform, { list: { enum: %w{ANY BOTH FACEBOOK INSTAGRAM }} }
+      end
     end
 
     has_edge :insights do |edge|
       edge.get do |api|
         api.has_param :breakdown, { enum: %w{AGE FOLLOW_TYPE GENDER MEDIA_TYPE TOP_CITIES TOP_COUNTRIES }}
-        api.has_param :metrics, { list: { enum: %w{CREATOR_ENGAGED_ACCOUNTS CREATOR_REACH REELS_HOOK_RATE REELS_INTERACTION_RATE TOTAL_FOLLOWERS }} }
+        api.has_param :metrics, { list: { enum: %w{ACCOUNT_INTERACTIONS CREATOR_ENGAGED_ACCOUNTS CREATOR_REACH REELS_HOOK_RATE REELS_INTERACTION_RATE TOTAL_FOLLOWERS TOTAL_VIEWS }} }
         api.has_param :period, { enum: %w{DAY OVERALL }}
         api.has_param :platform, { list: { enum: %w{ANY BOTH FACEBOOK INSTAGRAM }} }
         api.has_param :time_range, { enum: %w{LAST_14_DAYS LAST_90_DAYS LIFETIME THIS_MONTH THIS_WEEK }}
@@ -595,11 +598,15 @@ module FacebookAds
     end
 
     has_edge :past_partnership_ads_media do |edge|
-      edge.get
+      edge.get do |api|
+        api.has_param :platform, { list: { enum: %w{ANY BOTH FACEBOOK INSTAGRAM }} }
+      end
     end
 
     has_edge :recent_media do |edge|
-      edge.get
+      edge.get do |api|
+        api.has_param :platform, { list: { enum: %w{ANY BOTH FACEBOOK INSTAGRAM }} }
+      end
     end
 
   end

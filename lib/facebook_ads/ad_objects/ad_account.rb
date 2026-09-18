@@ -336,6 +336,7 @@ module FacebookAds
         api.has_param :link_og_id, 'string'
         api.has_param :link_url, 'string'
         api.has_param :marketing_message_structured_spec, 'hash'
+        api.has_param :media_optimization_spec, 'hash'
         api.has_param :media_sourcing_spec, 'hash'
         api.has_param :name, 'string'
         api.has_param :object_id, 'int'
@@ -452,6 +453,7 @@ module FacebookAds
         api.has_param :conversion_domain, 'string'
         api.has_param :creative, 'AdCreative'
         api.has_param :creative_asset_groups_spec, 'object'
+        api.has_param :creative_audience_pairing_persona, 'hash'
         api.has_param :creative_automation_spec, 'object'
         api.has_param :dataset_split_specs, { list: 'hash' }
         api.has_param :date_format, 'string'
@@ -521,7 +523,6 @@ module FacebookAds
         api.has_param :campaign_attribution, 'object'
         api.has_param :campaign_id, 'string'
         api.has_param :campaign_spec, 'object'
-        api.has_param :cost_bidding_mode, { enum: %w{BALANCED COST_FOCUSED VOLUME_FOCUSED }}
         api.has_param :creative_sequence, { list: 'string' }
         api.has_param :creative_sequence_repetition_pattern, { enum: %w{FULL_SEQUENCE LAST_AD }}
         api.has_param :daily_budget, 'int'
@@ -562,7 +563,7 @@ module FacebookAds
         api.has_param :placement_soft_opt_out, 'object'
         api.has_param :promoted_object, 'object'
         api.has_param :rb_prediction_id, 'string'
-        api.has_param :regional_regulated_categories, { list: { enum: %w{0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 24 }} }
+        api.has_param :regional_regulated_categories, { list: { enum: %w{0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 24 25 }} }
         api.has_param :regional_regulation_identities, 'hash'
         api.has_param :relative_value, 'double'
         api.has_param :rf_prediction_id, 'string'
@@ -1190,11 +1191,11 @@ module FacebookAds
         api.has_param :is_higher_average_frequency, 'bool'
         api.has_param :is_reach_and_frequency_io_buying, 'bool'
         api.has_param :is_reserved_buying, 'bool'
-        api.has_param :meta_moment_maker_spec, 'hash'
         api.has_param :num_curve_points, 'int'
         api.has_param :objective, 'string'
         api.has_param :optimization_goal, 'string'
         api.has_param :prediction_mode, 'int'
+        api.has_param :product_type, { enum: -> { ReachFrequencyPrediction::PRODUCT_TYPE }}
         api.has_param :reach, 'int'
         api.has_param :rf_prediction_id, 'string'
         api.has_param :rf_prediction_id_to_release, 'string'

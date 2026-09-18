@@ -86,6 +86,8 @@ module FacebookAds
       "conversion_destination",
       "country",
       "creative_automation_asset_id",
+      "creative_fingerprint_details",
+      "creative_media_type_breakdown",
       "creative_relaxation_asset_type",
       "crm_advertiser_l12_territory_ids",
       "crm_advertiser_subvertical_id",
@@ -254,6 +256,14 @@ module FacebookAds
     field :configurable_attribution_action, { list: 'AdsActionStats' }
     field :configurable_attribution_actionvalue, { list: 'AdsActionStats' }
     field :configurable_audience_overlap_reach, { list: 'AdsActionStats' }
+    field :configurable_audience_overlap_with_conv_action, 'string'
+    field :configurable_audience_overlap_with_conv_converters, 'string'
+    field :configurable_audience_overlap_with_conv_exposure_cost, 'string'
+    field :configurable_audience_overlap_with_conv_exposure_impressions, 'string'
+    field :configurable_audience_overlap_with_conv_exposure_reach, 'string'
+    field :configurable_placement_ptc_conversions, 'string'
+    field :configurable_placement_ptc_converters, 'string'
+    field :configurable_placement_ptc_reach, 'string'
     field :configurable_reachbyfrequency_action, { list: 'AdsActionStats' }
     field :configurable_reachbyfrequency_converters_count, 'string'
     field :configurable_reachbyfrequency_impressions_cost, 'string'

@@ -13,21 +13,22 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdCreativeMediaSourcingSpec < AdObject
+  class ProductItemVideosMetadata < AdObject
 
-    field :bodies, { list: 'object' }
-    field :descriptions, { list: 'object' }
-    field :destinations, { list: 'object' }
-    field :images, { list: 'object' }
-    field :posts, { list: 'object' }
-    field :push_metadata_ids, { list: 'string' }
-    field :related_media, 'object'
-    field :titles, { list: 'object' }
-    field :videos, { list: 'object' }
-    has_no_id
+    field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
+
+    has_edge :videos_metadata do |edge|
+      edge.get 'ProductItemVideosMetadataGet' do |api|
+        api.has_param :after, 'string'
+        api.has_param :before, 'string'
+        api.has_param :fields, 'string'
+        api.has_param :limit, 'int'
+        api.has_param :summary, 'string'
+      end
+    end
 
   end
 end

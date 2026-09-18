@@ -159,6 +159,7 @@ module FacebookAds
       "SEND_UPDATES",
       "SHARE",
       "SHOP_NOW",
+      "SHOP_ON_RETAILER",
       "SHOP_WITH_AI",
       "SIGN_UP",
       "SOTTO_SUBSCRIBE",
@@ -282,6 +283,7 @@ module FacebookAds
     field :existing_post_title, 'string'
     field :facebook_branded_content, 'object'
     field :format_transformation_spec, { list: 'object' }
+    field :generative_asset_spec, 'object'
     field :id, 'int'
     field :image_crops, 'object'
     field :image_hash, 'string'

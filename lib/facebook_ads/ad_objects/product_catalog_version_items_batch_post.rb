@@ -13,7 +13,7 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogItemsBatchPost < AdObject
+  class ProductCatalogVersionItemsBatchPost < AdObject
     ITEM_SUB_TYPE = [
       "APPLIANCES",
       "BABY_FEEDING",
@@ -67,12 +67,6 @@ module FacebookAds
       "VIDEO_GAME_CONSOLES_AND_VIDEO_GAMES",
       "VIDEO_PROJECTORS",
       "WATCHES",
-    ]
-
-    REQUEST_ORIGIN = [
-      "BULK_ITEM_EDITOR",
-      "STORM",
-      "UNSPECIFIED",
     ]
 
 

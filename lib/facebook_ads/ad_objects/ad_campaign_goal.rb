@@ -21,6 +21,8 @@ module FacebookAds
     field :engaged_audiences_inclusions, { list: 'string' }
     field :existing_customers_audience_label_exclusions, { list: 'string' }
     field :existing_customers_audience_label_inclusions, { list: 'string' }
+    field :existing_customers_auto_exclusion_retention_days, 'int'
+    field :existing_customers_exclusion_auto_selection_state, 'int'
     field :existing_customers_exclusions, { list: 'string' }
     field :existing_customers_inclusions, { list: 'string' }
     field :is_ca_expansion_enabled, 'bool'

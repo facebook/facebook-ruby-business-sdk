@@ -13,34 +13,28 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class AdAccountAdVideos < AdObject
+  class ProductSetProducts < AdObject
 
     field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
 
-    has_edge :advideos do |edge|
-      edge.get 'AdAccountAdVideosGet' do |api|
-        api.has_param :ad_account_id, 'int'
+    has_edge :products do |edge|
+      edge.get 'ProductSetProductsGet' do |api|
         api.has_param :after, 'string'
         api.has_param :before, 'string'
-        api.has_param :date_format, 'string'
+        api.has_param :dedupe_by_group_id_for_small_catalogs, 'string'
+        api.has_param :dedupe_items_by_group, 'string'
+        api.has_param :display_format, { enum: -> { ProductSetProductsGet::DISPLAY_FORMAT }}
+        api.has_param :enable_typeahead, 'string'
+        api.has_param :error_priority, { enum: -> { ProductSetProductsGet::ERROR_PRIORITY }}
+        api.has_param :error_type, { enum: -> { ProductSetProductsGet::ERROR_TYPE }}
         api.has_param :fields, 'string'
-        api.has_param :filtering, 'string'
-        api.has_param :has_integrity_violation, 'bool'
+        api.has_param :filter, 'string'
         api.has_param :limit, 'int'
-        api.has_param :max_aspect_ratio, 'double'
-        api.has_param :maxheight, 'int'
-        api.has_param :maxlength, 'int'
-        api.has_param :maxwidth, 'int'
-        api.has_param :min_aspect_ratio, 'double'
-        api.has_param :minheight, 'int'
-        api.has_param :minlength, 'int'
-        api.has_param :minwidth, 'int'
-        api.has_param :originalvideo, 'bool'
+        api.has_param :sort, 'string'
         api.has_param :summary, 'string'
-        api.has_param :title, 'string'
       end
     end
 

@@ -14,6 +14,11 @@ module FacebookAds
   # pull request for this class.
 
   class IgMedia < AdObject
+    STATUS = [
+      "ENDED",
+      "STARTED",
+    ]
+
 
     field :alt_text, 'string'
     field :audio_id, 'string'
@@ -26,11 +31,20 @@ module FacebookAds
     field :has_slider, 'bool'
     field :id, 'string'
     field :ig_id, 'string'
+    field :ingest_first_video_received_time, 'int'
+    field :ingest_is_ready_to_start, 'bool'
+    field :ingest_key, 'string'
+    field :ingest_last_heartbeat_time, 'int'
+    field :ingest_state, 'string'
+    field :ingest_url, 'string'
+    field :ingest_video_height, 'int'
+    field :ingest_video_width, 'int'
     field :is_ai_generated, 'bool'
     field :is_comment_enabled, 'bool'
     field :is_shared_to_feed, 'bool'
     field :legacy_instagram_media_id, 'string'
     field :like_count, 'int'
+    field :live_status, 'string'
     field :media_audio_type, 'string'
     field :media_product_type, 'string'
     field :media_type, 'string'

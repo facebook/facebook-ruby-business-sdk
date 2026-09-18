@@ -13,34 +13,9 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogProductSetsGet < AdObject
-    INTEGRATED_CHECKOUT_ELIGIBILITY = [
-      "ELIGIBLE",
-      "NOT_ELIGIBLE",
-    ]
+  class ProductSetDelete < AdObject
 
-    INTEGRATED_CHECKOUT_PARTNER = [
-      "AMAZON",
-      "JEST_E2E_AMAZON",
-      "LOWES",
-      "MELI",
-      "NONE",
-      "SHEIN",
-      "SHOPEE_ID",
-      "SHOPEE_MY",
-      "SHOPEE_PH",
-      "SHOPEE_SG",
-      "SHOPEE_TH",
-      "SHOPEE_TW",
-      "SHOPEE_VN",
-      "WALMART",
-      "ZALANDO",
-    ]
-
-
-    field :data, { list: 'object' }
-    field :paging, 'object'
-    field :summary, 'object'
+    field :success, 'bool'
     has_no_id
     has_no_get
     has_no_post

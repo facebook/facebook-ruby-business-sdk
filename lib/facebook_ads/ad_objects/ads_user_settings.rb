@@ -94,6 +94,7 @@ module FacebookAds
     field :placement_group_vertical_opt_in_status, 'string'
     field :previously_seen_recommendations, { list: 'string' }
     field :product_extensions_opt_in, 'string'
+    field :push_model_opt_in_status, 'string'
     field :reactive_control_settings, { list: 'object' }
     field :replace_media_text_opt_in_status, 'string'
     field :sa_off_conv_loc_seen, 'string'

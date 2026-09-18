@@ -36,6 +36,7 @@ module FacebookAds
     field :effective_messenger_positions, { list: 'string' }
     field :effective_oculus_positions, { list: 'string' }
     field :effective_publisher_platforms, { list: 'string' }
+    field :effective_streaming_services_positions, { list: 'string' }
     field :effective_threads_positions, { list: 'string' }
     field :effective_whatsapp_positions, { list: 'string' }
     field :facebook_positions, { list: 'string' }
@@ -43,6 +44,7 @@ module FacebookAds
     field :messenger_positions, { list: 'string' }
     field :oculus_positions, { list: 'string' }
     field :publisher_platforms, { list: 'string' }
+    field :streaming_services_positions, { list: 'string' }
     field :threads_positions, { list: 'string' }
     field :whatsapp_positions, { list: 'string' }
     has_no_id

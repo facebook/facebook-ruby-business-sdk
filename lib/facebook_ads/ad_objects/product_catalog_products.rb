@@ -21,7 +21,9 @@ module FacebookAds
     has_no_delete
 
     has_edge :products do |edge|
-      edge.post 'ProductCatalogProductsPost'
+      edge.post 'ProductCatalogProductsPost' do |api|
+        api.has_param :fields, 'string'
+      end
     end
 
   end

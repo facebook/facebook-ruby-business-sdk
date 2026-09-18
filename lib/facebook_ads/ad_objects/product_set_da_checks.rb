@@ -13,16 +13,22 @@ module FacebookAds
   # on github and we'll fix in our codegen framework. We'll not be able to accept
   # pull request for this class.
 
-  class ProductCatalogProductSets < AdObject
+  class ProductSetDaChecks < AdObject
 
     field :id, 'string'
     has_no_get
     has_no_post
     has_no_delete
 
-    has_edge :product_sets do |edge|
-      edge.post 'ProductCatalogProductSetsPost' do |api|
+    has_edge :da_checks do |edge|
+      edge.get 'ProductSetDaChecksGet' do |api|
+        api.has_param :capabilities, { list: { enum: -> { ProductSetDaChecksGet::CAPABILITIES }} }
+        api.has_param :categories, { list: { enum: -> { ProductSetDaChecksGet::CATEGORIES }} }
+        api.has_param :checks, { list: 'string' }
+        api.has_param :connection_method, { enum: -> { ProductSetDaChecksGet::CONNECTION_METHOD }}
+        api.has_param :features, { list: { enum: -> { ProductSetDaChecksGet::FEATURES }} }
         api.has_param :fields, 'string'
+        api.has_param :with_issue_only, 'bool'
       end
     end
 
