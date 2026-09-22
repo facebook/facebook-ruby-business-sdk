@@ -18,35 +18,36 @@ module FacebookAds
         self.field_types[name] = type
 
         unless name == :id
-          define_reader(name)
-          define_writer(name)
+          method_name = name == :object_id ? :fb_object_id : name
+          define_reader(method_name, name)
+          define_writer(method_name, name)
         end
 
         self.deserializer ||= ParamSet.new
         self.deserializer.has_param(name, type, *args)
       end
 
-      def define_reader(name)
-        define_method(name) do
-          if !@__all_fields.include?(name)
-            @__all_fields << name
-            Utils.logger.warn("#{name} not in the fields")
+      def define_reader(method_name, attr_name)
+        define_method(method_name) do
+          if !@__all_fields.include?(attr_name)
+            @__all_fields << attr_name
+            Utils.logger.warn("#{attr_name} not in the fields")
           end
 
           load! unless loaded?
 
-          if changes.has_key?(name)
-            changes[name]
+          if changes.has_key?(attr_name)
+            changes[attr_name]
           else
-            @attributes[name]
+            @attributes[attr_name]
           end
         end
       end
 
-      def define_writer(name)
-        define_method("#{name}=") do |val|
-          changes[name] = val
-          @__all_fields.add(name.to_s)
+      def define_writer(method_name, attr_name)
+        define_method("#{method_name}=") do |val|
+          changes[attr_name] = val
+          @__all_fields.add(attr_name.to_s)
         end
       end
     end
