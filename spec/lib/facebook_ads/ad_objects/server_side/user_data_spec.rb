@@ -30,6 +30,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             state: 'state-9',
             zip_code: 'zip-code-10',
             external_id: 'external-id-100',
+            fb_login_id: 'fb-login-id-111',
             f5first: 'f5first-11',
             lead_id: 'lead_id-112',
             f5last: 'f5last-12',
@@ -57,6 +58,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             'zp' => ["zp_#{attrs[:zip_code]}-normalized"],
             'external_id' => [attrs[:external_id]],
             'lead_id' => attrs[:lead_id],
+            'fb_login_id' => attrs[:fb_login_id],
             'f5first' => "f5first_#{attrs[:f5first]}-normalized",
             'f5last' => "f5last_#{attrs[:f5last]}-normalized",
             'fi' => "fi_#{attrs[:fi]}-normalized",
@@ -119,6 +121,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             state: 'state-9',
             zip_code: 'zip-code-10',
             lead_id: 'lead-id-100',
+            fb_login_id: 'fb-login-id-101',
             f5first: 'f5first-11',
             f5last: 'f5last-12',
             fi: 'fi-13',
@@ -138,6 +141,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             state: 'state-9',
             zip_code: 'zip-code-10',
             lead_id: 'lead-id-100',
+            fb_login_id: 'fb-login-id-101',
             f5first: 'f5first-11',
             f5last: 'f5last-12',
             fi: 'fi-13',
@@ -167,6 +171,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             state: 'state-9',
             zip_code: 'zip-code-10',
             lead_id: 'lead-id-100',
+            fb_login_id: 'fb-login-id-101',
             f5first: 'f5first-11',
             f5last: 'f5last-12',
             fi: 'fi-13',
@@ -186,6 +191,7 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
             state: 'state-9',
             zip_code: 'zip-code-10',
             lead_id: 'lead-id-100',
+            # fb_login_id intentionally omitted to trigger inequality
             f5first: 'f5first-11',
             f5last: 'f5last-12',
             fi: 'fi-13',
@@ -265,11 +271,13 @@ RSpec.describe 'FacebookAds::ServerSide::UserData' do
         attrs = {
             city: 'seattle',
             cities: ['menlopark', 'paloalto'],
+            fb_login_id: 'fb-login-id-500',
         }
         user_data.build(attrs)
 
         expect(user_data.city).to eq(attrs[:cities][0])
         expect(user_data.cities).to eq(attrs[:cities])
+        expect(user_data.fb_login_id).to eq(attrs[:fb_login_id])
     end
 
     it 'constructor fails validation if both single and multi-values are specified' do
